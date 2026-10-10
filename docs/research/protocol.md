@@ -1,6 +1,6 @@
 # Protocol so sánh — khớp `fl_dagsnet_veremi`
 
-Cập nhật 2026-10-10. **Bản nháp, chờ chủ dự án chốt** ([Q2–Q3](de-xuat-huong-moi.md#6-câu-hỏi-cần-chủ-dự-án-chốt)).
+Cập nhật 2026-10-10. **Chủ dự án chốt §1 + §3 (Q2) và mức ngân sách B0 + B2 (Q1).** Còn mở: số contact/round (Q3).
 Mục tiêu: số của MobiHet mới phải đặt được cạnh số của các bản dựng lại trong repo `odixe06/fl_dagsnet_veremi` (AFPHA, FD-IDS, NILM-FL,
 PerFed-SKD, TinyProto, pFedES, …) mà không cần chú thích lệch protocol.
 
@@ -21,17 +21,18 @@ PerFed-SKD, TinyProto, pFedES, …) mà không cần chú thích lệch protocol
 
 ## 2. Phần MobiHet thêm vào (khác repo anh em, phải báo kèm mọi số)
 
-1. **Kênh truyền có deadline (R1).**
+1. **Kênh truyền có deadline (R1).** Báo ở hai mức ngân sách B0 (≈4,5 kB/contact) và B2 (≈231 kB/contact) ([đề xuất §3](de-xuat-huong-moi.md#3-ngân-sách-contact-và-kích-thước-tri-thức)).
    - Mỗi round, mỗi xe có contact mô phỏng: ngân sách byte và `tau_true` lấy từ simulator archive ([kế thừa §6](../legacy/kien-thuc-ke-thua.md#6-kênh-truyền-và-mô-phỏng-contact)).
    - Xe không có contact hoặc chưa nhận đủ gói thì vẫn học local, dùng tri thức cũ.
    - Repo anh em giả định full participation, không giới hạn byte. Muốn tách được hiệu ứng kênh thì mỗi phương pháp phải chạy cả hai chế độ:
      **không ràng buộc** (khớp anh em) và **có ràng buộc**.
 2. **Model khác kiến trúc (R2).** Chạy đồng nhất DAGSNet trước để so với repo anh em. Sau đó chạy kịch bản khác kiến trúc (H1/H2/H3 như `MobiHet_IDS.md` §4.3 cũ),
    báo theo từng kiến trúc.
-3. **Riêng tư (R3).** Assert trong preflight: không tensor dữ liệu `(x, y)` nào nằm trong payload. Ghi rõ loại tri thức đi trên kênh và số byte của từng loại.
+3. **Riêng tư (R3, chốt Q4).** Assert trong preflight: không tensor dữ liệu `(x, y)` nào nằm trong payload. Ghi rõ loại tri thức đi trên kênh và số byte của từng loại.
+   Thống kê/tham số đi qua secure aggregation mô phỏng: RSU chỉ dùng tổng nhiều client. DP là thí nghiệm độ nhạy sau.
 4. **Mốc dưới local-only** theo đúng §1. Repo anh em chưa có mốc này.
 
-## 3. Chọn phương pháp/HP mà không tune trên test
+## 3. Chọn phương pháp/HP mà không tune trên test (chốt 2026-10-10)
 
 Repo anh em không chọn checkpoint, nhưng có sweep HP trên validation 2% (TinyProto chọn k). Đề xuất cho MobiHet:
 

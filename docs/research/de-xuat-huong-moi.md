@@ -190,6 +190,14 @@ Mỗi bước: cổng khóa trước khi chạy, cặp seed, một yếu tố/ar
 
 ## 6. Câu hỏi cần chủ dự án chốt
 
+**Đã chốt 2026-10-10:**
+- Q1: báo nhiều mức, chính B0 + B2.
+- Q2: protocol anh em + holdout pilot.
+- Q4: không dữ liệu thô + secure aggregation mô phỏng, DP sau.
+- Bước tiếp: dừng để chủ dự án đọc tài liệu.
+
+Còn mở: Q3, Q5, Q6, Q7.
+
 1. **Q1 — ngân sách contact.** Giữ B0 stress của archive (trung vị 4,5 kB), hay dùng B1/B2/B3, hay báo nhiều mức?
    Mức chọn quyết định proxy H1 có được dùng DAGSNet hay phải là model nhỏ.
 2. **Q2 — protocol.** Theo đúng `fl_dagsnet_veremi` (50 round × 1 epoch, test mọi round, headline r50), cộng holdout nội bộ cho pilot như [protocol §3](protocol.md)?

@@ -29,15 +29,23 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 - DVC remote dùng chung với archive: `gdrive` = `/mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage`.
 - Có thể phân tích dữ liệu client trong `../dataset/` (train z-score: `fl_client/alpha05/{20,50,100}_client/train/client_id=NNN/`; test raw: `centralized/test/`).
 
-## Chờ chủ dự án chốt
+**Chốt thêm 2026-10-10 (sau probe H2):**
+- **Q1 ngân sách:** báo nhiều mức. Chính là B0 stress (≈4,5 kB/contact, như archive) và B2 (≈231 kB/contact); vẽ Pareto byte–F1.
+- **Q2 protocol:** run chính như `fl_dagsnet_veremi` (50 round × 1 epoch, test toàn bộ mỗi round, headline r50).
+  Pilot chọn cấu hình trên holdout nội bộ old/group, cổng khóa trước, hai seed.
+- **Q4 riêng tư:** không dữ liệu thô rời xe + secure aggregation mô phỏng (RSU chỉ thấy tổng nhiều client). DP để sau, làm thí nghiệm độ nhạy.
+- **Bước tiếp:** **dừng**, chủ dự án đọc [kiến thức kế thừa](docs/legacy/kien-thuc-ke-thua.md) và [đề xuất](docs/research/de-xuat-huong-moi.md) rồi mới chốt.
+  Không chạy thí nghiệm mới khi chưa có lệnh.
 
-Q1 mức ngân sách contact, Q2 protocol, Q3 số contact/round, Q4 mức riêng tư (DP/secure aggregation), Q5 nguồn proxy (nếu theo H5),
-Q6 thứ tự S0→S1, Q7 tắt M4b. Chi tiết: [đề xuất §6](docs/research/de-xuat-huong-moi.md#6-câu-hỏi-cần-chủ-dự-án-chốt).
+## Còn mở
 
-## Bước kế tiếp (sau khi chốt)
+Q3 số contact/round (một hay multi-contact), Q5 nguồn proxy (nếu theo H5), Q6 thứ tự S0→S1, Q7 tắt M4b (đang giả định tắt, đúng "66 feature gốc").
+Chi tiết: [đề xuất §6](docs/research/de-xuat-huong-moi.md#6-câu-hỏi-cần-chủ-dự-án-chốt).
+
+## Bước kế tiếp (khi chủ dự án cho chạy)
 
 1. S0: driver theo protocol, dựng từ code `fl_dagsnet_veremi` + simulator archive; chạy mốc local-only 20c.
-2. S1a (H2 offline: dữ liệu tổng hợp từ thống kê lớp) song song S1b (H1: sức chứa proxy).
+2. S1a (H2: hạng thấp, rồi DAGSNet) song song S1b (H1: sức chứa proxy).
 3. Cổng khóa trước khi chạy, hai seed, mỗi arm đổi một yếu tố.
 
 ## Muốn biết → mở
