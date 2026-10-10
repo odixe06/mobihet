@@ -9,7 +9,7 @@ Bằng chứng và số gốc: [kiến thức kế thừa](../legacy/kien-thuc-k
 |---|---|---|
 | R1 | Giao tiếp xe–RSU nằm trong ngân sách contact: deadline thật, tính đủ byte | simulator archive, kế toán byte, assert deadline/byte cap |
 | R2 | Client được dùng model khác kiến trúc | registry `dagsnet/mlp/cnn1d/gru` (+TCN); không averaging tham số của model riêng |
-| R3 | Không dữ liệu thô hoặc record `(x, y)` nào rời xe | assert payload; tri thức hợp lệ = tham số khối chung, prototype/thống kê, logit trên dữ liệu proxy, generator/dữ liệu tổng hợp |
+| R3 | Không dữ liệu thô hoặc record `(x, y)` nào rời xe; không client nào thấy local data của client khác (tiêu chuẩn FL), kể cả trong đối chứng thí nghiệm | assert payload; tri thức hợp lệ = tham số khối chung, prototype/thống kê, logit trên dữ liệu proxy, generator/dữ liệu tổng hợp |
 | R4 | 66 feature gốc, cùng cấu hình `fl_dagsnet_veremi` | protocol §1 |
 
 ## 2. Ràng buộc thiết kế rút từ archive
@@ -90,6 +90,10 @@ Kích thước payload một chiều (chưa tính header/ACK):
 
 ### H2 — Thống kê lớp trong không gian input → dữ liệu tổng hợp cho head triển khai (ưu tiên 2)
 
+> **Tín hiệu đầu (2026-10-10, [H2-T0-lite](probes/h2-input-stats.md), MLP, 4 client × 2 seed):** Gaussian hiệp phương sai đầy đủ gộp từ 19 client khác
+> +0,102/+0,106 macro-F1 so với replay cân bằng của chính client (8/8 dương); diag +0,050/+0,058; điểm trung bình lớp −0,013/−0,022.
+> Cổng PASS. Chưa phải DAGSNet, chưa có ngân sách contact/DP ⇒ cùng hạng ưu tiên với H1, chạy S1a trước S2.
+
 **Cơ chế.**
 - Mỗi xe gửi lên **tổng có thể cộng dồn** theo lớp trong không gian 66 feature: `n_c`, `Σx`, `Σx²` (đường chéo); tùy chọn sketch hạng thấp hoặc GMM ít thành phần.
 - RSU cộng các tổng này, rồi phát xuống phân phối có điều kiện theo lớp ở mức **quần thể**.
@@ -111,13 +115,15 @@ Kích thước payload một chiều (chưa tính header/ACK):
 - Mẫu tổng hợp không tách được lớp thì chỉ dời ranh giới (U15: gửi có chủ đích các lớp giống benign làm benign recall −0,05/−0,10).
 - Thống kê input của một client lộ nhiều hơn thống kê latent. Cần tổng hợp qua ≥ k client trước khi phát xuống, và cân nhắc DP.
 
-**Phép thử đầu tiên, offline, rẻ.**
-- Lấy backbone local-only đóng băng (từ chạy mốc §5), fit lại head 16 bước trên:
-  - (a) chỉ local;
-  - (b) mẫu thật đa client N/lớp — **chỉ làm đối chứng trên offline**, không phải phương pháp;
-  - (c) mẫu từ Gaussian diag tổng hợp;
-  - (d) Gaussian hạng thấp hoặc GMM.
-- Cổng: (c) hoặc (d) thu hồi ≥ 50% lợi (b) − (a), cả hai seed, benign F1 không giảm quá ngưỡng nhiễu.
+**Phép thử đầu tiên, offline, rẻ.** Không client nào thấy dữ liệu của client khác, kể cả trong đối chứng (quy tắc FL, chủ dự án nhắc 2026-10-10).
+Đại lượng duy nhất đi qua client là tổng cộng dồn theo lớp.
+- H2-T0-lite (đang chạy, [kết quả](probes/h2-input-stats.md)): MLP nhỏ, 4 client đích × 2 seed. So:
+  - local;
+  - local + replay cân bằng của chính client (đối chứng prior);
+  - local + mẫu Gaussian diag / full gộp từ 19 client còn lại;
+  - local + điểm trung bình lớp (đối chứng kiểu prototype).
+- H2-T0 (sau S0): backbone local-only DAGSNet đóng băng, fit lại head 16 bước trên local / local cân bằng / mẫu tổng hợp.
+- Cổng đề xuất: tổng hợp − local cân bằng ≥ +0,01 và tổng hợp − điểm trung bình > 0, cả hai seed, benign F1 không giảm quá ngưỡng nhiễu.
 - Không đạt thì dừng H2 dạng tham số, cân nhắc generator (H5).
 
 ### H3 — Head/classifier chung trên giao diện latent (FedGH / LG-FedAvg)
@@ -173,7 +179,7 @@ Kích thước payload một chiều (chưa tính header/ACK):
 | bước | việc | đầu ra | cổng/dừng |
 |---|---|---|---|
 | S0 | Driver theo protocol §1, dựng từ code `fl_dagsnet_veremi` + simulator archive. Mốc **local-only** 20c (50 round, test mọi round) | số mốc dưới chưa có | tái lập được một baseline anh em (ví dụ FedAvg/AFPHA 20c) trong sai số 1 seed |
-| S1a | H2-T0 offline: head refit trên mẫu tổng hợp vs mẫu thật (máy local hoặc 1 phiên Kaggle) | bảng thu hồi lợi ích | ≥ 50% lợi của mẫu thật |
+| S1a | H2-T0 offline: head refit trên mẫu tổng hợp vs local cân bằng và điểm trung bình (máy local hoặc 1 phiên Kaggle) | bảng lợi so đối chứng | tổng hợp − local cân bằng ≥ +0,01 cả hai seed |
 | S1b | H1-T0: sức chứa proxy (FedAvg proxy nhỏ, không kênh) | proxy global F1 so với local-only | proxy ≥ local-only DAGSNet |
 | S2 | H1-T1 học tương hỗ, 2 cỡ proxy, 20c, 2 seed, ngắn | private − local | ≥ +0,03 cả hai seed |
 | S3 | Bật kênh (mức ngân sách theo Q1) cho nhánh qua cổng | lợi giữ lại, byte, số contact hoàn tất | giữ ≥ 70% lợi |

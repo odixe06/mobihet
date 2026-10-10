@@ -14,10 +14,15 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
   - Archive 3 = `odixe06/mobihet-archive-b9-b21` (đổi tên từ `odixe06/mobihet` 2026-10-10), local `../mobihet_archive`.
   - Kernel Kaggle cuối (Build20/21) đang được thu về archive; không push thêm kernel nào của hướng cũ.
   - Không xóa dữ liệu local archive khi chủ dự án chưa yêu cầu.
-- Repo này mới khởi tạo. Hiện có: knowledge (chép từ archive, không phụ thuộc phương pháp), tổng hợp kế thừa, đề xuất H1–H6, nháp protocol. **Chưa có code, chưa chạy thực nghiệm.**
+- Repo này mới khởi tạo. Hiện có: knowledge (chép từ archive, không phụ thuộc phương pháp), tổng hợp kế thừa, đề xuất H1–H6, nháp protocol.
+  Chưa có driver FL.
+- **Probe H2-T0-lite (local, MLP, 2026-10-10) PASS:** mẫu từ Gaussian hiệp phương sai đầy đủ theo lớp, gộp từ tổng cộng dồn của 19 client khác,
+  +0,102/+0,106 macro-F1 so với replay cân bằng local (8/8). Điểm trung bình lớp −0,013/−0,022.
+  Chỉ là chẩn đoán: chưa DAGSNet, chưa ngân sách/DP. [Kết quả](docs/research/probes/h2-input-stats.md).
 
 ## Quyết định hiện hành (chủ dự án, 2026-10-10)
 
+- **Tiêu chuẩn FL:** không chia sẻ local data giữa các client dưới bất kỳ hình thức nào, kể cả trong đối chứng thí nghiệm.
 - Dạng tri thức được phép thử: tham số khối model dùng chung, prototype/thống kê theo lớp, logit trên dữ liệu proxy, generator/dữ liệu tổng hợp.
   Thử tất cả được, nhưng phải tính đến kinh nghiệm cũ (kênh prototype trung bình lớp từng chỉ được ±0,006).
 - Input **66 feature gốc**, không P4/map. Cấu hình khớp `fl_dagsnet_veremi` (DAGSNet, α=0,5, 20/50/100 client, 50 round × 1 epoch, cosine LR, test mọi round).

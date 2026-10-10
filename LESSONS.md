@@ -12,7 +12,8 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Không commit/push git, không backup, không xóa artifact khi chưa được đồng ý trong phiên.
 - Kaggle: agent push trực tiếp sau preflight. Không ngại quota cho kịch bản ngắn; run dài hoặc nhiều client thì hỏi trước.
 - **2026-10-10:**
-  - R3 cấm mọi dạng gửi mẫu `(x, y)`, kể cả lên RSU.
+  - R3 cấm mọi dạng gửi mẫu `(x, y)`, kể cả lên RSU. **Không client nào thấy local data của client khác** (tiêu chuẩn FL, chủ dự án nhắc lại),
+    kể cả trong arm đối chứng/upper reference của thí nghiệm. Số record cache cũ chỉ còn là lịch sử, không chạy lại.
   - Input 66 feature gốc, cùng protocol `fl_dagsnet_veremi`.
   - Được thử mọi dạng tri thức không phải dữ liệu thô, nhưng phải tính đến kết quả cũ.
 
@@ -42,11 +43,15 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   Trung bình lớp không chở ranh giới. Đừng đầu tư thêm vào biến đổi trung bình lớp.
 - **Thống kê latent bị cũ đi khi backbone còn học:** CCVR-like N3 offline +0,013, online −0,014/−0,010.
   Dùng chúng cho head triển khai trên snapshot đóng băng, không làm loss liên tục.
+- **Thống kê lớp bậc hai ở không gian input mang được tri thức đa client mà không lộ dòng nào** (H2-T0-lite 2026-10-10, MLP, 4 client × 2 seed):
+  Gaussian full-cov gộp +0,10, diag +0,05, điểm trung bình −0,02 so với replay cân bằng local. Thông tin nằm ở hiệp phương sai, không ở tâm.
+  Input không trôi theo representation, nên tránh được lỗi của N3 latent. Chưa xác nhận trên DAGSNet/ngân sách/DP.
+  [Kết quả](docs/research/probes/h2-input-stats.md).
 - **KD/teacher:** teacher peer (Build7) và ridge teacher RSU (S13) chỉ ngang làm mượt theo lớp.
   Mọi teacher cần cổng chất lượng + đối chứng class-mean.
 - **Khác kiến trúc:** chỉnh head không cứu được backbone yếu (M2). Tri thức phải tác động toàn model.
 - **Nút thắt:** ranh giới quyết định đa receiver. Xe sai 4% trên receiver của mình, 45% toàn cục.
-  32 mẫu thật/lớp từ client khác ≈ 70% lợi tối đa (M1, chỉ còn là đối chứng trên).
+  32 mẫu thật/lớp từ client khác ≈ 70% lợi tối đa (M1, số lịch sử; dạng này vi phạm R3, không chạy lại).
 - **Chia sẻ model đi được trên dữ liệu này:** FedAvg/FedProx 0,77, NILM-FL proxy 0,82 / private 0,70 (test 20c, `fl_dagsnet_veremi`).
 - **Công thức local có lợi:** `gp` (+0,025); EMA + head triển khai fit riêng mỗi cycle; tính lại BN local cho model EMA (lợi chuyển tiếp, giảm dần).
   EMA trung bình cả head thì hỏng.
@@ -62,6 +67,8 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 ## 6. Vận hành
 
 - Local: RAM 7,6 GiB, RTX 3050 4 GB. **Mỗi lần một job nặng**, chạy qua `run_local_guarded.py`.
+- Đọc parquet bằng `pyarrow.dataset` phải tắt readahead (`batch_readahead=1, fragment_readahead=1`), nếu không RSS lên 4,6 GB.
+  `centralized/test/` có lẫn `*.stats.json`, nên glob `*.parquet`.
   `conda run` nuốt stdout. Chờ theo PID, không `pgrep -f` (tự khớp chính lệnh chờ).
 - Kaggle:
   - 2×T4, image pin. Tiêu đề ≤ 50 ký tự. Không sửa notebook đã PUSHED.
