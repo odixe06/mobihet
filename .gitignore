@@ -1,0 +1,23 @@
+# --- Secrets: không bao giờ commit ---
+# W&B API key nằm trong .env (WANDB_API_KEY); notebook đọc nó từ biến môi trường.
+.env
+.env.*
+# Cấu hình MCP cục bộ chứa bearer token Kaggle.
+.mcp.json
+**/.vscode/mcp.json
+kaggle.json
+credentials.json
+
+# --- Python / Jupyter ---
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# --- Artifact nặng: do DVC quản lý (xem *.dvc), lưu ở Google Drive ---
+# Thư mục mới loại này phải `dvc add`, không bao giờ vào git.
+**/weights/
+**/preds/
+**/runs/
+**/checkpoints/
+*.pt

@@ -1,0 +1,7 @@
+[core]
+    remote = gdrive
+    autostage = true
+[cache]
+    type = "hardlink,copy"
+['remote "gdrive"']
+    url = /mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage

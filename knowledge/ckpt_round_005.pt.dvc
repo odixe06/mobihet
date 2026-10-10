@@ -1,0 +1,5 @@
+outs:
+- md5: c1466d52f38bdb05ec5facc97d500af2
+  size: 4924379
+  hash: md5
+  path: ckpt_round_005.pt
