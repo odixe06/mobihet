@@ -7,7 +7,7 @@ Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md) (bản Codex
 
 - Git: `git@github.com:odixe06/mobihet.git` (private, tạo 2026-10-10), nhánh `main`. Commit đầu `9065392` khớp `git ls-remote`.
 - DVC remote `gdrive` = `/mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage`, **dùng chung với archive** (object trùng hash chỉ lưu một lần).
-- Bundle: `/mnt/g/My Drive/NCKH/veremi_build/mobihet/mobihet.bundle` = repo **này** (`--all`, `main` `36d3d00`, verify okay trên G: 2026-10-11).
+- Bundle: `/mnt/g/My Drive/NCKH/veremi_build/mobihet/mobihet.bundle` = repo **này** (`--all`, cập nhật mỗi đợt backup; đợt mới nhất xem §4).
   Bundle cũ cùng tên (repo trước khi đổi tên) đã được thay sau khi kiểm: mọi ref của nó nằm trong `mobihet-archive-b9-b21.bundle`.
 - Cloud: file đã nằm trên G: = đã backup. Upload lên cloud: chưa kiểm.
 
@@ -44,6 +44,8 @@ Repo archive (đọc [index](../legacy/kien-thuc-ke-thua.md#0-vì-sao-dừng-hư
   Không có trong DVC; tái tạo bằng script archive. Đĩa đã dùng 115,0 → 74,2 GB.
 
 **2026-10-11 bàn giao:** `dvc add` + `dvc push` `papers/pilot/{fixture,runs}` (99 file), `dvc status -c` 3 manifest in sync; quét W&B key / `.part`: không có.
+  Git: commit `c6741fb` (66 file, lớn nhất 28 kB; quét staged không có W&B key/`KGAT_`) push `main`, khớp `git ls-remote`; commit hồ sơ này push tiếp.
+  Bundle `mobihet.bundle` (`--all`) tạo lại sau commit hồ sơ, verify ở scratch rồi thay trên G:.
 
 ## 5. Next session
 
