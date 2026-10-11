@@ -1,0 +1,5 @@
+r5 h2_full s43 loss 1.0586 group gp 0.5685 old gp 0.5654 (93s)
+r10 h2_full s43 loss 0.8094 group gp 0.5714 old gp 0.5682 (93s)
+r15 h2_full s43 loss 0.6675 group gp 0.5710 old gp 0.5683 (95s)
+r20 h2_full s43 loss 0.6287 group gp 0.5727 old gp 0.5690 (94s)
+done h2_full 43 35.5 min

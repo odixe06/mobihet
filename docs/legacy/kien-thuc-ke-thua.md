@@ -13,7 +13,7 @@ rời khỏi xe. Như vậy nó vi phạm nguyên tắc nền của federated le
 |---|---|---|
 | `odixe06/mobihet-archive-b1-b6` | Build1–6: prototype/latent, screening, leakage stage 0–1, method probe M1–M4 | — |
 | `odixe06/mobihet-archive-b7-b8` | Build7–8: cache mẫu thật + head riêng | — |
-| `odixe06/mobihet-archive-b9-b21` (archive 3, trước đây là `odixe06/mobihet`) | Build9–21, toàn bộ hồ sơ kết quả mọi build, LESSONS, CONTEXT cuối | `../mobihet_archive/` |
+| `odixe06/mobihet-archive-b9-b21` (archive 3, trước đây là `odixe06/mobihet`) | Build9–21, toàn bộ hồ sơ kết quả mọi build, LESSONS, CONTEXT cuối | local đã xóa 2026-10-11; tag `archive-3`, bundle `mobihet-archive-b9-b21.bundle` |
 
 Trong tài liệu này, `archive3:<path>` là đường dẫn trong repo archive 3 (nhánh `session-20261004-leakage-probes`). Dữ liệu nặng nằm ở DVC remote
 chung `gdrive` và lấy lại bằng `dvc pull <target>.dvc` ([cách làm](../operations/backup.md)).

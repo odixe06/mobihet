@@ -1,0 +1,5 @@
+r5 fedavg s43 loss 0.3587 group gp 0.7001 old gp 0.6968 (67s)
+r10 fedavg s43 loss 0.2929 group gp 0.7728 old gp 0.7620 (68s)
+r15 fedavg s43 loss 0.2818 group gp 0.7934 old gp 0.7792 (66s)
+r20 fedavg s43 loss 0.4475 group gp 0.7969 old gp 0.7824 (67s)
+done fedavg 43 22.4 min

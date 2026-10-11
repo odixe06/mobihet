@@ -1,0 +1,5 @@
+r5 local s43 loss 0.2236 group gp 0.4650 old gp 0.4628 (66s)
+r10 local s43 loss 0.0785 group gp 0.4641 old gp 0.4599 (66s)
+r15 local s43 loss 0.0178 group gp 0.4636 old gp 0.4579 (66s)
+r20 local s43 loss 0.0073 group gp 0.4633 old gp 0.4578 (65s)
+done local 43 26.9 min

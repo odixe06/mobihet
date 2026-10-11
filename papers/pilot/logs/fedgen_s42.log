@@ -1,0 +1,5 @@
+r5 fedgen s42 loss 0.2297 group gp 0.4722 old gp 0.4724 (70s)
+r10 fedgen s42 loss 0.0780 group gp 0.4748 old gp 0.4725 (71s)
+r15 fedgen s42 loss 0.0159 group gp 0.4788 old gp 0.4745 (69s)
+r20 fedgen s42 loss 0.0116 group gp 0.4823 old gp 0.4783 (70s)
+done fedgen 42 30.1 min

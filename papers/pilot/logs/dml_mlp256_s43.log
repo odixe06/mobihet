@@ -1,0 +1,5 @@
+r5 dml_mlp256 s43 loss 1.1028 group gp 0.5294 old gp 0.5314 (73s)
+r10 dml_mlp256 s43 loss 0.9233 group gp 0.5753 old gp 0.5741 (72s)
+r15 dml_mlp256 s43 loss 0.9094 group gp 0.6088 old gp 0.6030 (71s)
+r20 dml_mlp256 s43 loss 1.1926 group gp 0.5885 old gp 0.5862 (72s)
+done dml_mlp256 43 27.6 min

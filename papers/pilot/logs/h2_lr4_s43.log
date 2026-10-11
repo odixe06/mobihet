@@ -1,0 +1,5 @@
+r5 h2_lr4 s43 loss 1.0098 group gp 0.5471 old gp 0.5450 (95s)
+r10 h2_lr4 s43 loss 0.7537 group gp 0.5576 old gp 0.5529 (95s)
+r15 h2_lr4 s43 loss 0.6092 group gp 0.5551 old gp 0.5485 (94s)
+r20 h2_lr4 s43 loss 0.5710 group gp 0.5557 old gp 0.5495 (94s)
+done h2_lr4 43 35.1 min

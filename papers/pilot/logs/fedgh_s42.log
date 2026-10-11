@@ -1,0 +1,5 @@
+r5 fedgh s42 loss 0.4889 group gp 0.4510 old gp 0.4551 (86s)
+r10 fedgh s42 loss 0.4928 group gp 0.4543 old gp 0.4571 (87s)
+r15 fedgh s42 loss 0.4543 group gp 0.4551 old gp 0.4562 (86s)
+r20 fedgh s42 loss 0.8555 group gp 0.4453 old gp 0.4444 (85s)
+done fedgh 42 35.8 min

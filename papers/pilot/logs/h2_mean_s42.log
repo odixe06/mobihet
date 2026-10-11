@@ -1,0 +1,5 @@
+r5 h2_mean s42 loss 0.2646 group gp 0.4599 old gp 0.4605 (95s)
+r10 h2_mean s42 loss 0.0899 group gp 0.4592 old gp 0.4595 (96s)
+r15 h2_mean s42 loss 0.0194 group gp 0.4585 old gp 0.4568 (94s)
+r20 h2_mean s42 loss 0.0107 group gp 0.4617 old gp 0.4596 (94s)
+done h2_mean 42 35.0 min

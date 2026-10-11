@@ -1,0 +1,5 @@
+r5 local s42 loss 0.2264 group gp 0.4631 old gp 0.4639 (67s)
+r10 local s42 loss 0.0776 group gp 0.4578 old gp 0.4547 (65s)
+r15 local s42 loss 0.0155 group gp 0.4608 old gp 0.4578 (66s)
+r20 local s42 loss 0.0123 group gp 0.4646 old gp 0.4614 (66s)
+done local 42 26.9 min

@@ -1,0 +1,5 @@
+r5 dml_dagsnet s42 loss 0.9149 group gp 0.5385 old gp 0.5410 (132s)
+r10 dml_dagsnet s42 loss 0.7710 group gp 0.5869 old gp 0.5873 (132s)
+r15 dml_dagsnet s42 loss 0.7377 group gp 0.6250 old gp 0.6235 (131s)
+r20 dml_dagsnet s42 loss 1.0337 group gp 0.6212 old gp 0.6172 (130s)
+done dml_dagsnet 42 47.8 min

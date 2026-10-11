@@ -1,0 +1,16 @@
+local --method local
+h2_full --method synth --form full
+h2_bal --method synth --form bal
+h2_mean --method synth --form mean
+dml_mlp64 --method dml --proxy mlp64
+dml_mlp256 --method dml --proxy mlp256
+dml_dagsnet --method dml --proxy dagsnet
+fedavg --method fedavg
+lg --method lg
+fedgh --method fedgh
+fedproto --method fedproto
+h2_diag --method synth --form diag
+h2_lr4 --method synth --form lr4
+dsfl --method dsfl
+fedgen --method fedgen
+h2_own --method synth --form own

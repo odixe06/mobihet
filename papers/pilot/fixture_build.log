@@ -1,0 +1,2 @@
+Prepared real pilot {'old': 65536, 'group': 65536, 'train_0': 78372, 'train_1': 40403, 'train_2': 61618, 'train_3': 33858, 'train_4': 44034, 'train_5': 44969, 'train_6': 78544, 'train_7': 34525, 'train_8': 65629, 'train_9': 29080, 'train_10': 62103, 'train_11': 42919, 'train_12': 34788, 'train_13': 41827, 'train_14': 71183, 'train_15': 28322, 'train_16': 19882, 'train_17': 136358, 'train_18': 24804, 'train_19': 27151} old cut: 861297
+Peak tree RSS: 1499 MiB; exit 0

@@ -1,0 +1,5 @@
+r5 lg s43 loss 0.2272 group gp 0.4801 old gp 0.4792 (67s)
+r10 lg s43 loss 0.0821 group gp 0.4763 old gp 0.4751 (67s)
+r15 lg s43 loss 0.0180 group gp 0.4821 old gp 0.4783 (67s)
+r20 lg s43 loss 0.0074 group gp 0.4839 old gp 0.4804 (67s)
+done lg 43 29.5 min

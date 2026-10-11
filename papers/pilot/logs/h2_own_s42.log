@@ -1,0 +1,5 @@
+r5 h2_own s42 loss 0.5961 group gp 0.4727 old gp 0.4703 (94s)
+r10 h2_own s42 loss 0.3753 group gp 0.4829 old gp 0.4797 (95s)
+r15 h2_own s42 loss 0.2527 group gp 0.4850 old gp 0.4810 (95s)
+r20 h2_own s42 loss 0.2147 group gp 0.4875 old gp 0.4830 (95s)
+done h2_own 42 35.2 min

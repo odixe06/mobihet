@@ -1,0 +1,5 @@
+r5 h2_bal s42 loss 0.2990 group gp 0.4548 old gp 0.4509 (96s)
+r10 h2_bal s42 loss 0.0845 group gp 0.4587 old gp 0.4536 (95s)
+r15 h2_bal s42 loss 0.0142 group gp 0.4582 old gp 0.4541 (93s)
+r20 h2_bal s42 loss 0.0044 group gp 0.4574 old gp 0.4533 (95s)
+done h2_bal 42 35.4 min

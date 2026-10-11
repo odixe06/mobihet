@@ -9,8 +9,11 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Đề xuất phương pháp phải có: **bằng chứng vấn đề → cơ chế → dấu hiệu kiểm chứng có thể sai**. Không thấy dấu hiệu thì dừng hướng đó.
 - Phương án mới phải kiểm nghiệm ngắn để xác định khả thi. Bất hợp lý thì chỉnh từ nguyên nhân hoặc bỏ; **không kéo dài run để tìm điểm thắng**.
 - Làm tới mốc nào cập nhật docs tới đó. Trước khi compact phải lưu kernel ID, source/config, kết quả đã verify, quota và bước còn thiếu.
-- Không commit/push git, không backup, không xóa artifact khi chưa được đồng ý trong phiên.
+- Không backup, không xóa artifact khi chưa được đồng ý trong phiên (commit/push: xem dòng 2026-10-11 bên dưới).
 - Kaggle: agent push trực tiếp sau preflight. Không ngại quota cho kịch bản ngắn; run dài hoặc nhiều client thì hỏi trước.
+- **2026-10-11: tiến trình nặng (train/pilot nhiều arm, protocol đầy đủ) chạy trên Kaggle, không chạy ở máy local.**
+  Local chỉ để smoke test, dựng fixture nhỏ, report, collect.
+- 2026-10-11: được commit + push repo này ở các mốc. Không thêm attribution Claude vào commit.
 - **2026-10-10:**
   - R3 cấm mọi dạng gửi mẫu `(x, y)`, kể cả lên RSU. **Không client nào thấy local data của client khác** (tiêu chuẩn FL, chủ dự án nhắc lại),
     kể cả trong arm đối chứng/upper reference của thí nghiệm. Số record cache cũ chỉ còn là lịch sử, không chạy lại.
@@ -47,6 +50,18 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   Gaussian full-cov gộp +0,10, diag +0,05, điểm trung bình −0,02 so với replay cân bằng local. Thông tin nằm ở hiệp phương sai, không ở tâm.
   Input không trôi theo representation, nên tránh được lỗi của N3 latent. Chưa xác nhận trên DAGSNet/ngân sách/DP.
   [Kết quả](docs/research/probes/h2-input-stats.md).
+- **Pilot P1 (2026-10-11, DAGSNet 20c, 2,5% dữ liệu, 20 round; [kết quả](docs/research/probes/pilot-p1.md)):**
+  - H2 xác nhận trên DAGSNet: Gaussian full gộp +0,11; Gaussian của **chính xe** chỉ +0,024. ⇒ lợi là tri thức quần thể, không phải làm mượt.
+    Lợi tăng theo cấu trúc bậc hai giữ được: diag +0,08 (13 kB một lần), lr4 +0,09, full +0,11.
+  - H1 (DML) tăng theo sức chứa proxy: MLP64 +0,05, MLP256 +0,12, DAGSNet +0,16. Proxy toàn cục còn cao hơn private (0,57 / 0,68 / 0,77).
+  - **Tri thức chỉ chạm head thì vô dụng khi backbone học thuộc:** LG +0,02, FedGen +0,02, FedGH −0,02.
+    Dấu hiệu nhận biết: loss local r20 vẫn ≈ 0,01 như `local`.
+  - **Teacher yếu thua nhãn miễn phí:** DS-FL trên điểm Gaussian (+0,075) thua chính nhãn lớp của Gaussian (+0,107).
+    Ensemble của 20 model local ~0,46 làm nhãn nhiễu đi.
+  - **`gp` sửa quá tay khi model private bị chưng cất về model toàn cục** (DML): `head` tăng đều nhưng `gp` rơi từ r15, benign F1 −0,17.
+    `gp` giả định prior của private là π_i. Phương pháp kéo về toàn cục phải ước prior hiệu dụng, hoặc báo cả `head`.
+  - positionMirroring **không** chạm trần thông tin: FedAvg +0,26. Gaussian (H2) và DML private không học được lớp này (+0,01).
+    Chỉ timeDelay có trần (centralized 0,23).
 - **KD/teacher:** teacher peer (Build7) và ridge teacher RSU (S13) chỉ ngang làm mượt theo lớp.
   Mọi teacher cần cổng chất lượng + đối chứng class-mean.
 - **Khác kiến trúc:** chỉnh head không cứu được backbone yếu (M2). Tri thức phải tác động toàn model.
@@ -56,6 +71,8 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - **Công thức local có lợi:** `gp` (+0,025); EMA + head triển khai fit riêng mỗi cycle; tính lại BN local cho model EMA (lợi chuyển tiếp, giảm dần).
   EMA trung bình cả head thì hỏng.
 - Trôi do học thuộc cục bộ có ở mọi cấu hình full data (CE 0,01–0,03); LR cosine chặn đà trôi.
+- Loss train FL **tăng** ở cuối lịch cosine (FedAvg 0,28 → 0,45, DML) không phải trôi.
+  LR ~1e-5 thì model vừa tải xuống hầu như không khớp thêm vào dữ liệu local, nên loss trung bình ≈ loss của model tải xuống. Đọc điểm đánh giá, không đọc loss.
 
 ## 5. Kênh truyền
 
@@ -66,10 +83,13 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 
 ## 6. Vận hành
 
-- Local: RAM 7,6 GiB, RTX 3050 4 GB. **Mỗi lần một job nặng**, chạy qua `run_local_guarded.py`.
+- Local: RAM 7,6 GiB, RTX 3050 4 GB. Job nặng **không** chạy local (chủ dự án 2026-10-11). Job vừa (smoke, fixture) chạy qua `run_local_guarded.py`.
 - Đọc parquet bằng `pyarrow.dataset` phải tắt readahead (`batch_readahead=1, fragment_readahead=1`), nếu không RSS lên 4,6 GB.
   `centralized/test/` có lẫn `*.stats.json`, nên glob `*.parquet`.
   `conda run` nuốt stdout. Chờ theo PID, không `pgrep -f` (tự khớp chính lệnh chờ).
+- RTX 3050: DAGSNet train ~20k dòng/s một job (bị giới hạn bởi launch). **Hai job song song** cho tổng ~30k dòng/s (×1,5), peak RAM ~4,5 GB.
+  Sửa module mà hàng đợi đang dùng: chép ra bản sao, smoke test, rồi `mv` thay nguyên tử. Job sau đọc file mới, job đang chạy không bị ảnh hưởng.
+- `xargs ... bash -c '...' arg0 arg1`: `$0` là arg đầu, nên `shift` chỉ bỏ `$1`. Đọc `$?` **trước** `$(date)` trong cùng lệnh echo.
 - Kaggle:
   - 2×T4, image pin. Tiêu đề ≤ 50 ký tự. Không sửa notebook đã PUSHED.
   - Budget phiên = log thật + dư ≥ 15%. Nạp checkpoint về CPU.

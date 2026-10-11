@@ -1,0 +1,5 @@
+r5 h2_diag s43 loss 1.0533 group gp 0.5440 old gp 0.5428 (95s)
+r10 h2_diag s43 loss 0.8037 group gp 0.5489 old gp 0.5456 (94s)
+r15 h2_diag s43 loss 0.6657 group gp 0.5457 old gp 0.5405 (95s)
+r20 h2_diag s43 loss 0.6284 group gp 0.5443 old gp 0.5396 (95s)
+done h2_diag 43 35.0 min

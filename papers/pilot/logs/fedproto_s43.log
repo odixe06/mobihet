@@ -1,0 +1,5 @@
+r5 fedproto s43 loss 0.3321 group gp 0.4941 old gp 0.4943 (86s)
+r10 fedproto s43 loss 0.1421 group gp 0.4978 old gp 0.4972 (88s)
+r15 fedproto s43 loss 0.0571 group gp 0.5019 old gp 0.4991 (87s)
+r20 fedproto s43 loss 0.0370 group gp 0.5063 old gp 0.5037 (89s)
+done fedproto 43 32.5 min

@@ -1,0 +1,5 @@
+r5 lg s42 loss 0.2304 group gp 0.4769 old gp 0.4766 (66s)
+r10 lg s42 loss 0.0797 group gp 0.4760 old gp 0.4737 (66s)
+r15 lg s42 loss 0.0170 group gp 0.4795 old gp 0.4773 (66s)
+r20 lg s42 loss 0.0106 group gp 0.4838 old gp 0.4814 (67s)
+done lg 42 29.5 min

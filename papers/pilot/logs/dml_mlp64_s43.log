@@ -1,0 +1,5 @@
+r5 dml_mlp64 s43 loss 1.4577 group gp 0.5161 old gp 0.5148 (79s)
+r10 dml_mlp64 s43 loss 1.2056 group gp 0.5582 old gp 0.5527 (79s)
+r15 dml_mlp64 s43 loss 1.2246 group gp 0.5702 old gp 0.5664 (80s)
+r20 dml_mlp64 s43 loss 1.5140 group gp 0.5143 old gp 0.5138 (75s)
+done dml_mlp64 43 29.6 min
