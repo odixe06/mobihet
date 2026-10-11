@@ -32,6 +32,10 @@ def main():
     base = ROOT / 'papers/new-fl'
     (base / 'gates.json').write_text(json.dumps(gates, indent=2) + '\n')
     lines = ['# Pilot S-a — kết quả đã verify', '', '20round,20client,DAGSNet,holdout nội bộ; không giới hạn kênh. Không chứng minh R1.', '',
+             f'Train pilot: {sum(data["local", 42]["train_rows"]):,} dòng; holdout group/old65.536dòng mỗi tập; không official test20%.', '',
+             'Dataset có shortcut Sybil/session, benign từ run Sybil, fingerprint receiver và trần thông tin timeDelay. '
+             'Scaler fit toàn train80%, gồm holdout nội bộ: không validation độc lập. '
+             'R2 mới ở thiết kế; hai seed không chứng minh significance.', '',
              '| arm | group gp s42/s43 | head s42/s43 | Δlocal s42/s43 | payload lên/xuống mỗi client |',
              '|---|---|---|---|---|']
     for m in METHODS:
@@ -41,9 +45,28 @@ def main():
         head = ' / '.join(f'{f1(m, s, rule="head"):.4f}' for s in SEEDS)
         gain = ' / '.join(f'{f1(m, s) - f1("local", s):+.4f}' for s in SEEDS)
         lines.append(f'| {m} | {vals} | {head} | {gain} | {byte[0]:.0f} / {byte[1]:.0f} B |')
-    lines += ['', 'Payload một lần gồm object header32B và prior; chưa gồm frame/ACK/retransmission (S-a không kênh).', '', '## Cổng khóa', '']
+    lines += ['', 'Payload một lần gồm object header32B và prior; chưa gồm frame/ACK/retransmission (S-a không kênh).', '',
+              '| arm | old gp s42/s43 | benign group gp s42/s43 | phút/run s42/s43 |', '|---|---|---|---|']
+    for m in METHODS:
+        old = ' / '.join(f'{f1(m, s, "old"):.4f}' for s in SEEDS)
+        benign = ' / '.join(f'{ev(m, s)["benign_f1"]:.4f}' for s in SEEDS)
+        minutes = ' / '.join(f'{data[m, s]["minutes"]:.1f}' for s in SEEDS)
+        lines.append(f'| {m} | {old} | {benign} | {minutes} |')
+    lines += ['', 'Thời gian/run gồm setup, train, evaluate và ghi artifact; các job chia sẻ GPU, không benchmark GPU độc quyền.', '',
+              '## Cổng khóa', '']
     for m, g in gates.items():
         lines.append(f'- **{m}: {"PASS" if g["pass_gate"] else "FAIL"}**; Δcơ chế {g["contrast"]}; Δbenign {g["benign_delta"]}.')
+    lines += ['', '## Chẩn đoán tối ưu', '',
+              '| arm | seed | synthesis fit đầu → cuối | mean loss train r20 |', '|---|---|---|---|']
+    for m in ('kme_gauss', 'kme', 'dm'):
+        for s in SEEDS:
+            r = data[m, s]
+            synth = r['diagnostics']['synthesis']
+            traces = [v['trace'] for v in synth] if m == 'dm' else [synth]
+            start, end = [float(np.mean([t[i]['fit'] for t in traces])) for i in (0, -1)]
+            lines.append(f'| {m} | {s} | {start:.6g} → {end:.6g} | {r["history"][-1]["loss"]:.6g} |')
+    lines += ['', 'DM fit là mean20producer; loss giữa KME và DM khác định nghĩa, không so độ lớn trực tiếp. '
+              'Fit trên mục tiêu đã tối ưu không chứng minh fidelity trên phép đo độc lập hoặc chất lượng phân loại.', '']
     lines += ['', '## Đủ10metric, group gp r20', '', '| arm | seed | ' + ' | '.join(KEYS) + ' |', '|---|---|' + '---|' * len(KEYS)]
     with (base / 'metrics-final.csv').open('w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=['arm', 'seed', 'holdout', 'rule', *KEYS]); writer.writeheader()
@@ -56,12 +79,13 @@ def main():
                 vals = ev(m, s)['mean_metrics']
                 lines.append(f'| {m} | {s} | ' + ' | '.join(f'{vals[k]:.6f}' for k in KEYS) + ' |')
     classes = json.loads((ROOT / 'knowledge/meta.json').read_text())['class_names']
+    support = np.asarray(ev('local', 42)['confusion_clients'])[0].sum(1)
     with (base / 'per-class-final.csv').open('w', newline='') as f:
-        w = csv.writer(f); w.writerow(['arm', 'seed', 'class', 'group_gp_f1', 'group_head_f1'])
+        w = csv.writer(f); w.writerow(['arm', 'seed', 'class', 'group_support', 'group_gp_f1', 'group_head_f1'])
         for m in METHODS:
             for s in SEEDS:
                 for c, name in enumerate(classes):
-                    w.writerow([m, s, name, ev(m, s)['f1_per_class'][c], ev(m, s, rule='head')['f1_per_class'][c]])
+                    w.writerow([m, s, name, support[c], ev(m, s)['f1_per_class'][c], ev(m, s, rule='head')['f1_per_class'][c]])
     lines += ['', '## Mọi round đánh giá, đủ10metric', '',
               'Chỉ đánh giá r5/10/15/20 theo pilot khóa; round khác không có metric đánh giá. ',
               '`accuracy = precision_micro = recall_micro = recall_weighted = f1_micro` cho single-label16class.', '',
@@ -103,12 +127,23 @@ def main():
     ax.set_title('Final r20 per-class F1 gain over local; mean of two seeds, group gp')
     fig.colorbar(im, ax=ax, label='Delta F1'); fig.tight_layout()
     fig.savefig(figures / 'per-class.png', dpi=180); fig.savefig(figures / 'per-class.svg'); plt.close(fig)
+    fig, axes = plt.subplots(2, 2, figsize=(14, 12), layout='constrained')
+    for ax, m in zip(axes.flat, ('local', 'diag', 'kme', 'dm')):
+        cm = sum(np.asarray(ev(m, s)['confusion_clients']).sum(0) for s in SEEDS)
+        im = ax.imshow(cm / cm.sum(1, keepdims=True), cmap='Blues', vmin=0, vmax=1)
+        ax.set(title=m, xlabel='Predicted class', ylabel='True class')
+        ax.set_xticks(range(16), classes, rotation=60, ha='right', fontsize=7)
+        ax.set_yticks(range(16), classes, fontsize=7)
+    fig.suptitle('Final r20 confusion: group gp, row-normalized counts pooled across 20 clients and two seeds')
+    fig.colorbar(im, ax=axes.ravel().tolist(), label='Fraction within true class', shrink=.7)
+    fig.savefig(figures / 'confusion.png', dpi=180); fig.savefig(figures / 'confusion.svg'); plt.close(fig)
     lines += ['', '## Đường học và từng lớp', '', '![Convergence](figures/convergence.png)', '',
               'Dải là min/max hai seed, không phải confidence interval. F1 là mean20private, không metric từ confusion gộp.', '',
               '![Per-class gain](figures/per-class.png)', '',
-              'Delta so local cùng seed, r20 cố định; không chọn checkpoint tốt nhất. ', '',
-              'Pilot dùng2,5%train và holdout receiver-group/temporal, không official test20%. Dataset có shortcut Sybil/session, '
-              'benign từ run Sybil, fingerprint receiver; timeDelay có trần thông tin. Hai seed không chứng minh significance.', '',
+              'Delta so local cùng seed, r20 cố định; không chọn checkpoint tốt nhất. Support mỗi lớp trong [per-class-final.csv](per-class-final.csv).', '',
+              '![Final confusion](figures/confusion.png)', '',
+              'Confusion cộng counts40private, chuẩn hóa theo true class; chỉ minh họa lỗi. '
+              'Macro-F1 headline vẫn là mean metric từng private, không tính từ confusion gộp.', '',
               'Thiết lập/cài đặt/nguồn/attempt: [rebuild.md](rebuild.md). '
               'Weights, predictions và confusion từng client nằm trong [runs/](runs/). '
               'Hardware/source từng kernel đã kiểm qua output `source/`, log2×T4 và executed notebook v1.']

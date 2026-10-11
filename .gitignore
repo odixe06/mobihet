@@ -1,7 +1,8 @@
 # --- Secrets: không bao giờ commit ---
-# W&B API key nằm trong .env (WANDB_API_KEY); notebook đọc nó từ biến môi trường.
+# W&B API key: .env hoặc bản notebook push private tạm; không đưa vào Git.
 .env
 .env.*
+**/private_push/
 # Cấu hình MCP cục bộ chứa bearer token Kaggle.
 .mcp.json
 **/.vscode/mcp.json
@@ -30,3 +31,4 @@ papers/new-fl/input/
 papers/new-fl/kaggle/
 papers/new-fl/smoke/
 papers/new-fl/resume_reference/
+papers/new-fl/collection.log

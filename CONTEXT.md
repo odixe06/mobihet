@@ -2,6 +2,7 @@
 
 Đọc file này → **[LESSONS.md](LESSONS.md)** → [kết quả pilot P1](docs/research/probes/pilot-p1.md) → [kế hoạch pilot](docs/research/pilot-plan.md)
 → (khi cần nền) [kiến thức kế thừa](docs/legacy/kien-thuc-ke-thua.md), [đề xuất H1–H6](docs/research/de-xuat-huong-moi.md).
+Tìm file: [index theo nhu cầu](README.md) → [danh mục toàn dự án](docs/file-index.md).
 
 IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 - **R1:** contact hữu hạn, mọi byte trả phí, có deadline thật.
@@ -15,9 +16,12 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
   Prior/codec có giới hạn: [kết quả P2](docs/research/probes/pilot-p2.md). Các trạng thái RUNNING/chưa chạy bên dưới là bàn giao trước phiên này.
 - **Đợt mới ngoài H1–H6:** [condensation + Fourier distribution sketch](docs/research/de-xuat-bo-sung-2026-10-11.md),
   [pilot S-a/S-b và cổng khóa](docs/research/pilot-new-fl.md). **Preflight local qua; S-a đã push2kernel v1 lúc12:39 UTC+7**.
-  Kernel ID/quota/lệnh collect ở [new-fl/rebuild.md](papers/new-fl/rebuild.md); chưa có kết quả Kaggle xác minh.
+  Kernel ID/quota/lệnh collect ở [new-fl/rebuild.md](papers/new-fl/rebuild.md).
+  **Seed43 đã verify6arm ×20round; seed42 còn RUNNING lúc13:47 UTC+7.** Chờ đủ cặp rồi report/cổng.
 - User xác nhận giữ DAGSNet, R2 ở thiết kế; local chỉ smoke. **Cho phép RSU đọc codebook tổng hợp**
   khởi tạo từ nhiễu; không raw record. Ngoại lệ Q4 này chỉ áp cho synthetic; thống kê vẫn gộp nhiều client.
+- **Notebook huấn luyện mới bắt buộc W&B API key + theo dõi online** (chốt trong phiên, xem LESSONS).
+  Hai notebook S-a v1 đã PUSHED trước quyết định này, giữ source để thu/verify.
 
 ### Bàn giao trước khi tiếp tục (lịch sử)
 
@@ -55,7 +59,8 @@ Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p
 - Input: dataset private `<owner>/mobihet-p2-src` (phẳng: code `mh/` + `meta.json` + fixture pilot). Notebook tự dựng lại cây thư mục và kiểm sha256 fixture.
 - Mỗi kernel: 2×T4, 4 job song song (2 job/GPU). Ngừng nhận job mới sau 9 h. Output chỉ gồm `runs/<arm>_s<seed>/{result.json,log.txt}` + `summary_s<seed>.json`.
 - Ước 1,5–3 h mỗi kernel (chưa đo trên T4). Quota trước khi push: 4 owner còn 20,9–22,9 h GPU (refresh 2026-10-17).
-- Không có W&B: muốn xem tiến độ thì đợi COMPLETE rồi pull log. Kernel ERROR ngay đầu thường là assert 2×T4 → chạy lại y nguyên ở account khác trước khi sửa code.
+- P2 v1 đã chạy không có W&B: xem tiến độ qua log sau COMPLETE. Notebook tạo mới theo quy định W&B ở LESSONS.
+  Kernel ERROR ngay đầu thường là assert 2×T4 → chạy lại y nguyên ở account khác trước khi sửa code.
 - Nguồn: [scripts/kaggle/gen_p2.py](scripts/kaggle/gen_p2.py) → `papers/p2/notebook/<rid>/` (có marker `PUSHED`), push bằng [scripts/kaggle/push_nb.py](scripts/kaggle/push_nb.py).
 - **Thu:**
   1. `python scripts/kaggle/collect_p2.py` (status + pull; copy vào `papers/p2/runs/`);

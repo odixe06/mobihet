@@ -20,10 +20,12 @@ Nguồn gốc phương pháp + khác thuật toán paper: [đề xuất bổ sun
 
 | attempt | kernel | seed | push UTC+7 | trước push GPU free / reserved | trạng thái |
 |---|---|---:|---|---|---|
-| v1 | `minhtran0601/mobihet-sa-s42-20261011` |42|2026-10-11 12:39|15,1886h /0h|đã push, chưa thu |
-| v1 | `dinhan25/mobihet-sa-s43-20261011` |43|2026-10-11 12:39|15,5158h /0h|đã push, chưa thu |
+| v1 | `minhtran0601/mobihet-sa-s42-20261011` |42|2026-10-11 12:39|15,1886h /0h|RUNNING13:47 UTC+7 |
+| v1 | `dinhan25/mobihet-sa-s43-20261011` |43|2026-10-11 12:39|15,5158h /0h|COMPLETE;6arm ×20round đã verify |
 
 Hai private dataset đãready. Mỗi notebook chạy6arm,4job song song (2job/T4), không W&B.
+Đây là v1 đã push trước yêu cầu mới. **Notebook huấn luyện tạo tiếp theo bắt buộc W&B API key+online**,
+theo [LESSONS.md](../../LESSONS.md); không sửa v1 đã chạy.
 Không nhận job mới sau2h; estimate cả notebook≤2h, chưa đo. Notebook yêu cầu đúng2×T4 trước train.
 Không sửa notebook/input đã push. Source đã đóng băng trong `input/<owner>/source_manifest.json`;
 worker xuất source+manifest trong output để audit source thật đã load.
@@ -50,6 +52,10 @@ conda run --no-capture-output -n nckh python scripts/report_new_fl.py
 ```
 
 Collector: status→Range-resumable pull→executed notebook v1→source/hardware audit→verify từng arm.
+`collect_new_fl.py --watch` chờ và thu tự động; không verify lại kernel đã có marker đúng kernel/v1/source.
+Read-only API probe13:10 UTC+7 xác nhận0file/0log khi seed42 đangRUNNING; chưa có telemetry từng arm.
 Output giữ ở `kaggle/<rid>/runs/`; `runs/<arm>_s<seed>` là symlink tới output đã verify, không nhân đôi8GiB weights.
-Chưa có kết quả S-a xác nhận, chưa mở S-b. Không protocol full-scale/test20% trong đợt này.
+Seed43: pull309file/3.814MiB, không thiếu; executed notebook v1, source/fixture/hardware2×T4 đã kiểm.
+Sáu arm đủ20round, weights hữu hạn/strict-load, predictions→confusion→10metric từng private và hash chain qua.
+Chưa có cặp kết quả S-a đầy đủ, chưa mở S-b. Không protocol full-scale/test20% trong đợt này.
 Không có yêu cầu backup/xóa artifact; dữ liệu mới chưa DVC add/push.

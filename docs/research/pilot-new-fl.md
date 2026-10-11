@@ -65,6 +65,8 @@ coverage nguồn/lớp, round kích hoạt, Pareto F1-byte. Nếu không qua, kh
   3round; test resume sau round1 và strict reconstruction từ weights thực ghi. Không rút kết luận F1.
 - Kaggle:6arm×2seed, notebook riêng mỗi seed chạy đồng thời, private, image pin, assert2×T4.
   Ưu tiên quota thấp đủbudget: đọc lại trước push. Dự kiến ≤2h/notebook, cần đo thực tế.
+- **Quyết định mới trong phiên:** notebook tạo từ nay bắt buộc W&B API key+online logging trước train;
+  Internet bật, key ở bản push private, không Git/log/chat. S-a v1 đã push giữ nguyên source.
 - Giữ config+source+fixture hashes, weights từng round, predictions+confusion từng client tại round đánh giá,
   10metric JSON/CSV. Chỉ xác nhận hoàn tất sau pull và verifier đủ20round.
 - Chưa mở protocol đầy đủ; bước hiện hành là S-a rồi S-b có điều kiện.

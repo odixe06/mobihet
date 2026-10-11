@@ -1,6 +1,7 @@
 # Tài liệu MobiHet (hướng mới, từ 2026-10-10)
 
 Bắt đầu từ [CONTEXT.md](../CONTEXT.md). Thư mục này giữ lập luận, bằng chứng và quy trình.
+Index toàn dự án: [README](../README.md); danh mục từng file/code/notebook/skill: [file-index.md](file-index.md).
 
 | cần tìm | mở |
 |---|---|

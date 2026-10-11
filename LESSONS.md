@@ -9,8 +9,17 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Đề xuất phương pháp phải có: **bằng chứng vấn đề → cơ chế → dấu hiệu kiểm chứng có thể sai**. Không thấy dấu hiệu thì dừng hướng đó.
 - Phương án mới phải kiểm nghiệm ngắn để xác định khả thi. Bất hợp lý thì chỉnh từ nguyên nhân hoặc bỏ; **không kéo dài run để tìm điểm thắng**.
 - Làm tới mốc nào cập nhật docs tới đó. Trước khi compact phải lưu kernel ID, source/config, kết quả đã verify, quota và bước còn thiếu.
+- **2026-10-11 (chủ dự án): tổng hợp tài liệu phải có index toàn dự án.** [README](README.md) định tuyến theo nhu cầu;
+  [docs/file-index.md](docs/file-index.md) liệt kê từng file và vị trí artifact. Sau thêm/xóa/chuyển file, chạy
+  `python3 scripts/update_file_index.py`; kiểm link trước bàn giao để phiên sau tìm đủ code/docs/notebook/skill.
 - Không backup, không xóa artifact khi chưa được đồng ý trong phiên (commit/push: xem dòng 2026-10-11 bên dưới).
 - Kaggle: agent push trực tiếp sau preflight. Không ngại quota cho kịch bản ngắn; run dài hoặc nhiều client thì hỏi trước.
+- **2026-10-11 (chủ dự án): mọi notebook huấn luyện tạo mới bắt buộc tích hợp Weights & Biases (`wandb`) API key
+  và theo dõi online trực tiếp.** Khởi tạo/kết nối W&B trước train, bật Internet, log tiến trình mỗi round
+  (loss, LR, bước applied/skipped, thời gian; đủ10metric khi đánh giá). Thiếu key/kết nối ⇒ fail trước train,
+  không âm thầm offline/disabled. Key chỉ nhúng vào bản push private tạm dưới `papers/<method>/private_push/`
+  (đã gitignore) theo workflow đã cho phép, không vào Git/log/chat; kiểm `git check-ignore` trước nhúng key.
+  Notebook đã PUSHED giữ source; không sửa/rerun chỉ để thêm W&B. Quy định áp dụng từ notebook mới tiếp theo.
 - **2026-10-11: tiến trình nặng (train/pilot nhiều arm, protocol đầy đủ) chạy trên Kaggle, không chạy ở máy local.**
   Local chỉ để smoke test, dựng fixture nhỏ, report, collect.
 - 2026-10-11: được commit + push repo này ở các mốc. Không thêm attribution Claude vào commit.
@@ -67,6 +76,11 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
     Chỉ timeDelay có trần (centralized 0,23).
 - **KD/teacher:** teacher peer (Build7) và ridge teacher RSU (S13) chỉ ngang làm mượt theo lớp.
   Mọi teacher cần cổng chất lượng + đối chứng class-mean.
+- **S-a seed43 đã verify (2026-10-11):** fit Fourier giảm0,0129→4,23e-7 nhưng KME chỉ hơn
+  Gaussian-target bank +0,0024, thua Gaussian diag liên tục −0,0442. DM fit mean20producer giảm mạnh
+  nhưng hơn codebook chưa tối ưu chỉ +0,0036. Khớp mục tiêu synthesis không chứng minh tri thức có ích.
+  Chưa suy nguyên nhân riêng bank/encoder từ đối chứng hiện có; chưa phủ định họ FedDM/DP-MERF.
+  Chờ seed42 để ghi kết quả cặp, không tune/kéo dài run cứu cổng. [Thiết lập](docs/research/pilot-new-fl.md).
 - **Khác kiến trúc:** chỉnh head không cứu được backbone yếu (M2). Tri thức phải tác động toàn model.
 - **Nút thắt:** ranh giới quyết định đa receiver. Xe sai 4% trên receiver của mình, 45% toàn cục.
   32 mẫu thật/lớp từ client khác ≈ 70% lợi tối đa (M1, số lịch sử; dạng này vi phạm R3, không chạy lại).
