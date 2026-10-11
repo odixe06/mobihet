@@ -69,8 +69,10 @@ Không chỉnh siêu tham số để cứu arm trượt, trừ khi nguyên nhân
   ngân sách từ simulator archive ([mh/channel.py](../../mh/channel.py)). Hai chính sách:
   - `naive`: không cursor, xuống trước lên sau; object chỉ tới nếu vừa trong một contact.
   - `h6`: cursor tiếp tục giữa các contact, làm xong version đã bắt đầu, ưu tiên transfer dở dang, RSU giảm trọng số update cũ 1/(1+staleness).
-  - Arm. B2: `h2_full`, `dml_mlp256`. B0: `h2_full`, `h2_diag`, `dml_mlp64` int8. Mỗi arm chạy cả `naive` lẫn `h6`.
-    Thêm B0: `h2_lr4` chỉ chạy `h6`, vì đường lên giống `full`.
+  - Arm (sửa 2026-10-11 theo chủ dự án: **proxy H1 là DAGSNet**, đồng nhất cấu hình mọi client; proxy MLP của P1 chỉ còn là số tham khảo):
+    - H2: B0 `h2_full`, `h2_diag` (naive + h6), `h2_lr4` (h6, đường lên giống full); B2 `h2_full` (naive + h6).
+    - H1: `dml_dagsnet` int8 (395 kB mỗi chiều). B2 naive + h6; B0 chỉ h6 (naive ở B0 không bao giờ gửi xong một bản vì trần 32 KiB < 395 kB).
+      Thêm `B3 naive` int8 làm mốc "int8, gần không giới hạn", để tách tác dụng của lượng tử hóa khỏi tác dụng của kênh.
   - **Cổng P2-a (giữ lợi):** lợi so với `local` của P1 (group gp, cùng seed) còn ≥ 70% lợi của chính arm đó ở P1 không ràng buộc, cả hai seed.
     Với `h2_diag`/`h2_lr4`, mốc 100% là P1 của chính dạng đó.
   - **Cổng P2-b (H6):** `h6` − `naive` ≥ +0,01 cả hai seed, ở tier mà `naive` mất > 30% lợi.

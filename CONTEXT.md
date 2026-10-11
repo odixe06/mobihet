@@ -11,8 +11,8 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 
 ## Trạng thái — bàn giao 2026-10-11 (chủ dự án tắt máy)
 
-**Không có tiến trình nào đang chạy.** P2 đã khởi động trên local rồi bị dừng sau ~6 phút, chưa có kết quả; output rỗng đã xóa.
-Không có kernel Kaggle nào của repo này.
+**Không có tiến trình local nào đang chạy.** P2 từng khởi động trên local rồi bị dừng sau ~6 phút (chưa có kết quả, output rỗng đã xóa).
+**P2 đã push lên Kaggle 2026-10-11** (4 kernel, xem §P2 Kaggle). Phiên sau: thu kết quả → report → cổng.
 
 - **Archive 3 đã đóng và xóa local** (2026-10-11).
   - Repo `odixe06/mobihet-archive-b9-b21`, tag `archive-3`, bundle `mobihet-archive-b9-b21.bundle`; mọi artifact trên DVC, đã kiểm thiếu 0.
@@ -23,7 +23,7 @@ Không có kernel Kaggle nào của repo này.
   - Thiết lập: DAGSNet 20c, 2,5% dữ liệu mỗi client, 20 round, holdout `group`, quy tắc gp, không giới hạn kênh.
   - **Khả thi:**
     - H2 Gaussian lớp ở input (full +0,11, lr4 +0,09, diag +0,08 chỉ với 13 kB một lần; − Gaussian của chính xe +0,08 ⇒ lợi là tri thức quần thể);
-    - H1 DML proxy (MLP64 +0,05, MLP256 +0,12, DAGSNet +0,16; proxy toàn cục 0,57 / 0,68 / 0,77).
+    - H1 DML proxy (MLP64 +0,05, MLP256 +0,12, **DAGSNet +0,16** — chỉ proxy DAGSNet được dùng tiếp; proxy toàn cục 0,57 / 0,68 / 0,77).
   - Baseline: H4 FedProto +0,04. Mốc trên FedAvg +0,33 (không khác kiến trúc được).
   - **Trượt** (nguyên nhân trong kết quả + LESSONS): H3 LG +0,02 / FedGH −0,02, H5 DS-FL +0,075 (< H2) / FedGen +0,02.
   - Lỗi đánh giá đã thấy: `gp` sửa quá tay với DML. Từ nay DML báo cả `head`.
@@ -32,6 +32,28 @@ Không có kernel Kaggle nào của repo này.
 
 Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p2.py](mh/p2.py) (kênh), [mh/archs.py](mh/archs.py) (CNN1d/GRU, chưa dùng),
 [scripts/report_pilot.py](scripts/report_pilot.py) (bảng + cổng). Artifact DVC: `papers/pilot/fixture.dvc` (fixture 153 MB), `papers/pilot/runs.dvc` (32 `result.json`).
+
+## P2 trên Kaggle (push 2026-10-11 02:17–02:21 UTC, cả 4 RUNNING lúc 02:23 UTC)
+
+| kernel | owner | seed | arm |
+|---|---|---|---|
+| `khanhmay0304/mobihet-p2-h2-s42` | khanhmay0304 | 42 | 7 arm H2 (B0: full/diag naive+h6, lr4 h6; B2: full naive+h6) |
+| `minhtriethihi/mobihet-p2-h2-s43` | minhtriethihi | 43 | như trên |
+| `catbaochau/mobihet-p2-dml-s42` | catbaochau | 42 | 4 arm H1 proxy DAGSNet int8 (B3 naive, B2 naive+h6, B0 h6) |
+| `minhtrit06/mobihet-p2-dml-s43` | minhtrit06 | 43 | như trên |
+
+- Input: dataset private `<owner>/mobihet-p2-src` (phẳng: code `mh/` + `meta.json` + fixture pilot). Notebook tự dựng lại cây thư mục và kiểm sha256 fixture.
+- Mỗi kernel: 2×T4, 4 job song song (2 job/GPU). Ngừng nhận job mới sau 9 h. Output chỉ gồm `runs/<arm>_s<seed>/{result.json,log.txt}` + `summary_s<seed>.json`.
+- Ước 1,5–3 h mỗi kernel (chưa đo trên T4). Quota trước khi push: 4 owner còn 20,9–22,9 h GPU (refresh 2026-10-17).
+- Không có W&B: muốn xem tiến độ thì đợi COMPLETE rồi pull log. Kernel ERROR ngay đầu thường là assert 2×T4 → chạy lại y nguyên ở account khác trước khi sửa code.
+- Nguồn: [scripts/kaggle/gen_p2.py](scripts/kaggle/gen_p2.py) → `papers/p2/notebook/<rid>/` (có marker `PUSHED`), push bằng [scripts/kaggle/push_nb.py](scripts/kaggle/push_nb.py).
+- **Thu:**
+  1. `python scripts/kaggle/collect_p2.py` (status + pull; copy vào `papers/p2/runs/`);
+  2. `python scripts/report_p2.py > papers/p2/report.md`;
+  3. cổng P2-a/P2-b ở [pilot-plan §5](docs/research/pilot-plan.md);
+  4. `dvc add papers/p2/runs` + push;
+  5. ghi kết quả vào `docs/research/probes/pilot-p2.md`.
+- Kernel lỗi: đọc log (`papers/p2/kaggle/<rid>/<slug>.log`). Không sửa notebook đã PUSHED; sửa generator → thư mục rid mới.
 
 ## Quyết định hiện hành
 
@@ -50,6 +72,8 @@ Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p
 - **Được commit + push** repo này ở các mốc. Commit không thêm attribution Claude (skill repo-backup).
 - **Đồng ý** thử kết hợp **H1 + H2**, và chạy protocol đầy đủ cho hướng thắng.
 - **Tiến trình nặng chạy trên Kaggle, không chạy ở máy local.** Local chỉ để smoke test, dựng fixture nhỏ, report.
+- **Proxy của các phương án dùng proxy (H1, H1+H2) cũng là DAGSNet**, cấu hình đồng nhất cho mọi client.
+  Hệ quả: 797 kB fp16 / 395 kB int8 mỗi chiều mỗi round. Ở B0 chỉ có thể truyền dần qua nhiều contact (H6); ở B2 cần ~2 contact mỗi chiều.
 - Xóa `~/.cache/mobihet` — đã làm.
 
 ## Còn mở
@@ -59,12 +83,9 @@ Q5 (proxy cho H5) và Q6 (thứ tự) không còn cần: H5 dừng, thứ tự t
 
 ## Bước kế tiếp (theo thứ tự)
 
-1. **Đưa P2 lên Kaggle.**
-   - Upload `papers/pilot/fixture` (153 MB) làm Kaggle dataset private.
-   - Notebook chạy `python -m mh.p2 ...` theo `scripts/p2_queue.txt`: 11 arm × 2 seed, ~30 phút/run trên GPU cỡ 3050, 2 run/GPU song song trên 2×T4.
-   - Dùng skill `kaggle-training-notebook` + `scripts/kaggle/push_kaggle.py`; image pin trong `knowledge/runtime.json`. Collect → `papers/p2/runs` → report.
+1. **Thu P2 từ Kaggle** (đã push, xem §P2 trên Kaggle) → report → cổng → ghi kết quả + bài học.
 2. **H1 + H2 kết hợp** (pilot, Kaggle):
-   - private DAGSNet + proxy (MLP256 ở B2 / MLP64 ở B0) + mẫu Gaussian H2;
+   - private DAGSNet + proxy **DAGSNet** + mẫu Gaussian H2;
    - đối chứng là từng thành phần riêng của P1; cổng khóa trước (gợi ý: kết hợp − max(H1, H2) ≥ +0,02 cả hai seed).
    - Lưu ý `gp` với DML: báo cả `head`; cân nhắc ước prior hiệu dụng.
 3. **Protocol đầy đủ trên Kaggle** cho hướng thắng + mốc local-only (50 round, 43 M dòng, test toàn bộ mỗi round, 20c trước), dựng từ driver NILM-FL

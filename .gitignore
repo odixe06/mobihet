@@ -21,3 +21,7 @@ __pycache__/
 **/runs/
 **/checkpoints/
 *.pt
+
+# --- Kaggle staging (tái tạo bằng scripts/kaggle/gen_p2.py) và output kernel kéo về (thu xong thì dvc add papers/p2/runs) ---
+papers/p2/kaggle_src/
+papers/p2/kaggle/

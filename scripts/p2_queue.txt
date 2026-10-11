@@ -2,10 +2,10 @@ h2_full_B0_naive --method synth --form full --tier B0 --policy naive
 h2_full_B0_h6 --method synth --form full --tier B0 --policy h6
 h2_diag_B0_naive --method synth --form diag --tier B0 --policy naive
 h2_diag_B0_h6 --method synth --form diag --tier B0 --policy h6
-dml_mlp64_B0_naive --method dml --proxy mlp64 --int8 --tier B0 --policy naive
-dml_mlp64_B0_h6 --method dml --proxy mlp64 --int8 --tier B0 --policy h6
 h2_lr4_B0_h6 --method synth --form lr4 --tier B0 --policy h6
 h2_full_B2_naive --method synth --form full --tier B2 --policy naive
 h2_full_B2_h6 --method synth --form full --tier B2 --policy h6
-dml_mlp256_B2_naive --method dml --proxy mlp256 --tier B2 --policy naive
-dml_mlp256_B2_h6 --method dml --proxy mlp256 --tier B2 --policy h6
+dml_dagsnet_B3_naive --method dml --proxy dagsnet --int8 --tier B3 --policy naive
+dml_dagsnet_B2_naive --method dml --proxy dagsnet --int8 --tier B2 --policy naive
+dml_dagsnet_B2_h6 --method dml --proxy dagsnet --int8 --tier B2 --policy h6
+dml_dagsnet_B0_h6 --method dml --proxy dagsnet --int8 --tier B0 --policy h6

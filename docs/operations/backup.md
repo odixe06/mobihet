@@ -46,6 +46,8 @@ Repo archive (đọc [index](../legacy/kien-thuc-ke-thua.md#0-vì-sao-dừng-hư
 **2026-10-11 bàn giao:** `dvc add` + `dvc push` `papers/pilot/{fixture,runs}` (99 file), `dvc status -c` 3 manifest in sync; quét W&B key / `.part`: không có.
   Git: commit `c6741fb` (66 file, lớn nhất 28 kB; quét staged không có W&B key/`KGAT_`) push `main`, khớp `git ls-remote`; commit hồ sơ này push tiếp.
   Bundle `mobihet.bundle` (`--all`) tạo lại sau commit hồ sơ, verify ở scratch rồi thay trên G:.
+- Kaggle (2026-10-11): dataset private `<owner>/mobihet-p2-src` (code + fixture pilot, 76 file, `ready`) cho khanhmay0304, minhtriethihi, catbaochau, minhtrit06.
+  Đây là input, không phải backup. Nguồn thật là git + `papers/pilot/fixture.dvc`.
 
 ## 5. Next session
 

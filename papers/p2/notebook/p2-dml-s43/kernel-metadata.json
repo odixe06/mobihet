@@ -1,0 +1,17 @@
+{
+ "id": "minhtrit06/mobihet-p2-dml-s43",
+ "title": "mobihet-p2-dml-s43",
+ "code_file": "p2-dml-s43.ipynb",
+ "language": "python",
+ "kernel_type": "notebook",
+ "is_private": true,
+ "enable_gpu": true,
+ "enable_internet": false,
+ "dataset_sources": [
+  "minhtrit06/mobihet-p2-src"
+ ],
+ "competition_sources": [],
+ "kernel_sources": [],
+ "machine_shape": "NvidiaTeslaT4",
+ "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461"
+}
