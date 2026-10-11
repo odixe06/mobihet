@@ -30,6 +30,8 @@ PerFed-SKD, TinyProto, pFedES, …) mà không cần chú thích lệch protocol
    báo theo từng kiến trúc.
 3. **Riêng tư (R3, chốt Q4).** Assert trong preflight: không tensor dữ liệu `(x, y)` nào nằm trong payload. Ghi rõ loại tri thức đi trên kênh và số byte của từng loại.
    Thống kê/tham số đi qua secure aggregation mô phỏng: RSU chỉ dùng tổng nhiều client. DP là thí nghiệm độ nhạy sau.
+   **Ngoại lệ được chốt 2026-10-11:** RSU được đọc từng codebook synthetic tối ưu từ nhiễu; cấm khởi tạo bằng record thật.
+   "Dữ liệu" bị cấm ở đây là mẫu local thật; không giả định codebook riêng đã qua secure aggregation/DP.
 4. **Mốc dưới local-only** theo đúng §1. Repo anh em chưa có mốc này.
 
 ## 3. Chọn phương pháp/HP mà không tune trên test (chốt 2026-10-10)

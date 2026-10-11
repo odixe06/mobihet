@@ -15,6 +15,8 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   Local chỉ để smoke test, dựng fixture nhỏ, report, collect.
 - 2026-10-11: được commit + push repo này ở các mốc. Không thêm attribution Claude vào commit.
 - 2026-10-11: mọi client dùng DAGSNet, **kể cả proxy** (H1, H1+H2): cấu hình đồng nhất cho toàn bộ client. Chưa chạy đa mô hình.
+- 2026-10-11 (phiên tiếp): được đề xuất ngoài H1–H6. RSU được đọc **codebook synthetic từ nhiễu**; cấm raw-init/record thật.
+  Đây là ngoại lệ Q4 cho synthetic, không phải tự động có secure aggregation hay DP. DAGSNet/local-smoke được xác nhận lại.
 - **2026-10-10:**
   - R3 cấm mọi dạng gửi mẫu `(x, y)`, kể cả lên RSU. **Không client nào thấy local data của client khác** (tiêu chuẩn FL, chủ dự án nhắc lại),
     kể cả trong arm đối chứng/upper reference của thí nghiệm. Số record cache cũ chỉ còn là lịch sử, không chạy lại.
@@ -76,6 +78,12 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   LR ~1e-5 thì model vừa tải xuống hầu như không khớp thêm vào dữ liệu local, nên loss trung bình ≈ loss của model tải xuống. Đọc điểm đánh giá, không đọc loss.
 
 ## 5. Kênh truyền
+
+- **P2 audit 2026-10-11:** lr4 giảm download nhưng upload vẫn145.792B; B0 không kích hoạt tri thức trong20round.
+  DML B0 không nhận proxy mới vẫn hơn local do mutual learning tại xe; không gọi đó là lợi FL.
+  Prior miễn phí và byte giả định fp16 chưa lượng tử hóa làm cổng metric chưa đủ chứng minh R1.
+  Pilot phải lưu prediction/confusion từng client và weights để kiểm lại mean metric; confusion tổng không đủ.
+  [Bằng chứng và giới hạn](docs/research/probes/pilot-p2.md).
 
 - Ngân sách stress archive (`contact_scale` 0,01, `rate_scale` 0,2, cap 32 KiB) ≈ 4,5–4,7 kB/contact. Đó là knob, không phải số đo vật lý; bỏ scale ≈ 2,2 MB/contact.
 - Kế toán byte: header, ACK, retransmission. Deadline cắt frame thì trả phí nhưng không commit.

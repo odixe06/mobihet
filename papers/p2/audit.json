@@ -1,0 +1,144 @@
+{
+  "runs": [
+    {
+      "arm": "dml_dagsnet_B0_h6",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "68301271b5734ca394675786ec3bb0a6b40fc9cad480c4b66f5903031082c43e"
+    },
+    {
+      "arm": "dml_dagsnet_B2_h6",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "ed1bed91bcbba929538067b307180b59182d2f4294653bc0a50b598198600f3b"
+    },
+    {
+      "arm": "dml_dagsnet_B2_naive",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "40e5e7bf5e7fe3674426dfa2c7e4af0606df537d70afd4ffcd3f1f4712fec0e2"
+    },
+    {
+      "arm": "dml_dagsnet_B3_naive",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "1fa579084aa6ee9b1b75cf455e5f73589988d73c3262ec00ea249b6211b0ecad"
+    },
+    {
+      "arm": "dml_dagsnet_B0_h6",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "b5994295895c29f105e332ae73ad84761943614070993599b55ff515bec13fa7"
+    },
+    {
+      "arm": "dml_dagsnet_B2_h6",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "eeb03896ddf1d865af56165724c11727dfbb0d7bc88d347427ebfc3fe8345221"
+    },
+    {
+      "arm": "dml_dagsnet_B2_naive",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "c2c0363a813f98891dbd778607443dc98f10078df94efa0fe682828427411948"
+    },
+    {
+      "arm": "dml_dagsnet_B3_naive",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "641bc084cb64da1c934f8e4b586f59e72d6745af6ee318a224ba30346fd65167"
+    },
+    {
+      "arm": "h2_diag_B0_h6",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "2216945abfc76b47d93b1235eada4ffa6ee5062d52ac45af7bfca83301fbdbec"
+    },
+    {
+      "arm": "h2_diag_B0_naive",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "09adfce2af66543ee79f5ef88ff07f8a71a16b0978c018444ed550f9fd310e65"
+    },
+    {
+      "arm": "h2_full_B0_h6",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "8e1520b9fadf30a1ea422a9cbb2a83b8e076cf44725b072052b9e3730d3201ae"
+    },
+    {
+      "arm": "h2_full_B0_naive",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "1f3a125a56517104a06280c0280248ac40f4f1f58922b9e902e951c3c4ca3195"
+    },
+    {
+      "arm": "h2_full_B2_h6",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "a9473c104733be2361db643cdcef36daeaade3204740115004f84feeaf209b08"
+    },
+    {
+      "arm": "h2_full_B2_naive",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "f08962a62b270e60e233e8286ed5299f11d1e35c0a172db4d53bd2428920553d"
+    },
+    {
+      "arm": "h2_lr4_B0_h6",
+      "seed": 42,
+      "rounds": 20,
+      "sha256": "052f8a5bb69769ece378c38f0103cb83fdeab792e6067811a9f80332c849e8fe"
+    },
+    {
+      "arm": "h2_diag_B0_h6",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "81b2e8033758088787401e1af193f1a76abb9b482eff4fa5d39ac31936f5de36"
+    },
+    {
+      "arm": "h2_diag_B0_naive",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "3bef602209f0b5168a9939e5c2550ca5033d2e9123dcf7b1d5b8e210c4e79e9b"
+    },
+    {
+      "arm": "h2_full_B0_h6",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "998eac5002e30c636e0ad27c95f5bd0622b9ad6219014270658cd7536468e244"
+    },
+    {
+      "arm": "h2_full_B0_naive",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "672acef4057f392c72f095115717dd0590d21dd2af97751bc75b8f4dc1619317"
+    },
+    {
+      "arm": "h2_full_B2_h6",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "adc950b8ba0170d5275f3f7f894e95cde7f8dbc7bc74ff0905ff2f7473e61ad0"
+    },
+    {
+      "arm": "h2_full_B2_naive",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "3cd1f4c50cd88b5d1363f29c56c7423220fcc3ac4834cf87e484e349aee4756e"
+    },
+    {
+      "arm": "h2_lr4_B0_h6",
+      "seed": 43,
+      "rounds": 20,
+      "sha256": "d288e89c2aee93c13f8a55d8c943c44b6f832ef9e6e80f7d1221bcd3d9bcdfe5"
+    }
+  ],
+  "level": "source and retained summary consistency only",
+  "limitations": [
+    "No saved per-client confusion, predictions or weights; cannot independently recompute mean macro metrics or rerun inference.",
+    "Source compared with current downloaded private input datasets; worker did not preserve an executed source hash.",
+    "P2 gives evaluator a global label prior outside its contact ledger.",
+    "H2 payload sizes assume fp32 upload/fp16 download, but values were not quantized in the executed simulation.",
+    "DML byte estimate omits integer buffers and quantization scales; one-arrival aggregation is not a secure-aggregation cohort."
+  ]
+}

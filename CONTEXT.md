@@ -6,10 +6,20 @@
 IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 - **R1:** contact hữu hạn, mọi byte trả phí, có deadline thật.
 - **R2:** mỗi xe model riêng, có thể khác kiến trúc.
-- **R3:** không mẫu dữ liệu thô / record `(x, y)` nào rời xe.
+- **R3:** không mẫu dữ liệu local thật / record thật `(x, y)` nào rời xe; synthetic khởi tạo từ nhiễu được phép.
 - **R4:** 66 feature gốc, cùng protocol `odixe06/fl_dagsnet_veremi` để so sánh.
 
-## Trạng thái — bàn giao 2026-10-11 (chủ dự án tắt máy)
+## Trạng thái — phiên tiếp tục 2026-10-11
+
+- **P2 đã thu đủ4kernel/22run ×20round.** Kiểm nhất quán bằng chứng lưu qua; chưa xác minh weights/prediction vì không được lưu.
+  Prior/codec có giới hạn: [kết quả P2](docs/research/probes/pilot-p2.md). Các trạng thái RUNNING/chưa chạy bên dưới là bàn giao trước phiên này.
+- **Đợt mới ngoài H1–H6:** [condensation + Fourier distribution sketch](docs/research/de-xuat-bo-sung-2026-10-11.md),
+  [pilot S-a/S-b và cổng khóa](docs/research/pilot-new-fl.md). **Preflight local qua; S-a đã push2kernel v1 lúc12:39 UTC+7**.
+  Kernel ID/quota/lệnh collect ở [new-fl/rebuild.md](papers/new-fl/rebuild.md); chưa có kết quả Kaggle xác minh.
+- User xác nhận giữ DAGSNet, R2 ở thiết kế; local chỉ smoke. **Cho phép RSU đọc codebook tổng hợp**
+  khởi tạo từ nhiễu; không raw record. Ngoại lệ Q4 này chỉ áp cho synthetic; thống kê vẫn gộp nhiều client.
+
+### Bàn giao trước khi tiếp tục (lịch sử)
 
 **Không có tiến trình local nào đang chạy.** P2 từng khởi động trên local rồi bị dừng sau ~6 phút (chưa có kết quả, output rỗng đã xóa).
 **P2 đã push lên Kaggle 2026-10-11** (4 kernel, xem §P2 Kaggle). Phiên sau: thu kết quả → report → cổng.
@@ -82,6 +92,9 @@ Q3 số contact/round (đang dùng 1 contact/xe/round), Q7 tắt M4b (đang tắ
 Q5 (proxy cho H5) và Q6 (thứ tự) không còn cần: H5 dừng, thứ tự theo P1.
 
 ## Bước kế tiếp (theo thứ tự)
+
+**Ưu tiên mới trong phiên 2026-10-11:** hoàn tất preflight → S-a hai seed trên Kaggle, quota thấp trước → verify → S-b nếu qua cổng.
+Các mục H1+H2/full-scale dưới đây vẫn được đề xuất/đã đồng ý trước, chưa khởi chạy ở phiên này.
 
 1. **Thu P2 từ Kaggle** (đã push, xem §P2 trên Kaggle) → report → cổng → ghi kết quả + bài học.
 2. **H1 + H2 kết hợp** (pilot, Kaggle):

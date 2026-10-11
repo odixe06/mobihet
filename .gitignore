@@ -25,3 +25,8 @@ __pycache__/
 # --- Kaggle staging (tái tạo bằng scripts/kaggle/gen_p2.py) và output kernel kéo về (thu xong thì dvc add papers/p2/runs) ---
 papers/p2/kaggle_src/
 papers/p2/kaggle/
+papers/p2/source_audit/
+papers/new-fl/input/
+papers/new-fl/kaggle/
+papers/new-fl/smoke/
+papers/new-fl/resume_reference/
