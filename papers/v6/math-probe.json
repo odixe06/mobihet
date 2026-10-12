@@ -1,0 +1,410 @@
+{
+  "scope": "512 uniform seeded real train rows/client; CPU math only; no F1 or two-GPU proof",
+  "results": [
+    {
+      "arm": "k66_plain_fl",
+      "pass_math": true,
+      "dimension": 66,
+      "covariance_dimension": 66,
+      "diagnostics": {
+        "eligible_cells": 0,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 294920,
+        "down": 75816
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k66_marginal_fl",
+      "pass_math": true,
+      "dimension": 66,
+      "covariance_dimension": 59,
+      "diagnostics": {
+        "eligible_cells": 0,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 237576,
+        "down": 61480
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k66_joint_fl",
+      "pass_math": true,
+      "dimension": 66,
+      "covariance_dimension": 59,
+      "diagnostics": {
+        "eligible_cells": 27,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 691224,
+        "down": 218938
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k59_marginal_fl",
+      "pass_math": true,
+      "dimension": 59,
+      "covariance_dimension": 52,
+      "diagnostics": {
+        "eligible_cells": 0,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 186504,
+        "down": 48712
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k59_marginal_own",
+      "pass_math": true,
+      "dimension": 59,
+      "covariance_dimension": 52,
+      "diagnostics": {},
+      "bytes_per_client": {
+        "up": 0,
+        "down": 0
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k59_marginal_shuffle",
+      "pass_math": true,
+      "dimension": 59,
+      "covariance_dimension": 52,
+      "diagnostics": {
+        "eligible_cells": 0,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 186504,
+        "down": 48712
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k59_joint_fl",
+      "pass_math": true,
+      "dimension": 59,
+      "covariance_dimension": 52,
+      "diagnostics": {
+        "eligible_cells": 27,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 553968,
+        "down": 184624
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k59_joint_own",
+      "pass_math": true,
+      "dimension": 59,
+      "covariance_dimension": 52,
+      "diagnostics": {},
+      "bytes_per_client": {
+        "up": 0,
+        "down": 0
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k59_joint_shuffle",
+      "pass_math": true,
+      "dimension": 59,
+      "covariance_dimension": 52,
+      "diagnostics": {
+        "eligible_cells": 27,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 553968,
+        "down": 184624
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k61_marginal_fl",
+      "pass_math": true,
+      "dimension": 61,
+      "covariance_dimension": 54,
+      "diagnostics": {
+        "eligible_cells": 0,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 200456,
+        "down": 52200
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k61_marginal_own",
+      "pass_math": true,
+      "dimension": 61,
+      "covariance_dimension": 54,
+      "diagnostics": {},
+      "bytes_per_client": {
+        "up": 0,
+        "down": 0
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k61_marginal_shuffle",
+      "pass_math": true,
+      "dimension": 61,
+      "covariance_dimension": 54,
+      "diagnostics": {
+        "eligible_cells": 0,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 200456,
+        "down": 52200
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k61_joint_fl",
+      "pass_math": true,
+      "dimension": 61,
+      "covariance_dimension": 54,
+      "diagnostics": {
+        "eligible_cells": 27,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 591464,
+        "down": 193998
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k61_joint_own",
+      "pass_math": true,
+      "dimension": 61,
+      "covariance_dimension": 54,
+      "diagnostics": {},
+      "bytes_per_client": {
+        "up": 0,
+        "down": 0
+      },
+      "sampled_rows": 4096
+    },
+    {
+      "arm": "k61_joint_shuffle",
+      "pass_math": true,
+      "dimension": 61,
+      "covariance_dimension": 54,
+      "diagnostics": {
+        "eligible_cells": 27,
+        "class_counts": [
+          2082.0,
+          176.0,
+          531.0,
+          485.0,
+          544.0,
+          1418.0,
+          128.0,
+          369.0,
+          448.0,
+          735.0,
+          357.0,
+          70.0,
+          357.0,
+          588.0,
+          1692.0,
+          260.0
+        ]
+      },
+      "bytes_per_client": {
+        "up": 591464,
+        "down": 193998
+      },
+      "sampled_rows": 4096
+    }
+  ],
+  "source": {
+    "v6_schema.py": "46cf470ef781f5ecf9007e96be2fe0b0bd446bce49e4727fc7df19fe0ee6b654",
+    "v6_run.py": "d71baa60141a36992810f091894ff8ea84acbd99f227dc0a297e15c429a57f9f",
+    "v6_geometry.py": "f277b7631e109be19de998e4055a21c33a94bf2789097a2f36e2f6a2660fd2cb"
+  }
+}

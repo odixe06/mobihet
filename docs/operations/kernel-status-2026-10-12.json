@@ -1,0 +1,128 @@
+[
+  {
+    "build": "v5",
+    "folder": "v5h-s42-20261012-v1",
+    "kernel": "minhtriethihi/mobihet-v5h-s42-20261012-v1",
+    "rc": 0,
+    "status": "minhtriethihi/mobihet-v5h-s42-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v5",
+    "folder": "v5h-s43-20261012-v1",
+    "kernel": "catbaochau/mobihet-v5h-s43-20261012-v1",
+    "rc": 0,
+    "status": "catbaochau/mobihet-v5h-s43-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v5",
+    "folder": "v5g-s43-20261012-v1",
+    "kernel": "minhtriethihi/mobihet-v5g-s43-20261012-v1",
+    "rc": 0,
+    "status": "minhtriethihi/mobihet-v5g-s43-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v5",
+    "folder": "v5g-s42-20261012-v1",
+    "kernel": "khanhmay0304/mobihet-v5g-s42-20261012-v1",
+    "rc": 0,
+    "status": "khanhmay0304/mobihet-v5g-s42-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v5",
+    "folder": "v5j-s42-20261012-v1",
+    "kernel": "catbaochau/mobihet-v5j-s42-20261012-v1",
+    "rc": 0,
+    "status": "catbaochau/mobihet-v5j-s42-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v5",
+    "folder": "v5j-s43-20261012-v1",
+    "kernel": "khanhmay0304/mobihet-v5j-s43-20261012-v1",
+    "rc": 0,
+    "status": "khanhmay0304/mobihet-v5j-s43-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3p-s42-20261011-v1",
+    "kernel": "odixeuit/mobihet-v3p-s42-20261011-v1",
+    "rc": 0,
+    "status": "odixeuit/mobihet-v3p-s42-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3o-s42-20261011-v1",
+    "kernel": "trietbackup/mobihet-v3o-s42-20261011-v1",
+    "rc": 0,
+    "status": "trietbackup/mobihet-v3o-s42-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3p-s43-20261011-v1",
+    "kernel": "minhtrit06/mobihet-v3p-s43-20261011-v1",
+    "rc": 0,
+    "status": "minhtrit06/mobihet-v3p-s43-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3o-s43-20261011-v1",
+    "kernel": "odixe0502/mobihet-v3o-s43-20261011-v1",
+    "rc": 0,
+    "status": "odixe0502/mobihet-v3o-s43-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3t-s42-20261011-v1",
+    "kernel": "trietbackup/mobihet-v3t-s42-20261011-v1",
+    "rc": 0,
+    "status": "trietbackup/mobihet-v3t-s42-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3t-s43-20261011-v1",
+    "kernel": "odixe0502/mobihet-v3t-s43-20261011-v1",
+    "rc": 0,
+    "status": "odixe0502/mobihet-v3t-s43-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3r-s43-20261011-v1",
+    "kernel": "dinhan25/mobihet-v3r-s43-20261011-v1",
+    "rc": 0,
+    "status": "dinhan25/mobihet-v3r-s43-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v3",
+    "folder": "v3r-s42-20261011-v1",
+    "kernel": "minhtran0601/mobihet-v3r-s42-20261011-v1",
+    "rc": 0,
+    "status": "minhtran0601/mobihet-v3r-s42-20261011-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v4",
+    "folder": "v4s-s42-20261012-v1",
+    "kernel": "odixeuit/mobihet-v4s-s42-20261012-v1",
+    "rc": 0,
+    "status": "odixeuit/mobihet-v4s-s42-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v4",
+    "folder": "v4m-s42-20261012-v1",
+    "kernel": "minhtran0601/mobihet-v4m-s42-20261012-v1",
+    "rc": 0,
+    "status": "minhtran0601/mobihet-v4m-s42-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v4",
+    "folder": "v4s-s43-20261012-v1",
+    "kernel": "minhtrit06/mobihet-v4s-s43-20261012-v1",
+    "rc": 0,
+    "status": "minhtrit06/mobihet-v4s-s43-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  },
+  {
+    "build": "v4",
+    "folder": "v4m-s43-20261012-v1",
+    "kernel": "dinhan25/mobihet-v4m-s43-20261012-v1",
+    "rc": 0,
+    "status": "dinhan25/mobihet-v4m-s43-20261012-v1 has status \"KernelWorkerStatus.COMPLETE\""
+  }
+]

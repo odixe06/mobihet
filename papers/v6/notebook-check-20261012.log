@@ -1,0 +1,38 @@
+start k66_plain_fl gpu 0
+start k66_marginal_fl gpu 0
+start k66_joint_fl gpu 1
+start k59_marginal_fl gpu 1
+start k59_marginal_own gpu 0
+start k59_marginal_shuffle gpu 0
+start k59_joint_fl gpu 1
+start k59_joint_own gpu 1
+start k59_joint_shuffle gpu 0
+{"k66_plain_fl": {"rc": 0, "complete": true}, "k66_marginal_fl": {"rc": 0, "complete": true}, "k66_joint_fl": {"rc": 0, "complete": true}, "k59_marginal_fl": {"rc": 0, "complete": true}, "k59_marginal_own": {"rc": 0, "complete": true}, "k59_marginal_shuffle": {"rc": 0, "complete": true}, "k59_joint_fl": {"rc": 0, "complete": true}, "k59_joint_own": {"rc": 0, "complete": true}, "k59_joint_shuffle": {"rc": 0, "complete": true}}
+PASS notebook minhtran0601/mobihet-v6a-s42-20261012-v1 exact 9 arms; private credential boundary
+start k66_plain_fl gpu 0
+start k66_marginal_fl gpu 0
+start k66_joint_fl gpu 1
+start k59_marginal_fl gpu 1
+start k59_marginal_own gpu 0
+start k59_marginal_shuffle gpu 0
+start k59_joint_fl gpu 1
+start k59_joint_own gpu 1
+start k59_joint_shuffle gpu 0
+{"k66_plain_fl": {"rc": 0, "complete": true}, "k66_marginal_fl": {"rc": 0, "complete": true}, "k66_joint_fl": {"rc": 0, "complete": true}, "k59_marginal_fl": {"rc": 0, "complete": true}, "k59_marginal_own": {"rc": 0, "complete": true}, "k59_marginal_shuffle": {"rc": 0, "complete": true}, "k59_joint_fl": {"rc": 0, "complete": true}, "k59_joint_own": {"rc": 0, "complete": true}, "k59_joint_shuffle": {"rc": 0, "complete": true}}
+PASS notebook dinhan25/mobihet-v6a-s43-20261012-v1 exact 9 arms; private credential boundary
+start k61_marginal_fl gpu 0
+start k61_marginal_own gpu 0
+start k61_marginal_shuffle gpu 1
+start k61_joint_fl gpu 1
+start k61_joint_own gpu 0
+start k61_joint_shuffle gpu 0
+{"k61_marginal_fl": {"rc": 0, "complete": true}, "k61_marginal_own": {"rc": 0, "complete": true}, "k61_marginal_shuffle": {"rc": 0, "complete": true}, "k61_joint_fl": {"rc": 0, "complete": true}, "k61_joint_own": {"rc": 0, "complete": true}, "k61_joint_shuffle": {"rc": 0, "complete": true}}
+PASS notebook trietbackup/mobihet-v6b-s42-20261012-v1 exact 6 arms; private credential boundary
+start k61_marginal_fl gpu 0
+start k61_marginal_own gpu 0
+start k61_marginal_shuffle gpu 1
+start k61_joint_fl gpu 1
+start k61_joint_own gpu 0
+start k61_joint_shuffle gpu 0
+{"k61_marginal_fl": {"rc": 0, "complete": true}, "k61_marginal_own": {"rc": 0, "complete": true}, "k61_marginal_shuffle": {"rc": 0, "complete": true}, "k61_joint_fl": {"rc": 0, "complete": true}, "k61_joint_own": {"rc": 0, "complete": true}, "k61_joint_shuffle": {"rc": 0, "complete": true}}
+PASS notebook odixe0502/mobihet-v6b-s43-20261012-v1 exact 6 arms; private credential boundary

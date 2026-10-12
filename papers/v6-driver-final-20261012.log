@@ -1,0 +1,115 @@
+setup k66_plain_fl role private rows 20480 sec 2.3
+r1 k66_plain_fl s42 private group gp 0.007847699433044735 loss 5.3924 7s
+r2 k66_plain_fl s42 private group gp 0.007416516315674869 loss 4.6273 4s
+r3 k66_plain_fl s42 private group gp 0.007051731578379546 loss 4.3395 4s
+done k66_plain_fl complete True
+setup k66_marginal_fl role private rows 20480 sec 2.1
+r1 k66_marginal_fl s42 private group gp 0.006649229885912243 loss 5.3916 9s
+r2 k66_marginal_fl s42 private group gp 0.006368602227360841 loss 4.6199 4s
+r3 k66_marginal_fl s42 private group gp 0.006398387096774194 loss 4.3576 3s
+done k66_marginal_fl complete True
+setup k66_joint_fl role private rows 20480 sec 6.5
+r1 k66_joint_fl s42 private group gp 0.0066054033227357315 loss 5.3912 6s
+r2 k66_joint_fl s42 private group gp 0.006467544193912748 loss 4.6202 5s
+r3 k66_joint_fl s42 private group gp 0.006275201612903227 loss 4.3537 7s
+done k66_joint_fl complete True
+setup k59_marginal_fl role private rows 20480 sec 2.1
+r1 k59_marginal_fl s42 private group gp 0.006815755579049472 loss 5.3933 6s
+r2 k59_marginal_fl s42 private group gp 0.00658077746379491 loss 4.6874 5s
+r3 k59_marginal_fl s42 private group gp 0.006391587936824844 loss 4.4333 5s
+done k59_marginal_fl complete True
+setup k59_marginal_own role private rows 20480 sec 2.2
+r1 k59_marginal_own s42 private group gp 0.0067833596947219545 loss 5.3422 9s
+r2 k59_marginal_own s42 private group gp 0.0063989895064127476 loss 4.3838 4s
+r3 k59_marginal_own s42 private group gp 0.006386335216142092 loss 4.0220 5s
+done k59_marginal_own complete True
+setup k59_marginal_shuffle role private rows 20480 sec 2.2
+r1 k59_marginal_shuffle s42 private group gp 0.006916442652329749 loss 5.4002 6s
+r2 k59_marginal_shuffle s42 private group gp 0.006309380043690324 loss 4.6717 5s
+r3 k59_marginal_shuffle s42 private group gp 0.006239498774561888 loss 4.4124 5s
+done k59_marginal_shuffle complete True
+setup k59_joint_fl role private rows 20480 sec 7.7
+r1 k59_joint_fl s42 private group gp 0.006575512848031399 loss 5.4032 7s
+r2 k59_joint_fl s42 private group gp 0.006322208669937874 loss 4.6754 5s
+r3 k59_joint_fl s42 private group gp 0.0061504347134416935 loss 4.4245 4s
+done k59_joint_fl complete True
+setup k59_joint_own role private rows 20480 sec 10.7
+r1 k59_joint_own s42 private group gp 0.006782288611925709 loss 5.3127 6s
+r2 k59_joint_own s42 private group gp 0.006478244023816783 loss 4.3472 4s
+r3 k59_joint_own s42 private group gp 0.0061789473413701185 loss 3.9985 4s
+done k59_joint_own complete True
+setup k59_joint_shuffle role private rows 20480 sec 7.0
+r1 k59_joint_shuffle s42 private group gp 0.006733027572379186 loss 5.4040 9s
+r2 k59_joint_shuffle s42 private group gp 0.006418244055951307 loss 4.6713 4s
+r3 k59_joint_shuffle s42 private group gp 0.006124917709019091 loss 4.4431 4s
+done k59_joint_shuffle complete True
+setup k61_marginal_fl role private rows 20480 sec 2.0
+r1 k61_marginal_fl s42 private group gp 0.006910007477704851 loss 5.3968 6s
+r2 k61_marginal_fl s42 private group gp 0.006457980013897231 loss 4.6376 5s
+r3 k61_marginal_fl s42 private group gp 0.006571829179712689 loss 4.3699 4s
+done k61_marginal_fl complete True
+setup k61_marginal_own role private rows 20480 sec 1.9
+r1 k61_marginal_own s42 private group gp 0.006784579535146202 loss 5.3057 6s
+r2 k61_marginal_own s42 private group gp 0.006321513088313062 loss 4.2915 4s
+r3 k61_marginal_own s42 private group gp 0.006060937719821788 loss 3.9428 4s
+done k61_marginal_own complete True
+setup k61_marginal_shuffle role private rows 20480 sec 2.0
+r1 k61_marginal_shuffle s42 private group gp 0.006619317660234637 loss 5.3959 6s
+r2 k61_marginal_shuffle s42 private group gp 0.006391529628762382 loss 4.6326 8s
+r3 k61_marginal_shuffle s42 private group gp 0.0063926868720202605 loss 4.3646 4s
+done k61_marginal_shuffle complete True
+setup k61_joint_fl role private rows 20480 sec 7.0
+r1 k61_joint_fl s42 private group gp 0.006744026798437992 loss 5.3896 6s
+r2 k61_joint_fl s42 private group gp 0.006668744398809552 loss 4.6280 5s
+r3 k61_joint_fl s42 private group gp 0.006757983386296013 loss 4.3697 8s
+done k61_joint_fl complete True
+setup k61_joint_own role private rows 20480 sec 6.2
+r1 k61_joint_own s42 private group gp 0.006912769241727655 loss 5.2996 6s
+r2 k61_joint_own s42 private group gp 0.0065717292388270425 loss 4.2979 5s
+r3 k61_joint_own s42 private group gp 0.006231745645446799 loss 3.9195 5s
+done k61_joint_own complete True
+setup k61_joint_shuffle role private rows 20480 sec 11.6
+r1 k61_joint_shuffle s42 private group gp 0.007409897610070421 loss 5.3954 7s
+r2 k61_joint_shuffle s42 private group gp 0.006688181474355577 loss 4.6315 6s
+r3 k61_joint_shuffle s42 private group gp 0.0065802380583126555 loss 4.3595 6s
+done k61_joint_shuffle complete True
+setup k66_plain_fl role private rows 20480 sec 1.9
+r1 k66_plain_fl s42 private group gp 0.007847699433044735 loss 5.3924 8s
+done k66_plain_fl complete False
+setup k66_plain_fl role private rows 20480 sec 2.0
+r2 k66_plain_fl s42 private group gp 0.007416516315674869 loss 4.6273 6s
+r3 k66_plain_fl s42 private group gp 0.007051731578379546 loss 4.3395 4s
+done k66_plain_fl complete True
+setup k59_joint_fl role private rows 20480 sec 7.5
+r1 k59_joint_fl s42 private group gp 0.006575512848031399 loss 5.4032 6s
+done k59_joint_fl complete False
+setup k59_joint_fl role private rows 20480 sec 2.0
+r2 k59_joint_fl s42 private group gp 0.006322208669937874 loss 4.6754 10s
+r3 k59_joint_fl s42 private group gp 0.0061504347134416935 loss 4.4245 4s
+done k59_joint_fl complete True
+setup k61_marginal_shuffle role private rows 20480 sec 2.1
+r1 k61_marginal_shuffle s42 private group gp 0.006619317660234637 loss 5.3959 6s
+done k61_marginal_shuffle complete False
+setup k61_marginal_shuffle role private rows 20480 sec 2.0
+r2 k61_marginal_shuffle s42 private group gp 0.006391529628762382 loss 4.6326 7s
+r3 k61_marginal_shuffle s42 private group gp 0.0063926868720202605 loss 4.3646 8s
+done k61_marginal_shuffle complete True
+setup k61_joint_own role private rows 20480 sec 6.7
+r1 k61_joint_own s42 private group gp 0.006912769241727655 loss 5.2996 6s
+done k61_joint_own complete False
+setup k61_joint_own role private rows 20480 sec 1.9
+r2 k61_joint_own s42 private group gp 0.0065717292388270425 loss 4.2979 7s
+r3 k61_joint_own s42 private group gp 0.006231745645446799 loss 3.9195 7s
+done k61_joint_own complete True
+VERIFIED {"run": "k66_plain_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 241, "ambiguous": 15}, {"round": 3, "role": "private", "rows": 256, "decisive": 250, "ambiguous": 6}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v6_driver.py", line 50, in <module>
+    main()
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v6_driver.py", line 45, in main
+    verify(base / f'{arm}_s42', infer=True)
+  File "/home/odixe/nckh/veremi/mobihet/scripts/verify_v6.py", line 44, in verify
+    assert torch.equal(values.float().reshape(actual.shape), actual)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but got other is on cuda:0, different from other tensors on cpu (when checking argument in method wrapper_CUDA__equal)
+Peak tree RSS: 3157 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_v6_driver.py --tag final` failed. (See above for error)

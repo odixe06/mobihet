@@ -52,3 +52,12 @@ GPU local inference cófilelock, tránh chạy đồng thời. Nhận COMPLETE/E
 Productionrankpreflight2T4 trongnotebook; chờ actual log. Pull/audit/report/cổng cả4family×2seed.
 K1–K4knowledge vẫn đề xuất riêng: supportaudit/coverage/compute/samplingpreflight trước mởtraining.
 Git/DVC không commit/push/backup; artifactchưabackup. Localkhôngtrain20round.
+
+## Collect saubackup2026-10-12
+
+KernelAPI đãCOMPLETE; audit/collect đangtiếptục, khôngrerun.
+Oldauditmetadata khôiphục từDVCobject, MD5PASS; khônggọikiểmweights lạichooldkernel.
+Newkernelpull/verifyđủsource/checkpoint/payload/prediction trướcreport.
+[Phiêncollect](../../docs/operations/live-2026-10-12.md),
+[restoreproof](../../docs/operations/restored-metadata-2026-10-12.json).
+DVCmanifest cũkhôngbao hàmoutputmới; khôngadd/push/cleanup lúcnày.

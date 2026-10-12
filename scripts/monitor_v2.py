@@ -34,7 +34,7 @@ def http_runs(build='v2'):
 
 def main():
     p=argparse.ArgumentParser(); p.add_argument('--family')
-    p.add_argument('--build',choices=['v2','v3','v4','v5'],default='v2')
+    p.add_argument('--build',choices=['v2','v3','v4','v5','v6'],default='v2')
     p.add_argument('--http',action='store_true',help='read directly without local SDK service'); a=p.parse_args()
     base=Path(__file__).resolve().parents[1]/f'papers/{a.build}'
     registry=json.loads((base/'wandb-runs.json').read_text())

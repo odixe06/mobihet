@@ -17,7 +17,7 @@ from mh.new_fl import digest
 from verify_v2 import verify
 
 
-def collect(family,build='v2'):
+def collect(family,build='v2',jobs=12):
     base=ROOT/f'papers/{build}'; families=FAMILIES; verifier=verify
     if build=='v3':
         from mh.v3_math import FAMILIES as families
@@ -28,6 +28,9 @@ def collect(family,build='v2'):
     elif build=='v5':
         from mh.v5_run import FAMILIES as families
         from verify_v5 import verify as verifier
+    elif build=='v6':
+        from mh.v6_run import FAMILIES as families
+        from verify_v6 import verify as verifier
     completed=0
     for folder in sorted((base/'notebook').glob(f'{build}{family}-s*')):
         if not (folder/'PUSHED').exists(): continue
@@ -41,7 +44,7 @@ def collect(family,build='v2'):
         status=subprocess.run(prefix+['kaggle','kernels','status',kernel],check=True,capture_output=True,text=True)
         print(status.stdout.strip(),flush=True)
         if not any(s in status.stdout for s in ('COMPLETE','ERROR')): continue
-        subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','12',
+        subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j',str(jobs),
                               '--pattern',r'^(runs|source)/'],check=True)
         private=base/'private_push'/folder.name
         executed=private/'executed.ipynb'  # raw executed source contains key, NEVER public audit tree
@@ -77,6 +80,9 @@ def collect(family,build='v2'):
         elif build=='v5':
             for name in ('v5_anchor.py','v5_books.py','v5_run.py','v2_methods.py','v2_run.py'):
                 assert digest(ROOT/'mh'/name)==expected[name],('V5 source drift',name)
+        elif build=='v6':
+            for name in ('v6_geometry.py','v6_schema.py','v6_run.py','v2_methods.py','v2_run.py'):
+                assert digest(ROOT/'mh'/name)==expected[name],('V6 source drift',name)
         seed=int(folder.name.split('-')[1][1:])
         summary=json.loads((dest/'runs'/f'summary_s{seed}.json').read_text())
         assert set(summary)==set(families[family]),summary
@@ -111,6 +117,7 @@ def collect(family,build='v2'):
                 elif 'kernel coverage gate failed' in tail: audit['failure_category']='coverage'
                 elif 'nonfinite condensation objective' in tail: audit['failure_category']='numerical'
                 elif 'synthetic book exactly equals' in tail: audit['failure_category']='privacy'
+                elif 'V6 synthetic fp16 input overflow' in tail or 'linalg.cholesky' in tail: audit['failure_category']='numerical'
             audits.append(audit)
             target=base/'runs'/run.name; target.parent.mkdir(exist_ok=True)
             if target.is_symlink(): assert target.resolve()==run.resolve()
@@ -127,6 +134,9 @@ def collect(family,build='v2'):
 if __name__=='__main__':
     torch.set_num_threads(1)
     p=argparse.ArgumentParser(); p.add_argument('--family',required=True)
-    p.add_argument('--build',choices=['v2','v3','v4','v5'],default='v2')
+    p.add_argument('--build',choices=['v2','v3','v4','v5','v6'],default='v2')
+    p.add_argument('--jobs',type=int,default=12,choices=range(1,13),help='download connections per kernel')
     p.add_argument('--watch',action='store_true'); a=p.parse_args()
-    while collect(a.family,a.build)<2 and a.watch: time.sleep(55)
+    with (ROOT/f'papers/{a.build}/collection-{a.family}.lock').open('a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        while collect(a.family,a.build,a.jobs)<2 and a.watch: time.sleep(55)

@@ -20,6 +20,38 @@
       },
       "role": "teacher/head"
     },
+    "G_1_s42": {
+      "pass_quality": false,
+      "common_pass": true,
+      "cost_pass": true,
+      "contrasts": {
+        "g1_diag": -0.07514758891181139,
+        "g1_noise": 0.0026244145512789308,
+        "g1_own": 0.037565404562617644
+      },
+      "objective_contrast": -0.0014661401720493794,
+      "objective_contribution": false,
+      "encoder_contrast": -0.0004415697886241965,
+      "encoder_contribution": false,
+      "interaction": -0.001954573434013951,
+      "role": "private/gp"
+    },
+    "G_4_s42": {
+      "pass_quality": false,
+      "common_pass": true,
+      "cost_pass": true,
+      "contrasts": {
+        "g4_diag": -0.04955222748547605,
+        "g4_noise": 0.0003769874434603748,
+        "g4_own": 0.027322248844619312
+      },
+      "objective_contrast": -0.003736931878197236,
+      "objective_contribution": false,
+      "encoder_contrast": -0.003588486135822855,
+      "encoder_contribution": false,
+      "interaction": -0.005184418292799697,
+      "role": "private/gp"
+    },
     "H_small_s43": {
       "pass_quality": false,
       "gain_vs_local": -0.405561023167751,
@@ -39,12 +71,44 @@
         "b_anchor_medium_shuffle": 0.11801470961392663
       },
       "role": "teacher/head"
+    },
+    "G_1_s43": {
+      "pass_quality": false,
+      "common_pass": true,
+      "cost_pass": true,
+      "contrasts": {
+        "g1_diag": -0.07948710986696117,
+        "g1_noise": -0.00010429640879061619,
+        "g1_own": 0.03681632676270452
+      },
+      "objective_contrast": 0.0019464721202113733,
+      "objective_contribution": false,
+      "encoder_contrast": -0.0002828941993736622,
+      "encoder_contribution": false,
+      "interaction": 0.0006280829305053137,
+      "role": "private/gp"
+    },
+    "G_4_s43": {
+      "pass_quality": false,
+      "common_pass": true,
+      "cost_pass": true,
+      "contrasts": {
+        "g4_diag": -0.056776775601614204,
+        "g4_noise": 0.0014651641023478712,
+        "g4_own": 0.019397377660831494
+      },
+      "objective_contrast": -0.005186477898810993,
+      "objective_contribution": false,
+      "encoder_contrast": -0.0012374709102940251,
+      "encoder_contribution": false,
+      "interaction": -0.003726319927555788,
+      "role": "private/gp"
     }
   },
   "paired": {
     "H_small": false,
     "H_medium": false,
-    "G_1": null,
-    "G_4": null
+    "G_1": false,
+    "G_4": false
   }
 }

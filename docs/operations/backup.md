@@ -1,6 +1,6 @@
 # Git / DVC backup record
 
-Updated: 2026-10-12 UTC+7 — toàn bộ31 target đủ trênG:, cleanup xong; cloud tựsync, không chờ.
+Updated: 2026-10-12 UTC+7 — đợt bổ sung đangpush9 target; sauverify sẽcleanup theo yêu cầu mới. Snapshot31 target trước đãbackup/cleanup đủ.
 Procedure: [repo-backup](../../.agents/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
@@ -87,3 +87,25 @@ Snapshot `kaggle` có thể là collection chưa hoàn chỉnh; backup không x�
 - Target thay đổi ⇒check cũ hết hiệu lực; verify snapshot mới trướccleanup.
 - G: từ chối chmod0444; judged by exit/status, không theo DEBUG protection warning. `status -c` saucleanup cóthể `deleted`=thiếu cachelocal, không phải mấtremote.
 - Archive giữ repo `odixe06/mobihet-archive-b9-b21`, tag `archive-3`, bundle `mobihet-archive-b9-b21.bundle`.
+
+## 6. Khôi phục phục vụ nghiên cứu2026-10-12
+
+Đượcchủdựán cho phép restore chọnlọc. Fixture67file quaDVCpull; metadata cũ1.308file
+qua manifestdirectory/objectremote, MD5 từngfilePASS; [proof](restored-metadata-2026-10-12.json).
+Bao gồmV2A local/ownrefs và6AUDITEDkernelV3/V4/V5. Khôngrestoreweights/resume/predictions củaold6kernel.
+Output mới đãcollect; đợt backup bổ sung được chủ dự án yêu cầu. Manifest cập nhật bằng union entry cũ+local mới, giữ4.487 entry remote-only; không thay bằng snapshot partial.
+Backup31manifest vẫnsnapshotcũ, không tựgiảđịnh chứaoutputmới.
+TránhDVCcheckouttargetcon vàooutputđangcówriter; xem[lesson](../../LESSONS.md).
+
+V5H chẩnđoán bổsungrestore đúng4 `resume/round_020.pt`,7.013.072B, MD5/markerSHA PASS;
+sourceobjectcũ táidùng, khôngrestoreprivateweights. [Proof](../../papers/v5/anchor-target-diagnostics.json).
+
+## Đợt bổ sung2026-10-12 — đangpush
+
+-9 target mới/cập nhật: [inventory](backup-delta-2026-10-12.json), [chỉ mục pull](artifact-index.md).
+- Quét4.648 file text/staged227file: không thấy credential thật theo mẫu; không staged file>10MB.
+- Local partial V2–V5: hash cache từcurrentfiles, gộpentry cũ theo relpath, local override cùngpath; giữ missingoldentries. JSONcanonical tương ứngDVC Tree.as_bytes; manifesthash giữ trongGit.
+-8.847 object snapshot trước đãverify. Scope đợt này13.251 object/246.388.340.141B; prepush cần7.383 object/136.722.405.963B mới.
+- Push4worker atomicDVC đangchạy. Chưaxóa local. D:/G: trướcpush≈91/86GiB, chủ dự án được báo cầnthêm≈40GiB cacheD:.
+-158runalias lưurelativepath tronginventory, khôngDVCadd symlinkdir để tránh bảntrùng/path không cònlocal.
+- Không còn writer/collectorlocal lúc kiểm. Cloud tựsync, không chờ sauG: đủ.

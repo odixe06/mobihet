@@ -1,0 +1,651 @@
+{
+  "probe": "K5 primary extractor synthetic missing/nonfinite/coincident fidelity",
+  "source_sha256": "6b808dec839873f3128dcfde4a1c6ac89cdc3d6b48687d1f948c4d25233b2faa",
+  "script_sha256": "483ccc2d854969e98a3dba1f398a7cfaf27eff7582c3b84358edaf77c7280fe1",
+  "source": "dataset/script/preprocessed/vnx_features.py",
+  "real_records_used": 0,
+  "learned_models_used": 0,
+  "dtype": "float64",
+  "comparison": {
+    "rtol": 1e-12,
+    "atol": 1e-12
+  },
+  "case_count": 47,
+  "toy_rows": 94,
+  "finite_and_eligible_toy_pass": true,
+  "nominal_g51_fidelity_pass": false,
+  "nominal_g53_fidelity_pass": false,
+  "conservative_retention": [
+    "f_dx",
+    "f_dy",
+    "f_dist",
+    "f_rel_speed",
+    "f_closing_speed",
+    "f_spd_diff",
+    "f_rcv_noise_mag",
+    "f_snd_noise_mag"
+  ],
+  "eligible_derived": [
+    "f_bearing_sin",
+    "f_bearing_cos",
+    "f_hed_diff_cos",
+    "f_rcv_vx",
+    "f_rcv_vy",
+    "f_snd_vx",
+    "f_snd_vy"
+  ],
+  "actual_primitive_dimension": 59,
+  "nominal_designs_collide": true,
+  "g61_candidate": {
+    "status": "owner selected both G59 and G61 quality experiments; toy only",
+    "actual_primitive_dimension": 61,
+    "eligible_derived": [
+      "f_hed_diff_cos",
+      "f_rcv_vx",
+      "f_rcv_vy",
+      "f_snd_vx",
+      "f_snd_vy"
+    ],
+    "all_toy_cases_pass": true,
+    "retained_bearings": true,
+    "inverse_distance_used": false
+  },
+  "cases": [
+    {
+      "case": "finite",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_rcv_0",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_rcv_90",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_rcv_180",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_rcv_270",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_snd_0",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_snd_90",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_snd_180",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "compass_snd_270",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "coincident",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "unknown_profiles",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_x_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_x_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_x_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_y_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_y_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_y_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_x_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_x_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_x_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_y_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_y_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_y_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_spd_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_spd_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_spd_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_spd_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_spd_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_spd_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_hed_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_hed_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_hed_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_hed_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_hed_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_hed_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_noise_x_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_noise_x_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_noise_x_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_noise_y_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_noise_y_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "rcv_pos_noise_y_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_noise_x_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_noise_x_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_noise_x_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_noise_y_nan",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_noise_y_posinf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    },
+    {
+      "case": "snd_pos_noise_y_neginf",
+      "rows": 2,
+      "first_rows": 1,
+      "nonfirst_rows": 1,
+      "finite": true,
+      "first_structural_pass": true,
+      "eligible_reconstruction_pass": true,
+      "g61_reconstruction_pass": true,
+      "failed_formulas": []
+    }
+  ],
+  "indistinguishability_counterexamples": [
+    {
+      "case": "snd_spd_nan_vs_valid_zero_receiver_0",
+      "g51_same_primitives": true,
+      "g53_same_primitives": true,
+      "different_derived_features": [
+        "f_rel_speed",
+        "f_closing_speed",
+        "f_spd_diff"
+      ]
+    },
+    {
+      "case": "rcv_spd_nan_vs_valid_zero_receiver_0",
+      "g51_same_primitives": true,
+      "g53_same_primitives": true,
+      "different_derived_features": [
+        "f_rel_speed",
+        "f_closing_speed",
+        "f_spd_diff"
+      ]
+    },
+    {
+      "case": "snd_pos_noise_x_nan_vs_valid_zero_receiver_0",
+      "g51_same_primitives": true,
+      "g53_same_primitives": true,
+      "different_derived_features": [
+        "f_snd_noise_mag"
+      ]
+    },
+    {
+      "case": "rcv_pos_noise_x_nan_vs_valid_zero_receiver_0",
+      "g51_same_primitives": true,
+      "g53_same_primitives": true,
+      "different_derived_features": [
+        "f_rcv_noise_mag"
+      ]
+    },
+    {
+      "case": "snd_pos_x_nan_vs_valid_zero_receiver_2",
+      "g51_same_primitives": true,
+      "g53_same_primitives": false,
+      "different_derived_features": [
+        "f_dx",
+        "f_dist",
+        "f_bearing_sin",
+        "f_bearing_cos",
+        "f_closing_speed"
+      ]
+    },
+    {
+      "case": "snd_pos_y_nan_vs_valid_zero_receiver_2",
+      "g51_same_primitives": true,
+      "g53_same_primitives": false,
+      "different_derived_features": [
+        "f_dy",
+        "f_dist",
+        "f_bearing_sin",
+        "f_bearing_cos",
+        "f_closing_speed"
+      ]
+    },
+    {
+      "case": "snd_pos_x_nan_vs_valid_zero_receiver_0",
+      "g51_same_primitives": true,
+      "g53_same_primitives": true,
+      "different_derived_features": [
+        "f_dist",
+        "f_bearing_cos",
+        "f_closing_speed"
+      ]
+    }
+  ],
+  "limits": [
+    "Synthetic toy only; no actual dataset branch-frequency or F1 evidence.",
+    "Eight retained fields follow conservative no-missingness-inference policy; not a proof of globally minimal sufficient dimension.",
+    "Seven removed fields use retained dx/dy/dist; no reconstruction of geometry from positions is claimed.",
+    "No FP16 quantization, covariance codec, synthetic Gaussian support or deadline proof.",
+    "Aggregate case outcomes and field names only; no raw toy rows or real records exported."
+  ]
+}

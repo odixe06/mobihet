@@ -1,0 +1,32 @@
+VERIFIED {"run": "k66_plain_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 241, "ambiguous": 15}, {"round": 3, "role": "private", "rows": 256, "decisive": 250, "ambiguous": 6}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_plain_fl_s42
+VERIFIED {"run": "k66_marginal_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 241, "ambiguous": 15}, {"round": 3, "role": "private", "rows": 256, "decisive": 252, "ambiguous": 4}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_marginal_fl_s42
+VERIFIED {"run": "k66_joint_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 231, "ambiguous": 25}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_joint_fl_s42
+VERIFIED {"run": "k59_marginal_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 239, "ambiguous": 17}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_marginal_fl_s42
+VERIFIED {"run": "k59_marginal_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 245, "ambiguous": 11}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_marginal_own_s42
+VERIFIED {"run": "k59_marginal_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 229, "ambiguous": 27}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_marginal_shuffle_s42
+VERIFIED {"run": "k59_joint_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_joint_fl_s42
+VERIFIED {"run": "k59_joint_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 229, "ambiguous": 27}, {"round": 3, "role": "private", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_joint_own_s42
+VERIFIED {"run": "k59_joint_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 244, "ambiguous": 12}, {"round": 3, "role": "private", "rows": 256, "decisive": 251, "ambiguous": 5}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_joint_shuffle_s42
+VERIFIED {"run": "k61_marginal_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 241, "ambiguous": 15}, {"round": 3, "role": "private", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k61_marginal_fl_s42
+VERIFIED {"run": "k61_marginal_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k61_marginal_own_s42
+VERIFIED {"run": "k61_marginal_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 248, "ambiguous": 8}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k61_marginal_shuffle_s42
+VERIFIED {"run": "k61_joint_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}, {"round": 3, "role": "private", "rows": 256, "decisive": 256, "ambiguous": 0}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k61_joint_fl_s42
+VERIFIED {"run": "k61_joint_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 231, "ambiguous": 25}, {"round": 3, "role": "private", "rows": 256, "decisive": 251, "ambiguous": 5}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k61_joint_own_s42
+VERIFIED {"run": "k61_joint_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k61_joint_shuffle_s42
+PASS V6 all15 strict/inference on final source; exact4resumes already passed
+Peak tree RSS: 1369 MiB; exit 0

@@ -1,0 +1,32 @@
+{"k66_plain_fl": {"rc": -998, "complete": false}, "k66_marginal_fl": {"rc": -998, "complete": false}, "k66_joint_fl": {"rc": -998, "complete": false}, "k59_marginal_fl": {"rc": -998, "complete": false}, "k59_marginal_own": {"rc": -998, "complete": false}, "k59_marginal_shuffle": {"rc": -998, "complete": false}, "k59_joint_fl": {"rc": -998, "complete": false}, "k59_joint_own": {"rc": -998, "complete": false}, "k59_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6a-s42-20261012-v1 unstarted
+start k66_plain_fl gpu 0
+start k66_marginal_fl gpu 0
+start k66_joint_fl gpu 1
+start k59_marginal_fl gpu 1
+{"k66_plain_fl": {"rc": -15, "complete": false}, "k66_marginal_fl": {"rc": -15, "complete": false}, "k66_joint_fl": {"rc": -15, "complete": false}, "k59_marginal_fl": {"rc": -15, "complete": false}, "k59_marginal_own": {"rc": -998, "complete": false}, "k59_marginal_shuffle": {"rc": -998, "complete": false}, "k59_joint_fl": {"rc": -998, "complete": false}, "k59_joint_own": {"rc": -998, "complete": false}, "k59_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6a-s42-20261012-v1 terminate
+{"k66_plain_fl": {"rc": -998, "complete": false}, "k66_marginal_fl": {"rc": -998, "complete": false}, "k66_joint_fl": {"rc": -998, "complete": false}, "k59_marginal_fl": {"rc": -998, "complete": false}, "k59_marginal_own": {"rc": -998, "complete": false}, "k59_marginal_shuffle": {"rc": -998, "complete": false}, "k59_joint_fl": {"rc": -998, "complete": false}, "k59_joint_own": {"rc": -998, "complete": false}, "k59_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6a-s43-20261012-v1 unstarted
+start k66_plain_fl gpu 0
+start k66_marginal_fl gpu 0
+start k66_joint_fl gpu 1
+start k59_marginal_fl gpu 1
+{"k66_plain_fl": {"rc": -15, "complete": false}, "k66_marginal_fl": {"rc": -15, "complete": false}, "k66_joint_fl": {"rc": -15, "complete": false}, "k59_marginal_fl": {"rc": -15, "complete": false}, "k59_marginal_own": {"rc": -998, "complete": false}, "k59_marginal_shuffle": {"rc": -998, "complete": false}, "k59_joint_fl": {"rc": -998, "complete": false}, "k59_joint_own": {"rc": -998, "complete": false}, "k59_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6a-s43-20261012-v1 terminate
+{"k61_marginal_fl": {"rc": -998, "complete": false}, "k61_marginal_own": {"rc": -998, "complete": false}, "k61_marginal_shuffle": {"rc": -998, "complete": false}, "k61_joint_fl": {"rc": -998, "complete": false}, "k61_joint_own": {"rc": -998, "complete": false}, "k61_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6b-s42-20261012-v1 unstarted
+start k61_marginal_fl gpu 0
+start k61_marginal_own gpu 0
+start k61_marginal_shuffle gpu 1
+start k61_joint_fl gpu 1
+{"k61_marginal_fl": {"rc": -15, "complete": false}, "k61_marginal_own": {"rc": -15, "complete": false}, "k61_marginal_shuffle": {"rc": -15, "complete": false}, "k61_joint_fl": {"rc": -15, "complete": false}, "k61_joint_own": {"rc": -998, "complete": false}, "k61_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6b-s42-20261012-v1 terminate
+{"k61_marginal_fl": {"rc": -998, "complete": false}, "k61_marginal_own": {"rc": -998, "complete": false}, "k61_marginal_shuffle": {"rc": -998, "complete": false}, "k61_joint_fl": {"rc": -998, "complete": false}, "k61_joint_own": {"rc": -998, "complete": false}, "k61_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6b-s43-20261012-v1 unstarted
+start k61_marginal_fl gpu 0
+start k61_marginal_own gpu 0
+start k61_marginal_shuffle gpu 1
+start k61_joint_fl gpu 1
+{"k61_marginal_fl": {"rc": -15, "complete": false}, "k61_marginal_own": {"rc": -15, "complete": false}, "k61_marginal_shuffle": {"rc": -15, "complete": false}, "k61_joint_fl": {"rc": -15, "complete": false}, "k61_joint_own": {"rc": -998, "complete": false}, "k61_joint_shuffle": {"rc": -998, "complete": false}}
+PASS V6 deadline v6b-s43-20261012-v1 terminate

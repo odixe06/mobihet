@@ -1,0 +1,17 @@
+Bounded class counts [2082, 176, 531, 485, 544, 1418, 128, 369, 448, 735, 357, 70, 357, 588, 1692, 260]
+k66_plain_fl PASS 
+k66_marginal_fl PASS 
+k66_joint_fl PASS 
+k59_marginal_fl PASS 
+k59_marginal_own PASS 
+k59_marginal_shuffle PASS 
+k59_joint_fl PASS 
+k59_joint_own PASS 
+k59_joint_shuffle PASS 
+k61_marginal_fl PASS 
+k61_marginal_own PASS 
+k61_marginal_shuffle PASS 
+k61_joint_fl PASS 
+k61_joint_own PASS 
+k61_joint_shuffle PASS 
+Peak tree RSS: 651 MiB; exit 0

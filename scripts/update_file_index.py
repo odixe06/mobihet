@@ -26,11 +26,12 @@ def main():
              '| `papers/p2/kaggle/`, `papers/p2/runs/`, `papers/p2/source_audit/` | P2 pulled outputs/source; [audit](../papers/p2/audit.json) |',
              '| `papers/new-fl/kaggle/`, `papers/new-fl/runs/` | S-a; marker `VERIFIED.json`, weights/predictions; [ledger](../papers/new-fl/rebuild.md) |',
              '| `papers/new-fl/input/`, `papers/new-fl/smoke/`, `papers/new-fl/resume_reference/` | Staging và smoke; [ledger](../papers/new-fl/rebuild.md) |',
+             '| `papers/v2/`, `papers/v3/`, `papers/v4/`, `papers/v5/` | Source/artifact theo đợt; [phương pháp](../proposals/README.md), [restore](operations/backup.md) |',
              '| `papers/<method>/private_push/` | Notebook private chứa key tạm; [quy định W&B](../LESSONS.md) |',
              '| `../dataset/`, DVC remote và archive | Dữ liệu gốc/phục hồi; [dataset](../knowledge/dataset.md), [backup](operations/backup.md) |', '',
              'DVC chỉ quản lý target có `.dvc`; không suy artifact mới đã backup từ sự tồn tại của thư mục. '
              'Snapshot code chạy nằm trong notebook/input/output; đối chiếu manifest trước tái sử dụng.', '']
-    for group in ('root', 'docs', 'knowledge', 'mh', 'scripts', 'papers', '.agents', '.claude', '.dvc'):
+    for group in ('root', 'proposals', 'docs', 'knowledge', 'mh', 'scripts', 'papers', '.agents', '.claude', '.dvc'):
         if group in groups:
             lines += [f'## {group}', '']
             lines += [f'- [{p}](../{quote(p, safe="/._-")})' for p in groups.pop(group)]

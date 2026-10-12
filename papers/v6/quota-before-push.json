@@ -1,0 +1,41 @@
+{
+  "observed_utc": "2026-10-12T03:24:22.908424+00:00",
+  "accounts": [
+    {
+      "user": "minhtran0601",
+      "gpu_left": 5.7734925,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "dinhan25",
+      "gpu_left": 6.242527777777781,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "trietbackup",
+      "gpu_left": 13.954221111111114,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "odixe0502",
+      "gpu_left": 14.944124722222222,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  ]
+}

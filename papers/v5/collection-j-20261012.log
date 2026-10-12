@@ -1,0 +1,38 @@
+catbaochau/mobihet-v5j-s42-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+catbaochau/mobihet-v5j-s42-20261012-v1: 573 files, 6 parallel
+catbaochau/mobihet-v5j-s42-20261012-v1: 573 files ok, 0 missing, 4708 MiB new in 1537 s (3.1 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v5/private_push/v5j-s42-20261012-v1/executed.ipynb (34813 bytes, 5 outputs)
+VERIFIED {"run": "g4_diag_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16332, "ambiguous": 52}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16297, "ambiguous": 87}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_diag_s42
+VERIFIED {"run": "g4_noise_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16337, "ambiguous": 47}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16370, "ambiguous": 14}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_noise_s42
+VERIFIED {"run": "g4_mean_frozen_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16325, "ambiguous": 59}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16368, "ambiguous": 16}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_mean_frozen_s42
+VERIFIED {"run": "g4_mean_trained_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16325, "ambiguous": 59}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16366, "ambiguous": 18}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_mean_trained_s42
+VERIFIED {"run": "g4_grad_frozen_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16343, "ambiguous": 41}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16354, "ambiguous": 30}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_grad_frozen_s42
+VERIFIED {"run": "g4_grad_trained_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16343, "ambiguous": 41}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16372, "ambiguous": 12}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_grad_trained_s42
+VERIFIED {"run": "g4_own_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16334, "ambiguous": 50}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16361, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_own_s42
+AUDITED KERNEL catbaochau/mobihet-v5j-s42-20261012-v1 complete True
+khanhmay0304/mobihet-v5j-s43-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+khanhmay0304/mobihet-v5j-s43-20261012-v1: 573 files, 6 parallel
+khanhmay0304/mobihet-v5j-s43-20261012-v1: 573 files ok, 0 missing, 4742 MiB new in 1342 s (3.5 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v5/private_push/v5j-s43-20261012-v1/executed.ipynb (34810 bytes, 5 outputs)
+VERIFIED {"run": "g4_diag_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16333, "ambiguous": 51}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16298, "ambiguous": 86}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_diag_s43
+VERIFIED {"run": "g4_noise_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16349, "ambiguous": 35}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16364, "ambiguous": 20}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_noise_s43
+VERIFIED {"run": "g4_mean_frozen_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16350, "ambiguous": 34}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16365, "ambiguous": 19}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_mean_frozen_s43
+VERIFIED {"run": "g4_mean_trained_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16350, "ambiguous": 34}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16360, "ambiguous": 24}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_mean_trained_s43
+VERIFIED {"run": "g4_grad_frozen_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16342, "ambiguous": 42}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16356, "ambiguous": 28}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_grad_frozen_s43
+VERIFIED {"run": "g4_grad_trained_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16342, "ambiguous": 42}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16357, "ambiguous": 27}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_grad_trained_s43
+VERIFIED {"run": "g4_own_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16350, "ambiguous": 34}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16360, "ambiguous": 24}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_own_s43
+AUDITED KERNEL khanhmay0304/mobihet-v5j-s43-20261012-v1 complete True

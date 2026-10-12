@@ -46,3 +46,12 @@ TerminalCOMPLETE/ERROR phảipull/audit từngarm;0roundsource/configproof khôn
 ActualT4preflight/logs; thu/verify/report10metric/perclass/pairedgates +cost gates; chỉPASS mới privateKD/contact riêng.
 K5 [algebra/primitive](../../docs/research/v5-algebra-sources.md) mớisource/design, chưacode/pilot;
 không épimpliedspeed=claim/residual0/onroad đểxóaattack, cần6chi tiết chốt saupreflight.
+
+## Collect saubackup2026-10-12
+
+KernelAPI đãCOMPLETE; audit/collect đangtiếptục, khôngrerun.
+Oldauditmetadata khôiphục từDVCobject, MD5PASS; khônggọikiểmweights lạichooldkernel.
+Newkernelpull/verifyđủsource/checkpoint/payload/prediction trướcreport.
+[Phiêncollect](../../docs/operations/live-2026-10-12.md),
+[restoreproof](../../docs/operations/restored-metadata-2026-10-12.json).
+DVCmanifest cũkhôngbao hàmoutputmới; khôngadd/push/cleanup lúcnày.

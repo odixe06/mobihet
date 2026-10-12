@@ -5,6 +5,16 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 
 ## 1. Chủ dự án và cách làm việc
 
+- **2026-10-12, mở rộng:**H1/H2 full20client/100%train80%/50round/seed42-only;
+  Nyströmrank4/8 explicitW/FP32up-FP16down/cổngdesign§7; Hybrid2×2/own pilot42/43.
+  NotebookW&B online; giám sátround1–5, cóbấtổn/lỗi đangchạy thì báo vàyêucầuchủdựándừng.
+  [Kế hoạch/runđãpush](docs/operations/expansion-2026-10-12.md).
+
+- **2026-10-12:** tổ chức theo tên phương pháp trong `proposals/`; source/artifact đã chạy giữ đường dẫn.
+  Được khôi phục DVC chọn lọc để collect/audit; không tự add/push/cleanup.
+  K5 chốt G51/G53 × marginal/joint mask; giữ primitive nhánh missing không xác định; hai cổng riêng.
+  [Quyết định đầy đủ](docs/operations/decisions-2026-10-12.md).
+
 - Trả lời tiếng Việt, kiểu caveman (CLAUDE.md). Chưa chắc thì **hỏi trước**. Việc phải làm bằng tay thì liệt kê từng bước.
 - Đề xuất phương pháp phải có: **bằng chứng vấn đề → cơ chế → dấu hiệu kiểm chứng có thể sai**. Không thấy dấu hiệu thì dừng hướng đó.
 - Phương án mới phải kiểm nghiệm ngắn để xác định khả thi. Bất hợp lý thì chỉnh từ nguyên nhân hoặc bỏ; **không kéo dài run để tìm điểm thắng**.
@@ -61,6 +71,37 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Kernel COMPLETE ≠ artifact hợp lệ: pull rồi verify bằng **đúng source đã chạy**.
 
 ## 4. Phương pháp — điều đã biết
+
+- **V6 cả4kernel/30arm đãaudit:**12G59numericaloverflow,18control/G61 đủ20round;
+  G61M/Jquality/compressionpairedFAIL. JointG61−full66joint≈+0,0075/+0,0079,
+  −shuffle≈+0,0013/+0,0044; byte/control≈0,846. Owncontrastpositive chưađủgeometryproof.
+  Joint−marginal≈+0,0197/+0,0223 nhưngfull66≈+0,0186/+0,0176; interaction nhỏ.
+  Conditionalbootstrap≈14×marginal. Dừngadaptation, khôngcontact/fullscale/rerun y nguyên.
+  [Kết quả](docs/research/probes/pilot-v6.md), [gates](papers/v6/gates.json).
+
+- **V5H actual target diagnostic:**4resume khôiphục6,69MiB,MD5/markerSHA/source/packetPASS.
+  h4 chọn từ1.000.369trainrow của pilot; coverage≈98,92%/99,29%, không43Mfulltrain.
+  Entropy/log16≈0,982; small CE−targetentropy≈6e−7nats nhưngF1≈0,06: objectivefit
+  khôngchứng minh generalization. Targetargmaxalignment≈31%/36% (>6,25%chance),
+  nên khônggọi hoàn toànuniform/vôtri-thức hoặcgánnguyênnhân duy nhất.
+  Target trùngbit2seed: hai seed đo stochastictraining, không independentknowledge-estimation.
+  [Chẩn đoán](proposals/kernel-anchor-distillation/diagnostics.md), [proof](papers/v5/anchor-target-diagnostics.json).
+
+- **V5 kernel-anchor teacher cảhai seed:**small/mediumpairedFAIL đãaudit trướccleanup,
+  metadata khôiphụcexactMD5. FLhơnown chưađủ; thuaGaussianhardlabels vàlocal.
+  Coverage khônglàteacherquality; khôngmởprivateKD/contact hoặc tuneh cứu cổng.
+  [Bài học phương pháp](proposals/kernel-anchor-distillation/lessons.md), [report](papers/v5/report.md).
+
+- **Audit mới đủcảhai seed:**MALApairedFAIL dùfinite/full20round; thuaown/shuffle/diag.
+  GradientbookIPC1/4cost2×PASS nhưngqualitypairedFAIL; grad-trainedthuaGaussiancontinuous,
+  khôngđủhơnmeanlatent/frozenencoder. Khônggánnguyênnhân duy nhất.
+  [Tổng hợp](proposals/evidence-summary.md), [V4](papers/v4/report.md), [V5](papers/v5/report.md).
+
+- **K5 missingtoy actualextractor:**47case/94row synthetic, không realdata/model;
+  NaN/nonfinite→0 làm nhiều công thức không thể suy từ primitive đã impute. G51/G53FAIL;
+  giữ8derived⇒cùngG59, không chạy arm trùng. 7công thức eligible qua toy; chưaFP16/F1proof.
+  Full59cov khôngđạtcarrier65%; chủdựánchọnqualityG59×marginal/joint32.
+  [Proof](proposals/geometry-primitive-moments/fidelity-missing.json), [quyếtđịnh](proposals/geometry-primitive-moments/decisions.md).
 
 - **Prototype trung bình lớp** (FedProto-like): so với không trao đổi +0,045, nhưng mọi cách sửa (cluster, InfoNCE, soft-label, tách bank, hard proto, projection head) chỉ ±0,006.
   Trung bình lớp không chở ranh giới. Đừng đầu tư thêm vào biến đổi trung bình lớp.
@@ -123,6 +164,42 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Đo idle/ACK/lệch nguồn của kênh hiện có trước khi thêm contact (ACK 14%, 37% contact bỏ trống, lệch cid corr 0,93).
 
 ## 6. Vận hành
+
+- **Backupdelta2026-10-12:** restore/collectpartial không được thaymanifest đầyđủ bằng local snapshot.
+  Gộpoldentry+localnew theo relpath, giữ entryremote-only/hashhistory. `runs/` cóthể làsymlinkalias
+  vào`kaggle/`; backup data tạiđích, giữ mappingrelative đểrestorealias, không thêm bảntrùng.
+  [Chỉ mục pull](docs/operations/artifact-index.md).
+
+- **V6 G59 logterminal:**seed42cả6arm dừng bởi `V6 synthetic fp16 input overflow`,
+  phầnlớn trướccommit r1, jointshuffle có1commit. ParentERROR doassertallarmscomplete,
+  khônglàm mất3controlfull66 đã xong20round. KhôngW&B/auth/OOMfailure.
+  Probe4096draw/3smoke khôngbảochứng tails khi productiondrawhàngtriệupoint.
+  Chỉlog chưa chỉrafeature gâyoverflow; inverse(dist>0) cóđiểm illconditioned làcơchế
+  khảdĩ, chưađổlỗicho duy nhấtbearing. Source/codec/prediction auditđangthu đủ2seed.
+  [Manifest](docs/research/pilot-v6-geometry.md), [live](docs/operations/expansion-2026-10-12.md).
+
+- **V3 cả8kernel/48run đãaudit:**R/T/O/P đều pairedFAIL, khôngnumericalfailure.
+  MediumR giữ≈45,0%/44,4%, O≈28,0%/20,8%, PowerSGD≈8,8%/15,2% lợi dense32−own;
+  cổng yêu cầu≥80%. EF contribution và PowerSGD adaptive-basis contribution đềuPASS,
+  nhưng khôngđồngnghĩa compressionutilityPASS. Rollingtrain hơncommunication-only
+  nhưng thuaowncodec. Dense32teacherPASS; khôngđổihead/bestround đểcứuprivategp.
+  [Gates](papers/v3/gates.json), [report](papers/v3/report.md).
+
+- **V6 checker-only lỗi device:**15armtrain/4exactresume đã chạyqua, customverifier
+  loadresume không `map_location=CPU` rồi so vớipacketCPU gâydevice-mismatch.
+  Sửa checker, verify lại outputcũ; khôngreruntraining/source khi modelkhônglỗi.
+
+- **V6 math probe lấy prefix raw fixture sai:** `train_y[:256]` trên20client
+  chỉ phủbenign/accelerationMultiplication, 14lớp không córecord. Globalcohortguard từchối
+  làđúng; sửa probe thành512uniformseededrow/client, không sửa sourceV2–V5.
+  **Không suy smoke cũ thiếu14lớp:** `P.Run` chọn3000random trước `v2_run` trunc256;
+  prefix trong probe mới khác prefix sau random của driver. Phải đọc đúng chuỗi preprocessing.
+
+- **Khôi phục metadata 2026-10-12:** `dvc pull` một batch nhiều đường dẫn con
+  không dựng metadata như dự kiến và báo `D` trên hai thư mục đang collect.
+  Không checkout DVC vào output đang có writer. Dùng manifest directory đã kiểm MD5,
+  đọc object remote và kiểm MD5 từng file để restore chọn lọc; không thay manifest/cache cũ.
+  Phải kiểm đủ file sau restore; exit0 riêng không chứng minh target con đã có.
 
 - **Backup2026-10-12:** DriveFS cache trênD: đầy cóthể báo `Errno5 Input/output error` khi ghiG:,
   không phải bằng chứng artifact nguồn hỏng. G: đủ object+manifest là gate cleanup, không chờ cloud sync.

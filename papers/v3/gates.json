@@ -1,12 +1,143 @@
 {
-  "per_seed": {},
+  "per_seed": {
+    "R_small_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.25348387978407677,
+      "retention": -1.3142060489208045,
+      "gain_vs_codec": -0.03875164808803688,
+      "component_contrast": 0.006636775297115927,
+      "component_contribution": true
+    },
+    "R_medium_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": 0.08685163767854681,
+      "retention": 0.45028878243875736,
+      "gain_vs_codec": 0.09089622607815462,
+      "component_contrast": 0.200166802694209,
+      "component_contribution": true
+    },
+    "T_small_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.2517024828596711,
+      "retention": -1.3049702639250207,
+      "gain_vs_codec": -0.039293475675461875,
+      "component_contrast": 0.009526308530083294,
+      "component_contribution": true
+    },
+    "T_medium_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.021763555146553426,
+      "retention": -0.11283477215192408,
+      "gain_vs_codec": -0.03912012804790044,
+      "component_contrast": 0.08911985186984439,
+      "component_contribution": true
+    },
+    "O_small_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.24913590095271426,
+      "retention": -1.2916636289230372,
+      "gain_vs_codec": -0.04389435368306682,
+      "component_contrast": 0.011180939483300512,
+      "component_contribution": true
+    },
+    "O_medium_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": 0.05406083014848467,
+      "retention": 0.28028239922530074,
+      "gain_vs_codec": 0.08413941533853181,
+      "component_contrast": 0.23114936492699856,
+      "component_contribution": true
+    },
+    "P_medium_s42": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": 0.01694907889448488,
+      "retention": 0.0878737615415306,
+      "gain_vs_codec": 0.06924989613859278,
+      "component_contrast": 0.23132502430333746,
+      "component_contribution": true,
+      "adaptive_basis_contrast": 0.10626239423537986,
+      "adaptive_contribution": true
+    },
+    "R_small_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.26052290014133495,
+      "retention": -1.4600742110242406,
+      "gain_vs_codec": -0.05097197088798208,
+      "component_contrast": 0.00784815613735923,
+      "component_contribution": true
+    },
+    "R_medium_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": 0.07913715447995556,
+      "retention": 0.4435161681654098,
+      "gain_vs_codec": 0.08749957927910756,
+      "component_contrast": 0.18698326273462473,
+      "component_contribution": true
+    },
+    "T_small_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.2579994700397408,
+      "retention": -1.4459319025643658,
+      "gain_vs_codec": -0.03851437090779841,
+      "component_contrast": 0.010262813686317734,
+      "component_contribution": true
+    },
+    "T_medium_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.019284877263606504,
+      "retention": -0.10808014166925088,
+      "gain_vs_codec": -0.03577069068830674,
+      "component_contrast": 0.08349549492848313,
+      "component_contribution": true
+    },
+    "O_small_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": -0.2511511752133828,
+      "retention": -1.4075513277280214,
+      "gain_vs_codec": -0.038147090865501776,
+      "component_contrast": 0.016032849844203195,
+      "component_contribution": true
+    },
+    "O_medium_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": 0.03714857071241934,
+      "retention": 0.20819540256994143,
+      "gain_vs_codec": 0.0779852044374646,
+      "component_contrast": 0.21346870107809301,
+      "component_contribution": true
+    },
+    "P_medium_s43": {
+      "pass_quality": false,
+      "dense_teacher_pass": true,
+      "gain_vs_own": 0.02712306253079083,
+      "retention": 0.15200845723627926,
+      "gain_vs_codec": 0.08930769873473365,
+      "component_contrast": 0.24047349368871318,
+      "component_contribution": true,
+      "adaptive_basis_contrast": 0.09015057139566707,
+      "adaptive_contribution": true
+    }
+  },
   "paired": {
-    "R_small": null,
-    "R_medium": null,
-    "T_small": null,
-    "T_medium": null,
-    "O_small": null,
-    "O_medium": null,
-    "P_medium": null
+    "R_small": false,
+    "R_medium": false,
+    "T_small": false,
+    "T_medium": false,
+    "O_small": false,
+    "O_medium": false,
+    "P_medium": false
   }
 }

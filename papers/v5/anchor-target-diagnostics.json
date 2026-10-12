@@ -1,0 +1,1024 @@
+{
+  "diagnostic": "V5-H executed kernel-anchor target tables; retrospective aggregate only",
+  "script_sha256": "006ea2400be9f2b2c7d459dc7a09f6a12096d9b492bfdd3a6a05d5e77f59c196",
+  "directory_manifest": "f39dc32022b6b8789d3e0caefe03dbc4.dir",
+  "directory_manifest_md5_pass": true,
+  "exactly_four_resume_files_restored": true,
+  "selected_resume_bytes": 7013072,
+  "seeds": [
+    42,
+    43
+  ],
+  "sizes": [
+    "small",
+    "medium"
+  ],
+  "rows": [
+    {
+      "seed": 42,
+      "arm": "b_anchor_small_fl",
+      "anchors": 32,
+      "round": 20,
+      "selected_bandwidth": 4.0,
+      "queried_pilot_train_rows": 1000369,
+      "coverage_minimum": 0.903515100479126,
+      "coverage_prior_weighted": 0.9892079929368969,
+      "coverage_gate_pass": true,
+      "coverage_limits": "Chosen bandwidth/coverage recorded for full pilot T only; rejected candidate h coverage is not saved, and original full43M train was not queried.",
+      "normalized_entropy": {
+        "mean": 0.9829575168339868,
+        "minimum": 0.9710658105935583,
+        "p10": 0.9800588741653807,
+        "median": 0.98319956714689,
+        "p90": 0.9865896032198734,
+        "maximum": 0.9902189238476266
+      },
+      "maximum_probability": {
+        "mean": 0.08782362472265959,
+        "minimum": 0.07598993182182312,
+        "p10": 0.07735147550702096,
+        "median": 0.08330917358398438,
+        "p90": 0.10807422846555713,
+        "maximum": 0.1427001953125
+      },
+      "top_two_margin": {
+        "mean": 0.008569429395720363,
+        "minimum": 0.0,
+        "p10": 0.00024411976337432862,
+        "median": 0.004333429038524628,
+        "p90": 0.028509548306465196,
+        "maximum": 0.05267052352428436
+      },
+      "total_variation_from_uniform": {
+        "mean": 0.10820069009787403,
+        "minimum": 0.08034407068043947,
+        "p10": 0.09583263490349055,
+        "median": 0.10822068527340889,
+        "p90": 0.1192008275538683,
+        "maximum": 0.13222608342766762
+      },
+      "kl_from_uniform_nats": {
+        "mean": 0.04725179662504958,
+        "minimum": 0.027118901431439024,
+        "p10": 0.03718151487333943,
+        "median": 0.04577090871269318,
+        "p90": 0.055288540597829845,
+        "maximum": 0.08022260723544994
+      },
+      "generating_label_probability": {
+        "mean": 0.07974992122035474,
+        "minimum": 0.052030883729457855,
+        "p10": 0.05880492255091667,
+        "median": 0.07581260800361633,
+        "p90": 0.10807422846555713,
+        "maximum": 0.1427001953125
+      },
+      "generating_label_rank": {
+        "mean": 5.25,
+        "minimum": 1.0,
+        "p10": 1.0,
+        "median": 3.0,
+        "p90": 11.900000000000002,
+        "maximum": 14.0
+      },
+      "argmax_gaussian_label_alignment": 0.3125,
+      "class_mean_target_entropy_normalized": 0.9871680431467125,
+      "mean_kl_to_class_mean_nats": 0.011674057769357038,
+      "mean_kl_to_class_mean_normalized": 0.004210526312725668,
+      "varying_anchor_fraction_of_squared_uniform_deviation": 0.262193368846435,
+      "target_mean_vs_uniform_tv": 0.09715572113054805,
+      "target_mean_vs_decoded_train_prior_tv": 0.4443882641443573,
+      "decoded_train_prior_vs_uniform_tv": 0.3968213837429978,
+      "mean_squared_deviation_from_uniform": 0.005175314660007315,
+      "round20_mean_optimizer_soft_ce": 2.7253375411033636,
+      "target_mean_entropy_nats": 2.7253369256147315,
+      "round20_soft_ce_minus_target_entropy_nats": 6.154886320608455e-07,
+      "optimizer_ce_limit": "Average of applied soft-CE steps on fixed anchors in round20; gap near float32/AMP precision, not new final-model inference.",
+      "per_class_aggregates": [
+        {
+          "class_name": "benign",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07616148376837373,
+          "decoded_train_prior": 0.2192780837831885,
+          "train_coverage": 0.9951632022857666,
+          "mean_generating_label_probability": 0.07897831127047539,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "accelerationMultiplication",
+          "anchor_count": 2,
+          "mean_target_mass": 0.05633318785112351,
+          "decoded_train_prior": 0.01580616842819961,
+          "train_coverage": 0.9864027500152588,
+          "mean_generating_label_probability": 0.05975518934428692,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "constantPositionOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.06525743927340955,
+          "decoded_train_prior": 0.04146070062271809,
+          "train_coverage": 0.9932731986045837,
+          "mean_generating_label_probability": 0.10213872045278549,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "constantSpeedOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07297534728422761,
+          "decoded_train_prior": 0.040556036219159396,
+          "train_coverage": 0.9941583871841431,
+          "mean_generating_label_probability": 0.0738169327378273,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dataReplay",
+          "anchor_count": 2,
+          "mean_target_mass": 0.06476440816186368,
+          "decoded_train_prior": 0.04436362938278096,
+          "train_coverage": 0.903515100479126,
+          "mean_generating_label_probability": 0.06466669961810112,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dosAttack",
+          "anchor_count": 2,
+          "mean_target_mass": 0.02401323296362534,
+          "decoded_train_prior": 0.14453266661986244,
+          "train_coverage": 0.9894111752510071,
+          "mean_generating_label_probability": 0.05856181122362614,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "feignedBraking",
+          "anchor_count": 2,
+          "mean_target_mass": 0.05863719840999693,
+          "decoded_train_prior": 0.012036558324726472,
+          "train_coverage": 0.9917780756950378,
+          "mean_generating_label_probability": 0.0864257961511612,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "positionMirroring",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07560168718919158,
+          "decoded_train_prior": 0.04335100234032843,
+          "train_coverage": 0.9944196939468384,
+          "mean_generating_label_probability": 0.07607627287507057,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "randomPositionOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.03089513850864023,
+          "decoded_train_prior": 0.044052746454622226,
+          "train_coverage": 0.9828677773475647,
+          "mean_generating_label_probability": 0.09907701052725315,
+          "argmax_alignment_fraction": 0.5
+        },
+        {
+          "class_name": "randomSpeedOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.05504951032344252,
+          "decoded_train_prior": 0.05057033931769202,
+          "train_coverage": 0.9930024147033691,
+          "mean_generating_label_probability": 0.058482181280851364,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "reversedHeading",
+          "anchor_count": 2,
+          "mean_target_mass": 0.06810985784977674,
+          "decoded_train_prior": 0.025646535858836975,
+          "train_coverage": 0.9903725981712341,
+          "mean_generating_label_probability": 0.07385024800896645,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "suddenConstantSpeed",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07203505141660571,
+          "decoded_train_prior": 0.0064926040812344574,
+          "train_coverage": 0.9890685081481934,
+          "mean_generating_label_probability": 0.07690538838505745,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "suddenStop",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07803729362785816,
+          "decoded_train_prior": 0.02023053555910384,
+          "train_coverage": 0.9944658279418945,
+          "mean_generating_label_probability": 0.0866386890411377,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "timeDelayAttack",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07423130888491869,
+          "decoded_train_prior": 0.045493211914970626,
+          "train_coverage": 0.9945506453514099,
+          "mean_generating_label_probability": 0.07430751621723175,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "trafficCongestionSybil",
+          "anchor_count": 2,
+          "mean_target_mass": 0.052916013984940946,
+          "decoded_train_prior": 0.22051063333994686,
+          "train_coverage": 0.9957931637763977,
+          "mean_generating_label_probability": 0.1250215545296669,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "zeroSpeedReport",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07498184684664011,
+          "decoded_train_prior": 0.025618547752629135,
+          "train_coverage": 0.9947323203086853,
+          "mean_generating_label_probability": 0.0812964178621769,
+          "argmax_alignment_fraction": 0.5
+        }
+      ],
+      "group_head_macro_f1": 0.060332222733958704,
+      "gaussian_hard_label_group_head_macro_f1": 0.12740905931729815,
+      "difference_vs_gaussian_hard_labels": -0.06707683658333945,
+      "proof": {
+        "path": "papers/v5/kaggle/v5h-s42-20261012-v1/runs/b_anchor_small_fl_s42/resume/round_020.pt",
+        "bytes": 1615380,
+        "dvc_md5": "df659c76e229f37f7da7808ea2c77372",
+        "sha256": "00bcfc0127584ab2bdfac42e90360b1203f7db48ea7f5e2714e04cfcdb32d02f",
+        "marker_resume_sha_match": true,
+        "fingerprint": "331303905426ea54629a4241124bf6282fb1438aaa14f480bebaa1c82ef4bd81",
+        "source_hashes": {
+          "v5_anchor.py": "1cd919e1ba39424e5a1f4afeb2e7441d4215a2637f91645db14e6906b7f077ae",
+          "v2_math.py": "187216ea4796afb81cfc9d5350a767e8b795bcd54d24c5544a3d921be661cc62",
+          "v2_methods.py": "90fa6ff5fa91cd559f9995d12a5dda0d6b9f4d6cdff435811f814adbfd664398",
+          "v2_run.py": "b5cf0daf5348bcd77dbab09876ee57950f469509f52485a15252fd873802ef2d"
+        },
+        "target_packet_decode_exact": true,
+        "prior_source": "ratio_pi from aggregate decoded class counts; no smoothing"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "b_anchor_medium_fl",
+      "anchors": 512,
+      "round": 20,
+      "selected_bandwidth": 4.0,
+      "queried_pilot_train_rows": 1000369,
+      "coverage_minimum": 0.9261153936386108,
+      "coverage_prior_weighted": 0.9929396116783344,
+      "coverage_gate_pass": true,
+      "coverage_limits": "Chosen bandwidth/coverage recorded for full pilot T only; rejected candidate h coverage is not saved, and original full43M train was not queried.",
+      "normalized_entropy": {
+        "mean": 0.9815905815020931,
+        "minimum": 0.9095261652101758,
+        "p10": 0.9775009468930954,
+        "median": 0.9828980608200234,
+        "p90": 0.9860895605779405,
+        "maximum": 0.9893603307370791
+      },
+      "maximum_probability": {
+        "mean": 0.09073188752518035,
+        "minimum": 0.07476920634508133,
+        "p10": 0.07836818769574165,
+        "median": 0.08361497521400452,
+        "p90": 0.11870636716485025,
+        "maximum": 0.27271339297294617
+      },
+      "top_two_margin": {
+        "mean": 0.01196178984537255,
+        "minimum": 0.0,
+        "p10": 0.00042726173996925353,
+        "median": 0.0036620572209358215,
+        "p90": 0.04126280695199976,
+        "maximum": 0.206732377409935
+      },
+      "total_variation_from_uniform": {
+        "mean": 0.11051064057937765,
+        "minimum": 0.0799351092427969,
+        "p10": 0.0974847611039877,
+        "median": 0.10944629274308681,
+        "p90": 0.12348497500643134,
+        "maximum": 0.21369441226124763
+      },
+      "kl_from_uniform_nats": {
+        "mean": 0.051041746110288694,
+        "minimum": 0.02949942700673569,
+        "p10": 0.03856792746300206,
+        "median": 0.04737838959374985,
+        "p90": 0.06238062090527781,
+        "maximum": 0.2508467339960516
+      },
+      "generating_label_probability": {
+        "mean": 0.08374642612034222,
+        "minimum": 0.03127861022949219,
+        "p10": 0.0623160395771265,
+        "median": 0.077504001557827,
+        "p90": 0.11870636716485025,
+        "maximum": 0.27271339297294617
+      },
+      "generating_label_rank": {
+        "mean": 4.40625,
+        "minimum": 1.0,
+        "p10": 1.0,
+        "median": 3.0,
+        "p90": 10.900000000000034,
+        "maximum": 15.0
+      },
+      "argmax_gaussian_label_alignment": 0.365234375,
+      "class_mean_target_entropy_normalized": 0.9883278176459096,
+      "mean_kl_to_class_mean_nats": 0.018679584951410977,
+      "mean_kl_to_class_mean_normalized": 0.006737236143816182,
+      "varying_anchor_fraction_of_squared_uniform_deviation": 0.38087036783577344,
+      "target_mean_vs_uniform_tv": 0.09357623136565962,
+      "target_mean_vs_decoded_train_prior_tv": 0.4420065811208709,
+      "decoded_train_prior_vs_uniform_tv": 0.3968213837429978,
+      "mean_squared_deviation_from_uniform": 0.005724407756676979,
+      "round20_mean_optimizer_soft_ce": 2.7228879570960993,
+      "target_mean_entropy_nats": 2.721546976129493,
+      "round20_soft_ce_minus_target_entropy_nats": 0.0013409809666065087,
+      "optimizer_ce_limit": "Average of applied soft-CE steps on fixed anchors in round20; gap near float32/AMP precision, not new final-model inference.",
+      "per_class_aggregates": [
+        {
+          "class_name": "benign",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07560516049852595,
+          "decoded_train_prior": 0.2192780837831885,
+          "train_coverage": 0.9966174364089966,
+          "mean_generating_label_probability": 0.07850478845648468,
+          "argmax_alignment_fraction": 0.1875
+        },
+        {
+          "class_name": "accelerationMultiplication",
+          "anchor_count": 32,
+          "mean_target_mass": 0.05642911526229,
+          "decoded_train_prior": 0.01580616842819961,
+          "train_coverage": 0.9923475980758667,
+          "mean_generating_label_probability": 0.06314242235384881,
+          "argmax_alignment_fraction": 0.03125
+        },
+        {
+          "class_name": "constantPositionOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.06304002068645786,
+          "decoded_train_prior": 0.04146070062271809,
+          "train_coverage": 0.995660126209259,
+          "mean_generating_label_probability": 0.0804957952350378,
+          "argmax_alignment_fraction": 0.53125
+        },
+        {
+          "class_name": "constantSpeedOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07244230379728833,
+          "decoded_train_prior": 0.040556036219159396,
+          "train_coverage": 0.9959083795547485,
+          "mean_generating_label_probability": 0.07457335898652673,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dataReplay",
+          "anchor_count": 32,
+          "mean_target_mass": 0.06472828089317773,
+          "decoded_train_prior": 0.04436362938278096,
+          "train_coverage": 0.9261153936386108,
+          "mean_generating_label_probability": 0.0664796493947506,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dosAttack",
+          "anchor_count": 32,
+          "mean_target_mass": 0.027578530280152336,
+          "decoded_train_prior": 0.14453266661986244,
+          "train_coverage": 0.9953315258026123,
+          "mean_generating_label_probability": 0.1238491132389754,
+          "argmax_alignment_fraction": 0.84375
+        },
+        {
+          "class_name": "feignedBraking",
+          "anchor_count": 32,
+          "mean_target_mass": 0.05903189888340421,
+          "decoded_train_prior": 0.012036558324726472,
+          "train_coverage": 0.9944356679916382,
+          "mean_generating_label_probability": 0.08423743874300271,
+          "argmax_alignment_fraction": 0.59375
+        },
+        {
+          "class_name": "positionMirroring",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07490373655309668,
+          "decoded_train_prior": 0.04335100234032843,
+          "train_coverage": 0.9959646463394165,
+          "mean_generating_label_probability": 0.0772311391774565,
+          "argmax_alignment_fraction": 0.0625
+        },
+        {
+          "class_name": "randomPositionOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.030738850866327994,
+          "decoded_train_prior": 0.044052746454622226,
+          "train_coverage": 0.9934194087982178,
+          "mean_generating_label_probability": 0.10175351111683995,
+          "argmax_alignment_fraction": 0.6875
+        },
+        {
+          "class_name": "randomSpeedOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.05520036591042299,
+          "decoded_train_prior": 0.05057033931769202,
+          "train_coverage": 0.9954931139945984,
+          "mean_generating_label_probability": 0.06174892734270543,
+          "argmax_alignment_fraction": 0.03125
+        },
+        {
+          "class_name": "reversedHeading",
+          "anchor_count": 32,
+          "mean_target_mass": 0.0675662348876358,
+          "decoded_train_prior": 0.025646535858836975,
+          "train_coverage": 0.9934518337249756,
+          "mean_generating_label_probability": 0.07465295842848718,
+          "argmax_alignment_fraction": 0.25
+        },
+        {
+          "class_name": "suddenConstantSpeed",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07157676372298738,
+          "decoded_train_prior": 0.0064926040812344574,
+          "train_coverage": 0.9926096796989441,
+          "mean_generating_label_probability": 0.07583326287567616,
+          "argmax_alignment_fraction": 0.0625
+        },
+        {
+          "class_name": "suddenStop",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07841678848490119,
+          "decoded_train_prior": 0.02023053555910384,
+          "train_coverage": 0.9957505464553833,
+          "mean_generating_label_probability": 0.0862685302272439,
+          "argmax_alignment_fraction": 0.90625
+        },
+        {
+          "class_name": "timeDelayAttack",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07427395131526282,
+          "decoded_train_prior": 0.045493211914970626,
+          "train_coverage": 0.9960887432098389,
+          "mean_generating_label_probability": 0.07750350655987859,
+          "argmax_alignment_fraction": 0.09375
+        },
+        {
+          "class_name": "trafficCongestionSybil",
+          "anchor_count": 32,
+          "mean_target_mass": 0.052445010045630625,
+          "decoded_train_prior": 0.22051063333994686,
+          "train_coverage": 0.9973843097686768,
+          "mean_generating_label_probability": 0.12902353471145034,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "zeroSpeedReport",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07602299314021366,
+          "decoded_train_prior": 0.025618547752629135,
+          "train_coverage": 0.9967613816261292,
+          "mean_generating_label_probability": 0.08464488107711077,
+          "argmax_alignment_fraction": 0.5625
+        }
+      ],
+      "group_head_macro_f1": 0.15706547872488122,
+      "gaussian_hard_label_group_head_macro_f1": 0.29981293158502087,
+      "difference_vs_gaussian_hard_labels": -0.14274745286013965,
+      "proof": {
+        "path": "papers/v5/kaggle/v5h-s42-20261012-v1/runs/b_anchor_medium_fl_s42/resume/round_020.pt",
+        "bytes": 1891156,
+        "dvc_md5": "1b3894cb8fecef25ac2203ae4f5a0c8b",
+        "sha256": "657de6abc8ffd332e615ac8fdeb5ddcf1c50917a41d7307812fb30eb3001da58",
+        "marker_resume_sha_match": true,
+        "fingerprint": "13eabf27d66660de3086e8061c2804eef7f933c88cdc3c49d1b72ade6f31862a",
+        "source_hashes": {
+          "v5_anchor.py": "1cd919e1ba39424e5a1f4afeb2e7441d4215a2637f91645db14e6906b7f077ae",
+          "v2_math.py": "187216ea4796afb81cfc9d5350a767e8b795bcd54d24c5544a3d921be661cc62",
+          "v2_methods.py": "90fa6ff5fa91cd559f9995d12a5dda0d6b9f4d6cdff435811f814adbfd664398",
+          "v2_run.py": "b5cf0daf5348bcd77dbab09876ee57950f469509f52485a15252fd873802ef2d"
+        },
+        "target_packet_decode_exact": true,
+        "prior_source": "ratio_pi from aggregate decoded class counts; no smoothing"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "b_anchor_small_fl",
+      "anchors": 32,
+      "round": 20,
+      "selected_bandwidth": 4.0,
+      "queried_pilot_train_rows": 1000369,
+      "coverage_minimum": 0.903515100479126,
+      "coverage_prior_weighted": 0.9892079929368969,
+      "coverage_gate_pass": true,
+      "coverage_limits": "Chosen bandwidth/coverage recorded for full pilot T only; rejected candidate h coverage is not saved, and original full43M train was not queried.",
+      "normalized_entropy": {
+        "mean": 0.9829575168339868,
+        "minimum": 0.9710658105935583,
+        "p10": 0.9800588741653807,
+        "median": 0.98319956714689,
+        "p90": 0.9865896032198734,
+        "maximum": 0.9902189238476266
+      },
+      "maximum_probability": {
+        "mean": 0.08782362472265959,
+        "minimum": 0.07598993182182312,
+        "p10": 0.07735147550702096,
+        "median": 0.08330917358398438,
+        "p90": 0.10807422846555713,
+        "maximum": 0.1427001953125
+      },
+      "top_two_margin": {
+        "mean": 0.008569429395720363,
+        "minimum": 0.0,
+        "p10": 0.00024411976337432862,
+        "median": 0.004333429038524628,
+        "p90": 0.028509548306465196,
+        "maximum": 0.05267052352428436
+      },
+      "total_variation_from_uniform": {
+        "mean": 0.10820069009787403,
+        "minimum": 0.08034407068043947,
+        "p10": 0.09583263490349055,
+        "median": 0.10822068527340889,
+        "p90": 0.1192008275538683,
+        "maximum": 0.13222608342766762
+      },
+      "kl_from_uniform_nats": {
+        "mean": 0.04725179662504958,
+        "minimum": 0.027118901431439024,
+        "p10": 0.03718151487333943,
+        "median": 0.04577090871269318,
+        "p90": 0.055288540597829845,
+        "maximum": 0.08022260723544994
+      },
+      "generating_label_probability": {
+        "mean": 0.07974992122035474,
+        "minimum": 0.052030883729457855,
+        "p10": 0.05880492255091667,
+        "median": 0.07581260800361633,
+        "p90": 0.10807422846555713,
+        "maximum": 0.1427001953125
+      },
+      "generating_label_rank": {
+        "mean": 5.25,
+        "minimum": 1.0,
+        "p10": 1.0,
+        "median": 3.0,
+        "p90": 11.900000000000002,
+        "maximum": 14.0
+      },
+      "argmax_gaussian_label_alignment": 0.3125,
+      "class_mean_target_entropy_normalized": 0.9871680431467125,
+      "mean_kl_to_class_mean_nats": 0.011674057769357038,
+      "mean_kl_to_class_mean_normalized": 0.004210526312725668,
+      "varying_anchor_fraction_of_squared_uniform_deviation": 0.262193368846435,
+      "target_mean_vs_uniform_tv": 0.09715572113054805,
+      "target_mean_vs_decoded_train_prior_tv": 0.4443882641443573,
+      "decoded_train_prior_vs_uniform_tv": 0.3968213837429978,
+      "mean_squared_deviation_from_uniform": 0.005175314660007315,
+      "round20_mean_optimizer_soft_ce": 2.725337481498719,
+      "target_mean_entropy_nats": 2.7253369256147315,
+      "round20_soft_ce_minus_target_entropy_nats": 5.558839872854549e-07,
+      "optimizer_ce_limit": "Average of applied soft-CE steps on fixed anchors in round20; gap near float32/AMP precision, not new final-model inference.",
+      "per_class_aggregates": [
+        {
+          "class_name": "benign",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07616148376837373,
+          "decoded_train_prior": 0.2192780837831885,
+          "train_coverage": 0.9951632022857666,
+          "mean_generating_label_probability": 0.07897831127047539,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "accelerationMultiplication",
+          "anchor_count": 2,
+          "mean_target_mass": 0.05633318785112351,
+          "decoded_train_prior": 0.01580616842819961,
+          "train_coverage": 0.9864027500152588,
+          "mean_generating_label_probability": 0.05975518934428692,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "constantPositionOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.06525743927340955,
+          "decoded_train_prior": 0.04146070062271809,
+          "train_coverage": 0.9932731986045837,
+          "mean_generating_label_probability": 0.10213872045278549,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "constantSpeedOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07297534728422761,
+          "decoded_train_prior": 0.040556036219159396,
+          "train_coverage": 0.9941583871841431,
+          "mean_generating_label_probability": 0.0738169327378273,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dataReplay",
+          "anchor_count": 2,
+          "mean_target_mass": 0.06476440816186368,
+          "decoded_train_prior": 0.04436362938278096,
+          "train_coverage": 0.903515100479126,
+          "mean_generating_label_probability": 0.06466669961810112,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dosAttack",
+          "anchor_count": 2,
+          "mean_target_mass": 0.02401323296362534,
+          "decoded_train_prior": 0.14453266661986244,
+          "train_coverage": 0.9894111752510071,
+          "mean_generating_label_probability": 0.05856181122362614,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "feignedBraking",
+          "anchor_count": 2,
+          "mean_target_mass": 0.05863719840999693,
+          "decoded_train_prior": 0.012036558324726472,
+          "train_coverage": 0.9917780756950378,
+          "mean_generating_label_probability": 0.0864257961511612,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "positionMirroring",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07560168718919158,
+          "decoded_train_prior": 0.04335100234032843,
+          "train_coverage": 0.9944196939468384,
+          "mean_generating_label_probability": 0.07607627287507057,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "randomPositionOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.03089513850864023,
+          "decoded_train_prior": 0.044052746454622226,
+          "train_coverage": 0.9828677773475647,
+          "mean_generating_label_probability": 0.09907701052725315,
+          "argmax_alignment_fraction": 0.5
+        },
+        {
+          "class_name": "randomSpeedOffset",
+          "anchor_count": 2,
+          "mean_target_mass": 0.05504951032344252,
+          "decoded_train_prior": 0.05057033931769202,
+          "train_coverage": 0.9930024147033691,
+          "mean_generating_label_probability": 0.058482181280851364,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "reversedHeading",
+          "anchor_count": 2,
+          "mean_target_mass": 0.06810985784977674,
+          "decoded_train_prior": 0.025646535858836975,
+          "train_coverage": 0.9903725981712341,
+          "mean_generating_label_probability": 0.07385024800896645,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "suddenConstantSpeed",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07203505141660571,
+          "decoded_train_prior": 0.0064926040812344574,
+          "train_coverage": 0.9890685081481934,
+          "mean_generating_label_probability": 0.07690538838505745,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "suddenStop",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07803729362785816,
+          "decoded_train_prior": 0.02023053555910384,
+          "train_coverage": 0.9944658279418945,
+          "mean_generating_label_probability": 0.0866386890411377,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "timeDelayAttack",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07423130888491869,
+          "decoded_train_prior": 0.045493211914970626,
+          "train_coverage": 0.9945506453514099,
+          "mean_generating_label_probability": 0.07430751621723175,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "trafficCongestionSybil",
+          "anchor_count": 2,
+          "mean_target_mass": 0.052916013984940946,
+          "decoded_train_prior": 0.22051063333994686,
+          "train_coverage": 0.9957931637763977,
+          "mean_generating_label_probability": 0.1250215545296669,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "zeroSpeedReport",
+          "anchor_count": 2,
+          "mean_target_mass": 0.07498184684664011,
+          "decoded_train_prior": 0.025618547752629135,
+          "train_coverage": 0.9947323203086853,
+          "mean_generating_label_probability": 0.0812964178621769,
+          "argmax_alignment_fraction": 0.5
+        }
+      ],
+      "group_head_macro_f1": 0.05541090188055323,
+      "gaussian_hard_label_group_head_macro_f1": 0.12068629193876698,
+      "difference_vs_gaussian_hard_labels": -0.06527539005821376,
+      "proof": {
+        "path": "papers/v5/kaggle/v5h-s43-20261012-v1/runs/b_anchor_small_fl_s43/resume/round_020.pt",
+        "bytes": 1615380,
+        "dvc_md5": "bcae425e1f9d40fa906fa28842187d30",
+        "sha256": "c665aedc1fc2c6b3e66188710e3a0f5ff973faf06f76514fcc5e515db8f8ef25",
+        "marker_resume_sha_match": true,
+        "fingerprint": "069d8f0b33a53cc6c1a8dcd5c9b2733a953c39ed0d13cc7dc7b6641cce58e271",
+        "source_hashes": {
+          "v5_anchor.py": "1cd919e1ba39424e5a1f4afeb2e7441d4215a2637f91645db14e6906b7f077ae",
+          "v2_math.py": "187216ea4796afb81cfc9d5350a767e8b795bcd54d24c5544a3d921be661cc62",
+          "v2_methods.py": "90fa6ff5fa91cd559f9995d12a5dda0d6b9f4d6cdff435811f814adbfd664398",
+          "v2_run.py": "b5cf0daf5348bcd77dbab09876ee57950f469509f52485a15252fd873802ef2d"
+        },
+        "target_packet_decode_exact": true,
+        "prior_source": "ratio_pi from aggregate decoded class counts; no smoothing"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "b_anchor_medium_fl",
+      "anchors": 512,
+      "round": 20,
+      "selected_bandwidth": 4.0,
+      "queried_pilot_train_rows": 1000369,
+      "coverage_minimum": 0.9261153936386108,
+      "coverage_prior_weighted": 0.9929396116783344,
+      "coverage_gate_pass": true,
+      "coverage_limits": "Chosen bandwidth/coverage recorded for full pilot T only; rejected candidate h coverage is not saved, and original full43M train was not queried.",
+      "normalized_entropy": {
+        "mean": 0.9815905815020931,
+        "minimum": 0.9095261652101758,
+        "p10": 0.9775009468930954,
+        "median": 0.9828980608200234,
+        "p90": 0.9860895605779405,
+        "maximum": 0.9893603307370791
+      },
+      "maximum_probability": {
+        "mean": 0.09073188752518035,
+        "minimum": 0.07476920634508133,
+        "p10": 0.07836818769574165,
+        "median": 0.08361497521400452,
+        "p90": 0.11870636716485025,
+        "maximum": 0.27271339297294617
+      },
+      "top_two_margin": {
+        "mean": 0.01196178984537255,
+        "minimum": 0.0,
+        "p10": 0.00042726173996925353,
+        "median": 0.0036620572209358215,
+        "p90": 0.04126280695199976,
+        "maximum": 0.206732377409935
+      },
+      "total_variation_from_uniform": {
+        "mean": 0.11051064057937765,
+        "minimum": 0.0799351092427969,
+        "p10": 0.0974847611039877,
+        "median": 0.10944629274308681,
+        "p90": 0.12348497500643134,
+        "maximum": 0.21369441226124763
+      },
+      "kl_from_uniform_nats": {
+        "mean": 0.051041746110288694,
+        "minimum": 0.02949942700673569,
+        "p10": 0.03856792746300206,
+        "median": 0.04737838959374985,
+        "p90": 0.06238062090527781,
+        "maximum": 0.2508467339960516
+      },
+      "generating_label_probability": {
+        "mean": 0.08374642612034222,
+        "minimum": 0.03127861022949219,
+        "p10": 0.0623160395771265,
+        "median": 0.077504001557827,
+        "p90": 0.11870636716485025,
+        "maximum": 0.27271339297294617
+      },
+      "generating_label_rank": {
+        "mean": 4.40625,
+        "minimum": 1.0,
+        "p10": 1.0,
+        "median": 3.0,
+        "p90": 10.900000000000034,
+        "maximum": 15.0
+      },
+      "argmax_gaussian_label_alignment": 0.365234375,
+      "class_mean_target_entropy_normalized": 0.9883278176459096,
+      "mean_kl_to_class_mean_nats": 0.018679584951410977,
+      "mean_kl_to_class_mean_normalized": 0.006737236143816182,
+      "varying_anchor_fraction_of_squared_uniform_deviation": 0.38087036783577344,
+      "target_mean_vs_uniform_tv": 0.09357623136565962,
+      "target_mean_vs_decoded_train_prior_tv": 0.4420065811208709,
+      "decoded_train_prior_vs_uniform_tv": 0.3968213837429978,
+      "mean_squared_deviation_from_uniform": 0.005724407756676979,
+      "round20_mean_optimizer_soft_ce": 2.723248732089997,
+      "target_mean_entropy_nats": 2.721546976129493,
+      "round20_soft_ce_minus_target_entropy_nats": 0.0017017559605041477,
+      "optimizer_ce_limit": "Average of applied soft-CE steps on fixed anchors in round20; gap near float32/AMP precision, not new final-model inference.",
+      "per_class_aggregates": [
+        {
+          "class_name": "benign",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07560516049852595,
+          "decoded_train_prior": 0.2192780837831885,
+          "train_coverage": 0.9966174364089966,
+          "mean_generating_label_probability": 0.07850478845648468,
+          "argmax_alignment_fraction": 0.1875
+        },
+        {
+          "class_name": "accelerationMultiplication",
+          "anchor_count": 32,
+          "mean_target_mass": 0.05642911526229,
+          "decoded_train_prior": 0.01580616842819961,
+          "train_coverage": 0.9923475980758667,
+          "mean_generating_label_probability": 0.06314242235384881,
+          "argmax_alignment_fraction": 0.03125
+        },
+        {
+          "class_name": "constantPositionOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.06304002068645786,
+          "decoded_train_prior": 0.04146070062271809,
+          "train_coverage": 0.995660126209259,
+          "mean_generating_label_probability": 0.0804957952350378,
+          "argmax_alignment_fraction": 0.53125
+        },
+        {
+          "class_name": "constantSpeedOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07244230379728833,
+          "decoded_train_prior": 0.040556036219159396,
+          "train_coverage": 0.9959083795547485,
+          "mean_generating_label_probability": 0.07457335898652673,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dataReplay",
+          "anchor_count": 32,
+          "mean_target_mass": 0.06472828089317773,
+          "decoded_train_prior": 0.04436362938278096,
+          "train_coverage": 0.9261153936386108,
+          "mean_generating_label_probability": 0.0664796493947506,
+          "argmax_alignment_fraction": 0.0
+        },
+        {
+          "class_name": "dosAttack",
+          "anchor_count": 32,
+          "mean_target_mass": 0.027578530280152336,
+          "decoded_train_prior": 0.14453266661986244,
+          "train_coverage": 0.9953315258026123,
+          "mean_generating_label_probability": 0.1238491132389754,
+          "argmax_alignment_fraction": 0.84375
+        },
+        {
+          "class_name": "feignedBraking",
+          "anchor_count": 32,
+          "mean_target_mass": 0.05903189888340421,
+          "decoded_train_prior": 0.012036558324726472,
+          "train_coverage": 0.9944356679916382,
+          "mean_generating_label_probability": 0.08423743874300271,
+          "argmax_alignment_fraction": 0.59375
+        },
+        {
+          "class_name": "positionMirroring",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07490373655309668,
+          "decoded_train_prior": 0.04335100234032843,
+          "train_coverage": 0.9959646463394165,
+          "mean_generating_label_probability": 0.0772311391774565,
+          "argmax_alignment_fraction": 0.0625
+        },
+        {
+          "class_name": "randomPositionOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.030738850866327994,
+          "decoded_train_prior": 0.044052746454622226,
+          "train_coverage": 0.9934194087982178,
+          "mean_generating_label_probability": 0.10175351111683995,
+          "argmax_alignment_fraction": 0.6875
+        },
+        {
+          "class_name": "randomSpeedOffset",
+          "anchor_count": 32,
+          "mean_target_mass": 0.05520036591042299,
+          "decoded_train_prior": 0.05057033931769202,
+          "train_coverage": 0.9954931139945984,
+          "mean_generating_label_probability": 0.06174892734270543,
+          "argmax_alignment_fraction": 0.03125
+        },
+        {
+          "class_name": "reversedHeading",
+          "anchor_count": 32,
+          "mean_target_mass": 0.0675662348876358,
+          "decoded_train_prior": 0.025646535858836975,
+          "train_coverage": 0.9934518337249756,
+          "mean_generating_label_probability": 0.07465295842848718,
+          "argmax_alignment_fraction": 0.25
+        },
+        {
+          "class_name": "suddenConstantSpeed",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07157676372298738,
+          "decoded_train_prior": 0.0064926040812344574,
+          "train_coverage": 0.9926096796989441,
+          "mean_generating_label_probability": 0.07583326287567616,
+          "argmax_alignment_fraction": 0.0625
+        },
+        {
+          "class_name": "suddenStop",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07841678848490119,
+          "decoded_train_prior": 0.02023053555910384,
+          "train_coverage": 0.9957505464553833,
+          "mean_generating_label_probability": 0.0862685302272439,
+          "argmax_alignment_fraction": 0.90625
+        },
+        {
+          "class_name": "timeDelayAttack",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07427395131526282,
+          "decoded_train_prior": 0.045493211914970626,
+          "train_coverage": 0.9960887432098389,
+          "mean_generating_label_probability": 0.07750350655987859,
+          "argmax_alignment_fraction": 0.09375
+        },
+        {
+          "class_name": "trafficCongestionSybil",
+          "anchor_count": 32,
+          "mean_target_mass": 0.052445010045630625,
+          "decoded_train_prior": 0.22051063333994686,
+          "train_coverage": 0.9973843097686768,
+          "mean_generating_label_probability": 0.12902353471145034,
+          "argmax_alignment_fraction": 1.0
+        },
+        {
+          "class_name": "zeroSpeedReport",
+          "anchor_count": 32,
+          "mean_target_mass": 0.07602299314021366,
+          "decoded_train_prior": 0.025618547752629135,
+          "train_coverage": 0.9967613816261292,
+          "mean_generating_label_probability": 0.08464488107711077,
+          "argmax_alignment_fraction": 0.5625
+        }
+      ],
+      "group_head_macro_f1": 0.15108270286228423,
+      "gaussian_hard_label_group_head_macro_f1": 0.2937741720643688,
+      "difference_vs_gaussian_hard_labels": -0.14269146920208456,
+      "proof": {
+        "path": "papers/v5/kaggle/v5h-s43-20261012-v1/runs/b_anchor_medium_fl_s43/resume/round_020.pt",
+        "bytes": 1891156,
+        "dvc_md5": "64d472e81d5b5133af735ab6b049a919",
+        "sha256": "954e993cfe4c714a838afa6d1e22b0283914ca02a688f3e0910566b802160574",
+        "marker_resume_sha_match": true,
+        "fingerprint": "e21cd0646ee7286f6b549b6b6dbbbab22ffb24c0c01976b7e79c1df4e4aabcad",
+        "source_hashes": {
+          "v5_anchor.py": "1cd919e1ba39424e5a1f4afeb2e7441d4215a2637f91645db14e6906b7f077ae",
+          "v2_math.py": "187216ea4796afb81cfc9d5350a767e8b795bcd54d24c5544a3d921be661cc62",
+          "v2_methods.py": "90fa6ff5fa91cd559f9995d12a5dda0d6b9f4d6cdff435811f814adbfd664398",
+          "v2_run.py": "b5cf0daf5348bcd77dbab09876ee57950f469509f52485a15252fd873802ef2d"
+        },
+        "target_packet_decode_exact": true,
+        "prior_source": "ratio_pi from aggregate decoded class counts; no smoothing"
+      }
+    }
+  ],
+  "across_seed_target_agreement": {
+    "small": {
+      "decoded_targets_bitwise_equal": true,
+      "maximum_absolute_target_difference": 0.0
+    },
+    "medium": {
+      "decoded_targets_bitwise_equal": true,
+      "maximum_absolute_target_difference": 0.0
+    }
+  },
+  "read_real_records": false,
+  "inference_or_training": false,
+  "device": "cpu",
+  "limits": [
+    "Descriptive diagnostics after failed locked pilot; no h, target sharpening, head or round selection.",
+    "High entropy supports weak target contrast hypothesis; does not isolate sole cause from finite-anchor representation, teacher training or OOD anchors.",
+    "Targets divide kernel sums by each class count before row normalization; class balance is intentional, not necessarily a class-prior bug.",
+    "Both seeds use same pilot data and fixed anchor RNG; equal targets are not independent replications of knowledge estimation.",
+    "Generating Gaussian label is a synthetic control label, not true IDS label of an observed real point.",
+    "Restore MD5/SHA/packet checks extend prior AUDITED evidence; no new full checkpoint/prediction/model-inference audit.",
+    "No individual anchor table, record, real gradient, API key or signed URL in output."
+  ]
+}

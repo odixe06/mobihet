@@ -15,13 +15,13 @@ from mh.new_fl import digest
 from mh.v2_math import unpack,Layout,CountSketch,KINDS
 
 
-def verify(out,complete=True,infer=False,payload_unpack=unpack,proxy_count=None,log_checker=None):
+def verify(out,complete=True,infer=False,payload_unpack=unpack,proxy_count=None,log_checker=None,smoke_train_rows=256):
     out=Path(out); identity=json.loads((out/'config.json').read_text()); fingerprint=identity.pop('fingerprint')
     assert hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()==fingerprint
     a=identity['config']
     fx=ROOT/'papers/pilot/fixture'; assert digest(fx/'manifest.json')==identity['fixture']
     labels={h:np.load(fx/f'{h}_y.npy')[:256 if a['smoke'] else None] for h in ('old','group')}
-    train=[256 if a['smoke'] else len(np.load(fx/f'train_{k}_y.npy')) for k in range(20)]
+    train=[smoke_train_rows if a['smoke'] else len(np.load(fx/f'train_{k}_y.npy')) for k in range(20)]
     model=build_model(dict(CFG,n_features=66,num_classes=16),latent=True)
     assert Layout(model).size==395024
     rows=[json.loads(f.read_text()) for f in sorted((out/'complete').glob('round_*.json'))]

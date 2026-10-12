@@ -1,0 +1,6 @@
+setup k61_joint_fl role private rows 20480 sec 6.8
+r1 k61_joint_fl s42 private group gp 0.006744026798437992 loss 5.3896 6s
+r2 k61_joint_fl s42 private group gp 0.006668744398809552 loss 4.6280 4s
+r3 k61_joint_fl s42 private group gp 0.006757983386296013 loss 4.3697 4s
+done k61_joint_fl complete True
+Peak tree RSS: 2361 MiB; exit 0

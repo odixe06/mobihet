@@ -1,0 +1,104 @@
+{
+  "per_seed": {
+    "G59_marginal_s42": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "rounds": 0,
+      "reason": "numerical/partial under locked configuration"
+    },
+    "G59_joint_s42": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "rounds": 0,
+      "reason": "numerical/partial under locked configuration"
+    },
+    "G61_marginal_s42": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "common_pass": true,
+      "gain_vs_stronger_full66": 0.004009900038023151,
+      "gain_vs_own": 0.13166457772129642,
+      "gain_vs_shuffle": 0.0016678914140161316,
+      "bootstrap_bytes_per_client": 252856.0,
+      "control_bootstrap_bytes_per_client": 299256.0,
+      "byte_ratio": 0.8449488063731387
+    },
+    "G61_joint_s42": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "common_pass": true,
+      "gain_vs_stronger_full66": 0.007507389418252353,
+      "gain_vs_own": 0.14763599237129377,
+      "gain_vs_shuffle": 0.0013271850333764768,
+      "bootstrap_bytes_per_client": 3572700.0,
+      "control_bootstrap_bytes_per_client": 4222300.0,
+      "byte_ratio": 0.8461502024962698
+    },
+    "G59_marginal_s43": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "rounds": 0,
+      "reason": "numerical/partial under locked configuration"
+    },
+    "G59_joint_s43": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "rounds": 0,
+      "reason": "numerical/partial under locked configuration"
+    },
+    "G61_marginal_s43": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "common_pass": true,
+      "gain_vs_stronger_full66": -0.002367908483494441,
+      "gain_vs_own": 0.1342844379982337,
+      "gain_vs_shuffle": 0.0005674124039114492,
+      "bootstrap_bytes_per_client": 252856.0,
+      "control_bootstrap_bytes_per_client": 299256.0,
+      "byte_ratio": 0.8449488063731387
+    },
+    "G61_joint_s43": {
+      "pass_quality": false,
+      "pass_compression": false,
+      "common_pass": true,
+      "gain_vs_stronger_full66": 0.007884226865471078,
+      "gain_vs_own": 0.15283011542029123,
+      "gain_vs_shuffle": 0.004447855857010907,
+      "bootstrap_bytes_per_client": 3572700.0,
+      "control_bootstrap_bytes_per_client": 4222300.0,
+      "byte_ratio": 0.8461502024962698
+    }
+  },
+  "paired": {
+    "G59_marginal": {
+      "pass_quality": false,
+      "pass_compression": false
+    },
+    "G59_joint": {
+      "pass_quality": false,
+      "pass_compression": false
+    },
+    "G61_marginal": {
+      "pass_quality": false,
+      "pass_compression": false
+    },
+    "G61_joint": {
+      "pass_quality": false,
+      "pass_compression": false
+    }
+  },
+  "joint": {
+    "G61_s42": {
+      "contrast": 0.019744675035851866,
+      "contribution": true,
+      "full66_contrast": 0.018643672830229274,
+      "interaction": 0.001101002205622592
+    },
+    "G61_s43": {
+      "contrast": 0.022315971141099955,
+      "contribution": true,
+      "full66_contrast": 0.017572568863492788,
+      "interaction": 0.004743402277607167
+    }
+  }
+}

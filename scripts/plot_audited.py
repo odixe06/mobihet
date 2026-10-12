@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
 
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--build',choices=['v3','v4','v5'],required=True); args=parser.parse_args()
+    parser=argparse.ArgumentParser(); parser.add_argument('--build',choices=['v3','v4','v5','v6'],required=True); args=parser.parse_args()
     base=ROOT/f'papers/{args.build}'; families={}
     for marker in sorted((base/'kaggle').glob('*/AUDITED.json')):
         audit=json.loads(marker.read_text()); bucket=families.setdefault(audit['family'],{})

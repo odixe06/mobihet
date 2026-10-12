@@ -27,8 +27,25 @@ trongseed43 nhưngseed42khôngđạt+0,005; khônggọi contributionpaired hoặ
 Khôngsuy supportkhônghữuíchtoànhọ hoặcđây nguyênnhân duy nhất; khôngtune/rerun y nguyên đểcứu.
 Bytebootstrap thật23568B/xe(sharedstats), own chỉprior200B; Ustage chưadeadline/frame/ACK.
 
-## MALA còn chờ
+## MALA đủ hai seed, paired FAIL
 
-NativeAPI RUNNING nhưng chưa thấymatchingW&Brun trongcácsnapshot; executednotebookHTTP404 ở18:5xUTC,
-khôngkếtluận trainđãbắtđầu hoặc lỗi khi chưa terminal/log. Tựcollect, không cầnGUI.
-HistoricalCscoreprobe vàlocalnull/mixed-gradient tests khônglàMALA F1/mixingproof.
+Hai kernel COMPLETE, pull/source/executednotebook/checkpoint/payload/prediction/10metric vàsampledinference PASS.
+10arm×20round; source/runtime2×T4 pin đúngmanifest. Khôngrerun/contact.
+
+| seed | FL MALA−weightedGaussian | −diag | −ownMALA | −shuffleMALA |
+|---|---:|---:|---:|---:|
+| 42 | +0.002930 | -0.013734 | -0.002061 | -0.003757 |
+| 43 | -0.004897 | -0.025717 | -0.000932 | -0.000572 |
+
+Commonlocal/old/benign guardPASS cảhai nhưng methodcontrastsFAIL. Acceptance cao khôngđảm bảo
+MALA mangtri thức quầnthể; thuaown/shuffle cho thấychưa cóbằngchứng lợi vậnchuyểnratio gộp.
+Khônggán clipfloor/support/mixing làmnguyênnhân duy nhất; chưa đoautocorrelation/ESS củachain.
+HistoricalCscoreprobe chỉsnapshottrướcMALA, khôngcoi làscore thực tếteacherV4.
+
+Startup đã rõ: terminaloutput đủ; RUNNING/chưaW&B/HTTP404 khiđợi khôngphải numericalfailure.
+KhôngcầnGUI/manual/rerun. [Report](../../../papers/v4/report.md), [figures](../../../papers/v4/figures.md).
+
+## Khôi phục saubackup
+
+HaiS kernel audit trướccleanup: khôi phụcmetadata MD5, táidùngproof cũ, không kiểmweightslại.
+HaiM kernel audit mới toànartifact trongphiênnày. [Restore/collect](../../operations/live-2026-10-12.md).

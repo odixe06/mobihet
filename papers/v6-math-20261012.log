@@ -1,0 +1,24 @@
+k66_plain_fl FAIL V6 global class cohort gate
+k66_marginal_fl FAIL V6 global class cohort gate
+k66_joint_fl FAIL V6 global class cohort gate
+k59_marginal_fl FAIL V6 global class cohort gate
+k59_marginal_own PASS 
+k59_marginal_shuffle FAIL V6 global class cohort gate
+k59_joint_fl FAIL V6 global class cohort gate
+k59_joint_own PASS 
+k59_joint_shuffle FAIL V6 global class cohort gate
+k61_marginal_fl FAIL V6 global class cohort gate
+k61_marginal_own PASS 
+k61_marginal_shuffle FAIL V6 global class cohort gate
+k61_joint_fl FAIL V6 global class cohort gate
+k61_joint_own PASS 
+k61_joint_shuffle FAIL V6 global class cohort gate
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v6_math.py", line 81, in <module>
+    main()
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v6_math.py", line 77, in main
+    assert all(row['pass_math'] for row in results), 'V6 bounded math gate failed; inspect before pilot'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: V6 bounded math gate failed; inspect before pilot
+Peak tree RSS: 594 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_v6_math.py` failed. (See above for error)

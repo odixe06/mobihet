@@ -1,0 +1,34 @@
+trietbackup/mobihet-v3o-s42-20261011-v1 has status "KernelWorkerStatus.COMPLETE"
+trietbackup/mobihet-v3o-s42-20261011-v1: 565 files, 6 parallel
+trietbackup/mobihet-v3o-s42-20261011-v1: 565 files ok, 0 missing, 16271 MiB new in 3537 s (4.6 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v3/private_push/v3o-s42-20261011-v1/executed.ipynb (29167 bytes, 5 outputs)
+VERIFIED {"run": "a_o_small_noef_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16282, "ambiguous": 102}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16341, "ambiguous": 43}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_small_noef_s42
+VERIFIED {"run": "a_o_small_ef_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16313, "ambiguous": 71}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16348, "ambiguous": 36}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_small_ef_s42
+VERIFIED {"run": "a_o_small_own_ef_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16302, "ambiguous": 82}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16343, "ambiguous": 41}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_small_own_ef_s42
+VERIFIED {"run": "a_o_medium_noef_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16252, "ambiguous": 132}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16338, "ambiguous": 46}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_noef_s42
+VERIFIED {"run": "a_o_medium_ef_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16261, "ambiguous": 123}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16330, "ambiguous": 54}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_ef_s42
+VERIFIED {"run": "a_o_medium_own_ef_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16300, "ambiguous": 84}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16340, "ambiguous": 44}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_own_ef_s42
+AUDITED KERNEL trietbackup/mobihet-v3o-s42-20261011-v1 complete True
+odixe0502/mobihet-v3o-s43-20261011-v1 has status "KernelWorkerStatus.COMPLETE"
+odixe0502/mobihet-v3o-s43-20261011-v1: 565 files, 6 parallel
+odixe0502/mobihet-v3o-s43-20261011-v1: 565 files ok, 0 missing, 16322 MiB new in 383 s (42.6 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v3/private_push/v3o-s43-20261011-v1/executed.ipynb (29168 bytes, 5 outputs)
+VERIFIED {"run": "a_o_small_noef_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16329, "ambiguous": 55}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16328, "ambiguous": 56}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_small_noef_s43
+VERIFIED {"run": "a_o_small_ef_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16338, "ambiguous": 46}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16300, "ambiguous": 84}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_small_ef_s43
+VERIFIED {"run": "a_o_small_own_ef_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16320, "ambiguous": 64}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16315, "ambiguous": 69}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_small_own_ef_s43
+VERIFIED {"run": "a_o_medium_noef_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16328, "ambiguous": 56}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16309, "ambiguous": 75}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_noef_s43
+VERIFIED {"run": "a_o_medium_ef_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16321, "ambiguous": 63}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16272, "ambiguous": 112}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_ef_s43
+VERIFIED {"run": "a_o_medium_own_ef_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16319, "ambiguous": 65}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16332, "ambiguous": 52}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_own_ef_s43
+AUDITED KERNEL odixe0502/mobihet-v3o-s43-20261011-v1 complete True

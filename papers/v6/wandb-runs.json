@@ -1,0 +1,272 @@
+[
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k66_plain_fl",
+    "run_id": "k66_plain_fl_s43-afa86043",
+    "fingerprint": "afa8604369d8b7cb13c81fc1c99dc2f0296518e714ba4ac36a2926f0d50af159",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k66_plain_fl_s43-afa86043"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k66_marginal_fl",
+    "run_id": "k66_marginal_fl_s43-f4f40f17",
+    "fingerprint": "f4f40f175edc6a822a6a099887e48ca1b351ed07fba00e50d3b0dd28865e56a5",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k66_marginal_fl_s43-f4f40f17"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k66_joint_fl",
+    "run_id": "k66_joint_fl_s43-7ef9b52a",
+    "fingerprint": "7ef9b52aebc2e0ef2a7782de29d4e50f3a871c0a6bf263d8b28bd117289abbe4",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k66_joint_fl_s43-7ef9b52a"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k59_marginal_fl",
+    "run_id": "k59_marginal_fl_s43-cda2c8f9",
+    "fingerprint": "cda2c8f9febd4ddf9eefe318119c166d0056231d5208a8fd33f7f6556b91e215",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_marginal_fl_s43-cda2c8f9"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k59_marginal_own",
+    "run_id": "k59_marginal_own_s43-063c10c8",
+    "fingerprint": "063c10c812d6fec20de7b47dbb11ddcd23539bccda33d40898fed2385c3b80d4",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_marginal_own_s43-063c10c8"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k59_marginal_shuffle",
+    "run_id": "k59_marginal_shuffle_s43-43dc99cb",
+    "fingerprint": "43dc99cbfee314e73ec484b0297480d6c93c815756d88551ef86aaa12f2f5af2",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_marginal_shuffle_s43-43dc99cb"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k59_joint_fl",
+    "run_id": "k59_joint_fl_s43-163f4bb4",
+    "fingerprint": "163f4bb48999b6a982f1b63df4608c95ec23a65fe5fd5b4960819e7d147d9221",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_joint_fl_s43-163f4bb4"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k59_joint_own",
+    "run_id": "k59_joint_own_s43-7e43ed23",
+    "fingerprint": "7e43ed23f7e8662b76bf918dbdb5a90fcf4700bd9ae4c5308d74c3ef5a1d8ff6",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_joint_own_s43-7e43ed23"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "arm": "k59_joint_shuffle",
+    "run_id": "k59_joint_shuffle_s43-31165093",
+    "fingerprint": "311650931f6e288e4816d5c05975dba32adc399d11426d93ce1f00f6e617004f",
+    "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_joint_shuffle_s43-31165093"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "arm": "k61_marginal_fl",
+    "run_id": "k61_marginal_fl_s42-4b786ea7",
+    "fingerprint": "4b786ea737a61aa4824d98611cca292a1ae92b423683dbd6897a195b65a1cd85",
+    "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_marginal_fl_s42-4b786ea7"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "arm": "k61_marginal_own",
+    "run_id": "k61_marginal_own_s42-03562056",
+    "fingerprint": "035620564c6d689ecf541d523781ab812e21ae8a2507c121072356f48e467c3b",
+    "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_marginal_own_s42-03562056"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "arm": "k61_marginal_shuffle",
+    "run_id": "k61_marginal_shuffle_s42-bc36f3f5",
+    "fingerprint": "bc36f3f55dc0b7467fe48e1f9532023acba0ed43cf766b79c2ec77fda2a45c23",
+    "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_marginal_shuffle_s42-bc36f3f5"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "arm": "k61_joint_fl",
+    "run_id": "k61_joint_fl_s42-39c893f3",
+    "fingerprint": "39c893f388f228a340603d05fa4b391e7ebb46f983943be106abdfdc0fff085e",
+    "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_joint_fl_s42-39c893f3"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "arm": "k61_joint_own",
+    "run_id": "k61_joint_own_s42-ea797b71",
+    "fingerprint": "ea797b713405ca1b46005f4e59053ee7bd78210c926b674a82a18f64895388aa",
+    "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_joint_own_s42-ea797b71"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "arm": "k61_joint_shuffle",
+    "run_id": "k61_joint_shuffle_s42-69eaf085",
+    "fingerprint": "69eaf08515460fa36f85dfe85a7d8cd80529851fa2d8999325edebe8ee99ecfe",
+    "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_joint_shuffle_s42-69eaf085"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "arm": "k61_marginal_fl",
+    "run_id": "k61_marginal_fl_s43-c00da763",
+    "fingerprint": "c00da76353d24df79e3d593f97beb2f63473f50608b04b933d507bc6ccc970af",
+    "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_marginal_fl_s43-c00da763"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "arm": "k61_marginal_own",
+    "run_id": "k61_marginal_own_s43-4cf1a01e",
+    "fingerprint": "4cf1a01e58a5ecc7b765831005f897ce50c4c79e3f4317d3ffa6951a8b9de65e",
+    "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_marginal_own_s43-4cf1a01e"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "arm": "k61_marginal_shuffle",
+    "run_id": "k61_marginal_shuffle_s43-f2fdfeab",
+    "fingerprint": "f2fdfeab80101014ddadac5a12b6fc1e281fcb0eef8b67ff5cbd685cb26c03c0",
+    "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_marginal_shuffle_s43-f2fdfeab"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "arm": "k61_joint_fl",
+    "run_id": "k61_joint_fl_s43-81297f09",
+    "fingerprint": "81297f09c04cb7f24b8bc2073682d5bca3acc0a13def359214af774d7291fd69",
+    "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_joint_fl_s43-81297f09"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "arm": "k61_joint_own",
+    "run_id": "k61_joint_own_s43-2d302043",
+    "fingerprint": "2d302043aeba34b51a8b8089833e1f885c573e398400a64bc1b2753a772d8353",
+    "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_joint_own_s43-2d302043"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "arm": "k61_joint_shuffle",
+    "run_id": "k61_joint_shuffle_s43-dd9549b9",
+    "fingerprint": "dd9549b94494bd0fb03a6fc8f58fc7b419e2e4458c471d8360a9f5b8ee2c6d64",
+    "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k61_joint_shuffle_s43-dd9549b9"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k66_plain_fl",
+    "run_id": "k66_plain_fl_s42-a1fa753e",
+    "fingerprint": "a1fa753e60a9eaa94563f578f41bf3abdb9c57595b1de2b46b61a60726554656",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k66_plain_fl_s42-a1fa753e"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k66_marginal_fl",
+    "run_id": "k66_marginal_fl_s42-e690150a",
+    "fingerprint": "e690150a290bcaec69815e072505aff1a93c50f560b8746ad8eeeb4eecaff82e",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k66_marginal_fl_s42-e690150a"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k66_joint_fl",
+    "run_id": "k66_joint_fl_s42-8f31d9d0",
+    "fingerprint": "8f31d9d0a44385f363168cfdc800219bd7951e859108cd1d8ab1f699726e61eb",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k66_joint_fl_s42-8f31d9d0"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k59_marginal_fl",
+    "run_id": "k59_marginal_fl_s42-c31dfdf3",
+    "fingerprint": "c31dfdf34ded9645fc0259448ff2ca2731095213b735a88b61a112d06665ddf5",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_marginal_fl_s42-c31dfdf3"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k59_marginal_own",
+    "run_id": "k59_marginal_own_s42-e136ff1e",
+    "fingerprint": "e136ff1e970f293426f952247d08f85c26c73b5ae653960fc48e1fa5beedef0b",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_marginal_own_s42-e136ff1e"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k59_marginal_shuffle",
+    "run_id": "k59_marginal_shuffle_s42-f8098cb2",
+    "fingerprint": "f8098cb26570bec896bcfdeb3a1ac53fe6c2397b0da42232b63965735481d981",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_marginal_shuffle_s42-f8098cb2"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k59_joint_fl",
+    "run_id": "k59_joint_fl_s42-4d8297a5",
+    "fingerprint": "4d8297a54b48b0cf99e9ab034ce8312c9ccb6bb8368ad4ba0eb103530b809f7d",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_joint_fl_s42-4d8297a5"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k59_joint_own",
+    "run_id": "k59_joint_own_s42-692dec7f",
+    "fingerprint": "692dec7f7d789e8b707a801d29a2d525c0bdab5392a59f5478e5877a2c5b510c",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_joint_own_s42-692dec7f"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "arm": "k59_joint_shuffle",
+    "run_id": "k59_joint_shuffle_s42-5b11ca9a",
+    "fingerprint": "5b11ca9a073f2c0a5f484c3a31bbc2532d0d84007da6e0a37ede5323cd1cf786",
+    "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v6/k59_joint_shuffle_s42-5b11ca9a"
+  }
+]

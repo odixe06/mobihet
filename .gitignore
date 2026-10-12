@@ -53,3 +53,10 @@ papers/v3/resume_reference/
 
 # Runtime verification lock
 papers/.artifact-verification.lock
+
+# V6 geometry pilot staging/artifacts; source and public manifests remain indexed
+papers/v6/input/
+papers/v6/kaggle/
+papers/v6/smoke/
+papers/v6/resume_reference/
+papers/*/collection-*.lock

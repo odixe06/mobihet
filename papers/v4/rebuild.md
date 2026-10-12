@@ -43,3 +43,12 @@ C đủ8arm×20roundverify,FAIL; freshweightedGaussian/diag trongMALA để trá
 V3 đangqueue8kernel; không gọi queued/run/W&B trạngthái là kết quả đãaudit.
 
 Git/DVC khôngthựchiện; artifactchưa backup. Local chỉ probe/smoke/collect/report.
+
+## Collect saubackup2026-10-12
+
+KernelAPI đãCOMPLETE; audit/collect đangtiếptục, khôngrerun.
+Oldauditmetadata khôiphục từDVCobject, MD5PASS; khônggọikiểmweights lạichooldkernel.
+Newkernelpull/verifyđủsource/checkpoint/payload/prediction trướcreport.
+[Phiêncollect](../../docs/operations/live-2026-10-12.md),
+[restoreproof](../../docs/operations/restored-metadata-2026-10-12.json).
+DVCmanifest cũkhôngbao hàmoutputmới; khôngadd/push/cleanup lúcnày.

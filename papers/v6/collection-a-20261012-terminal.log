@@ -1,0 +1,26 @@
+minhtran0601/mobihet-v6a-s42-20261012-v1 has status "KernelWorkerStatus.ERROR"
+minhtran0601/mobihet-v6a-s42-20261012-v1: 333 files, 6 parallel
+minhtran0601/mobihet-v6a-s42-20261012-v1: 333 files ok, 0 missing, 2134 MiB new in 104 s (20.5 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v6/private_push/v6a-s42-20261012-v1/executed.ipynb (29863 bytes, 6 outputs)
+VERIFIED {"run": "k66_plain_fl_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16267, "ambiguous": 117}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16313, "ambiguous": 71}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_plain_fl_s42
+VERIFIED {"run": "k66_marginal_fl_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16236, "ambiguous": 148}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16296, "ambiguous": 88}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_marginal_fl_s42
+VERIFIED {"run": "k66_joint_fl_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16258, "ambiguous": 126}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16297, "ambiguous": 87}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_joint_fl_s42
+VERIFIED {"run": "k59_joint_shuffle_s42", "rounds": 1, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_joint_shuffle_s42
+AUDITED KERNEL minhtran0601/mobihet-v6a-s42-20261012-v1 complete False
+dinhan25/mobihet-v6a-s43-20261012-v1 has status "KernelWorkerStatus.ERROR"
+dinhan25/mobihet-v6a-s43-20261012-v1: 333 files, 6 parallel
+dinhan25/mobihet-v6a-s43-20261012-v1: 333 files ok, 0 missing, 2131 MiB new in 99 s (21.5 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v6/private_push/v6a-s43-20261012-v1/executed.ipynb (29868 bytes, 6 outputs)
+VERIFIED {"run": "k66_plain_fl_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16322, "ambiguous": 62}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16299, "ambiguous": 85}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_plain_fl_s43
+VERIFIED {"run": "k66_marginal_fl_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16320, "ambiguous": 64}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16276, "ambiguous": 108}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_marginal_fl_s43
+VERIFIED {"run": "k66_joint_fl_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16322, "ambiguous": 62}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16301, "ambiguous": 83}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k66_joint_fl_s43
+VERIFIED {"run": "k59_marginal_shuffle_s43", "rounds": 1, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V6 k59_marginal_shuffle_s43
+AUDITED KERNEL dinhan25/mobihet-v6a-s43-20261012-v1 complete False

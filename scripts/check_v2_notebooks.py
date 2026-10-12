@@ -23,7 +23,7 @@ class Clock:
 
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--build',choices=['v2','v3','v4','v5'],default='v2'); args=parser.parse_args()
+    parser=argparse.ArgumentParser(); parser.add_argument('--build',choices=['v2','v3','v4','v5','v6'],default='v2'); args=parser.parse_args()
     families=FAMILIES
     if args.build=='v3':
         from mh.v3_math import FAMILIES as families
@@ -31,6 +31,8 @@ def main():
         from mh.v4_run import FAMILIES as families
     elif args.build=='v5':
         from mh.v5_run import FAMILIES as families
+    elif args.build=='v6':
+        from mh.v6_run import FAMILIES as families
     key=netrc.netrc().authenticators('api.wandb.ai')[2]
     for folder in sorted((ROOT/f'papers/{args.build}/notebook').iterdir()):
         meta=json.loads((folder/'kernel-metadata.json').read_text()); nb=nbformat.read(folder/meta['code_file'],as_version=4)
