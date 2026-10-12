@@ -57,16 +57,16 @@ Snapshot `kaggle` có thể là collection chưa hoàn chỉnh; backup không x�
 - Quét4.610 file text ngoài private_push: không thấy credential thật theo mẫu W&B/Kaggle/API assignment.
 - Git staged: không thấy credential hoặc file>10MB. Generated SVG/CSV có whitespace; giữ nguyên artifact.
 - Push tổng bị lỗi `Errno5 Input/output error` khi D: cache gần đầy; đã dừng, không gọi backup toàn bộ hoàn tất.
--28 target đủ: `dvc push <28 manifests>` exit0, `Everything is up to date.`; `dvc status -c` exit0, in sync.
+- 28 target đủ: `dvc push <28 manifests>` exit0, `Everything is up to date.`; `dvc status -c` exit0, in sync.
 - Kiểm độc lập:7.312/8.847 object tồn tại+đúng kích thước,120,04GiB; hash manifest của target cleanup PASS.
--3 target còn1.535 object chưa xác minh,26,51GiB: `papers/new-fl/kaggle.dvc`, `papers/v2/resume_reference.dvc`, `papers/v5/kaggle.dvc`.
+- 3 target còn1.535 object chưa xác minh,26,51GiB: `papers/new-fl/kaggle.dvc`, `papers/v2/resume_reference.dvc`, `papers/v5/kaggle.dvc`.
 - Kiểm nội dung: hash source do `dvc add`; mọi object kiểm tồn tại/size, directory manifest MD5. Không rehash157GB content trên remote.
 - Backend local DVC ép copy `batch_size=1`; resume qua wrapper tạm `/tmp/mobihet-backup-20261012/push_parallel.py`,4 worker atomic của DVC; không sửa installed source/config.
 
 ## 4. Local cleanup
 
 - Chủ dự án yêu cầu2026-10-12: đẩy toàn bộ Git/DVC rồi xóa artifact local tiết kiệm đĩa.
-- Đã xóa28 workspace trong [inventory](backup-2026-10-12-inventory.json#cleanup) và6.737 cache object chỉ thuộc target đủ; giữ cache cần3 target chưa đủ. Giữ code/docs/manifest và credential private_push; không động dataset ngoài repo/cache Drive/remote history.
+- Đã xóa28 workspace trong [inventory](backup-2026-10-12-inventory.json) và6.737 cache object chỉ thuộc target đủ; giữ cache cần3 target chưa đủ. Giữ code/docs/manifest và credential private_push; không động dataset ngoài repo/cache Drive/remote history.
 - Không còn collector/writer local lúc kiểm. Collector phiên sau phải `dvc pull` target cần thiết trước resume; không `dvc add` workspace partial.
 - Thu hồi133.614.632.960B=124,43GiB. WSL free785.104.105.472→918.718.738.432B. Giải phóng ext4 không tự giảm VHDX Windows; compaction là bước manual riêng.
 
