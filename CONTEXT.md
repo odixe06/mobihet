@@ -11,6 +11,12 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 - **R3:** không mẫu dữ liệu local thật / record thật `(x, y)` nào rời xe; synthetic khởi tạo từ nhiễu được phép.
 - **R4:** 66 feature gốc, cùng protocol `odixe06/fl_dagsnet_veremi` để so sánh.
 
+**2026-10-12 backup/cleanup theo yêu cầu chủ dự án:** Git snapshot `33ce0f6` đã push;
+28/31 target DVC đủ trên G: và đã xóa local, thu hồi124,43GiB.3 target còn26,51GiB chưa xác minh
+vì cache Drive D: đầy; chủ dự án sẽ giải phóng≈30GiB rồi báo. Không chờ cloud sync.
+[Hồ sơ/phục hồi](docs/operations/backup.md). Không collector local đang chạy; muốn collect/resume phải pull target cần thiết trước.
+Quyền Git/DVC/delete chỉ cho đợt backup này, không tự mở run nghiên cứu mới.
+
 ## Trạng thái — triển khai kiểm khả thi V2 ngày2026-10-11
 
 **Chủ dự án đã yêu cầu triển khai và kiểm khả thi V2**, thay phạm vi chỉ Markdown trước đó.
