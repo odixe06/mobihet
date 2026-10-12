@@ -1,0 +1,52 @@
+setup local role private rows 5120 sec 1.9
+r1 local s42 private group gp 0.007089835338893435 loss 2.8350 2s
+r2 local s42 private group gp 0.006700296662618186 loss 2.1531 2s
+r3 local s42 private group gp 0.006505775727483484 loss 1.8371 1s
+done local complete True
+setup diag role private rows 5120 sec 1.3
+r1 diag s42 private group gp 0.006815049369960785 loss 5.6425 3s
+r2 diag s42 private group gp 0.006381086716546057 loss 5.0157 2s
+r3 diag s42 private group gp 0.006292527721774193 loss 4.7651 2s
+done diag complete True
+setup a_own role private rows 5120 sec 1.6
+r1 a_own s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_own s42 private group gp 0.0067211015876201905 loss 2.1605 9s
+r3 a_own s42 private group gp 0.006505775727483484 loss 1.8458 5s
+done a_own complete True
+setup a_dense role private rows 5120 sec 1.8
+r1 a_dense s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_dense s42 private group gp 0.006734771862106327 loss 2.1928 5s
+r3 a_dense s42 private group gp 0.006507309991494632 loss 1.9168 5s
+done a_dense complete True
+setup a_small_noef role private rows 5120 sec 4.5
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/odixe/nckh/veremi/mobihet/mh/v2_run.py", line 209, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/mh/v2_run.py", line 157, in main
+    m.aggregate(r)
+  File "/home/odixe/nckh/veremi/mobihet/mh/v2_methods.py", line 204, in aggregate
+    packet,delta=self.sketch.patch(accumulated,self.topk,self.version)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/mh/v2_math.py", line 118, in patch
+    estimate = self.estimate(accumulated)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/mh/v2_math.py", line 115, in estimate
+    return torch.stack([s[j, self.buckets[j]] * self.signs[j] for j in range(self.depth)]).median(0).values
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: median CUDA with indices output does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v2_driver.py", line 58, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v2_driver.py", line 26, in main
+    run(arm,base)
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v2_driver.py", line 13, in run
+    subprocess.run(cmd,cwd=ROOT,check=True)
+  File "/home/odixe/miniforge3/envs/nckh/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/odixe/miniforge3/envs/nckh/bin/python', '-m', 'mh.v2_run', '--arm', 'a_small_noef', '--smoke', '--out', '/home/odixe/nckh/veremi/mobihet/papers/v2/smoke/deterministic']' returned non-zero exit status 1.
+Peak tree RSS: 2099 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_v2_driver.py --tag deterministic` failed. (See above for error)

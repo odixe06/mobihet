@@ -1,0 +1,64 @@
+start a_o_small_noef gpu 0
+start a_o_small_ef gpu 0
+start a_o_small_own_ef gpu 1
+start a_o_medium_noef gpu 1
+start a_o_medium_ef gpu 0
+start a_o_medium_own_ef gpu 0
+{"a_o_small_noef": {"rc": 0, "complete": true}, "a_o_small_ef": {"rc": 0, "complete": true}, "a_o_small_own_ef": {"rc": 0, "complete": true}, "a_o_medium_noef": {"rc": 0, "complete": true}, "a_o_medium_ef": {"rc": 0, "complete": true}, "a_o_medium_own_ef": {"rc": 0, "complete": true}}
+PASS notebook trietbackup/mobihet-v3o-s42-20261011-v1 exact 6 arms; private credential boundary
+start a_o_small_noef gpu 0
+start a_o_small_ef gpu 0
+start a_o_small_own_ef gpu 1
+start a_o_medium_noef gpu 1
+start a_o_medium_ef gpu 0
+start a_o_medium_own_ef gpu 0
+{"a_o_small_noef": {"rc": 0, "complete": true}, "a_o_small_ef": {"rc": 0, "complete": true}, "a_o_small_own_ef": {"rc": 0, "complete": true}, "a_o_medium_noef": {"rc": 0, "complete": true}, "a_o_medium_ef": {"rc": 0, "complete": true}, "a_o_medium_own_ef": {"rc": 0, "complete": true}}
+PASS notebook odixe0502/mobihet-v3o-s43-20261011-v1 exact 6 arms; private credential boundary
+start a_p_medium_noef gpu 0
+start a_p_medium_ef gpu 0
+start a_p_medium_own_ef gpu 1
+start a_o_rank8_ef gpu 1
+start a_o_rank8_own_ef gpu 0
+{"a_p_medium_noef": {"rc": 0, "complete": true}, "a_p_medium_ef": {"rc": 0, "complete": true}, "a_p_medium_own_ef": {"rc": 0, "complete": true}, "a_o_rank8_ef": {"rc": 0, "complete": true}, "a_o_rank8_own_ef": {"rc": 0, "complete": true}}
+PASS notebook odixeuit/mobihet-v3p-s42-20261011-v1 exact 5 arms; private credential boundary
+start a_p_medium_noef gpu 0
+start a_p_medium_ef gpu 0
+start a_p_medium_own_ef gpu 1
+start a_o_rank8_ef gpu 1
+start a_o_rank8_own_ef gpu 0
+{"a_p_medium_noef": {"rc": 0, "complete": true}, "a_p_medium_ef": {"rc": 0, "complete": true}, "a_p_medium_own_ef": {"rc": 0, "complete": true}, "a_o_rank8_ef": {"rc": 0, "complete": true}, "a_o_rank8_own_ef": {"rc": 0, "complete": true}}
+PASS notebook minhtrit06/mobihet-v3p-s43-20261011-v1 exact 5 arms; private credential boundary
+start a_dense32 gpu 0
+start a_r_small_noef gpu 0
+start a_r_small_ef gpu 1
+start a_r_small_own_ef gpu 1
+start a_r_medium_noef gpu 0
+start a_r_medium_ef gpu 0
+start a_r_medium_own_ef gpu 1
+{"a_dense32": {"rc": 0, "complete": true}, "a_r_small_noef": {"rc": 0, "complete": true}, "a_r_small_ef": {"rc": 0, "complete": true}, "a_r_small_own_ef": {"rc": 0, "complete": true}, "a_r_medium_noef": {"rc": 0, "complete": true}, "a_r_medium_ef": {"rc": 0, "complete": true}, "a_r_medium_own_ef": {"rc": 0, "complete": true}}
+PASS notebook minhtran0601/mobihet-v3r-s42-20261011-v1 exact 7 arms; private credential boundary
+start a_dense32 gpu 0
+start a_r_small_noef gpu 0
+start a_r_small_ef gpu 1
+start a_r_small_own_ef gpu 1
+start a_r_medium_noef gpu 0
+start a_r_medium_ef gpu 0
+start a_r_medium_own_ef gpu 1
+{"a_dense32": {"rc": 0, "complete": true}, "a_r_small_noef": {"rc": 0, "complete": true}, "a_r_small_ef": {"rc": 0, "complete": true}, "a_r_small_own_ef": {"rc": 0, "complete": true}, "a_r_medium_noef": {"rc": 0, "complete": true}, "a_r_medium_ef": {"rc": 0, "complete": true}, "a_r_medium_own_ef": {"rc": 0, "complete": true}}
+PASS notebook dinhan25/mobihet-v3r-s43-20261011-v1 exact 7 arms; private credential boundary
+start a_t_small_comm gpu 0
+start a_t_small_train gpu 0
+start a_t_small_own_train gpu 1
+start a_t_medium_comm gpu 1
+start a_t_medium_train gpu 0
+start a_t_medium_own_train gpu 0
+{"a_t_small_comm": {"rc": 0, "complete": true}, "a_t_small_train": {"rc": 0, "complete": true}, "a_t_small_own_train": {"rc": 0, "complete": true}, "a_t_medium_comm": {"rc": 0, "complete": true}, "a_t_medium_train": {"rc": 0, "complete": true}, "a_t_medium_own_train": {"rc": 0, "complete": true}}
+PASS notebook trietbackup/mobihet-v3t-s42-20261011-v1 exact 6 arms; private credential boundary
+start a_t_small_comm gpu 0
+start a_t_small_train gpu 0
+start a_t_small_own_train gpu 1
+start a_t_medium_comm gpu 1
+start a_t_medium_train gpu 0
+start a_t_medium_own_train gpu 0
+{"a_t_small_comm": {"rc": 0, "complete": true}, "a_t_small_train": {"rc": 0, "complete": true}, "a_t_small_own_train": {"rc": 0, "complete": true}, "a_t_medium_comm": {"rc": 0, "complete": true}, "a_t_medium_train": {"rc": 0, "complete": true}, "a_t_medium_own_train": {"rc": 0, "complete": true}}
+PASS notebook odixe0502/mobihet-v3t-s43-20261011-v1 exact 6 arms; private credential boundary

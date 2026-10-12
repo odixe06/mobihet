@@ -1,0 +1,256 @@
+{
+  "manifests": [
+    {
+      "manifest": "knowledge/ckpt_round_005.pt.dvc",
+      "md5": "c1466d52f38bdb05ec5facc97d500af2",
+      "size": 4924379,
+      "hash": "md5",
+      "path": "ckpt_round_005.pt"
+    },
+    {
+      "manifest": "papers/new-fl/input.dvc",
+      "md5": "d35c8fbd6931d9ab021e4b328f111b04.dir",
+      "size": 319302266,
+      "nfiles": 162,
+      "hash": "md5",
+      "path": "input"
+    },
+    {
+      "manifest": "papers/new-fl/kaggle.dvc",
+      "md5": "2a40c2e202c8c5416ab275ab665644e2.dir",
+      "size": 7999577235,
+      "nfiles": 622,
+      "hash": "md5",
+      "path": "kaggle"
+    },
+    {
+      "manifest": "papers/new-fl/resume_reference.dvc",
+      "md5": "0291d66b53d9538c8e7298eafeb11227.dir",
+      "size": 100116057,
+      "nfiles": 13,
+      "hash": "md5",
+      "path": "resume_reference"
+    },
+    {
+      "manifest": "papers/new-fl/runs.dvc",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "size": 0,
+      "nfiles": 0,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/new-fl/smoke.dvc",
+      "md5": "0a67a58b6ba9c09beac284e920193d09.dir",
+      "size": 599131852,
+      "nfiles": 79,
+      "hash": "md5",
+      "path": "smoke"
+    },
+    {
+      "manifest": "papers/p2/kaggle.dvc",
+      "md5": "05d670af724058a6a42f6c291c1dd054.dir",
+      "size": 1289660,
+      "nfiles": 52,
+      "hash": "md5",
+      "path": "kaggle"
+    },
+    {
+      "manifest": "papers/p2/runs.dvc",
+      "md5": "bbba5ff279d47c2932690e74b63c9c6f.dir",
+      "size": 1251162,
+      "nfiles": 44,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/p2/source_audit.dvc",
+      "md5": "36f834ab0207195ab6f24922755fe781.dir",
+      "size": 306212,
+      "nfiles": 32,
+      "hash": "md5",
+      "path": "source_audit"
+    },
+    {
+      "manifest": "papers/pilot/fixture.dvc",
+      "md5": "cb782c4671b1aa25a8a2c56bf465587c.dir",
+      "size": 159554510,
+      "nfiles": 67,
+      "hash": "md5",
+      "path": "fixture"
+    },
+    {
+      "manifest": "papers/pilot/runs.dvc",
+      "md5": "ca8715563f5d94932638a588f9999bda.dir",
+      "size": 1833638,
+      "nfiles": 32,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/v2/input.dvc",
+      "md5": "e1ca6a39074fe9722422189daaadc96c.dir",
+      "size": 319384452,
+      "nfiles": 170,
+      "hash": "md5",
+      "path": "input"
+    },
+    {
+      "manifest": "papers/v2/kaggle.dvc",
+      "md5": "3c49c7ec142513d62f8e31da23534ee1.dir",
+      "size": 31674561783,
+      "nfiles": 2422,
+      "hash": "md5",
+      "path": "kaggle"
+    },
+    {
+      "manifest": "papers/v2/resume_reference.dvc",
+      "md5": "f2d71818d8042456a84190ae8f20fee4.dir",
+      "size": 1234921763,
+      "nfiles": 108,
+      "hash": "md5",
+      "path": "resume_reference"
+    },
+    {
+      "manifest": "papers/v2/runs.dvc",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "size": 0,
+      "nfiles": 0,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/v2/smoke.dvc",
+      "md5": "f0da440b6a89ca4822cd1530b539f7d2.dir",
+      "size": 6862940249,
+      "nfiles": 612,
+      "hash": "md5",
+      "path": "smoke"
+    },
+    {
+      "manifest": "papers/v3/input.dvc",
+      "md5": "806adf3969b5fc9c790c6d413a05e8bc.dir",
+      "size": 958219444,
+      "nfiles": 534,
+      "hash": "md5",
+      "path": "input"
+    },
+    {
+      "manifest": "papers/v3/kaggle.dvc",
+      "md5": "73d45219fbc936bd72f4398f0ef14b8e.dir",
+      "size": 46301158058,
+      "nfiles": 1569,
+      "hash": "md5",
+      "path": "kaggle"
+    },
+    {
+      "manifest": "papers/v3/resume_reference.dvc",
+      "md5": "aa3ae580e241cf9a81a63b3c4966b2f5.dir",
+      "size": 4760862893,
+      "nfiles": 216,
+      "hash": "md5",
+      "path": "resume_reference"
+    },
+    {
+      "manifest": "papers/v3/runs.dvc",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "size": 0,
+      "nfiles": 0,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/v3/smoke.dvc",
+      "md5": "57f87a065d3b2adb2742e8aa8b2e386c.dir",
+      "size": 21931873202,
+      "nfiles": 888,
+      "hash": "md5",
+      "path": "smoke"
+    },
+    {
+      "manifest": "papers/v4/input.dvc",
+      "md5": "1651b7aa22451ee804890c0fa0a1b629.dir",
+      "size": 638897962,
+      "nfiles": 376,
+      "hash": "md5",
+      "path": "input"
+    },
+    {
+      "manifest": "papers/v4/kaggle.dvc",
+      "md5": "6001ef5a3a5b6ffade336ecb071b617f.dir",
+      "size": 7007229659,
+      "nfiles": 832,
+      "hash": "md5",
+      "path": "kaggle"
+    },
+    {
+      "manifest": "papers/v4/resume_reference.dvc",
+      "md5": "cac2264d8acce624b3ab5de91cfe194b.dir",
+      "size": 906936054,
+      "nfiles": 89,
+      "hash": "md5",
+      "path": "resume_reference"
+    },
+    {
+      "manifest": "papers/v4/runs.dvc",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "size": 0,
+      "nfiles": 0,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/v4/smoke.dvc",
+      "md5": "3d13b231afb166fa9e2797c2f5f5e135.dir",
+      "size": 2406524180,
+      "nfiles": 243,
+      "hash": "md5",
+      "path": "smoke"
+    },
+    {
+      "manifest": "papers/v5/input.dvc",
+      "md5": "9903334ead144123e02263bd76b47af5.dir",
+      "size": 479217431,
+      "nfiles": 291,
+      "hash": "md5",
+      "path": "input"
+    },
+    {
+      "manifest": "papers/v5/kaggle.dvc",
+      "md5": "f39dc32022b6b8789d3e0caefe03dbc4.dir",
+      "size": 24602498665,
+      "nfiles": 1494,
+      "hash": "md5",
+      "path": "kaggle"
+    },
+    {
+      "manifest": "papers/v5/resume_reference.dvc",
+      "md5": "4b00c9e1fcdd5f0f3549546b58c86dec.dir",
+      "size": 1345588556,
+      "nfiles": 135,
+      "hash": "md5",
+      "path": "resume_reference"
+    },
+    {
+      "manifest": "papers/v5/runs.dvc",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "size": 0,
+      "nfiles": 0,
+      "hash": "md5",
+      "path": "runs"
+    },
+    {
+      "manifest": "papers/v5/smoke.dvc",
+      "md5": "e48def3346891828a1b2755be71e4526.dir",
+      "size": 6837402748,
+      "nfiles": 711,
+      "hash": "md5",
+      "path": "smoke"
+    }
+  ],
+  "objects": 8847,
+  "unique_bytes": 157353597697,
+  "remote_missing": 8741,
+  "upload_bytes": 157187257520,
+  "missing_everywhere": []
+}

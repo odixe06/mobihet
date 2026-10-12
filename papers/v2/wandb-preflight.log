@@ -1,0 +1,30 @@
+wandb: WARNING The anonymous parameter to wandb.login() has no effect and will be removed in future versions.
+wandb: [wandb.login()] Using explicit session credentials for https://api.wandb.ai.
+wandb: Appending key for api.wandb.ai to your netrc file: /home/odixe/.netrc
+wandb: Currently logged in as: minhtriet (21522798-uit) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run 0o5f3fmt
+wandb: Tracking run with wandb version 0.29.0
+wandb: Run data is saved locally in /home/odixe/nckh/veremi/mobihet/wandb/run-20261011_183007-0o5f3fmt
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run online-auth-20261011
+wandb: ⭐️ View project at https://wandb.ai/21522798-uit/mobihet-v2-preflight
+wandb: 🚀 View run at https://wandb.ai/21522798-uit/mobihet-v2-preflight/runs/0o5f3fmt
+wandb: updating run metadata; uploading summary
+wandb: uploading summary
+wandb: uploading wandb-metadata.json; uploading requirements.txt; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading requirements.txt
+wandb: uploading history steps 0-0, summary
+wandb: 
+wandb: Run history:
+wandb: preflight/no_training ▁
+wandb:      preflight/online ▁
+wandb: 
+wandb: Run summary:
+wandb: preflight/no_training 1
+wandb:      preflight/online 1
+wandb: 
+wandb: 🚀 View run online-auth-20261011 at: https://wandb.ai/21522798-uit/mobihet-v2-preflight/runs/0o5f3fmt
+wandb: ⭐️ View project at: https://wandb.ai/21522798-uit/mobihet-v2-preflight
+wandb: Synced 4 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261011_183007-0o5f3fmt/logs
+PASS online login/init/log/finish https://wandb.ai/21522798-uit/mobihet-v2-preflight/runs/0o5f3fmt

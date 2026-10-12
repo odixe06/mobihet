@@ -1,0 +1,44 @@
+start local gpu 0
+start a_own gpu 0
+start a_dense gpu 1
+start a_small_noef gpu 1
+start a_small_ef gpu 0
+start a_medium_noef gpu 0
+start a_medium_ef gpu 1
+{"local": {"rc": 0, "complete": true}, "a_own": {"rc": 0, "complete": true}, "a_dense": {"rc": 0, "complete": true}, "a_small_noef": {"rc": 0, "complete": true}, "a_small_ef": {"rc": 0, "complete": true}, "a_medium_noef": {"rc": 0, "complete": true}, "a_medium_ef": {"rc": 0, "complete": true}}
+PASS notebook minhtran0601/mobihet-v2a-s42-20261011-v1 exact 7 arms; private credential boundary
+start local gpu 0
+start a_own gpu 0
+start a_dense gpu 1
+start a_small_noef gpu 1
+start a_small_ef gpu 0
+start a_medium_noef gpu 0
+start a_medium_ef gpu 1
+{"local": {"rc": 0, "complete": true}, "a_own": {"rc": 0, "complete": true}, "a_dense": {"rc": 0, "complete": true}, "a_small_noef": {"rc": 0, "complete": true}, "a_small_ef": {"rc": 0, "complete": true}, "a_medium_noef": {"rc": 0, "complete": true}, "a_medium_ef": {"rc": 0, "complete": true}}
+PASS notebook dinhan25/mobihet-v2a-s43-20261011-v1 exact 7 arms; private credential boundary
+start b_dense gpu 0
+start b_own512 gpu 0
+start b_seed512 gpu 1
+start b_own1024 gpu 1
+start b_seed1024 gpu 0
+{"b_dense": {"rc": 0, "complete": true}, "b_own512": {"rc": 0, "complete": true}, "b_seed512": {"rc": 0, "complete": true}, "b_own1024": {"rc": 0, "complete": true}, "b_seed1024": {"rc": 0, "complete": true}}
+PASS notebook minhtran0601/mobihet-v2b-s42-20261011-v1 exact 5 arms; private credential boundary
+start b_dense gpu 0
+start b_own512 gpu 0
+start b_seed512 gpu 1
+start b_own1024 gpu 1
+start b_seed1024 gpu 0
+{"b_dense": {"rc": 0, "complete": true}, "b_own512": {"rc": 0, "complete": true}, "b_seed512": {"rc": 0, "complete": true}, "b_own1024": {"rc": 0, "complete": true}, "b_seed1024": {"rc": 0, "complete": true}}
+PASS notebook dinhan25/mobihet-v2b-s43-20261011-v1 exact 5 arms; private credential boundary
+start diag gpu 0
+start c_own gpu 0
+start c_fl gpu 1
+start c_shuffle gpu 1
+{"diag": {"rc": 0, "complete": true}, "c_own": {"rc": 0, "complete": true}, "c_fl": {"rc": 0, "complete": true}, "c_shuffle": {"rc": 0, "complete": true}}
+PASS notebook minhtran0601/mobihet-v2c-s42-20261011-v1 exact 4 arms; private credential boundary
+start diag gpu 0
+start c_own gpu 0
+start c_fl gpu 1
+start c_shuffle gpu 1
+{"diag": {"rc": 0, "complete": true}, "c_own": {"rc": 0, "complete": true}, "c_fl": {"rc": 0, "complete": true}, "c_shuffle": {"rc": 0, "complete": true}}
+PASS notebook dinhan25/mobihet-v2c-s43-20261011-v1 exact 4 arms; private credential boundary

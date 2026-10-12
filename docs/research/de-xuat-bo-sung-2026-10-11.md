@@ -1,6 +1,7 @@
 # Đề xuất bổ sung — condensation dữ liệu, sketch phi tuyến, contact hữu hạn
 
-Ngày 2026-10-11. **Đề xuất nghiên cứu; chưa có kết quả thực nghiệm của các nhánh dưới.**
+Ngày 2026-10-11. **S2/S3 đã pilot hai seed và trượt cổng**: [kết quả S-a](probes/pilot-new-fl.md).
+S1 vẫn là thiết kế chưa pilot. Phần dưới giữ lập luận đề xuất trước chạy; không phải đóng góp đã chứng minh.
 Nền: [P1](probes/pilot-p1.md), [H1–H6](de-xuat-huong-moi.md), [kế hoạch](pilot-plan.md),
 [bài học](../../LESSONS.md), [archive](../legacy/kien-thuc-ke-thua.md).
 Private và proxy phân loại vẫn DAGSNet theo quyết định hiện hành; R2 mới kiểm ở thiết kế.
@@ -89,12 +90,15 @@ Paper đồng bộ model toàn cục theo round, và thí nghiệm khởi tạo 
 1. Mỗi client tạo `m=4` điểm/lớp từ Gaussian diag local, RNG riêng; không lấy/chỉnh trực tiếp record thật.
 2. Dùng DAGSNet khởi tạo ngẫu nhiên, đóng băng trọng số, chế độ eval; pilot dùng một encoder/seed run.
    Tối ưu tọa độ codebook theo sai số mean latent256chiều trên local cùng lớp. Gradient chỉ cập nhật codebook.
-3. Upload codebook fp16 + histogram số mẫu local. RSU giữ codebook tổng hợp theo nguồn/lớp, chuyển tiếp theo contact.
+3. Upload codebook fp16 + số điểm synthetic/lớp. Histogram nhãn local đi qua tổng nhiều client riêng cho prior;
+   không gửi histogram local riêng kèm codebook. RSU giữ codebook tổng hợp theo nguồn/lớp, chuyển tiếp theo contact.
 4. Xe nhận CE trên mẫu tổng hợp cộng CE local; gradient cập nhật **toàn private DAGSNet**.
    Không averaging model/latent private; input codebook dùng được cho kiến trúc private khác.
 
 Đây là **static condensation lấy cảm hứng FedDM**, không reproduction FedDM; không nhận trước khả năng giữ loss landscape quanh model đã train.
 Vì embedding ngẫu nhiên cố định, thống kê không bị cũ theo private backbone. Rủi ro ngược lại: embedding chưa học có thể yếu.
+Làm rõ từ audit v1: `books` chỉ chứa tọa độ;64B count/metadata trong dự toán chưa có wire codec.
+Ngoại lệ đọc synthetic không mở quyền đọc histogram local riêng; histogram real-count vẫn gộp cohort.
 
 **Byte.** `up = C m D ×2 = 8.448 B/client`, cộng 64 B count và metadata.
 Một object `(source,class,version)` có 4×66×2 = **528 B** tọa độ; nhận đủ object mới sử dụng.

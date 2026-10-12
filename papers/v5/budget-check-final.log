@@ -1,0 +1,36 @@
+{"g1_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_mean_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_mean_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_grad_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_grad_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_own": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}}
+PASS actual controller v5g-s42-20261012-v1 reject
+COST CAP terminate g1_mean_frozen 1000
+COST CAP terminate g1_mean_trained 1000
+COST CAP terminate g1_grad_frozen 1000
+COST CAP terminate g1_grad_trained 1000
+COST CAP terminate g1_own 250
+{"g1_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_mean_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_mean_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_grad_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_grad_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_own": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}}
+PASS actual controller v5g-s42-20261012-v1 terminate
+{"g1_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_mean_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_mean_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_grad_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_grad_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g1_own": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}}
+PASS actual controller v5g-s43-20261012-v1 reject
+COST CAP terminate g1_mean_frozen 1000
+COST CAP terminate g1_mean_trained 1000
+COST CAP terminate g1_grad_frozen 1000
+COST CAP terminate g1_grad_trained 1000
+COST CAP terminate g1_own 250
+{"g1_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g1_mean_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_mean_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_grad_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_grad_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g1_own": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}}
+PASS actual controller v5g-s43-20261012-v1 terminate
+{"g4_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_mean_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_mean_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_grad_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_grad_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_own": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}}
+PASS actual controller v5j-s42-20261012-v1 reject
+COST CAP terminate g4_mean_frozen 1000
+COST CAP terminate g4_mean_trained 1000
+COST CAP terminate g4_grad_frozen 1000
+COST CAP terminate g4_grad_trained 1000
+COST CAP terminate g4_own 250
+{"g4_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_mean_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_mean_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_grad_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_grad_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_own": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}}
+PASS actual controller v5j-s42-20261012-v1 terminate
+{"g4_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_mean_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_mean_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_grad_frozen": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_grad_trained": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}, "g4_own": {"rc": -998, "complete": false, "not_started": true, "reason": "COST PREFLIGHT REJECT: projected total exceeds 2x measured baseline"}}
+PASS actual controller v5j-s43-20261012-v1 reject
+COST CAP terminate g4_mean_frozen 1000
+COST CAP terminate g4_mean_trained 1000
+COST CAP terminate g4_grad_frozen 1000
+COST CAP terminate g4_grad_trained 1000
+COST CAP terminate g4_own 250
+{"g4_diag": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_noise": {"rc": 0, "complete": true, "cost_stopped": false, "cost_pass": true}, "g4_mean_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_mean_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_grad_frozen": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_grad_trained": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}, "g4_own": {"rc": -15, "complete": false, "cost_stopped": true, "cost_pass": false}}
+PASS actual controller v5j-s43-20261012-v1 terminate

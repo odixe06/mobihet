@@ -1,0 +1,2 @@
+PASS bounded train-only anchor coverage probe; full-train preflight and bandwidth decision still pending
+Peak tree RSS: 1079 MiB; exit 0

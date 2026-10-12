@@ -1,0 +1,2 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/odixe/.netrc.
+W&B project not available yet: ValueError

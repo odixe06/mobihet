@@ -1,0 +1,30 @@
+{"g1_diag": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_noise": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_mean_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_mean_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_grad_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_grad_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_own": {"rc": 0, "complete": true, "cost_stopped": false}}
+PASS notebook khanhmay0304/mobihet-v5g-s42-20261012-v1 exact 7 arms; private credential boundary
+{"g1_diag": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_noise": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_mean_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_mean_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_grad_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_grad_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g1_own": {"rc": 0, "complete": true, "cost_stopped": false}}
+PASS notebook minhtriethihi/mobihet-v5g-s43-20261012-v1 exact 7 arms; private credential boundary
+start b_dense gpu 0
+start b_anchor_small_fl gpu 0
+start b_anchor_small_own gpu 1
+start b_anchor_small_shuffle gpu 1
+start b_anchor_small_gauss gpu 0
+start b_anchor_medium_fl gpu 0
+start b_anchor_medium_own gpu 1
+start b_anchor_medium_shuffle gpu 1
+start b_anchor_medium_gauss gpu 0
+{"b_dense": {"rc": 0, "complete": true}, "b_anchor_small_fl": {"rc": 0, "complete": true}, "b_anchor_small_own": {"rc": 0, "complete": true}, "b_anchor_small_shuffle": {"rc": 0, "complete": true}, "b_anchor_small_gauss": {"rc": 0, "complete": true}, "b_anchor_medium_fl": {"rc": 0, "complete": true}, "b_anchor_medium_own": {"rc": 0, "complete": true}, "b_anchor_medium_shuffle": {"rc": 0, "complete": true}, "b_anchor_medium_gauss": {"rc": 0, "complete": true}}
+PASS notebook minhtriethihi/mobihet-v5h-s42-20261012-v1 exact 9 arms; private credential boundary
+start b_dense gpu 0
+start b_anchor_small_fl gpu 0
+start b_anchor_small_own gpu 1
+start b_anchor_small_shuffle gpu 1
+start b_anchor_small_gauss gpu 0
+start b_anchor_medium_fl gpu 0
+start b_anchor_medium_own gpu 1
+start b_anchor_medium_shuffle gpu 1
+start b_anchor_medium_gauss gpu 0
+{"b_dense": {"rc": 0, "complete": true}, "b_anchor_small_fl": {"rc": 0, "complete": true}, "b_anchor_small_own": {"rc": 0, "complete": true}, "b_anchor_small_shuffle": {"rc": 0, "complete": true}, "b_anchor_small_gauss": {"rc": 0, "complete": true}, "b_anchor_medium_fl": {"rc": 0, "complete": true}, "b_anchor_medium_own": {"rc": 0, "complete": true}, "b_anchor_medium_shuffle": {"rc": 0, "complete": true}, "b_anchor_medium_gauss": {"rc": 0, "complete": true}}
+PASS notebook catbaochau/mobihet-v5h-s43-20261012-v1 exact 9 arms; private credential boundary
+{"g4_diag": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_noise": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_mean_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_mean_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_grad_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_grad_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_own": {"rc": 0, "complete": true, "cost_stopped": false}}
+PASS notebook catbaochau/mobihet-v5j-s42-20261012-v1 exact 7 arms; private credential boundary
+{"g4_diag": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_noise": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_mean_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_mean_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_grad_frozen": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_grad_trained": {"rc": 0, "complete": true, "cost_stopped": false}, "g4_own": {"rc": 0, "complete": true, "cost_stopped": false}}
+PASS notebook khanhmay0304/mobihet-v5j-s43-20261012-v1 exact 7 arms; private credential boundary

@@ -1,0 +1,205 @@
+setup b_dense role proxy rows 5120 sec 5.2
+r1 b_dense s42 proxy group head 0.008181541791401467 loss 2.8298 4s
+r2 b_dense s42 proxy group head 0.008259449135975188 loss 2.7251 3s
+r3 b_dense s42 proxy group head 0.008245290419916689 loss 2.6752 3s
+done b_dense complete True
+setup b_anchor_small_fl role proxy rows 5120 sec 2.4
+r1 b_anchor_small_fl s42 proxy group head 0.0005165289256198347 loss 2.7364 12s
+r2 b_anchor_small_fl s42 proxy group head 0.0177304964539007 loss 2.7245 14s
+r3 b_anchor_small_fl s42 proxy group head 0.022457627118644068 loss 2.7377 11s
+done b_anchor_small_fl complete True
+setup b_anchor_small_own role proxy rows 5120 sec 2.3
+r1 b_anchor_small_own s42 proxy group head 0.007348207250005502 loss 2.4891 10s
+r2 b_anchor_small_own s42 proxy group head 0.012883185382944284 loss 2.4546 10s
+r3 b_anchor_small_own s42 proxy group head 0.011463612360921655 loss 2.4845 15s
+done b_anchor_small_own complete True
+setup b_anchor_small_shuffle role proxy rows 5120 sec 2.4
+r1 b_anchor_small_shuffle s42 proxy group head 0.0005165289256198347 loss 2.7384 11s
+r2 b_anchor_small_shuffle s42 proxy group head 0.005905511811023623 loss 2.7268 10s
+r3 b_anchor_small_shuffle s42 proxy group head 0.006372549019607844 loss 2.7410 13s
+done b_anchor_small_shuffle complete True
+setup b_anchor_small_gauss role proxy rows 5120 sec 2.3
+r1 b_anchor_small_gauss s42 proxy group head 0.0010330578512396695 loss 0.5009 11s
+r2 b_anchor_small_gauss s42 proxy group head 0.005952380952380954 loss 0.0007 13s
+r3 b_anchor_small_gauss s42 proxy group head 0.005952380952380954 loss 0.0001 10s
+done b_anchor_small_gauss complete True
+setup b_anchor_medium_fl role proxy rows 5120 sec 2.4
+r1 b_anchor_medium_fl s42 proxy group head 0.0 loss 2.7413 12s
+r2 b_anchor_medium_fl s42 proxy group head 0.0005186721991701245 loss 2.7314 14s
+r3 b_anchor_medium_fl s42 proxy group head 0.0005186721991701245 loss 2.7656 11s
+done b_anchor_medium_fl complete True
+setup b_anchor_medium_own role proxy rows 5120 sec 2.4
+r1 b_anchor_medium_own s42 proxy group head 0.010373153465049962 loss 2.5020 14s
+r2 b_anchor_medium_own s42 proxy group head 0.005087680987166737 loss 2.4744 11s
+r3 b_anchor_medium_own s42 proxy group head 0.005898953989608982 loss 2.5226 11s
+done b_anchor_medium_own complete True
+setup b_anchor_medium_shuffle role proxy rows 5120 sec 2.6
+r1 b_anchor_medium_shuffle s42 proxy group head 0.0010204081632653058 loss 2.7432 15s
+r2 b_anchor_medium_shuffle s42 proxy group head 0.0005186721991701245 loss 2.7405 11s
+r3 b_anchor_medium_shuffle s42 proxy group head 0.0005186721991701245 loss 2.7882 11s
+done b_anchor_medium_shuffle complete True
+setup b_anchor_medium_gauss role proxy rows 5120 sec 5.5
+r1 b_anchor_medium_gauss s42 proxy group head 0.022058823529411763 loss 1.1410 12s
+r2 b_anchor_medium_gauss s42 proxy group head 0.022058823529411763 loss 0.1120 11s
+r3 b_anchor_medium_gauss s42 proxy group head 0.022058823529411763 loss 0.0525 15s
+done b_anchor_medium_gauss complete True
+setup g1_diag role private rows 5120 sec 1.3
+r1 g1_diag s42 private group gp 0.006815049369960785 loss 5.6425 3s
+r2 g1_diag s42 private group gp 0.006381086716546057 loss 5.0157 2s
+r3 g1_diag s42 private group gp 0.006292527721774193 loss 4.7651 2s
+done g1_diag complete True
+setup g1_noise role private rows 5120 sec 1.4
+r1 g1_noise s42 private group gp 0.006956895581570473 loss 5.6731 3s
+r2 g1_noise s42 private group gp 0.006517417721658073 loss 4.7052 2s
+r3 g1_noise s42 private group gp 0.006357322457990924 loss 4.8419 2s
+done g1_noise complete True
+setup g1_mean_frozen role private rows 5120 sec 1.3
+r1 g1_mean_frozen s42 private group gp 0.006881768953068593 loss 5.6722 12s
+r2 g1_mean_frozen s42 private group gp 0.006429434343096336 loss 4.7031 2s
+r3 g1_mean_frozen s42 private group gp 0.006334646638758925 loss 4.8379 8s
+done g1_mean_frozen complete True
+setup g1_mean_trained role private rows 5120 sec 1.4
+r1 g1_mean_trained s42 private group gp 0.006881768953068593 loss 5.6722 9s
+r2 g1_mean_trained s42 private group gp 0.006429434343096336 loss 4.7031 2s
+r3 g1_mean_trained s42 private group gp 0.006334646638758925 loss 4.8353 8s
+done g1_mean_trained complete True
+setup g1_grad_frozen role private rows 5120 sec 1.3
+r1 g1_grad_frozen s42 private group gp 0.006812239164642698 loss 5.6728 28s
+r2 g1_grad_frozen s42 private group gp 0.006429434343096336 loss 4.7007 2s
+r3 g1_grad_frozen s42 private group gp 0.006357322457990924 loss 4.8357 20s
+done g1_grad_frozen complete True
+setup g1_grad_trained role private rows 5120 sec 1.4
+r1 g1_grad_trained s42 private group gp 0.006812239164642698 loss 5.6728 23s
+r2 g1_grad_trained s42 private group gp 0.006429434343096336 loss 4.7007 5s
+r3 g1_grad_trained s42 private group gp 0.006357322457990924 loss 4.8400 22s
+done g1_grad_trained complete True
+setup g1_own role private rows 5120 sec 1.4
+r1 g1_own s42 private group gp 0.006775846113167635 loss 5.6617 23s
+r2 g1_own s42 private group gp 0.006653545524391527 loss 4.0788 2s
+r3 g1_own s42 private group gp 0.0062493207067327 loss 4.9215 23s
+done g1_own complete True
+setup g4_diag role private rows 5120 sec 1.5
+r1 g4_diag s42 private group gp 0.006815049369960785 loss 5.6425 3s
+r2 g4_diag s42 private group gp 0.006381086716546057 loss 5.0157 2s
+r3 g4_diag s42 private group gp 0.006292527721774193 loss 4.7651 2s
+done g4_diag complete True
+setup g4_noise role private rows 5120 sec 1.4
+r1 g4_noise s42 private group gp 0.006477398479902215 loss 5.6449 3s
+r2 g4_noise s42 private group gp 0.006267258692104932 loss 4.9401 2s
+r3 g4_noise s42 private group gp 0.00617239503328213 loss 4.7787 2s
+done g4_noise complete True
+setup g4_mean_frozen role private rows 5120 sec 1.3
+r1 g4_mean_frozen s42 private group gp 0.006407020326504563 loss 5.6457 11s
+r2 g4_mean_frozen s42 private group gp 0.006219955724225174 loss 4.9402 2s
+r3 g4_mean_frozen s42 private group gp 0.00617239503328213 loss 4.7799 8s
+done g4_mean_frozen complete True
+setup g4_mean_trained role private rows 5120 sec 1.4
+r1 g4_mean_trained s42 private group gp 0.006407020326504563 loss 5.6457 9s
+r2 g4_mean_trained s42 private group gp 0.006219955724225174 loss 4.9402 2s
+r3 g4_mean_trained s42 private group gp 0.00617239503328213 loss 4.7759 10s
+done g4_mean_trained complete True
+setup g4_grad_frozen role private rows 5120 sec 1.4
+r1 g4_grad_frozen s42 private group gp 0.006429434343096336 loss 5.6444 22s
+r2 g4_grad_frozen s42 private group gp 0.006267258692104932 loss 4.9380 2s
+r3 g4_grad_frozen s42 private group gp 0.00617239503328213 loss 4.7749 24s
+done g4_grad_frozen complete True
+setup g4_grad_trained role private rows 5120 sec 1.4
+r1 g4_grad_trained s42 private group gp 0.006429434343096336 loss 5.6444 26s
+r2 g4_grad_trained s42 private group gp 0.006267258692104932 loss 4.9380 2s
+r3 g4_grad_trained s42 private group gp 0.00617239503328213 loss 4.7770 22s
+done g4_grad_trained complete True
+setup g4_own role private rows 5120 sec 1.4
+r1 g4_own s42 private group gp 0.006746363717485387 loss 5.6519 24s
+r2 g4_own s42 private group gp 0.006539960130482058 loss 4.6973 4s
+r3 g4_own s42 private group gp 0.0062964029697900655 loss 4.8166 21s
+done g4_own complete True
+setup b_anchor_small_fl role proxy rows 5120 sec 2.3
+r1 b_anchor_small_fl s42 proxy group head 0.0005165289256198347 loss 2.7364 13s
+done b_anchor_small_fl complete False
+setup b_anchor_small_fl role proxy rows 5120 sec 2.7
+r2 b_anchor_small_fl s42 proxy group head 0.0177304964539007 loss 2.7245 10s
+r3 b_anchor_small_fl s42 proxy group head 0.022457627118644068 loss 2.7377 10s
+done b_anchor_small_fl complete True
+setup b_anchor_medium_own role proxy rows 5120 sec 1.8
+r1 b_anchor_medium_own s42 proxy group head 0.010373153465049962 loss 2.5020 11s
+done b_anchor_medium_own complete False
+setup b_anchor_medium_own role proxy rows 5120 sec 2.0
+r2 b_anchor_medium_own s42 proxy group head 0.005087680987166737 loss 2.4744 11s
+r3 b_anchor_medium_own s42 proxy group head 0.005898953989608982 loss 2.5226 13s
+done b_anchor_medium_own complete True
+setup g1_grad_trained role private rows 5120 sec 0.8
+r1 g1_grad_trained s42 private group gp 0.006812239164642698 loss 5.6728 25s
+done g1_grad_trained complete False
+setup g1_grad_trained role private rows 5120 sec 1.2
+r2 g1_grad_trained s42 private group gp 0.006429434343096336 loss 4.7007 3s
+r3 g1_grad_trained s42 private group gp 0.006357322457990924 loss 4.8400 22s
+done g1_grad_trained complete True
+setup g1_own role private rows 5120 sec 0.9
+r1 g1_own s42 private group gp 0.006775846113167635 loss 5.6617 22s
+done g1_own complete False
+setup g1_own role private rows 5120 sec 1.1
+r2 g1_own s42 private group gp 0.006653545524391527 loss 4.0788 3s
+r3 g1_own s42 private group gp 0.0062493207067327 loss 4.9215 24s
+done g1_own complete True
+setup g4_grad_trained role private rows 5120 sec 0.9
+r1 g4_grad_trained s42 private group gp 0.006429434343096336 loss 5.6444 26s
+done g4_grad_trained complete False
+setup g4_grad_trained role private rows 5120 sec 1.1
+r2 g4_grad_trained s42 private group gp 0.006267258692104932 loss 4.9380 3s
+r3 g4_grad_trained s42 private group gp 0.00617239503328213 loss 4.7770 24s
+done g4_grad_trained complete True
+setup g4_own role private rows 5120 sec 0.8
+r1 g4_own s42 private group gp 0.006746363717485387 loss 5.6519 24s
+done g4_own complete False
+setup g4_own role private rows 5120 sec 1.1
+r2 g4_own s42 private group gp 0.006539960130482058 loss 4.6973 3s
+r3 g4_own s42 private group gp 0.0062964029697900655 loss 4.8166 22s
+done g4_own complete True
+VERIFIED {"run": "b_dense_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 221, "ambiguous": 35}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 214, "ambiguous": 42}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_dense_s42
+VERIFIED {"run": "b_anchor_small_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 239, "ambiguous": 17}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 215, "ambiguous": 41}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_small_fl_s42
+VERIFIED {"run": "b_anchor_small_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 239, "ambiguous": 17}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 244, "ambiguous": 12}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_small_own_s42
+VERIFIED {"run": "b_anchor_small_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 243, "ambiguous": 13}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 214, "ambiguous": 42}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_small_shuffle_s42
+VERIFIED {"run": "b_anchor_small_gauss_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 251, "ambiguous": 5}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 256, "ambiguous": 0}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_small_gauss_s42
+VERIFIED {"run": "b_anchor_medium_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 245, "ambiguous": 11}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 244, "ambiguous": 12}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_medium_fl_s42
+VERIFIED {"run": "b_anchor_medium_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 210, "ambiguous": 46}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 249, "ambiguous": 7}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_medium_own_s42
+VERIFIED {"run": "b_anchor_medium_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 249, "ambiguous": 7}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 236, "ambiguous": 20}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_medium_shuffle_s42
+VERIFIED {"run": "b_anchor_medium_gauss_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 251, "ambiguous": 5}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 b_anchor_medium_gauss_s42
+VERIFIED {"run": "g1_diag_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_diag_s42
+VERIFIED {"run": "g1_noise_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 224, "ambiguous": 32}, {"round": 3, "role": "private", "rows": 256, "decisive": 239, "ambiguous": 17}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_noise_s42
+VERIFIED {"run": "g1_mean_frozen_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 226, "ambiguous": 30}, {"round": 3, "role": "private", "rows": 256, "decisive": 239, "ambiguous": 17}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_mean_frozen_s42
+VERIFIED {"run": "g1_mean_trained_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 226, "ambiguous": 30}, {"round": 3, "role": "private", "rows": 256, "decisive": 239, "ambiguous": 17}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_mean_trained_s42
+VERIFIED {"run": "g1_grad_frozen_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 223, "ambiguous": 33}, {"round": 3, "role": "private", "rows": 256, "decisive": 245, "ambiguous": 11}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_grad_frozen_s42
+VERIFIED {"run": "g1_grad_trained_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 223, "ambiguous": 33}, {"round": 3, "role": "private", "rows": 256, "decisive": 245, "ambiguous": 11}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_grad_trained_s42
+VERIFIED {"run": "g1_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 211, "ambiguous": 45}, {"round": 3, "role": "private", "rows": 256, "decisive": 234, "ambiguous": 22}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g1_own_s42
+VERIFIED {"run": "g4_diag_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_diag_s42
+VERIFIED {"run": "g4_noise_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 219, "ambiguous": 37}, {"round": 3, "role": "private", "rows": 256, "decisive": 244, "ambiguous": 12}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_noise_s42
+VERIFIED {"run": "g4_mean_frozen_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 219, "ambiguous": 37}, {"round": 3, "role": "private", "rows": 256, "decisive": 243, "ambiguous": 13}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_mean_frozen_s42
+VERIFIED {"run": "g4_mean_trained_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 219, "ambiguous": 37}, {"round": 3, "role": "private", "rows": 256, "decisive": 244, "ambiguous": 12}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_mean_trained_s42
+VERIFIED {"run": "g4_grad_frozen_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 220, "ambiguous": 36}, {"round": 3, "role": "private", "rows": 256, "decisive": 243, "ambiguous": 13}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_grad_frozen_s42
+VERIFIED {"run": "g4_grad_trained_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 220, "ambiguous": 36}, {"round": 3, "role": "private", "rows": 256, "decisive": 243, "ambiguous": 13}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_grad_trained_s42
+VERIFIED {"run": "g4_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 219, "ambiguous": 37}, {"round": 3, "role": "private", "rows": 256, "decisive": 238, "ambiguous": 18}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V5 g4_own_s42
+PASS V5 23 arms x3rounds; exact 6 resumes across small refresh; inference
+Peak tree RSS: 3333 MiB; exit 0

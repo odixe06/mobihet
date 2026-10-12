@@ -3,6 +3,8 @@
 Khóa trước chạy 2026-10-11. [Đề xuất + nguồn](de-xuat-bo-sung-2026-10-11.md).
 User xác nhận: mọi private/encoder dùng DAGSNet; R2 chỉ ở thiết kế; local chỉ kiểm tra nhỏ.
 Ngoại lệ Q4 mới: RSU được đọc bộ mẫu **tổng hợp**, không đọc mẫu thật. Không dùng raw initialization.
+**Đã hoàn tất12run ×20round, hai seed; KME/DM trượt cổng.**
+[Kết quả + giới hạn](probes/pilot-new-fl.md), [report đủ10metric](../../papers/new-fl/report.md).
 
 ## S-a: sàng khả năng học
 

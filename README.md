@@ -23,19 +23,26 @@ Toàn bộ lịch sử nằm ở `odixe06/mobihet-archive-b9-b21` (cùng `-b1-b6
 | cần tìm | mở |
 |---|---|
 | Trạng thái, quyết định, việc tiếp theo | [CONTEXT.md](CONTEXT.md) → [LESSONS.md](LESSONS.md) |
+| V4 MALA/support: cấu hình đã khóa, localproof, tiến trình | [MALA](docs/research/pilot-v4-mala.md), [support](docs/research/pilot-v4-support.md), [ledger](papers/v4/rebuild.md) |
+| V5 K2b/K3: pilot đãpush, teacher/private/costgates | [K2b](docs/research/pilot-v5-anchors.md), [K3](docs/research/pilot-v5-books.md), [ledger](papers/v5/rebuild.md), [report](papers/v5/report.md) |
+| Hướng K5 algebra/primitive chưacode | [Primarysource/design](docs/research/v5-algebra-sources.md) |
+| V2 đã thu/A lỗi vì sao, V3 đang kiểm và hướng tri thức mới | [V2 kết quả](docs/research/probes/pilot-v2.md), [V2 report](papers/v2/report.md), [V3 carrier](docs/research/v3-carriers-sources.md), [V3 tri thức](docs/research/v3-knowledge-sources.md), [V3 manifest](docs/research/pilot-v3.md), [V3 ledger](papers/v3/rebuild.md) |
+| Đề xuất và pilot V2; mọi model học được DAGSNet | [Bộ V2](docs/research/de-xuat-v2/README.md): [sketch](docs/research/de-xuat-v2/a-proxy-sketch.md), [seed](docs/research/de-xuat-v2/b-proxy-seed.md), [density ratio](docs/research/de-xuat-v2/c-density-ratio.md) |
+| Bàn giao phiên đã dừng: kết quả, artifact, bài học, việc còn lại | [handoff-2026-10-11.md](docs/operations/handoff-2026-10-11.md) |
 | Lập luận, protocol, kế hoạch và kết quả nghiên cứu | [docs/README.md](docs/README.md) |
 | Dữ liệu, feature/class, scaler, DAGSNet, môi trường | [knowledge/README.md](knowledge/README.md) |
 | FL H1–H5 và kênh P2 | [mh/pilot.py](mh/pilot.py), [mh/p2.py](mh/p2.py), [mh/channel.py](mh/channel.py) |
 | Condensation/Fourier và driver có checkpoint | [mh/new_methods.py](mh/new_methods.py), [mh/new_fl.py](mh/new_fl.py) |
+| V2/V3 driver, actualcodec, kiểm math/resume/artifact | [v2_run.py](mh/v2_run.py), [v3_run.py](mh/v3_run.py), [v3_math.py](mh/v3_math.py), [v3_methods.py](mh/v3_methods.py), [verify_v3.py](scripts/verify_v3.py) |
 | Fixture và ngân sách contact | [build_pilot_fixture.py](scripts/build_pilot_fixture.py), [budget_tiers.py](scripts/budget_tiers.py), [probe_new_fl_contacts.py](scripts/probe_new_fl_contacts.py) |
 | Dựng/push notebook P2, thu và verify | [gen_p2.py](scripts/kaggle/gen_p2.py), [push_nb.py](scripts/kaggle/push_nb.py), [collect_p2.py](scripts/kaggle/collect_p2.py), [verify_p2.py](scripts/verify_p2.py) |
 | Dựng notebook S-a, thu và verify | [gen_new_fl.py](scripts/kaggle/gen_new_fl.py), [collect_new_fl.py](scripts/kaggle/collect_new_fl.py), [verify_new_fl.py](scripts/verify_new_fl.py) |
 | Report P1/P2/S-a | [report_pilot.py](scripts/report_pilot.py), [report_p2.py](scripts/report_p2.py), [report_new_fl.py](scripts/report_new_fl.py) |
-| Artifact, source/hash, kernel ID và run history | [P1](papers/pilot/report.md), [P2](papers/p2/report.md), [S-a ledger](papers/new-fl/rebuild.md); thư mục artifact trong [file-index](docs/file-index.md) |
+| Artifact, source/hash, kernel ID và run history | [P1](papers/pilot/report.md), [P2](papers/p2/report.md), [S-a report](papers/new-fl/report.md), [S-a ledger](papers/new-fl/rebuild.md); thư mục artifact trong [file-index](docs/file-index.md) |
 | Local smoke và guard RAM/VRAM | [run_local_guarded.py](scripts/run_local_guarded.py), các `check_new_fl_*` trong [file-index](docs/file-index.md) |
 | Kaggle, W&B, tài khoản, download/resume | [kaggle-training-notebook](.agents/skills/kaggle-training-notebook/SKILL.md), [W&B](.agents/skills/kaggle-training-notebook/references/wandb.md); yêu cầu hiện hành ở [LESSONS.md](LESSONS.md) |
 | Backup/phục hồi Git–DVC và archive | [backup.md](docs/operations/backup.md), [repo-backup](.agents/skills/repo-backup/SKILL.md) |
-| Từng file, kể cả helper/skill/notebook/log lưu trong Git | [docs/file-index.md](docs/file-index.md) |
+| Từng file, kể cả helper/skill/notebook/log không bị ignore | [docs/file-index.md](docs/file-index.md) |
 
 Sau khi thêm/xóa/chuyển file hoặc tổng hợp tài liệu:
 
@@ -44,7 +51,7 @@ python3 scripts/update_file_index.py
 rg --files
 ```
 
-Index liệt kê file thuộc Git và file mới không bị ignore. Artifact nặng được định tuyến qua thư mục/manifest;
+Index liệt kê file workspace không bị ignore bằng `rg`, không cần commit/stage. Artifact nặng được định tuyến qua thư mục/manifest;
 source/config đã chạy phải lấy từ ledger và snapshot, không suy từ code hiện tại.
 
 Artifact có target `.dvc` do DVC quản lý (remote `gdrive`, chung với archive): `dvc pull <target>.dvc`.

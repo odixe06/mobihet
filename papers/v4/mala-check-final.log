@@ -1,0 +1,58 @@
+setup diag role private rows 5120 sec 0.8
+r1 diag s42 private group gp 0.006815049369960785 loss 5.6425 3s
+r2 diag s42 private group gp 0.006381086716546057 loss 5.0157 2s
+r3 diag s42 private group gp 0.006292527721774193 loss 4.7651 2s
+done diag complete True
+setup c_fl role private rows 5120 sec 1.2
+r1 c_fl s42 private group gp 0.006815049369960785 loss 5.6425 6s
+r2 c_fl s42 private group gp 0.0063585016005909874 loss 4.9952 9s
+r3 c_fl s42 private group gp 0.006292527721774193 loss 4.7508 5s
+done c_fl complete True
+setup c_mala_fl role private rows 5120 sec 1.2
+r1 c_mala_fl s42 private group gp 0.006815049369960785 loss 5.6425 6s
+r2 c_mala_fl s42 private group gp 0.00631383111221821 loss 5.0150 15s
+r3 c_mala_fl s42 private group gp 0.006268975332068311 loss 4.7472 18s
+done c_mala_fl complete True
+setup c_mala_own role private rows 5120 sec 1.1
+r1 c_mala_own s42 private group gp 0.006815049369960785 loss 5.6425 7s
+r2 c_mala_own s42 private group gp 0.00631383111221821 loss 5.0144 19s
+r3 c_mala_own s42 private group gp 0.006268975332068311 loss 4.7469 15s
+done c_mala_own complete True
+setup c_mala_shuffle role private rows 5120 sec 1.2
+r1 c_mala_shuffle s42 private group gp 0.006815049369960785 loss 5.6425 6s
+r2 c_mala_shuffle s42 private group gp 0.006336848635235731 loss 5.0271 19s
+r3 c_mala_shuffle s42 private group gp 0.006268975332068311 loss 4.7596 16s
+done c_mala_shuffle complete True
+setup c_mala_fl role private rows 5120 sec 1.2
+r1 c_mala_fl s42 private group gp 0.006815049369960785 loss 5.6425 10s
+done c_mala_fl complete False
+setup c_mala_fl role private rows 5120 sec 2.0
+r2 c_mala_fl s42 private group gp 0.00631383111221821 loss 5.0150 16s
+r3 c_mala_fl s42 private group gp 0.006268975332068311 loss 4.7472 19s
+done c_mala_fl complete True
+setup c_mala_own role private rows 5120 sec 1.2
+r1 c_mala_own s42 private group gp 0.006815049369960785 loss 5.6425 7s
+done c_mala_own complete False
+setup c_mala_own role private rows 5120 sec 2.1
+r2 c_mala_own s42 private group gp 0.00631383111221821 loss 5.0144 21s
+r3 c_mala_own s42 private group gp 0.006268975332068311 loss 4.7469 16s
+done c_mala_own complete True
+setup c_mala_shuffle role private rows 5120 sec 4.8
+r1 c_mala_shuffle s42 private group gp 0.006815049369960785 loss 5.6425 6s
+done c_mala_shuffle complete False
+setup c_mala_shuffle role private rows 5120 sec 2.3
+r2 c_mala_shuffle s42 private group gp 0.006336848635235731 loss 5.0271 18s
+r3 c_mala_shuffle s42 private group gp 0.006268975332068311 loss 4.7596 20s
+done c_mala_shuffle complete True
+VERIFIED {"run": "diag_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 diag_s42
+VERIFIED {"run": "c_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 c_fl_s42
+VERIFIED {"run": "c_mala_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 c_mala_fl_s42
+VERIFIED {"run": "c_mala_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 232, "ambiguous": 24}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 c_mala_own_s42
+VERIFIED {"run": "c_mala_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 c_mala_shuffle_s42
+PASS MALA null/sign/score, five arms x3rounds, three exact resumes and artifact inference
+Peak tree RSS: 3879 MiB; exit 0

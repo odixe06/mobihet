@@ -1,4 +1,4 @@
-"""Rebuild docs/file-index.md from Git-visible files, without reading file contents."""
+"""Rebuild docs/file-index.md from non-ignored workspace files, without reading contents."""
 import subprocess
 from pathlib import Path
 from urllib.parse import quote
@@ -8,7 +8,7 @@ INDEX = ROOT / 'docs/file-index.md'
 
 
 def main():
-    raw = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT)
+    raw = subprocess.check_output(['rg', '--files', '--hidden', '-g', '!.git/**', '-0'], cwd=ROOT)
     files = {p for p in raw.decode().split('\0') if p and (ROOT / p).is_file()}
     files.add(INDEX.relative_to(ROOT).as_posix())
     groups = {}
@@ -17,9 +17,9 @@ def main():
         groups.setdefault(group, []).append(path)
     lines = ['# Index file toàn dự án', '',
              'Danh mục tự sinh bằng `python3 scripts/update_file_index.py`. Định tuyến theo nhu cầu: [README](../README.md).', '',
-             f'Liệt kê {len(files)} file tracked hoặc untracked không bị Gitignore; không đọc nội dung file. '
+             f'Liệt kê {len(files)} file workspace không bị ignore; dùng `rg`, không cần commit/stage. Không đọc nội dung file. '
              'Artifact/data/key bị ignore được định tuyến theo thư mục bên dưới, không liệt kê từng checkpoint.', '',
-             '## Artifact và dữ liệu ngoài danh mục Git', '',
+             '## Artifact và dữ liệu bị ignore', '',
              '| vị trí | nội dung / nơi tra cứu |', '|---|---|',
              '| `papers/pilot/fixture/` | Fixture; [fixture.dvc](../papers/pilot/fixture.dvc) |',
              '| `papers/pilot/runs/` | P1; [runs.dvc](../papers/pilot/runs.dvc), [kết quả](research/probes/pilot-p1.md) |',

@@ -1,0 +1,10 @@
+{
+  "evidence": "verified dense r1 update, actual two-stage production-rank8 codec, CPU five-client math fault; no training/R1 claim",
+  "fault_stage": "Q aggregate finish",
+  "version_not_committed": true,
+  "model_not_committed": true,
+  "residual_not_committed": true,
+  "restart_round_matches_fresh": true,
+  "paid_application_bytes_before_fault": 288160,
+  "limit": "U driver crashes before checkpoint on fault; finite-contact durable failed-frame accounting still needs separate contact-stage implementation"
+}

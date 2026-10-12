@@ -1,0 +1,50 @@
+{
+  "per_seed": {
+    "H_small_s42": {
+      "pass_quality": false,
+      "gain_vs_local": -0.40400781061830043,
+      "contrasts": {
+        "b_anchor_small_gauss": -0.06707683658333945,
+        "b_anchor_small_own": 0.021226885472414428,
+        "b_anchor_small_shuffle": 0.030688539917523475
+      },
+      "role": "teacher/head"
+    },
+    "H_medium_s42": {
+      "pass_quality": false,
+      "gain_vs_local": -0.30727455462737796,
+      "contrasts": {
+        "b_anchor_medium_gauss": -0.14274745286013965,
+        "b_anchor_medium_own": 0.034494723438286246,
+        "b_anchor_medium_shuffle": 0.13125194492585898
+      },
+      "role": "teacher/head"
+    },
+    "H_small_s43": {
+      "pass_quality": false,
+      "gain_vs_local": -0.405561023167751,
+      "contrasts": {
+        "b_anchor_small_gauss": -0.06527539005821376,
+        "b_anchor_small_own": 0.01778418167726533,
+        "b_anchor_small_shuffle": 0.006830268552028992
+      },
+      "role": "teacher/head"
+    },
+    "H_medium_s43": {
+      "pass_quality": false,
+      "gain_vs_local": -0.30988922218602,
+      "contrasts": {
+        "b_anchor_medium_gauss": -0.14269146920208456,
+        "b_anchor_medium_own": 0.02900592467197137,
+        "b_anchor_medium_shuffle": 0.11801470961392663
+      },
+      "role": "teacher/head"
+    }
+  },
+  "paired": {
+    "H_small": false,
+    "H_medium": false,
+    "G_1": null,
+    "G_4": null
+  }
+}

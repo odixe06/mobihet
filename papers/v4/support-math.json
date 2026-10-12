@@ -1,0 +1,40 @@
+{
+  "evidence": "2048 real train rows/client aggregate, 65536 synthetic draws per analytic sampler; no F1",
+  "checks": [
+    {
+      "arm": "s_diag",
+      "rows": 65536,
+      "binary_invalid": 65536,
+      "profile_invalid": 0,
+      "first_rows": 0,
+      "first_structural_invalid": 0
+    },
+    {
+      "arm": "s_marginal",
+      "rows": 65536,
+      "binary_invalid": 0,
+      "profile_invalid": 0,
+      "first_rows": 5943,
+      "first_structural_invalid": 1847
+    },
+    {
+      "arm": "s_structural",
+      "rows": 65536,
+      "binary_invalid": 0,
+      "profile_invalid": 0,
+      "first_rows": 5909,
+      "first_structural_invalid": 0
+    },
+    {
+      "arm": "s_shuffle",
+      "rows": 65536,
+      "binary_invalid": 0,
+      "profile_invalid": 0,
+      "first_rows": 5948,
+      "first_structural_invalid": 0
+    }
+  ],
+  "one_shot_upload": 12776,
+  "one_shot_download": 10592,
+  "with_prior_per_client": 23568
+}

@@ -1,0 +1,73 @@
+{
+  "source": "papers/v2/runs/a_dense_s42/resume/round_001.pt",
+  "evidence": "real saved dense aggregate update; arithmetic only, no F1 or client training",
+  "checks": [
+    {
+      "kind": "random",
+      "k": 512,
+      "up": 2104,
+      "down": 2096,
+      "retained_squared": 0.001262216828763485
+    },
+    {
+      "kind": "rolling",
+      "k": 512,
+      "up": 2104,
+      "down": 2096,
+      "retained_squared": 0.0014312912244349718
+    },
+    {
+      "kind": "random",
+      "k": 24576,
+      "up": 98360,
+      "down": 98352,
+      "retained_squared": 0.06315955519676208
+    },
+    {
+      "kind": "rolling",
+      "k": 24576,
+      "up": 98360,
+      "down": 98352,
+      "retained_squared": 0.06207628175616264
+    },
+    {
+      "kind": "orthogonal",
+      "rank": 1,
+      "up": 2104,
+      "down": 2096,
+      "residual_fraction": 0.99928218126297
+    },
+    {
+      "kind": "power",
+      "rank": 1,
+      "application_bytes": 10480,
+      "residual_fraction": 0.9960254430770874
+    },
+    {
+      "kind": "orthogonal",
+      "rank": 8,
+      "up": 16440,
+      "down": 16432,
+      "residual_fraction": 0.9949212074279785
+    },
+    {
+      "kind": "power",
+      "rank": 8,
+      "application_bytes": 82384,
+      "residual_fraction": 0.9798599481582642
+    },
+    {
+      "kind": "orthogonal",
+      "rank": 32,
+      "up": 65592,
+      "down": 65584,
+      "residual_fraction": 0.9790246486663818
+    },
+    {
+      "kind": "power",
+      "rank": 32,
+      "application_bytes": 328912,
+      "residual_fraction": 0.9267064929008484
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+[
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "local",
+    "fingerprint": "bc06069d554190937954ac8f425ffb34a147c9cecab7099758d20c387c7e6f32",
+    "run_id": "local_s42-bc06069d",
+    "locator": "21522798-uit/mobihet-v2/local_s42-bc06069d",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "a_own",
+    "fingerprint": "7cc3dcf879aaa15c96c6b7dbc2a85889bd1144ac78f4e847518ce0b04886a8b8",
+    "run_id": "a_own_s42-7cc3dcf8",
+    "locator": "21522798-uit/mobihet-v2/a_own_s42-7cc3dcf8",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "a_dense",
+    "fingerprint": "d3f39899d4658c20fc4821cb5e0205f97798dd359ac6c9b349bf7d2530fbbc75",
+    "run_id": "a_dense_s42-d3f39899",
+    "locator": "21522798-uit/mobihet-v2/a_dense_s42-d3f39899",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "a_small_noef",
+    "fingerprint": "2574da92efd6f903de97821b30df69b65dd737b488eda4b351e5e04c6e86b6db",
+    "run_id": "a_small_noef_s42-2574da92",
+    "locator": "21522798-uit/mobihet-v2/a_small_noef_s42-2574da92",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "a_small_ef",
+    "fingerprint": "dd5b0780a41b8d84e1bc1076a51e6fc6686265dce0724cda52a22289ab2bd09b",
+    "run_id": "a_small_ef_s42-dd5b0780",
+    "locator": "21522798-uit/mobihet-v2/a_small_ef_s42-dd5b0780",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "a_medium_noef",
+    "fingerprint": "3918397dec8b43542712068fddfbf120e615d980d96bf281e1b121bf1b9c10b5",
+    "run_id": "a_medium_noef_s42-3918397d",
+    "locator": "21522798-uit/mobihet-v2/a_medium_noef_s42-3918397d",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "a_medium_ef",
+    "fingerprint": "822ed911020a32b6a262844f6bdb7fa7f24551ce441a4153960b5aa219f0a303",
+    "run_id": "a_medium_ef_s42-822ed911",
+    "locator": "21522798-uit/mobihet-v2/a_medium_ef_s42-822ed911",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "local",
+    "fingerprint": "4d8d5dc177c528b21915f05035b7cd782f6c65b3c7f52b0d0c6430a2dbdbae8c",
+    "run_id": "local_s43-4d8d5dc1",
+    "locator": "21522798-uit/mobihet-v2/local_s43-4d8d5dc1",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "a_own",
+    "fingerprint": "38f2215e2fe91971c1459dbcc492384c3a0ee90ad26f2f06a2607156c1bda0fa",
+    "run_id": "a_own_s43-38f2215e",
+    "locator": "21522798-uit/mobihet-v2/a_own_s43-38f2215e",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "a_dense",
+    "fingerprint": "321c15145ecff2656670ab325e5afb621d6fe25fa3ab993c7abdccca42789c3e",
+    "run_id": "a_dense_s43-321c1514",
+    "locator": "21522798-uit/mobihet-v2/a_dense_s43-321c1514",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "a_small_noef",
+    "fingerprint": "53d0fe29d7c00e2f30ea4d9ecde4b27e3851a33976178571ad5972463b6072cf",
+    "run_id": "a_small_noef_s43-53d0fe29",
+    "locator": "21522798-uit/mobihet-v2/a_small_noef_s43-53d0fe29",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "a_small_ef",
+    "fingerprint": "3153f8af6165e04503371babf39e6f729126129f4ad36cc52f1cbf1652493f82",
+    "run_id": "a_small_ef_s43-3153f8af",
+    "locator": "21522798-uit/mobihet-v2/a_small_ef_s43-3153f8af",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "a_medium_noef",
+    "fingerprint": "e1cfd7d9644a97863fb448d3d6e17268833a619535e59237d5b875cf3dcdf585",
+    "run_id": "a_medium_noef_s43-e1cfd7d9",
+    "locator": "21522798-uit/mobihet-v2/a_medium_noef_s43-e1cfd7d9",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "a",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "a_medium_ef",
+    "fingerprint": "e97248b812d32f322f4a1f6e6f035df86650ce7a74cf4821938654be6cc51ef3",
+    "run_id": "a_medium_ef_s43-e97248b8",
+    "locator": "21522798-uit/mobihet-v2/a_medium_ef_s43-e97248b8",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "b_dense",
+    "fingerprint": "cc5ca10bccfd3ef73eb2a9a8dfd0715ead048a2dd5b36f97db56bccf12612644",
+    "run_id": "b_dense_s42-cc5ca10b",
+    "locator": "21522798-uit/mobihet-v2/b_dense_s42-cc5ca10b",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "b_own512",
+    "fingerprint": "3a0f88b72e6d454f8b10d0244568dd56ec2ca9c1a286abdf72158520f101faf8",
+    "run_id": "b_own512_s42-3a0f88b7",
+    "locator": "21522798-uit/mobihet-v2/b_own512_s42-3a0f88b7",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "b_seed512",
+    "fingerprint": "3a1209d85dffc8c952d296b0b36cdc38ec8895eca17ba365be57462ea362ec41",
+    "run_id": "b_seed512_s42-3a1209d8",
+    "locator": "21522798-uit/mobihet-v2/b_seed512_s42-3a1209d8",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "b_own1024",
+    "fingerprint": "3068891871312fa87c9b85e517b078773a767bde2b6779e66b22f644574e59e1",
+    "run_id": "b_own1024_s42-30688918",
+    "locator": "21522798-uit/mobihet-v2/b_own1024_s42-30688918",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "b_seed1024",
+    "fingerprint": "188dfcfb57f14d06376d54408b45c779d0fdb3255fd73ed6714761367316dca5",
+    "run_id": "b_seed1024_s42-188dfcfb",
+    "locator": "21522798-uit/mobihet-v2/b_seed1024_s42-188dfcfb",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "b_dense",
+    "fingerprint": "7c842af5e9acececbf0e282166e5569e68abd968b2d32de3dbd195335d25ffa4",
+    "run_id": "b_dense_s43-7c842af5",
+    "locator": "21522798-uit/mobihet-v2/b_dense_s43-7c842af5",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "b_own512",
+    "fingerprint": "bebf65ca3ce2233387d913378f39316b770704824864aae9f552975b74d20b96",
+    "run_id": "b_own512_s43-bebf65ca",
+    "locator": "21522798-uit/mobihet-v2/b_own512_s43-bebf65ca",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "b_seed512",
+    "fingerprint": "c50db5983856ea9b8e95bc49571e45c2362f19503375ccdb114bcadeed733f2b",
+    "run_id": "b_seed512_s43-c50db598",
+    "locator": "21522798-uit/mobihet-v2/b_seed512_s43-c50db598",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "b_own1024",
+    "fingerprint": "99233a33f836a9fe60d28336a805bd4e449355683e23b9424ac178d653b7a4dd",
+    "run_id": "b_own1024_s43-99233a33",
+    "locator": "21522798-uit/mobihet-v2/b_own1024_s43-99233a33",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "b",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "b_seed1024",
+    "fingerprint": "c8cf9b0971d313cd4355b9b54eff61b4cfbb4b1566c61477a46f09c45b1a6c25",
+    "run_id": "b_seed1024_s43-c8cf9b09",
+    "locator": "21522798-uit/mobihet-v2/b_seed1024_s43-c8cf9b09",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "diag",
+    "fingerprint": "6cdc8ec567df3392a1bb9d2d0a232c2ecaccd281c2aa6de918d0b6c050869d77",
+    "run_id": "diag_s42-6cdc8ec5",
+    "locator": "21522798-uit/mobihet-v2/diag_s42-6cdc8ec5",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "c_own",
+    "fingerprint": "9262c67a4ac7f4245935e6702c4f9323a656667e5e2a82fceded536b2f2f6b51",
+    "run_id": "c_own_s42-9262c67a",
+    "locator": "21522798-uit/mobihet-v2/c_own_s42-9262c67a",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "c_fl",
+    "fingerprint": "6a1309f889549edc7b111d672dd59b45bc15c4a62620c1adae860ac3c27e94ec",
+    "run_id": "c_fl_s42-6a1309f8",
+    "locator": "21522798-uit/mobihet-v2/c_fl_s42-6a1309f8",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 42,
+    "owner": "minhtran0601",
+    "arm": "c_shuffle",
+    "fingerprint": "223bf2d543b4ba41daa17324182f971aa0e917704dbae6e2a1f5625eefdf05d7",
+    "run_id": "c_shuffle_s42-223bf2d5",
+    "locator": "21522798-uit/mobihet-v2/c_shuffle_s42-223bf2d5",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "diag",
+    "fingerprint": "e7f1a1f21be3d8c43b8b2875881490ae4747a2cbd5aa35c8b5b445c5460aa411",
+    "run_id": "diag_s43-e7f1a1f2",
+    "locator": "21522798-uit/mobihet-v2/diag_s43-e7f1a1f2",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "c_own",
+    "fingerprint": "860d1186174251f156257b9d0fa3f6bd6b68b1322ec8b0f89128b8e3dda31e42",
+    "run_id": "c_own_s43-860d1186",
+    "locator": "21522798-uit/mobihet-v2/c_own_s43-860d1186",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "c_fl",
+    "fingerprint": "40b836ebd4d6a59d19c86346bedee277ae4d0023b8bfe42d9cd3fe94fa584da8",
+    "run_id": "c_fl_s43-40b836eb",
+    "locator": "21522798-uit/mobihet-v2/c_fl_s43-40b836eb",
+    "status": "expected_not_yet_verified"
+  },
+  {
+    "family": "c",
+    "seed": 43,
+    "owner": "dinhan25",
+    "arm": "c_shuffle",
+    "fingerprint": "67d4a53c265f58f3dc1bc607d526d8188e87b2ecc30cb18c0f6c049e15ceb7b5",
+    "run_id": "c_shuffle_s43-67d4a53c",
+    "locator": "21522798-uit/mobihet-v2/c_shuffle_s43-67d4a53c",
+    "status": "expected_not_yet_verified"
+  }
+]

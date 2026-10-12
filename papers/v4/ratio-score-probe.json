@@ -1,0 +1,326 @@
+{
+  "evidence": "verified C r20 proxy0 canonical Gaussian BN, fresh noise 64/class; no MALA F1/mixing/production timing proof",
+  "checks": [
+    {
+      "seed": 42,
+      "class_id": 0,
+      "points": 64,
+      "floor_fraction": 0.5625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.278617858886719,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.307031631469727
+    },
+    {
+      "seed": 42,
+      "class_id": 1,
+      "points": 64,
+      "floor_fraction": 0.59375,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 5.349390983581543,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.078694343566895
+    },
+    {
+      "seed": 42,
+      "class_id": 2,
+      "points": 64,
+      "floor_fraction": 0.546875,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.491562843322754,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.1193208694458
+    },
+    {
+      "seed": 42,
+      "class_id": 3,
+      "points": 64,
+      "floor_fraction": 0.5625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.897150039672852,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.161676406860352
+    },
+    {
+      "seed": 42,
+      "class_id": 4,
+      "points": 64,
+      "floor_fraction": 0.703125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.6985535621643066,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.064104080200195
+    },
+    {
+      "seed": 42,
+      "class_id": 5,
+      "points": 64,
+      "floor_fraction": 0.328125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 6.078848838806152,
+      "median_ratio_score_norm": 7.312958240509033,
+      "mean_gaussian_score_norm": 8.19097900390625
+    },
+    {
+      "seed": 42,
+      "class_id": 6,
+      "points": 64,
+      "floor_fraction": 0.703125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.0955560207366943,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.203802108764648
+    },
+    {
+      "seed": 42,
+      "class_id": 7,
+      "points": 64,
+      "floor_fraction": 0.46875,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 5.697958469390869,
+      "median_ratio_score_norm": 5.280383586883545,
+      "mean_gaussian_score_norm": 7.991361141204834
+    },
+    {
+      "seed": 42,
+      "class_id": 8,
+      "points": 64,
+      "floor_fraction": 0.625,
+      "cap_fraction": 0.015625,
+      "mean_ratio_score_norm": 4.11086368560791,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 7.9850053787231445
+    },
+    {
+      "seed": 42,
+      "class_id": 9,
+      "points": 64,
+      "floor_fraction": 0.640625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.684828758239746,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.083322525024414
+    },
+    {
+      "seed": 42,
+      "class_id": 10,
+      "points": 64,
+      "floor_fraction": 0.484375,
+      "cap_fraction": 0.015625,
+      "mean_ratio_score_norm": 5.244668006896973,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.262052536010742
+    },
+    {
+      "seed": 42,
+      "class_id": 11,
+      "points": 64,
+      "floor_fraction": 0.59375,
+      "cap_fraction": 0.03125,
+      "mean_ratio_score_norm": 3.979062080383301,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.25832462310791
+    },
+    {
+      "seed": 42,
+      "class_id": 12,
+      "points": 64,
+      "floor_fraction": 0.453125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.664434909820557,
+      "median_ratio_score_norm": 5.526279926300049,
+      "mean_gaussian_score_norm": 7.987035274505615
+    },
+    {
+      "seed": 42,
+      "class_id": 13,
+      "points": 64,
+      "floor_fraction": 0.578125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.38081693649292,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.14915657043457
+    },
+    {
+      "seed": 42,
+      "class_id": 14,
+      "points": 64,
+      "floor_fraction": 0.859375,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 1.863967776298523,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.056821823120117
+    },
+    {
+      "seed": 42,
+      "class_id": 15,
+      "points": 64,
+      "floor_fraction": 0.546875,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.865242004394531,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.016963005065918
+    },
+    {
+      "seed": 43,
+      "class_id": 0,
+      "points": 64,
+      "floor_fraction": 0.609375,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.457754135131836,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.307031631469727
+    },
+    {
+      "seed": 43,
+      "class_id": 1,
+      "points": 64,
+      "floor_fraction": 0.640625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 6.417309761047363,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.078694343566895
+    },
+    {
+      "seed": 43,
+      "class_id": 2,
+      "points": 64,
+      "floor_fraction": 0.703125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.546177625656128,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.1193208694458
+    },
+    {
+      "seed": 43,
+      "class_id": 3,
+      "points": 64,
+      "floor_fraction": 0.75,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.1917524337768555,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.161676406860352
+    },
+    {
+      "seed": 43,
+      "class_id": 4,
+      "points": 64,
+      "floor_fraction": 0.765625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.533113479614258,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.064104080200195
+    },
+    {
+      "seed": 43,
+      "class_id": 5,
+      "points": 64,
+      "floor_fraction": 0.421875,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 6.114077091217041,
+      "median_ratio_score_norm": 6.311045169830322,
+      "mean_gaussian_score_norm": 8.19097900390625
+    },
+    {
+      "seed": 43,
+      "class_id": 6,
+      "points": 64,
+      "floor_fraction": 0.59375,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 5.336311340332031,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.203802108764648
+    },
+    {
+      "seed": 43,
+      "class_id": 7,
+      "points": 64,
+      "floor_fraction": 0.609375,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 5.005514144897461,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 7.991361141204834
+    },
+    {
+      "seed": 43,
+      "class_id": 8,
+      "points": 64,
+      "floor_fraction": 0.703125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 3.449589252471924,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 7.9850053787231445
+    },
+    {
+      "seed": 43,
+      "class_id": 9,
+      "points": 64,
+      "floor_fraction": 0.546875,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 6.356592178344727,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.083322525024414
+    },
+    {
+      "seed": 43,
+      "class_id": 10,
+      "points": 64,
+      "floor_fraction": 0.53125,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 6.338352203369141,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.262052536010742
+    },
+    {
+      "seed": 43,
+      "class_id": 11,
+      "points": 64,
+      "floor_fraction": 0.640625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.7943572998046875,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.25832462310791
+    },
+    {
+      "seed": 43,
+      "class_id": 12,
+      "points": 64,
+      "floor_fraction": 0.640625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.506383895874023,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 7.987035274505615
+    },
+    {
+      "seed": 43,
+      "class_id": 13,
+      "points": 64,
+      "floor_fraction": 0.65625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 4.426190376281738,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.14915657043457
+    },
+    {
+      "seed": 43,
+      "class_id": 14,
+      "points": 64,
+      "floor_fraction": 0.734375,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 2.714465618133545,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.056821823120117
+    },
+    {
+      "seed": 43,
+      "class_id": 15,
+      "points": 64,
+      "floor_fraction": 0.625,
+      "cap_fraction": 0.0,
+      "mean_ratio_score_norm": 5.426839828491211,
+      "median_ratio_score_norm": 0.0,
+      "mean_gaussian_score_norm": 8.016963005065918
+    }
+  ],
+  "limit": "C snapshot is historical diagnostic, not V4 trained MALA teacher; no parameter changes from probe"
+}

@@ -48,8 +48,9 @@ Cổng riêng:
 - Tâm lớp (`h2_mean`) và cân bằng lớp (`h2_bal`) đều ≈ 0. Lợi tăng theo lượng cấu trúc bậc hai được giữ: diag +0,08, hạng 4 +0,09, full +0,11.
 - **Phần lớn lợi là tri thức của client khác, không phải làm mượt.** Gaussian fit trên dữ liệu của chính xe (`h2_own`) chỉ +0,024.
   Gaussian gộp 20 client (`h2_full`) hơn nó +0,083. Phân phối có điều kiện theo lớp ở mức quần thể chứa đa dạng receiver mà một xe không có.
-- Loss local r20: `h2_full` 0,63, `h2_own` 0,21, `local` 0,01. Mẫu tổng hợp chặn học thuộc vân tay receiver.
-  Mẫu từ quần thể chặn mạnh hơn mẫu từ chính xe.
+- Loss r20 đã lưu: `h2_full` 0,63, `h2_own` 0,21, `local` 0,01. **Đính chính khi tổng hợp V2:** loss H2
+  gồm CE real + CE synthetic; chưa chứng minh riêng CE real cao hoặc chặn học thuộc vân tay receiver.
+  Lợi của thống kê quần thể có bằng chứng từ contrast F1; cơ chế chống học thuộc cần loss tách và holdout riêng.
 - Lợi rải trên 14/16 lớp (+0,04…+0,18). Hai lớp không được lợi:
   - positionMirroring +0,01;
   - timeDelay +0,02.

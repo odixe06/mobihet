@@ -1,0 +1,72 @@
+setup a_dense32 role private rows 5120 sec 2.3
+r1 a_dense32 s42 private group gp 0.007089835338893435 loss 2.8350 10s
+r2 a_dense32 s42 private group gp 0.006734771862106327 loss 2.1928 5s
+r3 a_dense32 s42 private group gp 0.006507309991494632 loss 1.9169 5s
+done a_dense32 complete True
+setup a_r_small_ef role private rows 5120 sec 1.5
+r1 a_r_small_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_r_small_ef s42 private group gp 0.00670443076424118 loss 2.2086 5s
+r3 a_r_small_ef s42 private group gp 0.00648337201808227 loss 1.9503 5s
+done a_r_small_ef complete True
+setup a_t_medium_train role private rows 5120 sec 1.6
+r1 a_t_medium_train s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_t_medium_train s42 private group gp 0.00670443076424118 loss 2.2070 6s
+r3 a_t_medium_train s42 private group gp 0.00648337201808227 loss 1.9471 6s
+done a_t_medium_train complete True
+setup a_o_medium_ef role private rows 5120 sec 1.5
+r1 a_o_medium_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_o_medium_ef s42 private group gp 0.00670443076424118 loss 2.2076 9s
+r3 a_o_medium_ef s42 private group gp 0.00648337201808227 loss 1.9469 5s
+done a_o_medium_ef complete True
+setup a_p_medium_ef role private rows 5120 sec 1.5
+r1 a_p_medium_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_p_medium_ef s42 private group gp 0.00670443076424118 loss 2.2071 6s
+r3 a_p_medium_ef s42 private group gp 0.00648337201808227 loss 1.9464 6s
+done a_p_medium_ef complete True
+setup a_r_small_ef role private rows 5120 sec 1.7
+r1 a_r_small_ef s42 private group gp 0.007089835338893435 loss 2.8350 9s
+done a_r_small_ef complete False
+setup a_r_small_ef role private rows 5120 sec 2.6
+r2 a_r_small_ef s42 private group gp 0.00670443076424118 loss 2.2086 6s
+r3 a_r_small_ef s42 private group gp 0.00648337201808227 loss 1.9503 6s
+done a_r_small_ef complete True
+setup a_t_medium_train role private rows 5120 sec 1.6
+r1 a_t_medium_train s42 private group gp 0.007089835338893435 loss 2.8350 6s
+done a_t_medium_train complete False
+setup a_t_medium_train role private rows 5120 sec 2.5
+r2 a_t_medium_train s42 private group gp 0.00670443076424118 loss 2.2070 6s
+r3 a_t_medium_train s42 private group gp 0.00648337201808227 loss 1.9471 5s
+done a_t_medium_train complete True
+setup a_o_medium_ef role private rows 5120 sec 1.6
+r1 a_o_medium_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+done a_o_medium_ef complete False
+setup a_o_medium_ef role private rows 5120 sec 2.7
+r2 a_o_medium_ef s42 private group gp 0.00670443076424118 loss 2.2076 10s
+r3 a_o_medium_ef s42 private group gp 0.00648337201808227 loss 1.9469 6s
+done a_o_medium_ef complete True
+setup a_p_medium_ef role private rows 5120 sec 1.7
+r1 a_p_medium_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+done a_p_medium_ef complete False
+setup a_p_medium_ef role private rows 5120 sec 2.7
+r2 a_p_medium_ef s42 private group gp 0.00670443076424118 loss 2.2071 6s
+r3 a_p_medium_ef s42 private group gp 0.00648337201808227 loss 1.9464 10s
+done a_p_medium_ef complete True
+VERIFIED {"run": "a_dense32_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_r_small_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_r_small_ef_s42
+VERIFIED {"run": "a_t_medium_train_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_t_medium_train_s42
+VERIFIED {"run": "a_o_medium_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_ef_s42
+VERIFIED {"run": "a_p_medium_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_p_medium_ef_s42
+VERIFIED {"run": "a_r_small_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_r_small_ef_s42
+VERIFIED {"run": "a_t_medium_train_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_t_medium_train_s42
+VERIFIED {"run": "a_o_medium_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_o_medium_ef_s42
+VERIFIED {"run": "a_p_medium_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V3 a_p_medium_ef_s42
+PASS V3 5 arms x3rounds; exact4-carrier resume; inference; tamper rejection
+Peak tree RSS: 2720 MiB; exit 0

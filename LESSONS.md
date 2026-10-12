@@ -9,10 +9,17 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Đề xuất phương pháp phải có: **bằng chứng vấn đề → cơ chế → dấu hiệu kiểm chứng có thể sai**. Không thấy dấu hiệu thì dừng hướng đó.
 - Phương án mới phải kiểm nghiệm ngắn để xác định khả thi. Bất hợp lý thì chỉnh từ nguyên nhân hoặc bỏ; **không kéo dài run để tìm điểm thắng**.
 - Làm tới mốc nào cập nhật docs tới đó. Trước khi compact phải lưu kernel ID, source/config, kết quả đã verify, quota và bước còn thiếu.
+- **2026-10-11: chủ dự án yêu cầu cập nhật đủ tài liệu rồi dừng phiên.** [Bàn giao](docs/operations/handoff-2026-10-11.md).
+  Sau đó chủ dự án yêu cầu tiếp tục **chỉ viết đề xuất Markdown**, chưa code/chạy. [Bộ V2](docs/research/de-xuat-v2/README.md).
+  Sau đó đã yêu cầu **triển khai kiểm khả thi V2**, chốt A cả2cỡ, B FO512/1024 trước, C theo cấu hình đề xuất.
+  [Manifest/cổng](docs/research/pilot-v2.md), [ledger](papers/v2/rebuild.md). Git/DVC vẫn chỉ khi yêu cầu riêng.
+- **2026-10-11, chốt trong phiên đề xuất V2: mọi mô hình học được đều DAGSNet**, không chỉ private/proxy;
+  gồm teacher, encoder, model phụ. Không đưa tree/GMM học được hoặc MLP phụ vào phương án chính.
+  Moment H2 gộp đã được phép vẫn là thống kê nền. R2 khác kiến trúc tiếp tục chỉ ở thiết kế.
 - **2026-10-11 (chủ dự án): tổng hợp tài liệu phải có index toàn dự án.** [README](README.md) định tuyến theo nhu cầu;
   [docs/file-index.md](docs/file-index.md) liệt kê từng file và vị trí artifact. Sau thêm/xóa/chuyển file, chạy
   `python3 scripts/update_file_index.py`; kiểm link trước bàn giao để phiên sau tìm đủ code/docs/notebook/skill.
-- Không backup, không xóa artifact khi chưa được đồng ý trong phiên (commit/push: xem dòng 2026-10-11 bên dưới).
+- Không backup, không xóa artifact khi chưa được đồng ý trong phiên. Git/DVC theo quyết định mới nhất bên dưới.
 - Kaggle: agent push trực tiếp sau preflight. Không ngại quota cho kịch bản ngắn; run dài hoặc nhiều client thì hỏi trước.
 - **2026-10-11 (chủ dự án): mọi notebook huấn luyện tạo mới bắt buộc tích hợp Weights & Biases (`wandb`) API key
   và theo dõi online trực tiếp.** Khởi tạo/kết nối W&B trước train, bật Internet, log tiến trình mỗi round
@@ -22,7 +29,8 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   Notebook đã PUSHED giữ source; không sửa/rerun chỉ để thêm W&B. Quy định áp dụng từ notebook mới tiếp theo.
 - **2026-10-11: tiến trình nặng (train/pilot nhiều arm, protocol đầy đủ) chạy trên Kaggle, không chạy ở máy local.**
   Local chỉ để smoke test, dựng fixture nhỏ, report, collect.
-- 2026-10-11: được commit + push repo này ở các mốc. Không thêm attribution Claude vào commit.
+- **2026-10-11 (quyết định mới nhất): không tự commit/push Git, DVC add/push/backup; chỉ làm khi chủ dự án yêu cầu rõ.**
+  Quyết định này thay quyền commit/push theo mốc đã cho trước đó. Tập trung nghiên cứu, kiểm nghiệm và tài liệu local.
 - 2026-10-11: mọi client dùng DAGSNet, **kể cả proxy** (H1, H1+H2): cấu hình đồng nhất cho toàn bộ client. Chưa chạy đa mô hình.
 - 2026-10-11 (phiên tiếp): được đề xuất ngoài H1–H6. RSU được đọc **codebook synthetic từ nhiễu**; cấm raw-init/record thật.
   Đây là ngoại lệ Q4 cho synthetic, không phải tự động có secure aggregation hay DP. DAGSNet/local-smoke được xác nhận lại.
@@ -76,11 +84,21 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
     Chỉ timeDelay có trần (centralized 0,23).
 - **KD/teacher:** teacher peer (Build7) và ridge teacher RSU (S13) chỉ ngang làm mượt theo lớp.
   Mọi teacher cần cổng chất lượng + đối chứng class-mean.
-- **S-a seed43 đã verify (2026-10-11):** fit Fourier giảm0,0129→4,23e-7 nhưng KME chỉ hơn
-  Gaussian-target bank +0,0024, thua Gaussian diag liên tục −0,0442. DM fit mean20producer giảm mạnh
-  nhưng hơn codebook chưa tối ưu chỉ +0,0036. Khớp mục tiêu synthesis không chứng minh tri thức có ích.
+- **S-a hai seed đã verify (2026-10-11):** KME hơn Gaussian-target bank chỉ +0,0019/+0,0024,
+  thua Gaussian diag liên tục −0,0412/−0,0442. DM so codebook chưa tối ưu −0,0002/+0,0036.
+  Cả hai trượt cổng dù synthesis fit giảm mạnh. Khớp mục tiêu synthesis không chứng minh tri thức có ích.
   Chưa suy nguyên nhân riêng bank/encoder từ đối chứng hiện có; chưa phủ định họ FedDM/DP-MERF.
-  Chờ seed42 để ghi kết quả cặp, không tune/kéo dài run cứu cổng. [Thiết lập](docs/research/pilot-new-fl.md).
+  Không tune/kéo dài run cứu cổng, không mở S-b cho hai adaptation tĩnh. [Kết quả](docs/research/probes/pilot-new-fl.md).
+- Loss train H2/KME/DM được lưu là **CE real + CE synthetic**, không phải CE real riêng.
+  Tổng gần0 ⇒ cả hai thành phần nhỏ; tổng cao chưa chứng minh real CE cao hay đã chặn học thuộc local.
+  Chẩn đoán chống học thuộc cần tách loss và dùng holdout; không suy từ tổng loss đơn lẻ.
+- **Rà soát thiết kế V2, chưa phải kết quả chạy:** ít byte không tự giữ sức chứa. DAGSNet với
+  `θ=θ₀+Za`, K hệ số chỉ có≤K bậc tự do chung dù mọi tầng đổi được; kết quả fine-tune LLM không chứng minh
+  học IDS từ đầu. Seed không tái dựng BN local hoặc xóa chi phí bootstrap/catch-up.
+- **Rà soát density ratio V2:** real có feature rời rạc/điền0, Gaussian liên tục có thể khác support;
+  không mặc định `p_real/q` tồn tại. Data/noise accuracy cao không chứng minh ratio hữu ích, clip không sửa support.
+  [V2-C](docs/research/de-xuat-v2/c-density-ratio.md) đề nghị mục tiêu làm trơn local rõ ràng, ESS và đối chứng shuffle;
+  augmentation/cổng vẫn là đề nghị chưa triển khai, mọi record local đã perturb vẫn không được upload.
 - **Khác kiến trúc:** chỉnh head không cứu được backbone yếu (M2). Tri thức phải tác động toàn model.
 - **Nút thắt:** ranh giới quyết định đa receiver. Xe sai 4% trên receiver của mình, 45% toàn cục.
   32 mẫu thật/lớp từ client khác ≈ 70% lợi tối đa (M1, số lịch sử; dạng này vi phạm R3, không chạy lại).
@@ -106,6 +124,78 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 
 ## 6. Vận hành
 
+- **K5 algebra bounded train probe:**40.960rows/259MiB,17identity khôngvi phạm interval
+  sauFP16ULP/scalerpropagation;6rows denominatorinterval chứa0, missingheading/coincidence
+  branch chưa phủ. Bearingcos center-error tới0,782/closing20,07 dùintervalPASS.
+  Không suy faithful reconstruction từbound rộng; G51/G53 cầnchốt trướcpilot.
+  [Bằngchứng](papers/v5/algebra-probe.json), [thiếtkế§10](docs/research/v5-algebra-sources.md).
+
+- **V4support cảhai seed đãaudit:** structural−diag−0,00212/−0,00824;
+  −own+0,10153/+0,10926,−shuffle+0,07744/+0,06789,−marginal+0,00347/+0,00549.
+  PairedFAIL; first-sessioncontribution chưaquacảhai seed, khôngcontact/rerun.
+  Fidelity0invalid khôngchứng minh IDS tốt hơn; không đổiheadline/head hoặcHP đểcứucổng.
+
+- **V5 exactresume:** weights/books/packets trùngbit; mismatch duy nhất ởwalltime
+  `algorithm.diag.condensation_seconds`. Thời gian làdiagnostic trongroundmarker/report,
+  khôngđược trộn vàostate thuậttoán cầnbitwise. Sửa trướcpush, giữsmoke cũ; source cuối kiểm tagmới.
+
+- **Clipped-ratio score probe trên C đãverify:**64freshGaussianpoint/lớp,FP32,2seed;
+  r_y≤−10 khoảng57,8%/63,6%, median `||score(z)+z||`=0 ở13/16 và15/16lớp.
+  Trong vùngclipfloor, ratio không cóinputgradient hướngdẫn MALA; Gaussian drift/noise vẫn hoạt động.
+  Không suy MALA vôích hoặc20burn-in đãmixing từprobe này; không thayeta/cap đểcứupilottừdiagnostic.
+  [Bằngchứng](papers/v4/ratio-score-probe.json); snapshotC lịch sử, không phải teacherV4 đãtrain.
+
+- **K2b coverage local sample:**40960trainrow, M32/512; h1/2 khôngqua90%/80%class,
+  h4 coverage≈98,8%/99,2%, nhưng normalizedsofttargetentropy≈0,983/0,982 vàmaxprob≈0,089/0,091.
+  Coverage cao cóthể đi kèmtargetgầnuniform; không coi coveragePASS làteacher/F1PASS.
+  Chưa chọnbandwidth hoặc fulltraingate. [Probe](papers/v5/anchor-probe.json).
+
+- Fingerprint driver hash **toàn bộ `mh/*.py`**, kểcả module mới chưa dùng bởiarm.
+  Không thêm/sửa module khi đang kiểm full-vs-resume: V4MALA smoke đã bịguard từchối resume do
+  thêm schema/support giữacheck, không numerical failure. Giữoutput cũ; smoke lại tagmới trênsource đóngbăng.
+
+- **V2-C cảhai seed đãverify đủ8arm×20round:** FL−diag −0,01666/−0,02082;
+  FL−own +0,00128/−0,00172; FL−shuffle −0,00932/−0,00845. ESS fraction từnglớp≈0,007–0,024.
+  Clip/class-normalize không tự tạo sampling hiệu quả; ratio fit không chứng minh tri thức hữu ích.
+  C FAIL, không contact/rerun y nguyên. Chưa cô lập support/ESS như nguyên nhân duy nhất.
+- **K3 local mixed-derivative probe:** DAGSNet FP32/eval,32trainrow,IPC1/4×4step PASS;
+  peak1732MiB. Chỉ khả thi đạo hàm, chưa F1 hoặc cost2× trênT4. Runtime2.10 remote vẫn phải preflight.
+
+- **V2-B seed42 terminal:** K512 và own512 đều lỗi `proxy loss` không hữu hạn tại client0/r1,
+  trước round commit đầu tiên. Không phải auth/OOM; không rerun y nguyên. Local4step/batch32 finite
+  không chứng minh full epoch/batch512 ổn định. Cổng từng K độc lập, lỗi512 không được che kết quả1024.
+- **V2-B cảhai seed đãaudit:** seed43K512/own512 lỗi tại client17/r1, không córoundcommit.
+  K1024teacherhead≈0,30781/0,33803, retention≈0,299/0,373 của dense−own, thua localprivategp.
+  Teacher gate FAIL; không mởprivateKD,ZO/contact; không phủ định toànhọseed-based FL.
+- **K1support preflight:**40960trainrow sample,7337first-session,0vi phạm13zero-imputed atom;
+  firstflag và2nhómprofile binary hợp lệ,profileone-hot0vi phạm. Atom phảiđổi bằngscaler rồi lượng tử
+  nhưfixture; độc lậpBernoulli3profile cóthểsinhmulti-hot. Đây làsample/schema proof, khôngF1hoặcfullscan.
+- **DAGSNet/JEM preflight:**head cóLayerNorm trước2Linear/ReLU, logits bịchặn tuyệtđối khiweights hữu hạn.
+  TrênR66 khôngbase measure/domaincompact, `sum_y exp(logit_y(x))` cólowerbound dương nênintegralvôhạn.
+  Không lấy classifier DAGS làm densityLebesgue chưa chuẩn hóa. Gaussianbase/mixturebase hoặcdomainhữu hạn
+  phảiđịnhnghĩa trước sampling; finiteSGLD20step không chứng minhnormalizability/mixing.
+  [Probe](papers/v3/energy-probe.json) kiểmheadbound bằngcheckpointdense đãverify; kết luận chính từđại số.
+
+- **V2-A remote2026-10-11:** kernel ERROR có thể xảy ra sau khi nhiều arm đã hoàn tất.
+  Thu từng arm/checkpoint trước quyết định rerun. Seed42: EF small/medium tăng loss rồi BN calibration
+  tạo state không hữu hạn; không chạy lại y nguyên để cứu cổng. Chờ audit hai seed để chốt bằng chứng.
+- **V2-A checkpoint seed42 đã audit:** sketch-space EF không mặc định là phép nén co.
+  Sau decode top-k rồi sketch lại, residual/target ở r2–4 của small≈16,75–17,92;
+  medium r2–6≈2,93–3,97. Residual tăng small46→238.090 và medium28→16.296.
+  Parameter max small≈4.703, medium≈182 trước BN AMP overflow. Bù lỗi tại sketch có thể khuếch đại collision;
+  codec đúng/resume đúng không chứng minh cơ chế ổn định. Không kết luận toàn bộ FetchSGD/EF bị bác bỏ:
+  adaptation này không có momentum/heavy-hitter guarantee như nguồn. [Chẩn đoán](papers/v2/sketch-diagnostics.json).
+- Notebook private-inline: Kaggle tự sinh `__notebook__.ipynb` chứa source/key và HTML liên quan.
+  Quét key trên artifact do driver tạo (`runs/`, `source/`), không quét notebook nền tảng để kết luận training lỗi.
+  Bulk pull chỉ lấy `runs/`, `source/`; executed source có key chỉ tải vào ignored private_push, audit bản redacted.
+  Notebook A đã PUSHED giữ nguyên; B/C chưa push đã sửa bộ quét. Quyền private-inline có chi phí lưu key trong history.
+
+- **V2 local smoke:** GPU CountSketch `scatter_add` atomic có thể khác thứ tự cộng giữa hai lần chạy,
+  residual r1 lệch bit dù decoded patch/weights trùng. Exact-resume cần deterministic algorithms và
+  `CUBLAS_WORKSPACE_CONFIG=:4096:8` trước CUDA; kiểm lại state, không chỉ prediction/weights.
+  Đây là bài học numeric backend, không phải kết quả F1 hoặc bảo đảm bitwise giữa account/thiết bị.
+  CUDA median-with-indices bị deterministic guard chặn dù chỉ lấy values; dùng stable-sort middle value,
+  stable top-k/index tie. Không tắt guard hoặc dùng warn-only để gọi kiểm exact-resume đã qua.
 - Local: RAM 7,6 GiB, RTX 3050 4 GB. Job nặng **không** chạy local (chủ dự án 2026-10-11). Job vừa (smoke, fixture) chạy qua `run_local_guarded.py`.
 - Đọc parquet bằng `pyarrow.dataset` phải tắt readahead (`batch_readahead=1, fragment_readahead=1`), nếu không RSS lên 4,6 GB.
   `centralized/test/` có lẫn `*.stats.json`, nên glob `*.parquet`.
@@ -118,6 +208,9 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   - Budget phiên = log thật + dư ≥ 15%. Nạp checkpoint về CPU.
   - Pull bằng `pull_kernel_output.py` (Range resume). Collector cần cả `python` lẫn `kaggle` trong PATH env `nckh`.
   - Kaggle không trùng bit giữa các account. Preflight phải chạy vòng arm của driver với đúng số cycle production (lỗi E14: arm 2 chạy 0 cycle).
+  - S-a seed42: từ push→COMPLETE khoảng123phút, worker log50,2phút. Không đồng nhất thời gian chờ dịch vụ với train/GPU-time.
+    Quota free khi RUNNING13,6791h tăng thành14,3519h sau COMPLETE; báo chi phí từ snapshot đã kết thúc + log,
+    không coi chênh quota khi RUNNING là chi phí cuối. [Ledger](papers/new-fl/rebuild.md).
 - DVC:
   - Chỉ `dvc add` workspace đầy đủ.
   - `.git` phình vì `tmp_obj_*` sau push bị ngắt: kiểm `git count-objects -vH`.

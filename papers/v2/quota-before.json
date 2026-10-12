@@ -1,0 +1,24 @@
+{
+  "recorded_utc": "2026-10-11T11:45:08.246643+00:00",
+  "stage": "before_first_v2_push",
+  "quotas": [
+    {
+      "user": "minhtran0601",
+      "gpu_left": 14.351889166666666,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "dinhan25",
+      "gpu_left": 14.634845555555556,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  ]
+}

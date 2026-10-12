@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v3_abort.py", line 52, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v3_abort.py", line 42, in main
+    assert torch.equal(method.global_vector,fresh.global_vector)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+Peak tree RSS: 569 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_v3_abort.py` failed. (See above for error)

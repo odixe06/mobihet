@@ -1,0 +1,162 @@
+[
+  {
+    "family": "m",
+    "seed": 42,
+    "arm": "diag",
+    "fingerprint": "b2b586a794588e37556cc22c21305855fcfb432265c9fa0f9b9858249cd0b909",
+    "run_id": "diag_s42-b2b586a7",
+    "locator": "21522798-uit/mobihet-v4/diag_s42-b2b586a7"
+  },
+  {
+    "family": "m",
+    "seed": 42,
+    "arm": "c_fl",
+    "fingerprint": "490b8e59354654367d52dc46668234f5b2d195199ff1930d683e2f87a4b1a491",
+    "run_id": "c_fl_s42-490b8e59",
+    "locator": "21522798-uit/mobihet-v4/c_fl_s42-490b8e59"
+  },
+  {
+    "family": "m",
+    "seed": 42,
+    "arm": "c_mala_fl",
+    "fingerprint": "079caf6b61e460ac7485b993c75e557a31b2490d4188b6d6e74ff9c273313182",
+    "run_id": "c_mala_fl_s42-079caf6b",
+    "locator": "21522798-uit/mobihet-v4/c_mala_fl_s42-079caf6b"
+  },
+  {
+    "family": "m",
+    "seed": 42,
+    "arm": "c_mala_own",
+    "fingerprint": "4e6b2b06bf48a636ccb0fab66da6fec57164a40d80a420c78bad70d6c3b3d5aa",
+    "run_id": "c_mala_own_s42-4e6b2b06",
+    "locator": "21522798-uit/mobihet-v4/c_mala_own_s42-4e6b2b06"
+  },
+  {
+    "family": "m",
+    "seed": 42,
+    "arm": "c_mala_shuffle",
+    "fingerprint": "185803511cd6430aba78a2e0de3b3b12d8419fb81d5fcd2cdb3aaca0ca3861ac",
+    "run_id": "c_mala_shuffle_s42-18580351",
+    "locator": "21522798-uit/mobihet-v4/c_mala_shuffle_s42-18580351"
+  },
+  {
+    "family": "m",
+    "seed": 43,
+    "arm": "diag",
+    "fingerprint": "acee73d67453b0e29d8c29757bc87a7c70473799aa0906d77e95a44aa2152a72",
+    "run_id": "diag_s43-acee73d6",
+    "locator": "21522798-uit/mobihet-v4/diag_s43-acee73d6"
+  },
+  {
+    "family": "m",
+    "seed": 43,
+    "arm": "c_fl",
+    "fingerprint": "bd62d678a6ec2c0761440152875afe2fc6a4f19a160af01b163ae40c98490dc2",
+    "run_id": "c_fl_s43-bd62d678",
+    "locator": "21522798-uit/mobihet-v4/c_fl_s43-bd62d678"
+  },
+  {
+    "family": "m",
+    "seed": 43,
+    "arm": "c_mala_fl",
+    "fingerprint": "b3328b8ef1d128cb824b1fada2b9804577e94d819253e81a096bd332958f7a54",
+    "run_id": "c_mala_fl_s43-b3328b8e",
+    "locator": "21522798-uit/mobihet-v4/c_mala_fl_s43-b3328b8e"
+  },
+  {
+    "family": "m",
+    "seed": 43,
+    "arm": "c_mala_own",
+    "fingerprint": "a7875759a96cba000105fc61d0ed45da9392d46f40bbe9712a57b76197dd834c",
+    "run_id": "c_mala_own_s43-a7875759",
+    "locator": "21522798-uit/mobihet-v4/c_mala_own_s43-a7875759"
+  },
+  {
+    "family": "m",
+    "seed": 43,
+    "arm": "c_mala_shuffle",
+    "fingerprint": "93408c0ed60e1281736e6209fd5284d0bd2a16e3d93ce7a7ff98e9df8ac2a2ad",
+    "run_id": "c_mala_shuffle_s43-93408c0e",
+    "locator": "21522798-uit/mobihet-v4/c_mala_shuffle_s43-93408c0e"
+  },
+  {
+    "family": "s",
+    "seed": 42,
+    "arm": "s_diag",
+    "fingerprint": "93fbacfa635afcd485081dfd39e194a027cbb16043865a4873c9c0868fc08558",
+    "run_id": "s_diag_s42-93fbacfa",
+    "locator": "21522798-uit/mobihet-v4/s_diag_s42-93fbacfa"
+  },
+  {
+    "family": "s",
+    "seed": 42,
+    "arm": "s_marginal",
+    "fingerprint": "d795217c3f78eea2521057371ad6aa1d427af1fbc083827031a81a5d53fc1045",
+    "run_id": "s_marginal_s42-d795217c",
+    "locator": "21522798-uit/mobihet-v4/s_marginal_s42-d795217c"
+  },
+  {
+    "family": "s",
+    "seed": 42,
+    "arm": "s_structural",
+    "fingerprint": "bba3bd0e366f69efbc77b27315c6cbcd39a38b657a05556de960994b913b06de",
+    "run_id": "s_structural_s42-bba3bd0e",
+    "locator": "21522798-uit/mobihet-v4/s_structural_s42-bba3bd0e"
+  },
+  {
+    "family": "s",
+    "seed": 42,
+    "arm": "s_own",
+    "fingerprint": "1b5da72e6412b9a38d7dc63499bdb70fc191164570e36e862e1523d9db185979",
+    "run_id": "s_own_s42-1b5da72e",
+    "locator": "21522798-uit/mobihet-v4/s_own_s42-1b5da72e"
+  },
+  {
+    "family": "s",
+    "seed": 42,
+    "arm": "s_shuffle",
+    "fingerprint": "fda1ac7246bf113a67889e16c79debf1903816ee847935fd730d98f33b112d60",
+    "run_id": "s_shuffle_s42-fda1ac72",
+    "locator": "21522798-uit/mobihet-v4/s_shuffle_s42-fda1ac72"
+  },
+  {
+    "family": "s",
+    "seed": 43,
+    "arm": "s_diag",
+    "fingerprint": "0fd9aaac2105514f1ff509fa60b3743e41737314787eec9f8634215d6242ac2e",
+    "run_id": "s_diag_s43-0fd9aaac",
+    "locator": "21522798-uit/mobihet-v4/s_diag_s43-0fd9aaac"
+  },
+  {
+    "family": "s",
+    "seed": 43,
+    "arm": "s_marginal",
+    "fingerprint": "ba8b9bde6026e15cac80e0f5b9c0c9938161e4d74162f62b68d39842593bc4b3",
+    "run_id": "s_marginal_s43-ba8b9bde",
+    "locator": "21522798-uit/mobihet-v4/s_marginal_s43-ba8b9bde"
+  },
+  {
+    "family": "s",
+    "seed": 43,
+    "arm": "s_structural",
+    "fingerprint": "a96162ebb7cdefc846fa59c201c9633858cc311ffc1e0bb37f9de2c9bfb8182c",
+    "run_id": "s_structural_s43-a96162eb",
+    "locator": "21522798-uit/mobihet-v4/s_structural_s43-a96162eb"
+  },
+  {
+    "family": "s",
+    "seed": 43,
+    "arm": "s_own",
+    "fingerprint": "befc466f02fb29a4f9121fdccb6ff425709c766259473400b5ad2083b7b05469",
+    "run_id": "s_own_s43-befc466f",
+    "locator": "21522798-uit/mobihet-v4/s_own_s43-befc466f"
+  },
+  {
+    "family": "s",
+    "seed": 43,
+    "arm": "s_shuffle",
+    "fingerprint": "5fec50c7d669d60db6133b37b6ae64ddc206a97e6038dd475863e3a3d77b19ad",
+    "run_id": "s_shuffle_s43-5fec50c7",
+    "locator": "21522798-uit/mobihet-v4/s_shuffle_s43-5fec50c7"
+  }
+]

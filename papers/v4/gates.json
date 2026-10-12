@@ -1,0 +1,30 @@
+{
+  "per_seed": {
+    "S_s42": {
+      "pass_quality": false,
+      "common_pass": true,
+      "contrasts": {
+        "s_diag": -0.002119823599959325,
+        "s_own": 0.10152719599244303,
+        "s_shuffle": 0.07744067527958132
+      },
+      "first_session_contrast": 0.0034660924461697995,
+      "first_session_contribution": false
+    },
+    "S_s43": {
+      "pass_quality": false,
+      "common_pass": true,
+      "contrasts": {
+        "s_diag": -0.008243080917035073,
+        "s_own": 0.10926204686125396,
+        "s_shuffle": 0.06788685150328433
+      },
+      "first_session_contrast": 0.005487947095335399,
+      "first_session_contribution": true
+    }
+  },
+  "paired": {
+    "M": null,
+    "S": false
+  }
+}

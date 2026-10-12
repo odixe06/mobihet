@@ -1,0 +1,41 @@
+{
+  "recorded_utc": "2026-10-11T17:16:46.315148+00:00",
+  "quotas": [
+    {
+      "user": "minhtran0601",
+      "gpu_left": 10.585415833333336,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "dinhan25",
+      "gpu_left": 10.843926944444444,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "odixeuit",
+      "gpu_left": 19.886710833333332,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "minhtrit06",
+      "gpu_left": 20.17245472222222,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  ]
+}

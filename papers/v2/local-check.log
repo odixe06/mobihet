@@ -1,0 +1,127 @@
+setup local role private rows 5120 sec 1.9
+r1 local s42 private group gp 0.007089835338893435 loss 2.8350 3s
+r2 local s42 private group gp 0.006700296662618186 loss 2.1531 1s
+r3 local s42 private group gp 0.006505775727483484 loss 1.8371 1s
+done local complete True
+setup diag role private rows 5120 sec 1.3
+r1 diag s42 private group gp 0.006815049369960785 loss 5.6425 6s
+r2 diag s42 private group gp 0.006381086716546057 loss 5.0157 2s
+r3 diag s42 private group gp 0.006292527721774193 loss 4.7651 2s
+done diag complete True
+setup a_own role private rows 5120 sec 1.5
+r1 a_own s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_own s42 private group gp 0.0067211015876201905 loss 2.1605 5s
+r3 a_own s42 private group gp 0.006505775727483484 loss 1.8458 5s
+done a_own complete True
+setup a_dense role private rows 5120 sec 1.6
+r1 a_dense s42 private group gp 0.007089835338893435 loss 2.8350 9s
+r2 a_dense s42 private group gp 0.006734771862106327 loss 2.1928 5s
+r3 a_dense s42 private group gp 0.006507309991494632 loss 1.9168 5s
+done a_dense complete True
+setup a_small_noef role private rows 5120 sec 1.5
+r1 a_small_noef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_small_noef s42 private group gp 0.00670443076424118 loss 2.2084 4s
+r3 a_small_noef s42 private group gp 0.006505775727483484 loss 1.9501 5s
+done a_small_noef complete True
+setup a_small_ef role private rows 5120 sec 1.5
+r1 a_small_ef s42 private group gp 0.007089835338893435 loss 2.8350 9s
+r2 a_small_ef s42 private group gp 0.00670443076424118 loss 2.2084 5s
+r3 a_small_ef s42 private group gp 0.006505775727483484 loss 1.9686 5s
+done a_small_ef complete True
+setup a_medium_noef role private rows 5120 sec 1.5
+r1 a_medium_noef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_medium_noef s42 private group gp 0.00670443076424118 loss 2.2076 5s
+r3 a_medium_noef s42 private group gp 0.00648337201808227 loss 1.9483 8s
+done a_medium_noef complete True
+setup a_medium_ef role private rows 5120 sec 1.6
+r1 a_medium_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+r2 a_medium_ef s42 private group gp 0.00670443076424118 loss 2.2076 5s
+r3 a_medium_ef s42 private group gp 0.00648337201808227 loss 1.9525 5s
+done a_medium_ef complete True
+setup b_dense role proxy rows 5120 sec 1.5
+r1 b_dense s42 proxy group head 0.008181541791401467 loss 2.8298 4s
+r2 b_dense s42 proxy group head 0.008259449135975188 loss 2.7251 3s
+r3 b_dense s42 proxy group head 0.008245290419916689 loss 2.6752 6s
+done b_dense complete True
+setup b_own512 role proxy rows 5120 sec 1.8
+r1 b_own512 s42 proxy group head 0.007525719025235697 loss 2.8298 5s
+r2 b_own512 s42 proxy group head 0.008585206013108776 loss 2.8077 3s
+r3 b_own512 s42 proxy group head 0.008574404477362442 loss 2.7988 3s
+done b_own512 complete True
+setup b_seed512 role proxy rows 5120 sec 1.7
+r1 b_seed512 s42 proxy group head 0.00756230339939804 loss 2.8298 5s
+r2 b_seed512 s42 proxy group head 0.007345386055178977 loss 2.8252 3s
+r3 b_seed512 s42 proxy group head 0.0073458077825743874 loss 2.8243 3s
+done b_seed512 complete True
+setup b_own1024 role proxy rows 5120 sec 4.3
+r1 b_own1024 s42 proxy group head 0.007525719025235697 loss 2.8298 4s
+r2 b_own1024 s42 proxy group head 0.008585206013108776 loss 2.8077 3s
+r3 b_own1024 s42 proxy group head 0.008574404477362442 loss 2.7988 3s
+done b_own1024 complete True
+setup b_seed1024 role proxy rows 5120 sec 1.5
+r1 b_seed1024 s42 proxy group head 0.00756230339939804 loss 2.8298 4s
+r2 b_seed1024 s42 proxy group head 0.007345386055178977 loss 2.8252 3s
+r3 b_seed1024 s42 proxy group head 0.0073458077825743874 loss 2.8243 3s
+done b_seed1024 complete True
+setup c_own role private rows 5120 sec 1.6
+r1 c_own s42 private group gp 0.006815049369960785 loss 5.6425 10s
+r2 c_own s42 private group gp 0.0063585016005909874 loss 4.9945 5s
+r3 c_own s42 private group gp 0.006292527721774193 loss 4.7491 5s
+done c_own complete True
+setup c_fl role private rows 5120 sec 1.7
+r1 c_fl s42 private group gp 0.006815049369960785 loss 5.6425 7s
+r2 c_fl s42 private group gp 0.0063585016005909874 loss 4.9952 5s
+r3 c_fl s42 private group gp 0.006292527721774193 loss 4.7508 5s
+done c_fl complete True
+setup c_shuffle role private rows 5120 sec 1.8
+r1 c_shuffle s42 private group gp 0.006815049369960785 loss 5.6425 7s
+r2 c_shuffle s42 private group gp 0.00635968977876653 loss 5.0176 5s
+r3 c_shuffle s42 private group gp 0.006292527721774193 loss 4.7646 9s
+done c_shuffle complete True
+setup a_small_ef role private rows 5120 sec 1.5
+r1 a_small_ef s42 private group gp 0.007089835338893435 loss 2.8350 6s
+done a_small_ef complete False
+setup a_small_ef role private rows 5120 sec 2.5
+r2 a_small_ef s42 private group gp 0.00670443076424118 loss 2.2084 6s
+r3 a_small_ef s42 private group gp 0.006505775727483484 loss 1.9686 6s
+done a_small_ef complete True
+setup b_seed512 role proxy rows 5120 sec 1.7
+r1 b_seed512 s42 proxy group head 0.00756230339939804 loss 2.8298 7s
+done b_seed512 complete False
+setup b_seed512 role proxy rows 5120 sec 2.6
+r2 b_seed512 s42 proxy group head 0.007345386055178977 loss 2.8252 4s
+r3 b_seed512 s42 proxy group head 0.0073458077825743874 loss 2.8243 3s
+done b_seed512 complete True
+setup c_fl role private rows 5120 sec 1.6
+r1 c_fl s42 private group gp 0.006815049369960785 loss 5.6425 6s
+done c_fl complete False
+setup c_fl role private rows 5120 sec 2.5
+r2 c_fl s42 private group gp 0.0063585016005909874 loss 4.9952 9s
+r3 c_fl s42 private group gp 0.006292527721774193 loss 4.7508 4s
+done c_fl complete True
+VERIFIED {"run": "local_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "diag_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 234, "ambiguous": 22}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_dense_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_small_noef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_small_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_medium_noef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 234, "ambiguous": 22}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_medium_ef_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 187, "ambiguous": 69}, {"round": 3, "role": "private", "rows": 256, "decisive": 234, "ambiguous": 22}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_dense_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 221, "ambiguous": 35}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 214, "ambiguous": 42}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_own512_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 215, "ambiguous": 41}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 217, "ambiguous": 39}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_seed512_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 219, "ambiguous": 37}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 221, "ambiguous": 35}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_own1024_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 215, "ambiguous": 41}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 217, "ambiguous": 39}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_seed1024_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 219, "ambiguous": 37}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 221, "ambiguous": 35}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "c_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "c_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "c_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v2_driver.py", line 55, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v2_driver.py", line 42, in main
+    if isinstance(l[key],torch.Tensor): assert torch.equal(l[key],q[key]),(arm,r,key)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('a_small_ef', 1, 'residual')
+Peak tree RSS: 2306 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_v2_driver.py` failed. (See above for error)

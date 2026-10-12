@@ -1,0 +1,43 @@
+{
+  "evidence": "head bound on verified dense checkpoint; no generative training",
+  "checkpoint_sha256": "40e52c507404c9b284ce15a6912ff234e72fcf9a7f331a16db9e7cbce42a5ee2",
+  "normalized_norm_bound": 26.692811965942383,
+  "hidden_norm_bound": 338.665283203125,
+  "per_logit_absolute_bound": [
+    450.7229309082031,
+    681.3688354492188,
+    478.8267822265625,
+    517.3507080078125,
+    460.135986328125,
+    581.2626953125,
+    662.7899169921875,
+    460.6147155761719,
+    512.6200561523438,
+    482.3257751464844,
+    629.3026123046875,
+    557.656982421875,
+    728.718994140625,
+    466.3579406738281,
+    623.1566162109375,
+    584.6748046875
+  ],
+  "sample_checks": [
+    {
+      "scale": 1,
+      "max_logit": 17.395875930786133
+    },
+    {
+      "scale": 10,
+      "max_logit": 13.761968612670898
+    },
+    {
+      "scale": 100,
+      "max_logit": 13.985884666442871
+    },
+    {
+      "scale": 1000,
+      "max_logit": 13.93323040008545
+    }
+  ],
+  "conclusion": "exp(logsumexp(DAGSNet logits)) has positive global lower bound over R^66; integral infinite without base measure or bounded domain"
+}

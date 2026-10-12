@@ -1,0 +1,7 @@
+/home/odixe/nckh/veremi/mobihet/scripts/probe_v2_basis.py:29: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  assert torch.isfinite(loss); losses.append(float(loss)); loss.backward()
+{"k": 512, "rows": 32, "steps": 4, "setup_sec": 0.4805457592010498, "step_sec": 0.13487809896469116, "initial_loss": 2.77298903465271, "final_loss": 0.5282688140869141, "coefficient_norm": 7.5929341316223145, "peak_gpu_mib": 1115.08837890625}
+{"k": 1024, "rows": 32, "steps": 4, "setup_sec": 0.8089773654937744, "step_sec": 0.028890132904052734, "initial_loss": 2.77298903465271, "final_loss": 0.10544276237487793, "coefficient_norm": 10.7210054397583, "peak_gpu_mib": 2243.3427734375}
+PASS production-basis local numeric probe; no performance/gate claim
+Peak tree RSS: 1642 MiB; exit 0

@@ -1,0 +1,6 @@
+setup b_anchor_small_fl role proxy rows 5120 sec 3.2
+r1 b_anchor_small_fl s42 proxy group head 0.0005165289256198347 loss 2.7364 14s
+r2 b_anchor_small_fl s42 proxy group head 0.0177304964539007 loss 2.7245 10s
+r3 b_anchor_small_fl s42 proxy group head 0.022457627118644068 loss 2.7377 10s
+done b_anchor_small_fl complete True
+Peak tree RSS: 2239 MiB; exit 0

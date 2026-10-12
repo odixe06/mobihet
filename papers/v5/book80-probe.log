@@ -1,0 +1,2 @@
+PASS two full 80-slot FP32 books IPC1/4 on bounded producer records
+Peak tree RSS: 2101 MiB; exit 0

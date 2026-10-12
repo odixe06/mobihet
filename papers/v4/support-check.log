@@ -1,0 +1,51 @@
+setup s_diag role private rows 5120 sec 1.0
+r1 s_diag s42 private group gp 0.006815049369960785 loss 5.6425 3s
+r2 s_diag s42 private group gp 0.006381086716546057 loss 5.0157 2s
+r3 s_diag s42 private group gp 0.006292527721774193 loss 4.7651 2s
+done s_diag complete True
+setup s_marginal role private rows 5120 sec 0.9
+r1 s_marginal s42 private group gp 0.00734461697083764 loss 5.6448 3s
+r2 s_marginal s42 private group gp 0.007081032116128673 loss 5.0249 2s
+r3 s_marginal s42 private group gp 0.0065130711116440825 loss 4.7645 5s
+done s_marginal complete True
+setup s_structural role private rows 5120 sec 0.9
+r1 s_structural s42 private group gp 0.007286135485603409 loss 5.6444 3s
+r2 s_structural s42 private group gp 0.006851338485663083 loss 5.0225 2s
+r3 s_structural s42 private group gp 0.006469735411380935 loss 4.7605 2s
+done s_structural complete True
+setup s_own role private rows 5120 sec 1.0
+r1 s_own s42 private group gp 0.007017506089254967 loss 5.6410 3s
+r2 s_own s42 private group gp 0.006679600424837916 loss 4.7014 2s
+r3 s_own s42 private group gp 0.006327138619107231 loss 4.3081 2s
+done s_own complete True
+setup s_shuffle role private rows 5120 sec 0.9
+r1 s_shuffle s42 private group gp 0.006829671553045051 loss 5.6314 3s
+r2 s_shuffle s42 private group gp 0.006439307651629175 loss 5.0193 2s
+r3 s_shuffle s42 private group gp 0.006199822714764829 loss 4.7465 2s
+done s_shuffle complete True
+setup s_structural role private rows 5120 sec 0.9
+r1 s_structural s42 private group gp 0.007286135485603409 loss 5.6444 6s
+done s_structural complete False
+setup s_structural role private rows 5120 sec 1.1
+r2 s_structural s42 private group gp 0.006851338485663083 loss 5.0225 3s
+r3 s_structural s42 private group gp 0.006469735411380935 loss 4.7605 2s
+done s_structural complete True
+setup s_own role private rows 5120 sec 0.9
+r1 s_own s42 private group gp 0.007017506089254967 loss 5.6410 3s
+done s_own complete False
+setup s_own role private rows 5120 sec 1.1
+r2 s_own s42 private group gp 0.006679600424837916 loss 4.7014 3s
+r3 s_own s42 private group gp 0.006327138619107231 loss 4.3081 2s
+done s_own complete True
+VERIFIED {"run": "s_diag_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 212, "ambiguous": 44}, {"round": 3, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 s_diag_s42
+VERIFIED {"run": "s_marginal_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 222, "ambiguous": 34}, {"round": 3, "role": "private", "rows": 256, "decisive": 230, "ambiguous": 26}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 s_marginal_s42
+VERIFIED {"run": "s_structural_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 224, "ambiguous": 32}, {"round": 3, "role": "private", "rows": 256, "decisive": 237, "ambiguous": 19}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 s_structural_s42
+VERIFIED {"run": "s_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 235, "ambiguous": 21}, {"round": 3, "role": "private", "rows": 256, "decisive": 239, "ambiguous": 17}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 s_own_s42
+VERIFIED {"run": "s_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 229, "ambiguous": 27}, {"round": 3, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V4 s_shuffle_s42
+PASS support schema/fidelity/bytes, five arms x3rounds, exact structural/own resume and inference
+Peak tree RSS: 3257 MiB; exit 0

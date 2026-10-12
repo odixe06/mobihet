@@ -1,0 +1,87 @@
+{
+  "recorded_utc": "2026-10-11T18:09:58.749737+00:00",
+  "quotas": [
+    {
+      "user": "dinhan25",
+      "gpu_left": 0.0,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.723781153055556,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "minhtran0601",
+      "gpu_left": 0.0,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.722781523333333,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "trietbackup",
+      "gpu_left": 5.076805558333334,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.5108500025,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "odixe0502",
+      "gpu_left": 6.175536826111113,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.512019881388888,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "odixeuit",
+      "gpu_left": 7.099950243055554,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.511470798333333,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "minhtrit06",
+      "gpu_left": 7.387601395000001,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.512901116944445,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "minhtriethihi",
+      "gpu_left": 21.854410277777777,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "catbaochau",
+      "gpu_left": 21.871023611111113,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "khanhmay0304",
+      "gpu_left": 22.066857777777777,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  ],
+  "failures": {}
+}

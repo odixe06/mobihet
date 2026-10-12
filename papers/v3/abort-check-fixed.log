@@ -1,0 +1,2 @@
+PASS V3 actual PowerSGD stage-two abort/whole-round recovery; failed bytes recorded in probe
+Peak tree RSS: 675 MiB; exit 0

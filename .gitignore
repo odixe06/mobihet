@@ -32,3 +32,24 @@ papers/new-fl/kaggle/
 papers/new-fl/smoke/
 papers/new-fl/resume_reference/
 papers/new-fl/collection.log
+papers/v2/input/
+papers/v2/kaggle/
+papers/v2/smoke/
+papers/v2/resume_reference/
+papers/v2/collection.log
+wandb/
+papers/v3/input/
+papers/v4/input/
+papers/v5/input/
+papers/v5/kaggle/
+papers/v5/smoke/
+papers/v5/resume_reference/
+papers/v4/kaggle/
+papers/v4/smoke/
+papers/v4/resume_reference/
+papers/v3/kaggle/
+papers/v3/smoke/
+papers/v3/resume_reference/
+
+# Runtime verification lock
+papers/.artifact-verification.lock

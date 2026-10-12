@@ -1,0 +1,7 @@
+{
+  "evidence": "Gaussian stationary-chain null and DAGSNet finite difference; no fitted density/mixing claim",
+  "gaussian_mean": 0.0028229958843439817,
+  "gaussian_second_moment": 1.004549503326416,
+  "acceptance": 0.9996442794799805,
+  "input_gradient_finite_difference": true
+}

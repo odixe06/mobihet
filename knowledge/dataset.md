@@ -20,7 +20,7 @@ Kèm theo: `dataset_audit.json` (kết quả máy đọc, đủ per-feature), `f
 
 ## 1. Ba điều bắt buộc đọc trước khi viết code
 
-**Split được cung cấp: train80% / test20%, không có validation riêng.** Chủ dự án xác nhận2026-10-04. Input FL là train80% đã z-score. Holdout gọi là validation trong screening được tự tách từ input này sau khi scaler đã fit toàn train; không phải tập độc lập. Protocol, ảnh hưởng và đối chứng đã chốt: [evaluation-protocol.md](../docs/research/evaluation-protocol.md).
+**Split được cung cấp: train80% / test20%, không có validation riêng.** Chủ dự án xác nhận2026-10-04. Input FL là train80% đã z-score. Holdout gọi là validation trong screening được tự tách từ input này sau khi scaler đã fit toàn train; không phải tập độc lập. Protocol chọn phương pháp hiện hành: [protocol.md](../docs/research/protocol.md#3-chọn-phương-pháphp-mà-không-tune-trên-test-chốt-2026-10-10).
 
 ### 1.1 `train/` ĐÃ chuẩn hoá, `test/` thì CHƯA — đo được, không phải nghe nói
 

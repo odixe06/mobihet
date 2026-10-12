@@ -1,0 +1,17 @@
+{
+  "id": "minhtrit06/mobihet-v3p-s43-20261011-v1",
+  "title": "mobihet-v3p-s43-20261011-v1",
+  "code_file": "v3p-s43-20261011-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "minhtrit06/mobihet-v3-20261011-src"
+  ],
+  "kernel_sources": [],
+  "competition_sources": []
+}

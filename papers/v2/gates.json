@@ -1,0 +1,103 @@
+{
+  "per_seed": {
+    "A_small_s42": {
+      "pass_quality": false,
+      "reason": "numerical failure under locked configuration",
+      "committed_rounds": 4
+    },
+    "A_medium_s42": {
+      "pass_quality": false,
+      "reason": "numerical failure under locked configuration",
+      "committed_rounds": 6
+    },
+    "B_512_s42": {
+      "pass_teacher": false,
+      "reason": "nonfinite proxy loss under locked configuration",
+      "committed_rounds": 0
+    },
+    "B_1024_s42": {
+      "pass_teacher": false,
+      "gain_vs_local": -0.15653050122169793,
+      "gain_vs_own": 0.13401405982069367,
+      "retention": 0.2989671519073838
+    },
+    "C_s42": {
+      "pass_quality": false,
+      "gain_vs_diag": -0.016663906565682063,
+      "gain_vs_own": 0.0012755451637861404,
+      "gain_vs_shuffle": -0.00931657010773268,
+      "ess_guard": false,
+      "ess_fraction": [
+        0.014237149618566036,
+        0.019850360229611397,
+        0.01471451111137867,
+        0.018290851265192032,
+        0.009000381454825401,
+        0.023816203698515892,
+        0.01002425141632557,
+        0.01236356608569622,
+        0.009433402679860592,
+        0.015087150037288666,
+        0.013025816529989243,
+        0.01643267832696438,
+        0.01611427776515484,
+        0.015592151321470737,
+        0.010073689743876457,
+        0.018877897411584854
+      ]
+    },
+    "A_small_s43": {
+      "pass_quality": false,
+      "reason": "numerical failure under locked configuration",
+      "committed_rounds": 3
+    },
+    "A_medium_s43": {
+      "pass_quality": false,
+      "reason": "numerical failure under locked configuration",
+      "committed_rounds": 6
+    },
+    "B_512_s43": {
+      "pass_teacher": false,
+      "reason": "nonfinite proxy loss under locked configuration",
+      "committed_rounds": 0
+    },
+    "B_1024_s43": {
+      "pass_teacher": false,
+      "gain_vs_local": -0.12294034578910845,
+      "gain_vs_own": 0.15858977668434507,
+      "retention": 0.3732248351225261
+    },
+    "C_s43": {
+      "pass_quality": false,
+      "gain_vs_diag": -0.02082024764238677,
+      "gain_vs_own": -0.001724869043634114,
+      "gain_vs_shuffle": -0.008445758680563076,
+      "ess_guard": false,
+      "ess_fraction": [
+        0.007192939054220915,
+        0.013198583386838436,
+        0.012002897448837757,
+        0.008138343691825867,
+        0.007427970413118601,
+        0.020874785259366035,
+        0.012549019418656826,
+        0.00715584447607398,
+        0.010415403172373772,
+        0.015348875895142555,
+        0.009478150866925716,
+        0.012027816846966743,
+        0.013284780085086823,
+        0.008744576014578342,
+        0.006989527493715286,
+        0.013269157148897648
+      ]
+    }
+  },
+  "paired": {
+    "A_small": false,
+    "A_medium": false,
+    "B_512": false,
+    "B_1024": false,
+    "C": false
+  }
+}

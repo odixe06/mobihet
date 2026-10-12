@@ -3,6 +3,7 @@
 Đọc file này → **[LESSONS.md](LESSONS.md)** → [kết quả pilot P1](docs/research/probes/pilot-p1.md) → [kế hoạch pilot](docs/research/pilot-plan.md)
 → (khi cần nền) [kiến thức kế thừa](docs/legacy/kien-thuc-ke-thua.md), [đề xuất H1–H6](docs/research/de-xuat-huong-moi.md).
 Tìm file: [index theo nhu cầu](README.md) → [danh mục toàn dự án](docs/file-index.md).
+Phiên đanghoạtđộng/collectors/reportwatch/sourcefrozen: [live2026-10-12](docs/operations/live-2026-10-12.md).
 
 IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 - **R1:** contact hữu hạn, mọi byte trả phí, có deadline thật.
@@ -10,14 +11,47 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 - **R3:** không mẫu dữ liệu local thật / record thật `(x, y)` nào rời xe; synthetic khởi tạo từ nhiễu được phép.
 - **R4:** 66 feature gốc, cùng protocol `odixe06/fl_dagsnet_veremi` để so sánh.
 
-## Trạng thái — phiên tiếp tục 2026-10-11
+## Trạng thái — triển khai kiểm khả thi V2 ngày2026-10-11
+
+**Chủ dự án đã yêu cầu triển khai và kiểm khả thi V2**, thay phạm vi chỉ Markdown trước đó.
+[Bộ đề xuất V2](docs/research/de-xuat-v2/README.md): proxy sketch + bù sai số; proxy trong cơ sở sinh từ seed;
+DAGSNet học tỷ số mật độ để điều chỉnh Gaussian. [Pilot/cổng đã chốt](docs/research/pilot-v2.md),
+[ledger triển khai](papers/v2/rebuild.md). Local math/16arm smoke/exact-resume PASS; **A hai seed ERROR nhưng đã audit xong**:
+A đã thu/verify14arm:10arm đủ20round,4EF dừng3–6round; parent còn lỗi quét key trong notebook nền tảng.
+**A small/medium FAIL hai seed, không rerun y nguyên.** [Kết quả/chẩn đoán](docs/research/probes/pilot-v2.md).
+**B đã thu/audit cảhai seed:**512/own512 lỗi numerical r1, không commit;1024 đủ20round nhưng teacher gate FAIL.
+Không rerun y nguyên B, không mở KD/ZO/contact. **C đãverify đủ8arm×20round, FAIL hai seed**:
+FL−diag≈−0,0167/−0,0208, ESS≈0,007–0,024; không mở contact/rerun y nguyên.
+[Live status](papers/v2/live-status.json) chỉ bằng chứng tiến độ W&B; [report](papers/v2/report.md) là artifact đãaudit.
+**V3 đã push8kernel lúc2026-10-11 17:00UTC (2026-10-12 00:00UTC+7):**4carrier×2seed,
+fp32/private+KD; [manifest](docs/research/pilot-v3.md), [ledger](papers/v3/rebuild.md).
+48run W&B exact fingerprint; collector4family đang chờ terminal. Local math/23arm smoke và4carrier exact-resume PASS;
+dense32 control+4representatives/resume PASS. Chưa kết quả F1 V3.
+Chủ dự án chốt bổ sung **K2b soft target gộp**, **K3 IPC1/4, trần2×baseline**, **MALA cấu hình đề xuất**;
+**V4 MALA/support đãpush4kernel lúc17:22UTC/00:22UTC+7**, localfidelity/math/5arm mỗi family,
+MALA3exactresume/support2exactresume+inference PASS; [MALA](docs/research/pilot-v4-mala.md),
+[support](docs/research/pilot-v4-support.md), [ledger](papers/v4/rebuild.md). ChưaF1 V4;20exactW&Bidentities.
+**K2b/K3 đãchốt vàpush6kernelV5 lúc18:52UTC/01:52UTC+7**: bandwidthtrain-only,
+80steptổngluânphiênclass/IPC1/4/refresh5round/2×baseline; [H](docs/research/pilot-v5-anchors.md),
+[G/J](docs/research/pilot-v5-books.md), [ledger](papers/v5/rebuild.md).
+23arm/6exactresumes/inference/full80localbookPASS;46exactW&Bidentities, chưaF1V5.
+**V4support đủ10arm×20round đãaudit,pairedFAIL**: structural−diag−0,00212/−0,00824,
+khôngcontact/rerun. [V4kếtquả](docs/research/probes/pilot-v4.md). MALAstatusRUNNING;19:11UTC đãcóW&Bidentity, diag tới r2; MALA chưa round,
+khôngclaimhealthy tới khi cólog/artifact; khôngcầnGUI.
+K5algebra/primitive mới [thiếtkế+boundedprobe](docs/research/v5-algebra-sources.md), chưacodephươngpháp/pilot;
+không sửa source V3/V4 đãpush. Tự chờ/thu log, không cần chủ dự án kiểm GUI.
+A cả small/medium; B FO512/1024 trước, ZO có điều kiện; C τ0,05/cap10/class-normalize/q-BN đã được xác nhận.
+**Chốt bổ sung: mọi mô hình học được đều DAGSNet**, kể cả teacher/model phụ; loại tree/GMM học được khỏi đợt này.
+R2 vẫn ở thiết kế. Train nặng chỉ Kaggle, W&B online bắt buộc; Git/DVC/push chỉ khi yêu cầu riêng.
+[Bàn giao pilot trước đó](docs/operations/handoff-2026-10-11.md): kết quả, source/config, quota, artifact, bài học và việc còn lại.
 
 - **P2 đã thu đủ4kernel/22run ×20round.** Kiểm nhất quán bằng chứng lưu qua; chưa xác minh weights/prediction vì không được lưu.
   Prior/codec có giới hạn: [kết quả P2](docs/research/probes/pilot-p2.md). Các trạng thái RUNNING/chưa chạy bên dưới là bàn giao trước phiên này.
 - **Đợt mới ngoài H1–H6:** [condensation + Fourier distribution sketch](docs/research/de-xuat-bo-sung-2026-10-11.md),
-  [pilot S-a/S-b và cổng khóa](docs/research/pilot-new-fl.md). **Preflight local qua; S-a đã push2kernel v1 lúc12:39 UTC+7**.
-  Kernel ID/quota/lệnh collect ở [new-fl/rebuild.md](papers/new-fl/rebuild.md).
-  **Seed43 đã verify6arm ×20round; seed42 còn RUNNING lúc13:47 UTC+7.** Chờ đủ cặp rồi report/cổng.
+  [pilot S-a/S-b và cổng khóa](docs/research/pilot-new-fl.md). **S-a hoàn tất và verify12run ×20round lúc14:43 UTC+7**.
+  **KME/DM đều trượt cổng; S-b đóng.** [Kết quả + chẩn đoán](docs/research/probes/pilot-new-fl.md),
+  [report đủ10metric + hình](papers/new-fl/report.md). Kernel/quota/source ở [rebuild](papers/new-fl/rebuild.md).
+  Không còn train/collector hoạt động trong đợt này. S1 Nyström vẫn là thiết kế chưa pilot.
 - User xác nhận giữ DAGSNet, R2 ở thiết kế; local chỉ smoke. **Cho phép RSU đọc codebook tổng hợp**
   khởi tạo từ nhiễu; không raw record. Ngoại lệ Q4 này chỉ áp cho synthetic; thống kê vẫn gộp nhiều client.
 - **Notebook huấn luyện mới bắt buộc W&B API key + theo dõi online** (chốt trong phiên, xem LESSONS).
@@ -41,7 +75,7 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
   - Baseline: H4 FedProto +0,04. Mốc trên FedAvg +0,33 (không khác kiến trúc được).
   - **Trượt** (nguyên nhân trong kết quả + LESSONS): H3 LG +0,02 / FedGH −0,02, H5 DS-FL +0,075 (< H2) / FedGen +0,02.
   - Lỗi đánh giá đã thấy: `gp` sửa quá tay với DML. Từ nay DML báo cả `head`.
-- **P2 (kênh) chưa chạy:** code [mh/p2.py](mh/p2.py) + [mh/channel.py](mh/channel.py) đã smoke test. Hàng đợi [scripts/p2_queue.txt](scripts/p2_queue.txt),
+- **P2 (kế hoạch trước push; hiện đã thu/audit):** code [mh/p2.py](mh/p2.py) + [mh/channel.py](mh/channel.py) đã smoke test. Hàng đợi [scripts/p2_queue.txt](scripts/p2_queue.txt),
   cổng khóa ở [pilot-plan §5](docs/research/pilot-plan.md). Phải chạy trên **Kaggle** (xem quyết định 2026-10-11).
 
 Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p2.py](mh/p2.py) (kênh), [mh/archs.py](mh/archs.py) (CNN1d/GRU, chưa dùng),
@@ -66,7 +100,7 @@ Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p
   1. `python scripts/kaggle/collect_p2.py` (status + pull; copy vào `papers/p2/runs/`);
   2. `python scripts/report_p2.py > papers/p2/report.md`;
   3. cổng P2-a/P2-b ở [pilot-plan §5](docs/research/pilot-plan.md);
-  4. `dvc add papers/p2/runs` + push;
+  4. backup chỉ khi chủ dự án yêu cầu riêng;
   5. ghi kết quả vào `docs/research/probes/pilot-p2.md`.
 - Kernel lỗi: đọc log (`papers/p2/kaggle/<rid>/<slug>.log`). Không sửa notebook đã PUSHED; sửa generator → thư mục rid mới.
 
@@ -84,7 +118,7 @@ Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p
 **2026-10-11:**
 - Thử **mọi hướng H1–H5** (đã làm ở P1). Hướng trượt phải có nguyên nhân + bài học.
 - **Mọi client dùng DAGSNet** để so với các phương pháp đã chạy full DAGSNet. Chưa chạy đa mô hình; chỉ ghi khả thi R2 về thiết kế.
-- **Được commit + push** repo này ở các mốc. Commit không thêm attribution Claude (skill repo-backup).
+- **Quyết định mới nhất: không tự commit/push Git, DVC add/push/backup; chỉ làm khi chủ dự án yêu cầu rõ.** Thay quyền theo mốc trước đó.
 - **Đồng ý** thử kết hợp **H1 + H2**, và chạy protocol đầy đủ cho hướng thắng.
 - **Tiến trình nặng chạy trên Kaggle, không chạy ở máy local.** Local chỉ để smoke test, dựng fixture nhỏ, report.
 - **Proxy của các phương án dùng proxy (H1, H1+H2) cũng là DAGSNet**, cấu hình đồng nhất cho mọi client.
@@ -96,12 +130,18 @@ Code: [mh/pilot.py](mh/pilot.py) (9 phương pháp, một vòng FL chung), [mh/p
 Q3 số contact/round (đang dùng 1 contact/xe/round), Q7 tắt M4b (đang tắt, đúng "66 feature gốc").
 Q5 (proxy cho H5) và Q6 (thứ tự) không còn cần: H5 dừng, thứ tự theo P1.
 
-## Bước kế tiếp (theo thứ tự)
+## Kế hoạch V2 và backlog
 
-**Ưu tiên mới trong phiên 2026-10-11:** hoàn tất preflight → S-a hai seed trên Kaggle, quota thấp trước → verify → S-b nếu qua cổng.
+Đọc [ưu tiên V2](docs/research/de-xuat-v2/README.md) và [hợp đồng kiểm nghiệm](docs/research/de-xuat-v2/thiet-ke-chung.md)
+trước chọn hướng code. V2-A được đề nghị kiểm đầu tiên; V2-C kiểm chất lượng riêng; V2-B rủi ro sức chứa.
+Đã được yêu cầu triển khai; khóa cổng U theo [pilot V2](docs/research/pilot-v2.md).
+Local smoke → Kaggle hai seed → pull/verify/report; chỉ hướng qua U mới kiểm contact. Chưa mở full-scale.
+
+**Đợt S-a mới đã đóng:** KME/DM trượt cổng hai seed; giữ artifact/đối chứng, không tune/kéo dài để cứu.
+S1 Nyström là phương án byte còn chưa pilot; nếu triển khai tiếp thì khóa thiết kế/cổng riêng và bắt buộc W&B online.
 Các mục H1+H2/full-scale dưới đây vẫn được đề xuất/đã đồng ý trước, chưa khởi chạy ở phiên này.
 
-1. **Thu P2 từ Kaggle** (đã push, xem §P2 trên Kaggle) → report → cổng → ghi kết quả + bài học.
+1. **P2 đã thu/report/audit**; đọc [giới hạn](docs/research/probes/pilot-p2.md) trước dùng số cũ làm đối chứng.
 2. **H1 + H2 kết hợp** (pilot, Kaggle):
    - private DAGSNet + proxy **DAGSNet** + mẫu Gaussian H2;
    - đối chứng là từng thành phần riêng của P1; cổng khóa trước (gợi ý: kết hợp − max(H1, H2) ≥ +0,02 cả hai seed).
@@ -113,6 +153,7 @@ Các mục H1+H2/full-scale dưới đây vẫn được đề xuất/đã đồ
 
 | câu hỏi | tài liệu |
 |---|---|
+| Sau P1/P2/S-a còn hướng FL nào, giữ mọi learned model DAGSNet? | [Bộ đề xuất V2](docs/research/de-xuat-v2/README.md), [nguồn gốc](docs/research/de-xuat-v2/nguon-nghien-cuu.md) |
 | Kết quả pilot, nguyên nhân hướng trượt | [pilot-p1.md](docs/research/probes/pilot-p1.md) |
 | Thiết lập + cổng P1/P2 | [pilot-plan.md](docs/research/pilot-plan.md) |
 | Archive đã thử gì, kết quả, bài học | [kiến thức kế thừa](docs/legacy/kien-thuc-ke-thua.md), `archive3:docs/experiments/index.md` |

@@ -1,0 +1,16 @@
+minhtran0601/mobihet-v2b-s42-20261011-v1 has status "KernelWorkerStatus.ERROR"
+minhtran0601/mobihet-v2b-s42-20261011-v1: 312 files, 12 parallel
+minhtran0601/mobihet-v2b-s42-20261011-v1: 312 files ok, 0 missing, 0 MiB new in 16 s (0.0 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v2/private_push/v2b-s42-20261011-v1/executed.ipynb (23563 bytes, 6 outputs)
+VERIFIED {"run": "b_dense_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16253, "ambiguous": 131}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16274, "ambiguous": 110}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_own1024_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16313, "ambiguous": 71}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16336, "ambiguous": 48}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_seed1024_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16146, "ambiguous": 238}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16265, "ambiguous": 119}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+AUDITED KERNEL minhtran0601/mobihet-v2b-s42-20261011-v1 complete False
+dinhan25/mobihet-v2b-s43-20261011-v1 has status "KernelWorkerStatus.ERROR"
+dinhan25/mobihet-v2b-s43-20261011-v1: 312 files, 12 parallel
+dinhan25/mobihet-v2b-s43-20261011-v1: 312 files ok, 0 missing, 3842 MiB new in 272 s (14.1 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v2/private_push/v2b-s43-20261011-v1/executed.ipynb (23567 bytes, 6 outputs)
+VERIFIED {"run": "b_dense_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16247, "ambiguous": 137}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16285, "ambiguous": 99}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_own1024_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16330, "ambiguous": 54}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16330, "ambiguous": 54}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "b_seed1024_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16137, "ambiguous": 247}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16191, "ambiguous": 193}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+AUDITED KERNEL dinhan25/mobihet-v2b-s43-20261011-v1 complete False
