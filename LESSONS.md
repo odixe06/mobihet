@@ -169,6 +169,9 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   Gộpoldentry+localnew theo relpath, giữ entryremote-only/hashhistory. `runs/` cóthể làsymlinkalias
   vào`kaggle/`; backup data tạiđích, giữ mappingrelative đểrestorealias, không thêm bảntrùng.
   Chủ dự án chốt ghiG:/cacheD: với tốcđộgiớihạn đểsyncsong song; đủG: làcleanup, khôngchờcloudsync.
+  G: không giữmode0444 khiến`LocalHashFileDB.oids_exist/check` đọc/hashlại payloadcũ, làmresume chậm.
+  Wrapper tạm chỉ vớiremote/scope đãchốt: táidùngproof bằngexistence+size, MD5directory; filemớiMD5trướcatomiccommit.
+  Khônggọi đây làrehash toànpayloadremote; không sửa thưviện/configtoàncục.
   [Chỉ mục pull](docs/operations/artifact-index.md).
 
 - **V6 G59 logterminal:**seed42cả6arm dừng bởi `V6 synthetic fp16 input overflow`,

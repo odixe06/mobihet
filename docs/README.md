@@ -21,3 +21,5 @@ Phương pháp theo tên: [proposals/](../proposals/README.md). Từng file: [fi
 `research/` giữ hợp đồng/provenance cũ; nội dung đã dùng làm source manifest không sửa/di chuyển.
 Thiết kế mới, giải thích và bài học theo cơ chế nằm ở `proposals/<tên>/`.
 `knowledge/` chỉ facts cố định; số đo ở probe/report; tài khoản/quota/artifact ở ledger và operations.
+
+Backup / pull artifact: [chỉ mục35 manifest](operations/artifact-index.md).
