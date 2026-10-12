@@ -106,6 +106,6 @@ sourceobjectcũ táidùng, khôngrestoreprivateweights. [Proof](../../papers/v5/
 - Quét4.648 file text/staged227file: không thấy credential thật theo mẫu; không staged file>10MB.
 - Local partial V2–V5: hash cache từcurrentfiles, gộpentry cũ theo relpath, local override cùngpath; giữ missingoldentries. JSONcanonical tương ứngDVC Tree.as_bytes; manifesthash giữ trongGit.
 -8.847 object snapshot trước đãverify. Scope đợt này13.251 object/246.388.340.141B; prepush cần7.383 object/136.722.405.963B mới.
-- Push4worker atomicDVC đangchạy. Chưaxóa local. D:/G: trướcpush≈91/86GiB, chủ dự án được báo cầnthêm≈40GiB cacheD:.
+- Theo chủ dự án: giữG:remote/cacheD:,syncsong song; khôngcầnfreeD: thủcông/chờsyncxong. Resume2worker,buffer1MiB,cap20MiB/s; giảm8/4MiB/s khiD: dưới20/10GiB, giữ3GiBreserve. FilemớiMD5trướcatomiccommit. Chưaxóa local; log `/tmp/mobihet-backup-delta-20261012/push-limited-final.log`.
 -158runalias lưurelativepath tronginventory, khôngDVCadd symlinkdir để tránh bảntrùng/path không cònlocal.
 - Không còn writer/collectorlocal lúc kiểm. Cloud tựsync, không chờ sauG: đủ.

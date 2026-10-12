@@ -168,6 +168,7 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - **Backupdelta2026-10-12:** restore/collectpartial không được thaymanifest đầyđủ bằng local snapshot.
   Gộpoldentry+localnew theo relpath, giữ entryremote-only/hashhistory. `runs/` cóthể làsymlinkalias
   vào`kaggle/`; backup data tạiđích, giữ mappingrelative đểrestorealias, không thêm bảntrùng.
+  Chủ dự án chốt ghiG:/cacheD: với tốcđộgiớihạn đểsyncsong song; đủG: làcleanup, khôngchờcloudsync.
   [Chỉ mục pull](docs/operations/artifact-index.md).
 
 - **V6 G59 logterminal:**seed42cả6arm dừng bởi `V6 synthetic fp16 input overflow`,
