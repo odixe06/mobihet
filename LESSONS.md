@@ -127,7 +127,7 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - **Backup2026-10-12:** DriveFS cache trênD: đầy cóthể báo `Errno5 Input/output error` khi ghiG:,
   không phải bằng chứng artifact nguồn hỏng. G: đủ object+manifest là gate cleanup, không chờ cloud sync.
   Push tổng lỗi vẫn được cleanup từng target đãpush exit0/status in-sync/verify độc lập; giữ workspace/cache của target thiếu.
-  DVC local backend hiện tại ép copy `batch_size=1` dù `-j`; wrapper4worker chỉ dùng tạm cho đợt này.
+  DVC local backend hiện tại ép copy `batch_size=1` dù `-j`; wrapper4worker chỉ dùng tạm cho đợt này.31 target/8.847 object đãverify đủ rồicleanup, không còn target thiếu.
   [Hồ sơ](docs/operations/backup.md).
 
 - **K5 algebra bounded train probe:**40.960rows/259MiB,17identity khôngvi phạm interval
