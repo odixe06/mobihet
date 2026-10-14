@@ -1,0 +1,6 @@
+outs:
+- md5: 36f834ab0207195ab6f24922755fe781.dir
+  size: 306212
+  nfiles: 32
+  hash: md5
+  path: artifacts/source_audit

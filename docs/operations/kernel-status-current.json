@@ -1,5 +1,5 @@
 {
-  "observed_utc": "2026-10-14T07:05:18.461005+00:00",
+  "observed_utc": "2026-10-14T11:10:11.859706+00:00",
   "evidence": "owner-scoped latest batch version status, not artifact verification or session heartbeat",
   "kernels": [
     {
@@ -17,6 +17,20 @@
       "returncode": 0
     },
     {
+      "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+      "build": "boundary-cells",
+      "folder": "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+      "build": "boundary-cells",
+      "folder": "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
       "kernel": "catbaochau/mobihet-full1-s42-20261012-cal-v1",
       "build": "full-validation",
       "folder": "papers/full-validation/notebook/full1-s42-20261012-cal-v1",
@@ -28,6 +42,13 @@
       "build": "full-validation",
       "folder": "papers/full-validation/notebook/full1-s42-20261013-cont01-v1",
       "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-full1-s42-20261014-cont02-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full1-s42-20261014-cont02-v1",
+      "status": "RUNNING",
       "returncode": 0
     },
     {
@@ -45,6 +66,13 @@
       "returncode": 0
     },
     {
+      "kernel": "minhtriethihi/mobihet-full2-s42-20261014-cont02-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full2-s42-20261014-cont02-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
       "kernel": "khanhmay0304/mobihet-full3-s42-20261012-cal-v1",
       "build": "full-validation",
       "folder": "papers/full-validation/notebook/full3-s42-20261012-cal-v1",
@@ -56,6 +84,13 @@
       "build": "full-validation",
       "folder": "papers/full-validation/notebook/full3-s42-20261013-cont01-v1",
       "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-full3-s42-20261014-cont02-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full3-s42-20261014-cont02-v1",
+      "status": "RUNNING",
       "returncode": 0
     },
     {
@@ -73,10 +108,31 @@
       "returncode": 0
     },
     {
+      "kernel": "catbaochau/mobihet-full4-s42-20261014-cont02-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full4-s42-20261014-cont02-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
       "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
       "build": "hybrid-full",
       "folder": "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1",
       "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-cont01-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261014-dsresume-v1",
+      "status": "RUNNING",
       "returncode": 0
     },
     {
@@ -87,6 +143,13 @@
       "returncode": 0
     },
     {
+      "kernel": "odixeuit/mobihet-hybf2-s42-20261014-cont01-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
       "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
       "build": "hybrid-full",
       "folder": "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1",
@@ -94,10 +157,24 @@
       "returncode": 0
     },
     {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf3-s42-20261014-dsresume-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
       "kernel": "odixe0502/mobihet-hybf4-s42-20261013-cal-v1",
       "build": "hybrid-full",
       "folder": "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1",
       "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-hybf4-s42-20261014-cont01-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1",
+      "status": "RUNNING",
       "returncode": 0
     },
     {

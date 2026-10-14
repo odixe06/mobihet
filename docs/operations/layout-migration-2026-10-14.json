@@ -1,0 +1,2539 @@
+{
+  "builds": {
+    "pilot": {
+      "family": "shared-baselines",
+      "build": "p1-pilot",
+      "related": [
+        "proxy-mutual-distillation",
+        "gaussian-class-moments",
+        "federated-head-transfer",
+        "class-prototypes",
+        "gaussian-logit-distillation"
+      ],
+      "path": "methods/shared-baselines/builds/p1-pilot"
+    },
+    "p2": {
+      "family": "contact-fragmentation",
+      "build": "p2-deadline",
+      "related": [
+        "proxy-mutual-distillation",
+        "gaussian-class-moments"
+      ],
+      "path": "methods/contact-fragmentation/builds/p2-deadline"
+    },
+    "new-fl": {
+      "family": "synthetic-distribution-matching",
+      "build": "sa-static-books",
+      "related": [
+        "fourier-distribution-sketch",
+        "latent-mean-synthetic-books"
+      ],
+      "path": "methods/synthetic-distribution-matching/builds/sa-static-books"
+    },
+    "v2": {
+      "family": "shared-comparisons",
+      "build": "v2-sketch-subspace-ratio",
+      "related": [
+        "proxy-countsketch",
+        "proxy-seeded-subspace",
+        "gaussian-density-ratio"
+      ],
+      "path": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio"
+    },
+    "v3": {
+      "family": "proxy-compression",
+      "build": "v3-carrier-comparison",
+      "related": [
+        "proxy-random-coordinates",
+        "proxy-rolling-subnetwork",
+        "proxy-orthogonal-projection",
+        "proxy-powersgd"
+      ],
+      "path": "methods/proxy-compression/builds/v3-carrier-comparison"
+    },
+    "v4": {
+      "family": "gaussian-sampling",
+      "build": "v4-support-mala",
+      "related": [
+        "gaussian-mala-transport",
+        "gaussian-support-constraints"
+      ],
+      "path": "methods/gaussian-sampling/builds/v4-support-mala"
+    },
+    "v5": {
+      "family": "synthetic-knowledge",
+      "build": "v5-anchor-gradient-books",
+      "related": [
+        "kernel-anchor-distillation",
+        "gradient-synthetic-books",
+        "latent-mean-synthetic-books"
+      ],
+      "path": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books"
+    },
+    "v6": {
+      "family": "geometry-primitive-moments",
+      "build": "v6-g59-g61",
+      "related": [],
+      "path": "methods/geometry-primitive-moments/builds/v6-g59-g61"
+    },
+    "v7": {
+      "family": "covariance-nystrom",
+      "build": "v7-rank4-rank8",
+      "related": [],
+      "path": "methods/covariance-nystrom/builds/v7-rank4-rank8"
+    },
+    "v8": {
+      "family": "gaussian-proxy-hybrid",
+      "build": "v8-pilot",
+      "related": [],
+      "path": "methods/gaussian-proxy-hybrid/builds/v8-pilot"
+    },
+    "v9": {
+      "family": "anchor-function-residual",
+      "build": "v9-teacher-residual",
+      "related": [],
+      "path": "methods/anchor-function-residual/builds/v9-teacher-residual"
+    },
+    "v10": {
+      "family": "dagsnet-joint-energy",
+      "build": "v10-gaussian-base-mh",
+      "related": [],
+      "path": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh"
+    },
+    "full-validation": {
+      "family": "shared-baselines",
+      "build": "full-h1-h2-50rounds",
+      "related": [
+        "proxy-mutual-distillation",
+        "gaussian-class-moments"
+      ],
+      "path": "methods/shared-baselines/builds/full-h1-h2-50rounds"
+    },
+    "hybrid-full": {
+      "family": "gaussian-proxy-hybrid",
+      "build": "full-50rounds",
+      "related": [],
+      "path": "methods/gaussian-proxy-hybrid/builds/full-50rounds"
+    },
+    "boundary-cells": {
+      "family": "boundary-cell-counts",
+      "build": "cell-counts-v1",
+      "related": [],
+      "path": "methods/boundary-cell-counts/builds/cell-counts-v1"
+    },
+    "receiver-response": {
+      "family": "receiver-response-consistency",
+      "build": "local-augmentation-v1",
+      "related": [],
+      "path": "methods/receiver-response-consistency/builds/local-augmentation-v1"
+    }
+  },
+  "aliases": {
+    "papers/pilot": "methods/shared-baselines/builds/p1-pilot",
+    "papers/p2": "methods/contact-fragmentation/builds/p2-deadline",
+    "papers/new-fl": "methods/synthetic-distribution-matching/builds/sa-static-books",
+    "papers/v2": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio",
+    "papers/v3": "methods/proxy-compression/builds/v3-carrier-comparison",
+    "papers/v4": "methods/gaussian-sampling/builds/v4-support-mala",
+    "papers/v5": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books",
+    "papers/v6": "methods/geometry-primitive-moments/builds/v6-g59-g61",
+    "papers/v7": "methods/covariance-nystrom/builds/v7-rank4-rank8",
+    "papers/v8": "methods/gaussian-proxy-hybrid/builds/v8-pilot",
+    "papers/v9": "methods/anchor-function-residual/builds/v9-teacher-residual",
+    "papers/v10": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh",
+    "papers/full-validation": "methods/shared-baselines/builds/full-h1-h2-50rounds",
+    "papers/hybrid-full": "methods/gaussian-proxy-hybrid/builds/full-50rounds",
+    "papers/boundary-cells": "methods/boundary-cell-counts/builds/cell-counts-v1",
+    "papers/receiver-response": "methods/receiver-response-consistency/builds/local-augmentation-v1",
+    "proposals/README.md": "docs/proposals.md",
+    "proposals/anchor-function-residual": "docs/methods/anchor-function-residual",
+    "proposals/boundary-cell-counts": "docs/methods/boundary-cell-counts",
+    "proposals/class-prototypes": "docs/methods/class-prototypes",
+    "proposals/contact-fragmentation": "docs/methods/contact-fragmentation",
+    "proposals/covariance-nystrom": "docs/methods/covariance-nystrom",
+    "proposals/dagsnet-joint-energy": "docs/methods/dagsnet-joint-energy",
+    "proposals/ema-deployment-recipe": "docs/methods/ema-deployment-recipe",
+    "proposals/evidence-summary.md": "docs/overview/evidence-summary.md",
+    "proposals/federated-head-transfer": "docs/methods/federated-head-transfer",
+    "proposals/fourier-distribution-sketch": "docs/methods/fourier-distribution-sketch",
+    "proposals/gaussian-class-moments": "docs/methods/gaussian-class-moments",
+    "proposals/gaussian-density-ratio": "docs/methods/gaussian-density-ratio",
+    "proposals/gaussian-logit-distillation": "docs/methods/gaussian-logit-distillation",
+    "proposals/gaussian-mala-transport": "docs/methods/gaussian-mala-transport",
+    "proposals/gaussian-proxy-hybrid": "docs/methods/gaussian-proxy-hybrid",
+    "proposals/gaussian-support-constraints": "docs/methods/gaussian-support-constraints",
+    "proposals/geometry-primitive-moments": "docs/methods/geometry-primitive-moments",
+    "proposals/gradient-synthetic-books": "docs/methods/gradient-synthetic-books",
+    "proposals/kernel-anchor-distillation": "docs/methods/kernel-anchor-distillation",
+    "proposals/latent-mean-synthetic-books": "docs/methods/latent-mean-synthetic-books",
+    "proposals/proxy-countsketch": "docs/methods/proxy-countsketch",
+    "proposals/proxy-mutual-distillation": "docs/methods/proxy-mutual-distillation",
+    "proposals/proxy-orthogonal-projection": "docs/methods/proxy-orthogonal-projection",
+    "proposals/proxy-powersgd": "docs/methods/proxy-powersgd",
+    "proposals/proxy-random-coordinates": "docs/methods/proxy-random-coordinates",
+    "proposals/proxy-rolling-subnetwork": "docs/methods/proxy-rolling-subnetwork",
+    "proposals/proxy-seeded-subspace": "docs/methods/proxy-seeded-subspace",
+    "proposals/receiver-response-consistency": "docs/methods/receiver-response-consistency",
+    "proposals/status-summary.md": "docs/overview/status-summary.md",
+    "papers/pilot/queue.log": "methods/shared-baselines/builds/p1-pilot/logs/queue.log",
+    "papers/pilot/fixture_build.log": "methods/shared-baselines/builds/p1-pilot/logs/fixture_build.log",
+    "papers/pilot/report.md": "docs/methods/shared-baselines/builds/p1-pilot/results/report.md",
+    "papers/pilot/queue2.log": "methods/shared-baselines/builds/p1-pilot/logs/queue2.log",
+    "papers/p2/notebook": "methods/contact-fragmentation/builds/p2-deadline/notebooks",
+    "papers/p2/audit.json": "methods/contact-fragmentation/builds/p2-deadline/probes/audit.json",
+    "papers/p2/report.md": "docs/methods/contact-fragmentation/builds/p2-deadline/results/report.md",
+    "papers/new-fl/dataset-s43.log": "methods/synthetic-distribution-matching/builds/sa-static-books/logs/dataset-s43.log",
+    "papers/new-fl/contact-probe.json": "methods/synthetic-distribution-matching/builds/sa-static-books/probes/contact-probe.json",
+    "papers/new-fl/collection.log": "methods/synthetic-distribution-matching/builds/sa-static-books/logs/collection.log",
+    "papers/new-fl/notebook": "methods/synthetic-distribution-matching/builds/sa-static-books/notebooks",
+    "papers/new-fl/metrics-final.csv": "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/metrics-final.csv",
+    "papers/new-fl/rebuild.md": "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/rebuild.md",
+    "papers/new-fl/metrics-all.csv": "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/metrics-all.csv",
+    "papers/new-fl/gates.json": "methods/synthetic-distribution-matching/builds/sa-static-books/probes/gates.json",
+    "papers/new-fl/report.md": "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/report.md",
+    "papers/new-fl/per-class-final.csv": "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/per-class-final.csv",
+    "papers/v2/basis-probe.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/basis-probe.json",
+    "papers/v2/collection-c.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/collection-c.log",
+    "papers/v2/convergence.svg": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/convergence.svg",
+    "papers/v2/collection.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/collection.log",
+    "papers/v2/classes-c-s42.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/classes-c-s42.png",
+    "papers/v2/convergence.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/convergence.png",
+    "papers/v2/classes-a-s43.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/classes-a-s43.png",
+    "papers/v2/notebook": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/notebooks",
+    "papers/v2/sketch-diagnostics.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/sketch-diagnostics.json",
+    "papers/v2/wandb-runs.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/wandb-runs.json",
+    "papers/v2/rebuild.md": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/rebuild.md",
+    "papers/v2/local-check-final.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/local-check-final.log",
+    "papers/v2/runs": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/artifacts/runs",
+    "papers/v2/metrics-all.csv": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/metrics-all.csv",
+    "papers/v2/monitor.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/monitor.log",
+    "papers/v2/report-build.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/report-build.log",
+    "papers/v2/classes-c-s43.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/classes-c-s43.png",
+    "papers/v2/collection-b-recheck.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/collection-b-recheck.log",
+    "papers/v2/gates.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/gates.json",
+    "papers/v2/quota-before.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/quota-before.json",
+    "papers/v2/wandb-preflight.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/wandb-preflight.json",
+    "papers/v2/report.md": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/report.md",
+    "papers/v2/notebook-check.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/notebook-check.log",
+    "papers/v2/local-check.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/local-check.log",
+    "papers/v2/classes-a-s42.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/classes-a-s42.png",
+    "papers/v2/collection-b.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/collection-b.log",
+    "papers/v2/quota-before-bc.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/quota-before-bc.json",
+    "papers/v2/basis-probe.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/basis-probe.log",
+    "papers/v2/local-check-deterministic.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/local-check-deterministic.log",
+    "papers/v2/classes-b-s43.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/classes-b-s43.png",
+    "papers/v2/wandb-preflight.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/wandb-preflight.log",
+    "papers/v2/per-class-f1.csv": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/per-class-f1.csv",
+    "papers/v2/monitor-a.log": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/logs/monitor-a.log",
+    "papers/v2/live-status.json": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/live-status.json",
+    "papers/v2/classes-b-s42.png": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/classes-b-s42.png",
+    "papers/v2/paper.md": "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/paper.md",
+    "papers/v3/math-probe.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/math-probe.json",
+    "papers/v3/abort-check.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/abort-check.log",
+    "papers/v3/collection-p-20261012-live.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-p-20261012-live.log",
+    "papers/v3/convergence-p.svg": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/convergence-p.svg",
+    "papers/v3/collection-t.lock": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-t.lock",
+    "papers/v3/collection-o-20261012.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-o-20261012.log",
+    "papers/v3/notebook": "methods/proxy-compression/builds/v3-carrier-comparison/notebooks",
+    "papers/v3/collection-p.lock": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-p.lock",
+    "papers/v3/wandb-runs.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/wandb-runs.json",
+    "papers/v3/classes-p-s43.svg": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/classes-p-s43.svg",
+    "papers/v3/rebuild.md": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/rebuild.md",
+    "papers/v3/abort-check-fixed.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/abort-check-fixed.log",
+    "papers/v3/local-check-dense32.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/local-check-dense32.log",
+    "papers/v3/metrics-all.csv": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/metrics-all.csv",
+    "papers/v3/collection-t-20261012-live.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-t-20261012-live.log",
+    "papers/v3/monitor.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/monitor.log",
+    "papers/v3/figures.md": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/figures.md",
+    "papers/v3/collection-t-20261012.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-t-20261012.log",
+    "papers/v3/support-probe.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/support-probe.json",
+    "papers/v3/collection-p-20261012.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-p-20261012.log",
+    "papers/v3/gates.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/gates.json",
+    "papers/v3/quota-before.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/quota-before.json",
+    "papers/v3/report.md": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/report.md",
+    "papers/v3/pre-context-source": "methods/proxy-compression/builds/v3-carrier-comparison/source/pre-context-source",
+    "papers/v3/notebook-check.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/notebook-check.log",
+    "papers/v3/abort-probe.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/abort-probe.json",
+    "papers/v3/collection-t.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-t.log",
+    "papers/v3/local-check-context.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/local-check-context.log",
+    "papers/v3/local-check.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/local-check.log",
+    "papers/v3/energy-probe.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/energy-probe.json",
+    "papers/v3/collection-r-20261012.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-r-20261012.log",
+    "papers/v3/classes-p-s43.png": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/classes-p-s43.png",
+    "papers/v3/convergence-p.png": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/convergence-p.png",
+    "papers/v3/per-class-f1.csv": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/per-class-f1.csv",
+    "papers/v3/collection-r.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-r.log",
+    "papers/v3/collection-o.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-o.log",
+    "papers/v3/live-status.json": "methods/proxy-compression/builds/v3-carrier-comparison/probes/live-status.json",
+    "papers/v3/collection-p.log": "methods/proxy-compression/builds/v3-carrier-comparison/logs/collection-p.log",
+    "papers/v3/paper.md": "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/paper.md",
+    "papers/v4/collection-m.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/collection-m.log",
+    "papers/v4/ratio-score-probe.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/ratio-score-probe.log",
+    "papers/v4/classes-m-s42.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-m-s42.svg",
+    "papers/v4/classes-s-s42.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-s-s42.png",
+    "papers/v4/classes-s-s43.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-s-s43.png",
+    "papers/v4/notebook": "methods/gaussian-sampling/builds/v4-support-mala/notebooks",
+    "papers/v4/classes-s-s43.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-s-s43.svg",
+    "papers/v4/convergence-m.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/convergence-m.png",
+    "papers/v4/support-math.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/support-math.json",
+    "papers/v4/wandb-runs.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/wandb-runs.json",
+    "papers/v4/classes-m-s42.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-m-s42.png",
+    "papers/v4/classes-m-s43.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-m-s43.svg",
+    "papers/v4/plot.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/plot.log",
+    "papers/v4/rebuild.md": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/rebuild.md",
+    "papers/v4/metrics-all.csv": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/metrics-all.csv",
+    "papers/v4/classes-m-s43.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-m-s43.png",
+    "papers/v4/convergence-s.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/convergence-s.png",
+    "papers/v4/mala-check.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/mala-check.log",
+    "papers/v4/monitor.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/monitor.log",
+    "papers/v4/figures.md": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/figures.md",
+    "papers/v4/mala-math.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/mala-math.json",
+    "papers/v4/gates.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/gates.json",
+    "papers/v4/classes-s-s42.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/classes-s-s42.svg",
+    "papers/v4/quota-before.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/quota-before.json",
+    "papers/v4/report.md": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/report.md",
+    "papers/v4/collection-m-20261012.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/collection-m-20261012.log",
+    "papers/v4/notebook-check.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/notebook-check.log",
+    "papers/v4/collection-s.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/collection-s.log",
+    "papers/v4/gradient-probe.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/gradient-probe.json",
+    "papers/v4/ratio-score-probe.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/ratio-score-probe.json",
+    "papers/v4/gradient-probe.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/gradient-probe.log",
+    "papers/v4/support-check.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/support-check.log",
+    "papers/v4/convergence-m.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/convergence-m.svg",
+    "papers/v4/historical-c-diagnostics.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/historical-c-diagnostics.svg",
+    "papers/v4/per-class-f1.csv": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/per-class-f1.csv",
+    "papers/v4/mala-check-final.log": "methods/gaussian-sampling/builds/v4-support-mala/logs/mala-check-final.log",
+    "papers/v4/live-status.json": "methods/gaussian-sampling/builds/v4-support-mala/probes/live-status.json",
+    "papers/v4/convergence-s.svg": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/convergence-s.svg",
+    "papers/v4/historical-c-diagnostics.png": "docs/methods/gaussian-sampling/builds/v4-support-mala/results/historical-c-diagnostics.png",
+    "papers/v5/collection-g.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/collection-g.log",
+    "papers/v5/book80-probe.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/book80-probe.json",
+    "papers/v5/classes-g-s43.png": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-g-s43.png",
+    "papers/v5/collection-h.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/collection-h.log",
+    "papers/v5/notebook-check-final.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/notebook-check-final.log",
+    "papers/v5/input-minhtriethihi.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/input-minhtriethihi.log",
+    "papers/v5/classes-g-s43.svg": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-g-s43.svg",
+    "papers/v5/classes-h-s42.png": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-h-s42.png",
+    "papers/v5/classes-h-s43.png": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-h-s43.png",
+    "papers/v5/notebook": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/notebooks",
+    "papers/v5/quota-survey.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/quota-survey.json",
+    "papers/v5/wandb-runs.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/wandb-runs.json",
+    "papers/v5/classes-g-s42.png": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-g-s42.png",
+    "papers/v5/rebuild.md": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/rebuild.md",
+    "papers/v5/driver-check.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/driver-check.log",
+    "papers/v5/input-catbaochau.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/input-catbaochau.log",
+    "papers/v5/collection-g-20261012.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/collection-g-20261012.log",
+    "papers/v5/convergence-h.png": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/convergence-h.png",
+    "papers/v5/metrics-all.csv": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/metrics-all.csv",
+    "papers/v5/classes-g-s42.svg": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-g-s42.svg",
+    "papers/v5/collection-j-20261012.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/collection-j-20261012.log",
+    "papers/v5/monitor.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/monitor.log",
+    "papers/v5/figures.md": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/figures.md",
+    "papers/v5/input-khanhmay0304.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/input-khanhmay0304.log",
+    "papers/v5/gates.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/gates.json",
+    "papers/v5/report.md": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/report.md",
+    "papers/v5/convergence-g.svg": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/convergence-g.svg",
+    "papers/v5/anchor-probe.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/anchor-probe.json",
+    "papers/v5/notebook-check.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/notebook-check.log",
+    "papers/v5/anchor-driver-preflight.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/anchor-driver-preflight.log",
+    "papers/v5/classes-h-s42.svg": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-h-s42.svg",
+    "papers/v5/convergence-h.svg": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/convergence-h.svg",
+    "papers/v5/classes-h-s43.svg": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/classes-h-s43.svg",
+    "papers/v5/budget-check-final.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/budget-check-final.log",
+    "papers/v5/book80-probe.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/book80-probe.log",
+    "papers/v5/anchor-probe.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/anchor-probe.log",
+    "papers/v5/driver-check-final2.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/driver-check-final2.log",
+    "papers/v5/algebra-probe.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/algebra-probe.json",
+    "papers/v5/budget-check.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/budget-check.log",
+    "papers/v5/per-class-f1.csv": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/per-class-f1.csv",
+    "papers/v5/live-status.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/live-status.json",
+    "papers/v5/convergence-g.png": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/convergence-g.png",
+    "papers/v5/paper.md": "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/paper.md",
+    "papers/v5/collection-j.log": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/logs/collection-j.log",
+    "papers/v5/anchor-target-diagnostics.json": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/probes/anchor-target-diagnostics.json",
+    "papers/v6/dataset-minhtran0601.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/dataset-minhtran0601.log",
+    "papers/v6/math-probe.json": "methods/geometry-primitive-moments/builds/v6-g59-g61/probes/math-probe.json",
+    "papers/v6/collection-b-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/collection-b-20261012.log",
+    "papers/v6/classes-b-s43.svg": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-b-s43.svg",
+    "papers/v6/classes-a-s43.png": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-a-s43.png",
+    "papers/v6/notebook": "methods/geometry-primitive-moments/builds/v6-g59-g61/notebooks",
+    "papers/v6/classes-b-s42.svg": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-b-s42.svg",
+    "papers/v6/notebook-check-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/notebook-check-20261012.log",
+    "papers/v6/wandb-runs.json": "methods/geometry-primitive-moments/builds/v6-g59-g61/probes/wandb-runs.json",
+    "papers/v6/classes-a-s42.svg": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-a-s42.svg",
+    "papers/v6/dataset-odixe0502.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/dataset-odixe0502.log",
+    "papers/v6/collection-b.lock": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/collection-b.lock",
+    "papers/v6/rebuild.md": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/rebuild.md",
+    "papers/v6/collection-b-20261012-terminal.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/collection-b-20261012-terminal.log",
+    "papers/v6/runs": "methods/geometry-primitive-moments/builds/v6-g59-g61/artifacts/runs",
+    "papers/v6/metrics-all.csv": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/metrics-all.csv",
+    "papers/v6/convergence-a.png": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/convergence-a.png",
+    "papers/v6/classes-a-s43.svg": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-a-s43.svg",
+    "papers/v6/figures.md": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/figures.md",
+    "papers/v6/collection-a-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/collection-a-20261012.log",
+    "papers/v6/budget-check-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/budget-check-20261012.log",
+    "papers/v6/collection-a.lock": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/collection-a.lock",
+    "papers/v6/gates.json": "methods/geometry-primitive-moments/builds/v6-g59-g61/probes/gates.json",
+    "papers/v6/dataset-trietbackup.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/dataset-trietbackup.log",
+    "papers/v6/report.md": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/report.md",
+    "papers/v6/quota-before-push.json": "methods/geometry-primitive-moments/builds/v6-g59-g61/probes/quota-before-push.json",
+    "papers/v6/classes-a-s42.png": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-a-s42.png",
+    "papers/v6/dataset-dinhan25.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/dataset-dinhan25.log",
+    "papers/v6/plot-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/plot-20261012.log",
+    "papers/v6/convergence-b.svg": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/convergence-b.svg",
+    "papers/v6/convergence-a.svg": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/convergence-a.svg",
+    "papers/v6/collection-a-20261012-terminal.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/collection-a-20261012-terminal.log",
+    "papers/v6/classes-b-s43.png": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-b-s43.png",
+    "papers/v6/convergence-b.png": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/convergence-b.png",
+    "papers/v6/per-class-f1.csv": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/per-class-f1.csv",
+    "papers/v6/live-status.json": "methods/geometry-primitive-moments/builds/v6-g59-g61/probes/live-status.json",
+    "papers/v6/classes-b-s42.png": "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/classes-b-s42.png",
+    "papers/v6/monitor-current.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/monitor-current.log",
+    "papers/v7/math-probe.json": "methods/covariance-nystrom/builds/v7-rank4-rank8/probes/math-probe.json",
+    "papers/v7/notebook": "methods/covariance-nystrom/builds/v7-rank4-rank8/notebooks",
+    "papers/v7/wandb-runs.json": "methods/covariance-nystrom/builds/v7-rank4-rank8/probes/wandb-runs.json",
+    "papers/v7/rebuild.md": "docs/methods/covariance-nystrom/builds/v7-rank4-rank8/results/rebuild.md",
+    "papers/v7/runs": "methods/covariance-nystrom/builds/v7-rank4-rank8/artifacts/runs",
+    "papers/v7/metrics-all.csv": "docs/methods/covariance-nystrom/builds/v7-rank4-rank8/results/metrics-all.csv",
+    "papers/v7/gates.json": "methods/covariance-nystrom/builds/v7-rank4-rank8/probes/gates.json",
+    "papers/v7/report.md": "docs/methods/covariance-nystrom/builds/v7-rank4-rank8/results/report.md",
+    "papers/v7/collection-n.lock": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/collection-n.lock",
+    "papers/v7/monitor-20261012.log": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/monitor-20261012.log",
+    "papers/v7/collection-n-20261012.log": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/collection-n-20261012.log",
+    "papers/v7/per-class-f1.csv": "docs/methods/covariance-nystrom/builds/v7-rank4-rank8/results/per-class-f1.csv",
+    "papers/v7/live-status.json": "methods/covariance-nystrom/builds/v7-rank4-rank8/probes/live-status.json",
+    "papers/v8/collection-h-20261013-range.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/collection-h-20261013-range.log",
+    "papers/v8/collection-h-20261013.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/collection-h-20261013.log",
+    "papers/v8/notebook": "methods/gaussian-proxy-hybrid/builds/v8-pilot/notebooks",
+    "papers/v8/collection-h.lock": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/collection-h.lock",
+    "papers/v8/wandb-runs.json": "methods/gaussian-proxy-hybrid/builds/v8-pilot/probes/wandb-runs.json",
+    "papers/v8/collection-reboot-20261013.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/collection-reboot-20261013.log",
+    "papers/v8/rebuild.md": "docs/methods/gaussian-proxy-hybrid/builds/v8-pilot/results/rebuild.md",
+    "papers/v8/collection-h-20261012.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/collection-h-20261012.log",
+    "papers/v8/runs": "methods/gaussian-proxy-hybrid/builds/v8-pilot/artifacts/runs",
+    "papers/v8/metrics-all.csv": "docs/methods/gaussian-proxy-hybrid/builds/v8-pilot/results/metrics-all.csv",
+    "papers/v8/input-upload-s43.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/input-upload-s43.log",
+    "papers/v8/input-upload-s42.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/input-upload-s42.log",
+    "papers/v8/monitor-s42-unresolved-20261012.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/monitor-s42-unresolved-20261012.log",
+    "papers/v8/gates.json": "methods/gaussian-proxy-hybrid/builds/v8-pilot/probes/gates.json",
+    "papers/v8/report.md": "docs/methods/gaussian-proxy-hybrid/builds/v8-pilot/results/report.md",
+    "papers/v8/live-download-s42.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/live-download-s42.log",
+    "papers/v8/collection-h-20261013-resumed.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/collection-h-20261013-resumed.log",
+    "papers/v8/monitor-20261012.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/monitor-20261012.log",
+    "papers/v8/per-class-f1.csv": "docs/methods/gaussian-proxy-hybrid/builds/v8-pilot/results/per-class-f1.csv",
+    "papers/v8/live-status.json": "methods/gaussian-proxy-hybrid/builds/v8-pilot/probes/live-status.json",
+    "papers/v8/live-status-s42.json": "methods/gaussian-proxy-hybrid/builds/v8-pilot/probes/live-status-s42.json",
+    "papers/v9/collection-a-20261013-priority.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-a-20261013-priority.log",
+    "papers/v9/collection-a-20261013-range.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-a-20261013-range.log",
+    "papers/v9/collection-a-20261013.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-a-20261013.log",
+    "papers/v9/notebook": "methods/anchor-function-residual/builds/v9-teacher-residual/notebooks",
+    "papers/v9/wandb-runs.json": "methods/anchor-function-residual/builds/v9-teacher-residual/probes/wandb-runs.json",
+    "papers/v9/collection-reboot-20261013.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-reboot-20261013.log",
+    "papers/v9/rebuild.md": "docs/methods/anchor-function-residual/builds/v9-teacher-residual/results/rebuild.md",
+    "papers/v9/runs": "methods/anchor-function-residual/builds/v9-teacher-residual/artifacts/runs",
+    "papers/v9/metrics-all.csv": "docs/methods/anchor-function-residual/builds/v9-teacher-residual/results/metrics-all.csv",
+    "papers/v9/input-upload-s43.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/input-upload-s43.log",
+    "papers/v9/collection-a-20261012.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-a-20261012.log",
+    "papers/v9/input-upload-s42.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/input-upload-s42.log",
+    "papers/v9/collection-a.lock": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-a.lock",
+    "papers/v9/gates.json": "methods/anchor-function-residual/builds/v9-teacher-residual/probes/gates.json",
+    "papers/v9/report.md": "docs/methods/anchor-function-residual/builds/v9-teacher-residual/results/report.md",
+    "papers/v9/live-status-s43.json": "methods/anchor-function-residual/builds/v9-teacher-residual/probes/live-status-s43.json",
+    "papers/v9/monitor-20261012.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/monitor-20261012.log",
+    "papers/v9/per-class-f1.csv": "docs/methods/anchor-function-residual/builds/v9-teacher-residual/results/per-class-f1.csv",
+    "papers/v9/live-status.json": "methods/anchor-function-residual/builds/v9-teacher-residual/probes/live-status.json",
+    "papers/v9/collection-a-20261013-resumed.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/collection-a-20261013-resumed.log",
+    "papers/v10/notebook": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/notebooks",
+    "papers/v10/collection-e-20261012.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/collection-e-20261012.log",
+    "papers/v10/wandb-runs.json": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/probes/wandb-runs.json",
+    "papers/v10/rebuild.md": "docs/methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/results/rebuild.md",
+    "papers/v10/report-generation-20261012.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/report-generation-20261012.log",
+    "papers/v10/runs": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/artifacts/runs",
+    "papers/v10/metrics-all.csv": "docs/methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/results/metrics-all.csv",
+    "papers/v10/input-upload-s43.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/input-upload-s43.log",
+    "papers/v10/input-upload-s42.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/input-upload-s42.log",
+    "papers/v10/gates.json": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/probes/gates.json",
+    "papers/v10/report.md": "docs/methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/results/report.md",
+    "papers/v10/collection-e.lock": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/collection-e.lock",
+    "papers/v10/monitor-20261012.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/monitor-20261012.log",
+    "papers/v10/per-class-f1.csv": "docs/methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/results/per-class-f1.csv",
+    "papers/v10/live-status.json": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/probes/live-status.json",
+    "papers/full-validation/test-access-minhtriethihi.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/test-access-minhtriethihi.csv",
+    "papers/full-validation/collection-20261012.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/collection-20261012.log",
+    "papers/full-validation/continuation-live-latest.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/continuation-live-latest.json",
+    "papers/full-validation/inference-proof.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/inference-proof.json",
+    "papers/full-validation/test-access-khanhmay0304.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/test-access-khanhmay0304.csv",
+    "papers/full-validation/continuation-check-20261013-final.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/continuation-check-20261013-final.log",
+    "papers/full-validation/quota-before-cont01.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/quota-before-cont01.json",
+    "papers/full-validation/notebook": "methods/shared-baselines/builds/full-h1-h2-50rounds/notebooks",
+    "papers/full-validation/inference-20261014.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/inference-20261014.log",
+    "papers/full-validation/notebook-check-20261012.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/notebook-check-20261012.log",
+    "papers/full-validation/test-access-catbaochau.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/test-access-catbaochau.csv",
+    "papers/full-validation/wandb-runs.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/wandb-runs.json",
+    "papers/full-validation/collection-reboot-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/collection-reboot-20261013.log",
+    "papers/full-validation/continuation-live-first.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/continuation-live-first.json",
+    "papers/full-validation/rebuild.md": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/rebuild.md",
+    "papers/full-validation/import-check-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/import-check-20261013.log",
+    "papers/full-validation/metrics-all.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/metrics-all.csv",
+    "papers/full-validation/collection-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/collection-20261013.log",
+    "papers/full-validation/test-access-odixeuit.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/test-access-odixeuit.csv",
+    "papers/full-validation/inference-20261013-final.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/inference-20261013-final.log",
+    "papers/full-validation/budget-measured.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/budget-measured.json",
+    "papers/full-validation/continuation-check-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/continuation-check-20261013.log",
+    "papers/full-validation/continuation-generation-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/continuation-generation-20261013.log",
+    "papers/full-validation/report.md": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/report.md",
+    "papers/full-validation/mount-proof.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/mount-proof.json",
+    "papers/full-validation/kaggle": "methods/shared-baselines/builds/full-h1-h2-50rounds/artifacts/kaggle",
+    "papers/full-validation/report-generation-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/report-generation-20261013.log",
+    "papers/full-validation/notebook-check-final-20261012.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/notebook-check-final-20261012.log",
+    "papers/full-validation/input-upload-minhtriethihi.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/input-upload-minhtriethihi.log",
+    "papers/full-validation/latest-rounds.md": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/latest-rounds.md",
+    "papers/full-validation/proj": "methods/shared-baselines/builds/full-h1-h2-50rounds/source/proj",
+    "papers/full-validation/initial-output": "methods/shared-baselines/builds/full-h1-h2-50rounds/artifacts/initial-output",
+    "papers/full-validation/input-upload-khanhmay0304.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/input-upload-khanhmay0304.log",
+    "papers/full-validation/train-access-catbaochau.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/train-access-catbaochau.csv",
+    "papers/full-validation/per-class-f1.csv": "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/per-class-f1.csv",
+    "papers/full-validation/inference-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/inference-20261013.log",
+    "papers/full-validation/input-upload-odixeuit.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/input-upload-odixeuit.log",
+    "papers/full-validation/live-status.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/live-status.json",
+    "papers/full-validation/report-generation-20261013-final.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/report-generation-20261013-final.log",
+    "papers/full-validation/input-upload-catbaochau.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/input-upload-catbaochau.log",
+    "papers/full-validation/collection-20261013-resumed.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/collection-20261013-resumed.log",
+    "papers/full-validation/continuation-health-20261013.json": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/continuation-health-20261013.json",
+    "papers/full-validation/collection-cont01-20261013.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/collection-cont01-20261013.log",
+    "papers/hybrid-full/inference-proof.json": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/inference-proof.json",
+    "papers/hybrid-full/notebook": "methods/gaussian-proxy-hybrid/builds/full-50rounds/notebooks",
+    "papers/hybrid-full/inference-20261014.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/inference-20261014.log",
+    "papers/hybrid-full/diagnostic-pull3-20261014.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/diagnostic-pull3-20261014.log",
+    "papers/hybrid-full/startup-health-latest.json": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/startup-health-latest.json",
+    "papers/hybrid-full/rebuild.md": "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/rebuild.md",
+    "papers/hybrid-full/metrics-all.csv": "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/metrics-all.csv",
+    "papers/hybrid-full/collection-20261013.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/collection-20261013.log",
+    "papers/hybrid-full/collection-20261014.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/collection-20261014.log",
+    "papers/hybrid-full/budget-measured.json": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/budget-measured.json",
+    "papers/hybrid-full/startup-health-20261013.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/startup-health-20261013.log",
+    "papers/hybrid-full/report.md": "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/report.md",
+    "papers/hybrid-full/generation-20261013.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/generation-20261013.log",
+    "papers/hybrid-full/diagnostic-pull-20261014.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/diagnostic-pull-20261014.log",
+    "papers/hybrid-full/kaggle": "methods/gaussian-proxy-hybrid/builds/full-50rounds/artifacts/kaggle",
+    "papers/hybrid-full/budget-remaining-20261014.json": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/budget-remaining-20261014.json",
+    "papers/hybrid-full/reservation-20261013.json": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/reservation-20261013.json",
+    "papers/hybrid-full/input-access-proof.json": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/input-access-proof.json",
+    "papers/hybrid-full/feasibility-20261014.md": "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/feasibility-20261014.md",
+    "papers/hybrid-full/report-20261014.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/report-20261014.log",
+    "papers/hybrid-full/latest-rounds.md": "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/latest-rounds.md",
+    "papers/hybrid-full/proj": "methods/gaussian-proxy-hybrid/builds/full-50rounds/source/proj",
+    "papers/hybrid-full/per-class-f1.csv": "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/per-class-f1.csv",
+    "papers/boundary-cells/notebook-proof-initial2.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/notebook-proof-initial2.json",
+    "papers/boundary-cells/notebook-check-initial2.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/notebook-check-initial2.log",
+    "papers/boundary-cells/branch-smoke-initial2.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/branch-smoke-initial2.log",
+    "papers/boundary-cells/collection-initial2-20261013.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/collection-initial2-20261013.log",
+    "papers/boundary-cells/input-access-initial2.csv": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/input-access-initial2.csv",
+    "papers/boundary-cells/startup-inspect-20261013.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/startup-inspect-20261013.log",
+    "papers/boundary-cells/calibration-report.md": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/calibration-report.md",
+    "papers/boundary-cells/input-access-dinhan25-initial2.csv": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/input-access-dinhan25-initial2.csv",
+    "papers/boundary-cells/input-upload-initial2.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/input-upload-initial2.log",
+    "papers/boundary-cells/notebook": "methods/boundary-cell-counts/builds/cell-counts-v1/notebooks",
+    "papers/boundary-cells/reservation-initial2.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/reservation-initial2.json",
+    "papers/boundary-cells/rebuild.md": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/rebuild.md",
+    "papers/boundary-cells/calibration-metrics-all.csv": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/calibration-metrics-all.csv",
+    "papers/boundary-cells/local-proof.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/local-proof.json",
+    "papers/boundary-cells/reservation-pair-initial2.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/reservation-pair-initial2.json",
+    "papers/boundary-cells/local-proof-initial2.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/local-proof-initial2.json",
+    "papers/boundary-cells/input-upload-dinhan25-initial2.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/input-upload-dinhan25-initial2.log",
+    "papers/boundary-cells/smoke-initial1.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/smoke-initial1.log",
+    "papers/boundary-cells/kaggle": "methods/boundary-cell-counts/builds/cell-counts-v1/artifacts/kaggle",
+    "papers/boundary-cells/branch-proof-initial2.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/branch-proof-initial2.json",
+    "papers/boundary-cells/bounded-probe.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/bounded-probe.json",
+    "papers/boundary-cells/smoke-initial2.log": "methods/boundary-cell-counts/builds/cell-counts-v1/logs/smoke-initial2.log",
+    "papers/boundary-cells/proj": "methods/boundary-cell-counts/builds/cell-counts-v1/source/proj",
+    "papers/boundary-cells/contract.md": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/contract.md",
+    "papers/boundary-cells/startup-live-latest.json": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/startup-live-latest.json",
+    "papers/boundary-cells/smoke-source-initial1": "methods/boundary-cell-counts/builds/cell-counts-v1/source/smoke-source-initial1",
+    "papers/boundary-cells/probe-source-v1": "methods/boundary-cell-counts/builds/cell-counts-v1/source/probe-source-v1",
+    "papers/boundary-cells/input-access-all-initial2.csv": "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/input-access-all-initial2.csv",
+    "papers/receiver-response/fidelity-probe.json": "methods/receiver-response-consistency/builds/local-augmentation-v1/probes/fidelity-probe.json",
+    "papers/nystrom": "methods/covariance-nystrom/builds/v7-rank4-rank8/probes/nystrom-preflight",
+    "papers/probes": "methods/gaussian-class-moments/builds/input-statistics-probe",
+    "papers/v9-driver-final2-20261012.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/v9-driver-final2-20261012.log",
+    "papers/v6-math-final-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/v6-math-final-20261012.log",
+    "papers/v7-math-final-20261012.log": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/v7-math-final-20261012.log",
+    "papers/v10-driver-final2-20261012.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/v10-driver-final2-20261012.log",
+    "papers/v6-driver-first-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/v6-driver-first-20261012.log",
+    "papers/v7-driver-final1-20261012.log": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/v7-driver-final1-20261012.log",
+    "papers/hybrid-full-smoke-initial1-20261013.log": "methods/gaussian-proxy-hybrid/builds/full-50rounds/logs/hybrid-full-smoke-initial1-20261013.log",
+    "papers/v6-verify-final-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/v6-verify-final-20261012.log",
+    "papers/v6-driver-final-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/v6-driver-final-20261012.log",
+    "papers/v10-driver-initial1-20261012.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/v10-driver-initial1-20261012.log",
+    "papers/v6-math-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/v6-math-20261012.log",
+    "papers/v9-notebooks-20261012.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/v9-notebooks-20261012.log",
+    "papers/v7-math-current-20261012.log": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/v7-math-current-20261012.log",
+    "papers/v9-driver-initial1-20261012.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/v9-driver-initial1-20261012.log",
+    "papers/full-driver-initial1-recheck-20261012.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/full-driver-initial1-recheck-20261012.log",
+    "papers/v8-driver-initial1-20261012.log": "methods/gaussian-proxy-hybrid/builds/v8-pilot/logs/v8-driver-initial1-20261012.log",
+    "papers/full-driver-initial1-20261012.log": "methods/shared-baselines/builds/full-h1-h2-50rounds/logs/full-driver-initial1-20261012.log",
+    "papers/report-watch.log": "logs/operations/report-watch.log",
+    "papers/v10-notebooks-20261012.log": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/logs/v10-notebooks-20261012.log",
+    "papers/v6-math-random-20261012.log": "methods/geometry-primitive-moments/builds/v6-g59-g61/logs/v6-math-random-20261012.log",
+    "papers/v9-driver-final3-20261012.log": "methods/anchor-function-residual/builds/v9-teacher-residual/logs/v9-driver-final3-20261012.log",
+    "papers/v7-math-20261012.log": "methods/covariance-nystrom/builds/v7-rank4-rank8/logs/v7-math-20261012.log",
+    "scripts/check_full_driver.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_driver.py",
+    "scripts/check_new_fl_notebooks.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/check_new_fl_notebooks.py",
+    "scripts/probe_v5_books.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_books.py",
+    "scripts/check_full_verifier_package.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_verifier_package.py",
+    "scripts/pilot_queue.txt": "methods/shared-baselines/builds/p1-pilot/scripts/pilot_queue.txt",
+    "scripts/probe_v3_support.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/probe_v3_support.py",
+    "scripts/verify_v4.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/verify_v4.py",
+    "scripts/check_v3_abort.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/check_v3_abort.py",
+    "scripts/check_v7_driver.py": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/check_v7_driver.py",
+    "scripts/check_v4_mala.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/check_v4_mala.py",
+    "scripts/probe_v4_gradient.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/probe_v4_gradient.py",
+    "scripts/report_v2.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/report_v2.py",
+    "scripts/check_boundary_cells.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_cells.py",
+    "scripts/probe_v4_ratio_score.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/probe_v4_ratio_score.py",
+    "scripts/verify_full_sample.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/verify_full_sample.py",
+    "scripts/check_v8_driver.py": "methods/gaussian-proxy-hybrid/builds/v8-pilot/scripts/check_v8_driver.py",
+    "scripts/check_v6_driver.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/check_v6_driver.py",
+    "scripts/check_v2_notebooks.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/check_v2_notebooks.py",
+    "scripts/check_v2_driver.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/check_v2_driver.py",
+    "scripts/probe_v5_anchors.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_anchors.py",
+    "scripts/check_v4_support.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/check_v4_support.py",
+    "scripts/freeze_v4_schema.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/freeze_v4_schema.py",
+    "scripts/probe_v5_algebra.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_algebra.py",
+    "scripts/verify_new_fl.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/verify_new_fl.py",
+    "scripts/report_pilot.py": "methods/shared-baselines/builds/p1-pilot/scripts/report_pilot.py",
+    "scripts/check_full_import.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_import.py",
+    "scripts/check_v10_driver.py": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/scripts/check_v10_driver.py",
+    "scripts/monitor_v2.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/monitor_v2.py",
+    "scripts/check_full_continuation.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_continuation.py",
+    "scripts/probe_v5_anchor_targets.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_anchor_targets.py",
+    "scripts/plot_v2_ratio.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/plot_v2_ratio.py",
+    "scripts/inspect_hybrid_startup.py": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/inspect_hybrid_startup.py",
+    "scripts/verify_v6.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/verify_v6.py",
+    "scripts/report_v4.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/report_v4.py",
+    "scripts/check_v6_budget.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/check_v6_budget.py",
+    "scripts/p2_queue.txt": "methods/contact-fragmentation/builds/p2-deadline/scripts/p2_queue.txt",
+    "scripts/check_v5_driver.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/check_v5_driver.py",
+    "scripts/verify_v3.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/verify_v3.py",
+    "scripts/probe_v2_basis.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/probe_v2_basis.py",
+    "scripts/check_v3_math.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/check_v3_math.py",
+    "scripts/report_v6.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/report_v6.py",
+    "scripts/verify_v8.py": "methods/gaussian-proxy-hybrid/builds/v8-pilot/scripts/verify_v8.py",
+    "scripts/report_v5.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/report_v5.py",
+    "scripts/check_boundary_branches.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_branches.py",
+    "scripts/probe_new_fl_contacts.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/probe_new_fl_contacts.py",
+    "scripts/check_full_notebooks.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_notebooks.py",
+    "scripts/report_full_validation.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/report_full_validation.py",
+    "scripts/check_v3_driver.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/check_v3_driver.py",
+    "scripts/check_hybrid_full.py": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/check_hybrid_full.py",
+    "scripts/check_v6_math.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/check_v6_math.py",
+    "scripts/preflight_v2_wandb.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/preflight_v2_wandb.py",
+    "scripts/report_new_fl.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/report_new_fl.py",
+    "scripts/check_new_fl_math.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/check_new_fl_math.py",
+    "scripts/verify_p2.py": "methods/contact-fragmentation/builds/p2-deadline/scripts/verify_p2.py",
+    "scripts/check_v2_math.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/check_v2_math.py",
+    "scripts/probe_nystrom_math.py": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/probe_nystrom_math.py",
+    "scripts/check_new_fl_artifacts.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/check_new_fl_artifacts.py",
+    "scripts/check_v9_driver.py": "methods/anchor-function-residual/builds/v9-teacher-residual/scripts/check_v9_driver.py",
+    "scripts/diagnose_v2_a.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/diagnose_v2_a.py",
+    "scripts/check_v7_math.py": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/check_v7_math.py",
+    "scripts/check_boundary_utility.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_utility.py",
+    "scripts/report_v3.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/report_v3.py",
+    "scripts/verify_v5.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/verify_v5.py",
+    "scripts/check_boundary_notebooks.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_notebooks.py",
+    "scripts/verify_v2.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/verify_v2.py",
+    "scripts/probe_k5_missing.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/probe_k5_missing.py",
+    "scripts/inspect_boundary_startup.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/inspect_boundary_startup.py",
+    "scripts/probe_h2_input_stats.py": "methods/shared-baselines/builds/p1-pilot/scripts/probe_h2_input_stats.py",
+    "scripts/verify_v7.py": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/verify_v7.py",
+    "scripts/run_pilot_queue.sh": "methods/shared-baselines/builds/p1-pilot/scripts/run_pilot_queue.sh",
+    "scripts/check_v5_budget.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/check_v5_budget.py",
+    "scripts/run_p2_queue.sh": "methods/contact-fragmentation/builds/p2-deadline/scripts/run_p2_queue.sh",
+    "scripts/report_p2.py": "methods/contact-fragmentation/builds/p2-deadline/scripts/report_p2.py",
+    "scripts/probe_v3_energy.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/probe_v3_energy.py",
+    "scripts/kaggle/gen_v4.py": "methods/gaussian-sampling/builds/v4-support-mala/scripts/gen_v4.py",
+    "scripts/kaggle/gen_full_mount_probe.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/gen_full_mount_probe.py",
+    "scripts/kaggle/boundary_logging.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/boundary_logging.py",
+    "scripts/kaggle/gen_p2.py": "methods/contact-fragmentation/builds/p2-deadline/scripts/gen_p2.py",
+    "scripts/kaggle/collect_hybrid_full.py": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/collect_hybrid_full.py",
+    "scripts/kaggle/gen_boundary_calibration.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/gen_boundary_calibration.py",
+    "scripts/kaggle/gen_v7.py": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/gen_v7.py",
+    "scripts/kaggle/collect_v2.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/collect_v2.py",
+    "scripts/kaggle/collect_p2.py": "methods/contact-fragmentation/builds/p2-deadline/scripts/collect_p2.py",
+    "scripts/kaggle/collect_boundary_calibration.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/collect_boundary_calibration.py",
+    "scripts/kaggle/gen_full_continuation.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/gen_full_continuation.py",
+    "scripts/kaggle/gen_v8.py": "methods/gaussian-proxy-hybrid/builds/v8-pilot/scripts/gen_v8.py",
+    "scripts/kaggle/gen_v3.py": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/gen_v3.py",
+    "scripts/kaggle/gen_boundary_utility.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/gen_boundary_utility.py",
+    "scripts/kaggle/collect_new_fl.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/collect_new_fl.py",
+    "scripts/kaggle/gen_full_validation.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/gen_full_validation.py",
+    "scripts/kaggle/full_resume.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/full_resume.py",
+    "scripts/kaggle/gen_v5.py": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/gen_v5.py",
+    "scripts/kaggle/gen_hybrid_full.py": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/gen_hybrid_full.py",
+    "scripts/kaggle/collect_full.py": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/collect_full.py",
+    "scripts/kaggle/gen_new_fl.py": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/gen_new_fl.py",
+    "scripts/kaggle/gen_v6.py": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/gen_v6.py",
+    "scripts/kaggle/boundary_resume.py": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/boundary_resume.py",
+    "scripts/kaggle/gen_v2.py": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/gen_v2.py",
+    "papers/v2/quota-after-a.txt": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/probes/quota-after-a.txt",
+    "papers/full-validation/quota-before-full4-20261012.txt": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/quota-before-full4-20261012.txt",
+    "papers/full-validation/budget-plan-20261012.txt": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/budget-plan-20261012.txt",
+    "papers/full-validation/quota-before-push-20261012.txt": "methods/shared-baselines/builds/full-h1-h2-50rounds/probes/quota-before-push-20261012.txt",
+    "papers/hybrid-full/quota-20261014.txt": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/quota-20261014.txt",
+    "papers/hybrid-full/quota-before-push-20261013.txt": "methods/gaussian-proxy-hybrid/builds/full-50rounds/probes/quota-before-push-20261013.txt",
+    "papers/boundary-cells/quota-after-reboot-20261013.txt": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/quota-after-reboot-20261013.txt",
+    "papers/boundary-cells/input-status-initial2.txt": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/input-status-initial2.txt",
+    "papers/boundary-cells/quota-20261013.txt": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/quota-20261013.txt",
+    "papers/boundary-cells/input-status-dinhan25-initial2.txt": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/input-status-dinhan25-initial2.txt",
+    "papers/boundary-cells/quota-before-push-initial2.txt": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/quota-before-push-initial2.txt",
+    "papers/boundary-cells/quota-before-pair-20261013.txt": "methods/boundary-cell-counts/builds/cell-counts-v1/probes/quota-before-pair-20261013.txt"
+  },
+  "scripts": [
+    {
+      "old": "scripts/check_full_driver.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_driver.py"
+    },
+    {
+      "old": "scripts/check_new_fl_notebooks.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/check_new_fl_notebooks.py"
+    },
+    {
+      "old": "scripts/probe_v5_books.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_books.py"
+    },
+    {
+      "old": "scripts/check_full_verifier_package.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_verifier_package.py"
+    },
+    {
+      "old": "scripts/pilot_queue.txt",
+      "new": "methods/shared-baselines/builds/p1-pilot/scripts/pilot_queue.txt"
+    },
+    {
+      "old": "scripts/probe_v3_support.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/probe_v3_support.py"
+    },
+    {
+      "old": "scripts/verify_v4.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/verify_v4.py"
+    },
+    {
+      "old": "scripts/check_v3_abort.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/check_v3_abort.py"
+    },
+    {
+      "old": "scripts/check_v7_driver.py",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/check_v7_driver.py"
+    },
+    {
+      "old": "scripts/check_v4_mala.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/check_v4_mala.py"
+    },
+    {
+      "old": "scripts/probe_v4_gradient.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/probe_v4_gradient.py"
+    },
+    {
+      "old": "scripts/report_v2.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/report_v2.py"
+    },
+    {
+      "old": "scripts/check_boundary_cells.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_cells.py"
+    },
+    {
+      "old": "scripts/probe_v4_ratio_score.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/probe_v4_ratio_score.py"
+    },
+    {
+      "old": "scripts/verify_full_sample.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/verify_full_sample.py"
+    },
+    {
+      "old": "scripts/check_v8_driver.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/scripts/check_v8_driver.py"
+    },
+    {
+      "old": "scripts/check_v6_driver.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/check_v6_driver.py"
+    },
+    {
+      "old": "scripts/check_v2_notebooks.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/check_v2_notebooks.py"
+    },
+    {
+      "old": "scripts/check_v2_driver.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/check_v2_driver.py"
+    },
+    {
+      "old": "scripts/probe_v5_anchors.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_anchors.py"
+    },
+    {
+      "old": "scripts/check_v4_support.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/check_v4_support.py"
+    },
+    {
+      "old": "scripts/freeze_v4_schema.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/freeze_v4_schema.py"
+    },
+    {
+      "old": "scripts/probe_v5_algebra.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_algebra.py"
+    },
+    {
+      "old": "scripts/verify_new_fl.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/verify_new_fl.py"
+    },
+    {
+      "old": "scripts/report_pilot.py",
+      "new": "methods/shared-baselines/builds/p1-pilot/scripts/report_pilot.py"
+    },
+    {
+      "old": "scripts/check_full_import.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_import.py"
+    },
+    {
+      "old": "scripts/check_v10_driver.py",
+      "new": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/scripts/check_v10_driver.py"
+    },
+    {
+      "old": "scripts/monitor_v2.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/monitor_v2.py"
+    },
+    {
+      "old": "scripts/check_full_continuation.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_continuation.py"
+    },
+    {
+      "old": "scripts/probe_v5_anchor_targets.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/probe_v5_anchor_targets.py"
+    },
+    {
+      "old": "scripts/plot_v2_ratio.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/plot_v2_ratio.py"
+    },
+    {
+      "old": "scripts/inspect_hybrid_startup.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/inspect_hybrid_startup.py"
+    },
+    {
+      "old": "scripts/verify_v6.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/verify_v6.py"
+    },
+    {
+      "old": "scripts/report_v4.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/report_v4.py"
+    },
+    {
+      "old": "scripts/check_v6_budget.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/check_v6_budget.py"
+    },
+    {
+      "old": "scripts/p2_queue.txt",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/scripts/p2_queue.txt"
+    },
+    {
+      "old": "scripts/check_v5_driver.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/check_v5_driver.py"
+    },
+    {
+      "old": "scripts/verify_v3.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/verify_v3.py"
+    },
+    {
+      "old": "scripts/probe_v2_basis.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/probe_v2_basis.py"
+    },
+    {
+      "old": "scripts/check_v3_math.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/check_v3_math.py"
+    },
+    {
+      "old": "scripts/report_v6.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/report_v6.py"
+    },
+    {
+      "old": "scripts/verify_v8.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/scripts/verify_v8.py"
+    },
+    {
+      "old": "scripts/report_v5.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/report_v5.py"
+    },
+    {
+      "old": "scripts/check_boundary_branches.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_branches.py"
+    },
+    {
+      "old": "scripts/probe_new_fl_contacts.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/probe_new_fl_contacts.py"
+    },
+    {
+      "old": "scripts/check_full_notebooks.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/check_full_notebooks.py"
+    },
+    {
+      "old": "scripts/report_full_validation.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/report_full_validation.py"
+    },
+    {
+      "old": "scripts/check_v3_driver.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/check_v3_driver.py"
+    },
+    {
+      "old": "scripts/check_hybrid_full.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/check_hybrid_full.py"
+    },
+    {
+      "old": "scripts/check_v6_math.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/check_v6_math.py"
+    },
+    {
+      "old": "scripts/preflight_v2_wandb.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/preflight_v2_wandb.py"
+    },
+    {
+      "old": "scripts/report_new_fl.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/report_new_fl.py"
+    },
+    {
+      "old": "scripts/check_new_fl_math.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/check_new_fl_math.py"
+    },
+    {
+      "old": "scripts/verify_p2.py",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/scripts/verify_p2.py"
+    },
+    {
+      "old": "scripts/check_v2_math.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/check_v2_math.py"
+    },
+    {
+      "old": "scripts/probe_nystrom_math.py",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/probe_nystrom_math.py"
+    },
+    {
+      "old": "scripts/check_new_fl_artifacts.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/check_new_fl_artifacts.py"
+    },
+    {
+      "old": "scripts/check_v9_driver.py",
+      "new": "methods/anchor-function-residual/builds/v9-teacher-residual/scripts/check_v9_driver.py"
+    },
+    {
+      "old": "scripts/diagnose_v2_a.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/diagnose_v2_a.py"
+    },
+    {
+      "old": "scripts/check_v7_math.py",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/check_v7_math.py"
+    },
+    {
+      "old": "scripts/check_boundary_utility.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_utility.py"
+    },
+    {
+      "old": "scripts/report_v3.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/report_v3.py"
+    },
+    {
+      "old": "scripts/verify_v5.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/verify_v5.py"
+    },
+    {
+      "old": "scripts/check_boundary_notebooks.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/check_boundary_notebooks.py"
+    },
+    {
+      "old": "scripts/verify_v2.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/verify_v2.py"
+    },
+    {
+      "old": "scripts/probe_k5_missing.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/probe_k5_missing.py"
+    },
+    {
+      "old": "scripts/inspect_boundary_startup.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/inspect_boundary_startup.py"
+    },
+    {
+      "old": "scripts/probe_h2_input_stats.py",
+      "new": "methods/shared-baselines/builds/p1-pilot/scripts/probe_h2_input_stats.py"
+    },
+    {
+      "old": "scripts/verify_v7.py",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/verify_v7.py"
+    },
+    {
+      "old": "scripts/run_pilot_queue.sh",
+      "new": "methods/shared-baselines/builds/p1-pilot/scripts/run_pilot_queue.sh"
+    },
+    {
+      "old": "scripts/check_v5_budget.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/check_v5_budget.py"
+    },
+    {
+      "old": "scripts/run_p2_queue.sh",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/scripts/run_p2_queue.sh"
+    },
+    {
+      "old": "scripts/report_p2.py",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/scripts/report_p2.py"
+    },
+    {
+      "old": "scripts/probe_v3_energy.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/probe_v3_energy.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v4.py",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/scripts/gen_v4.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_full_mount_probe.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/gen_full_mount_probe.py"
+    },
+    {
+      "old": "scripts/kaggle/boundary_logging.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/boundary_logging.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_p2.py",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/scripts/gen_p2.py"
+    },
+    {
+      "old": "scripts/kaggle/collect_hybrid_full.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/collect_hybrid_full.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_boundary_calibration.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/gen_boundary_calibration.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v7.py",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/scripts/gen_v7.py"
+    },
+    {
+      "old": "scripts/kaggle/collect_v2.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/collect_v2.py"
+    },
+    {
+      "old": "scripts/kaggle/collect_p2.py",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/scripts/collect_p2.py"
+    },
+    {
+      "old": "scripts/kaggle/collect_boundary_calibration.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/collect_boundary_calibration.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_full_continuation.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/gen_full_continuation.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v8.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/scripts/gen_v8.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v3.py",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/scripts/gen_v3.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_boundary_utility.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/gen_boundary_utility.py"
+    },
+    {
+      "old": "scripts/kaggle/collect_new_fl.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/collect_new_fl.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_full_validation.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/gen_full_validation.py"
+    },
+    {
+      "old": "scripts/kaggle/full_resume.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/full_resume.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v5.py",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/scripts/gen_v5.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_hybrid_full.py",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/scripts/gen_hybrid_full.py"
+    },
+    {
+      "old": "scripts/kaggle/collect_full.py",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/scripts/collect_full.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_new_fl.py",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/scripts/gen_new_fl.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v6.py",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/scripts/gen_v6.py"
+    },
+    {
+      "old": "scripts/kaggle/boundary_resume.py",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/scripts/boundary_resume.py"
+    },
+    {
+      "old": "scripts/kaggle/gen_v2.py",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/scripts/gen_v2.py"
+    }
+  ],
+  "dvc_before": [
+    {
+      "old": "papers/pilot/runs.dvc",
+      "new": "methods/shared-baselines/builds/p1-pilot/runs.dvc",
+      "sha": "3bd575704533038c62089cc37c9cbe08d0312a833f11124f7bdcd57a11616bbc",
+      "outs": [
+        {
+          "md5": "ca8715563f5d94932638a588f9999bda.dir",
+          "size": 1833638,
+          "nfiles": 32,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/pilot/fixture.dvc",
+      "new": "methods/shared-baselines/builds/p1-pilot/fixture.dvc",
+      "sha": "ede72a414bd06971bf3b533803e0c82ec267667becc740461f71dcb67301451b",
+      "outs": [
+        {
+          "md5": "cb782c4671b1aa25a8a2c56bf465587c.dir",
+          "size": 159554510,
+          "nfiles": 67,
+          "hash": "md5",
+          "path": "fixture"
+        }
+      ]
+    },
+    {
+      "old": "papers/p2/runs.dvc",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/runs.dvc",
+      "sha": "075a839e610b29e32422b1acf8a875a6bb6464ffff5ec8aaea7a06fb84bd1677",
+      "outs": [
+        {
+          "md5": "bbba5ff279d47c2932690e74b63c9c6f.dir",
+          "size": 1251162,
+          "nfiles": 44,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/p2/kaggle.dvc",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/kaggle.dvc",
+      "sha": "81158ce45a0a33456fa03a51ff34a9d3c8cfdea12d254dd6d800551cab45113c",
+      "outs": [
+        {
+          "md5": "05d670af724058a6a42f6c291c1dd054.dir",
+          "size": 1289660,
+          "nfiles": 52,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/p2/source_audit.dvc",
+      "new": "methods/contact-fragmentation/builds/p2-deadline/source_audit.dvc",
+      "sha": "773a8ded6301d27abd93415d4f21f80efd62dad8252814e59a6b7579b72effa6",
+      "outs": [
+        {
+          "md5": "36f834ab0207195ab6f24922755fe781.dir",
+          "size": 306212,
+          "nfiles": 32,
+          "hash": "md5",
+          "path": "source_audit"
+        }
+      ]
+    },
+    {
+      "old": "papers/new-fl/runs.dvc",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/runs.dvc",
+      "sha": "384301c5f70668686f7a7f2dd874983c0bc0f7e68cf04083cd86eb29dd94696a",
+      "outs": [
+        {
+          "md5": "d751713988987e9331980363e24189ce.dir",
+          "size": 0,
+          "nfiles": 0,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/new-fl/kaggle.dvc",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/kaggle.dvc",
+      "sha": "360498a69dfc19e07c73b52c59ad4e9dfb931f57488b04b9394f3eb36e11aa6d",
+      "outs": [
+        {
+          "md5": "2a40c2e202c8c5416ab275ab665644e2.dir",
+          "size": 7999577235,
+          "nfiles": 622,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/new-fl/smoke.dvc",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/smoke.dvc",
+      "sha": "585f68f6d6acd1bc4e14a22b1d1bae7202a8390e81286d2162301fe28d3c50f0",
+      "outs": [
+        {
+          "md5": "0a67a58b6ba9c09beac284e920193d09.dir",
+          "size": 599131852,
+          "nfiles": 79,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/new-fl/input.dvc",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/input.dvc",
+      "sha": "2edd29f79fbf7ed438d3b9fb1663786c7204691224009b586e48c327298b9059",
+      "outs": [
+        {
+          "md5": "d35c8fbd6931d9ab021e4b328f111b04.dir",
+          "size": 319302266,
+          "nfiles": 162,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/new-fl/resume_reference.dvc",
+      "new": "methods/synthetic-distribution-matching/builds/sa-static-books/resume_reference.dvc",
+      "sha": "f4d63d8d2a5173ce494314b9f11f16c18bb158799610baab34edb818e4c9df82",
+      "outs": [
+        {
+          "md5": "0291d66b53d9538c8e7298eafeb11227.dir",
+          "size": 100116057,
+          "nfiles": 13,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v2/runs.dvc",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/runs.dvc",
+      "sha": "384301c5f70668686f7a7f2dd874983c0bc0f7e68cf04083cd86eb29dd94696a",
+      "outs": [
+        {
+          "md5": "d751713988987e9331980363e24189ce.dir",
+          "size": 0,
+          "nfiles": 0,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/v2/kaggle.dvc",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/kaggle.dvc",
+      "sha": "d27ac87b09fa6eb72b07002b2245b2486ede250d5d5e93930ca7d080309fa3bd",
+      "outs": [
+        {
+          "md5": "3c49c7ec142513d62f8e31da23534ee1.dir",
+          "size": 31674561783,
+          "nfiles": 2422,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v2/smoke.dvc",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/smoke.dvc",
+      "sha": "26d268fe551bf31bc145d9027c5633948218dfc71080168b9e26ff7881b637a7",
+      "outs": [
+        {
+          "md5": "f0da440b6a89ca4822cd1530b539f7d2.dir",
+          "size": 6862940249,
+          "nfiles": 612,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v2/input.dvc",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/input.dvc",
+      "sha": "d87ea3a0796e0bbb517a158b944ca3a56e8385d6dc5e9e43c2cf1839dede42ef",
+      "outs": [
+        {
+          "md5": "e1ca6a39074fe9722422189daaadc96c.dir",
+          "size": 319384452,
+          "nfiles": 170,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v2/resume_reference.dvc",
+      "new": "methods/shared-comparisons/builds/v2-sketch-subspace-ratio/resume_reference.dvc",
+      "sha": "3601cec545fc05fad0101c7930df1cd340a60e6c035a1c837283114c6fd60fdd",
+      "outs": [
+        {
+          "md5": "f2d71818d8042456a84190ae8f20fee4.dir",
+          "size": 1234921763,
+          "nfiles": 108,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v3/runs.dvc",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/runs.dvc",
+      "sha": "384301c5f70668686f7a7f2dd874983c0bc0f7e68cf04083cd86eb29dd94696a",
+      "outs": [
+        {
+          "md5": "d751713988987e9331980363e24189ce.dir",
+          "size": 0,
+          "nfiles": 0,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/v3/kaggle.dvc",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/kaggle.dvc",
+      "sha": "1e05fe58fe4f127ae4d10f2beb1dde3e43a7ae7aace72758ec1b195cf07a1505",
+      "outs": [
+        {
+          "md5": "6c988e51b04beb21f4fecffd3d68f193.dir",
+          "size": 134856256251,
+          "nfiles": 4556,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v3/smoke.dvc",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/smoke.dvc",
+      "sha": "a74f73b27af0da25815d5a1c553be5ed7ae4c33b259930405a4b16477175fea0",
+      "outs": [
+        {
+          "md5": "57f87a065d3b2adb2742e8aa8b2e386c.dir",
+          "size": 21931873202,
+          "nfiles": 888,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v3/input.dvc",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/input.dvc",
+      "sha": "de9c962445baeb9d0f51a84fef52c514be1be81774f56dbba78a3764dc318b8d",
+      "outs": [
+        {
+          "md5": "806adf3969b5fc9c790c6d413a05e8bc.dir",
+          "size": 958219444,
+          "nfiles": 534,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v3/resume_reference.dvc",
+      "new": "methods/proxy-compression/builds/v3-carrier-comparison/resume_reference.dvc",
+      "sha": "b11244ee3845bf5447e7a3c8094f28d3b33191f747eb441dc846c2846a4cd27f",
+      "outs": [
+        {
+          "md5": "aa3ae580e241cf9a81a63b3c4966b2f5.dir",
+          "size": 4760862893,
+          "nfiles": 216,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v4/runs.dvc",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/runs.dvc",
+      "sha": "384301c5f70668686f7a7f2dd874983c0bc0f7e68cf04083cd86eb29dd94696a",
+      "outs": [
+        {
+          "md5": "d751713988987e9331980363e24189ce.dir",
+          "size": 0,
+          "nfiles": 0,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/v4/kaggle.dvc",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/kaggle.dvc",
+      "sha": "ce2b3ad046fe23f3697aaf9e0eb9f62cdbb22c741d17b8aad59dbfb9ffdec4b7",
+      "outs": [
+        {
+          "md5": "f216e372ed5243268f08347ab0e0bd27.dir",
+          "size": 19725857055,
+          "nfiles": 1784,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v4/smoke.dvc",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/smoke.dvc",
+      "sha": "7be6da63b5f8f0a4af69e27e83cb1e4ed605ff39924e32dbb0740a0fd8d32637",
+      "outs": [
+        {
+          "md5": "3d13b231afb166fa9e2797c2f5f5e135.dir",
+          "size": 2406524180,
+          "nfiles": 243,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v4/input.dvc",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/input.dvc",
+      "sha": "1da8af0b6d51f9f0b1eb4a945f46bc77cda15ee1b351b4e1144103ff09dde1cc",
+      "outs": [
+        {
+          "md5": "1651b7aa22451ee804890c0fa0a1b629.dir",
+          "size": 638897962,
+          "nfiles": 376,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v4/resume_reference.dvc",
+      "new": "methods/gaussian-sampling/builds/v4-support-mala/resume_reference.dvc",
+      "sha": "a5d71ed1b8fbaf3244f1252f2786cec2098d4ab9e6e110812332b889b4b37167",
+      "outs": [
+        {
+          "md5": "cac2264d8acce624b3ab5de91cfe194b.dir",
+          "size": 906936054,
+          "nfiles": 89,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v5/runs.dvc",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/runs.dvc",
+      "sha": "384301c5f70668686f7a7f2dd874983c0bc0f7e68cf04083cd86eb29dd94696a",
+      "outs": [
+        {
+          "md5": "d751713988987e9331980363e24189ce.dir",
+          "size": 0,
+          "nfiles": 0,
+          "hash": "md5",
+          "path": "runs"
+        }
+      ]
+    },
+    {
+      "old": "papers/v5/kaggle.dvc",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/kaggle.dvc",
+      "sha": "fc7a2a1682c738120d30ac8866905cab51f67553c45470cc2d3be44eb1050ea8",
+      "outs": [
+        {
+          "md5": "d55a71674bddb8f37e0f674d21e32a74.dir",
+          "size": 44386753600,
+          "nfiles": 3802,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v5/smoke.dvc",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/smoke.dvc",
+      "sha": "431df2c31f773d14d1238bd2cfcb4316e48d8469106a599124d2c77f9b325bdf",
+      "outs": [
+        {
+          "md5": "e48def3346891828a1b2755be71e4526.dir",
+          "size": 6837402748,
+          "nfiles": 711,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v5/input.dvc",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/input.dvc",
+      "sha": "b6c127365d0637aa463a0a0f1f22cf50af511e511691eb5bebf5407629bfee22",
+      "outs": [
+        {
+          "md5": "9903334ead144123e02263bd76b47af5.dir",
+          "size": 479217431,
+          "nfiles": 291,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v5/resume_reference.dvc",
+      "new": "methods/synthetic-knowledge/builds/v5-anchor-gradient-books/resume_reference.dvc",
+      "sha": "3d17697e6cb6a08f1f29c98e4262dad9d2adf45ddc9fda17cdf6e90e467689b2",
+      "outs": [
+        {
+          "md5": "4b00c9e1fcdd5f0f3549546b58c86dec.dir",
+          "size": 1345588556,
+          "nfiles": 135,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v6/kaggle.dvc",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/kaggle.dvc",
+      "sha": "8dc0c15ffce1375f6692989b454262a73c3ca26a2ce0f4c470d99899f99cea63",
+      "outs": [
+        {
+          "md5": "ec521a9fcccb9633cf60cf28bf88911a.dir",
+          "size": 14056604948,
+          "nfiles": 1666,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v6/smoke.dvc",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/smoke.dvc",
+      "sha": "7b57df151b46da9e504c627fc966bc221e49960d42677f548db79df2802d5b7f",
+      "outs": [
+        {
+          "md5": "f43239f0cee543729662d5e67faf475b.dir",
+          "size": 1749631771,
+          "nfiles": 240,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v6/input.dvc",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/input.dvc",
+      "sha": "6d055cd6273cfb2588077f01bca99304dfe1bf4fd7044a8cfc8fc18be5978f18",
+      "outs": [
+        {
+          "md5": "04561c8e53872cc5f20d0c1a22514e68.dir",
+          "size": 639024584,
+          "nfiles": 396,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v6/resume_reference.dvc",
+      "new": "methods/geometry-primitive-moments/builds/v6-g59-g61/resume_reference.dvc",
+      "sha": "ea0abd311121202fd9cae08b3310b28ed09dc2cdcbacd6abfadb5ab81dcbafe3",
+      "outs": [
+        {
+          "md5": "0c303ed9c577e514a3166ba867acce3a.dir",
+          "size": 438528517,
+          "nfiles": 60,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v7/kaggle.dvc",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/kaggle.dvc",
+      "sha": "4d547e573d08a09a870695de16b5756b6ea0ad79d38a518750fd3edde6b6c200",
+      "outs": [
+        {
+          "md5": "6f1ac7fde1746d98c4ffd0bc2ede9460.dir",
+          "size": 14100779740,
+          "nfiles": 1618,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v7/smoke.dvc",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/smoke.dvc",
+      "sha": "47ed25a787f84b9ed81690623bee8e704581ee4b3a27c9e7994265bba6da8043",
+      "outs": [
+        {
+          "md5": "94c9e76fb1d7f258b4a4bb8167a1e0e0.dir",
+          "size": 1053189840,
+          "nfiles": 150,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v7/input.dvc",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/input.dvc",
+      "sha": "ae8c90f2d65947f0af8d85475cab4ad29ef10b2857a1ef8441fa8c86e8502891",
+      "outs": [
+        {
+          "md5": "fe759ba87afb08430620383790d01da1.dir",
+          "size": 319545868,
+          "nfiles": 204,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v7/resume_reference.dvc",
+      "new": "methods/covariance-nystrom/builds/v7-rank4-rank8/resume_reference.dvc",
+      "sha": "f46e40ed0a6f7b2fc8d4d0094ff758f51c4f5d72050900e7585ab44bf5701ed2",
+      "outs": [
+        {
+          "md5": "5a5d85b0c7fb4ade93e7e3add7915f2c.dir",
+          "size": 422721575,
+          "nfiles": 60,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v8/kaggle.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/kaggle.dvc",
+      "sha": "416681c92f4140f094f6ef61ef487d3ca67341ecf776c4c0b3890d9a4f36097b",
+      "outs": [
+        {
+          "md5": "5e8f82e41e5204fff1d0efca49cbaaab.dir",
+          "size": 20412224345,
+          "nfiles": 1242,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v8/smoke.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/smoke.dvc",
+      "sha": "acb9c34c73ddcefb91fa01fe84c410a8272fbcb746629ebd74ed9c6e921ae3e5",
+      "outs": [
+        {
+          "md5": "b0da1af1f8498adb7a526192686c2fc4.dir",
+          "size": 1526827464,
+          "nfiles": 111,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v8/input.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/input.dvc",
+      "sha": "63b86c8909128a602419080ac074f7f71ed6346054cc7021486b063092b1c72c",
+      "outs": [
+        {
+          "md5": "1f1c3423d9dc96f16606930a98ea6365.dir",
+          "size": 319566420,
+          "nfiles": 210,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v8/resume_reference.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/v8-pilot/resume_reference.dvc",
+      "sha": "c1b82b25323f70d7d01ea33d59105e2fab6b7abc409eca6a090984fcf5cdf89a",
+      "outs": [
+        {
+          "md5": "ee5d508c6c69cd47549940bf6be64459.dir",
+          "size": 663906613,
+          "nfiles": 51,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v9/kaggle.dvc",
+      "new": "methods/anchor-function-residual/builds/v9-teacher-residual/kaggle.dvc",
+      "sha": "521e2d68afae6ee9d41a00a6aeffa033203b50ebb8716da6b1bfaa522fdf6621",
+      "outs": [
+        {
+          "md5": "b9220ec4e71f82a1cb3fcedf034402fa.dir",
+          "size": 37425239839,
+          "nfiles": 2798,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v9/smoke.dvc",
+      "new": "methods/anchor-function-residual/builds/v9-teacher-residual/smoke.dvc",
+      "sha": "9085820ccd37aefaf453ed81e9f1275dd7ddb4c833783985e4c261c7e8edc726",
+      "outs": [
+        {
+          "md5": "f3ea67005856b761dc86fda011f40b57.dir",
+          "size": 8402355983,
+          "nfiles": 684,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v9/input.dvc",
+      "new": "methods/anchor-function-residual/builds/v9-teacher-residual/input.dvc",
+      "sha": "22cb09b9fa62c8f460459693faf3f65c4af61a16dc6ae5cf1d903fabfe825089",
+      "outs": [
+        {
+          "md5": "347e0af95ba09acf7825b755fbc95e36.dir",
+          "size": 319643036,
+          "nfiles": 222,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v9/resume_reference.dvc",
+      "new": "methods/anchor-function-residual/builds/v9-teacher-residual/resume_reference.dvc",
+      "sha": "940debb4ecf715bbb18c126fd566386e0a583502c7a52d664edaa622b22ce881",
+      "outs": [
+        {
+          "md5": "9c657c34734d22cc2caebefa9ec1dfe6.dir",
+          "size": 1944387156,
+          "nfiles": 153,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/v10/kaggle.dvc",
+      "new": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/kaggle.dvc",
+      "sha": "8349856fea9f066246a17034de2d0cceb7fc0a5ac0e32b1c6046491cb38bbb09",
+      "outs": [
+        {
+          "md5": "8cde4b9a4e724ddc0fa35047c6f9cb48.dir",
+          "size": 4523882900,
+          "nfiles": 568,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/v10/smoke.dvc",
+      "new": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/smoke.dvc",
+      "sha": "b1d4fa45080aa0f442919499eb18cd4aea7607cacbf806a38963c47ef42ccc61",
+      "outs": [
+        {
+          "md5": "752fdb98ccc1bca8431d31d5f3024819.dir",
+          "size": 2992749358,
+          "nfiles": 246,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/v10/input.dvc",
+      "new": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/input.dvc",
+      "sha": "edc343257ae30e5d07476454803acf8d1d96520d2fe3075e56bc7d757b5a788e",
+      "outs": [
+        {
+          "md5": "743718b1dd83290b17491188e085e90d.dir",
+          "size": 319641954,
+          "nfiles": 222,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/v10/resume_reference.dvc",
+      "new": "methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/resume_reference.dvc",
+      "sha": "ac69c8baa595ba79a5870235282dd1e7f2014eedfa4f2a0069bafd5766537706",
+      "outs": [
+        {
+          "md5": "456967a838675e3d0cf7763cec988aef.dir",
+          "size": 1283401033,
+          "nfiles": 102,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/full-validation/mount-output.dvc",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/mount-output.dvc",
+      "sha": "5a2d6d83f15a55cc84d030b0910fc2e783367f0eb2caba2d1d64a253b64643cd",
+      "outs": [
+        {
+          "md5": "f98af0c07296f21e2b58d1f5469941da.dir",
+          "size": 53171,
+          "nfiles": 18,
+          "hash": "md5",
+          "path": "mount-output"
+        }
+      ]
+    },
+    {
+      "old": "papers/full-validation/kaggle.dvc",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/kaggle.dvc",
+      "sha": "b4be84554b2378a392f6515b9a31e438ba8d4f68d432b88db5d4b90b6f594fcf",
+      "outs": [
+        {
+          "md5": "789efb2da148689d271aa55e3f6d5170.dir",
+          "size": 9278181515,
+          "nfiles": 968,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/full-validation/smoke.dvc",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/smoke.dvc",
+      "sha": "1bc269d023b0566939b2a106126a925bef3a3b64fa1f44dc016529cb9410f94a",
+      "outs": [
+        {
+          "md5": "da8ab9332b7cba1e5535639071bc93cc.dir",
+          "size": 1314131032,
+          "nfiles": 221,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/full-validation/input.dvc",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/input.dvc",
+      "sha": "0115de27b925fd6d45bf8f1b030ef6f8bb685197fd73371922893144d6d2b21e",
+      "outs": [
+        {
+          "md5": "b50f3b5852c683e91058cb0dcef9e27c.dir",
+          "size": 1282683,
+          "nfiles": 200,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/full-validation/resume_reference.dvc",
+      "new": "methods/shared-baselines/builds/full-h1-h2-50rounds/resume_reference.dvc",
+      "sha": "4e1d4bf3224b008c1631144b6033c58b840b65100ff96e5ce45f977c37562239",
+      "outs": [
+        {
+          "md5": "a7c0717142b58fb5d24a157bc113b564.dir",
+          "size": 658095993,
+          "nfiles": 63,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/hybrid-full/kaggle.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/kaggle.dvc",
+      "sha": "15879a0047ad9afd31be794cfd6b7020be7200ba7cc2de74324a3aebf816ff4f",
+      "outs": [
+        {
+          "md5": "89ba8972c2ee1062ab77a27d58fb08bc.dir",
+          "size": 2834658221,
+          "nfiles": 384,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/hybrid-full/smoke.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/smoke.dvc",
+      "sha": "be50ba962db2153fd92f85648cf450551955dfc2969f46cd5b7275b7a67d4b23",
+      "outs": [
+        {
+          "md5": "4dd92ca56796decf59ae3e200f13ee46.dir",
+          "size": 1524677711,
+          "nfiles": 111,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/hybrid-full/diagnostics.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/diagnostics.dvc",
+      "sha": "a91b9bc60eb43b6c3374daa4953e56d0a4113e4b35373b1d22a38e39a9c1c9bc",
+      "outs": [
+        {
+          "md5": "b4c3578df19e67fff29bba3066d02465.dir",
+          "size": 935609,
+          "nfiles": 20,
+          "hash": "md5",
+          "path": "diagnostics"
+        }
+      ]
+    },
+    {
+      "old": "papers/hybrid-full/input.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/input.dvc",
+      "sha": "df0aa5937e21b5aad7ae40ad2475be2e0447c772a5740790267ea75c702b79d9",
+      "outs": [
+        {
+          "md5": "637a09a84948d0db883c54aa8b18c861.dir",
+          "size": 1297638,
+          "nfiles": 212,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/hybrid-full/resume_reference.dvc",
+      "new": "methods/gaussian-proxy-hybrid/builds/full-50rounds/resume_reference.dvc",
+      "sha": "1b73df0db992b64bce6b7b404f1691e9a9697d12dafc1ee18f3bd1ad500f67e6",
+      "outs": [
+        {
+          "md5": "b2ddeb62e648d9190650ce62ddcf1a1b.dir",
+          "size": 1086355227,
+          "nfiles": 81,
+          "hash": "md5",
+          "path": "resume_reference"
+        }
+      ]
+    },
+    {
+      "old": "papers/boundary-cells/kaggle.dvc",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/kaggle.dvc",
+      "sha": "3b354b03058111a6cbe002396796a9ac65183f0730c18f147dc983f409eec94a",
+      "outs": [
+        {
+          "md5": "57c7e72fca8bd50a0ffcfc71391d09c6.dir",
+          "size": 1240071864,
+          "nfiles": 338,
+          "hash": "md5",
+          "path": "kaggle"
+        }
+      ]
+    },
+    {
+      "old": "papers/boundary-cells/smoke.dvc",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/smoke.dvc",
+      "sha": "819bb8593ba44fbba001d80d66d065269a2f184b15c19e871d64990a7397c3a6",
+      "outs": [
+        {
+          "md5": "bd1f76e8e88b0ab664224c4609eb5417.dir",
+          "size": 2190821198,
+          "nfiles": 210,
+          "hash": "md5",
+          "path": "smoke"
+        }
+      ]
+    },
+    {
+      "old": "papers/boundary-cells/input.dvc",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/input.dvc",
+      "sha": "dd4197a8dc37b3696821c85b2ed6c3289f7baf5d65f74dd58bb478653da8473b",
+      "outs": [
+        {
+          "md5": "5d398f36a4ac5baebdc135fe9a364549.dir",
+          "size": 319715058,
+          "nfiles": 230,
+          "hash": "md5",
+          "path": "input"
+        }
+      ]
+    },
+    {
+      "old": "papers/boundary-cells/controller-fixture.dvc",
+      "new": "methods/boundary-cell-counts/builds/cell-counts-v1/controller-fixture.dvc",
+      "sha": "4bd4b8e3ab27e8dff694a14162931d1f37ca8e952dac7e5ab0427bf040553c91",
+      "outs": [
+        {
+          "md5": "195b422d05d1a14eacf7e563725caef3.dir",
+          "size": 16932,
+          "nfiles": 76,
+          "hash": "md5",
+          "path": "controller-fixture"
+        }
+      ]
+    }
+  ],
+  "protected_files": 433,
+  "protected_sha256": {
+    "mh/v5_books.py": "1123938877061d903c6ebbb029d6f641ee7422c637181dfc93e3a0a600e7b475",
+    "mh/v3_methods.py": "8c3faad01d13756bd7e27806a7fbb8d75c1f0d7c5751e54c5b4e37c66e4b0f84",
+    "mh/v4_mala.py": "7d916530164cb7fa3bc9dadf051c47688327659b0e50f825e05e61ca4f805aea",
+    "mh/v7_nystrom.py": "114e23dcf2ee15f6083f79fe8456edf58b08aad78d807b0ffce9b91d6dc22713",
+    "mh/v9_anchor.py": "2d15e9b4f53006658a755b8d75e959eb314967773cb557cb1dbb8137ae6a0688",
+    "mh/v8_run.py": "dd362c93df255e901a274e3925a11acc9f7271ccacccd2e53c33789000dd4041",
+    "mh/teacher_driver.py": "b46da25f871c7c0fd6fdd78dde9f541168faade2f825dfe32dd86ffa4e95c968",
+    "mh/v9_run.py": "2f4f460fef23e6d01315b8b80c89a2f2cf5da132119352cb50d3d15a52204614",
+    "mh/v5_run.py": "9c257035c4388aaf0c48886b9e83f126bca86c812b7fe8a17843894e0200c71e",
+    "mh/new_methods.py": "b306660ea84d6bc42f3dcbbef1977e959487f1db3bd333e6b53ed3612df0d2e3",
+    "mh/prepare.py": "9dd51acb3c23df4a00cec29f60f1805056d0292cfd62a809f071411550111e2e",
+    "mh/archs.py": "0c24ae80e1ff5401412ea9642c9f168843c965b0dcc36942c5e85b658d9666bd",
+    "mh/v6_schema.py": "46cf470ef781f5ecf9007e96be2fe0b0bd446bce49e4727fc7df19fe0ee6b654",
+    "mh/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mh/channel.py": "609b114023990e9b7cdf30cf86b18b388e7fac2884b432ef90bc31b6399b0dc2",
+    "mh/v3_dense.py": "11a1caad91455da4c013a1f48bd3ccc51c56b6cdce90ff3db26ffa9d1e40292e",
+    "mh/v10_run.py": "660cc41c51514a49e8afc28f86c98ee65ab45eb45210ef93350e4f9f27902986",
+    "mh/v6_run.py": "d71baa60141a36992810f091894ff8ea84acbd99f227dc0a297e15c429a57f9f",
+    "mh/dagsnet.py": "5bafe8a571934397194da42f263564ca56093547b03d7eb5735d9c0c65944a5c",
+    "mh/metrics.py": "8f23006318a246673eec8c566291a5447b53a16483bcab855a9f768d1da2a712",
+    "mh/v4_schema.py": "0828b4a83a75ed160643e5f0fb7c6ea418e274c8a2f9a73b01d4f3a6dc94555c",
+    "mh/new_fl.py": "2d5abcb1813c1399cc29b442ed76a6eea93ce03f4600987773bb1bddec954179",
+    "mh/v7_run.py": "d2ca47dadbe17374e639569ddb277b21708031db174944842c19b9736036d428",
+    "mh/model_packet.py": "3c4fc9485c936b81804865796191f34b0c353ed5acd8fc8bbe9e53b5c65b77bd",
+    "mh/v6_geometry.py": "f277b7631e109be19de998e4055a21c33a94bf2789097a2f36e2f6a2660fd2cb",
+    "mh/v3_run.py": "6903adafd39211907b25385dd74ecf3063922252b364d6f172842ace588c778f",
+    "mh/v8_hybrid.py": "17683b9c566310bdb22cdde361347d6af7332826c8a95589bc61d4a46b755e72",
+    "mh/mobility.py": "450ae2599f4a4cbeff1a63292d492b7ab080fa8b119aea1cb7438ced7c9369d7",
+    "mh/p2.py": "62889bb18a1d448f139dc5e1b01480ea444ef41bcc3ee3394568507cecd28145",
+    "mh/pilot.py": "3a7a6474d029b6857d2a5acf71c53a696e9e56b466efefea1307b62809a71a02",
+    "mh/v7_basis.py": "7f018d9a6e388976b56f8c858aaa67e696068394623e5737049fa032220f4517",
+    "mh/v2_run.py": "b5cf0daf5348bcd77dbab09876ee57950f469509f52485a15252fd873802ef2d",
+    "mh/v3_math.py": "3adf452d537f36904453ed48d8f2cb0c71aed87fe274a02d8f484da23e649fe7",
+    "mh/v5_anchor.py": "1cd919e1ba39424e5a1f4afeb2e7441d4215a2637f91645db14e6906b7f077ae",
+    "mh/v4_run.py": "be172c5464d0eea816a84dc2c43c012244a8c5b03e8db3b30497d2ed1354a6e9",
+    "mh/v10_energy.py": "a44777714bce1b0b6068d0d614e4f4574a9de0fbcd96420bc29bfa2e561b8284",
+    "mh/v4_support.py": "726777438af9ca7590cbaa6e26123d8da7bf7f05d8ee6e38cf2e45eea7b2c4f8",
+    "mh/v2_methods.py": "90fa6ff5fa91cd559f9995d12a5dda0d6b9f4d6cdff435811f814adbfd664398",
+    "mh/v2_math.py": "187216ea4796afb81cfc9d5350a767e8b795bcd54d24c5544a3d921be661cc62",
+    "mh/teacher_base.py": "e59ff569cd51041efe1beed91399b28f1164eaa426511c43eea2f312ce516416",
+    "papers/hybrid-full/proj/full_driver.py": "66622498ae30f657a2e4b6baedfb645f12003809f63935f49d5551e564060f93",
+    "papers/hybrid-full/proj/full_method.py": "2f3741a2a3ca12d97dd135b5b96f3303a37b3e341c4826ddeeae0e90f69d9c46",
+    "papers/hybrid-full/proj/full_run.py": "65cfea41f76fa80382a49dbb1fd9dd03fdca6e5b1b7f0be5e34c88a553f75cd5",
+    "papers/hybrid-full/proj/parent_run.py": "259de296cc080200ec8cb4948f19bd85043c409284bf3e3c711f0b607b25af86",
+    "papers/hybrid-full/proj/full_prepare.py": "c269bab22efbe2ac2d1f65c9727f6a21072056d57bfe065b1cc304577a49376a",
+    "papers/hybrid-full/proj/full_verify.py": "3cb9bedb5952ee2cf6948cf1ace82d65177f3e860790f2900fe28cf2a0f0fa9b",
+    "papers/full-validation/proj/full_driver.py": "66622498ae30f657a2e4b6baedfb645f12003809f63935f49d5551e564060f93",
+    "papers/full-validation/proj/full_method.py": "2ac1b564f1ec1e03339f6c5c771727207125f8ed5f132d3d9e05237a20059ff2",
+    "papers/full-validation/proj/full_run.py": "259de296cc080200ec8cb4948f19bd85043c409284bf3e3c711f0b607b25af86",
+    "papers/full-validation/proj/full_prepare.py": "c269bab22efbe2ac2d1f65c9727f6a21072056d57bfe065b1cc304577a49376a",
+    "papers/full-validation/proj/full_verify.py": "dc3676a6b6f665ae94fa93c9358c775df5468b1d7eca4a7d1761d2809a5a66b4",
+    "papers/boundary-cells/proj/cells.py": "456e0400470a0f5f76b3808b71d4e256535d3e62f6f0e1ceddf2278925875fe0",
+    "papers/boundary-cells/proj/probe.py": "a50a7d62e2c105ab12107e76de797acd7ab9ce5c7924451782866f4dc8a304e6",
+    "papers/boundary-cells/proj/boundary_method.py": "456945b64182dcdb2dfa41d5a42a6cea37f36667606d018ae3b2df47398c9530",
+    "papers/boundary-cells/proj/boundary_driver.py": "bebe94c6c2483235d271fbb75d794df81d59533b4a88a9478193a14ffb96c19d",
+    "papers/p2/notebook/p2-h2-s43/p2-h2-s43.ipynb": "6085ae84998bf489f9bf11b76fcc49f27c26f0fb3f6587c9ef1f6436e12ee3ac",
+    "papers/p2/notebook/p2-h2-s43/PUSHED": "655abdf7b7083184a1da1cef89dc9f206bfad9b8f5a8d3bd45ad7b8dfeb7e9e7",
+    "papers/p2/notebook/p2-h2-s43/kernel-metadata.json": "ab549bbca80369c246d2b728c4882a439e7ffc0a27ad4a486767f9bdb8f7096e",
+    "papers/p2/notebook/p2-dml-s42/PUSHED": "66bcbd88ea2b76c4b79d23f95798ef260057fd04865fb0fcb816685606286ea6",
+    "papers/p2/notebook/p2-dml-s42/p2-dml-s42.ipynb": "dd79137a7182414d7625fd6c48faa82464322326e494f4c9d8bd2338269c501c",
+    "papers/p2/notebook/p2-dml-s42/kernel-metadata.json": "1c55308b7c108c336b1b00c49ddb0d5984245eee3f2cbcd4698bf1800af2b97f",
+    "papers/p2/notebook/p2-dml-s43/PUSHED": "582c12dc1de36bdefab5b63bd3d486cb87926095c00baf9f26064c0c0aa941a1",
+    "papers/p2/notebook/p2-dml-s43/p2-dml-s43.ipynb": "9f65729aab14d1042787dc3399ef51335589a710df5323252f0067b8052dbd99",
+    "papers/p2/notebook/p2-dml-s43/kernel-metadata.json": "49e436a38c9805549a23956ae664d1355018967aedb340de932bb617ac35f569",
+    "papers/p2/notebook/p2-h2-s42/PUSHED": "4ca2aafa6475638faa1c1bfbf47ed90a9cf58514cf5d9be08faaa42f6afc200c",
+    "papers/p2/notebook/p2-h2-s42/p2-h2-s42.ipynb": "7468b1cf87139ded3a213832dda6fc3ec44dde950b0e47157fe5b81821839240",
+    "papers/p2/notebook/p2-h2-s42/kernel-metadata.json": "57c05f9c8f9c9d645a720d9c4e41d0b0555695d481843a46b147dd9cd69db448",
+    "papers/v5/notebook/v5h-s42-20261012-v1/executed.redacted.ipynb": "02aab8bc5d72ae987469eeae44f9d21f0c0f453002b46bd136ed3ecaff26913f",
+    "papers/v5/notebook/v5h-s42-20261012-v1/source_manifest.json": "0c35ec5c53be32411007f53081b1f4264a6c37ae4a578d46d64c3b5136e62d1a",
+    "papers/v5/notebook/v5h-s42-20261012-v1/PUSHED": "cfcef1896dc88f4d3220aa1642657a3bdaa6574c6a3b86807a40dbdf13b2d3a4",
+    "papers/v5/notebook/v5h-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v5/notebook/v5h-s42-20261012-v1/kernel-metadata.json": "dcb83e539869425d0ab19e8f09d3e494acb2bc53b34d4f5ea3a120c9ade059c3",
+    "papers/v5/notebook/v5h-s42-20261012-v1/v5h-s42-20261012-v1.ipynb": "e22b59b65a2699d061566dd9097c7fcfb6f9551c091fd9af1571e4fb001239bd",
+    "papers/v5/notebook/v5h-s43-20261012-v1/v5h-s43-20261012-v1.ipynb": "d7e3248156606779671bd8588bc3edf75ae5661fc68791d4d6abc328b4294579",
+    "papers/v5/notebook/v5h-s43-20261012-v1/executed.redacted.ipynb": "dc4a7cbd7917a5e9aa3445bbad88594a686b3fb31fe158ec4f9e11c65ec6dc48",
+    "papers/v5/notebook/v5h-s43-20261012-v1/source_manifest.json": "0c35ec5c53be32411007f53081b1f4264a6c37ae4a578d46d64c3b5136e62d1a",
+    "papers/v5/notebook/v5h-s43-20261012-v1/PUSHED": "a0fd8970bacda81538a8c08dc5408165066e1750d617f60a325fbbdd41c5d342",
+    "papers/v5/notebook/v5h-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v5/notebook/v5h-s43-20261012-v1/kernel-metadata.json": "d2be74c85c6da666de64b4edb04b0d1e89b85e45c46cd2604e46928bea675871",
+    "papers/v5/notebook/v5g-s43-20261012-v1/executed.redacted.ipynb": "329d2d0152da755d0385a00c5f1aed255104f7ceb1b474cd1ee1c4a73f3a2403",
+    "papers/v5/notebook/v5g-s43-20261012-v1/source_manifest.json": "0c35ec5c53be32411007f53081b1f4264a6c37ae4a578d46d64c3b5136e62d1a",
+    "papers/v5/notebook/v5g-s43-20261012-v1/PUSHED": "e82a7fed1d2b0082df27ba2a1455088a890030d270d06e78c493dd6010ddec91",
+    "papers/v5/notebook/v5g-s43-20261012-v1/v5g-s43-20261012-v1.ipynb": "b14a80178e31abda36623a43d25a5bf2b0ec1a843f436aeb5ea5e3e5e43d0323",
+    "papers/v5/notebook/v5g-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v5/notebook/v5g-s43-20261012-v1/kernel-metadata.json": "b69766f1bd35f423fe1196c54720fc336f2b7d65b90b844cee4e821dfb6673c5",
+    "papers/v5/notebook/v5g-s42-20261012-v1/executed.redacted.ipynb": "a5fd0a732508faa3c885f50e9a9fee57be5d0c03c0e9632965452aa8e150bae1",
+    "papers/v5/notebook/v5g-s42-20261012-v1/source_manifest.json": "0c35ec5c53be32411007f53081b1f4264a6c37ae4a578d46d64c3b5136e62d1a",
+    "papers/v5/notebook/v5g-s42-20261012-v1/PUSHED": "902747ffb0d3c8f80a7ecd8f4f0f76c49133cd6a16f89bbfb4cf44165bc716a4",
+    "papers/v5/notebook/v5g-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v5/notebook/v5g-s42-20261012-v1/kernel-metadata.json": "45f37cb66c2719f9bd525049c42d6755a4c6ffd06c304b99ce0a8e160dcff77d",
+    "papers/v5/notebook/v5g-s42-20261012-v1/v5g-s42-20261012-v1.ipynb": "3a5e0084a71486e320b593301e52a6baaa0db45938bc6ea638aaed75b066b5b6",
+    "papers/v5/notebook/v5j-s42-20261012-v1/executed.redacted.ipynb": "8667c00b2ea8c09ba0fce700a193fc1c2a5ed0d853e9fc251712b71180b784fa",
+    "papers/v5/notebook/v5j-s42-20261012-v1/source_manifest.json": "0c35ec5c53be32411007f53081b1f4264a6c37ae4a578d46d64c3b5136e62d1a",
+    "papers/v5/notebook/v5j-s42-20261012-v1/PUSHED": "800c340db0b18824100b649cc7a7fa6503bd93afffdb112a1e51d0586cf0065a",
+    "papers/v5/notebook/v5j-s42-20261012-v1/v5j-s42-20261012-v1.ipynb": "c2d6bac68c15311b8e63bf49206dd7ca72b382a73bfeb3af08a7498a4aedc70c",
+    "papers/v5/notebook/v5j-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v5/notebook/v5j-s42-20261012-v1/kernel-metadata.json": "bdd6719304a22fa9ea7f11d1176fa95ef51888601a339a753b2ed74ff2a8a8e4",
+    "papers/v5/notebook/v5j-s43-20261012-v1/v5j-s43-20261012-v1.ipynb": "75f17c9d6f2d9fa590bca35850e8ebdcefdf86a5bf20ed49a3ea1937af287f9d",
+    "papers/v5/notebook/v5j-s43-20261012-v1/executed.redacted.ipynb": "6baa8fef88a710c55e1c22cda49f48584ffc47eb062b5af90b18e7e35bf8aa40",
+    "papers/v5/notebook/v5j-s43-20261012-v1/source_manifest.json": "0c35ec5c53be32411007f53081b1f4264a6c37ae4a578d46d64c3b5136e62d1a",
+    "papers/v5/notebook/v5j-s43-20261012-v1/PUSHED": "2509fc8fed40a9aa7362f56b862a842d31d00a585d37dc88f18ad0d52d0feb65",
+    "papers/v5/notebook/v5j-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v5/notebook/v5j-s43-20261012-v1/kernel-metadata.json": "5758074093f0a865c04b1b27ec56f0901013b7571b66802783ab2d67aedd04f9",
+    "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1/source_manifest.json": "0b7f5da7c31acb889735639e6f28cbb26c6d20d09b9e6aa5787db3ddf3e38035",
+    "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1/PUSHED": "8f1dae65c299f25a3c1eeaeae34e6dca862d29b073d0bf7a102db7d984444490",
+    "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1/input-access.json": "5a373bc48a6fc0d38a8a173afa67a4c97a5afa1c8eb92144c5b39a4f5ad03f64",
+    "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1/resume-plan.json": "80fdd22ac4782e5a65ef5ad809c1582e9e4844e1ee63b341d0d740bb4068fe42",
+    "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1/hybf4-s42-20261014-cont01-v1.ipynb": "de132f0330b4a201d79b98f4fab679205b328f4b68f8a8bd3a7daa1e03ef2c96",
+    "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1/kernel-metadata.json": "8b35e0b36b332f6698f9145317b43c79c9ac88c6fbc33945126833dacd7e3e54",
+    "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1/executed.redacted.ipynb": "8545e635a79421641805d5c05aa121fa7a2096347c568aef54e48e676d1b8e1a",
+    "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1/source_manifest.json": "ad3ba8817c751c56630b171d7e64fa0462bfbff8d5d5144968e0f8ea82ed3e1c",
+    "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1/PUSHED": "4c605091cc15915d6533b5a5bbc36fa3104b84bc753da1d8ef80fd27dae0a5b8",
+    "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1/hybf2-s42-20261013-cal-v1.ipynb": "79a34d8661510ee45a38e189ff3b0908e8046a89c5fe5cb9aa2adab259026023",
+    "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1/kernel-metadata.json": "3ebada0344cd030a5eab0b305fdf0e69b97a71bf274f8e07c102fafb77b4e263",
+    "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1/executed.redacted.ipynb": "d03121db67194d16c44ddd09282716ef693af6765c57bc6bf546800df7f630bc",
+    "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1/source_manifest.json": "ad3ba8817c751c56630b171d7e64fa0462bfbff8d5d5144968e0f8ea82ed3e1c",
+    "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1/PUSHED": "ede288733194720bf6a6d18951a032f25ad52a7f4ee840df69fec30b2d7cdbe0",
+    "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1/hybf3-s42-20261013-cal-v1.ipynb": "ddb61972a5c5f40768d2f02c479080e2eb68fb00ff2120394c4c2b3ebe3eb6a9",
+    "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1/kernel-metadata.json": "a79a2c5b47b630afd0ac9ccb8d9dc5668a3a1d34e31b9a5e5ecbd30fea1a7dd8",
+    "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1/executed.redacted.ipynb": "f0114d6d021fe447a44a46e05137eb42ed86bb8777dce6e446de05eba7472829",
+    "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1/source_manifest.json": "ad3ba8817c751c56630b171d7e64fa0462bfbff8d5d5144968e0f8ea82ed3e1c",
+    "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1/PUSHED": "bd2d4a9117ac1cc6ea75c1c3ed11107ad2aa992d5a027cb3ed5d63bce0a75c16",
+    "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1/kernel-metadata.json": "047ca5e7a8d51e4e2e94c66d6a36b401bd727b9318a7ce6cd652ecfeeec02f84",
+    "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1/hybf1-s42-20261013-cal-v1.ipynb": "68999e8e0e7eff4e36681decd7524bdbeaa7e08a67dcbaf5761b03217ccf2e89",
+    "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1/source_manifest.json": "0b7f5da7c31acb889735639e6f28cbb26c6d20d09b9e6aa5787db3ddf3e38035",
+    "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1/PUSHED": "59b1461c1536fabd71a8d9fb15c6db37bc61968064ca48389990f936c47f0379",
+    "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1/hybf1-s42-20261014-cont01-v1.ipynb": "a903d21e48b9cb5a2a8f86e25249010bcecf91c878d26b0534d84c7bd17610c0",
+    "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1/input-access.json": "08af239264f292f16323c94c11cbe13250e3d76bf045dc7a475cadc06a53906a",
+    "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1/resume-plan.json": "7767bc7da890019f550f952f8b36a1ac629ffc5af3585c677f5483f9c62f13aa",
+    "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1/kernel-metadata.json": "678cd07c4497364fcc96ee891414439c4a12bc226f27059caf23f3d52d61b31e",
+    "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1/executed.redacted.ipynb": "8490766bf6693250bbb8f3f5cacf12dddcd5936d16f8cc55718f808177bf45e6",
+    "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1/source_manifest.json": "ad3ba8817c751c56630b171d7e64fa0462bfbff8d5d5144968e0f8ea82ed3e1c",
+    "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1/PUSHED": "57e29127b40eac331f0423d2a8562f64441ec23056ef935208e9580d187faafe",
+    "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1/hybf4-s42-20261013-cal-v1.ipynb": "968e4f4fda8b4f391f2361ad7b2d827b31b4a60e40cc030df48a9c86c5ad7dfb",
+    "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1/kernel-metadata.json": "e2b296b29b87b4b14bf0efdf1ce074725d05ebe128f6770f8dc55be1a0288e8d",
+    "papers/hybrid-full/notebook/hybf3-s42-20261014-cont01-v1/hybf3-s42-20261014-cont01-v1.ipynb": "674e4a69eea1e3a8f82106200c2fe9462e3aa8676d97aa0ff3d0ba632ae24030",
+    "papers/hybrid-full/notebook/hybf3-s42-20261014-cont01-v1/source_manifest.json": "0b7f5da7c31acb889735639e6f28cbb26c6d20d09b9e6aa5787db3ddf3e38035",
+    "papers/hybrid-full/notebook/hybf3-s42-20261014-cont01-v1/input-access.json": "50b85d0242763542b8f63c9153e19e2fd7d6ed0da9b211179fbc67272137a854",
+    "papers/hybrid-full/notebook/hybf3-s42-20261014-cont01-v1/resume-plan.json": "93671e5de54a66d011df3a03938e63dfe2120620e934d1381205119fb0e3807a",
+    "papers/hybrid-full/notebook/hybf3-s42-20261014-cont01-v1/kernel-metadata.json": "83245de3e7b12a8c5ca623a44077cdef93095ae33caa2cd905dcb8069e7cb93a",
+    "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1/hybf2-s42-20261014-cont01-v1.ipynb": "276c73774fd78c058e29204379ca8e31c0e01846de0e2679b5c9ec3d5478c58f",
+    "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1/source_manifest.json": "0b7f5da7c31acb889735639e6f28cbb26c6d20d09b9e6aa5787db3ddf3e38035",
+    "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1/PUSHED": "5476a335cd735d9276aac2ca1110f267dd58486618dcf69bc1da9324beae099e",
+    "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1/input-access.json": "6f61b1df263976a3827d900f7d76f68442e83613da17e92a447af64805a15d72",
+    "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1/resume-plan.json": "70e9e399e9141a69abf39abf8f1db90c7569e2b3e3b5021ec6253743cae8971d",
+    "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1/kernel-metadata.json": "8332f6760a3dfdbeecdd1ef7dc42c7690fbaaf5d8c70d681dc7dbf474c73b3e1",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/executed.redacted.ipynb": "c62473ac0f40050af75e87977d995091e8b1722ca7f4c578e2451b28bd56f73b",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/PUSHED": "6be80db4437f419800775cf72cae5c9bfc8dd79b1ecb39d328c0a2f0cc7f5e79",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/resume-plan.json": "448e3d67c5b190f83a951f7b65e5db8248fe050b4ee75c8cadebdf06ab6d9c03",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/full2-s42-20261013-cont01-v1.ipynb": "d637224ecd0eb360a793ee400416ead309257392598421a78ceca44d8518dc0b",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/live-startup.redacted.txt": "2810f37d245011e7481821ee62dfccd4598cccea5a1be11c10727a9702c6e319",
+    "papers/full-validation/notebook/full2-s42-20261013-cont01-v1/kernel-metadata.json": "8e206a0134d074cea122eeef1891c3222aa989138d1e88646b09176e4381cd42",
+    "papers/full-validation/notebook/full2-s42-20261012-cal-v1/executed.redacted.ipynb": "3806b0cb679a5a93e7d851b4cadbb71e0b249021227db75e3e39312d9bda00c7",
+    "papers/full-validation/notebook/full2-s42-20261012-cal-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full2-s42-20261012-cal-v1/PUSHED": "aeb142392479bcaa457573a49fc8c55b55fb92da6eae00384f6620897052fbf9",
+    "papers/full-validation/notebook/full2-s42-20261012-cal-v1/full2-s42-20261012-cal-v1.ipynb": "01130349971f1a945a1379a1a5607ef3abe9af06a43317a2b1845634ad1edae5",
+    "papers/full-validation/notebook/full2-s42-20261012-cal-v1/kernel-metadata.json": "893b8b490f1d6166af224cc3a93ebf9da9a934be44092d6da577299edbbc321a",
+    "papers/full-validation/notebook/full4-s42-20261012-cal-v1/executed.redacted.ipynb": "6ba6ab05905f2fd4768c4c954106feff61b70c0ea7c2632bbb973e558fe29639",
+    "papers/full-validation/notebook/full4-s42-20261012-cal-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full4-s42-20261012-cal-v1/PUSHED": "88bf3ab87ba1cf1bb2e186207d3a48a93a55473a54e56f7a7360629191a9ba65",
+    "papers/full-validation/notebook/full4-s42-20261012-cal-v1/kernel-metadata.json": "90701970765568063884886bf6615a92934618968e93fd29bbc9612aacc0896a",
+    "papers/full-validation/notebook/full4-s42-20261012-cal-v1/full4-s42-20261012-cal-v1.ipynb": "ab8fb24a6f48b9b5ba96a111fdd25a1792ea1de571d68538abbb7f7ea705ed3f",
+    "papers/full-validation/notebook/full1-s42-20261014-cont02-v1/full1-s42-20261014-cont02-v1.ipynb": "44f0341254e0d455efc5ab9f447aa04403299699716b8db9c43a47f173969da3",
+    "papers/full-validation/notebook/full1-s42-20261014-cont02-v1/source_manifest.json": "b0ae5cc9c9a972b581df147ff6aaab517373008473d4c457c72570e3c51f7768",
+    "papers/full-validation/notebook/full1-s42-20261014-cont02-v1/PUSHED": "4bd5b366616a25307b2922e350b641129aa5013b57e196cef620be2cc985a843",
+    "papers/full-validation/notebook/full1-s42-20261014-cont02-v1/input-access.json": "f0950fdd5f6bbd40cb40cbe900c0b040da8b1f42696dc845edc6cdcb26f1bf0b",
+    "papers/full-validation/notebook/full1-s42-20261014-cont02-v1/resume-plan.json": "3af8f77289dc98b0120a0828cbf628ee0f27984ee0da0bd9dbfed5bcd67b173a",
+    "papers/full-validation/notebook/full1-s42-20261014-cont02-v1/kernel-metadata.json": "4a81ee18160982e21b4bb33f2f3bac43a787cbb43c076a80c366ec22dd0d21ba",
+    "papers/full-validation/notebook/full3-s42-20261014-cont02-v1/full3-s42-20261014-cont02-v1.ipynb": "822788dc4561fde2a1ebc3f48f38ee0ac791f2a0a1b2b4ecca4e726f3ef8a440",
+    "papers/full-validation/notebook/full3-s42-20261014-cont02-v1/source_manifest.json": "b0ae5cc9c9a972b581df147ff6aaab517373008473d4c457c72570e3c51f7768",
+    "papers/full-validation/notebook/full3-s42-20261014-cont02-v1/PUSHED": "1ca8ce7fa279e2288093beaad0c723407665047fe3851253b164038c2c68b0a5",
+    "papers/full-validation/notebook/full3-s42-20261014-cont02-v1/input-access.json": "711823015105e3d168fed8bf8b81dbc71035a9cf7dba0ce4041ede6bb4f99e54",
+    "papers/full-validation/notebook/full3-s42-20261014-cont02-v1/resume-plan.json": "535a5e6b7b68ad47e0a1676a2badeffc6e09b6e4da1d396a9e4c84578ea8791c",
+    "papers/full-validation/notebook/full3-s42-20261014-cont02-v1/kernel-metadata.json": "e95cd40a9d5b3cb1c5c4ffe38ff1abd18451902b62bf4a3f28edd580e5ef4ce1",
+    "papers/full-validation/notebook/full2-s42-20261014-cont02-v1/source_manifest.json": "b0ae5cc9c9a972b581df147ff6aaab517373008473d4c457c72570e3c51f7768",
+    "papers/full-validation/notebook/full2-s42-20261014-cont02-v1/PUSHED": "72954e78a36a1a8366ace63050e88cfc9bc52f8575e73ac75c7d9f2fa7eeae09",
+    "papers/full-validation/notebook/full2-s42-20261014-cont02-v1/full2-s42-20261014-cont02-v1.ipynb": "6ffc11364ff1d37615276ec4d6c2bdbf66f218ce4f15be4dba7e136092250484",
+    "papers/full-validation/notebook/full2-s42-20261014-cont02-v1/input-access.json": "17c562b8aba8b6d3bd25d3c512601f7b225683e57e29561b704aa9b9926e56e1",
+    "papers/full-validation/notebook/full2-s42-20261014-cont02-v1/resume-plan.json": "f70778fd6e72ea461e321a8d5d9061fcd147369e2a0e26f63d6e24772c220f6f",
+    "papers/full-validation/notebook/full2-s42-20261014-cont02-v1/kernel-metadata.json": "068090c10e29e6ee418e1acfff4845a95b3143b8c8bb196607e55d619c664543",
+    "papers/full-validation/notebook/full3-s42-20261013-cont01-v1/full3-s42-20261013-cont01-v1.ipynb": "004a45da752ffa74e77defa82e3dac079772d0bdba904a94f6572c3dc304e029",
+    "papers/full-validation/notebook/full3-s42-20261013-cont01-v1/executed.redacted.ipynb": "879081752248a37a02baee743ba8d199c41c149debc763eb0a635719e61c3546",
+    "papers/full-validation/notebook/full3-s42-20261013-cont01-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full3-s42-20261013-cont01-v1/PUSHED": "dac176eba65be002112b78c7cdae4b9a3db69b1c2944152729f23e4c6775edcf",
+    "papers/full-validation/notebook/full3-s42-20261013-cont01-v1/resume-plan.json": "e88074f490c1259df61e62f908357cdb1fdb3bd212cfa42264e046cec0c5839a",
+    "papers/full-validation/notebook/full3-s42-20261013-cont01-v1/kernel-metadata.json": "ad75a5f95ede668deb5e5c15c39b12b3810d0cdd43006568193a0d7e7761c015",
+    "papers/full-validation/notebook/full1-s42-20261012-cal-v1/full1-s42-20261012-cal-v1.ipynb": "0236fff5348b2434617b46e3b50ee37f0f6391696b7fbacd907673c87ab20c83",
+    "papers/full-validation/notebook/full1-s42-20261012-cal-v1/executed.redacted.ipynb": "b24d7cb9e024107d732d94a7ea58a2d71ee457deccf2532bd79e845156df7051",
+    "papers/full-validation/notebook/full1-s42-20261012-cal-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full1-s42-20261012-cal-v1/PUSHED": "1739ae969792a4c14bcede97a3dc76d50a3a277895626ef7f8f55c5c53ffce69",
+    "papers/full-validation/notebook/full1-s42-20261012-cal-v1/kernel-metadata.json": "ff1a7f80d6191fa8dbb2eecf059aa28c57321c1b04fe11b0d7d6e85d7e2584c8",
+    "papers/full-validation/notebook/full1-s42-20261013-cont01-v1/executed.redacted.ipynb": "44fd7e7cb3acd98581420a301ebd67d01ea33276d406a567d3a5456958b8ba06",
+    "papers/full-validation/notebook/full1-s42-20261013-cont01-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full1-s42-20261013-cont01-v1/PUSHED": "84dfb01c0694ddf6cb8c3ca3f107353dc0a39eab9d9cd579954353fa7b71d1f2",
+    "papers/full-validation/notebook/full1-s42-20261013-cont01-v1/full1-s42-20261013-cont01-v1.ipynb": "fc0b390a61ea1d192460f33250e320309c1fca22604dab14497e57118c081fcc",
+    "papers/full-validation/notebook/full1-s42-20261013-cont01-v1/resume-plan.json": "94836ee455d6573bfee8a526b8d43b530b1f048a28003c975238a70eca8bd959",
+    "papers/full-validation/notebook/full1-s42-20261013-cont01-v1/kernel-metadata.json": "73892e0f8635ef29fbd74bc2c970e3dae5929501295dddbd37984c1754c1ef23",
+    "papers/full-validation/notebook/full4-s42-20261014-cont02-v1/source_manifest.json": "b0ae5cc9c9a972b581df147ff6aaab517373008473d4c457c72570e3c51f7768",
+    "papers/full-validation/notebook/full4-s42-20261014-cont02-v1/PUSHED": "409842603a015599d9d55c6f3633e6e2789275e7aa64755f84a2a797b33e0d04",
+    "papers/full-validation/notebook/full4-s42-20261014-cont02-v1/full4-s42-20261014-cont02-v1.ipynb": "270a49471a1fcae5d6e8d0ee6f05aa8916e43dd07138829df125cf3abb48eca3",
+    "papers/full-validation/notebook/full4-s42-20261014-cont02-v1/input-access.json": "ac2e8873456d45cddb38b9ceb61e2ff025d008db6f47fecfd72ebb8adbf0715c",
+    "papers/full-validation/notebook/full4-s42-20261014-cont02-v1/resume-plan.json": "c97f8acb8a435018a4a99b7e03f06e5d2d30af5353af48cbfeea675c066fc6ae",
+    "papers/full-validation/notebook/full4-s42-20261014-cont02-v1/kernel-metadata.json": "86c14159b9a3d0acc6da5447b1543aeff9c699d2e3fdbe3b86298764d4c2c30e",
+    "papers/full-validation/notebook/full4-s42-20261013-cont01-v1/full4-s42-20261013-cont01-v1.ipynb": "2c57fdcb6d388847665c55c4f3aa0a11dffc23c28542e653b23918b295b308fd",
+    "papers/full-validation/notebook/full4-s42-20261013-cont01-v1/executed.redacted.ipynb": "7675196f10ba4b2642479340bd530cceefb61871609ab898b1b1cb4f87e6c802",
+    "papers/full-validation/notebook/full4-s42-20261013-cont01-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full4-s42-20261013-cont01-v1/PUSHED": "acb206e78fc6dbb75d859c5da49acd4af2635a65c6f13b89621ccc7bd94be4d6",
+    "papers/full-validation/notebook/full4-s42-20261013-cont01-v1/resume-plan.json": "e33a11efcf2e17a175204db5c1a1e716328aece9f47994f41063c663839bca7d",
+    "papers/full-validation/notebook/full4-s42-20261013-cont01-v1/kernel-metadata.json": "6271223bcd682b8e19a44807c7ff5f43d380820cb5400b01067231f831013012",
+    "papers/full-validation/notebook/full3-s42-20261012-cal-v1/executed.redacted.ipynb": "def5583d2856efda6ec3209ecd6968c3f0b21b206f6a30586d7382a2d60f40c6",
+    "papers/full-validation/notebook/full3-s42-20261012-cal-v1/full3-s42-20261012-cal-v1.ipynb": "edf4a70e9733ded4bd3604dccb7157d101ed0aa96415f6cd4c33e859a55a33c0",
+    "papers/full-validation/notebook/full3-s42-20261012-cal-v1/source_manifest.json": "881c5f90735f8788a450f2d1309be22c6af9b0d9b26c134de1bb09cae2eb4e8a",
+    "papers/full-validation/notebook/full3-s42-20261012-cal-v1/PUSHED": "2bea14229b33c49298d1101ae8c7d6af62eaf82087cdfecdb05195313592c544",
+    "papers/full-validation/notebook/full3-s42-20261012-cal-v1/kernel-metadata.json": "2166efbc21d6bf8abef9c24d45246ea7ec85029f5e53250396e63a908fca6d15",
+    "papers/v3/notebook/v3p-s42-20261011-v1/executed.redacted.ipynb": "839732642529c3286b237eaacc322381569f24bd2d0a5bcceb190deac5595999",
+    "papers/v3/notebook/v3p-s42-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3p-s42-20261011-v1/PUSHED": "177e9f668ef1f51ef6efb97f9a48413511666150068af799c30c914d10115a37",
+    "papers/v3/notebook/v3p-s42-20261011-v1/v3p-s42-20261011-v1.ipynb": "b9cbc275217461c1e070275e5c24bc2f8e5551cdceb50f4abfe623ea35bd8aca",
+    "papers/v3/notebook/v3p-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3p-s42-20261011-v1/kernel-metadata.json": "9c0f7ed54bc7121b1ca8a1fe85561faf47ac8d3e032e909a4893080ea1b9175a",
+    "papers/v3/notebook/v3o-s42-20261011-v1/v3o-s42-20261011-v1.ipynb": "2914e93bcbc2a8198042ffb0b8f60f5e0ad01e1cc6c38faae8566d1286b7c4f6",
+    "papers/v3/notebook/v3o-s42-20261011-v1/executed.redacted.ipynb": "a5dfd3747266885c4ab320aeb0f90040e5b080038dfec9d40881e0559530eae7",
+    "papers/v3/notebook/v3o-s42-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3o-s42-20261011-v1/PUSHED": "e6ce90693f2443d35294706b996164c83cfbe9e1e604748128f64acd3ede088b",
+    "papers/v3/notebook/v3o-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3o-s42-20261011-v1/kernel-metadata.json": "c189a86e444a032ff95f4586bdd7edc2ab051c8d8cda21d78a8e46e588cfc3d6",
+    "papers/v3/notebook/v3p-s43-20261011-v1/executed.redacted.ipynb": "4761e0f90064360336fb4e7db7402907b3d8b0498fe2054bbc68c7caa91fb681",
+    "papers/v3/notebook/v3p-s43-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3p-s43-20261011-v1/PUSHED": "5bb49d7cfc3d496867571967fe4c5f0f3dd366f9fbc41dc52af9971320a194e8",
+    "papers/v3/notebook/v3p-s43-20261011-v1/v3p-s43-20261011-v1.ipynb": "13f0c7975b30fee64a8eba974b8656ca6b9c94d2f08658dc12922f5c5511e3ff",
+    "papers/v3/notebook/v3p-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3p-s43-20261011-v1/kernel-metadata.json": "3dcb99a1ac6f8c0451c23382d3b413d153d422dc86f322b6a58282a736fd0c28",
+    "papers/v3/notebook/v3o-s43-20261011-v1/executed.redacted.ipynb": "54b802402ec2a1bb4af3941b55a843835cc766e795ccf51c6710a6c273cbe3c5",
+    "papers/v3/notebook/v3o-s43-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3o-s43-20261011-v1/PUSHED": "2e5198d2f761771a04483d3f9c476992799d7c123c81abeeb52671ec17cdf807",
+    "papers/v3/notebook/v3o-s43-20261011-v1/v3o-s43-20261011-v1.ipynb": "d6016ef466cf3fcb70a69bab22adbf47928ca892d2ef67cc6e47782cdac272cc",
+    "papers/v3/notebook/v3o-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3o-s43-20261011-v1/kernel-metadata.json": "0ef78b3bc115dd111352d48ebe0c1214b43a141accd46b769845e4411548a063",
+    "papers/v3/notebook/v3t-s42-20261011-v1/executed.redacted.ipynb": "7557c6025325bc77407e96dbb44734f5fee41da2a2c0f083758573d5cd278a77",
+    "papers/v3/notebook/v3t-s42-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3t-s42-20261011-v1/PUSHED": "e938e0b397b48842b609c25cd0e9822b0c78c4a4caa9e520eceba2693ebb393a",
+    "papers/v3/notebook/v3t-s42-20261011-v1/v3t-s42-20261011-v1.ipynb": "6b1b02c4c816cd9e8e4d9f201f562a8404df65e38ecb3002e4ad8ab97d729251",
+    "papers/v3/notebook/v3t-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3t-s42-20261011-v1/kernel-metadata.json": "1838dde97e387b4e57a94bd5035274da7bff3121f15aa57bd6dea50c99e8865d",
+    "papers/v3/notebook/v3t-s43-20261011-v1/executed.redacted.ipynb": "9349121c61a525dade255670e2287919d55b4d9f61b4eec13531fb1250edbc01",
+    "papers/v3/notebook/v3t-s43-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3t-s43-20261011-v1/PUSHED": "ef65a57ac7b55af0040493884f3fba3e4df7919686d27d9f3e6bbb43c93e01b3",
+    "papers/v3/notebook/v3t-s43-20261011-v1/v3t-s43-20261011-v1.ipynb": "5195ab2e560c743e48b504d7b2e07da7adf8378f255bca8e0da7b0136b481283",
+    "papers/v3/notebook/v3t-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3t-s43-20261011-v1/kernel-metadata.json": "fb007869fccfc7c3ebd4f0df0f377b05b1b965054a07d3f283505b61f45bec1e",
+    "papers/v3/notebook/v3r-s43-20261011-v1/v3r-s43-20261011-v1.ipynb": "f8ba3aa9de2f8a8920011bcf97fe97df0186bad6adf0f1724a1b650bd87e2b20",
+    "papers/v3/notebook/v3r-s43-20261011-v1/executed.redacted.ipynb": "32a7e1742b436a3edb78dd140f673f0da271ac6d99739dfda30e9cd255618bd9",
+    "papers/v3/notebook/v3r-s43-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3r-s43-20261011-v1/PUSHED": "1a4055d3174afa31f920afb921cce9fb242f27b398fc921fd4d20dafab7a7c2a",
+    "papers/v3/notebook/v3r-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3r-s43-20261011-v1/kernel-metadata.json": "40ba2ce3579f87819c577f0646b4f159514eadaa8d88493a0dd56079974a1c18",
+    "papers/v3/notebook/v3r-s42-20261011-v1/v3r-s42-20261011-v1.ipynb": "96c896569b087ae4a34bbf7c367101ca274808adb01f5bbe46218c6f06ed7d99",
+    "papers/v3/notebook/v3r-s42-20261011-v1/executed.redacted.ipynb": "0c7752f93246b7fe198c02ee3be25a077a2194a533f10b9e2f3260229695ef7e",
+    "papers/v3/notebook/v3r-s42-20261011-v1/source_manifest.json": "665f5d902827a41ecc59a1ea7d37be0f57ced14da047ae32d80e7e13cbebb4ac",
+    "papers/v3/notebook/v3r-s42-20261011-v1/PUSHED": "3bb7eff3db858c1be7eff5d467225e13d9b564b11b987d77a36b2dbbb56570d2",
+    "papers/v3/notebook/v3r-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v3/notebook/v3r-s42-20261011-v1/kernel-metadata.json": "85677b8bb6b14eb29b2d69ddbe0b177224a823812da613f38609de1d2e9e9549",
+    "papers/v8/notebook/v8h-s42-20261012-v1/executed.redacted.ipynb": "d1b0e9977324d4c5341ba9a0a6865da03640d9789092042416f1ade7306cecc4",
+    "papers/v8/notebook/v8h-s42-20261012-v1/source_manifest.json": "d0cb2093a425f08b1711e025e018ac85dd48126124d5632f20ff86664adf15f3",
+    "papers/v8/notebook/v8h-s42-20261012-v1/PUSHED": "684498be8a6e300f9e03e3d4e53cd9aa65e81bd0e440befb3190dfce1ebf2251",
+    "papers/v8/notebook/v8h-s42-20261012-v1/v8h-s42-20261012-v1.ipynb": "2eaa7ae050c6d606492a6e3eeefd670aa67ce12dba00c5a9b485890ecb472fc3",
+    "papers/v8/notebook/v8h-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v8/notebook/v8h-s42-20261012-v1/kernel-metadata.json": "c008b0e754640bf9acd3e71ee3102801a5ce9f09a6b1c8adb540401005fccdc7",
+    "papers/v8/notebook/v8h-s43-20261012-v1/executed.redacted.ipynb": "99b4e13cdea4039a2d2a4418681422636b2d836bf856d62597f29ae9540f36a0",
+    "papers/v8/notebook/v8h-s43-20261012-v1/source_manifest.json": "d0cb2093a425f08b1711e025e018ac85dd48126124d5632f20ff86664adf15f3",
+    "papers/v8/notebook/v8h-s43-20261012-v1/PUSHED": "193f13582aea7ffef4b3db65f40ee381afabad58816e06fa923688bd98e7f200",
+    "papers/v8/notebook/v8h-s43-20261012-v1/v8h-s43-20261012-v1.ipynb": "68a5b1e10e3d169e2696a8f2cbbec250718df7b5f84e7067bef2c6c2392c9497",
+    "papers/v8/notebook/v8h-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v8/notebook/v8h-s43-20261012-v1/kernel-metadata.json": "23a944c58aa961d26b86537e4d6d2b128c3b42b8bef6d22a04ea1b05c45f41a9",
+    "papers/v4/notebook/v4s-s42-20261012-v1/v4s-s42-20261012-v1.ipynb": "e62f3d0512add57e4f666827cc5e8a6949950007b946a394f701f99667cf73d3",
+    "papers/v4/notebook/v4s-s42-20261012-v1/executed.redacted.ipynb": "9bffa06f40b8df118dbf9d8bf6e19572de4e6b8a0d4658d18c736cdd7da581f4",
+    "papers/v4/notebook/v4s-s42-20261012-v1/source_manifest.json": "859714b2c31d357df72bca6eef5df95c032dffb75bb3d9b4aeaf2cb7817ed372",
+    "papers/v4/notebook/v4s-s42-20261012-v1/PUSHED": "8536560f92fbd8390e8df4cdc5e8462da812e8b863713ee467f37c7bae603d83",
+    "papers/v4/notebook/v4s-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v4/notebook/v4s-s42-20261012-v1/kernel-metadata.json": "5937283fcc95b9625625400b2932bdee61b5c2c563c6681ee2af191103cd7334",
+    "papers/v4/notebook/v4m-s42-20261012-v1/executed.redacted.ipynb": "707d11e499f697343ce5e2ba74f8be33fcc31c2f782ec203b9a0d85b252a3a07",
+    "papers/v4/notebook/v4m-s42-20261012-v1/source_manifest.json": "859714b2c31d357df72bca6eef5df95c032dffb75bb3d9b4aeaf2cb7817ed372",
+    "papers/v4/notebook/v4m-s42-20261012-v1/PUSHED": "494a2f28cb42171d4e77fe1eb49dea78a9b44477a96373f0a1386fbfa1aa186c",
+    "papers/v4/notebook/v4m-s42-20261012-v1/v4m-s42-20261012-v1.ipynb": "e48a0d233ea3b865cd318e585bcd6783a889eb551f90b61433ce1633a6299db7",
+    "papers/v4/notebook/v4m-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v4/notebook/v4m-s42-20261012-v1/kernel-metadata.json": "fbf84b1ac93faa904b98b34715f145777aa7d5d45723285535058c5af5b681c5",
+    "papers/v4/notebook/v4s-s43-20261012-v1/executed.redacted.ipynb": "2c81a63456fea530f969229102e8393165fe519eaa2fb5f9b4532e6a563cfa95",
+    "papers/v4/notebook/v4s-s43-20261012-v1/source_manifest.json": "859714b2c31d357df72bca6eef5df95c032dffb75bb3d9b4aeaf2cb7817ed372",
+    "papers/v4/notebook/v4s-s43-20261012-v1/PUSHED": "0f1ca71be0729b2bcf30bfef8a8759be1cb1cf308db5f700d1366619a396c68c",
+    "papers/v4/notebook/v4s-s43-20261012-v1/v4s-s43-20261012-v1.ipynb": "610b9d68d3f496e14b9252c418c0b2d22f42a225e14f3d759e29dc6b04c0408e",
+    "papers/v4/notebook/v4s-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v4/notebook/v4s-s43-20261012-v1/kernel-metadata.json": "3e35b7b392c21810e5ae51c6f7c015de08c51c23897a24bc466e15a87010497e",
+    "papers/v4/notebook/v4m-s43-20261012-v1/executed.redacted.ipynb": "23bda5b6834a8aa07617eb693f18859232089ab0186742636ef677ba7460f1cc",
+    "papers/v4/notebook/v4m-s43-20261012-v1/source_manifest.json": "859714b2c31d357df72bca6eef5df95c032dffb75bb3d9b4aeaf2cb7817ed372",
+    "papers/v4/notebook/v4m-s43-20261012-v1/PUSHED": "8545f48d2194f482eb9f73c54333797c6bc0e44e2f42aaa37d627ede51e513d9",
+    "papers/v4/notebook/v4m-s43-20261012-v1/v4m-s43-20261012-v1.ipynb": "0d48745d4608a299412dd3aaf902a4645fdd51479605d00bca38aef492aa9489",
+    "papers/v4/notebook/v4m-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v4/notebook/v4m-s43-20261012-v1/kernel-metadata.json": "d14d0a0033284986ce7bf365d59b6d438c04dc6992a016e6dfe5c060d928c2c4",
+    "papers/v7/notebook/v7n-s42-20261012-v1/executed.redacted.ipynb": "dd3742855721feef3f0d0d40b354ba8cd09350cbfaa6da9d95d2cd9b6d785025",
+    "papers/v7/notebook/v7n-s42-20261012-v1/source_manifest.json": "9daf726284f2549f2f2cfe21a3ef27883207846aa5461e4dad7615f642fbff04",
+    "papers/v7/notebook/v7n-s42-20261012-v1/PUSHED": "c84e9205692268f5d850ed7ceba4289e18decf85ef2f30624b03ffe80aab1f82",
+    "papers/v7/notebook/v7n-s42-20261012-v1/v7n-s42-20261012-v1.ipynb": "95fe6fc0342434eca03cb1ef989a9540f1c9de4f98e28af6cbf6002546937d6d",
+    "papers/v7/notebook/v7n-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v7/notebook/v7n-s42-20261012-v1/kernel-metadata.json": "0dd099079cf57488720b84da9bf1418c7c924347655e06a7430378f21adb47bb",
+    "papers/v7/notebook/v7n-s43-20261012-v1/executed.redacted.ipynb": "4e8b0f9e9bc6674d4a724c3f45783abd76442c1e8482f4bdfa50fe88e3d51160",
+    "papers/v7/notebook/v7n-s43-20261012-v1/source_manifest.json": "9daf726284f2549f2f2cfe21a3ef27883207846aa5461e4dad7615f642fbff04",
+    "papers/v7/notebook/v7n-s43-20261012-v1/PUSHED": "dd2a1dbc77f07e4e80be4b9414c5c333d68e0f16ad09942599fd1465aa2c1b63",
+    "papers/v7/notebook/v7n-s43-20261012-v1/v7n-s43-20261012-v1.ipynb": "324c899561145a61870e83f8939267951be4b3ac75f13324ad415b85ed820a91",
+    "papers/v7/notebook/v7n-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v7/notebook/v7n-s43-20261012-v1/kernel-metadata.json": "f6511b3b4a3e88f8e4fb7c24cb0307feada581f13cd6f35607335fa68d393732",
+    "papers/v2/notebook/v2b-s43-20261011-v1/executed.redacted.ipynb": "72d5f18bc6ae9c6de113e09dbda69100df8e53b41bb025b20c54f30127937db7",
+    "papers/v2/notebook/v2b-s43-20261011-v1/source_manifest.json": "9d71983ba886179aed8f1a70e069955be9eb555b63732e81a90d0c1af07642d9",
+    "papers/v2/notebook/v2b-s43-20261011-v1/PUSHED": "e3b5d37d393cdb19b20040517d533cfa8303229292670247dd242441bade92fa",
+    "papers/v2/notebook/v2b-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v2/notebook/v2b-s43-20261011-v1/kernel-metadata.json": "6c148198566cc439caa3e6087719182e153d4a36bdb042d260e4f611301fe65d",
+    "papers/v2/notebook/v2b-s43-20261011-v1/v2b-s43-20261011-v1.ipynb": "99724d5374e513cbff97635e0c01b30295a0985e0f6f5adde1aa7ae992c99e57",
+    "papers/v2/notebook/v2a-s43-20261011-v1/executed.redacted.ipynb": "c5a4693ea60fb9b5b4aa883fbeef64375139f17e9ca84f7427fc97225042de7b",
+    "papers/v2/notebook/v2a-s43-20261011-v1/source_manifest.json": "9d71983ba886179aed8f1a70e069955be9eb555b63732e81a90d0c1af07642d9",
+    "papers/v2/notebook/v2a-s43-20261011-v1/PUSHED": "845701d6e4abe1490f4ef9950bb57493ad4e5b2f90cc2e7628a07f3e8cc966a1",
+    "papers/v2/notebook/v2a-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v2/notebook/v2a-s43-20261011-v1/v2a-s43-20261011-v1.ipynb": "fe7fe30614e13e9e0baf09fbe48608827579dc72ea5de6e2952cf58b461eff55",
+    "papers/v2/notebook/v2a-s43-20261011-v1/kernel-metadata.json": "1622280aa9b36290b5ad105183d37db539e4cd1e10407722479e9d918e82ccb2",
+    "papers/v2/notebook/v2a-s42-20261011-v1/v2a-s42-20261011-v1.ipynb": "d3289446e0357964f8b50d074a9dbb57fd7b4e3e831ad12f40c57bdcfd41bd22",
+    "papers/v2/notebook/v2a-s42-20261011-v1/executed.redacted.ipynb": "40cbf93066dafd1a3563c4400f05788d7c43690e6801a2db874847600dc3be5b",
+    "papers/v2/notebook/v2a-s42-20261011-v1/source_manifest.json": "9d71983ba886179aed8f1a70e069955be9eb555b63732e81a90d0c1af07642d9",
+    "papers/v2/notebook/v2a-s42-20261011-v1/PUSHED": "9953dca2af079c9523ea77b924164421cc8ad77bc2027e75a49bf829c5cb0f9a",
+    "papers/v2/notebook/v2a-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v2/notebook/v2a-s42-20261011-v1/kernel-metadata.json": "344abb01c57108ef161806c4c6b34fd979cc5847dd153bfe95b6d0c562935372",
+    "papers/v2/notebook/v2b-s42-20261011-v1/executed.redacted.ipynb": "7d3344f3ba00072fd4ce65f22e46ec021de8b63ef7acda571f217e345c862899",
+    "papers/v2/notebook/v2b-s42-20261011-v1/source_manifest.json": "9d71983ba886179aed8f1a70e069955be9eb555b63732e81a90d0c1af07642d9",
+    "papers/v2/notebook/v2b-s42-20261011-v1/PUSHED": "f958427a1b608bed361483e7d562329d2ac50082c5d6c9d0d54c1cbbd4183e46",
+    "papers/v2/notebook/v2b-s42-20261011-v1/v2b-s42-20261011-v1.ipynb": "fa51f6c24dd3d6af3bda6fd67be1943895cb00165b56805c7ef014cb73655e2e",
+    "papers/v2/notebook/v2b-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v2/notebook/v2b-s42-20261011-v1/kernel-metadata.json": "84136b4154007a078389c94c16ca6cb82109f016a7995fe8fc2c825c3fb6b55d",
+    "papers/v2/notebook/v2c-s43-20261011-v1/executed.redacted.ipynb": "49963df8d02fc34567a3bc63120dc140d60924d2c29331522ba9953e12add668",
+    "papers/v2/notebook/v2c-s43-20261011-v1/source_manifest.json": "9d71983ba886179aed8f1a70e069955be9eb555b63732e81a90d0c1af07642d9",
+    "papers/v2/notebook/v2c-s43-20261011-v1/PUSHED": "f561cf980023350cec1b84827b2a1218e0f14d1b43c5ba326dc62a3986b23ec3",
+    "papers/v2/notebook/v2c-s43-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v2/notebook/v2c-s43-20261011-v1/kernel-metadata.json": "172bef3a71d8368afe84e549377e39e7f41b7d615bd45e51111d2e763d57a6d7",
+    "papers/v2/notebook/v2c-s43-20261011-v1/v2c-s43-20261011-v1.ipynb": "ded78b6d9756a77e6c11a4c3a185ef15699adf7a3306c10f6fed5cc411d96c35",
+    "papers/v2/notebook/v2c-s42-20261011-v1/executed.redacted.ipynb": "8dc3a6911be4ebc164c69a72011d1cb7dcb1e1445ed823ea2ea9b9c3c1775d09",
+    "papers/v2/notebook/v2c-s42-20261011-v1/source_manifest.json": "9d71983ba886179aed8f1a70e069955be9eb555b63732e81a90d0c1af07642d9",
+    "papers/v2/notebook/v2c-s42-20261011-v1/PUSHED": "ac4d764393bb461f2fa6f8c820438b19bebf1a06470a039f47cc38f2ce648f76",
+    "papers/v2/notebook/v2c-s42-20261011-v1/v2c-s42-20261011-v1.ipynb": "547408ce49cc7aab192bd9bc4b4f9dc5c35aec6cd93419eef1f64d6f2f05d466",
+    "papers/v2/notebook/v2c-s42-20261011-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v2/notebook/v2c-s42-20261011-v1/kernel-metadata.json": "95e56e0e7084f12db61c10a057681a737528b29a6392296229080730b5ef1ae0",
+    "papers/boundary-cells/notebook/bc-cal-s4243-20261013-initial2-v1/source_manifest.json": "de312e11a0d096bfac94ab056cea6dc51c04b6931fecfdcd6a06bccfad019ff8",
+    "papers/boundary-cells/notebook/bc-cal-s4243-20261013-initial2-v1/SUPERSEDED_BEFORE_PUSH": "89a472867b7a594f298f735132d52d6776977399d0232eaaa0e6cdfc8b6b495c",
+    "papers/boundary-cells/notebook/bc-cal-s4243-20261013-initial2-v1/bc-cal-s4243-20261013-initial2-v1.ipynb": "484e345ace8fdadaf024381859b85cc0af316d54e5ca2b07ac303cddcd88076e",
+    "papers/boundary-cells/notebook/bc-cal-s4243-20261013-initial2-v1/kernel-metadata.json": "3b476ee803e19dd42299cac4a7c5a1f7d59eaad6572c0f99ba467f5b1a5aa305",
+    "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1/bc-u-s42-20261014-stage01-v1.ipynb": "b1a5ad8f7fbdc4e16d59e0b8c994dfc7652e40873099a2cd00e8f62e223b547b",
+    "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1/source_manifest.json": "de312e11a0d096bfac94ab056cea6dc51c04b6931fecfdcd6a06bccfad019ff8",
+    "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1/PUSHED": "572e7faeecce9a68ef5775401e206d5ca2bb54b43162c147313f343cfbf51ca4",
+    "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1/input-access.json": "cb4d5669235814fa5b13046706c52c9884dec3c4b3434efdd15eb9b13d675a92",
+    "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1/resume-plan.json": "4d1ed22347c628c1bd02a594a55f30261b20de8f8f3ce0ccf53898d0d7671610",
+    "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1/kernel-metadata.json": "2b15db2b13215298893dcb1f562811b7f76895af49a0cc742ab4e51d97476529",
+    "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1/executed.redacted.ipynb": "5ddbf4e4449335e773649d6f44ec9a4e0e941775139ab0bc561b05314e79036c",
+    "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1/source_manifest.json": "de312e11a0d096bfac94ab056cea6dc51c04b6931fecfdcd6a06bccfad019ff8",
+    "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1/PUSHED": "fc9dd24cf89cdb84a558c6a683e90360236e7500205acedf9e1ab16a442152b9",
+    "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1/bc-cal-s42-20261013-initial2-v1.ipynb": "4bc777fe8d2747ba3eac172023932b403ea0c89d0768c3d31052e7a16a9dfa6e",
+    "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1/kernel-metadata.json": "b00292fb972f0f6c87bee4249df90875fceedbbd823696cb2c25c11a5b03d896",
+    "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1/source_manifest.json": "de312e11a0d096bfac94ab056cea6dc51c04b6931fecfdcd6a06bccfad019ff8",
+    "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1/PUSHED": "9ac9c94673154cd0e25710469ee1357362ff2ad0f01722eb68b852bc12e572eb",
+    "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1/bc-u-s43-20261014-stage01-v1.ipynb": "53473e4121d01f2da3ac8dae5e719034a722e35d9a2e351dde29240c1e4452ff",
+    "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1/input-access.json": "49b26a07abf651a9f4de6f503dd4902cf0d89e62455d269a0c8243ae0da85209",
+    "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1/resume-plan.json": "4625c9d8aebb1586eab85a957b827cb885c217ec5d2197457c2813a8f4d43228",
+    "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1/kernel-metadata.json": "2097bb175ba08117c54dcb5653281c71796edc4bd68ee36a58eda9b764519961",
+    "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1/executed.redacted.ipynb": "a0b60c010328a78e9b578aba89c0420f002b4e0752f416ef352a2e86f9ef167c",
+    "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1/source_manifest.json": "de312e11a0d096bfac94ab056cea6dc51c04b6931fecfdcd6a06bccfad019ff8",
+    "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1/PUSHED": "1e5d9f4296f1febb58faf8feb39f130756b5b3f7a1418c9c5ac0fa073bfaf5c2",
+    "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1/bc-cal-s43-20261013-initial2-v1.ipynb": "23e28870d36deafc038d3d4884f5d956c989e3bd26b45880f6f41daa2fae1832",
+    "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1/kernel-metadata.json": "a0876a286d5a06164d7f7b5e9cb1cf66be00fced1e8fa4fc23e77ec4b22241a7",
+    "papers/new-fl/notebook/sa-s42/sa-s42.ipynb": "59a839f4e612a5a2a687e4132f380ce80a656ebecb6d429a90b6b5d1c3b7351c",
+    "papers/new-fl/notebook/sa-s42/source_manifest.json": "2b8d9c29ce48ae11d39b9e19962a93f83a33704350f659e42622bc0ad49d02cf",
+    "papers/new-fl/notebook/sa-s42/PUSHED": "6c025f4cce39f17cd245cfab6a6f15a1a094050baa5bcbf8efa1767c62786437",
+    "papers/new-fl/notebook/sa-s42/sa-s42.executed.ipynb": "99f896c51ecd39ca0ac5ea88f55ebcada896335c30bece22e1b79171cb447fb6",
+    "papers/new-fl/notebook/sa-s42/fixture_manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/new-fl/notebook/sa-s42/kernel-metadata.json": "3d258708922f8e45f024dd4bdf530be46c0c88cc39236ccc3e3e1b61164f39cf",
+    "papers/new-fl/notebook/sa-s43/source_manifest.json": "2b8d9c29ce48ae11d39b9e19962a93f83a33704350f659e42622bc0ad49d02cf",
+    "papers/new-fl/notebook/sa-s43/PUSHED": "26f672009f0edf4acd38c4a407d9df04a40a5b88cdd328dbcc5a50d149db9272",
+    "papers/new-fl/notebook/sa-s43/sa-s43.executed.ipynb": "b4cf02f6a1e286650470a9946fcf670082d2037da4a73412b651c8782598e391",
+    "papers/new-fl/notebook/sa-s43/fixture_manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/new-fl/notebook/sa-s43/sa-s43.ipynb": "2e1db78433c16a4c075805bb0fab0ad1ea7cbc884ddf7ac8132b5c410ed364d2",
+    "papers/new-fl/notebook/sa-s43/kernel-metadata.json": "4ec048706976747da114ff4fb7ac96982c69ab0fc6c2c3f1247decb25b8e9383",
+    "papers/v9/notebook/v9a-s43-20261012-v1/v9a-s43-20261012-v1.ipynb": "8be06c2884e57a5a348ce26919c00cc7e869e3d20bb87fcda2a6d85f55d45abd",
+    "papers/v9/notebook/v9a-s43-20261012-v1/executed.redacted.ipynb": "0ebf1507fc9e2f6f12ded5f76e680f012af2e229cdb83df23dff1b78fc2ecfb7",
+    "papers/v9/notebook/v9a-s43-20261012-v1/source_manifest.json": "32ba609e9b870f51ca7a1a6ba5234caad01e0d18f404d0259522adcf437d3705",
+    "papers/v9/notebook/v9a-s43-20261012-v1/PUSHED": "add746092b69586919f9aadf57afc4c5231912eaf9cadb7677d0889e4d9f75b4",
+    "papers/v9/notebook/v9a-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v9/notebook/v9a-s43-20261012-v1/kernel-metadata.json": "3d0a5a72cc300ef6102d21222b2b29eedeaef41072759980f5f774f7635103eb",
+    "papers/v9/notebook/v9a-s42-20261012-v1/executed.redacted.ipynb": "8625005eb748a42fe89034a58fe80164385c4f6fe51f42a807b364e378f365c3",
+    "papers/v9/notebook/v9a-s42-20261012-v1/source_manifest.json": "32ba609e9b870f51ca7a1a6ba5234caad01e0d18f404d0259522adcf437d3705",
+    "papers/v9/notebook/v9a-s42-20261012-v1/PUSHED": "21025692bd0970a4a903ed56c7e93ae40ee67f28f1973ffd7ede83f134e80fa1",
+    "papers/v9/notebook/v9a-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v9/notebook/v9a-s42-20261012-v1/v9a-s42-20261012-v1.ipynb": "50ae5906d7e05a3736a0c8b3b1bcc50b077acf77480723b1a7da7dcb03a16814",
+    "papers/v9/notebook/v9a-s42-20261012-v1/kernel-metadata.json": "b8ddf2d298ec9aed0c41a369ec3f0db958f8d9649dee2275e55bb03ae86abbcc",
+    "papers/v10/notebook/v10e-s43-20261012-v1/v10e-s43-20261012-v1.ipynb": "89cd855457f484d9223a5bfdb5f9181c47f8bfce7d39537a7d8b35b3f8563784",
+    "papers/v10/notebook/v10e-s43-20261012-v1/executed.redacted.ipynb": "db98aca673b89ff217a13368504bec961e43cfe574dc462364f91a0b171b8e70",
+    "papers/v10/notebook/v10e-s43-20261012-v1/source_manifest.json": "64361213bb41907c5b3d8009f855aacd40b500715a4959b0fc67c6e4fac15e77",
+    "papers/v10/notebook/v10e-s43-20261012-v1/PUSHED": "2ddea8252686ad70c6b7d38833771e7eeac83167b6a8fa640656b36413c106ec",
+    "papers/v10/notebook/v10e-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v10/notebook/v10e-s43-20261012-v1/kernel-metadata.json": "f7d2742afec1086d5c8d373ac0bba16b5f8b9ae34d53c6446b0282854eb8a427",
+    "papers/v10/notebook/v10e-s42-20261012-v1/executed.redacted.ipynb": "d66c6bea1ec829a0d6d3ee99106eacb50787c95dc4fcdf6c99481acde9f61b6f",
+    "papers/v10/notebook/v10e-s42-20261012-v1/source_manifest.json": "64361213bb41907c5b3d8009f855aacd40b500715a4959b0fc67c6e4fac15e77",
+    "papers/v10/notebook/v10e-s42-20261012-v1/PUSHED": "7486481eb0fe47a68f348c927fc1b86d4c3da7f7f178dfe9e2af45a9eaad481f",
+    "papers/v10/notebook/v10e-s42-20261012-v1/v10e-s42-20261012-v1.ipynb": "028cb1c65c175b83aae81799dd2330ae70519c74ed9a9c61f2cd684c1c113056",
+    "papers/v10/notebook/v10e-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v10/notebook/v10e-s42-20261012-v1/kernel-metadata.json": "b9c628b0ad84f6be2d70cf5aa3b878ce3d902db0ed22590ad7952d1dfe584591",
+    "papers/v6/notebook/v6a-s43-20261012-v1/v6a-s43-20261012-v1.ipynb": "e9b48b584347fb148283767c1685abdd51b9132f737b320c39b1c2fbffb7b89c",
+    "papers/v6/notebook/v6a-s43-20261012-v1/executed.redacted.ipynb": "d2f048b4c7e20a7db286c8739b6568c6fd479082755a6f2fe80462a22496fdeb",
+    "papers/v6/notebook/v6a-s43-20261012-v1/source_manifest.json": "0a32d538f021e371b2d0c5bbfdefd8a64042f76f2028907133c35276d0bf2827",
+    "papers/v6/notebook/v6a-s43-20261012-v1/PUSHED": "79596cfe31484031a9be03b1fa5ebb9c7352a4ec1fb9cc84a5c8c6d262257ad6",
+    "papers/v6/notebook/v6a-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v6/notebook/v6a-s43-20261012-v1/kernel-metadata.json": "b53d246fcbdcbb212a8db914aa56e096b52714a5dc1a8d98736185d1a5e278ed",
+    "papers/v6/notebook/v6b-s42-20261012-v1/executed.redacted.ipynb": "b248a440f5318b726468d7817cfc1c66de0175189c4b2759d97762e5ba25b0d0",
+    "papers/v6/notebook/v6b-s42-20261012-v1/source_manifest.json": "0a32d538f021e371b2d0c5bbfdefd8a64042f76f2028907133c35276d0bf2827",
+    "papers/v6/notebook/v6b-s42-20261012-v1/PUSHED": "3a066b693f033d0a8193f72ab35ef0b6632196d9c58374493f66d96e7ae1b3b9",
+    "papers/v6/notebook/v6b-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v6/notebook/v6b-s42-20261012-v1/v6b-s42-20261012-v1.ipynb": "fbb79fce45ae2d463589e1eba3e4672304dfe8f5b1329fa4aa12637752836a99",
+    "papers/v6/notebook/v6b-s42-20261012-v1/kernel-metadata.json": "66e6cb37daa1dd854d5b3639e1e95771910a82692392f1a73929c628904f3d65",
+    "papers/v6/notebook/v6b-s43-20261012-v1/executed.redacted.ipynb": "756d03834106431cf060b8ca6e436b673441e33f5425be5b1cbbbb65dc6aa933",
+    "papers/v6/notebook/v6b-s43-20261012-v1/source_manifest.json": "0a32d538f021e371b2d0c5bbfdefd8a64042f76f2028907133c35276d0bf2827",
+    "papers/v6/notebook/v6b-s43-20261012-v1/PUSHED": "d3a3ad3f55cdc9ac45d619592b1619415b800d74fee74be35db312a846dba125",
+    "papers/v6/notebook/v6b-s43-20261012-v1/v6b-s43-20261012-v1.ipynb": "d5c22e6ae4db38def122d026661e7a6ac21ac79f2e83554a50ff50f246583758",
+    "papers/v6/notebook/v6b-s43-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v6/notebook/v6b-s43-20261012-v1/kernel-metadata.json": "e24c2b4ae5889ed84f07cb6a10e5f8a903f2a2961dfb18f173c0454589a50859",
+    "papers/v6/notebook/v6a-s42-20261012-v1/executed.redacted.ipynb": "55cf785e69afc585d750ae0212d0eff0a057174dcafe8f6c66957d16a94d3912",
+    "papers/v6/notebook/v6a-s42-20261012-v1/source_manifest.json": "0a32d538f021e371b2d0c5bbfdefd8a64042f76f2028907133c35276d0bf2827",
+    "papers/v6/notebook/v6a-s42-20261012-v1/PUSHED": "246366549fe3963cb4df6ccbe42839beed5050bea795cd203a6ec39eca53af98",
+    "papers/v6/notebook/v6a-s42-20261012-v1/manifest.json": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "papers/v6/notebook/v6a-s42-20261012-v1/kernel-metadata.json": "b44d54cfa9bf051f48f9f652b694da28dac3011c7949932c64ad451ab93cad98",
+    "papers/v6/notebook/v6a-s42-20261012-v1/v6a-s42-20261012-v1.ipynb": "ec63e854e531b2e7aa5152e6bbbcf2c4395badd498582eb5b80a2bbba5d83efd"
+  },
+  "markdown_rewritten": [
+    "CONTEXT.md",
+    "README.md",
+    "LESSONS.md",
+    "docs/research/performance-feasibility-2026-10-13.md",
+    "docs/research/v3-knowledge-sources.md",
+    "docs/research/v5-algebra-sources.md",
+    "docs/research/new-fl-primary-sources-2026-10-13.md",
+    "docs/research/pilot-v2.md",
+    "docs/research/pilot-v7-nystrom.md",
+    "docs/research/README.md",
+    "docs/research/de-xuat-v2/README.md",
+    "docs/research/pilot-v6-geometry.md",
+    "docs/research/probes/pilot-v2.md",
+    "docs/research/probes/h2-input-stats.md",
+    "docs/research/probes/pilot-v4.md",
+    "docs/research/probes/pilot-v5.md",
+    "docs/research/probes/pilot-new-fl.md",
+    "docs/research/probes/pilot-v6.md",
+    "docs/research/v3-carriers-sources.md",
+    "docs/research/pilot-new-fl.md",
+    "docs/research/unready-methods-preflight-2026-10-12.md",
+    "docs/research/pilot-v4-mala.md",
+    "docs/research/pilot-v5-anchors.md",
+    "docs/research/pilot-v4-support.md",
+    "docs/proposals.md",
+    "docs/README.md",
+    "docs/operations/decisions-2026-10-12.md",
+    "docs/operations/expansion-2026-10-12.md",
+    "docs/operations/live-2026-10-12.md",
+    "docs/operations/resume-after-reboot-2026-10-13.md",
+    "docs/operations/context-history-before-method-folders-2026-10-12.md",
+    "docs/operations/continuation-2026-10-13.md",
+    "docs/operations/handoff-2026-10-11.md",
+    "docs/operations/collection-2026-10-14.md",
+    "docs/overview/status-summary.md",
+    "docs/overview/evidence-summary.md",
+    "docs/file-index.md",
+    "docs/methods/gaussian-support-constraints/README.md",
+    "docs/methods/proxy-seeded-subspace/README.md",
+    "docs/methods/proxy-random-coordinates/lessons.md",
+    "docs/methods/proxy-random-coordinates/README.md",
+    "docs/methods/gradient-synthetic-books/lessons.md",
+    "docs/methods/gradient-synthetic-books/README.md",
+    "docs/methods/gaussian-logit-distillation/README.md",
+    "docs/methods/covariance-nystrom/lessons.md",
+    "docs/methods/covariance-nystrom/design.md",
+    "docs/methods/covariance-nystrom/README.md",
+    "docs/methods/boundary-cell-counts/design.md",
+    "docs/methods/boundary-cell-counts/README.md",
+    "docs/methods/covariance-nystrom/builds/v7-rank4-rank8/results/report.md",
+    "docs/methods/proxy-countsketch/README.md",
+    "docs/methods/ema-deployment-recipe/README.md",
+    "docs/methods/gaussian-proxy-hybrid/lessons.md",
+    "docs/methods/gaussian-proxy-hybrid/README.md",
+    "docs/methods/gaussian-proxy-hybrid/builds/v8-pilot/results/report.md",
+    "docs/methods/contact-fragmentation/README.md",
+    "docs/methods/anchor-function-residual/lessons.md",
+    "docs/methods/anchor-function-residual/README.md",
+    "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/report.md",
+    "docs/methods/shared-baselines/builds/full-h1-h2-50rounds/results/rebuild.md",
+    "docs/methods/fourier-distribution-sketch/README.md",
+    "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/feasibility-20261014.md",
+    "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/report.md",
+    "docs/methods/gaussian-proxy-hybrid/builds/full-50rounds/results/rebuild.md",
+    "docs/methods/boundary-cell-counts/builds/cell-counts-v1/results/rebuild.md",
+    "docs/methods/gaussian-class-moments/lessons.md",
+    "docs/methods/gaussian-class-moments/README.md",
+    "docs/methods/kernel-anchor-distillation/lessons.md",
+    "docs/methods/gaussian-mala-transport/lessons.md",
+    "docs/methods/kernel-anchor-distillation/README.md",
+    "docs/methods/kernel-anchor-distillation/diagnostics.md",
+    "docs/methods/anchor-function-residual/builds/v9-teacher-residual/results/report.md",
+    "docs/methods/anchor-function-residual/builds/v9-teacher-residual/results/rebuild.md",
+    "docs/methods/receiver-response-consistency/README.md",
+    "docs/methods/proxy-rolling-subnetwork/lessons.md",
+    "docs/methods/proxy-rolling-subnetwork/README.md",
+    "docs/methods/proxy-mutual-distillation/lessons.md",
+    "docs/methods/proxy-mutual-distillation/README.md",
+    "docs/methods/gaussian-mala-transport/README.md",
+    "docs/methods/geometry-primitive-moments/lessons.md",
+    "docs/methods/geometry-primitive-moments/design.md",
+    "docs/methods/geometry-primitive-moments/README.md",
+    "docs/methods/class-prototypes/README.md",
+    "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/paper.md",
+    "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/report.md",
+    "docs/methods/proxy-compression/builds/v3-carrier-comparison/results/rebuild.md",
+    "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/paper.md",
+    "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/report.md",
+    "docs/methods/synthetic-knowledge/builds/v5-anchor-gradient-books/results/rebuild.md",
+    "docs/methods/federated-head-transfer/README.md",
+    "docs/methods/dagsnet-joint-energy/lessons.md",
+    "docs/methods/dagsnet-joint-energy/README.md",
+    "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/report.md",
+    "docs/methods/synthetic-distribution-matching/builds/sa-static-books/results/rebuild.md",
+    "docs/methods/latent-mean-synthetic-books/lessons.md",
+    "docs/methods/latent-mean-synthetic-books/README.md",
+    "docs/methods/proxy-powersgd/lessons.md",
+    "docs/methods/proxy-powersgd/README.md",
+    "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/report.md",
+    "docs/methods/geometry-primitive-moments/builds/v6-g59-g61/results/rebuild.md",
+    "docs/methods/geometry-primitive-moments/decisions.md",
+    "docs/methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/results/report.md",
+    "docs/methods/dagsnet-joint-energy/builds/v10-gaussian-base-mh/results/rebuild.md",
+    "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/paper.md",
+    "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/report.md",
+    "docs/methods/shared-comparisons/builds/v2-sketch-subspace-ratio/results/rebuild.md",
+    "docs/methods/gaussian-sampling/builds/v4-support-mala/results/report.md",
+    "docs/methods/gaussian-density-ratio/README.md",
+    "docs/methods/gaussian-sampling/builds/v4-support-mala/results/rebuild.md",
+    "docs/methods/proxy-orthogonal-projection/lessons.md",
+    "docs/methods/proxy-orthogonal-projection/README.md"
+  ],
+  "git_head": "7a681cfe06c1a49f155008c90493635257ba3f66",
+  "git_index_sha256": "5606c077c78c3a57946538a6c77ada2282acd9f77b83bbb11c452717e5d870c1",
+  "prior_git_status": " M .dvcignore\u0000 M .gitignore\u0000 M docs/operations/kernel-status-current.json\u0000 M scripts/kaggle/boundary_logging.py\u0000?? docs/operations/boundary-utility-preflight-2026-10-14.json\u0000?? docs/operations/launch-batch-2026-10-14.json\u0000?? docs/operations/restored-continuation-metadata-2026-10-14.json\u0000?? docs/operations/restored-hybrid-bridge-2026-10-14.json\u0000?? docs/operations/resume-batch-preflight-2026-10-14.json\u0000?? scripts/check_boundary_utility.py\u0000?? scripts/check_resume_batch.py\u0000?? scripts/kaggle/gen_boundary_utility.py\u0000?? scripts/kaggle/gen_full_resume_batch.py\u0000?? scripts/kaggle/launch_prepared_batch.py\u0000?? scripts/kaggle/read_resume_inputs.py\u0000?? scripts/reorganize_project.py\u0000?? scripts/restore_dvc_metadata.py\u0000",
+  "limits": "No Git/DVC add/commit/push. Remote-only files stay remote. Frozen bytes unchanged; support-script root lookup adapted.",
+  "compact_aliases": true,
+  "logs_inside_build": true,
+  "proposal_alias_removed_by_owner_request": true
+}

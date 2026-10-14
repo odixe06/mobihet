@@ -1,31 +1,47 @@
-# Tài liệu dự án
+# Mục lục tổng quan dự án
 
-Phương pháp theo tên: [proposals/](../proposals/README.md). Từng file: [file-index](file-index.md).
+Đây là điểm đọc chính: [CONTEXT](../CONTEXT.md) giữ trạng thái/lưu ý vận hành; [LESSONS](../LESSONS.md) giữ bài học chung.
+[Index đang làm](file-index.md) · [Index lịch sử](archive/file-index.md) · [Cấu trúc và alias](operations/project-layout.md).
 
-| nhu cầu | mở |
+## 1. Toàn bộ phương án
+
+- [Một danh mục đề xuất](proposals.md): 26 nhóm +recipe EMA; đã kiểm/chưa kiểm, PASS/FAIL có phạm vi, link thiết kế/build/kết quả.
+- [Hồ sơ phương pháp](methods/README.md): README ngắn → căn cứ/cơ chế → các build/source/artifact.
+- [Bài học dùng tiếp](lessons/README.md); [hồ sơ lịch sử](archive/README.md) giữ báo cáo và nguồn gốc số đo.
+- [Dự báo performance](research/performance-feasibility-2026-10-13.md): căn cứ trước mở pilot.
+
+## 2. Những hướng đang được tiếp tục
+
+| phương pháp | thiết kế / build / kết quả |
 |---|---|
-| Trạng thái/luật bắt buộc | [CONTEXT](../CONTEXT.md), [LESSONS](../LESSONS.md) |
-| So sánh phương pháp/bài học | [evidence-summary](../proposals/evidence-summary.md) |
-| Dự báo cải thiện hiệu năng / ưu tiên thử | [performance-feasibility](research/performance-feasibility-2026-10-13.md) |
-| Đề xuất theo từng phương pháp | [proposals/](../proposals/README.md) |
-| Protocol dữ liệu/đánh giá | [protocol](research/protocol.md), [knowledge](../knowledge/README.md) |
-| P1/P2 | [kế hoạch](research/pilot-plan.md), [P1](research/probes/pilot-p1.md), [P2](research/probes/pilot-p2.md) |
-| Fourier/latent-mean tĩnh | [manifest](research/pilot-new-fl.md), [kết quả](research/probes/pilot-new-fl.md), [report](../papers/new-fl/report.md) |
-| CountSketch/subspace/ratio | [V2 manifest](research/pilot-v2.md), [probe](research/probes/pilot-v2.md), [report](../papers/v2/report.md) |
-| Bốn carrier proxy | [V3 manifest](research/pilot-v3.md), [report](../papers/v3/report.md) |
-| Gaussian MALA/support | [MALA](research/pilot-v4-mala.md), [support](research/pilot-v4-support.md), [probe](research/probes/pilot-v4.md), [report](../papers/v4/report.md) |
-| Kernel anchors/gradient books | [anchors](research/pilot-v5-anchors.md), [books](research/pilot-v5-books.md), [report](../papers/v5/report.md) |
-| Geometry G59/G61 | [V6 manifest](research/pilot-v6-geometry.md), [kết quả](research/probes/pilot-v6.md) |
-| Nyström / hybrid | [V7 report](../papers/v7/report.md), [V8 report](../papers/v8/report.md), [V8 contract](research/pilot-v8-hybrid.md) |
-| Residual teacher / Gaussian-base energy | [V9 contract](research/pilot-v9-residual.md), [V10 contract](research/pilot-v10-energy.md), [V10 report](../papers/v10/report.md) |
-| H1/H2 100% train / lịch50round | [full contract](research/full-h1-h2.md), [report10metric](../papers/full-validation/report.md), [ledger/budget](../papers/full-validation/rebuild.md) |
-| Hybrid 100% train / lịch50round đãchốt | [contract](research/full-hybrid.md), [audit/khả thi14/10](../papers/hybrid-full/feasibility-20261014.md), [10 metrics](../papers/hybrid-full/latest-rounds.md) |
-| Quyết định chủ dự án mới | [decisions2026-10-12](operations/decisions-2026-10-12.md) |
-| Collect/verify/restore | [phiên hiện tại](operations/collection-2026-10-14.md), [backup](operations/backup.md) |
-| Tri thức archive | [legacy](legacy/kien-thuc-ke-thua.md), [handoff](operations/handoff-2026-10-11.md) |
+| Gaussian class moments | [Hồ sơ](methods/gaussian-class-moments/README.md), [full H1/H2](methods/shared-baselines/builds/federated-baselines-full/README.md) |
+| DAGSNet mutual distillation | [Hồ sơ](methods/proxy-mutual-distillation/README.md), [10metrics cuối](methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md) |
+| Gaussian + proxy Hybrid | [Hồ sơ](methods/gaussian-proxy-hybrid/README.md), [full build](methods/gaussian-proxy-hybrid/builds/hybrid-full/README.md), [10metrics cuối](methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md) |
+| BoundaryCells counts | [Hồ sơ](methods/boundary-cell-counts/README.md), [build/calibration/pilot](methods/boundary-cell-counts/builds/boundary-cell-pilot/README.md) |
+| ResponseRisk augmentation | [Thiết kế](methods/receiver-response-consistency/design.md), [build local probe](methods/receiver-response-consistency/builds/receiver-augmentation/README.md) |
+| EMA deployment recipe | [Thiết kế/cổng](methods/ema-deployment-recipe/design.md); chưa source/pilot utility |
 
-`research/` giữ hợp đồng/provenance cũ; nội dung đã dùng làm source manifest không sửa/di chuyển.
-Thiết kế mới, giải thích và bài học theo cơ chế nằm ở `proposals/<tên>/`.
-`knowledge/` chỉ facts cố định; số đo ở probe/report; tài khoản/quota/artifact ở ledger và operations.
+Các adaptation FAIL khác đều có thiết kế/report/source qua [danh mục đề xuất](proposals.md); không rerun y nguyên.
 
-Backup / pull artifact: [chỉ mục35 manifest](operations/artifact-index.md).
+## 3. Vận hành, lỗi và khả năng tái lập
+
+- [Bàn giao hiện tại](operations/reorganization-2026-10-14.md): exact kernel/version, checkpoint, quota, việc còn thiếu.
+- [Sổ lỗi kernel](operations/notebook-errors.md): nguyên nhân, output dùng được, preflight ngăn lặp.
+- [Launch plan/quota](operations/launch-batch-2026-10-14.json), [status snapshot](operations/kernel-status-current.json).
+- [Layout hiện tại](operations/workspace-layout.json), [tên các đợt](operations/experiment-names.md), [manifest gốc](operations/layout-migration-2026-10-14.json), [Git/DVC verification](operations/layout-verification-2026-10-14.json).
+- [Backup/restore](operations/backup.md), [lịch sử collect trước đợt này](operations/collection-2026-10-14.md).
+- [Scripts dùng chung](../scripts/README.md); logs đúng build, không trộn với kết quả khoa học.
+- [Package chung và module riêng build](operations/package-ownership.md): ownership, source canonical, alias và fingerprint.
+
+## 4. Protocol và kiến thức nền
+
+- [Protocol](research/protocol.md), [dataset](../knowledge/dataset.md), [architecture](../knowledge/architecture.md), [knowledge hub](../knowledge/README.md).
+- [Kiến thức kế thừa](archive/legacy/kien-thuc-ke-thua.md), [LESSONS trước tổ chức](archive/legacy/lessons-before-layout-20261014.md).
+- Source/codec/resume PASS không thay utility/R1/R2/DP proof; mọi kết quả headline cần terminal artifact audit.
+
+## 5. Quy trình cho các phiên sau
+
+- [Skill Codex](../.agents/skills/federated-experiment-workflow/SKILL.md).
+- [Skill Claude Code](../.claude/skills/federated-experiment-workflow/SKILL.md).
+- [Thông tin chuẩn skill đã đối chiếu](operations/workflow-skill.md).
+- [Index toàn dự án](file-index.md): code, docs, notebooks, helper, skill; artifact bị ignore có route/DVC.

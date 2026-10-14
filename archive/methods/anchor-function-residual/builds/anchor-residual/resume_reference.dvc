@@ -1,0 +1,6 @@
+outs:
+- md5: 9c657c34734d22cc2caebefa9ec1dfe6.dir
+  size: 1944387156
+  nfiles: 153
+  hash: md5
+  path: artifacts/resume_reference

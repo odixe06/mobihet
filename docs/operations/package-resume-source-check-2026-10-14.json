@@ -1,0 +1,6 @@
+{
+  "prepared_plan_count": 12,
+  "source_hash_checks": 1120,
+  "pass_check": true,
+  "limit": "Prepared parent source matches legacy paths; actual remote mounts/checkpoints audited separately."
+}

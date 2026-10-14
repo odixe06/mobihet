@@ -107,3 +107,12 @@ papers/full-validation/mount-output/
 papers/hybrid-full/diagnostics/
 
 papers/pilot/fixture/
+
+# Canonical method/build layout; papers/proposals are legacy aliases only.
+/papers/
+/proposals/
+/.compat/
+methods/**/artifacts/
+archive/**/artifacts/
+# Legacy Python import facade; canonical shared source lives in core/.
+/mh

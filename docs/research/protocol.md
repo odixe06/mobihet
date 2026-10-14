@@ -21,8 +21,8 @@ PerFed-SKD, TinyProto, pFedES, …) mà không cần chú thích lệch protocol
 
 ## 2. Phần MobiHet thêm vào (khác repo anh em, phải báo kèm mọi số)
 
-1. **Kênh truyền có deadline (R1).** Báo ở hai mức ngân sách B0 (≈4,5 kB/contact) và B2 (≈231 kB/contact) ([đề xuất §3](de-xuat-huong-moi.md#3-ngân-sách-contact-và-kích-thước-tri-thức)).
-   - Mỗi round, mỗi xe có contact mô phỏng: ngân sách byte và `tau_true` lấy từ simulator archive ([kế thừa §6](../legacy/kien-thuc-ke-thua.md#6-kênh-truyền-và-mô-phỏng-contact)).
+1. **Kênh truyền có deadline (R1).** Báo ở hai mức ngân sách B0 (≈4,5 kB/contact) và B2 (≈231 kB/contact) ([đề xuất §3](../archive/research/de-xuat-huong-moi.md#3-ngân-sách-contact-và-kích-thước-tri-thức)).
+   - Mỗi round, mỗi xe có contact mô phỏng: ngân sách byte và `tau_true` lấy từ simulator archive ([kế thừa §6](../archive/legacy/kien-thuc-ke-thua.md#6-kênh-truyền-và-mô-phỏng-contact)).
    - Xe không có contact hoặc chưa nhận đủ gói thì vẫn học local, dùng tri thức cũ.
    - Repo anh em giả định full participation, không giới hạn byte. Muốn tách được hiệu ứng kênh thì mỗi phương pháp phải chạy cả hai chế độ:
      **không ràng buộc** (khớp anh em) và **có ràng buộc**.

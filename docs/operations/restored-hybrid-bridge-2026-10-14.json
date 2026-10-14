@@ -1,0 +1,981 @@
+{
+  "targets": [
+    {
+      "metadata": "papers/hybrid-full/kaggle.dvc",
+      "md5": "89ba8972c2ee1062ab77a27d58fb08bc.dir"
+    }
+  ],
+  "files": [
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/complete/round_001.json",
+      "md5": "5c137bb5589df8454a732d568c23504b",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/complete/round_002.json",
+      "md5": "b9c53ca435b22e868590279ef9ac38b9",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/config.json",
+      "md5": "2c9c5750ff907e8f7412beea31b286e3",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/knowledge/round_001.bin",
+      "md5": "83184f2175013da465769c9e13e94c6a",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/knowledge/round_002.bin",
+      "md5": "34b1713334ddb491192fa3fc6fddfacf",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/log.txt",
+      "md5": "9d65127144a9543f4358f29f4c190949",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/metrics.csv",
+      "md5": "6bec21c89266df842c880d89f8f9b242",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/predictions/round_001.npz",
+      "md5": "d97b4b4b7fa76e6eb3b586d880aa66f1",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/predictions/round_002.npz",
+      "md5": "658ac2f74a948b7f55bee19e34895430",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/result.json",
+      "md5": "ec21b3eff853f32317c250a544e75fb5",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/resume/round_001.pt",
+      "md5": "c74c34047fdd5d8653a7b74a3a76fe79",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/resume/round_002.pt",
+      "md5": "f982bffd9c0f964fd52e2b4689f8849e",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/files/config.yaml",
+      "md5": "3caed5f4e8a40c8a33395c1578096e34",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/files/output.log",
+      "md5": "3a86bbd124a597cad1f16e56d9a04bc5",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/files/requirements.txt",
+      "md5": "34b05748685e56c47b3f3c1d392b5e9a",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/files/wandb-metadata.json",
+      "md5": "9a7731f9b3247b446ea8d1ef96954577",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/files/wandb-summary.json",
+      "md5": "17c0fcfab64444c46786ee9aadcf277d",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/logs/debug-internal.log",
+      "md5": "6d351a01c5aaafe86a968790540ffca2",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/logs/debug.log",
+      "md5": "fb165250e24cd03c4217b7bfc474468c",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/run-h_dml_s42-7de70f05.wandb",
+      "md5": "e951d3f6ab7b0a78db2b3af20ba06a83",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/wandb/run-20261013_080409-h_dml_s42-7de70f05/run-h_dml_s42-7de70f05.wandb.syncstate",
+      "md5": "7131c06595569226ca1dc593d1415899",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/weights/round_001.pt",
+      "md5": "511b9434d54d11f6d4cda0b9a2b991f7",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_dml_s42/weights/round_002.pt",
+      "md5": "ce71a1ebd19ebcb56df0522b4f34bf3d",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/complete/round_001.json",
+      "md5": "4b1481d4d46e483e0c55f54e9c8e7998",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/complete/round_002.json",
+      "md5": "140ed02f7644f8c680b023111fa56e4f",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/config.json",
+      "md5": "edfb0e7857d1cc4df7a5e1986e103d32",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/log.txt",
+      "md5": "3feb979e4537970dfcecd109eab7e4d7",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/metrics.csv",
+      "md5": "7e565fac243a6b84f6c85b6094aafb6d",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/predictions/round_001.npz",
+      "md5": "f0a0ade7cf74d55e446a65cb0b423cbb",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/predictions/round_002.npz",
+      "md5": "1ff26c7f8cd799cf8431840064dff37f",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/result.json",
+      "md5": "6a404cc3306cecd6ca877988cfaada7a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/resume/round_001.pt",
+      "md5": "45ec8b86275c1259ed6783476e419321",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/resume/round_002.pt",
+      "md5": "0784fa7b17600276a45e9654c51bc344",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/files/config.yaml",
+      "md5": "426c3740247c851832913c847a925c93",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/files/output.log",
+      "md5": "5fad444328555a1ee0ee712cf85a7175",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/files/requirements.txt",
+      "md5": "34b05748685e56c47b3f3c1d392b5e9a",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/files/wandb-metadata.json",
+      "md5": "cdca8ebec45225631275c4b54a9ae2cf",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/files/wandb-summary.json",
+      "md5": "515d3e39fdc2a512270ddde24d665f7d",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/logs/debug-internal.log",
+      "md5": "19aea92e9bc4c45f787e5d45d68a0058",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/logs/debug.log",
+      "md5": "0ccb1fb73b365e89ac7dba068fc215f6",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/run-h_local_s42-45ee42d6.wandb",
+      "md5": "4f2f6ca91b2d82ae37f308330bf05c98",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/wandb/run-20261013_080410-h_local_s42-45ee42d6/run-h_local_s42-45ee42d6.wandb.syncstate",
+      "md5": "7131c06595569226ca1dc593d1415899",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/weights/round_001.pt",
+      "md5": "b200bedd631284a0fd6ef016e968b83d",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/h_local_s42/weights/round_002.pt",
+      "md5": "e62b722f34fa691b8a43725a4ff9b69c",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/runs/summary_s42.json",
+      "md5": "af4f82efaf93ef98b12d831f6bfd9b32",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/__init__.py",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/archs.py",
+      "md5": "645e5b498347a3db14435cba9cace77d",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/channel.py",
+      "md5": "bb3f34ac0105ca4c970a2b95fde83234",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/dagsnet.py",
+      "md5": "8961464640e8fd29b0021d24dd7aecbc",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/data_manifest.json",
+      "md5": "ab8914747a479fed5d4bfd2c11c66b00",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/full-hybrid.md",
+      "md5": "73913d78ff34703fa97ef872d0cc185a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/full_driver.py",
+      "md5": "2a416c52f06867afd02af6032e753369",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/full_method.py",
+      "md5": "c70c4bca8c1fde3caeec60468ddb2d6b",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/full_prepare.py",
+      "md5": "028276cd0dd02bd59ca5c5e10fe5f7cf",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/full_run.py",
+      "md5": "e41915ab89f914da51a4982556ed4876",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/full_verify.py",
+      "md5": "9dc255360c7a2beec9d550e6f1dbebb6",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/meta.json",
+      "md5": "73af80dea3f8fa98eb260d5028e84d93",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/metrics.py",
+      "md5": "b00846b93823ca3915782e7ed02e01e2",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/mobility.py",
+      "md5": "2994bac29dc4fb77a529cc0aff2d1015",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/model_packet.py",
+      "md5": "33bf2a33999bbca4b366424964f78f9a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/new_fl.py",
+      "md5": "d24eb0cbe71bdaf5ab31392920095700",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/new_methods.py",
+      "md5": "8f0b5cba4f91397bdaf366f267fc2837",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/p2.py",
+      "md5": "515ca949a2a4db533d08750b2b42b47f",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/parent_run.py",
+      "md5": "40465a9fa53cfc65c4829cfd25aa4263",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/pilot.py",
+      "md5": "4299f3a1d59991a32b136fb4b8be45f5",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/prepare.py",
+      "md5": "ce96d5da2afddb62f28997db2cc8e871",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/scaler.json",
+      "md5": "8fc244fd78f430f5cf8ff90f13737e2f",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/source_manifest.json",
+      "md5": "706eb00168ec8d1c00aa91636dfb22a6",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/teacher_base.py",
+      "md5": "98806db5dca9b19473b23a772f6bead1",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/teacher_driver.py",
+      "md5": "b3d011f09acefb10f69f8e8241d5cbb8",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v10_energy.py",
+      "md5": "52bd614939b5d3c68be562eaee3320ad",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v10_run.py",
+      "md5": "309b10ebfb9836577cdf7b918104cb6d",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v2_math.py",
+      "md5": "1e94809eb0a24e8db1fd3ee1048dda69",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v2_methods.py",
+      "md5": "85682f72e707b1eea81dc35e8af88827",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v2_run.py",
+      "md5": "0fb0725b41c9872a4460393ba42c90ea",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v3_dense.py",
+      "md5": "0345ccfd0ff29bd129987ef766c0832a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v3_math.py",
+      "md5": "3a3e4ad71e295f6156190583e358bd22",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v3_methods.py",
+      "md5": "394044140fdf713b636108d8f74ef6b1",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v3_run.py",
+      "md5": "f33e8a0c3d20861303ebb8f66fde58d4",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v4_mala.py",
+      "md5": "b7ea8bf8da258c45493f633ceed1fc96",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v4_run.py",
+      "md5": "6cfe2330438cb29d30a3636c07213a42",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v4_schema.py",
+      "md5": "f1135a7efe1fe0c19c4e1a6f8c4c1e58",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v4_support.py",
+      "md5": "9d7cd9b04a29d2179c2ea22a4feaadb1",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v5_anchor.py",
+      "md5": "0556d2e53402693a587eac88621a76fd",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v5_books.py",
+      "md5": "34aa204232ba01c8a8526634b695a19a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v5_run.py",
+      "md5": "c8dfa1f2913e160aba3b022af8950d72",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v6_geometry.py",
+      "md5": "a4c6d72c2353deda41a504f33e0b9df5",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v6_run.py",
+      "md5": "e89031446330267908e3634f2b8f9d4c",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v6_schema.py",
+      "md5": "f2aa63e16e99d8e2c3a85de1573f438c",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v7_basis.py",
+      "md5": "cc487eaf0ea98ac541c9fc404c272216",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v7_nystrom.py",
+      "md5": "c27d2cc07aa47c41229920f0b10ce0fa",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v7_run.py",
+      "md5": "a77db143a558ac3dd2a35368eea87152",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v8_hybrid.py",
+      "md5": "60886a8d49f85eb34af958ccae89f839",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v8_run.py",
+      "md5": "8bac97b7cc21eeb5984cc4f4e3368e4e",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v9_anchor.py",
+      "md5": "7438378d3494774616f227b9a478e52c",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf1-s42-20261013-cal-v1/source/v9_run.py",
+      "md5": "3a482b881b1b69d480d80defb16d2707",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/complete/round_001.json",
+      "md5": "6597089b04a3a95956fdb514dff79a60",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/complete/round_002.json",
+      "md5": "09b7baee8a8a623837844f4772802a78",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/config.json",
+      "md5": "6323a85c1f48dccc6849d8be5c0b8677",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/log.txt",
+      "md5": "1024cfdca0ac99257847a8049a04806f",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/metrics.csv",
+      "md5": "97e1e3296d73bef562d72cb37528da4b",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/predictions/round_001.npz",
+      "md5": "ad76bdec1b767a1b71cf67e2dd408ab5",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/predictions/round_002.npz",
+      "md5": "3bdd6097edc5f5686dc4f5c6809ffe36",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/result.json",
+      "md5": "9a5d9c5b1503a1db1200c20cdffd8dd3",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/resume/round_001.pt",
+      "md5": "a12c54ed201e6dd798772571f3a60e46",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/resume/round_002.pt",
+      "md5": "0f9ae1dd1979cfc22677998978fecfab",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/files/config.yaml",
+      "md5": "6554904a119951b96f300794febf4733",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/files/output.log",
+      "md5": "8a87e6bee72ab11837bdd90348c5aecf",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/files/requirements.txt",
+      "md5": "34b05748685e56c47b3f3c1d392b5e9a",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/files/wandb-metadata.json",
+      "md5": "d31dc45ffc068466503ce361bd2577b5",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/files/wandb-summary.json",
+      "md5": "93db56f282ddd16a4b2943dbc36d7db0",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/logs/debug-internal.log",
+      "md5": "a01ed74166df66e7a559b3994504cea1",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/logs/debug.log",
+      "md5": "eba36e48240855996d6b29a72794a3d3",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/run-h_dml_own_s42-6565b7a2.wandb",
+      "md5": "e2ce8dd7c26f609c1d8c4fc9086a34c6",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/wandb/run-20261013_080235-h_dml_own_s42-6565b7a2/run-h_dml_own_s42-6565b7a2.wandb.syncstate",
+      "md5": "7131c06595569226ca1dc593d1415899",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/weights/round_001.pt",
+      "md5": "363c8eb336378aea839fdfe8fc76afea",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_dml_own_s42/weights/round_002.pt",
+      "md5": "6c8b272334a1939ee63cc819129506d7",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/complete/round_001.json",
+      "md5": "38072c8a8efdf6415ce0bed378a41912",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/complete/round_002.json",
+      "md5": "a6daa6ca4a406c6b4933125869f9ac28",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/complete/round_003.json",
+      "md5": "2fa41264414582a8e03af1aefc1b2a9b",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/config.json",
+      "md5": "376a0aab6b3351ee919f72a9e8b7b41d",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/log.txt",
+      "md5": "d8ea4f47ef0dd594b721eaa9f586b4c7",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/metrics.csv",
+      "md5": "bee1cfae3633e3c63b339da5845d0f35",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/predictions/round_001.npz",
+      "md5": "e0b4cfd6fed74d239d4add1b18eb3887",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/predictions/round_002.npz",
+      "md5": "e0e12b3641d6b78418accbdace4f18d2",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/predictions/round_003.npz",
+      "md5": "d067de17fbc54b6709516883b9da4962",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/result.json",
+      "md5": "f03a1dd515db00b7a51c98d1a3d7f9a4",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/resume/round_001.pt",
+      "md5": "09fe19b3fd9896d795a93c5d6282f2b7",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/resume/round_002.pt",
+      "md5": "809c5abe7a7ed01315a0fb69decbdd3f",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/resume/round_003.pt",
+      "md5": "47036a72da4d05a618710a3f6c3bbba9",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/files/config.yaml",
+      "md5": "f676a17495b27a295a6c3856d2f2db4e",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/files/output.log",
+      "md5": "02785244c99d5da9b256e580e7f95a2a",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/files/requirements.txt",
+      "md5": "34b05748685e56c47b3f3c1d392b5e9a",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/files/wandb-metadata.json",
+      "md5": "2dfc28ed635ad9a483f04318e6ebab96",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/files/wandb-summary.json",
+      "md5": "743459e9bbbb4a5531819291079e7ffd",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/logs/debug-internal.log",
+      "md5": "32fed8001af2429df23ec3d4ba607232",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/logs/debug.log",
+      "md5": "953ddce6690857ac4b203640bff6b1ea",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/run-h_gaussian_own_s42-0a77b9e5.wandb",
+      "md5": "e9c1c539d33914eb0f65d0cd79e13df8",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/wandb/run-20261013_080235-h_gaussian_own_s42-0a77b9e5/run-h_gaussian_own_s42-0a77b9e5.wandb.syncstate",
+      "md5": "7131c06595569226ca1dc593d1415899",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/weights/round_001.pt",
+      "md5": "d68bffa69a3ce6b19e00a3cea3d02116",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/weights/round_002.pt",
+      "md5": "468d2a8a00272da918953c18c2f8e49d",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/h_gaussian_own_s42/weights/round_003.pt",
+      "md5": "448fe89217f673ffbf038b45851762fa",
+      "restored": true
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/runs/summary_s42.json",
+      "md5": "5278440141ceaa54d99174c2b1335d14",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/__init__.py",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/archs.py",
+      "md5": "645e5b498347a3db14435cba9cace77d",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/channel.py",
+      "md5": "bb3f34ac0105ca4c970a2b95fde83234",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/dagsnet.py",
+      "md5": "8961464640e8fd29b0021d24dd7aecbc",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/data_manifest.json",
+      "md5": "ab8914747a479fed5d4bfd2c11c66b00",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/full-hybrid.md",
+      "md5": "73913d78ff34703fa97ef872d0cc185a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/full_driver.py",
+      "md5": "2a416c52f06867afd02af6032e753369",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/full_method.py",
+      "md5": "c70c4bca8c1fde3caeec60468ddb2d6b",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/full_prepare.py",
+      "md5": "028276cd0dd02bd59ca5c5e10fe5f7cf",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/full_run.py",
+      "md5": "e41915ab89f914da51a4982556ed4876",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/full_verify.py",
+      "md5": "9dc255360c7a2beec9d550e6f1dbebb6",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/meta.json",
+      "md5": "73af80dea3f8fa98eb260d5028e84d93",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/metrics.py",
+      "md5": "b00846b93823ca3915782e7ed02e01e2",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/mobility.py",
+      "md5": "2994bac29dc4fb77a529cc0aff2d1015",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/model_packet.py",
+      "md5": "33bf2a33999bbca4b366424964f78f9a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/new_fl.py",
+      "md5": "d24eb0cbe71bdaf5ab31392920095700",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/new_methods.py",
+      "md5": "8f0b5cba4f91397bdaf366f267fc2837",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/p2.py",
+      "md5": "515ca949a2a4db533d08750b2b42b47f",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/parent_run.py",
+      "md5": "40465a9fa53cfc65c4829cfd25aa4263",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/pilot.py",
+      "md5": "4299f3a1d59991a32b136fb4b8be45f5",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/prepare.py",
+      "md5": "ce96d5da2afddb62f28997db2cc8e871",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/scaler.json",
+      "md5": "8fc244fd78f430f5cf8ff90f13737e2f",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/source_manifest.json",
+      "md5": "706eb00168ec8d1c00aa91636dfb22a6",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/teacher_base.py",
+      "md5": "98806db5dca9b19473b23a772f6bead1",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/teacher_driver.py",
+      "md5": "b3d011f09acefb10f69f8e8241d5cbb8",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v10_energy.py",
+      "md5": "52bd614939b5d3c68be562eaee3320ad",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v10_run.py",
+      "md5": "309b10ebfb9836577cdf7b918104cb6d",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v2_math.py",
+      "md5": "1e94809eb0a24e8db1fd3ee1048dda69",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v2_methods.py",
+      "md5": "85682f72e707b1eea81dc35e8af88827",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v2_run.py",
+      "md5": "0fb0725b41c9872a4460393ba42c90ea",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v3_dense.py",
+      "md5": "0345ccfd0ff29bd129987ef766c0832a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v3_math.py",
+      "md5": "3a3e4ad71e295f6156190583e358bd22",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v3_methods.py",
+      "md5": "394044140fdf713b636108d8f74ef6b1",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v3_run.py",
+      "md5": "f33e8a0c3d20861303ebb8f66fde58d4",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v4_mala.py",
+      "md5": "b7ea8bf8da258c45493f633ceed1fc96",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v4_run.py",
+      "md5": "6cfe2330438cb29d30a3636c07213a42",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v4_schema.py",
+      "md5": "f1135a7efe1fe0c19c4e1a6f8c4c1e58",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v4_support.py",
+      "md5": "9d7cd9b04a29d2179c2ea22a4feaadb1",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v5_anchor.py",
+      "md5": "0556d2e53402693a587eac88621a76fd",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v5_books.py",
+      "md5": "34aa204232ba01c8a8526634b695a19a",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v5_run.py",
+      "md5": "c8dfa1f2913e160aba3b022af8950d72",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v6_geometry.py",
+      "md5": "a4c6d72c2353deda41a504f33e0b9df5",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v6_run.py",
+      "md5": "e89031446330267908e3634f2b8f9d4c",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v6_schema.py",
+      "md5": "f2aa63e16e99d8e2c3a85de1573f438c",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v7_basis.py",
+      "md5": "cc487eaf0ea98ac541c9fc404c272216",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v7_nystrom.py",
+      "md5": "c27d2cc07aa47c41229920f0b10ce0fa",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v7_run.py",
+      "md5": "a77db143a558ac3dd2a35368eea87152",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v8_hybrid.py",
+      "md5": "60886a8d49f85eb34af958ccae89f839",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v8_run.py",
+      "md5": "8bac97b7cc21eeb5984cc4f4e3368e4e",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v9_anchor.py",
+      "md5": "7438378d3494774616f227b9a478e52c",
+      "restored": false
+    },
+    {
+      "path": "papers/hybrid-full/kaggle/hybf3-s42-20261013-cal-v1/source/v9_run.py",
+      "md5": "3a482b881b1b69d480d80defb16d2707",
+      "restored": false
+    }
+  ],
+  "heavy_files_restored": false
+}

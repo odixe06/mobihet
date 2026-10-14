@@ -1,0 +1,6 @@
+outs:
+- md5: 195b422d05d1a14eacf7e563725caef3.dir
+  size: 16932
+  nfiles: 76
+  hash: md5
+  path: artifacts/controller-fixture

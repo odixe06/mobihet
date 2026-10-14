@@ -1,0 +1,250 @@
+{
+  "observed_utc": "2026-10-14T10:43:17.324630+00:00",
+  "active_account": "dinhan25",
+  "account_switch": false,
+  "quotas": {
+    "odixeuit": {
+      "user": "odixeuit",
+      "gpu_left": 12.55987,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    "odixe0502": {
+      "user": "odixe0502",
+      "gpu_left": 7.401057222222221,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    "minhtran0601": {
+      "user": "minhtran0601",
+      "gpu_left": 2.6376333333333335,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    "dinhan25": {
+      "user": "dinhan25",
+      "gpu_left": 3.1326672222222207,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  },
+  "rows": [
+    {
+      "folder": "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1",
+      "kernel": "odixeuit/mobihet-hybf2-s42-20261014-cont01-v1",
+      "owner": "odixeuit",
+      "session_hours": 5.0,
+      "reserved_with_margin": 5.75,
+      "pushed": true
+    },
+    {
+      "folder": "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1",
+      "kernel": "odixe0502/mobihet-hybf4-s42-20261014-cont01-v1",
+      "owner": "odixe0502",
+      "session_hours": 4.8,
+      "reserved_with_margin": 5.52,
+      "pushed": true
+    },
+    {
+      "folder": "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1",
+      "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+      "owner": "minhtran0601",
+      "session_hours": 2.2,
+      "reserved_with_margin": 2.53,
+      "pushed": true
+    },
+    {
+      "folder": "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1",
+      "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+      "owner": "dinhan25",
+      "session_hours": 2.5,
+      "reserved_with_margin": 2.875,
+      "pushed": true
+    }
+  ],
+  "session_hours": 14.5,
+  "reserved_with_15pct": 16.675,
+  "limits": "Staged batch only; fifty-round targets require later quota. No GPU reservation until service accepts push.",
+  "previous_batches": [
+    {
+      "observed_utc": "2026-10-14T10:39:28.889482+00:00",
+      "active_account": "dinhan25",
+      "account_switch": false,
+      "quotas": {
+        "catbaochau": {
+          "user": "catbaochau",
+          "gpu_left": 7.550201944444446,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "minhtriethihi": {
+          "user": "minhtriethihi",
+          "gpu_left": 13.760422222222221,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "khanhmay0304": {
+          "user": "khanhmay0304",
+          "gpu_left": 11.648042499999999,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "minhtrit06": {
+          "user": "minhtrit06",
+          "gpu_left": 12.38350361111111,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "odixeuit": {
+          "user": "odixeuit",
+          "gpu_left": 12.55987,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "trietbackup": {
+          "user": "trietbackup",
+          "gpu_left": 6.161047222222223,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "odixe0502": {
+          "user": "odixe0502",
+          "gpu_left": 7.401057222222221,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "minhtran0601": {
+          "user": "minhtran0601",
+          "gpu_left": 2.6376333333333335,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        },
+        "dinhan25": {
+          "user": "dinhan25",
+          "gpu_left": 3.1326672222222207,
+          "gpu_total": 30.0,
+          "gpu_reserved": 0.0,
+          "tpu_left": 20.0,
+          "tpu_total": 20.0,
+          "refresh_at": "2026-10-17T00:00:00"
+        }
+      },
+      "rows": [
+        {
+          "folder": "papers/full-validation/notebook/full1-s42-20261014-cont02-v1",
+          "kernel": "catbaochau/mobihet-full1-s42-20261014-cont02-v1",
+          "owner": "catbaochau",
+          "session_hours": 3.1,
+          "reserved_with_margin": 3.565,
+          "pushed": true
+        },
+        {
+          "folder": "papers/full-validation/notebook/full2-s42-20261014-cont02-v1",
+          "kernel": "minhtriethihi/mobihet-full2-s42-20261014-cont02-v1",
+          "owner": "minhtriethihi",
+          "session_hours": 5.0,
+          "reserved_with_margin": 5.75,
+          "pushed": true
+        },
+        {
+          "folder": "papers/full-validation/notebook/full3-s42-20261014-cont02-v1",
+          "kernel": "khanhmay0304/mobihet-full3-s42-20261014-cont02-v1",
+          "owner": "khanhmay0304",
+          "session_hours": 5.0,
+          "reserved_with_margin": 5.75,
+          "pushed": true
+        },
+        {
+          "folder": "papers/full-validation/notebook/full4-s42-20261014-cont02-v1",
+          "kernel": "catbaochau/mobihet-full4-s42-20261014-cont02-v1",
+          "owner": "catbaochau",
+          "session_hours": 3.1,
+          "reserved_with_margin": 3.565,
+          "pushed": true
+        },
+        {
+          "folder": "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1",
+          "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-cont01-v1",
+          "owner": "minhtrit06",
+          "session_hours": 5.0,
+          "reserved_with_margin": 5.75,
+          "push_failed": true
+        },
+        {
+          "folder": "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1",
+          "kernel": "odixeuit/mobihet-hybf2-s42-20261014-cont01-v1",
+          "owner": "odixeuit",
+          "session_hours": 5.0,
+          "reserved_with_margin": 5.75
+        },
+        {
+          "folder": "papers/hybrid-full/notebook/hybf3-s42-20261014-cont01-v1",
+          "kernel": "trietbackup/mobihet-hybf3-s42-20261014-cont01-v1",
+          "owner": "trietbackup",
+          "session_hours": 4.8,
+          "reserved_with_margin": 5.52
+        },
+        {
+          "folder": "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1",
+          "kernel": "odixe0502/mobihet-hybf4-s42-20261014-cont01-v1",
+          "owner": "odixe0502",
+          "session_hours": 4.8,
+          "reserved_with_margin": 5.52
+        },
+        {
+          "folder": "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1",
+          "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+          "owner": "minhtran0601",
+          "session_hours": 2.2,
+          "reserved_with_margin": 2.53
+        },
+        {
+          "folder": "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1",
+          "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+          "owner": "dinhan25",
+          "session_hours": 2.5,
+          "reserved_with_margin": 2.875
+        }
+      ],
+      "session_hours": 40.5,
+      "reserved_with_15pct": 46.574999999999996,
+      "limits": "Staged batch only; fifty-round targets require later quota. No GPU reservation until service accepts push."
+    }
+  ]
+}

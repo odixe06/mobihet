@@ -1,7 +1,6 @@
-# Research — hợp đồng và bằng chứng theo đợt
+# Protocol và căn cứ còn áp dụng
 
-Đọc phương pháp theo tên tại [proposals/](../../proposals/README.md).
-Thư mục này giữ protocol, manifest đã khóa trước pilot và probe lịch sử; mã V/H/S dùng truy vết.
-Không sửa/di chuyển manifest đã vào hash source. Thiết kế phương pháp mới đặt tại `proposals/<tên>/design.md`.
+[Protocol](protocol.md) · [Nguồn cho hướng mới](new-fl-primary-sources-2026-10-13.md) ·
+[Dự báo performance](performance-feasibility-2026-10-13.md).
 
-[Định tuyến theo đợt](../README.md) · [Từng file](../file-index.md) · [Protocol](protocol.md).
+Thiết kế đang làm ở [docs/methods](../methods/README.md). Manifest/pilot cũ ở [archive](../archive/README.md).

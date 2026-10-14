@@ -1,0 +1,601 @@
+{
+  "manifests": [
+    {
+      "manifest": "archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc",
+      "output": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/input",
+      "md5": "347e0af95ba09acf7825b755fbc95e36.dir",
+      "nfiles": 222,
+      "size": 319643036,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc",
+      "output": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle",
+      "md5": "b9220ec4e71f82a1cb3fcedf034402fa.dir",
+      "nfiles": 2798,
+      "size": 37425239839,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc",
+      "output": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/resume_reference",
+      "md5": "9c657c34734d22cc2caebefa9ec1dfe6.dir",
+      "nfiles": 153,
+      "size": 1944387156,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc",
+      "output": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/smoke",
+      "md5": "f3ea67005856b761dc86fda011f40b57.dir",
+      "nfiles": 684,
+      "size": 8402355983,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/kaggle.dvc",
+      "output": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/artifacts/kaggle",
+      "md5": "05d670af724058a6a42f6c291c1dd054.dir",
+      "nfiles": 52,
+      "size": 1289660,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc",
+      "output": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/artifacts/runs",
+      "md5": "bbba5ff279d47c2932690e74b63c9c6f.dir",
+      "nfiles": 44,
+      "size": 1251162,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/source_audit.dvc",
+      "output": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/artifacts/source_audit",
+      "md5": "36f834ab0207195ab6f24922755fe781.dir",
+      "nfiles": 32,
+      "size": 306212,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc",
+      "output": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/input",
+      "md5": "fe759ba87afb08430620383790d01da1.dir",
+      "nfiles": 204,
+      "size": 319545868,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc",
+      "output": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle",
+      "md5": "6f1ac7fde1746d98c4ffd0bc2ede9460.dir",
+      "nfiles": 1618,
+      "size": 14100779740,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc",
+      "output": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/resume_reference",
+      "md5": "5a5d85b0c7fb4ade93e7e3add7915f2c.dir",
+      "nfiles": 60,
+      "size": 422721575,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc",
+      "output": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/smoke",
+      "md5": "94c9e76fb1d7f258b4a4bb8167a1e0e0.dir",
+      "nfiles": 150,
+      "size": 1053189840,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc",
+      "output": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/input",
+      "md5": "743718b1dd83290b17491188e085e90d.dir",
+      "nfiles": 222,
+      "size": 319641954,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc",
+      "output": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle",
+      "md5": "8cde4b9a4e724ddc0fa35047c6f9cb48.dir",
+      "nfiles": 568,
+      "size": 4523882900,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc",
+      "output": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/resume_reference",
+      "md5": "456967a838675e3d0cf7763cec988aef.dir",
+      "nfiles": 102,
+      "size": 1283401033,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc",
+      "output": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/smoke",
+      "md5": "752fdb98ccc1bca8431d31d5f3024819.dir",
+      "nfiles": 246,
+      "size": 2992749358,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc",
+      "output": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/input",
+      "md5": "1f1c3423d9dc96f16606930a98ea6365.dir",
+      "nfiles": 210,
+      "size": 319566420,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc",
+      "output": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle",
+      "md5": "5e8f82e41e5204fff1d0efca49cbaaab.dir",
+      "nfiles": 1242,
+      "size": 20412224345,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc",
+      "output": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/resume_reference",
+      "md5": "ee5d508c6c69cd47549940bf6be64459.dir",
+      "nfiles": 51,
+      "size": 663906613,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc",
+      "output": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/smoke",
+      "md5": "b0da1af1f8498adb7a526192686c2fc4.dir",
+      "nfiles": 111,
+      "size": 1526827464,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-sampling/builds/support-mala/input.dvc",
+      "output": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/input",
+      "md5": "1651b7aa22451ee804890c0fa0a1b629.dir",
+      "nfiles": 376,
+      "size": 638897962,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-sampling/builds/support-mala/kaggle.dvc",
+      "output": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle",
+      "md5": "f216e372ed5243268f08347ab0e0bd27.dir",
+      "nfiles": 1784,
+      "size": 19725857055,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-sampling/builds/support-mala/resume_reference.dvc",
+      "output": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/resume_reference",
+      "md5": "cac2264d8acce624b3ab5de91cfe194b.dir",
+      "nfiles": 89,
+      "size": 906936054,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-sampling/builds/support-mala/runs.dvc",
+      "output": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "nfiles": 0,
+      "size": 0,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/gaussian-sampling/builds/support-mala/smoke.dvc",
+      "output": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/smoke",
+      "md5": "3d13b231afb166fa9e2797c2f5f5e135.dir",
+      "nfiles": 243,
+      "size": 2406524180,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/input.dvc",
+      "output": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/input",
+      "md5": "04561c8e53872cc5f20d0c1a22514e68.dir",
+      "nfiles": 396,
+      "size": 639024584,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc",
+      "output": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle",
+      "md5": "ec521a9fcccb9633cf60cf28bf88911a.dir",
+      "nfiles": 1666,
+      "size": 14056604948,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/resume_reference.dvc",
+      "output": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/resume_reference",
+      "md5": "0c303ed9c577e514a3166ba867acce3a.dir",
+      "nfiles": 60,
+      "size": 438528517,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/smoke.dvc",
+      "output": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/smoke",
+      "md5": "f43239f0cee543729662d5e67faf475b.dir",
+      "nfiles": 240,
+      "size": 1749631771,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/proxy-compression/builds/proxy-carriers/input.dvc",
+      "output": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/input",
+      "md5": "806adf3969b5fc9c790c6d413a05e8bc.dir",
+      "nfiles": 534,
+      "size": 958219444,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/proxy-compression/builds/proxy-carriers/kaggle.dvc",
+      "output": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle",
+      "md5": "6c988e51b04beb21f4fecffd3d68f193.dir",
+      "nfiles": 4556,
+      "size": 134856256251,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/proxy-compression/builds/proxy-carriers/resume_reference.dvc",
+      "output": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/resume_reference",
+      "md5": "aa3ae580e241cf9a81a63b3c4966b2f5.dir",
+      "nfiles": 216,
+      "size": 4760862893,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/proxy-compression/builds/proxy-carriers/runs.dvc",
+      "output": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "nfiles": 0,
+      "size": 0,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/proxy-compression/builds/proxy-carriers/smoke.dvc",
+      "output": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/smoke",
+      "md5": "57f87a065d3b2adb2742e8aa8b2e386c.dir",
+      "nfiles": 888,
+      "size": 21931873202,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc",
+      "output": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture",
+      "md5": "cb782c4671b1aa25a8a2c56bf465587c.dir",
+      "nfiles": 67,
+      "size": 159554510,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-baselines/builds/pilot-baselines/runs.dvc",
+      "output": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/runs",
+      "md5": "ca8715563f5d94932638a588f9999bda.dir",
+      "nfiles": 32,
+      "size": 1833638,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/input.dvc",
+      "output": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/input",
+      "md5": "e1ca6a39074fe9722422189daaadc96c.dir",
+      "nfiles": 170,
+      "size": 319384452,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc",
+      "output": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle",
+      "md5": "3c49c7ec142513d62f8e31da23534ee1.dir",
+      "nfiles": 2422,
+      "size": 31674561783,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/resume_reference.dvc",
+      "output": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/resume_reference",
+      "md5": "f2d71818d8042456a84190ae8f20fee4.dir",
+      "nfiles": 108,
+      "size": 1234921763,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/runs.dvc",
+      "output": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "nfiles": 0,
+      "size": 0,
+      "local": "partial",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/smoke.dvc",
+      "output": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/smoke",
+      "md5": "f0da440b6a89ca4822cd1530b539f7d2.dir",
+      "nfiles": 612,
+      "size": 6862940249,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/input.dvc",
+      "output": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/artifacts/input",
+      "md5": "d35c8fbd6931d9ab021e4b328f111b04.dir",
+      "nfiles": 162,
+      "size": 319302266,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/kaggle.dvc",
+      "output": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/artifacts/kaggle",
+      "md5": "2a40c2e202c8c5416ab275ab665644e2.dir",
+      "nfiles": 622,
+      "size": 7999577235,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/resume_reference.dvc",
+      "output": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/artifacts/resume_reference",
+      "md5": "0291d66b53d9538c8e7298eafeb11227.dir",
+      "nfiles": 13,
+      "size": 100116057,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/runs.dvc",
+      "output": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/artifacts/runs",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "nfiles": 0,
+      "size": 0,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/smoke.dvc",
+      "output": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/artifacts/smoke",
+      "md5": "0a67a58b6ba9c09beac284e920193d09.dir",
+      "nfiles": 79,
+      "size": 599131852,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/input.dvc",
+      "output": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/input",
+      "md5": "9903334ead144123e02263bd76b47af5.dir",
+      "nfiles": 291,
+      "size": 479217431,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/kaggle.dvc",
+      "output": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle",
+      "md5": "d55a71674bddb8f37e0f674d21e32a74.dir",
+      "nfiles": 3802,
+      "size": 44386753600,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/resume_reference.dvc",
+      "output": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/resume_reference",
+      "md5": "4b00c9e1fcdd5f0f3549546b58c86dec.dir",
+      "nfiles": 135,
+      "size": 1345588556,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/runs.dvc",
+      "output": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs",
+      "md5": "d751713988987e9331980363e24189ce.dir",
+      "nfiles": 0,
+      "size": 0,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/smoke.dvc",
+      "output": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/smoke",
+      "md5": "e48def3346891828a1b2755be71e4526.dir",
+      "nfiles": 711,
+      "size": 6837402748,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "knowledge/ckpt_round_005.pt.dvc",
+      "output": "knowledge/ckpt_round_005.pt",
+      "md5": "c1466d52f38bdb05ec5facc97d500af2",
+      "nfiles": 1,
+      "size": 4924379,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc",
+      "output": "methods/boundary-cell-counts/builds/boundary-cell-pilot/artifacts/controller-fixture",
+      "md5": "195b422d05d1a14eacf7e563725caef3.dir",
+      "nfiles": 76,
+      "size": 16932,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc",
+      "output": "methods/boundary-cell-counts/builds/boundary-cell-pilot/artifacts/input",
+      "md5": "5d398f36a4ac5baebdc135fe9a364549.dir",
+      "nfiles": 230,
+      "size": 319715058,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc",
+      "output": "methods/boundary-cell-counts/builds/boundary-cell-pilot/artifacts/kaggle",
+      "md5": "57c7e72fca8bd50a0ffcfc71391d09c6.dir",
+      "nfiles": 338,
+      "size": 1240071864,
+      "local": "partial",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc",
+      "output": "methods/boundary-cell-counts/builds/boundary-cell-pilot/artifacts/smoke",
+      "md5": "bd1f76e8e88b0ab664224c4609eb5417.dir",
+      "nfiles": 210,
+      "size": 2190821198,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc",
+      "output": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts/diagnostics",
+      "md5": "b4c3578df19e67fff29bba3066d02465.dir",
+      "nfiles": 20,
+      "size": 935609,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc",
+      "output": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts/input",
+      "md5": "637a09a84948d0db883c54aa8b18c861.dir",
+      "nfiles": 212,
+      "size": 1297638,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc",
+      "output": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts/kaggle",
+      "md5": "89ba8972c2ee1062ab77a27d58fb08bc.dir",
+      "nfiles": 384,
+      "size": 2834658221,
+      "local": "partial",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc",
+      "output": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts/resume_reference",
+      "md5": "b2ddeb62e648d9190650ce62ddcf1a1b.dir",
+      "nfiles": 81,
+      "size": 1086355227,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc",
+      "output": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts/smoke",
+      "md5": "4dd92ca56796decf59ae3e200f13ee46.dir",
+      "nfiles": 111,
+      "size": 1524677711,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/shared-baselines/builds/federated-baselines-full/input.dvc",
+      "output": "methods/shared-baselines/builds/federated-baselines-full/artifacts/input",
+      "md5": "b50f3b5852c683e91058cb0dcef9e27c.dir",
+      "nfiles": 200,
+      "size": 1282683,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc",
+      "output": "methods/shared-baselines/builds/federated-baselines-full/artifacts/kaggle",
+      "md5": "789efb2da148689d271aa55e3f6d5170.dir",
+      "nfiles": 968,
+      "size": 9278181515,
+      "local": "partial",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc",
+      "output": "methods/shared-baselines/builds/federated-baselines-full/artifacts/mount-output",
+      "md5": "f98af0c07296f21e2b58d1f5469941da.dir",
+      "nfiles": 18,
+      "size": 53171,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc",
+      "output": "methods/shared-baselines/builds/federated-baselines-full/artifacts/resume_reference",
+      "md5": "a7c0717142b58fb5d24a157bc113b564.dir",
+      "nfiles": 63,
+      "size": 658095993,
+      "local": "absent",
+      "identity_preserved": true
+    },
+    {
+      "manifest": "methods/shared-baselines/builds/federated-baselines-full/smoke.dvc",
+      "output": "methods/shared-baselines/builds/federated-baselines-full/artifacts/smoke",
+      "md5": "da8ab9332b7cba1e5535639071bc93cc.dir",
+      "nfiles": 221,
+      "size": 1314131032,
+      "local": "absent",
+      "identity_preserved": true
+    }
+  ],
+  "stage_count": 65,
+  "unique_payload_objects": 24274,
+  "missing_objects": 0,
+  "all_remote_directory_md5_pass": true,
+  "all_remote_object_sizes_aggregate_pass": true,
+  "old_payload_identities_preserved": true,
+  "no_output_overlap": true,
+  "all_outputs_git_ignored": true,
+  "limit": "All directory manifests hashed; all referenced payloads checked for existence and aggregate size. Heavy payload hashes reused from prior backup, not rehashed.",
+  "artifact_aliases_verified_against_directory_entries": 232,
+  "native_restore_smoke": "dvc-restore-smoke-2026-10-14.json",
+  "fresh_staged_checkout_compat_imports_and_dvc_stage_count_pass": true
+}

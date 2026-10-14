@@ -1,0 +1,20 @@
+{
+  "id": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+  "title": "mobihet-hybf1-s42-20261014-dsresume-v1",
+  "code_file": "hybf1-s42-20261014-dsresume-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "minhtrit06/mobihet-hybrid-full-20261013-src",
+    "trietbackup/veremi-fl-20client",
+    "trietbackup/veremi-nextgen2026-test",
+    "minhtrit06/mobihet-hybrid-checkpoint1-20261014"
+  ],
+  "kernel_sources": [],
+  "competition_sources": []
+}

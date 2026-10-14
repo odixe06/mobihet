@@ -1,6 +1,0 @@
-outs:
-- md5: cb782c4671b1aa25a8a2c56bf465587c.dir
-  size: 159554510
-  nfiles: 67
-  hash: md5
-  path: fixture

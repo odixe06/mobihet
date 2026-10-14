@@ -1,0 +1,933 @@
+{
+  "layout": "canonical methods/archive; payload paths inside .dir unchanged",
+  "aliases": [
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_classmean_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_classmean_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_classmean_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_classmean_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_fl_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_fl_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_fl_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_fl_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_frozen_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_frozen_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_frozen_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_frozen_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_hard_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_hard_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_hard_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_hard_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_own_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_own_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_own_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_own_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_shuffle_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r512_shuffle_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_classmean_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r64_classmean_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_classmean_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r64_classmean_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_fl_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r64_fl_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_fl_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r64_fl_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_frozen_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r64_frozen_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_frozen_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r64_frozen_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_hard_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r64_hard_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_hard_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r64_hard_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_own_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r64_own_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_own_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r64_own_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_shuffle_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r64_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r64_shuffle_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r64_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r_dense_ce_s42",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r_dense_ce_s42"
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs/r_dense_ce_s43",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r_dense_ce_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_diag_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_diag_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_diag_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_diag_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_full_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_full_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_full_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_full_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_lr4_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_lr4_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_lr4_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_lr4_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_lr8_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_lr8_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_lr8_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_lr8_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys4_fl_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_nys4_fl_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys4_fl_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_nys4_fl_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys4_own_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_nys4_own_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys4_own_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_nys4_own_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys4_shuffle_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_nys4_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys4_shuffle_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_nys4_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys8_fl_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_nys8_fl_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys8_fl_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_nys8_fl_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys8_own_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_nys8_own_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys8_own_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_nys8_own_s43"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys8_shuffle_s42",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s42-20261012-v1/runs/n_nys8_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs/n_nys8_shuffle_s43",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/kaggle/v7n-s43-20261012-v1/runs/n_nys8_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_ce_aug_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_ce_aug_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_ce_aug_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_ce_aug_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_ce_matched_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_ce_matched_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_ce_matched_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_ce_matched_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_ce_raw_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_ce_raw_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_ce_raw_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_ce_raw_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_fl_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_fl_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_fl_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_fl_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_own_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_own_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_own_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_own_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_q_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_q_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_q_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_q_s43"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_shuffle_s42",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s42-20261012-v1/runs/e_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs/e_shuffle_s43",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/kaggle/v10e-s43-20261012-v1/runs/e_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_dml_own_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_dml_own_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_dml_own_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_dml_own_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_dml_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_dml_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_dml_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_dml_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_gaussian_own_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_gaussian_own_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_gaussian_own_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_gaussian_own_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_gaussian_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_gaussian_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_gaussian_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_gaussian_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_hybrid_own_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_hybrid_own_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_hybrid_own_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_hybrid_own_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_hybrid_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_hybrid_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_hybrid_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_hybrid_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_local_s42",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s42-20261012-v1/runs/h_local_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs/h_local_s43",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/kaggle/v8h-s43-20261012-v1/runs/h_local_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_fl_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s42-20261012-v1/runs/c_fl_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_fl_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s43-20261012-v1/runs/c_fl_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_mala_fl_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s42-20261012-v1/runs/c_mala_fl_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_mala_fl_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s43-20261012-v1/runs/c_mala_fl_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_mala_own_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s42-20261012-v1/runs/c_mala_own_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_mala_own_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s43-20261012-v1/runs/c_mala_own_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_mala_shuffle_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s42-20261012-v1/runs/c_mala_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/c_mala_shuffle_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s43-20261012-v1/runs/c_mala_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/diag_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s42-20261012-v1/runs/diag_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/diag_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4m-s43-20261012-v1/runs/diag_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_diag_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s42-20261012-v1/runs/s_diag_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_diag_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s43-20261012-v1/runs/s_diag_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_marginal_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s42-20261012-v1/runs/s_marginal_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_marginal_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s43-20261012-v1/runs/s_marginal_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_own_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s42-20261012-v1/runs/s_own_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_own_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s43-20261012-v1/runs/s_own_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_shuffle_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s42-20261012-v1/runs/s_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_shuffle_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s43-20261012-v1/runs/s_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_structural_s42",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s42-20261012-v1/runs/s_structural_s42"
+    },
+    {
+      "path": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/runs/s_structural_s43",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/artifacts/kaggle/v4s-s43-20261012-v1/runs/s_structural_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_joint_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k59_joint_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_joint_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k59_joint_fl_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_joint_own_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k59_joint_own_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_joint_own_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k59_joint_own_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_joint_shuffle_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k59_joint_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_joint_shuffle_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k59_joint_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_marginal_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_marginal_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_fl_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_marginal_own_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_own_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_marginal_own_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_own_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_marginal_shuffle_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k59_marginal_shuffle_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_joint_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_joint_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_joint_own_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_joint_own_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_joint_shuffle_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_joint_shuffle_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_marginal_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_marginal_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_marginal_own_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_marginal_own_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_marginal_shuffle_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k61_marginal_shuffle_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k66_joint_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k66_joint_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k66_marginal_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k66_marginal_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k66_plain_fl_s42",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42"
+    },
+    {
+      "path": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs/k66_plain_fl_s43",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_dense32_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_dense32_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_dense32_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_dense32_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_medium_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s42-20261011-v1/runs/a_o_medium_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_medium_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s43-20261011-v1/runs/a_o_medium_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_medium_noef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s42-20261011-v1/runs/a_o_medium_noef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_medium_noef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s43-20261011-v1/runs/a_o_medium_noef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_medium_own_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s42-20261011-v1/runs/a_o_medium_own_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_medium_own_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s43-20261011-v1/runs/a_o_medium_own_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_rank8_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s42-20261011-v1/runs/a_o_rank8_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_rank8_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s43-20261011-v1/runs/a_o_rank8_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_rank8_own_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s42-20261011-v1/runs/a_o_rank8_own_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_rank8_own_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s43-20261011-v1/runs/a_o_rank8_own_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_small_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s42-20261011-v1/runs/a_o_small_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_small_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s43-20261011-v1/runs/a_o_small_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_small_noef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s42-20261011-v1/runs/a_o_small_noef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_small_noef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s43-20261011-v1/runs/a_o_small_noef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_small_own_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s42-20261011-v1/runs/a_o_small_own_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_o_small_own_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3o-s43-20261011-v1/runs/a_o_small_own_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_p_medium_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s42-20261011-v1/runs/a_p_medium_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_p_medium_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s43-20261011-v1/runs/a_p_medium_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_p_medium_noef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s42-20261011-v1/runs/a_p_medium_noef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_p_medium_noef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s43-20261011-v1/runs/a_p_medium_noef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_p_medium_own_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s42-20261011-v1/runs/a_p_medium_own_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_p_medium_own_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3p-s43-20261011-v1/runs/a_p_medium_own_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_medium_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_r_medium_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_medium_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_r_medium_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_medium_noef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_r_medium_noef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_medium_noef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_r_medium_noef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_medium_own_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_r_medium_own_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_medium_own_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_r_medium_own_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_small_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_r_small_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_small_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_r_small_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_small_noef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_r_small_noef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_small_noef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_r_small_noef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_small_own_ef_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s42-20261011-v1/runs/a_r_small_own_ef_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_r_small_own_ef_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3r-s43-20261011-v1/runs/a_r_small_own_ef_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_medium_comm_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s42-20261011-v1/runs/a_t_medium_comm_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_medium_comm_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s43-20261011-v1/runs/a_t_medium_comm_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_medium_own_train_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s42-20261011-v1/runs/a_t_medium_own_train_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_medium_own_train_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s43-20261011-v1/runs/a_t_medium_own_train_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_medium_train_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s42-20261011-v1/runs/a_t_medium_train_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_medium_train_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s43-20261011-v1/runs/a_t_medium_train_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_small_comm_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s42-20261011-v1/runs/a_t_small_comm_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_small_comm_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s43-20261011-v1/runs/a_t_small_comm_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_small_own_train_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s42-20261011-v1/runs/a_t_small_own_train_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_small_own_train_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s43-20261011-v1/runs/a_t_small_own_train_s43"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_small_train_s42",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s42-20261011-v1/runs/a_t_small_train_s42"
+    },
+    {
+      "path": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/runs/a_t_small_train_s43",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/artifacts/kaggle/v3t-s43-20261011-v1/runs/a_t_small_train_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_dense_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/a_dense_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_dense_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/a_dense_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_medium_ef_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/a_medium_ef_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_medium_ef_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/a_medium_ef_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_medium_noef_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/a_medium_noef_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_medium_noef_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/a_medium_noef_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_own_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/a_own_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_own_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/a_own_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_small_ef_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/a_small_ef_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_small_ef_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/a_small_ef_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_small_noef_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/a_small_noef_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/a_small_noef_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/a_small_noef_s43"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/local_s42",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s42-20261011-v1/runs/local_s42"
+    },
+    {
+      "path": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs/local_s43",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/kaggle/v2a-s43-20261011-v1/runs/local_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_fl_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_medium_fl_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_fl_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_medium_fl_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_gauss_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_medium_gauss_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_gauss_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_medium_gauss_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_own_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_medium_own_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_own_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_medium_own_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_shuffle_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_medium_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_medium_shuffle_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_medium_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_fl_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_small_fl_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_fl_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_small_fl_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_gauss_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_small_gauss_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_gauss_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_small_gauss_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_own_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_small_own_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_own_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_small_own_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_shuffle_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_anchor_small_shuffle_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_anchor_small_shuffle_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_anchor_small_shuffle_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_dense_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/runs/b_dense_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/b_dense_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s43-20261012-v1/runs/b_dense_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_diag_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_diag_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_diag_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_diag_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_grad_frozen_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_grad_frozen_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_grad_frozen_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_grad_frozen_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_grad_trained_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_grad_trained_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_grad_trained_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_grad_trained_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_mean_frozen_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_mean_frozen_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_mean_frozen_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_mean_frozen_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_mean_trained_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_mean_trained_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_mean_trained_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_mean_trained_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_noise_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_noise_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_noise_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_noise_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_own_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s42-20261012-v1/runs/g1_own_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g1_own_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5g-s43-20261012-v1/runs/g1_own_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_diag_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_diag_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_diag_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_diag_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_grad_frozen_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_grad_frozen_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_grad_frozen_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_grad_frozen_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_grad_trained_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_grad_trained_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_grad_trained_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_grad_trained_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_mean_frozen_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_mean_frozen_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_mean_frozen_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_mean_frozen_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_mean_trained_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_mean_trained_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_mean_trained_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_mean_trained_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_noise_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_noise_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_noise_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_noise_s43"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_own_s42",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s42-20261012-v1/runs/g4_own_s42"
+    },
+    {
+      "path": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/runs/g4_own_s43",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5j-s43-20261012-v1/runs/g4_own_s43"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ Source chính `papers/hybrid-full/proj/` vẫn frozen; hash trong source manifes
 Target50/LR50, 20 client/100% train80%/seed42; không sửa source/manifest/notebook đã PUSHED.
 
 Collector `scripts/kaggle/collect_hybrid_full.py` dùng helper `.agents/`, Range resume/6 connections,
-376file/0thiếu/pull exit0. [Log](../../papers/hybrid-full/collection-20261014.log).
+376file/0thiếu/pull exit0. [Log](../../methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/collection-20261014.log).
 Collector đã ghi đủ4marker trước crash. Sau reboot không còn process collector;
 không khởi động trùng/tải lại phần đã đủ. Không còn output mới cần chờ trong batch này.
 Status snapshot lúc14:05UTC+7:56latest-version kernel,48COMPLETE/8ERROR, khôngRUNNING trong danh mục.
@@ -30,19 +30,19 @@ Giữ chi phí private version history theo ngoại lệ đã chốt; không đ�
 
 ## Kết quả và giới hạn
 
-- [Tính khả thi Hybrid full](../../papers/hybrid-full/feasibility-20261014.md): tín hiệu tốt đầu full-data;
+- [Tính khả thi Hybrid full](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md): tín hiệu tốt đầu full-data;
   chưa r50. ERROR do budget/parentassert3, worker exit0, checkpoint vẫn hợp lệ.
-- [10 metrics cuối Hybrid](../../papers/hybrid-full/latest-rounds.md),
-  [report54evaluation](../../papers/hybrid-full/report.md),
-  [CSV](../../papers/hybrid-full/metrics-all.csv), [per-class](../../papers/hybrid-full/per-class-f1.csv).
-- [10 metrics cuối H1/H2](../../papers/full-validation/latest-rounds.md): DML/own r7,
+- [10 metrics cuối Hybrid](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md),
+  [report54evaluation](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/report.md),
+  [CSV](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/metrics-all.csv), [per-class](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/per-class-f1.csv).
+- [10 metrics cuối H1/H2](../methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md): DML/own r7,
   Gaussian full/diag/own r10, lr4 r9, local r11/50. Không lấy terminal round khác nhau làm chênh lợi FL.
 - Raw-test/client0 bounded inference mới: Hybrid42check, H1/H2 64check PASS,
   16.384prefix row, r1/round cuối từng run, margin>0,02. PeakRSS≈1.902/1.909MiB qua localguard;
-  không full-inference hoặc leakage proof. [Hybrid](../../papers/hybrid-full/inference-proof.json),
-  [H1/H2](../../papers/full-validation/inference-proof.json).
+  không full-inference hoặc leakage proof. [Hybrid](../../methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/inference-proof.json),
+  [H1/H2](../../methods/shared-baselines/builds/federated-baselines-full/probes/inference-proof.json).
 - BoundaryCells calibration hai seed đã audit/cost PASS; utility20round chưa chạy.
-  [Ledger](../../papers/boundary-cells/rebuild.md). Không notebook utility mới đã PUSHED.
+  [Ledger](../methods/boundary-cell-counts/builds/boundary-cell-pilot/results/rebuild.md). Không notebook utility mới đã PUSHED.
 - V3–V10/P2/S-a lịch sử đã có report/audit hoặc proof DVC; thiếu workspace sau cleanup
   không tự là output mới thiếu. Không restore hàng loạt hoặc re-audit weights đã ở remote trong phiên này.
 
@@ -52,9 +52,9 @@ SecureSum/synthetic statistic không tự là crypto/DP. Officialtest chỉ mô 
 ## Quota và việc tiếp theo
 
 Quota14/10: khoảng77,23h còn lại từ bảng đã làm tròn; refresh string service17/10.
-[Snapshot](../../papers/hybrid-full/quota-20261014.txt). Đây không reservation.
+[Snapshot](../../methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/quota-20261014.txt). Đây không reservation.
 Hybrid giữ pairing hiện tại/worst-round+dư15% cần khoảng314,70h phiên còn lại tới50,
-chưa repeated preparation/import/compile. [Dự toán điều kiện](../../papers/hybrid-full/budget-remaining-20261014.json).
+chưa repeated preparation/import/compile. [Dự toán điều kiện](../../methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/budget-remaining-20261014.json).
 Không dùng budget H1/H2 hoặc pilot2,5% thay cost Hybridfull; max hai worker để đọc giờ phiên account.
 
 Thứ tự nối việc đã được phép:
@@ -73,7 +73,7 @@ Thứ tự nối việc đã được phép:
    R20 mỗi seed: FL+EMA−plain≥0,010; −own+EMA≥0,015; benign giảm≤0,005;
    cost≤2×plain cùng nền. Source/notebook chưa triển khai; interaction báo riêng.
 5. Không mở dài adaptation FAIL V2–V7/V9/V10 y nguyên. Bài học cập nhật tại
-   [LESSONS](../../LESSONS.md), [trạng thái26nhóm](../../proposals/status-summary.md).
+   [LESSONS](../../LESSONS.md), [trạng thái26nhóm](../archive/overview/status-summary.md).
 
 Không cần thao tác tay cho batch collect/audit này. W&B health polling đã ngừng khi các run ổn định;
 không monitor tiếp vì batch đã terminal. Không còn job collect/report/inference local của phiên này sau khi hoàn tất.

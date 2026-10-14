@@ -1,0 +1,357 @@
+[
+  {
+    "method": "proxy-mutual-distillation",
+    "title": "Proxy DAGSNet chưng cất hai chiều",
+    "status": "Pilot có lợi; full đang nối tới r50",
+    "basis": "P1 và full r7 đã audit; chưa r50/R1/R2",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-baselines/builds/pilot-baselines",
+      "archive/methods/contact-fragmentation/builds/fragmented-snapshots",
+      "methods/shared-baselines/builds/federated-baselines-full"
+    ],
+    "active": true,
+    "dossier": "docs/methods/proxy-mutual-distillation",
+    "lessons": "docs/methods/proxy-mutual-distillation/lessons.md"
+  },
+  {
+    "method": "gaussian-class-moments",
+    "title": "Gaussian từ moment lớp gộp",
+    "status": "Pilot có lợi; full đang nối tới r50",
+    "basis": "P1 covariance/quần thể có lợi; full r9–r10 đã audit, chưa r50",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-baselines/builds/pilot-baselines",
+      "archive/methods/contact-fragmentation/builds/fragmented-snapshots",
+      "methods/shared-baselines/builds/federated-baselines-full"
+    ],
+    "active": true,
+    "dossier": "docs/methods/gaussian-class-moments",
+    "lessons": "docs/methods/gaussian-class-moments/lessons.md"
+  },
+  {
+    "method": "gaussian-proxy-hybrid",
+    "title": "Kết hợp Gaussian moment và proxy DAGSNet",
+    "status": "Pilot hai seed PASS; full đang nối tới r50",
+    "basis": "V8 paired PASS; full r2–r3 có lợi, interaction âm; chưa synergy/R1/R2",
+    "recipe": false,
+    "builds": [
+      "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot",
+      "methods/gaussian-proxy-hybrid/builds/hybrid-full"
+    ],
+    "active": true,
+    "dossier": "docs/methods/gaussian-proxy-hybrid",
+    "lessons": "docs/methods/gaussian-proxy-hybrid/lessons.md"
+  },
+  {
+    "method": "boundary-cell-counts",
+    "title": "BoundaryCells — đếm nhãn theo ô input",
+    "status": "Calibration cost PASS; utility pilot đã push",
+    "basis": "Hai seed direct/teacher P2/P4 cost PASS; chưa đủ controls/r20 để chốt utility",
+    "recipe": false,
+    "builds": [
+      "methods/boundary-cell-counts/builds/boundary-cell-pilot"
+    ],
+    "active": true,
+    "dossier": "docs/methods/boundary-cell-counts",
+    "lessons": "docs/methods/boundary-cell-counts/lessons.md"
+  },
+  {
+    "method": "receiver-response-consistency",
+    "title": "ResponseRisk — consistency chống receiver shortcut",
+    "status": "Fidelity probe PASS; chưa train augmentation",
+    "basis": "Quyết định mới nhất chỉ local augmentation; chưa mở shared-response FL",
+    "recipe": false,
+    "builds": [
+      "methods/receiver-response-consistency/builds/receiver-augmentation"
+    ],
+    "active": true,
+    "dossier": "docs/methods/receiver-response-consistency",
+    "lessons": "docs/methods/receiver-response-consistency/lessons.md"
+  },
+  {
+    "method": "ema-deployment-recipe",
+    "title": "EMA backbone + local BN + head triển khai",
+    "status": "Thiết kế đã chốt; chưa triển khai",
+    "basis": "Cải tiến Gaussian/DML; không đếm thành họ FL mới",
+    "recipe": true,
+    "builds": [],
+    "active": true,
+    "dossier": "docs/methods/ema-deployment-recipe",
+    "lessons": "docs/methods/ema-deployment-recipe/lessons.md"
+  },
+  {
+    "method": "class-prototypes",
+    "title": "Prototype trung bình lớp",
+    "status": "Đã kiểm; đối chứng tham chiếu",
+    "basis": "Mean prototype không chở đủ ranh giới; không ưu tiên biến thể mean",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-baselines/builds/pilot-baselines"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/class-prototypes",
+    "lessons": "docs/lessons/class-prototypes.md"
+  },
+  {
+    "method": "contact-fragmentation",
+    "title": "Truyền snapshot qua contact hữu hạn",
+    "status": "Đã kiểm; hạ tầng, còn giới hạn",
+    "basis": "P2 audit deadline/byte/prior; chưa chứng minh đầy đủ R1",
+    "recipe": false,
+    "builds": [
+      "archive/methods/contact-fragmentation/builds/fragmented-snapshots"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/contact-fragmentation",
+    "lessons": "docs/lessons/contact-fragmentation.md"
+  },
+  {
+    "method": "federated-head-transfer",
+    "title": "Trao đổi tri thức tại head",
+    "status": "Đã kiểm; không đủ lợi để ưu tiên",
+    "basis": "P1 head-only LG/FedGH không giải quyết backbone học thuộc",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-baselines/builds/pilot-baselines"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/federated-head-transfer",
+    "lessons": "docs/lessons/federated-head-transfer.md"
+  },
+  {
+    "method": "gaussian-logit-distillation",
+    "title": "Chưng cất logit trên điểm Gaussian",
+    "status": "Đã kiểm; không đủ lợi để ưu tiên",
+    "basis": "Teacher local yếu; nhãn Gaussian mạnh hơn DS-FL/FedGen adaptation",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-baselines/builds/pilot-baselines"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/gaussian-logit-distillation",
+    "lessons": "docs/lessons/gaussian-logit-distillation.md"
+  },
+  {
+    "method": "fourier-distribution-sketch",
+    "title": "Fourier sketch phân phối lớp",
+    "status": "Pilot hai seed FAIL",
+    "basis": "S-a KME không hơn Gaussian đủ cổng; không mở S-b",
+    "recipe": false,
+    "builds": [
+      "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/fourier-distribution-sketch",
+    "lessons": "docs/lessons/fourier-distribution-sketch.md"
+  },
+  {
+    "method": "latent-mean-synthetic-books",
+    "title": "Synthetic book khớp latent mean",
+    "status": "Pilot hai seed FAIL",
+    "basis": "DM tĩnh và mean-latent refreshed không vượt Gaussian liên tục",
+    "recipe": false,
+    "builds": [
+      "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books",
+      "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/latent-mean-synthetic-books",
+    "lessons": "docs/lessons/latent-mean-synthetic-books.md"
+  },
+  {
+    "method": "proxy-countsketch",
+    "title": "Nén update proxy bằng CountSketch",
+    "status": "Pilot hai seed FAIL; EF lỗi số",
+    "basis": "V2-A sketch residual khuếch đại collision; không rerun y nguyên",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/proxy-countsketch",
+    "lessons": "docs/lessons/proxy-countsketch.md"
+  },
+  {
+    "method": "proxy-seeded-subspace",
+    "title": "Proxy trong cơ sở sinh từ seed",
+    "status": "Pilot FAIL: K512 lỗi số, K1024 teacher yếu",
+    "basis": "V2-B teacher gate FAIL; không KD/ZO/contact",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/proxy-seeded-subspace",
+    "lessons": "docs/lessons/proxy-seeded-subspace.md"
+  },
+  {
+    "method": "gaussian-density-ratio",
+    "title": "DAGSNet học tỷ số mật độ cho Gaussian",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V2-C ESS thấp, không hơn diag/own/shuffle theo cổng",
+    "recipe": false,
+    "builds": [
+      "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/gaussian-density-ratio",
+    "lessons": "docs/lessons/gaussian-density-ratio.md"
+  },
+  {
+    "method": "proxy-random-coordinates",
+    "title": "Proxy: tọa độ ngẫu nhiên + bù lỗi",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V3-R small/medium không giữ đủ lợi dense32",
+    "recipe": false,
+    "builds": [
+      "archive/methods/proxy-compression/builds/proxy-carriers"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/proxy-random-coordinates",
+    "lessons": "docs/lessons/proxy-random-coordinates.md"
+  },
+  {
+    "method": "proxy-rolling-subnetwork",
+    "title": "Proxy: huấn luyện mạng con luân phiên",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V3-T hơn communication-only nhưng thua owncodec",
+    "recipe": false,
+    "builds": [
+      "archive/methods/proxy-compression/builds/proxy-carriers"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/proxy-rolling-subnetwork",
+    "lessons": "docs/lessons/proxy-rolling-subnetwork.md"
+  },
+  {
+    "method": "proxy-orthogonal-projection",
+    "title": "Proxy: projection trực giao đổi seed",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V3-O small/medium không giữ đủ lợi dense32",
+    "recipe": false,
+    "builds": [
+      "archive/methods/proxy-compression/builds/proxy-carriers"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/proxy-orthogonal-projection",
+    "lessons": "docs/lessons/proxy-orthogonal-projection.md"
+  },
+  {
+    "method": "proxy-powersgd",
+    "title": "Proxy: PowerSGD hai lượt",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V3-P adaptive basis có đóng góp nhưng compression utility FAIL",
+    "recipe": false,
+    "builds": [
+      "archive/methods/proxy-compression/builds/proxy-carriers"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/proxy-powersgd",
+    "lessons": "docs/lessons/proxy-powersgd.md"
+  },
+  {
+    "method": "gaussian-mala-transport",
+    "title": "Gaussian được vận chuyển bằng MALA",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V4-M không qua utility; clip floor làm score correction bằng0 ở nhiều lớp",
+    "recipe": false,
+    "builds": [
+      "archive/methods/gaussian-sampling/builds/support-mala"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/gaussian-mala-transport",
+    "lessons": "docs/lessons/gaussian-mala-transport.md"
+  },
+  {
+    "method": "gaussian-support-constraints",
+    "title": "Gaussian giữ atom, profile và first-session",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V4-S fidelity PASS không dẫn tới utility hơn diag",
+    "recipe": false,
+    "builds": [
+      "archive/methods/gaussian-sampling/builds/support-mala"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/gaussian-support-constraints",
+    "lessons": "docs/lessons/gaussian-support-constraints.md"
+  },
+  {
+    "method": "kernel-anchor-distillation",
+    "title": "Teacher từ kernel soft target trên anchor chung",
+    "status": "Pilot hai seed FAIL",
+    "basis": "V5-H coverage cao đi cùng target gần uniform; teacher gate FAIL",
+    "recipe": false,
+    "builds": [
+      "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/kernel-anchor-distillation",
+    "lessons": "docs/lessons/kernel-anchor-distillation.md"
+  },
+  {
+    "method": "gradient-synthetic-books",
+    "title": "Synthetic book khớp gradient DAGSNet",
+    "status": "Pilot hai seed quality FAIL; cost PASS",
+    "basis": "V5 IPC1/4 đạo hàm khả thi nhưng codebook không đủ utility",
+    "recipe": false,
+    "builds": [
+      "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/gradient-synthetic-books",
+    "lessons": "docs/lessons/gradient-synthetic-books.md"
+  },
+  {
+    "method": "geometry-primitive-moments",
+    "title": "Moment primitive + tái dựng feature hình học",
+    "status": "Pilot FAIL: G59 lỗi số, G61 quality/byte FAIL",
+    "basis": "V6 không faithful ở nhánh missing; joint effect có ở control full66",
+    "recipe": false,
+    "builds": [
+      "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/geometry-primitive-moments",
+    "lessons": "docs/lessons/geometry-primitive-moments.md"
+  },
+  {
+    "method": "covariance-nystrom",
+    "title": "Sketch covariance Nyström",
+    "status": "Pilot hai seed quality FAIL; compression PASS",
+    "basis": "V7 rank4/8 giảm byte nhưng không giữ đủ lợi fullcov",
+    "recipe": false,
+    "builds": [
+      "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/covariance-nystrom",
+    "lessons": "docs/lessons/covariance-nystrom.md"
+  },
+  {
+    "method": "anchor-function-residual",
+    "title": "Residual hàm từ nhãn local trên anchor",
+    "status": "Pilot hai seed quality FAIL; cost PASS",
+    "basis": "V9 M64/512 không qua teacher quality; không privateKD/full y nguyên",
+    "recipe": false,
+    "builds": [
+      "archive/methods/anchor-function-residual/builds/anchor-residual"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/anchor-function-residual",
+    "lessons": "docs/lessons/anchor-function-residual.md"
+  },
+  {
+    "method": "dagsnet-joint-energy",
+    "title": "Joint-energy bằng DAGSNet",
+    "status": "Cost/sampler FAIL; candidate r20 chưa đo",
+    "basis": "V10 Gaussian-base+MH hợp lệ về base nhưng không qua cổng runtime/sampler",
+    "recipe": false,
+    "builds": [
+      "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy"
+    ],
+    "active": false,
+    "dossier": "docs/archive/methods/dagsnet-joint-energy",
+    "lessons": "docs/lessons/dagsnet-joint-energy.md"
+  }
+]

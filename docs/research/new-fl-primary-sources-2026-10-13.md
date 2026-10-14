@@ -1,7 +1,7 @@
 # Hướng FL khác carrier/model/synthetic hiện có — nguồn và thiết kế 2026-10-13
 
 **Trạng thái:** ghi chú nghiên cứu và cơ chế đề nghị; chưa triển khai, chưa pilot, chưa khóa HP/cổng với chủ dự án.
-Đối chiếu [24 nhóm hiện hành](../../proposals/README.md), [bằng chứng](../../proposals/evidence-summary.md),
+Đối chiếu [24 nhóm hiện hành](../proposals.md), [bằng chứng](../archive/overview/evidence-summary.md),
 [LESSONS](../../LESSONS.md) và [protocol](protocol.md). Không kéo dài adaptation đã FAIL để tìm điểm thắng.
 
 Ưu tiên nghiên cứu: **bảng ranh giới ở input bằng đếm có giám sát**, **rủi ro dưới can thiệp local**,

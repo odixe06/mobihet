@@ -1,0 +1,6 @@
+outs:
+- md5: f0da440b6a89ca4822cd1530b539f7d2.dir
+  size: 6862940249
+  nfiles: 612
+  hash: md5
+  path: artifacts/smoke

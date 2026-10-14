@@ -1,0 +1,22 @@
+[
+  {
+    "input": "trietbackup/mobihet-hybrid-full-20261013-src",
+    "kind": "dataset",
+    "readable": true
+  },
+  {
+    "input": "trietbackup/veremi-fl-20client",
+    "kind": "dataset",
+    "readable": true
+  },
+  {
+    "input": "trietbackup/veremi-nextgen2026-test",
+    "kind": "dataset",
+    "readable": true
+  },
+  {
+    "input": "trietbackup/mobihet-hybrid-checkpoint3-20261014",
+    "kind": "dataset",
+    "readable": true
+  }
+]

@@ -1,0 +1,3069 @@
+{
+  "aliases": [
+    {
+      "alias": ".compat/logs/anchor-function-residual/v9-teacher-residual",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs"
+    },
+    {
+      "alias": ".compat/logs/boundary-cell-counts/cell-counts-v1",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs"
+    },
+    {
+      "alias": ".compat/logs/contact-fragmentation/p2-deadline",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/logs"
+    },
+    {
+      "alias": ".compat/logs/covariance-nystrom/v7-rank4-rank8",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs"
+    },
+    {
+      "alias": ".compat/logs/dagsnet-joint-energy/v10-gaussian-base-mh",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs"
+    },
+    {
+      "alias": ".compat/logs/gaussian-proxy-hybrid/full-50rounds",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs"
+    },
+    {
+      "alias": ".compat/logs/gaussian-proxy-hybrid/v8-pilot",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs"
+    },
+    {
+      "alias": ".compat/logs/gaussian-sampling/v4-support-mala",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs"
+    },
+    {
+      "alias": ".compat/logs/geometry-primitive-moments/v6-g59-g61",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs"
+    },
+    {
+      "alias": ".compat/logs/proxy-compression/v3-carrier-comparison",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs"
+    },
+    {
+      "alias": ".compat/logs/receiver-response-consistency/local-augmentation-v1",
+      "target": "methods/receiver-response-consistency/builds/receiver-augmentation/logs"
+    },
+    {
+      "alias": ".compat/logs/shared-baselines/full-h1-h2-50rounds",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs"
+    },
+    {
+      "alias": ".compat/logs/shared-baselines/p1-pilot",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/logs"
+    },
+    {
+      "alias": ".compat/logs/shared-comparisons/v2-sketch-subspace-ratio",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs"
+    },
+    {
+      "alias": ".compat/logs/synthetic-distribution-matching/sa-static-books",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/logs"
+    },
+    {
+      "alias": ".compat/logs/synthetic-knowledge/v5-anchor-gradient-books",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs"
+    },
+    {
+      "alias": ".compat/mh/__init__.py",
+      "target": "core/__init__.py"
+    },
+    {
+      "alias": ".compat/mh/archs.py",
+      "target": "core/legacy_model_factory.py"
+    },
+    {
+      "alias": ".compat/mh/channel.py",
+      "target": "core/rsu_contact.py"
+    },
+    {
+      "alias": ".compat/mh/dagsnet.py",
+      "target": "core/dagsnet.py"
+    },
+    {
+      "alias": ".compat/mh/metrics.py",
+      "target": "core/classification_metrics.py"
+    },
+    {
+      "alias": ".compat/mh/mobility.py",
+      "target": "core/vehicle_mobility.py"
+    },
+    {
+      "alias": ".compat/mh/model_packet.py",
+      "target": "core/model_codec.py"
+    },
+    {
+      "alias": ".compat/mh/new_fl.py",
+      "target": "core/artifact_driver.py"
+    },
+    {
+      "alias": ".compat/mh/new_methods.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/source/mh/distribution_matching.py"
+    },
+    {
+      "alias": ".compat/mh/p2.py",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/source/mh/fragmented_snapshot_driver.py"
+    },
+    {
+      "alias": ".compat/mh/pilot.py",
+      "target": "core/pilot_runtime.py"
+    },
+    {
+      "alias": ".compat/mh/prepare.py",
+      "target": "core/prepare_data.py"
+    },
+    {
+      "alias": ".compat/mh/teacher_base.py",
+      "target": "core/teacher_training.py"
+    },
+    {
+      "alias": ".compat/mh/teacher_driver.py",
+      "target": "core/teacher_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v10_energy.py",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/source/mh/gaussian_base_energy.py"
+    },
+    {
+      "alias": ".compat/mh/v10_run.py",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/source/mh/joint_energy_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v2_math.py",
+      "target": "core/vector_codecs.py"
+    },
+    {
+      "alias": ".compat/mh/v2_methods.py",
+      "target": "core/shared_prior_and_proxy.py"
+    },
+    {
+      "alias": ".compat/mh/v2_run.py",
+      "target": "core/federated_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v3_dense.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/dense_proxy_control.py"
+    },
+    {
+      "alias": ".compat/mh/v3_math.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/proxy_carrier_codecs.py"
+    },
+    {
+      "alias": ".compat/mh/v3_methods.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/proxy_carrier_methods.py"
+    },
+    {
+      "alias": ".compat/mh/v3_run.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/proxy_carrier_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v4_mala.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/source/mh/mala_transport.py"
+    },
+    {
+      "alias": ".compat/mh/v4_run.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/source/mh/support_mala_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v4_schema.py",
+      "target": "core/feature_support_schema.py"
+    },
+    {
+      "alias": ".compat/mh/v4_support.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/source/mh/support_conditioned_gaussian.py"
+    },
+    {
+      "alias": ".compat/mh/v5_anchor.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/source/mh/kernel_anchor_targets.py"
+    },
+    {
+      "alias": ".compat/mh/v5_books.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/source/mh/gradient_latent_books.py"
+    },
+    {
+      "alias": ".compat/mh/v5_run.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/source/mh/synthetic_books_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v6_geometry.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/source/mh/geometry_moments.py"
+    },
+    {
+      "alias": ".compat/mh/v6_run.py",
+      "target": "core/expanded_fixture_runtime.py"
+    },
+    {
+      "alias": ".compat/mh/v6_schema.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/source/mh/geometry_feature_schema.py"
+    },
+    {
+      "alias": ".compat/mh/v7_basis.py",
+      "target": "core/covariance_basis.py"
+    },
+    {
+      "alias": ".compat/mh/v7_nystrom.py",
+      "target": "core/gaussian_moments.py"
+    },
+    {
+      "alias": ".compat/mh/v7_run.py",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/source/mh/covariance_sketch_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v8_hybrid.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/source/mh/hybrid_models.py"
+    },
+    {
+      "alias": ".compat/mh/v8_run.py",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/source/mh/hybrid_pilot_driver.py"
+    },
+    {
+      "alias": ".compat/mh/v9_anchor.py",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/source/mh/anchor_residual_teacher.py"
+    },
+    {
+      "alias": ".compat/mh/v9_run.py",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/source/mh/anchor_residual_driver.py"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/artifacts",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/artifacts"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/bounded-probe.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/bounded-probe.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/branch-proof-initial2.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/branch-proof-initial2.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/branch-smoke-initial2.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/branch-smoke-initial2.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/calibration-metrics-all.csv",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/calibration-metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/calibration-report.md",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/calibration-report.md"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/collection-initial2-20261013.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/collection-initial2-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/contract.md",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/contract.md"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/controller-fixture.dvc",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-access-all-initial2.csv",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/input-access-all-initial2.csv"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-access-dinhan25-initial2.csv",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/input-access-dinhan25-initial2.csv"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-access-initial2.csv",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/input-access-initial2.csv"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-status-dinhan25-initial2.txt",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/input-status-dinhan25-initial2.txt"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-status-initial2.txt",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/input-status-initial2.txt"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-upload-dinhan25-initial2.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/input-upload-dinhan25-initial2.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input-upload-initial2.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/input-upload-initial2.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/input.dvc",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/kaggle",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/artifacts/kaggle"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/kaggle.dvc",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/local-proof-initial2.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/local-proof-initial2.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/local-proof.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/local-proof.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/logs",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/notebook",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/notebook-check-initial2.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/notebook-check-initial2.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/notebook-proof-initial2.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/notebook-proof-initial2.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/notebooks",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/private_push",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/private_push"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/probe-source-v1",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/source/probe-source-v1"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/probes",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/proj",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/source/proj"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/quota-20261013.txt",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/quota-20261013.txt"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/quota-after-reboot-20261013.txt",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/quota-after-reboot-20261013.txt"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/quota-before-pair-20261013.txt",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/quota-before-pair-20261013.txt"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/quota-before-push-initial2.txt",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/quota-before-push-initial2.txt"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/rebuild.md",
+      "target": "docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/reservation-initial2.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/reservation-initial2.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/reservation-pair-initial2.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/reservation-pair-initial2.json"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/scripts",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/smoke-initial1.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/smoke-initial1.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/smoke-initial2.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/smoke-initial2.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/smoke-source-initial1",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/source/smoke-source-initial1"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/smoke.dvc",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/source",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/source"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/startup-inspect-20261013.log",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/logs/startup-inspect-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/boundary-cells/startup-live-latest.json",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/startup-live-latest.json"
+    },
+    {
+      "alias": ".compat/papers/full-driver-initial1-20261012.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/full-driver-initial1-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/full-driver-initial1-recheck-20261012.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/full-driver-initial1-recheck-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/artifacts",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/artifacts"
+    },
+    {
+      "alias": ".compat/papers/full-validation/budget-measured.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/budget-measured.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/budget-plan-20261012.txt",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/budget-plan-20261012.txt"
+    },
+    {
+      "alias": ".compat/papers/full-validation/collection-20261012.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/collection-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/collection-20261013-resumed.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/collection-20261013-resumed.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/collection-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/collection-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/collection-cont01-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/collection-cont01-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/collection-reboot-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/collection-reboot-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/continuation-check-20261013-final.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/continuation-check-20261013-final.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/continuation-check-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/continuation-check-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/continuation-generation-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/continuation-generation-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/continuation-health-20261013.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/continuation-health-20261013.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/continuation-live-first.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/continuation-live-first.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/continuation-live-latest.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/continuation-live-latest.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/import-check-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/import-check-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/inference-20261013-final.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/inference-20261013-final.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/inference-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/inference-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/inference-20261014.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/inference-20261014.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/inference-proof.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/inference-proof.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/initial-output",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/artifacts/initial-output"
+    },
+    {
+      "alias": ".compat/papers/full-validation/input-upload-catbaochau.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/input-upload-catbaochau.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/input-upload-khanhmay0304.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/input-upload-khanhmay0304.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/input-upload-minhtriethihi.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/input-upload-minhtriethihi.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/input-upload-odixeuit.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/input-upload-odixeuit.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/input.dvc",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/full-validation/kaggle",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/artifacts/kaggle"
+    },
+    {
+      "alias": ".compat/papers/full-validation/kaggle.dvc",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/full-validation/latest-rounds.md",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md"
+    },
+    {
+      "alias": ".compat/papers/full-validation/live-status.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/logs",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs"
+    },
+    {
+      "alias": ".compat/papers/full-validation/metrics-all.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/mount-output.dvc",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc"
+    },
+    {
+      "alias": ".compat/papers/full-validation/mount-probe",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/mount-probe"
+    },
+    {
+      "alias": ".compat/papers/full-validation/mount-proof.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/mount-proof.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/notebook",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/notebooks"
+    },
+    {
+      "alias": ".compat/papers/full-validation/notebook-check-20261012.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/notebook-check-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/notebook-check-final-20261012.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/notebook-check-final-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/notebooks",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/notebooks"
+    },
+    {
+      "alias": ".compat/papers/full-validation/per-class-f1.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/private_push",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/private_push"
+    },
+    {
+      "alias": ".compat/papers/full-validation/probes",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes"
+    },
+    {
+      "alias": ".compat/papers/full-validation/proj",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/source/proj"
+    },
+    {
+      "alias": ".compat/papers/full-validation/quota-before-cont01.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/quota-before-cont01.json"
+    },
+    {
+      "alias": ".compat/papers/full-validation/quota-before-full4-20261012.txt",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/quota-before-full4-20261012.txt"
+    },
+    {
+      "alias": ".compat/papers/full-validation/quota-before-push-20261012.txt",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/quota-before-push-20261012.txt"
+    },
+    {
+      "alias": ".compat/papers/full-validation/rebuild.md",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/full-validation/report-generation-20261013-final.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/report-generation-20261013-final.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/report-generation-20261013.log",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/logs/report-generation-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/full-validation/report.md",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/full-validation/resume_reference.dvc",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/full-validation/scripts",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts"
+    },
+    {
+      "alias": ".compat/papers/full-validation/smoke.dvc",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/full-validation/source",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/source"
+    },
+    {
+      "alias": ".compat/papers/full-validation/test-access-catbaochau.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/test-access-catbaochau.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/test-access-khanhmay0304.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/test-access-khanhmay0304.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/test-access-minhtriethihi.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/test-access-minhtriethihi.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/test-access-odixeuit.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/test-access-odixeuit.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/train-access-catbaochau.csv",
+      "target": "docs/methods/shared-baselines/builds/federated-baselines-full/results/train-access-catbaochau.csv"
+    },
+    {
+      "alias": ".compat/papers/full-validation/wandb-runs.json",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full-smoke-initial1-20261013.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/hybrid-full-smoke-initial1-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/artifacts",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/budget-measured.json",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/budget-measured.json"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/budget-remaining-20261014.json",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/budget-remaining-20261014.json"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/collection-20261013.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/collection-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/collection-20261014.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/collection-20261014.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/diagnostic-pull-20261014.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/diagnostic-pull-20261014.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/diagnostic-pull3-20261014.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/diagnostic-pull3-20261014.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/diagnostics.dvc",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/feasibility-20261014.md",
+      "target": "docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/generation-20261013.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/generation-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/inference-20261014.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/inference-20261014.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/inference-proof.json",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/inference-proof.json"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/input-access-proof.json",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/input-access-proof.json"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/input.dvc",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/kaggle",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/artifacts/kaggle"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/kaggle.dvc",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/latest-rounds.md",
+      "target": "docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/logs",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/metrics-all.csv",
+      "target": "docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/notebook",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/notebooks",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/per-class-f1.csv",
+      "target": "docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/private_push",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/private_push"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/probes",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/proj",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/source/proj"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/quota-20261014.txt",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/quota-20261014.txt"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/quota-before-push-20261013.txt",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/quota-before-push-20261013.txt"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/rebuild.md",
+      "target": "docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/report-20261014.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/report-20261014.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/report.md",
+      "target": "docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/reservation-20261013.json",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/reservation-20261013.json"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/resume_reference.dvc",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/scripts",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/smoke.dvc",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/source",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/source"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/startup-health-20261013.log",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/logs/startup-health-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/startup-health-latest.json",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/startup-health-latest.json"
+    },
+    {
+      "alias": ".compat/papers/new-fl/collection.log",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/logs/collection.log"
+    },
+    {
+      "alias": ".compat/papers/new-fl/contact-probe.json",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/probes/contact-probe.json"
+    },
+    {
+      "alias": ".compat/papers/new-fl/dataset-s43.log",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/logs/dataset-s43.log"
+    },
+    {
+      "alias": ".compat/papers/new-fl/figures",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/figures"
+    },
+    {
+      "alias": ".compat/papers/new-fl/gates.json",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/new-fl/input.dvc",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/new-fl/kaggle.dvc",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/new-fl/logs",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/logs"
+    },
+    {
+      "alias": ".compat/papers/new-fl/metrics-all.csv",
+      "target": "docs/archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/new-fl/metrics-final.csv",
+      "target": "docs/archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/results/metrics-final.csv"
+    },
+    {
+      "alias": ".compat/papers/new-fl/notebook",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/notebooks"
+    },
+    {
+      "alias": ".compat/papers/new-fl/notebooks",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/notebooks"
+    },
+    {
+      "alias": ".compat/papers/new-fl/per-class-final.csv",
+      "target": "docs/archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/results/per-class-final.csv"
+    },
+    {
+      "alias": ".compat/papers/new-fl/probes",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/probes"
+    },
+    {
+      "alias": ".compat/papers/new-fl/rebuild.md",
+      "target": "docs/archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/new-fl/report.md",
+      "target": "docs/archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/new-fl/resume_reference.dvc",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/new-fl/runs.dvc",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/new-fl/scripts",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts"
+    },
+    {
+      "alias": ".compat/papers/new-fl/smoke.dvc",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/nystrom",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/probes/nystrom-preflight"
+    },
+    {
+      "alias": ".compat/papers/p2/audit.json",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/probes/audit.json"
+    },
+    {
+      "alias": ".compat/papers/p2/kaggle.dvc",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/p2/logs",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/logs"
+    },
+    {
+      "alias": ".compat/papers/p2/notebook",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/notebooks"
+    },
+    {
+      "alias": ".compat/papers/p2/notebooks",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/notebooks"
+    },
+    {
+      "alias": ".compat/papers/p2/probes",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/probes"
+    },
+    {
+      "alias": ".compat/papers/p2/report.md",
+      "target": "docs/archive/methods/contact-fragmentation/builds/fragmented-snapshots/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/p2/runs.dvc",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/p2/scripts",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts"
+    },
+    {
+      "alias": ".compat/papers/p2/source_audit.dvc",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/source_audit.dvc"
+    },
+    {
+      "alias": ".compat/papers/pilot/.gitignore",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/.gitignore"
+    },
+    {
+      "alias": ".compat/papers/pilot/fixture.dvc",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc"
+    },
+    {
+      "alias": ".compat/papers/pilot/fixture_build.log",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/logs/fixture_build.log"
+    },
+    {
+      "alias": ".compat/papers/pilot/logs",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/logs"
+    },
+    {
+      "alias": ".compat/papers/pilot/queue.log",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/logs/queue.log"
+    },
+    {
+      "alias": ".compat/papers/pilot/queue2.log",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/logs/queue2.log"
+    },
+    {
+      "alias": ".compat/papers/pilot/report.md",
+      "target": "docs/archive/methods/shared-baselines/builds/pilot-baselines/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/pilot/runs.dvc",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/pilot/scripts",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/scripts"
+    },
+    {
+      "alias": ".compat/papers/probes",
+      "target": "archive/methods/gaussian-class-moments/builds/input-statistics-probe"
+    },
+    {
+      "alias": ".compat/papers/receiver-response/fidelity-probe.json",
+      "target": "methods/receiver-response-consistency/builds/receiver-augmentation/probes/fidelity-probe.json"
+    },
+    {
+      "alias": ".compat/papers/receiver-response/logs",
+      "target": "methods/receiver-response-consistency/builds/receiver-augmentation/logs"
+    },
+    {
+      "alias": ".compat/papers/receiver-response/probe_fidelity.py",
+      "target": "methods/receiver-response-consistency/builds/receiver-augmentation/probe_fidelity.py"
+    },
+    {
+      "alias": ".compat/papers/receiver-response/probes",
+      "target": "methods/receiver-response-consistency/builds/receiver-augmentation/probes"
+    },
+    {
+      "alias": ".compat/papers/report-watch.log",
+      "target": "logs/operations/report-watch.log"
+    },
+    {
+      "alias": ".compat/papers/v10-driver-final2-20261012.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/v10-driver-final2-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v10-driver-initial1-20261012.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/v10-driver-initial1-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v10-notebooks-20261012.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/v10-notebooks-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v10/artifacts",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts"
+    },
+    {
+      "alias": ".compat/papers/v10/collection-e-20261012.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/collection-e-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v10/collection-e.lock",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/collection-e.lock"
+    },
+    {
+      "alias": ".compat/papers/v10/gates.json",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v10/input-upload-s42.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/input-upload-s42.log"
+    },
+    {
+      "alias": ".compat/papers/v10/input-upload-s43.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/input-upload-s43.log"
+    },
+    {
+      "alias": ".compat/papers/v10/input.dvc",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v10/kaggle.dvc",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v10/live-status.json",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v10/logs",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs"
+    },
+    {
+      "alias": ".compat/papers/v10/metrics-all.csv",
+      "target": "docs/archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v10/monitor-20261012.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/monitor-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v10/notebook",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v10/notebooks",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v10/per-class-f1.csv",
+      "target": "docs/archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v10/private_push",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/private_push"
+    },
+    {
+      "alias": ".compat/papers/v10/probes",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/probes"
+    },
+    {
+      "alias": ".compat/papers/v10/rebuild.md",
+      "target": "docs/archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v10/report-generation-20261012.log",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/logs/report-generation-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v10/report.md",
+      "target": "docs/archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v10/resume_reference.dvc",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v10/runs",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/artifacts/runs"
+    },
+    {
+      "alias": ".compat/papers/v10/scripts",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/scripts"
+    },
+    {
+      "alias": ".compat/papers/v10/smoke.dvc",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v10/wandb-runs.json",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v2/artifacts",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts"
+    },
+    {
+      "alias": ".compat/papers/v2/basis-probe.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/basis-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v2/basis-probe.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/basis-probe.log"
+    },
+    {
+      "alias": ".compat/papers/v2/classes-a-s42.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/classes-a-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v2/classes-a-s43.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/classes-a-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v2/classes-b-s42.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/classes-b-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v2/classes-b-s43.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/classes-b-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v2/classes-c-s42.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/classes-c-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v2/classes-c-s43.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/classes-c-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v2/collection-b-recheck.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/collection-b-recheck.log"
+    },
+    {
+      "alias": ".compat/papers/v2/collection-b.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/collection-b.log"
+    },
+    {
+      "alias": ".compat/papers/v2/collection-c.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/collection-c.log"
+    },
+    {
+      "alias": ".compat/papers/v2/collection.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/collection.log"
+    },
+    {
+      "alias": ".compat/papers/v2/convergence.png",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/convergence.png"
+    },
+    {
+      "alias": ".compat/papers/v2/convergence.svg",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/convergence.svg"
+    },
+    {
+      "alias": ".compat/papers/v2/gates.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v2/input.dvc",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v2/kaggle.dvc",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v2/live-status.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v2/local-check-deterministic.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/local-check-deterministic.log"
+    },
+    {
+      "alias": ".compat/papers/v2/local-check-final.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/local-check-final.log"
+    },
+    {
+      "alias": ".compat/papers/v2/local-check.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/local-check.log"
+    },
+    {
+      "alias": ".compat/papers/v2/logs",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs"
+    },
+    {
+      "alias": ".compat/papers/v2/metrics-all.csv",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v2/monitor-a.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/monitor-a.log"
+    },
+    {
+      "alias": ".compat/papers/v2/monitor.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/monitor.log"
+    },
+    {
+      "alias": ".compat/papers/v2/notebook",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v2/notebook-check.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/notebook-check.log"
+    },
+    {
+      "alias": ".compat/papers/v2/notebooks",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v2/paper.md",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/paper.md"
+    },
+    {
+      "alias": ".compat/papers/v2/per-class-f1.csv",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v2/private_push",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/private_push"
+    },
+    {
+      "alias": ".compat/papers/v2/probes",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes"
+    },
+    {
+      "alias": ".compat/papers/v2/quota-after-a.txt",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/quota-after-a.txt"
+    },
+    {
+      "alias": ".compat/papers/v2/quota-before-bc.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/quota-before-bc.json"
+    },
+    {
+      "alias": ".compat/papers/v2/quota-before.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/quota-before.json"
+    },
+    {
+      "alias": ".compat/papers/v2/rebuild.md",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v2/report-build.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/report-build.log"
+    },
+    {
+      "alias": ".compat/papers/v2/report.md",
+      "target": "docs/archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v2/resume_reference.dvc",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v2/runs",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/artifacts/runs"
+    },
+    {
+      "alias": ".compat/papers/v2/runs.dvc",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/v2/scripts",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts"
+    },
+    {
+      "alias": ".compat/papers/v2/sketch-diagnostics.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/sketch-diagnostics.json"
+    },
+    {
+      "alias": ".compat/papers/v2/smoke.dvc",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v2/wandb-preflight.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/wandb-preflight.json"
+    },
+    {
+      "alias": ".compat/papers/v2/wandb-preflight.log",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/logs/wandb-preflight.log"
+    },
+    {
+      "alias": ".compat/papers/v2/wandb-runs.json",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v3/abort-check-fixed.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/abort-check-fixed.log"
+    },
+    {
+      "alias": ".compat/papers/v3/abort-check.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/abort-check.log"
+    },
+    {
+      "alias": ".compat/papers/v3/abort-probe.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/abort-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v3/classes-p-s43.png",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/classes-p-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v3/classes-p-s43.svg",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/classes-p-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-o-20261012.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-o-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-o.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-o.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-p-20261012-live.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-p-20261012-live.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-p-20261012.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-p-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-p.lock",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-p.lock"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-p.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-p.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-r-20261012.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-r-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-r.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-r.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-t-20261012-live.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-t-20261012-live.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-t-20261012.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-t-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-t.lock",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-t.lock"
+    },
+    {
+      "alias": ".compat/papers/v3/collection-t.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/collection-t.log"
+    },
+    {
+      "alias": ".compat/papers/v3/convergence-p.png",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/convergence-p.png"
+    },
+    {
+      "alias": ".compat/papers/v3/convergence-p.svg",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/convergence-p.svg"
+    },
+    {
+      "alias": ".compat/papers/v3/energy-probe.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/energy-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v3/figures.md",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/figures.md"
+    },
+    {
+      "alias": ".compat/papers/v3/gates.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v3/input.dvc",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v3/kaggle.dvc",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v3/live-status.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v3/local-check-context.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/local-check-context.log"
+    },
+    {
+      "alias": ".compat/papers/v3/local-check-dense32.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/local-check-dense32.log"
+    },
+    {
+      "alias": ".compat/papers/v3/local-check.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/local-check.log"
+    },
+    {
+      "alias": ".compat/papers/v3/logs",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs"
+    },
+    {
+      "alias": ".compat/papers/v3/math-probe.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/math-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v3/metrics-all.csv",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v3/monitor.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/monitor.log"
+    },
+    {
+      "alias": ".compat/papers/v3/notebook",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v3/notebook-check.log",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/logs/notebook-check.log"
+    },
+    {
+      "alias": ".compat/papers/v3/notebooks",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v3/paper.md",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/paper.md"
+    },
+    {
+      "alias": ".compat/papers/v3/per-class-f1.csv",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v3/pre-context-source",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/source/pre-context-source"
+    },
+    {
+      "alias": ".compat/papers/v3/private_push",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/private_push"
+    },
+    {
+      "alias": ".compat/papers/v3/probes",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes"
+    },
+    {
+      "alias": ".compat/papers/v3/quota-before.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/quota-before.json"
+    },
+    {
+      "alias": ".compat/papers/v3/rebuild.md",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v3/report.md",
+      "target": "docs/archive/methods/proxy-compression/builds/proxy-carriers/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v3/resume_reference.dvc",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v3/runs.dvc",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/v3/scripts",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts"
+    },
+    {
+      "alias": ".compat/papers/v3/smoke.dvc",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v3/source",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/source"
+    },
+    {
+      "alias": ".compat/papers/v3/support-probe.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/support-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v3/wandb-runs.json",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-m-s42.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-m-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-m-s42.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-m-s42.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-m-s43.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-m-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-m-s43.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-m-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-s-s42.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-s-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-s-s42.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-s-s42.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-s-s43.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-s-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v4/classes-s-s43.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/classes-s-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/collection-m-20261012.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/collection-m-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v4/collection-m.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/collection-m.log"
+    },
+    {
+      "alias": ".compat/papers/v4/collection-s.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/collection-s.log"
+    },
+    {
+      "alias": ".compat/papers/v4/convergence-m.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/convergence-m.png"
+    },
+    {
+      "alias": ".compat/papers/v4/convergence-m.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/convergence-m.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/convergence-s.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/convergence-s.png"
+    },
+    {
+      "alias": ".compat/papers/v4/convergence-s.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/convergence-s.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/figures.md",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/figures.md"
+    },
+    {
+      "alias": ".compat/papers/v4/gates.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v4/gradient-probe.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/gradient-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v4/gradient-probe.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/gradient-probe.log"
+    },
+    {
+      "alias": ".compat/papers/v4/historical-c-diagnostics.png",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/historical-c-diagnostics.png"
+    },
+    {
+      "alias": ".compat/papers/v4/historical-c-diagnostics.svg",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/historical-c-diagnostics.svg"
+    },
+    {
+      "alias": ".compat/papers/v4/input.dvc",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v4/kaggle.dvc",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v4/live-status.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v4/logs",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs"
+    },
+    {
+      "alias": ".compat/papers/v4/mala-check-final.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/mala-check-final.log"
+    },
+    {
+      "alias": ".compat/papers/v4/mala-check.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/mala-check.log"
+    },
+    {
+      "alias": ".compat/papers/v4/mala-math.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/mala-math.json"
+    },
+    {
+      "alias": ".compat/papers/v4/metrics-all.csv",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v4/monitor.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/monitor.log"
+    },
+    {
+      "alias": ".compat/papers/v4/notebook",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v4/notebook-check.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/notebook-check.log"
+    },
+    {
+      "alias": ".compat/papers/v4/notebooks",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v4/per-class-f1.csv",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v4/plot.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/plot.log"
+    },
+    {
+      "alias": ".compat/papers/v4/private_push",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/private_push"
+    },
+    {
+      "alias": ".compat/papers/v4/probes",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes"
+    },
+    {
+      "alias": ".compat/papers/v4/quota-before.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/quota-before.json"
+    },
+    {
+      "alias": ".compat/papers/v4/ratio-score-probe.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/ratio-score-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v4/ratio-score-probe.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/ratio-score-probe.log"
+    },
+    {
+      "alias": ".compat/papers/v4/rebuild.md",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v4/report.md",
+      "target": "docs/archive/methods/gaussian-sampling/builds/support-mala/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v4/resume_reference.dvc",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v4/runs.dvc",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/v4/scripts",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts"
+    },
+    {
+      "alias": ".compat/papers/v4/smoke.dvc",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v4/support-check.log",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/logs/support-check.log"
+    },
+    {
+      "alias": ".compat/papers/v4/support-math.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/support-math.json"
+    },
+    {
+      "alias": ".compat/papers/v4/wandb-runs.json",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v5/algebra-probe.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/algebra-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v5/anchor-driver-preflight.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/anchor-driver-preflight.log"
+    },
+    {
+      "alias": ".compat/papers/v5/anchor-probe.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/anchor-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v5/anchor-probe.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/anchor-probe.log"
+    },
+    {
+      "alias": ".compat/papers/v5/anchor-target-diagnostics.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/anchor-target-diagnostics.json"
+    },
+    {
+      "alias": ".compat/papers/v5/book80-probe.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/book80-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v5/book80-probe.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/book80-probe.log"
+    },
+    {
+      "alias": ".compat/papers/v5/budget-check-final.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/budget-check-final.log"
+    },
+    {
+      "alias": ".compat/papers/v5/budget-check.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/budget-check.log"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-g-s42.png",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-g-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-g-s42.svg",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-g-s42.svg"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-g-s43.png",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-g-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-g-s43.svg",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-g-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-h-s42.png",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-h-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-h-s42.svg",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-h-s42.svg"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-h-s43.png",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-h-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v5/classes-h-s43.svg",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/classes-h-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v5/collection-g-20261012.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/collection-g-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v5/collection-g.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/collection-g.log"
+    },
+    {
+      "alias": ".compat/papers/v5/collection-h.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/collection-h.log"
+    },
+    {
+      "alias": ".compat/papers/v5/collection-j-20261012.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/collection-j-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v5/collection-j.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/collection-j.log"
+    },
+    {
+      "alias": ".compat/papers/v5/convergence-g.png",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/convergence-g.png"
+    },
+    {
+      "alias": ".compat/papers/v5/convergence-g.svg",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/convergence-g.svg"
+    },
+    {
+      "alias": ".compat/papers/v5/convergence-h.png",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/convergence-h.png"
+    },
+    {
+      "alias": ".compat/papers/v5/convergence-h.svg",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/convergence-h.svg"
+    },
+    {
+      "alias": ".compat/papers/v5/driver-check-final2.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/driver-check-final2.log"
+    },
+    {
+      "alias": ".compat/papers/v5/driver-check.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/driver-check.log"
+    },
+    {
+      "alias": ".compat/papers/v5/figures.md",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/figures.md"
+    },
+    {
+      "alias": ".compat/papers/v5/gates.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v5/input-catbaochau.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/input-catbaochau.log"
+    },
+    {
+      "alias": ".compat/papers/v5/input-khanhmay0304.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/input-khanhmay0304.log"
+    },
+    {
+      "alias": ".compat/papers/v5/input-minhtriethihi.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/input-minhtriethihi.log"
+    },
+    {
+      "alias": ".compat/papers/v5/input.dvc",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v5/kaggle.dvc",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v5/live-status.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v5/logs",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs"
+    },
+    {
+      "alias": ".compat/papers/v5/metrics-all.csv",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v5/monitor.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/monitor.log"
+    },
+    {
+      "alias": ".compat/papers/v5/notebook",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v5/notebook-check-final.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/notebook-check-final.log"
+    },
+    {
+      "alias": ".compat/papers/v5/notebook-check.log",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/logs/notebook-check.log"
+    },
+    {
+      "alias": ".compat/papers/v5/notebooks",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v5/paper.md",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/paper.md"
+    },
+    {
+      "alias": ".compat/papers/v5/per-class-f1.csv",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v5/private_push",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/private_push"
+    },
+    {
+      "alias": ".compat/papers/v5/probes",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes"
+    },
+    {
+      "alias": ".compat/papers/v5/quota-survey.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/quota-survey.json"
+    },
+    {
+      "alias": ".compat/papers/v5/rebuild.md",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v5/report.md",
+      "target": "docs/archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v5/resume_reference.dvc",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v5/runs.dvc",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/runs.dvc"
+    },
+    {
+      "alias": ".compat/papers/v5/scripts",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts"
+    },
+    {
+      "alias": ".compat/papers/v5/smoke.dvc",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v5/wandb-runs.json",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v6-driver-final-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/v6-driver-final-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6-driver-first-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/v6-driver-first-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6-math-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/v6-math-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6-math-final-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/v6-math-final-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6-math-random-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/v6-math-random-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6-verify-final-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/v6-verify-final-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6/artifacts",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts"
+    },
+    {
+      "alias": ".compat/papers/v6/budget-check-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/budget-check-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-a-s42.png",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-a-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-a-s42.svg",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-a-s42.svg"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-a-s43.png",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-a-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-a-s43.svg",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-a-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-b-s42.png",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-b-s42.png"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-b-s42.svg",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-b-s42.svg"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-b-s43.png",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-b-s43.png"
+    },
+    {
+      "alias": ".compat/papers/v6/classes-b-s43.svg",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/classes-b-s43.svg"
+    },
+    {
+      "alias": ".compat/papers/v6/collection-a-20261012-terminal.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/collection-a-20261012-terminal.log"
+    },
+    {
+      "alias": ".compat/papers/v6/collection-a-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/collection-a-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6/collection-a.lock",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/collection-a.lock"
+    },
+    {
+      "alias": ".compat/papers/v6/collection-b-20261012-terminal.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/collection-b-20261012-terminal.log"
+    },
+    {
+      "alias": ".compat/papers/v6/collection-b-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/collection-b-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6/collection-b.lock",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/collection-b.lock"
+    },
+    {
+      "alias": ".compat/papers/v6/convergence-a.png",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/convergence-a.png"
+    },
+    {
+      "alias": ".compat/papers/v6/convergence-a.svg",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/convergence-a.svg"
+    },
+    {
+      "alias": ".compat/papers/v6/convergence-b.png",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/convergence-b.png"
+    },
+    {
+      "alias": ".compat/papers/v6/convergence-b.svg",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/convergence-b.svg"
+    },
+    {
+      "alias": ".compat/papers/v6/dataset-dinhan25.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/dataset-dinhan25.log"
+    },
+    {
+      "alias": ".compat/papers/v6/dataset-minhtran0601.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/dataset-minhtran0601.log"
+    },
+    {
+      "alias": ".compat/papers/v6/dataset-odixe0502.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/dataset-odixe0502.log"
+    },
+    {
+      "alias": ".compat/papers/v6/dataset-trietbackup.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/dataset-trietbackup.log"
+    },
+    {
+      "alias": ".compat/papers/v6/figures.md",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/figures.md"
+    },
+    {
+      "alias": ".compat/papers/v6/gates.json",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v6/input.dvc",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v6/kaggle.dvc",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v6/live-status.json",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v6/logs",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs"
+    },
+    {
+      "alias": ".compat/papers/v6/math-probe.json",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/probes/math-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v6/metrics-all.csv",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v6/monitor-current.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/monitor-current.log"
+    },
+    {
+      "alias": ".compat/papers/v6/notebook",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v6/notebook-check-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/notebook-check-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6/notebooks",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v6/per-class-f1.csv",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v6/plot-20261012.log",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/logs/plot-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v6/private_push",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/private_push"
+    },
+    {
+      "alias": ".compat/papers/v6/probes",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/probes"
+    },
+    {
+      "alias": ".compat/papers/v6/quota-before-push.json",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/probes/quota-before-push.json"
+    },
+    {
+      "alias": ".compat/papers/v6/rebuild.md",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v6/report.md",
+      "target": "docs/archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v6/resume_reference.dvc",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v6/runs",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/artifacts/runs"
+    },
+    {
+      "alias": ".compat/papers/v6/scripts",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts"
+    },
+    {
+      "alias": ".compat/papers/v6/smoke.dvc",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v6/wandb-runs.json",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v7-driver-final1-20261012.log",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/v7-driver-final1-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v7-math-20261012.log",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/v7-math-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v7-math-current-20261012.log",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/v7-math-current-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v7-math-final-20261012.log",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/v7-math-final-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v7/artifacts",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts"
+    },
+    {
+      "alias": ".compat/papers/v7/collection-n-20261012.log",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/collection-n-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v7/collection-n.lock",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/collection-n.lock"
+    },
+    {
+      "alias": ".compat/papers/v7/gates.json",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v7/input.dvc",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v7/kaggle.dvc",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v7/live-status.json",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v7/logs",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs"
+    },
+    {
+      "alias": ".compat/papers/v7/math-probe.json",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/probes/math-probe.json"
+    },
+    {
+      "alias": ".compat/papers/v7/metrics-all.csv",
+      "target": "docs/archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v7/monitor-20261012.log",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/logs/monitor-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v7/notebook",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v7/notebooks",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v7/per-class-f1.csv",
+      "target": "docs/archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v7/private_push",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/private_push"
+    },
+    {
+      "alias": ".compat/papers/v7/probes",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/probes"
+    },
+    {
+      "alias": ".compat/papers/v7/rebuild.md",
+      "target": "docs/archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v7/report.md",
+      "target": "docs/archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v7/resume_reference.dvc",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v7/runs",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/artifacts/runs"
+    },
+    {
+      "alias": ".compat/papers/v7/scripts",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/scripts"
+    },
+    {
+      "alias": ".compat/papers/v7/smoke.dvc",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v7/wandb-runs.json",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v8-driver-initial1-20261012.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/v8-driver-initial1-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v8/artifacts",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts"
+    },
+    {
+      "alias": ".compat/papers/v8/collection-h-20261012.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/collection-h-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v8/collection-h-20261013-range.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/collection-h-20261013-range.log"
+    },
+    {
+      "alias": ".compat/papers/v8/collection-h-20261013-resumed.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/collection-h-20261013-resumed.log"
+    },
+    {
+      "alias": ".compat/papers/v8/collection-h-20261013.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/collection-h-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/v8/collection-h.lock",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/collection-h.lock"
+    },
+    {
+      "alias": ".compat/papers/v8/collection-reboot-20261013.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/collection-reboot-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/v8/gates.json",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v8/input-upload-s42.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/input-upload-s42.log"
+    },
+    {
+      "alias": ".compat/papers/v8/input-upload-s43.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/input-upload-s43.log"
+    },
+    {
+      "alias": ".compat/papers/v8/input.dvc",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v8/kaggle.dvc",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v8/live-download-s42.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/live-download-s42.log"
+    },
+    {
+      "alias": ".compat/papers/v8/live-status-s42.json",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/probes/live-status-s42.json"
+    },
+    {
+      "alias": ".compat/papers/v8/live-status.json",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v8/logs",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs"
+    },
+    {
+      "alias": ".compat/papers/v8/metrics-all.csv",
+      "target": "docs/archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v8/monitor-20261012.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/monitor-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v8/monitor-s42-unresolved-20261012.log",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/logs/monitor-s42-unresolved-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v8/notebook",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v8/notebooks",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v8/per-class-f1.csv",
+      "target": "docs/archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v8/private_push",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/private_push"
+    },
+    {
+      "alias": ".compat/papers/v8/probes",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/probes"
+    },
+    {
+      "alias": ".compat/papers/v8/rebuild.md",
+      "target": "docs/archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v8/report.md",
+      "target": "docs/archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v8/resume_reference.dvc",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v8/runs",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/artifacts/runs"
+    },
+    {
+      "alias": ".compat/papers/v8/scripts",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/scripts"
+    },
+    {
+      "alias": ".compat/papers/v8/smoke.dvc",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v8/wandb-runs.json",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/papers/v9-driver-final2-20261012.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/v9-driver-final2-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v9-driver-final3-20261012.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/v9-driver-final3-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v9-driver-initial1-20261012.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/v9-driver-initial1-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v9-notebooks-20261012.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/v9-notebooks-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v9/artifacts",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-a-20261012.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-a-20261013-priority.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261013-priority.log"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-a-20261013-range.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261013-range.log"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-a-20261013-resumed.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261013-resumed.log"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-a-20261013.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-a.lock",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a.lock"
+    },
+    {
+      "alias": ".compat/papers/v9/collection-reboot-20261013.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-reboot-20261013.log"
+    },
+    {
+      "alias": ".compat/papers/v9/gates.json",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/probes/gates.json"
+    },
+    {
+      "alias": ".compat/papers/v9/input-upload-s42.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/input-upload-s42.log"
+    },
+    {
+      "alias": ".compat/papers/v9/input-upload-s43.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/input-upload-s43.log"
+    },
+    {
+      "alias": ".compat/papers/v9/input.dvc",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc"
+    },
+    {
+      "alias": ".compat/papers/v9/kaggle.dvc",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc"
+    },
+    {
+      "alias": ".compat/papers/v9/live-status-s43.json",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/probes/live-status-s43.json"
+    },
+    {
+      "alias": ".compat/papers/v9/live-status.json",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/probes/live-status.json"
+    },
+    {
+      "alias": ".compat/papers/v9/logs",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs"
+    },
+    {
+      "alias": ".compat/papers/v9/metrics-all.csv",
+      "target": "docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/metrics-all.csv"
+    },
+    {
+      "alias": ".compat/papers/v9/monitor-20261012.log",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/logs/monitor-20261012.log"
+    },
+    {
+      "alias": ".compat/papers/v9/notebook",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v9/notebooks",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/notebooks"
+    },
+    {
+      "alias": ".compat/papers/v9/per-class-f1.csv",
+      "target": "docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/per-class-f1.csv"
+    },
+    {
+      "alias": ".compat/papers/v9/private_push",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/private_push"
+    },
+    {
+      "alias": ".compat/papers/v9/probes",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/probes"
+    },
+    {
+      "alias": ".compat/papers/v9/rebuild.md",
+      "target": "docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/rebuild.md"
+    },
+    {
+      "alias": ".compat/papers/v9/report.md",
+      "target": "docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/report.md"
+    },
+    {
+      "alias": ".compat/papers/v9/resume_reference.dvc",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc"
+    },
+    {
+      "alias": ".compat/papers/v9/runs",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/runs"
+    },
+    {
+      "alias": ".compat/papers/v9/scripts",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/scripts"
+    },
+    {
+      "alias": ".compat/papers/v9/smoke.dvc",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc"
+    },
+    {
+      "alias": ".compat/papers/v9/wandb-runs.json",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/probes/wandb-runs.json"
+    },
+    {
+      "alias": ".compat/scripts/audit_book_cost.py",
+      "target": "archive/tools/audit_book_cost.py"
+    },
+    {
+      "alias": ".compat/scripts/budget_tiers.py",
+      "target": "archive/tools/budget_tiers.py"
+    },
+    {
+      "alias": ".compat/scripts/build_navigation.py",
+      "target": "archive/tools/build_navigation.py"
+    },
+    {
+      "alias": ".compat/scripts/check_boundary_branches.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/check_boundary_branches.py"
+    },
+    {
+      "alias": ".compat/scripts/check_boundary_cells.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/check_boundary_cells.py"
+    },
+    {
+      "alias": ".compat/scripts/check_boundary_notebooks.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/check_boundary_notebooks.py"
+    },
+    {
+      "alias": ".compat/scripts/check_boundary_utility.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/check_boundary_utility.py"
+    },
+    {
+      "alias": ".compat/scripts/check_full_continuation.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/check_full_continuation.py"
+    },
+    {
+      "alias": ".compat/scripts/check_full_driver.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/check_full_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_full_import.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/check_full_import.py"
+    },
+    {
+      "alias": ".compat/scripts/check_full_notebooks.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/check_full_notebooks.py"
+    },
+    {
+      "alias": ".compat/scripts/check_full_verifier_package.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/check_full_verifier_package.py"
+    },
+    {
+      "alias": ".compat/scripts/check_hybrid_full.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts/check_hybrid_full.py"
+    },
+    {
+      "alias": ".compat/scripts/check_new_fl_artifacts.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/check_new_fl_artifacts.py"
+    },
+    {
+      "alias": ".compat/scripts/check_new_fl_math.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/check_new_fl_math.py"
+    },
+    {
+      "alias": ".compat/scripts/check_new_fl_notebooks.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/check_new_fl_notebooks.py"
+    },
+    {
+      "alias": ".compat/scripts/check_teacher_notebooks.py",
+      "target": "archive/tools/check_teacher_notebooks.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v10_driver.py",
+      "target": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/scripts/check_joint_energy_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v2_driver.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/check_sketch_subspace_ratio_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v2_math.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/check_sketch_subspace_ratio_math.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v2_notebooks.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/check_sketch_subspace_ratio_notebooks.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v3_abort.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/check_proxy_carrier_abort.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v3_driver.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/check_proxy_carrier_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v3_math.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/check_proxy_carrier_math.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v4_mala.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/check_support_mala_mala.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v4_support.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/check_support_mala_support.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v5_budget.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/check_synthetic_book_budget.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v5_driver.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/check_synthetic_book_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v6_budget.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/check_geometry_budget.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v6_driver.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/check_geometry_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v6_math.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/check_geometry_math.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v7_driver.py",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/scripts/check_nystrom_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v7_math.py",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/scripts/check_nystrom_math.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v8_driver.py",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/scripts/check_hybrid_pilot_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/check_v9_driver.py",
+      "target": "archive/methods/anchor-function-residual/builds/anchor-residual/scripts/check_anchor_residual_driver.py"
+    },
+    {
+      "alias": ".compat/scripts/diagnose_v2_a.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/diagnose_sketch_subspace_ratio_a.py"
+    },
+    {
+      "alias": ".compat/scripts/freeze_v4_schema.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/freeze_support_mala_schema.py"
+    },
+    {
+      "alias": ".compat/scripts/inspect_boundary_startup.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/inspect_boundary_startup.py"
+    },
+    {
+      "alias": ".compat/scripts/inspect_hybrid_startup.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts/inspect_hybrid_startup.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/boundary_logging.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/boundary_logging.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/boundary_resume.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/boundary_resume.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/collect_boundary_calibration.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/collect_boundary_calibration.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/collect_full.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/collect_full.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/collect_hybrid_full.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts/collect_hybrid_full.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/collect_new_fl.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/collect_new_fl.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/collect_p2.py",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts/collect_p2.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/collect_v2.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/collect_sketch_subspace_ratio.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/full_resume.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/full_resume.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_boundary_calibration.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/gen_boundary_calibration.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_boundary_utility.py",
+      "target": "methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/gen_boundary_utility.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_full_continuation.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/gen_full_continuation.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_full_mount_probe.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/gen_full_mount_probe.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_full_validation.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/gen_full_validation.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_hybrid_dataset_resume.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts/gen_hybrid_dataset_resume.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_hybrid_full.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts/gen_hybrid_full.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_new_fl.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/gen_new_fl.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_p2.py",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts/gen_p2.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_teacher.py",
+      "target": "archive/tools/kaggle/gen_teacher.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v2.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/gen_sketch_subspace_ratio.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v3.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/gen_proxy_carrier.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v4.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/gen_support_mala.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v5.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/gen_synthetic_book.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v6.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/gen_geometry.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v7.py",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/scripts/gen_nystrom.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/gen_v8.py",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/scripts/gen_hybrid_pilot.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/stage_hybrid_checkpoint.py",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/scripts/stage_hybrid_checkpoint.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/teacher_controller.py",
+      "target": "archive/tools/kaggle/teacher_controller.py"
+    },
+    {
+      "alias": ".compat/scripts/monitor_v2.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/monitor_sketch_subspace_ratio.py"
+    },
+    {
+      "alias": ".compat/scripts/p2_queue.txt",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts/p2_queue.txt"
+    },
+    {
+      "alias": ".compat/scripts/pilot_queue.txt",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/scripts/pilot_queue.txt"
+    },
+    {
+      "alias": ".compat/scripts/plot_v2_ratio.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/plot_sketch_subspace_ratio_ratio.py"
+    },
+    {
+      "alias": ".compat/scripts/preflight_v2_wandb.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/preflight_sketch_subspace_ratio_wandb.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_h2_input_stats.py",
+      "target": "archive/methods/gaussian-class-moments/builds/input-statistics-probe/scripts/probe_h2_input_stats.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_k5_missing.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/probe_k5_missing.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_new_fl_contacts.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/probe_new_fl_contacts.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_nystrom_math.py",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/scripts/probe_nystrom_math.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v2_basis.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/probe_sketch_subspace_ratio_basis.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v3_energy.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/probe_proxy_carrier_energy.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v3_support.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/probe_proxy_carrier_support.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v4_gradient.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/probe_support_mala_gradient.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v4_ratio_score.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/probe_support_mala_ratio_score.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v5_algebra.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/probe_synthetic_book_algebra.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v5_anchor_targets.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/probe_synthetic_book_anchor_targets.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v5_anchors.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/probe_synthetic_book_anchors.py"
+    },
+    {
+      "alias": ".compat/scripts/probe_v5_books.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/probe_synthetic_book_books.py"
+    },
+    {
+      "alias": ".compat/scripts/reorganize_project.py",
+      "target": "archive/tools/layout-migrations/previous-layout/layout-20261014/reorganize_project.py"
+    },
+    {
+      "alias": ".compat/scripts/report_full_validation.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/report_full_validation.py"
+    },
+    {
+      "alias": ".compat/scripts/report_new_fl.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/report_new_fl.py"
+    },
+    {
+      "alias": ".compat/scripts/report_p2.py",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts/report_p2.py"
+    },
+    {
+      "alias": ".compat/scripts/report_pilot.py",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/scripts/report_pilot.py"
+    },
+    {
+      "alias": ".compat/scripts/report_recent.py",
+      "target": "archive/tools/report_recent.py"
+    },
+    {
+      "alias": ".compat/scripts/report_v2.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/report_sketch_subspace_ratio.py"
+    },
+    {
+      "alias": ".compat/scripts/report_v3.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/report_proxy_carrier.py"
+    },
+    {
+      "alias": ".compat/scripts/report_v4.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/report_support_mala.py"
+    },
+    {
+      "alias": ".compat/scripts/report_v5.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/report_synthetic_book.py"
+    },
+    {
+      "alias": ".compat/scripts/report_v6.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/report_geometry.py"
+    },
+    {
+      "alias": ".compat/scripts/restore_audit_metadata.py",
+      "target": "archive/tools/restore_audit_metadata.py"
+    },
+    {
+      "alias": ".compat/scripts/run_p2_queue.sh",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts/run_p2_queue.sh"
+    },
+    {
+      "alias": ".compat/scripts/run_pilot_queue.sh",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/scripts/run_pilot_queue.sh"
+    },
+    {
+      "alias": ".compat/scripts/tidy_build_aliases.py",
+      "target": "archive/tools/layout-migrations/previous-layout/layout-20261014/tidy_build_aliases.py"
+    },
+    {
+      "alias": ".compat/scripts/tidy_build_logs.py",
+      "target": "archive/tools/layout-migrations/previous-layout/layout-20261014/tidy_build_logs.py"
+    },
+    {
+      "alias": ".compat/scripts/tidy_hub_documents.py",
+      "target": "archive/tools/layout-migrations/previous-layout/layout-20261014/tidy_hub_documents.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_full_sample.py",
+      "target": "methods/shared-baselines/builds/federated-baselines-full/scripts/verify_full_sample.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_new_fl.py",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/scripts/verify_new_fl.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_p2.py",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/scripts/verify_p2.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_teacher.py",
+      "target": "archive/tools/verify_teacher.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v2.py",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/scripts/verify_sketch_subspace_ratio.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v3.py",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers/scripts/verify_proxy_carrier.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v4.py",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala/scripts/verify_support_mala.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v5.py",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/scripts/verify_synthetic_book.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v6.py",
+      "target": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/scripts/verify_geometry.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v7.py",
+      "target": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/scripts/verify_nystrom.py"
+    },
+    {
+      "alias": ".compat/scripts/verify_v8.py",
+      "target": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/scripts/verify_hybrid_pilot.py"
+    },
+    {
+      "alias": ".compat/scripts/watch_current_reports.py",
+      "target": "archive/tools/watch_current_reports.py"
+    },
+    {
+      "alias": ".compat/scripts/watch_reports.py",
+      "target": "archive/tools/watch_reports.py"
+    },
+    {
+      "alias": "archive/methods/class-prototypes/builds/pilot-baselines",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines"
+    },
+    {
+      "alias": "archive/methods/federated-head-transfer/builds/pilot-baselines",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines"
+    },
+    {
+      "alias": "archive/methods/fourier-distribution-sketch/builds/static-synthetic-books",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books"
+    },
+    {
+      "alias": "archive/methods/gaussian-class-moments/builds/fragmented-snapshots",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots"
+    },
+    {
+      "alias": "archive/methods/gaussian-class-moments/builds/pilot-baselines",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines"
+    },
+    {
+      "alias": "archive/methods/gaussian-density-ratio/builds/countsketch-subspace-ratio",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio"
+    },
+    {
+      "alias": "archive/methods/gaussian-logit-distillation/builds/pilot-baselines",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines"
+    },
+    {
+      "alias": "archive/methods/gaussian-mala-transport/builds/support-mala",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala"
+    },
+    {
+      "alias": "archive/methods/gaussian-support-constraints/builds/support-mala",
+      "target": "archive/methods/gaussian-sampling/builds/support-mala"
+    },
+    {
+      "alias": "archive/methods/gradient-synthetic-books/builds/anchor-synthetic-books",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books"
+    },
+    {
+      "alias": "archive/methods/kernel-anchor-distillation/builds/anchor-synthetic-books",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books"
+    },
+    {
+      "alias": "archive/methods/latent-mean-synthetic-books/builds/anchor-synthetic-books",
+      "target": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books"
+    },
+    {
+      "alias": "archive/methods/latent-mean-synthetic-books/builds/static-synthetic-books",
+      "target": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books"
+    },
+    {
+      "alias": "archive/methods/proxy-countsketch/builds/countsketch-subspace-ratio",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio"
+    },
+    {
+      "alias": "archive/methods/proxy-mutual-distillation/builds/fragmented-snapshots",
+      "target": "archive/methods/contact-fragmentation/builds/fragmented-snapshots"
+    },
+    {
+      "alias": "archive/methods/proxy-mutual-distillation/builds/pilot-baselines",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines"
+    },
+    {
+      "alias": "archive/methods/proxy-orthogonal-projection/builds/proxy-carriers",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers"
+    },
+    {
+      "alias": "archive/methods/proxy-powersgd/builds/proxy-carriers",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers"
+    },
+    {
+      "alias": "archive/methods/proxy-random-coordinates/builds/proxy-carriers",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers"
+    },
+    {
+      "alias": "archive/methods/proxy-rolling-subnetwork/builds/proxy-carriers",
+      "target": "archive/methods/proxy-compression/builds/proxy-carriers"
+    },
+    {
+      "alias": "archive/methods/proxy-seeded-subspace/builds/countsketch-subspace-ratio",
+      "target": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio"
+    },
+    {
+      "alias": "methods/gaussian-class-moments/builds/federated-baselines-full",
+      "target": "methods/shared-baselines/builds/federated-baselines-full"
+    },
+    {
+      "alias": "methods/proxy-mutual-distillation/builds/federated-baselines-full",
+      "target": "methods/shared-baselines/builds/federated-baselines-full"
+    },
+    {
+      "alias": "mh",
+      "target": ".compat/mh"
+    },
+    {
+      "alias": "papers",
+      "target": ".compat/papers"
+    },
+    {
+      "alias": ".compat/scripts/plot_audited.py",
+      "target": "archive/tools/plot_compression_pilots.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/register_runs.py",
+      "target": "archive/tools/kaggle/register_pilot_identities.py"
+    },
+    {
+      "alias": ".compat/scripts/kaggle/push_kaggle.py",
+      "target": "archive/tools/kaggle/push_legacy_kernel.py"
+    }
+  ],
+  "contains_file_copies": false
+}

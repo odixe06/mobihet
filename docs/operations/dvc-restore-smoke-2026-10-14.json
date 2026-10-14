@@ -1,0 +1,19 @@
+{
+  "isolated_checkout": true,
+  "native_dvc_pull_pass": true,
+  "targets": [
+    {
+      "manifest": "methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc",
+      "restored_files": 76,
+      "payload_md5_pass": true,
+      "output": "artifacts/controller-fixture"
+    },
+    {
+      "manifest": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc",
+      "restored_files": 44,
+      "payload_md5_pass": true,
+      "output": "artifacts/runs"
+    }
+  ],
+  "limit": "Two lightweight complete directory targets; heavy datasets/checkpoints not pulled."
+}

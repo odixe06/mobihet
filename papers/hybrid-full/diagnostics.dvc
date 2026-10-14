@@ -1,6 +1,0 @@
-outs:
-- md5: b4c3578df19e67fff29bba3066d02465.dir
-  size: 935609
-  nfiles: 20
-  hash: md5
-  path: diagnostics

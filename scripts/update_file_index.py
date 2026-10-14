@@ -1,52 +1,49 @@
-"""Rebuild docs/file-index.md from non-ignored workspace files, without reading contents."""
+"""Canonical file index plus DVC/artifact routes; omit compatibility symlinks and secrets."""
+import json
+import os
 import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
-ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / 'docs/file-index.md'
+ROOT=Path(__file__).resolve().parents[1]
+INDEX=ROOT/'docs/file-index.md'
 
 
 def main():
-    raw = subprocess.check_output(['rg', '--files', '--hidden', '-g', '!.git/**', '-0'], cwd=ROOT)
-    files = {p for p in raw.decode().split('\0') if p and (ROOT / p).is_file()}
-    files.add(INDEX.relative_to(ROOT).as_posix())
-    groups = {}
-    for path in sorted(files):
-        group = path.split('/')[0] if '/' in path else 'root'
-        groups.setdefault(group, []).append(path)
-    lines = ['# Index file toàn dự án', '',
-             'Danh mục tự sinh bằng `python3 scripts/update_file_index.py`. Định tuyến theo nhu cầu: [README](../README.md).', '',
-             f'Liệt kê {len(files)} file workspace không bị ignore; dùng `rg`, không cần commit/stage. Không đọc nội dung file. '
-             'Artifact/data/key bị ignore được định tuyến theo thư mục bên dưới, không liệt kê từng checkpoint.', '',
-             '## Artifact và dữ liệu bị ignore', '',
-             '| vị trí | nội dung / nơi tra cứu |', '|---|---|',
-             '| `papers/pilot/fixture/` | Fixture; [fixture.dvc](../papers/pilot/fixture.dvc) |',
-             '| `papers/pilot/runs/` | P1; [runs.dvc](../papers/pilot/runs.dvc), [kết quả](research/probes/pilot-p1.md) |',
-             '| `papers/p2/kaggle/`, `papers/p2/runs/`, `papers/p2/source_audit/` | P2 pulled outputs/source; [audit](../papers/p2/audit.json) |',
-             '| `papers/new-fl/kaggle/`, `papers/new-fl/runs/` | S-a; marker `VERIFIED.json`, weights/predictions; [ledger](../papers/new-fl/rebuild.md) |',
-             '| `papers/new-fl/input/`, `papers/new-fl/smoke/`, `papers/new-fl/resume_reference/` | Staging và smoke; [ledger](../papers/new-fl/rebuild.md) |',
-             '| `papers/v2/`, `papers/v3/`, `papers/v4/`, `papers/v5/` | Source/artifact theo đợt; [phương pháp](../proposals/README.md), [restore](operations/backup.md) |',
-             '| `papers/v6/`, `papers/v7/`, `papers/v8/`, `papers/v9/`, `papers/v10/` | Geometry/Nyström/hybrid/residual/energy: input staging, pulled `kaggle/`, smoke/resume; [run và ledger](operations/expansion-2026-10-12.md), [phương pháp](../proposals/README.md) |',
-             '| `papers/full-validation/` | Full H1/H2: input staging, calibration/resume, pulled `kaggle/`; [ledger/budget](../papers/full-validation/rebuild.md), [contract](research/full-h1-h2.md) |',
-             '| `papers/hybrid-full/` | Full Hybrid: isolated source, input staging, notebook và smoke/resume; [ledger](../papers/hybrid-full/rebuild.md), [contract](research/full-hybrid.md) |',
-             '| `papers/boundary-cells/` | Fixed cell counts: calibration, input, smoke, pulled artifacts; [ledger](../papers/boundary-cells/rebuild.md), [phương pháp](../proposals/boundary-cell-counts/README.md) |',
-             '| `papers/<method>/private_push/` | Notebook private chứa key tạm; [quy định W&B](../LESSONS.md) |',
-             '| `../dataset/`, DVC remote và archive | Dữ liệu gốc/phục hồi; [dataset](../knowledge/dataset.md), [backup](operations/backup.md) |', '',
-             'DVC chỉ quản lý target có `.dvc`; không suy artifact mới đã backup từ sự tồn tại của thư mục. '
-             'Snapshot code chạy nằm trong notebook/input/output; đối chiếu manifest trước tái sử dụng.', '']
-    for group in ('root', 'proposals', 'docs', 'knowledge', 'mh', 'scripts', 'papers', '.agents', '.claude', '.dvc'):
-        if group in groups:
-            lines += [f'## {group}', '']
-            lines += [f'- [{p}](../{quote(p, safe="/._-")})' for p in groups.pop(group)]
-            lines.append('')
-    for group, paths in sorted(groups.items()):
-        lines += [f'## {group}', '']
-        lines += [f'- [{p}](../{quote(p, safe="/._-")})' for p in paths]
+    raw=subprocess.check_output(['rg','--files','--hidden','-g','!.git/**','-0'],cwd=ROOT).decode().split('\0')
+    files={p for p in raw if p and (ROOT/p).is_file() and not (ROOT/p).is_symlink()}
+    files.update(('docs/file-index.md','docs/archive/file-index.md'))
+    archived={p for p in files if p.startswith(('archive/','docs/archive/'))}
+    working=files-archived
+    groups={}
+    for p in sorted(working):groups.setdefault(p.split('/')[0] if '/' in p else 'root',[]).append(p)
+    lines=['# Index từng file toàn dự án','',
+        '[Mục lục tổng quan](README.md) · [Đề xuất và trạng thái](proposals.md) · [Cấu trúc](operations/project-layout.md)','',
+        f'{len(working)} file khu làm việc; {len(archived)} file tại [index archive](archive/file-index.md). '
+        f'Tổng {len(files)} file canonical; không nhân đôi alias hoặc liệt kê key/checkpoints.','',
+        'Tự sinh: `python3 scripts/update_file_index.py`. Artifact remote-only có route DVC, không coi thiếu local là chưa từng chạy.','',
+        '## Artifact và các build','',
+        '| build / vị trí | thiết kế, kết quả và metadata |','|---|---|']
+    registry=ROOT/'docs/operations/workspace-layout.json'
+    for old,b in json.loads(registry.read_text())['builds'].items():
+        if b['archived']:continue
+        doc=f'methods/{b["family"]}/builds/{b["build"]}/README.md'
+        base=ROOT/b['path']
+        metadata=', '.join(f'[{p.name}](../{quote(str(p.relative_to(ROOT)),safe="/._-")})' for p in sorted(base.glob('*.dvc')))
+        lines.append(f'| `{b["path"]}/artifacts/` ({old}) | [{b["build"]}]({doc}); {metadata or "chưa có DVC metadata"} |')
+    lines+=['','Private inline notebooks: `methods/<method>/builds/<build>/private_push/` ignored0600; không phải public source.',
+        'Dataset gốc: [knowledge](../knowledge/README.md). [Khôi phục DVC](operations/backup.md).','']
+    for group in ['root','docs','methods','core','knowledge','scripts','logs','.agents','.claude','.dvc']+sorted(groups):
+        if group not in groups:continue
+        lines += [f'## {group}','']
+        lines += [f'- [{p}](../{quote(p,safe="/._-")})' for p in groups.pop(group)]
         lines.append('')
-    INDEX.write_text('\n'.join(lines), encoding='utf-8')
-    print(f'{INDEX.relative_to(ROOT)}: {len(files)} files')
+    INDEX.write_text('\n'.join(lines).rstrip()+'\n')
+    history=['# Index archive','', '[Mục lục hiện tại](../README.md) · [Index khu làm việc](../file-index.md) · '
+        '[Các build đã kết thúc](README.md)','',f'{len(archived)} file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.','']
+    for p in sorted(archived):history.append(f'- [{p}]({quote(os.path.relpath(ROOT/p,ROOT/"docs/archive"),safe="/._-")})')
+    (ROOT/'docs/archive/file-index.md').write_text('\n'.join(history)+'\n')
+    print('Canonical index:',len(working),'working;',len(archived),'archive;',len(files),'total')
 
 
-if __name__ == '__main__':
-    main()
+if __name__=='__main__':main()

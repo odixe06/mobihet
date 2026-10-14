@@ -1,0 +1,40 @@
+{
+  "helpers": {
+    "import_copy_and_refusals": true,
+    "wandb_preflight_no_step_advance": true,
+    "limit": "bounded import fixture; actual production parent reverified on T4 before data decode"
+  },
+  "controllers": [
+    {
+      "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+      "case": "normal",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+      "case": "budget",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+      "case": "failure",
+      "pass_check": true
+    },
+    {
+      "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+      "case": "normal",
+      "pass_check": true
+    },
+    {
+      "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+      "case": "budget",
+      "pass_check": true
+    },
+    {
+      "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+      "case": "failure",
+      "pass_check": true
+    }
+  ],
+  "scientific_source_changed": false
+}

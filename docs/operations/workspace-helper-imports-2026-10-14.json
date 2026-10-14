@@ -1,0 +1,17 @@
+{
+  "imports": [
+    "scripts.kaggle.gen_full_resume_batch",
+    "scripts.kaggle.gen_full_validation",
+    "scripts.kaggle.gen_full_continuation",
+    "scripts.kaggle.gen_hybrid_full",
+    "scripts.kaggle.gen_hybrid_dataset_resume",
+    "scripts.kaggle.gen_boundary_utility",
+    "scripts.kaggle.boundary_logging",
+    "scripts.kaggle.boundary_resume",
+    "scripts.kaggle.full_resume",
+    "scripts.kaggle.collect_boundary_calibration",
+    "scripts.check_v3_driver"
+  ],
+  "pass_check": true,
+  "limits": "Parent helper imports/path reads only; no train, new notebook/tag or remote push."
+}

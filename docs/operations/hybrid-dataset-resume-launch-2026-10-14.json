@@ -1,0 +1,94 @@
+{
+  "rows": [
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+      "session_hours": 5.0,
+      "quota": {
+        "user": "minhtrit06",
+        "gpu_left": 11.956557287222221,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-17T00:00:00"
+      },
+      "checkpoint": {
+        "dataset": "minhtrit06/mobihet-hybrid-checkpoint1-20261014",
+        "parent": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
+        "files": 24,
+        "bytes": 635619531,
+        "verified_full_parent": true,
+        "private": true,
+        "uploaded": true
+      },
+      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261014-dsresume-v1",
+      "pushed": true
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
+      "session_hours": 4.8,
+      "quota": {
+        "user": "trietbackup",
+        "gpu_left": 6.161047222222223,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-17T00:00:00"
+      },
+      "checkpoint": {
+        "dataset": "trietbackup/mobihet-hybrid-checkpoint3-20261014",
+        "parent": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
+        "files": 26,
+        "bytes": 802381519,
+        "verified_full_parent": true,
+        "private": true,
+        "uploaded": true
+      },
+      "folder": "papers/hybrid-full/notebook/hybf3-s42-20261014-dsresume-v1",
+      "pushed": true
+    }
+  ],
+  "controller_checks": [
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+      "case": "normal",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+      "case": "boundary",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+      "case": "exhausted",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
+      "case": "worker-fail",
+      "pass_check": true
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
+      "case": "normal",
+      "pass_check": true
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
+      "case": "boundary",
+      "pass_check": true
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
+      "case": "exhausted",
+      "pass_check": true
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
+      "case": "worker-fail",
+      "pass_check": true
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "modules": [
+    {
+      "module": "mh",
+      "canonical": "core/__init__.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.archs",
+      "canonical": "core/legacy_model_factory.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.channel",
+      "canonical": "core/rsu_contact.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.dagsnet",
+      "canonical": "core/dagsnet.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.metrics",
+      "canonical": "core/classification_metrics.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.mobility",
+      "canonical": "core/vehicle_mobility.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.model_packet",
+      "canonical": "core/model_codec.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.new_fl",
+      "canonical": "core/artifact_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.new_methods",
+      "canonical": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/source/mh/distribution_matching.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.p2",
+      "canonical": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/source/mh/fragmented_snapshot_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.pilot",
+      "canonical": "core/pilot_runtime.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.prepare",
+      "canonical": "core/prepare_data.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.teacher_base",
+      "canonical": "core/teacher_training.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.teacher_driver",
+      "canonical": "core/teacher_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v10_energy",
+      "canonical": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/source/mh/gaussian_base_energy.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v10_run",
+      "canonical": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/source/mh/joint_energy_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v2_math",
+      "canonical": "core/vector_codecs.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v2_methods",
+      "canonical": "core/shared_prior_and_proxy.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v2_run",
+      "canonical": "core/federated_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v3_dense",
+      "canonical": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/dense_proxy_control.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v3_math",
+      "canonical": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/proxy_carrier_codecs.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v3_methods",
+      "canonical": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/proxy_carrier_methods.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v3_run",
+      "canonical": "archive/methods/proxy-compression/builds/proxy-carriers/source/mh/proxy_carrier_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v4_mala",
+      "canonical": "archive/methods/gaussian-sampling/builds/support-mala/source/mh/mala_transport.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v4_run",
+      "canonical": "archive/methods/gaussian-sampling/builds/support-mala/source/mh/support_mala_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v4_schema",
+      "canonical": "core/feature_support_schema.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v4_support",
+      "canonical": "archive/methods/gaussian-sampling/builds/support-mala/source/mh/support_conditioned_gaussian.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v5_anchor",
+      "canonical": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/source/mh/kernel_anchor_targets.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v5_books",
+      "canonical": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/source/mh/gradient_latent_books.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v5_run",
+      "canonical": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/source/mh/synthetic_books_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v6_geometry",
+      "canonical": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/source/mh/geometry_moments.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v6_run",
+      "canonical": "core/expanded_fixture_runtime.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v6_schema",
+      "canonical": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/source/mh/geometry_feature_schema.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v7_basis",
+      "canonical": "core/covariance_basis.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v7_nystrom",
+      "canonical": "core/gaussian_moments.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v7_run",
+      "canonical": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/source/mh/covariance_sketch_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v8_hybrid",
+      "canonical": "methods/gaussian-proxy-hybrid/builds/hybrid-full/source/mh/hybrid_models.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v8_run",
+      "canonical": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/source/mh/hybrid_pilot_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v9_anchor",
+      "canonical": "archive/methods/anchor-function-residual/builds/anchor-residual/source/mh/anchor_residual_teacher.py",
+      "hash_preserved": true,
+      "import_pass": true
+    },
+    {
+      "module": "mh.v9_run",
+      "canonical": "archive/methods/anchor-function-residual/builds/anchor-residual/source/mh/anchor_residual_driver.py",
+      "hash_preserved": true,
+      "import_pass": true
+    }
+  ],
+  "shared": 19,
+  "build_owned": 21,
+  "complete_legacy_fingerprint_preserved": true,
+  "pilot_root_unchanged": true,
+  "copied_runtime_imports_pass": true,
+  "limits": "CPU import/syntax/hash checks; no local training, no GPU or remote bitwise claim."
+}

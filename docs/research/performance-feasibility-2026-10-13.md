@@ -5,8 +5,8 @@ không suy khả năng tăng IDS metrics từ việc codec, đạo hàm hoặc n
 Mức cao/vừa/thấp là thứ tự ưu tiên định tính, không phải xác suất đã hiệu chuẩn.
 Không đủ dữ liệu để dự báo một giá trị F1 r50 hoặc khoảng tin cậy số cho phương pháp mới.
 
-Đọc cùng [bằng chứng hiện có](../../proposals/evidence-summary.md),
-[trạng thái phương pháp](../../proposals/status-summary.md),
+Đọc cùng [bằng chứng hiện có](../archive/overview/evidence-summary.md),
+[trạng thái phương pháp](../archive/overview/status-summary.md),
 [nguồn primary cho hướng mới](new-fl-primary-sources-2026-10-13.md).
 
 ## 1. Hai câu hỏi phải tách
@@ -32,9 +32,9 @@ Accuracy, micro và weighted có thể tăng trong khi macro giảm; không dự
 | Các adaptation paired FAIL V2–V7 | Own/shuffle/reference đã bác cổng chất lượng hoặc numerical/cost; riêng V10 F1 candidate r20 chưa đo | **Thấp cho cấu hình đã thử** | **Không có cơ sở mở dài nguyên trạng** | Phải sửa cơ chế từ nguyên nhân có thể kiểm chứng; không kéo dài để tìm round thắng hoặc đổi headline |
 | V9 residual anchor teacher | Seed42 cost PASS, quality FAIL vs class-mean/hard/local; seed43 còn audit | **Thấp cho adaptation hiện tại** | **Thấp**: fit MSE nhỏ chưa mang ranh giới hữu ích | Không hơn class-mean/hard labels; không mở private KD hoặc kiểm dài từ cost/fit PASS |
 
-Nguồn số: [P1](probes/pilot-p1.md), [V8](../../papers/v8/report.md),
-[full calibration](../../papers/full-validation/report.md),
-[V9](../../papers/v9/report.md), [V10](../../papers/v10/report.md).
+Nguồn số: [P1](../archive/research/probes/pilot-p1.md), [V8](../archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/results/report.md),
+[full calibration](../methods/shared-baselines/builds/federated-baselines-full/results/report.md),
+[V9](../archive/methods/anchor-function-residual/builds/anchor-residual/results/report.md), [V10](../archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/results/report.md).
 Các run full hiện tại giữ source/HP/quy tắc và lịch 50 round; đây không phải đề nghị sửa run đang chạy.
 
 ## 3. Hướng khác cơ chế hiện tại: dự báo có điều kiện
@@ -62,7 +62,7 @@ Probe target PASS chỉ là điều kiện cần, không dự báo DAGSNet F1 PA
 **Sau bounded probe đầu tiên, giữ dự báo trước ở trên:** P4 table diagnostic hơn own/shuffle,
 nhưng entropy/log16≈0,963, F1≈0,228; P2 thiếu coverage vài lớp.
 Ưu tiên tín hiệu P4 hơn P2, vẫn kiểm hai cỡ; chưa nâng dự báo cao hoặc hứa hơn Gaussian/DML.
-[Chi tiết/giới hạn](../../proposals/boundary-cell-counts/design.md).
+[Chi tiết/giới hạn](../methods/boundary-cell-counts/design.md).
 
 ### ResponseRisk — chia sẻ trọng số consistency dưới stress receiver local
 
@@ -82,7 +82,7 @@ chưa dùng train teacher. Fail fidelity thì không train. Cost hai forward ph�
 Ưu tiên first-order consistency trước penalty đạo hàm bậc hai.
 
 Bounded fidelity mới:4toy extractor cases và40.951/40.960sample swaps giữ derived closure/policy.
-Đây là điều kiện cần; chưa nâng dự báo utility. [Probe](../../papers/receiver-response/fidelity-probe.json).
+Đây là điều kiện cần; chưa nâng dự báo utility. [Probe](../../methods/receiver-response-consistency/builds/receiver-augmentation/probes/fidelity-probe.json).
 
 ### InputSensitivity — consensus gradient input-margin
 
@@ -128,8 +128,8 @@ R1/R2 vẫn chưa được xác minh đầy đủ bằng pilot DAGSNet không gi
   Giữ dự báo thấp/chưa rõ so Gaussian mạnh; mở paired r20 với controls đã khóa.
   Không chọn riêng P4/seed hoặc sửa teacher theo kết quả calibration.
 
-[10 metrics H1/H2 cuối](../../papers/full-validation/latest-rounds.md),
-[calibration BoundaryCells](../../papers/boundary-cells/calibration-report.md).
+[10 metrics H1/H2 cuối](../methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md),
+[calibration BoundaryCells](../methods/boundary-cell-counts/builds/boundary-cell-pilot/results/calibration-report.md).
 
 ## 6. Cập nhật audit full Hybrid ngày14/10
 
@@ -142,7 +142,7 @@ Hybrid/DML vẫn ưu tiên kiểm dài; Gaussian có lợi so own nhưng gp gi�
 không có cơ sở hứa tăng metrics bằng kéo dài đơn thuần. Cost Hybrid phải đọc từ actualT4:
 controls khôngGaussian có worst-round cao hơn, hai kernel dừng budget nhưng giữ checkpoint hợp lệ.
 Đây là hạn chế budget/calibration, không quality FAIL r50 hoặc numerical failure.
-[Số đo và giới hạn](../../papers/hybrid-full/feasibility-20261014.md).
+[Số đo và giới hạn](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md).
 
 BoundaryCells vẫn costPASS/chưa utility; EMA cả hai nền và cổng r20 đã chốt/chưa source.
 ResponseRisk quyết định mới nhất chỉlocalaugmentation trước; chia sẻ response-weight chưa mở pilot.

@@ -1,6 +1,6 @@
 # Git / DVC backup record
 
-Updated: 2026-10-14 UTC+7 — delta verify G: hoàn tất; đã xóa 2026-10-14.
+Updated: 2026-10-14 UTC+7 — backup/cleanup trước giữ nguyên; Git layout mới và đường dẫn phục hồi canonical được kiểm trong phiên tiếp.
 Procedure: [repo-backup](../../.agents/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
@@ -17,43 +17,47 @@ Entry remote-only giữ nguyên; local override cùng relpath. Không add partia
 
 | Manifest | MD5 | Files | Logical bytes | Local |
 |---|---|---:|---:|---|
-| `papers/boundary-cells/controller-fixture.dvc` | `195b422d05d1a14eacf7e563725caef3.dir` | 76 | 16932 | đã xóa 2026-10-14 |
-| `papers/boundary-cells/input.dvc` | `5d398f36a4ac5baebdc135fe9a364549.dir` | 230 | 319715058 | đã xóa 2026-10-14 |
-| `papers/boundary-cells/kaggle.dvc` | `57c7e72fca8bd50a0ffcfc71391d09c6.dir` | 338 | 1240071864 | đã xóa 2026-10-14 |
-| `papers/boundary-cells/smoke.dvc` | `bd1f76e8e88b0ab664224c4609eb5417.dir` | 210 | 2190821198 | đã xóa 2026-10-14 |
-| `papers/full-validation/input.dvc` | `b50f3b5852c683e91058cb0dcef9e27c.dir` | 200 | 1282683 | đã xóa 2026-10-14 |
-| `papers/full-validation/kaggle.dvc` | `789efb2da148689d271aa55e3f6d5170.dir` | 968 | 9278181515 | đã xóa 2026-10-14 |
-| `papers/full-validation/mount-output.dvc` | `f98af0c07296f21e2b58d1f5469941da.dir` | 18 | 53171 | đã xóa 2026-10-14 |
-| `papers/full-validation/resume_reference.dvc` | `a7c0717142b58fb5d24a157bc113b564.dir` | 63 | 658095993 | đã xóa 2026-10-14 |
-| `papers/full-validation/smoke.dvc` | `da8ab9332b7cba1e5535639071bc93cc.dir` | 221 | 1314131032 | đã xóa 2026-10-14 |
-| `papers/hybrid-full/diagnostics.dvc` | `b4c3578df19e67fff29bba3066d02465.dir` | 20 | 935609 | đã xóa 2026-10-14 |
-| `papers/hybrid-full/input.dvc` | `637a09a84948d0db883c54aa8b18c861.dir` | 212 | 1297638 | đã xóa 2026-10-14 |
-| `papers/hybrid-full/kaggle.dvc` | `89ba8972c2ee1062ab77a27d58fb08bc.dir` | 384 | 2834658221 | đã xóa 2026-10-14 |
-| `papers/hybrid-full/resume_reference.dvc` | `b2ddeb62e648d9190650ce62ddcf1a1b.dir` | 81 | 1086355227 | đã xóa 2026-10-14 |
-| `papers/hybrid-full/smoke.dvc` | `4dd92ca56796decf59ae3e200f13ee46.dir` | 111 | 1524677711 | đã xóa 2026-10-14 |
-| `papers/pilot/fixture.dvc` | `cb782c4671b1aa25a8a2c56bf465587c.dir` | 67 | 159554510 | đã xóa 2026-10-14 |
-| `papers/v10/input.dvc` | `743718b1dd83290b17491188e085e90d.dir` | 222 | 319641954 | đã xóa 2026-10-14 |
-| `papers/v10/kaggle.dvc` | `8cde4b9a4e724ddc0fa35047c6f9cb48.dir` | 568 | 4523882900 | đã xóa 2026-10-14 |
-| `papers/v10/resume_reference.dvc` | `456967a838675e3d0cf7763cec988aef.dir` | 102 | 1283401033 | đã xóa 2026-10-14 |
-| `papers/v10/smoke.dvc` | `752fdb98ccc1bca8431d31d5f3024819.dir` | 246 | 2992749358 | đã xóa 2026-10-14 |
-| `papers/v2/kaggle.dvc` | `3c49c7ec142513d62f8e31da23534ee1.dir` | 2422 | 31674561783 | đã xóa 2026-10-14 |
-| `papers/v6/kaggle.dvc` | `ec521a9fcccb9633cf60cf28bf88911a.dir` | 1666 | 14056604948 | đã xóa 2026-10-14 |
-| `papers/v7/input.dvc` | `fe759ba87afb08430620383790d01da1.dir` | 204 | 319545868 | đã xóa 2026-10-14 |
-| `papers/v7/kaggle.dvc` | `6f1ac7fde1746d98c4ffd0bc2ede9460.dir` | 1618 | 14100779740 | đã xóa 2026-10-14 |
-| `papers/v7/resume_reference.dvc` | `5a5d85b0c7fb4ade93e7e3add7915f2c.dir` | 60 | 422721575 | đã xóa 2026-10-14 |
-| `papers/v7/smoke.dvc` | `94c9e76fb1d7f258b4a4bb8167a1e0e0.dir` | 150 | 1053189840 | đã xóa 2026-10-14 |
-| `papers/v8/input.dvc` | `1f1c3423d9dc96f16606930a98ea6365.dir` | 210 | 319566420 | đã xóa 2026-10-14 |
-| `papers/v8/kaggle.dvc` | `5e8f82e41e5204fff1d0efca49cbaaab.dir` | 1242 | 20412224345 | đã xóa 2026-10-14 |
-| `papers/v8/resume_reference.dvc` | `ee5d508c6c69cd47549940bf6be64459.dir` | 51 | 663906613 | đã xóa 2026-10-14 |
-| `papers/v8/smoke.dvc` | `b0da1af1f8498adb7a526192686c2fc4.dir` | 111 | 1526827464 | đã xóa 2026-10-14 |
-| `papers/v9/input.dvc` | `347e0af95ba09acf7825b755fbc95e36.dir` | 222 | 319643036 | đã xóa 2026-10-14 |
-| `papers/v9/kaggle.dvc` | `b9220ec4e71f82a1cb3fcedf034402fa.dir` | 2798 | 37425239839 | đã xóa 2026-10-14 |
-| `papers/v9/resume_reference.dvc` | `9c657c34734d22cc2caebefa9ec1dfe6.dir` | 153 | 1944387156 | đã xóa 2026-10-14 |
-| `papers/v9/smoke.dvc` | `f3ea67005856b761dc86fda011f40b57.dir` | 684 | 8402355983 | đã xóa 2026-10-14 |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc` | `195b422d05d1a14eacf7e563725caef3.dir` | 76 | 16932 | đã xóa 2026-10-14 |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc` | `5d398f36a4ac5baebdc135fe9a364549.dir` | 230 | 319715058 | đã xóa 2026-10-14 |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` | `57c7e72fca8bd50a0ffcfc71391d09c6.dir` | 338 | 1240071864 | đã xóa 2026-10-14 |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc` | `bd1f76e8e88b0ab664224c4609eb5417.dir` | 210 | 2190821198 | đã xóa 2026-10-14 |
+| `methods/shared-baselines/builds/federated-baselines-full/input.dvc` | `b50f3b5852c683e91058cb0dcef9e27c.dir` | 200 | 1282683 | đã xóa 2026-10-14 |
+| `methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` | `789efb2da148689d271aa55e3f6d5170.dir` | 968 | 9278181515 | đã xóa 2026-10-14 |
+| `methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc` | `f98af0c07296f21e2b58d1f5469941da.dir` | 18 | 53171 | đã xóa 2026-10-14 |
+| `methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc` | `a7c0717142b58fb5d24a157bc113b564.dir` | 63 | 658095993 | đã xóa 2026-10-14 |
+| `methods/shared-baselines/builds/federated-baselines-full/smoke.dvc` | `da8ab9332b7cba1e5535639071bc93cc.dir` | 221 | 1314131032 | đã xóa 2026-10-14 |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` | `b4c3578df19e67fff29bba3066d02465.dir` | 20 | 935609 | đã xóa 2026-10-14 |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` | `637a09a84948d0db883c54aa8b18c861.dir` | 212 | 1297638 | đã xóa 2026-10-14 |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` | `89ba8972c2ee1062ab77a27d58fb08bc.dir` | 384 | 2834658221 | đã xóa 2026-10-14 |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc` | `b2ddeb62e648d9190650ce62ddcf1a1b.dir` | 81 | 1086355227 | đã xóa 2026-10-14 |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc` | `4dd92ca56796decf59ae3e200f13ee46.dir` | 111 | 1524677711 | đã xóa 2026-10-14 |
+| `archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc` | `cb782c4671b1aa25a8a2c56bf465587c.dir` | 67 | 159554510 | đã xóa 2026-10-14 |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc` | `743718b1dd83290b17491188e085e90d.dir` | 222 | 319641954 | đã xóa 2026-10-14 |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc` | `8cde4b9a4e724ddc0fa35047c6f9cb48.dir` | 568 | 4523882900 | đã xóa 2026-10-14 |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc` | `456967a838675e3d0cf7763cec988aef.dir` | 102 | 1283401033 | đã xóa 2026-10-14 |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc` | `752fdb98ccc1bca8431d31d5f3024819.dir` | 246 | 2992749358 | đã xóa 2026-10-14 |
+| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc` | `3c49c7ec142513d62f8e31da23534ee1.dir` | 2422 | 31674561783 | đã xóa 2026-10-14 |
+| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc` | `ec521a9fcccb9633cf60cf28bf88911a.dir` | 1666 | 14056604948 | đã xóa 2026-10-14 |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc` | `fe759ba87afb08430620383790d01da1.dir` | 204 | 319545868 | đã xóa 2026-10-14 |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc` | `6f1ac7fde1746d98c4ffd0bc2ede9460.dir` | 1618 | 14100779740 | đã xóa 2026-10-14 |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc` | `5a5d85b0c7fb4ade93e7e3add7915f2c.dir` | 60 | 422721575 | đã xóa 2026-10-14 |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc` | `94c9e76fb1d7f258b4a4bb8167a1e0e0.dir` | 150 | 1053189840 | đã xóa 2026-10-14 |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc` | `1f1c3423d9dc96f16606930a98ea6365.dir` | 210 | 319566420 | đã xóa 2026-10-14 |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc` | `5e8f82e41e5204fff1d0efca49cbaaab.dir` | 1242 | 20412224345 | đã xóa 2026-10-14 |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc` | `ee5d508c6c69cd47549940bf6be64459.dir` | 51 | 663906613 | đã xóa 2026-10-14 |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc` | `b0da1af1f8498adb7a526192686c2fc4.dir` | 111 | 1526827464 | đã xóa 2026-10-14 |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc` | `347e0af95ba09acf7825b755fbc95e36.dir` | 222 | 319643036 | đã xóa 2026-10-14 |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc` | `b9220ec4e71f82a1cb3fcedf034402fa.dir` | 2798 | 37425239839 | đã xóa 2026-10-14 |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc` | `9c657c34734d22cc2caebefa9ec1dfe6.dir` | 153 | 1944387156 | đã xóa 2026-10-14 |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc` | `f3ea67005856b761dc86fda011f40b57.dir` | 684 | 8402355983 | đã xóa 2026-10-14 |
 
 Manifest khác giữ snapshot trước; proof cũ: `backup-delta-2026-10-12.json`, `backup-2026-10-12-inventory.json`.
 
 ## 3. Checks that passed
+
+- Layout mới: [65 manifest/object checks](dvc-relocation-verification-2026-10-14.json), [native pull thử](dvc-restore-smoke-2026-10-14.json). Hash/size/nfiles snapshot giữ nguyên; chỉ outs.path đổi sang artifacts.
+- Lệnh pull hiện tại trong [chỉ mục canonical](artifact-index.md); alias dùng [map mới](artifact-aliases.json), không dùng path papers trong inventory lịch sử.
+- Git layout được push trong phiên này; kiểm HEAD cuối bằng ls-remote. Không DVC add/push/cleanup đợt mới.
 
 - CAS transfer trực tiếp theo format DVC `files/md5`, 2 worker, tổng cap60MiB/s, buffer256KiB; payload mới MD5 khi copy trước atomic replace.
 - Uploaded 8107 object / 105632333883 byte; toàn 11887 object chọn lọc tồn tại+size đúng; mọi directory manifest MD5 PASS. Payload cũ không rehash toàn remote.
