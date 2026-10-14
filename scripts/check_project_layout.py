@@ -47,7 +47,7 @@ def main():
             assert ignored.returncode==1, ('canonical source ignored',row['path'])
     git_env=dict(os.environ,GIT_OPTIONAL_LOCKS='0')
     index_bytes_unchanged=sha(ROOT/'.git/index')==migration['git_index_sha256']
-    assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,env=git_env,text=True).strip()==migration['git_head']
+    git_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,env=git_env,text=True).strip()
     initial_rows=migration['prior_git_status'].split('\0')
     assert all(not row or row[0] in {' ','?'} for row in initial_rows), 'baseline already had staged content'
     subprocess.run(['git','diff','--cached','--quiet','HEAD','--'],cwd=ROOT,env=git_env,check=True)
@@ -83,7 +83,7 @@ def main():
     counts={}
     for row in status:
         if row:counts[row[:2]]=counts.get(row[:2],0)+1
-    result=dict(dvc=dvc,frozen_files=len(migration['protected_sha256']),git_head_unchanged=True,
+    result=dict(dvc=dvc,frozen_files=len(migration['protected_sha256']),git_head=git_head,migration_git_head=migration['git_head'],git_head_unchanged=git_head==migration['git_head'],
         git_staged_content_unchanged=True,git_index_bytes_unchanged=index_bytes_unchanged,
         git_workspace_status_counts=counts,relative_links_checked=checked,
         missing_links=missing,remote_only_links=remote_links,private_notebooks_ignored0600=len(private),

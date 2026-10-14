@@ -386,13 +386,13 @@
     }
   ],
   "frozen_files": 433,
-  "git_head_unchanged": true,
+  "git_head": "72f3a66ef7127b84d172072cb92902d572f94a0b",
+  "migration_git_head": "7a681cfe06c1a49f155008c90493635257ba3f66",
+  "git_head_unchanged": false,
   "git_staged_content_unchanged": true,
   "git_index_bytes_unchanged": false,
   "git_workspace_status_counts": {
-    " M": 16,
-    " D": 1132,
-    "??": 53
+    " M": 1
   },
   "relative_links_checked": 4298,
   "missing_links": [],
