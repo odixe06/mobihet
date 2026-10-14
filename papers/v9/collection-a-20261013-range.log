@@ -1,0 +1,8 @@
+minhtrit06/mobihet-v9a-s43-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtrit06/mobihet-v9a-s43-20261012-v1: 1396 files, 8 parallel
+FAIL runs/r512_fl_s43/weights/round_020.pt ChunkedEncodingError
+FAIL runs/r512_frozen_s43/weights/round_001.pt ChunkedEncodingError
+FAIL runs/r512_frozen_s43/weights/round_007.pt ChunkedEncodingError
+FAIL runs/r512_frozen_s43/weights/round_005.pt ChunkedEncodingError
+Terminated
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/kaggle/collect_v2.py --build v9 --family a --jobs 8` failed. (See above for error)

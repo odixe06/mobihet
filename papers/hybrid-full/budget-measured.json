@@ -1,0 +1,93 @@
+[
+  {
+    "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
+    "arm": "h_dml",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": false,
+    "rounds": 2,
+    "target_rounds": 50,
+    "worst_round_seconds": 6648.6314198970795,
+    "setup_seconds": 51.189234256744385,
+    "conservative_remaining_gpu_hours": 101.96203388825388,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  },
+  {
+    "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
+    "arm": "h_local",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": false,
+    "rounds": 2,
+    "target_rounds": 50,
+    "worst_round_seconds": 6652.05893778801,
+    "setup_seconds": 51.130372762680054,
+    "conservative_remaining_gpu_hours": 102.01457035960422,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  },
+  {
+    "kernel": "odixeuit/mobihet-hybf2-s42-20261013-cal-v1",
+    "arm": "h_hybrid",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": true,
+    "rounds": 3,
+    "target_rounds": 50,
+    "worst_round_seconds": 3656.082690477371,
+    "setup_seconds": 55.54559850692749,
+    "conservative_remaining_gpu_hours": 54.90976301627357,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  },
+  {
+    "kernel": "odixeuit/mobihet-hybf2-s42-20261013-cal-v1",
+    "arm": "h_gaussian",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": true,
+    "rounds": 3,
+    "target_rounds": 50,
+    "worst_round_seconds": 3706.085267305374,
+    "setup_seconds": 55.523192167282104,
+    "conservative_remaining_gpu_hours": 55.660488991346625,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  },
+  {
+    "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
+    "arm": "h_gaussian_own",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": true,
+    "rounds": 3,
+    "target_rounds": 50,
+    "worst_round_seconds": 3669.0691154003143,
+    "setup_seconds": 60.68167185783386,
+    "conservative_remaining_gpu_hours": 55.106380447228744,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  },
+  {
+    "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
+    "arm": "h_dml_own",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": false,
+    "rounds": 2,
+    "target_rounds": 50,
+    "worst_round_seconds": 6508.642173290253,
+    "setup_seconds": 54.22516489028931,
+    "conservative_remaining_gpu_hours": 99.81650191812382,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  },
+  {
+    "kernel": "odixe0502/mobihet-hybf4-s42-20261013-cal-v1",
+    "arm": "h_hybrid_own",
+    "rc": 0,
+    "complete": false,
+    "calibration_complete": true,
+    "rounds": 3,
+    "target_rounds": 50,
+    "worst_round_seconds": 3814.121841907501,
+    "setup_seconds": 55.58248043060303,
+    "conservative_remaining_gpu_hours": 57.28255705766545,
+    "note": "one GPU per arm; Kaggle account/session cost must be measured separately"
+  }
+]

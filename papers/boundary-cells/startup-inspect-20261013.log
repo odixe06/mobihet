@@ -1,0 +1,175 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/odixe/.netrc.
+{
+  "observed_utc": "2026-10-13T07:36:03.470460+00:00",
+  "runs": [
+    {
+      "seed": 42,
+      "arm": "bc_single",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_single_s42-3521bdca",
+      "url": "https://wandb.ai/21522798-uit/mobihet-boundary-cells/runs/bc_single_s42-3521bdca",
+      "state": "finished",
+      "heartbeat": {
+        "round": 2,
+        "loss": 0.43872315138578416,
+        "lr": 0.0009932488451843476,
+        "seconds": 63.00446557998657,
+        "applied": 1964,
+        "skipped": 1,
+        "preflight/online": 1,
+        "progress/round": 2,
+        "progress/client": 19,
+        "progress/applied": 33,
+        "progress/skipped": 0,
+        "progress/real_ce": 0.4627254605293274,
+        "private/group/gp/f1_macro": 0.4462588180075591,
+        "private/group/gp/accuracy": 0.5498832702636719
+      },
+      "config_fingerprint": "3521bdca91286774c7e28614c1fc416fa3b6f27ec1c3a9d8e9d231166249c62e"
+    },
+    {
+      "seed": 42,
+      "arm": "bc_direct2_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_direct2_fl_s42-614aedd9",
+      "url": "https://wandb.ai/21522798-uit/mobihet-boundary-cells/runs/bc_direct2_fl_s42-614aedd9",
+      "state": "running",
+      "heartbeat": {
+        "round": 1,
+        "loss": 2.664892020821571,
+        "lr": 0.001,
+        "seconds": 109.76728296279909,
+        "applied": 2364,
+        "skipped": 1,
+        "preflight/online": 1,
+        "progress/round": 1,
+        "progress/client": 19,
+        "progress/applied": 33,
+        "progress/skipped": 0,
+        "progress/real_ce": 0.9314815998077391,
+        "private/group/gp/f1_macro": 0.38796528463155855,
+        "private/group/gp/accuracy": 0.6013145446777344
+      },
+      "config_fingerprint": "614aedd9d9e2168f84330fcbdd6f561974c8b0e8d1cb8efdcf39414abc1ce6d4"
+    },
+    {
+      "seed": 42,
+      "arm": "bc_direct4_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_direct4_fl_s42-79039806",
+      "url": "https://wandb.ai/21522798-uit/mobihet-boundary-cells/runs/bc_direct4_fl_s42-79039806",
+      "state": "running",
+      "heartbeat": {
+        "round": 1,
+        "loss": 2.6782815545797347,
+        "lr": 0.001,
+        "seconds": 110.58871245384216,
+        "applied": 2364,
+        "skipped": 1,
+        "preflight/online": 1,
+        "progress/round": 1,
+        "progress/client": 19,
+        "progress/applied": 33,
+        "progress/skipped": 0,
+        "progress/real_ce": 0.9163036346435548,
+        "private/group/gp/f1_macro": 0.3851459764370048,
+        "private/group/gp/accuracy": 0.5995223999023438
+      },
+      "config_fingerprint": "790398062be45159832c3975c705fea287ea121c2a390fe83ee2995092e9aeec"
+    },
+    {
+      "seed": 42,
+      "arm": "bc_teacher2_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_teacher2_fl_s42-35aa3356",
+      "state": "NOT_VISIBLE_YET"
+    },
+    {
+      "seed": 42,
+      "arm": "bc_teacher4_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_teacher4_fl_s42-cc43e682",
+      "state": "NOT_VISIBLE_YET"
+    },
+    {
+      "seed": 43,
+      "arm": "bc_single",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_single_s43-a31f484f",
+      "url": "https://wandb.ai/21522798-uit/mobihet-boundary-cells/runs/bc_single_s43-a31f484f",
+      "state": "finished",
+      "heartbeat": {
+        "round": 2,
+        "loss": 0.43369505256414415,
+        "lr": 0.0009932488451843476,
+        "seconds": 63.48408794403076,
+        "applied": 1964,
+        "skipped": 1,
+        "preflight/online": 1,
+        "progress/round": 2,
+        "progress/client": 19,
+        "progress/applied": 33,
+        "progress/skipped": 0,
+        "progress/real_ce": 0.4601594209671021,
+        "private/group/gp/f1_macro": 0.4520538141882232,
+        "private/group/gp/accuracy": 0.5532508850097656
+      },
+      "config_fingerprint": "a31f484f81d61ae1a50add87bdc41ea1f287d58c54a043bd20b2e162d3a5f352"
+    },
+    {
+      "seed": 43,
+      "arm": "bc_direct2_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_direct2_fl_s43-2fcd4462",
+      "url": "https://wandb.ai/21522798-uit/mobihet-boundary-cells/runs/bc_direct2_fl_s43-2fcd4462",
+      "state": "running",
+      "heartbeat": {
+        "round": null,
+        "loss": null,
+        "lr": null,
+        "seconds": null,
+        "applied": null,
+        "skipped": null,
+        "preflight/online": 1,
+        "progress/round": null,
+        "progress/client": null,
+        "progress/applied": null,
+        "progress/skipped": null,
+        "progress/real_ce": null,
+        "private/group/gp/f1_macro": null,
+        "private/group/gp/accuracy": null
+      },
+      "config_fingerprint": "2fcd446207971392f82a22002bbee3c03bb80f0ffb5981df10cbb16ef36146cf"
+    },
+    {
+      "seed": 43,
+      "arm": "bc_direct4_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_direct4_fl_s43-1e33c743",
+      "url": "https://wandb.ai/21522798-uit/mobihet-boundary-cells/runs/bc_direct4_fl_s43-1e33c743",
+      "state": "running",
+      "heartbeat": {
+        "round": null,
+        "loss": null,
+        "lr": null,
+        "seconds": null,
+        "applied": null,
+        "skipped": null,
+        "preflight/online": 1,
+        "progress/round": null,
+        "progress/client": null,
+        "progress/applied": null,
+        "progress/skipped": null,
+        "progress/real_ce": null,
+        "private/group/gp/f1_macro": null,
+        "private/group/gp/accuracy": null
+      },
+      "config_fingerprint": "1e33c74329df39eb1c0be1851a565acde38447ce25f33c0051f5abfb72e2d470"
+    },
+    {
+      "seed": 43,
+      "arm": "bc_teacher2_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_teacher2_fl_s43-7b09d2e3",
+      "state": "NOT_VISIBLE_YET"
+    },
+    {
+      "seed": 43,
+      "arm": "bc_teacher4_fl",
+      "locator": "21522798-uit/mobihet-boundary-cells/bc_teacher4_fl_s43-14a7ae2b",
+      "state": "NOT_VISIBLE_YET"
+    }
+  ],
+  "evidence": "W&B read-only live snapshot, not terminal artifact/cost/utility audit"
+}

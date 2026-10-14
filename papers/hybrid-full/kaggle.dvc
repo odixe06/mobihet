@@ -1,0 +1,6 @@
+outs:
+- md5: 89ba8972c2ee1062ab77a27d58fb08bc.dir
+  size: 2834658221
+  nfiles: 384
+  hash: md5
+  path: kaggle

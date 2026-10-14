@@ -1,0 +1,398 @@
+{
+  "observed_utc": "2026-10-14T07:05:18.461005+00:00",
+  "evidence": "owner-scoped latest batch version status, not artifact verification or session heartbeat",
+  "kernels": [
+    {
+      "kernel": "minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1",
+      "build": "boundary-cells",
+      "folder": "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1",
+      "build": "boundary-cells",
+      "folder": "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-full1-s42-20261012-cal-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full1-s42-20261012-cal-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-full1-s42-20261013-cont01-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full1-s42-20261013-cont01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-full2-s42-20261012-cal-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full2-s42-20261012-cal-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-full2-s42-20261013-cont01-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full2-s42-20261013-cont01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-full3-s42-20261012-cal-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full3-s42-20261012-cal-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-full3-s42-20261013-cont01-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full3-s42-20261013-cont01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-full4-s42-20261012-cal-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full4-s42-20261012-cal-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-full4-s42-20261013-cont01-v1",
+      "build": "full-validation",
+      "folder": "papers/full-validation/notebook/full4-s42-20261013-cont01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixeuit/mobihet-hybf2-s42-20261013-cal-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-hybf4-s42-20261013-cal-v1",
+      "build": "hybrid-full",
+      "folder": "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-sa-s42-20261011",
+      "build": "new-fl",
+      "folder": "papers/new-fl/notebook/sa-s42",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-sa-s43-20261011",
+      "build": "new-fl",
+      "folder": "papers/new-fl/notebook/sa-s43",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-p2-dml-s42",
+      "build": "p2",
+      "folder": "papers/p2/notebook/p2-dml-s42",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-p2-dml-s43",
+      "build": "p2",
+      "folder": "papers/p2/notebook/p2-dml-s43",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-p2-h2-s42",
+      "build": "p2",
+      "folder": "papers/p2/notebook/p2-h2-s42",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-p2-h2-s43",
+      "build": "p2",
+      "folder": "papers/p2/notebook/p2-h2-s43",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+      "build": "v10",
+      "folder": "papers/v10/notebook/v10e-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+      "build": "v10",
+      "folder": "papers/v10/notebook/v10e-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v2a-s42-20261011-v1",
+      "build": "v2",
+      "folder": "papers/v2/notebook/v2a-s42-20261011-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v2a-s43-20261011-v1",
+      "build": "v2",
+      "folder": "papers/v2/notebook/v2a-s43-20261011-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v2b-s42-20261011-v1",
+      "build": "v2",
+      "folder": "papers/v2/notebook/v2b-s42-20261011-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v2b-s43-20261011-v1",
+      "build": "v2",
+      "folder": "papers/v2/notebook/v2b-s43-20261011-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v2c-s42-20261011-v1",
+      "build": "v2",
+      "folder": "papers/v2/notebook/v2c-s42-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v2c-s43-20261011-v1",
+      "build": "v2",
+      "folder": "papers/v2/notebook/v2c-s43-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "trietbackup/mobihet-v3o-s42-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3o-s42-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-v3o-s43-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3o-s43-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixeuit/mobihet-v3p-s42-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3p-s42-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-v3p-s43-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3p-s43-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v3r-s42-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3r-s42-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v3r-s43-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3r-s43-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "trietbackup/mobihet-v3t-s42-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3t-s42-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-v3t-s43-20261011-v1",
+      "build": "v3",
+      "folder": "papers/v3/notebook/v3t-s43-20261011-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v4m-s42-20261012-v1",
+      "build": "v4",
+      "folder": "papers/v4/notebook/v4m-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v4m-s43-20261012-v1",
+      "build": "v4",
+      "folder": "papers/v4/notebook/v4m-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixeuit/mobihet-v4s-s42-20261012-v1",
+      "build": "v4",
+      "folder": "papers/v4/notebook/v4s-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-v4s-s43-20261012-v1",
+      "build": "v4",
+      "folder": "papers/v4/notebook/v4s-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-v5g-s42-20261012-v1",
+      "build": "v5",
+      "folder": "papers/v5/notebook/v5g-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-v5g-s43-20261012-v1",
+      "build": "v5",
+      "folder": "papers/v5/notebook/v5g-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-v5h-s42-20261012-v1",
+      "build": "v5",
+      "folder": "papers/v5/notebook/v5h-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-v5h-s43-20261012-v1",
+      "build": "v5",
+      "folder": "papers/v5/notebook/v5h-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-v5j-s42-20261012-v1",
+      "build": "v5",
+      "folder": "papers/v5/notebook/v5j-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-v5j-s43-20261012-v1",
+      "build": "v5",
+      "folder": "papers/v5/notebook/v5j-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v6a-s42-20261012-v1",
+      "build": "v6",
+      "folder": "papers/v6/notebook/v6a-s42-20261012-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v6a-s43-20261012-v1",
+      "build": "v6",
+      "folder": "papers/v6/notebook/v6a-s43-20261012-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "trietbackup/mobihet-v6b-s42-20261012-v1",
+      "build": "v6",
+      "folder": "papers/v6/notebook/v6b-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-v6b-s43-20261012-v1",
+      "build": "v6",
+      "folder": "papers/v6/notebook/v6b-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+      "build": "v7",
+      "folder": "papers/v7/notebook/v7n-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+      "build": "v7",
+      "folder": "papers/v7/notebook/v7n-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+      "build": "v8",
+      "folder": "papers/v8/notebook/v8h-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+      "build": "v8",
+      "folder": "papers/v8/notebook/v8h-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixeuit/mobihet-v9a-s42-20261012-v1",
+      "build": "v9",
+      "folder": "papers/v9/notebook/v9a-s42-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-v9a-s43-20261012-v1",
+      "build": "v9",
+      "folder": "papers/v9/notebook/v9a-s43-20261012-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    }
+  ]
+}

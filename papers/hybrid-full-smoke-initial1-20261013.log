@@ -1,0 +1,79 @@
+setup h_local role private rows 20480 sec 3.6
+r1 h_local s42 private test gp 0.0071108870967741935 loss 2.5742 14s
+r2 h_local s42 private test gp 0.006391868783110497 loss 1.7463 6s
+r3 h_local s42 private test gp 0.006226132283917877 loss 1.4493 6s
+done h_local complete True
+setup h_gaussian role private rows 20480 sec 2.5
+r1 h_gaussian s42 private test gp 0.00899256751128915 loss 5.3971 7s
+r2 h_gaussian s42 private test gp 0.007666034155597723 loss 4.5818 4s
+r3 h_gaussian s42 private test gp 0.006873039874551972 loss 4.3003 8s
+done h_gaussian complete True
+setup h_dml role private rows 20480 sec 1.9
+r1 h_dml s42 private test gp 0.0071959280803807505 loss 2.5869 10s
+r2 h_dml s42 private test gp 0.006971923809604086 loss 1.8026 7s
+r3 h_dml s42 private test gp 0.007399129671031619 loss 1.5645 7s
+done h_dml complete True
+setup h_hybrid role private rows 20480 sec 2.2
+r1 h_hybrid s42 private test gp 0.008999703932908939 loss 5.4090 7s
+r2 h_hybrid s42 private test gp 0.0077331697054698455 loss 4.6134 5s
+r3 h_hybrid s42 private test gp 0.0070017769272826685 loss 4.3577 6s
+done h_hybrid complete True
+setup h_gaussian_own role private rows 20480 sec 2.1
+r1 h_gaussian_own s42 private test gp 0.005822530661009924 loss 5.2919 9s
+r2 h_gaussian_own s42 private test gp 0.0044842775820005416 loss 4.2254 4s
+r3 h_gaussian_own s42 private test gp 0.004263826038019587 loss 3.8366 5s
+done h_gaussian_own complete True
+setup h_dml_own role private rows 20480 sec 1.7
+r1 h_dml_own s42 private test gp 0.0071959280803807505 loss 2.5869 7s
+r2 h_dml_own s42 private test gp 0.006469380808664438 loss 1.7687 6s
+r3 h_dml_own s42 private test gp 0.006300811349092333 loss 1.4750 5s
+done h_dml_own complete True
+setup h_hybrid_own role private rows 20480 sec 2.0
+r1 h_hybrid_own s42 private test gp 0.005848073445173398 loss 5.3039 6s
+r2 h_hybrid_own s42 private test gp 0.004563332641524352 loss 4.2441 4s
+r3 h_hybrid_own s42 private test gp 0.0043075185046833765 loss 3.8581 5s
+done h_hybrid_own complete True
+setup h_gaussian role private rows 20480 sec 1.9
+r1 h_gaussian s42 private test gp 0.00899256751128915 loss 5.3971 6s
+done h_gaussian complete False
+setup h_gaussian role private rows 20480 sec 5.9
+r2 h_gaussian s42 private test gp 0.007666034155597723 loss 4.5818 6s
+r3 h_gaussian s42 private test gp 0.006873039874551972 loss 4.3003 5s
+done h_gaussian complete True
+setup h_dml role private rows 20480 sec 1.9
+r1 h_dml s42 private test gp 0.0071959280803807505 loss 2.5869 8s
+done h_dml complete False
+setup h_dml role private rows 20480 sec 6.2
+r2 h_dml s42 private test gp 0.006971923809604086 loss 1.8026 8s
+r3 h_dml s42 private test gp 0.007399129671031619 loss 1.5645 6s
+done h_dml complete True
+setup h_hybrid role private rows 20480 sec 2.0
+r1 h_hybrid s42 private test gp 0.008999703932908939 loss 5.4090 7s
+done h_hybrid complete False
+setup h_hybrid role private rows 20480 sec 5.9
+r2 h_hybrid s42 private test gp 0.0077331697054698455 loss 4.6134 7s
+r3 h_hybrid s42 private test gp 0.0070017769272826685 loss 4.3577 6s
+done h_hybrid complete True
+setup h_hybrid_own role private rows 20480 sec 2.0
+r1 h_hybrid_own s42 private test gp 0.005848073445173398 loss 5.3039 6s
+done h_hybrid_own complete False
+setup h_hybrid_own role private rows 20480 sec 2.8
+r2 h_hybrid_own s42 private test gp 0.004563332641524352 loss 4.2441 9s
+r3 h_hybrid_own s42 private test gp 0.0043075185046833765 loss 3.8581 5s
+done h_hybrid_own complete True
+setup h_dml_own role private rows 20480 sec 2.7
+r1 h_dml_own s42 private test gp 0.0071959280803807505 loss 2.5869 7s
+done h_dml_own complete False
+setup h_dml_own role private rows 20480 sec 2.9
+r2 h_dml_own s42 private test gp 0.006469380808664438 loss 1.7687 10s
+r3 h_dml_own s42 private test gp 0.006300811349092333 loss 1.4750 6s
+done h_dml_own complete True
+VERIFIED FULL h_local_s42 3 rounds
+VERIFIED FULL h_gaussian_s42 3 rounds
+VERIFIED FULL h_dml_s42 3 rounds
+VERIFIED FULL h_hybrid_s42 3 rounds
+VERIFIED FULL h_gaussian_own_s42 3 rounds
+VERIFIED FULL h_dml_own_s42 3 rounds
+VERIFIED FULL h_hybrid_own_s42 3 rounds
+PASS FULL local:7boundedarms/5exactresumes/strictBN/payload/pred/inference; T4compile/fullcoverage pending
+Peak tree RSS: 2913 MiB; exit 0

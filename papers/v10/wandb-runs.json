@@ -1,0 +1,128 @@
+[
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_ce_raw",
+    "run_id": "e_ce_raw_s42-be397252",
+    "fingerprint": "be39725218cb9bb7670b5aa34232c1766b84b817249b04607a37895f163df085",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_ce_raw_s42-be397252"
+  },
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_ce_matched",
+    "run_id": "e_ce_matched_s42-65d79c54",
+    "fingerprint": "65d79c549a387cc6e4fd9f58e98575a62676ad12b996f53366cde78b340b0de3",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_ce_matched_s42-65d79c54"
+  },
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_ce_aug",
+    "run_id": "e_ce_aug_s42-69bed879",
+    "fingerprint": "69bed879a55f63bd0b601ade38fa5b709d2f85fcb3e70d0eca73175838cc3ab3",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_ce_aug_s42-69bed879"
+  },
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_fl",
+    "run_id": "e_fl_s42-ab2ea97b",
+    "fingerprint": "ab2ea97bcd5576659d25863546bab0af910e84c695a953db17c3012e866758a8",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_fl_s42-ab2ea97b"
+  },
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_own",
+    "run_id": "e_own_s42-cda9035e",
+    "fingerprint": "cda9035e87835a520f65046eeeb809600ddb458f3ab32c3f0c68f4a68f05c6d9",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_own_s42-cda9035e"
+  },
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_shuffle",
+    "run_id": "e_shuffle_s42-4f503bfe",
+    "fingerprint": "4f503bfe4ad56643518cd113c8ea18c7e0f00b51c91d6151a68cd791e5e9817a",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_shuffle_s42-4f503bfe"
+  },
+  {
+    "family": "e",
+    "seed": 42,
+    "arm": "e_q",
+    "run_id": "e_q_s42-db12bd33",
+    "fingerprint": "db12bd330e6a91962d221dabf026ae3707afaaffed073cde5958cdc9401ca976",
+    "kernel": "trietbackup/mobihet-v10e-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_q_s42-db12bd33"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_ce_raw",
+    "run_id": "e_ce_raw_s43-d33003f0",
+    "fingerprint": "d33003f005e9a0c0e55d926add87085f830dca7b0871f4c266dab1e3ef63bac6",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_ce_raw_s43-d33003f0"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_ce_matched",
+    "run_id": "e_ce_matched_s43-26d24b9d",
+    "fingerprint": "26d24b9d8cf055fd92892a583420226b4c8034e8343ea3b1ddc84856501392dc",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_ce_matched_s43-26d24b9d"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_ce_aug",
+    "run_id": "e_ce_aug_s43-e3d81796",
+    "fingerprint": "e3d8179648b9ac3d90279f6c344757f8fd6c7a72dd85c4cc224b94bfe27d99d9",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_ce_aug_s43-e3d81796"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_fl",
+    "run_id": "e_fl_s43-8f35535e",
+    "fingerprint": "8f35535eea7c2c5ba0b6a95972411b625d1de33a9bda4c33c811cf4ca03ed6ea",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_fl_s43-8f35535e"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_own",
+    "run_id": "e_own_s43-028d9851",
+    "fingerprint": "028d985198bf850e75bb1e43d993636e5c50d638cdc89b9472ace228642bcfb1",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_own_s43-028d9851"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_shuffle",
+    "run_id": "e_shuffle_s43-18e33f2c",
+    "fingerprint": "18e33f2cb58064c6161b020f495ff7a14431331807f9af70257184d9f21d62ad",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_shuffle_s43-18e33f2c"
+  },
+  {
+    "family": "e",
+    "seed": 43,
+    "arm": "e_q",
+    "run_id": "e_q_s43-aedb5d8c",
+    "fingerprint": "aedb5d8c91d41103893732bfcd9dc8df3848cfe2e8fbe7b3ef1a65f146b7d905",
+    "kernel": "odixe0502/mobihet-v10e-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v10/e_q_s43-aedb5d8c"
+  }
+]

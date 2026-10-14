@@ -1,0 +1,2 @@
+Full report: 7 audited arms, 54 ten-metric rows; actual maxrounds {'h_dml': 2, 'h_local': 2, 'h_hybrid': 3, 'h_gaussian': 3, 'h_gaussian_own': 3, 'h_dml_own': 2, 'h_hybrid_own': 3}
+Peak tree RSS: 90 MiB; exit 0

@@ -1,0 +1,27 @@
+minhtrit06/mobihet-hybf1-s42-20261013-cal-v1 has status "KernelWorkerStatus.ERROR"
+minhtrit06/mobihet-hybf1-s42-20261013-cal-v1: 96 files, 6 parallel
+minhtrit06/mobihet-hybf1-s42-20261013-cal-v1: 96 files ok, 0 missing, 611 MiB new in 74 s (8.3 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf1-s42-20261013-cal-v1/executed.ipynb (15351 bytes, 6 outputs)
+VERIFIED FULL h_dml_s42 2 rounds
+VERIFIED FULL h_local_s42 2 rounds
+AUDITED HYBRID FULL CALIBRATION minhtrit06/mobihet-hybf1-s42-20261013-cal-v1 False
+odixeuit/mobihet-hybf2-s42-20261013-cal-v1 has status "KernelWorkerStatus.COMPLETE"
+odixeuit/mobihet-hybf2-s42-20261013-cal-v1: 105 files, 6 parallel
+odixeuit/mobihet-hybf2-s42-20261013-cal-v1: 105 files ok, 0 missing, 879 MiB new in 49 s (18.1 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf2-s42-20261013-cal-v1/executed.ipynb (13251 bytes, 5 outputs)
+VERIFIED FULL h_hybrid_s42 3 rounds
+VERIFIED FULL h_gaussian_s42 3 rounds
+AUDITED HYBRID FULL CALIBRATION odixeuit/mobihet-hybf2-s42-20261013-cal-v1 True
+trietbackup/mobihet-hybf3-s42-20261013-cal-v1 has status "KernelWorkerStatus.ERROR"
+trietbackup/mobihet-hybf3-s42-20261013-cal-v1: 98 files, 6 parallel
+trietbackup/mobihet-hybf3-s42-20261013-cal-v1: 98 files ok, 0 missing, 769 MiB new in 45 s (16.9 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf3-s42-20261013-cal-v1/executed.ipynb (15370 bytes, 6 outputs)
+VERIFIED FULL h_gaussian_own_s42 3 rounds
+VERIFIED FULL h_dml_own_s42 2 rounds
+AUDITED HYBRID FULL CALIBRATION trietbackup/mobihet-hybf3-s42-20261013-cal-v1 False
+odixe0502/mobihet-hybf4-s42-20261013-cal-v1 has status "KernelWorkerStatus.COMPLETE"
+odixe0502/mobihet-hybf4-s42-20261013-cal-v1: 77 files, 6 parallel
+odixe0502/mobihet-hybf4-s42-20261013-cal-v1: 77 files ok, 0 missing, 444 MiB new in 26 s (16.8 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf4-s42-20261013-cal-v1/executed.ipynb (12918 bytes, 5 outputs)
+VERIFIED FULL h_hybrid_own_s42 3 rounds
+AUDITED HYBRID FULL CALIBRATION odixe0502/mobihet-hybf4-s42-20261013-cal-v1 True

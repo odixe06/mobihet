@@ -27,6 +27,10 @@ def main():
              '| `papers/new-fl/kaggle/`, `papers/new-fl/runs/` | S-a; marker `VERIFIED.json`, weights/predictions; [ledger](../papers/new-fl/rebuild.md) |',
              '| `papers/new-fl/input/`, `papers/new-fl/smoke/`, `papers/new-fl/resume_reference/` | Staging và smoke; [ledger](../papers/new-fl/rebuild.md) |',
              '| `papers/v2/`, `papers/v3/`, `papers/v4/`, `papers/v5/` | Source/artifact theo đợt; [phương pháp](../proposals/README.md), [restore](operations/backup.md) |',
+             '| `papers/v6/`, `papers/v7/`, `papers/v8/`, `papers/v9/`, `papers/v10/` | Geometry/Nyström/hybrid/residual/energy: input staging, pulled `kaggle/`, smoke/resume; [run và ledger](operations/expansion-2026-10-12.md), [phương pháp](../proposals/README.md) |',
+             '| `papers/full-validation/` | Full H1/H2: input staging, calibration/resume, pulled `kaggle/`; [ledger/budget](../papers/full-validation/rebuild.md), [contract](research/full-h1-h2.md) |',
+             '| `papers/hybrid-full/` | Full Hybrid: isolated source, input staging, notebook và smoke/resume; [ledger](../papers/hybrid-full/rebuild.md), [contract](research/full-hybrid.md) |',
+             '| `papers/boundary-cells/` | Fixed cell counts: calibration, input, smoke, pulled artifacts; [ledger](../papers/boundary-cells/rebuild.md), [phương pháp](../proposals/boundary-cell-counts/README.md) |',
              '| `papers/<method>/private_push/` | Notebook private chứa key tạm; [quy định W&B](../LESSONS.md) |',
              '| `../dataset/`, DVC remote và archive | Dữ liệu gốc/phục hồi; [dataset](../knowledge/dataset.md), [backup](operations/backup.md) |', '',
              'DVC chỉ quản lý target có `.dvc`; không suy artifact mới đã backup từ sự tồn tại của thư mục. '

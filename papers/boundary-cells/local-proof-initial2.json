@@ -1,0 +1,27 @@
+{
+  "stage": "LOCAL_SMOKE_ONLY",
+  "arms": [
+    "bc_single",
+    "bc_direct2_fl",
+    "bc_direct4_fl",
+    "bc_teacher2_fl",
+    "bc_teacher4_fl"
+  ],
+  "rounds": 3,
+  "clients": 20,
+  "rows_per_client": 256,
+  "packet_refusals": 4,
+  "exact_resume": [
+    "weights",
+    "resume",
+    "predictions"
+  ],
+  "utility_claim": false,
+  "T4_cost_claim": false,
+  "source_sha": {
+    "cells.py": "456e0400470a0f5f76b3808b71d4e256535d3e62f6f0e1ceddf2278925875fe0",
+    "probe.py": "a50a7d62e2c105ab12107e76de797acd7ab9ce5c7924451782866f4dc8a304e6",
+    "boundary_method.py": "456945b64182dcdb2dfa41d5a42a6cea37f36667606d018ae3b2df47398c9530",
+    "boundary_driver.py": "bebe94c6c2483235d271fbb75d794df81d59533b4a88a9478193a14ffb96c19d"
+  }
+}

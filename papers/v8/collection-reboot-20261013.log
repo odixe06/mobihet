@@ -1,0 +1,19 @@
+trietbackup/mobihet-v8h-s42-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+trietbackup/mobihet-v8h-s42-20261012-v1: 618 files, 4 parallel
+trietbackup/mobihet-v8h-s42-20261012-v1: 618 files ok, 0 missing, 2630 MiB new in 678 s (3.9 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v8/private_push/v8h-s42-20261012-v1/executed.ipynb (30082 bytes, 5 outputs)
+VERIFIED {"run": "h_local_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16307, "ambiguous": 77}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16358, "ambiguous": 26}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_local_s42
+VERIFIED {"run": "h_gaussian_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16337, "ambiguous": 47}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16361, "ambiguous": 23}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_gaussian_s42
+VERIFIED {"run": "h_dml_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16280, "ambiguous": 104}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16338, "ambiguous": 46}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_dml_s42
+VERIFIED {"run": "h_hybrid_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16346, "ambiguous": 38}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16352, "ambiguous": 32}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_hybrid_s42
+VERIFIED {"run": "h_gaussian_own_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16329, "ambiguous": 55}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16364, "ambiguous": 20}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_gaussian_own_s42
+VERIFIED {"run": "h_dml_own_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16278, "ambiguous": 106}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16337, "ambiguous": 47}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_dml_own_s42
+VERIFIED {"run": "h_hybrid_own_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "private", "rows": 16384, "decisive": 16321, "ambiguous": 63}, {"round": 20, "role": "private", "rows": 16384, "decisive": 16338, "ambiguous": 46}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_hybrid_own_s42
+AUDITED KERNEL trietbackup/mobihet-v8h-s42-20261012-v1 complete True

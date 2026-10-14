@@ -1,0 +1,62 @@
+{
+  "observed_utc": "2026-10-12T10:06:25.809061+00:00",
+  "evidence": "live W&B, not pulled artifact verification",
+  "transport": "authenticated read-only GraphQL",
+  "runs": [
+    {
+      "family": "a",
+      "seed": 42,
+      "arm": "r64_fl",
+      "run_id": "r64_fl_s42-38b5e95e",
+      "locator": "21522798-uit/mobihet-v9/r64_fl_s42-38b5e95e",
+      "state": "finished",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v9/runs/r64_fl_s42-38b5e95e",
+      "round": 20,
+      "timestamp": 1791799576.9761682,
+      "loss": 0,
+      "seconds": 28.898332834243774,
+      "version": 20,
+      "applied": 0,
+      "skipped": 0,
+      "proxy/group/head/f1_macro": 0.2138873700224097,
+      "proxy/positive_ce": 0,
+      "proxy/negative_ce": 0,
+      "public_teacher_applied": 20,
+      "algorithm_seconds": 13.862903118133543,
+      "algorithm/teacher_fit_mse": 0.0001709588490484748,
+      "algorithm/residual_norm": 0.44636154321963234
+    },
+    {
+      "family": "a",
+      "seed": 42,
+      "arm": "r64_own",
+      "run_id": "r64_own_s42-fd1e03a7",
+      "locator": "21522798-uit/mobihet-v9/r64_own_s42-fd1e03a7",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v9/runs/r64_own_s42-fd1e03a7",
+      "round": null,
+      "timestamp": null
+    },
+    {
+      "family": "a",
+      "seed": 42,
+      "arm": "r_dense_ce",
+      "run_id": "r_dense_ce_s42-67c2ea73",
+      "locator": "21522798-uit/mobihet-v9/r_dense_ce_s42-67c2ea73",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v9/runs/r_dense_ce_s42-67c2ea73",
+      "round": 7,
+      "timestamp": 1791799491.9114914,
+      "loss": 0.4281694367527962,
+      "seconds": 51.37512397766113,
+      "version": 7,
+      "applied": 1956,
+      "skipped": 9,
+      "proxy/group/head/f1_macro": 0.6320341209323954,
+      "proxy/positive_ce": 0.4281694367527962,
+      "proxy/negative_ce": 0,
+      "public_teacher_applied": 0,
+      "algorithm_seconds": 50.66354441642761
+    }
+  ]
+}

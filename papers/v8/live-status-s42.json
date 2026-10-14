@@ -1,0 +1,69 @@
+{
+  "observed_utc": "2026-10-12T10:58:41.954587+00:00",
+  "evidence": "live W&B, not pulled artifact verification",
+  "transport": "authenticated read-only GraphQL",
+  "runs": [
+    {
+      "family": "h",
+      "seed": 42,
+      "arm": "h_dml",
+      "run_id": "h_dml_s42-4c725c33",
+      "locator": "21522798-uit/mobihet-v8/h_dml_s42-4c725c33",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v8/runs/h_dml_s42-4c725c33",
+      "round": null,
+      "timestamp": 1791802341.8168075
+    },
+    {
+      "family": "h",
+      "seed": 42,
+      "arm": "h_gaussian",
+      "run_id": "h_gaussian_s42-6a22d476",
+      "locator": "21522798-uit/mobihet-v8/h_gaussian_s42-6a22d476",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v8/runs/h_gaussian_s42-6a22d476",
+      "round": 1,
+      "timestamp": 1791802503.3561978,
+      "loss": 2.3257494270801544,
+      "seconds": 155.8771538734436,
+      "version": 1,
+      "applied": 3930,
+      "skipped": 0,
+      "private/real_ce": 0.864443325996399,
+      "private/auxiliary": 1.4613061010837556,
+      "proxy/positive_ce": 0.8561927750706673,
+      "proxy/negative_ce": 1.4506985425949095
+    },
+    {
+      "family": "h",
+      "seed": 42,
+      "arm": "h_hybrid",
+      "run_id": "h_hybrid_s42-9c7ab9c7",
+      "locator": "21522798-uit/mobihet-v8/h_hybrid_s42-9c7ab9c7",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v8/runs/h_hybrid_s42-9c7ab9c7",
+      "round": 1,
+      "timestamp": 1791802509.392559,
+      "loss": 2.3773848533630373,
+      "seconds": 161.87800860404968,
+      "version": 1,
+      "applied": 3928,
+      "skipped": 2,
+      "private/real_ce": 0.8665602326393127,
+      "private/auxiliary": 1.5108246207237244,
+      "proxy/positive_ce": 0.8603383883833885,
+      "proxy/negative_ce": 1.5011234283447266
+    },
+    {
+      "family": "h",
+      "seed": 42,
+      "arm": "h_local",
+      "run_id": "h_local_s42-1f785fa4",
+      "locator": "21522798-uit/mobihet-v8/h_local_s42-1f785fa4",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v8/runs/h_local_s42-1f785fa4",
+      "round": null,
+      "timestamp": 1791802341.785216
+    }
+  ]
+}

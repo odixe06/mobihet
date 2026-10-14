@@ -1,0 +1,96 @@
+start e_ce_raw gpu 0 phase probe
+COST e_ce_raw 1.0 True
+start e_ce_raw gpu 0 phase continue
+start e_ce_matched gpu 1 phase probe
+COST e_ce_matched 1.0 True
+start e_ce_matched gpu 1 phase continue
+start e_ce_aug gpu 0 phase probe
+start e_fl gpu 1 phase probe
+COST e_ce_aug 1.0 True
+COST e_fl 1.0 True
+start e_ce_aug gpu 0 phase continue
+start e_fl gpu 1 phase continue
+start e_own gpu 0 phase probe
+start e_shuffle gpu 1 phase probe
+COST e_own 1.0 True
+COST e_shuffle 1.0 True
+start e_own gpu 0 phase continue
+start e_shuffle gpu 1 phase continue
+start e_q gpu 0 phase probe
+COST e_q 1.0 True
+start e_q gpu 0 phase continue
+{'e_ce_raw': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_matched': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_aug': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_q': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK trietbackup/mobihet-v10e-s42-20261012-v1 normal 7 arms
+start e_ce_raw gpu 0 phase probe
+COST e_ce_raw 1.0 True
+start e_ce_raw gpu 0 phase continue
+start e_ce_matched gpu 1 phase probe
+COST e_ce_matched 3.0 False
+start e_ce_aug gpu 0 phase probe
+start e_fl gpu 1 phase probe
+COST e_ce_aug 1.0 True
+COST e_fl 1.0 True
+start e_ce_aug gpu 0 phase continue
+start e_fl gpu 1 phase continue
+start e_own gpu 0 phase probe
+start e_shuffle gpu 1 phase probe
+COST e_own 1.0 True
+COST e_shuffle 1.0 True
+start e_own gpu 0 phase continue
+start e_shuffle gpu 1 phase continue
+start e_q gpu 0 phase probe
+COST e_q 1.0 True
+start e_q gpu 0 phase continue
+{'e_ce_raw': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_matched': {'rc': -997, 'complete': False, 'cost_pass': False, 'cost_stopped': True, 'cost': {'measured_algorithm_seconds': [3.0, 3.0], 'mean_seconds': 3.0, 'baseline_mean_seconds': 1.0, 'ratio': 3.0, 'pass_cost': False, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_aug': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_q': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK trietbackup/mobihet-v10e-s42-20261012-v1 cost 7 arms
+start e_ce_raw gpu 0 phase probe
+{'e_ce_raw': {'rc': -15, 'complete': False, 'cost_pass': None, 'reason': 'cost preflight failed before two complete rounds'}, 'e_ce_matched': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_ce_aug': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_fl': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_own': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_shuffle': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_q': {'rc': -998, 'complete': False, 'cost_pass': None}}
+PASS TEACHER NOTEBOOK trietbackup/mobihet-v10e-s42-20261012-v1 deadline 7 arms
+start e_ce_raw gpu 0 phase probe
+COST e_ce_raw 1.0 True
+start e_ce_raw gpu 0 phase continue
+start e_ce_matched gpu 1 phase probe
+COST e_ce_matched 1.0 True
+start e_ce_matched gpu 1 phase continue
+start e_ce_aug gpu 0 phase probe
+start e_fl gpu 1 phase probe
+COST e_ce_aug 1.0 True
+COST e_fl 1.0 True
+start e_ce_aug gpu 0 phase continue
+start e_fl gpu 1 phase continue
+start e_own gpu 0 phase probe
+start e_shuffle gpu 1 phase probe
+COST e_own 1.0 True
+COST e_shuffle 1.0 True
+start e_own gpu 0 phase continue
+start e_shuffle gpu 1 phase continue
+start e_q gpu 0 phase probe
+COST e_q 1.0 True
+start e_q gpu 0 phase continue
+{'e_ce_raw': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_matched': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_aug': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_q': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK odixe0502/mobihet-v10e-s43-20261012-v1 normal 7 arms
+start e_ce_raw gpu 0 phase probe
+COST e_ce_raw 1.0 True
+start e_ce_raw gpu 0 phase continue
+start e_ce_matched gpu 1 phase probe
+COST e_ce_matched 3.0 False
+start e_ce_aug gpu 0 phase probe
+start e_fl gpu 1 phase probe
+COST e_ce_aug 1.0 True
+COST e_fl 1.0 True
+start e_ce_aug gpu 0 phase continue
+start e_fl gpu 1 phase continue
+start e_own gpu 0 phase probe
+start e_shuffle gpu 1 phase probe
+COST e_own 1.0 True
+COST e_shuffle 1.0 True
+start e_own gpu 0 phase continue
+start e_shuffle gpu 1 phase continue
+start e_q gpu 0 phase probe
+COST e_q 1.0 True
+start e_q gpu 0 phase continue
+{'e_ce_raw': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_matched': {'rc': -997, 'complete': False, 'cost_pass': False, 'cost_stopped': True, 'cost': {'measured_algorithm_seconds': [3.0, 3.0], 'mean_seconds': 3.0, 'baseline_mean_seconds': 1.0, 'ratio': 3.0, 'pass_cost': False, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_ce_aug': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'e_q': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK odixe0502/mobihet-v10e-s43-20261012-v1 cost 7 arms
+start e_ce_raw gpu 0 phase probe
+{'e_ce_raw': {'rc': -15, 'complete': False, 'cost_pass': None, 'reason': 'cost preflight failed before two complete rounds'}, 'e_ce_matched': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_ce_aug': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_fl': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_own': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_shuffle': {'rc': -998, 'complete': False, 'cost_pass': None}, 'e_q': {'rc': -998, 'complete': False, 'cost_pass': None}}
+PASS TEACHER NOTEBOOK odixe0502/mobihet-v10e-s43-20261012-v1 deadline 7 arms

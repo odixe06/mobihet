@@ -11,6 +11,8 @@ Here: list every file once (each entry carries its own signed URL), then a threa
 and renames only when the byte count equals Content-Length. Files already local with the remote size are skipped
 (a HEAD-free check: the size comes from the GET headers before any body is read). Failed files are retried with
 backoff; after a pass, the listing is refreshed (signed URLs expire) and missing files are retried, up to --passes.
+Interrupted `.part` files are retained; later attempts request the remaining bytes with HTTP Range, validate
+Content-Range before appending, and safely restart if the server ignores Range.
 Exit status is non-zero if any file is still missing -- check it, never the CLI's exit 0.
 The kernel log is written to <dest>/<slug>.log as the CLI does. Credentials come from the environment (kaggle_as.py).
 """
@@ -36,14 +38,28 @@ def listing(kernel):
 
 def fetch(sess, url, out, timeout):
     """-> ('skip'|'ok', bytes). Raises on any short or failed transfer."""
-    with sess.get(url, stream=True, timeout=(30, timeout)) as r:
-        r.raise_for_status(); size = int(r.headers.get('Content-Length', -1))
+    part = out.with_name(out.name + '.part')
+    offset = part.stat().st_size if part.is_file() else 0
+    r = sess.get(url, stream=True, timeout=(30, timeout), headers={'Range': f'bytes={offset}-'} if offset else {})
+    if r.status_code == 416 and offset:  # stale or fully downloaded partial; ask for the whole object
+        r.close(); offset = 0
+        r = sess.get(url, stream=True, timeout=(30, timeout))
+    with r:
+        r.raise_for_status()
+        if r.status_code == 206:
+            span = re.fullmatch(r'bytes (\d+)-(\d+)/(\d+)', r.headers.get('Content-Range', ''))
+            if not span or int(span[1]) != offset or int(span[2]) != int(span[3]) - 1:
+                raise IOError('invalid Content-Range; partial not appended')
+            size = int(span[3])
+        else:
+            offset = 0  # server ignored Range; overwrite the partial, never append a full response
+            size = int(r.headers.get('Content-Length', -1))
         if size >= 0 and out.is_file() and out.stat().st_size == size: return 'skip', 0
-        out.parent.mkdir(parents=True, exist_ok=True); part = out.with_name(out.name + '.part'); n = 0
-        with open(part, 'wb') as f:
+        out.parent.mkdir(parents=True, exist_ok=True); n = offset
+        with open(part, 'ab' if offset else 'wb') as f:
             for chunk in r.iter_content(1 << 20): f.write(chunk); n += len(chunk)
         if size >= 0 and n != size: raise IOError(f'{out.name}: got {n} of {size} bytes')
-        os.replace(part, out); return 'ok', n
+        os.replace(part, out); return 'ok', n - offset
 
 
 def main():
@@ -63,7 +79,7 @@ def main():
             for k in range(a.retries):
                 try: return name, *fetch(sess, url, dest / name, a.timeout)
                 except Exception as e: err = e; time.sleep(2 ** k)
-            return name, 'fail', repr(err)
+            return name, 'fail', type(err).__name__  # Exceptions may contain a signed private-output URL.
         missing = set()
         with ThreadPoolExecutor(a.jobs) as ex:
             for f in as_completed([ex.submit(one, it) for it in todo.items()]):
@@ -75,7 +91,6 @@ def main():
     dt = time.monotonic() - t0
     print(f'{a.kernel}: {len(done)} files ok, {len(missing)} missing, {total / 2**20:.0f} MiB new in {dt:.0f} s '
           f'({total / 2**20 / max(dt, 1e-9):.1f} MiB/s)', flush=True)
-    for part in dest.rglob('*.part'): part.unlink()
     sys.exit(1 if missing else 0)
 
 

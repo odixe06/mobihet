@@ -1,0 +1,6 @@
+catbaochau/mobihet-full4-s42-20261012-cal-v1 has status "KernelWorkerStatus.COMPLETE"
+catbaochau/mobihet-full4-s42-20261012-cal-v1: 76 files, 6 parallel
+catbaochau/mobihet-full4-s42-20261012-cal-v1: 76 files ok, 0 missing, 66 MiB new in 80 s (0.8 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full4-s42-20261012-cal-v1/executed.ipynb (12913 bytes, 5 outputs)
+VERIFIED FULL h_dml_own_s42 3 rounds
+AUDITED FULL CALIBRATION catbaochau/mobihet-full4-s42-20261012-cal-v1 True

@@ -1,0 +1,27 @@
+v8 7 audited arms; 168 ten-metric rows; {'hybrid_s43': {'quality': True, 'vs_stronger': 0.04355081093130497, 'vs_own': 0.14993825304464536, 'interaction': -0.07223769600825458}}
+docs/file-index.md: 1169 files
+UPDATED audited report v8 1 / 2
+v9 13 audited arms; 104 ten-metric rows; {'M64_s42': {'quality': False, 'cost': True, 'vs_local': -0.25045266332984945, 'vs_own': 0.05950613741443295, 'vs_shuffle': 0.0076774093968979, 'vs_classmean': 0.001611414075400247, 'vs_hard': 0.0033045096653754324, 'refresh_contribution': True, 'vs_frozen': 0.021421408714410062}, 'M512_s42': {'quality': False, 'cost': True, 'vs_local': -0.13249479924217045, 'vs_own': 0.038218785106682085, 'vs_shuffle': -0.0007320152787252954, 'vs_classmean': 0.0015964721242283098, 'vs_hard': -0.0013991060985687476, 'refresh_contribution': False, 'vs_frozen': 0.0009782260325364445}}
+docs/file-index.md: 1169 files
+UPDATED audited report v9 1 / 2
+Full report: 7 audited arms, 48 ten-metric rows; actual maxrounds {'h_local': 3, 'h_gaussian': 3, 'h_gaussian_diag': 3, 'h_gaussian_lr4': 3, 'h_gaussian_own': 3, 'h_dml': 3, 'h_dml_own': 3}
+docs/file-index.md: 1169 files
+UPDATED audited report full-validation 4 / 8
+Full report: 7 audited arms, 78 ten-metric rows; actual maxrounds {'h_local': 11, 'h_gaussian': 10, 'h_gaussian_diag': 3, 'h_gaussian_lr4': 3, 'h_gaussian_own': 3, 'h_dml': 3, 'h_dml_own': 3}
+docs/file-index.md: 1256 files
+UPDATED audited report full-validation 5 / 8
+Full report: 7 audited arms, 104 ten-metric rows; actual maxrounds {'h_local': 11, 'h_gaussian': 10, 'h_gaussian_diag': 10, 'h_gaussian_lr4': 9, 'h_gaussian_own': 3, 'h_dml': 3, 'h_dml_own': 3}
+docs/file-index.md: 1265 files
+UPDATED audited report full-validation 6 / 8
+v8 14 audited arms; 336 ten-metric rows; {'hybrid_s42': {'quality': True, 'vs_stronger': 0.04069545395228158, 'vs_own': 0.1470400387791695, 'interaction': -0.06769032792402996}, 'hybrid_s43': {'quality': True, 'vs_stronger': 0.04355081093130497, 'vs_own': 0.14993825304464536, 'interaction': -0.07223769600825458}}
+docs/file-index.md: 1268 files
+UPDATED audited report v8 2 / 2
+Full report: 7 audited arms, 130 ten-metric rows; actual maxrounds {'h_local': 11, 'h_gaussian': 10, 'h_gaussian_diag': 10, 'h_gaussian_lr4': 9, 'h_gaussian_own': 10, 'h_dml': 7, 'h_dml_own': 3}
+docs/file-index.md: 1272 files
+UPDATED audited report full-validation 7 / 8
+Full report: 7 audited arms, 142 ten-metric rows; actual maxrounds {'h_local': 11, 'h_gaussian': 10, 'h_gaussian_diag': 10, 'h_gaussian_lr4': 9, 'h_gaussian_own': 10, 'h_dml': 7, 'h_dml_own': 7}
+docs/file-index.md: 1273 files
+UPDATED audited report full-validation 8 / 8
+v9 26 audited arms; 208 ten-metric rows; {'M64_s42': {'quality': False, 'cost': True, 'vs_local': -0.25045266332984945, 'vs_own': 0.05950613741443295, 'vs_shuffle': 0.0076774093968979, 'vs_classmean': 0.001611414075400247, 'vs_hard': 0.0033045096653754324, 'refresh_contribution': True, 'vs_frozen': 0.021421408714410062}, 'M512_s42': {'quality': False, 'cost': True, 'vs_local': -0.13249479924217045, 'vs_own': 0.038218785106682085, 'vs_shuffle': -0.0007320152787252954, 'vs_classmean': 0.0015964721242283098, 'vs_hard': -0.0013991060985687476, 'refresh_contribution': False, 'vs_frozen': 0.0009782260325364445}, 'M64_s43': {'quality': False, 'cost': True, 'vs_local': -0.2638189345898757, 'vs_own': 0.029697527663874596, 'vs_shuffle': 0.00041784010487247447, 'vs_classmean': -0.0035617806218945502, 'vs_hard': 0.006924724248064312, 'refresh_contribution': True, 'vs_frozen': 0.028229301605809165}, 'M512_s43': {'quality': False, 'cost': True, 'vs_local': -0.13688417499268085, 'vs_own': 0.03201647303449018, 'vs_shuffle': 0.0032493873105374216, 'vs_classmean': 0.0008767628165152752, 'vs_hard': 0.006754411776270675, 'refresh_contribution': False, 'vs_frozen': -0.002013302075082657}}
+docs/file-index.md: 1284 files
+UPDATED audited report v9 2 / 2

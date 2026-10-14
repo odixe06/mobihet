@@ -1,0 +1,14 @@
+{
+  "hybrid_s42": {
+    "quality": true,
+    "vs_stronger": 0.04069545395228158,
+    "vs_own": 0.1470400387791695,
+    "interaction": -0.06769032792402996
+  },
+  "hybrid_s43": {
+    "quality": true,
+    "vs_stronger": 0.04355081093130497,
+    "vs_own": 0.14993825304464536,
+    "interaction": -0.07223769600825458
+  }
+}

@@ -33,3 +33,31 @@ Full59covbyte≈80%full66trướcmask, khôngđạt65%; ghi carrierFAIL trước
 
 Sau cảnhbáo bearing divisionnear0, chốt **cảG59/G61**. G61giữbearings2; G59dùnginverseđúngextractor,
 invalidsupport diagnostic/nonfiniteFAIL. Cổngcarrierkhônghạ. V6pilot cầnlocalproof vàmanifest trướcpush.
+
+## Mở rộng và triển khai tiếp — chốt sau K5
+
+- FullH1/H2:20client/100%train80%/50round/**seed42only**; chọn7arm gồmGaussian diag/lr4,
+  cùnglocal/full/own/DML/DMLown. [Contract đãkhóa](../research/full-h1-h2.md).
+- Nyströmrank4/8:explicitWupper cóphí,FP32up/FP16factor-down, freshcontrols/own/sign-shuffle;
+  dùngcấuhình vàcổng [design§7](../../proposals/covariance-nystrom/design.md),
+  [pilotmanifest](../research/pilot-v7-nystrom.md).
+- Hybrid:pilot2×2 local/Gaussian/DML/kết hợp +owncontrols, seed42/43;
+  [contract](../research/pilot-v8-hybrid.md). Khôngđưa lênfull trướcutilitygate.
+- K2 residual:teacher-first M64/512 theo [contract](../research/pilot-v9-residual.md);
+  weights/BNcommonprobe synccóphí, khôngrawrecordrờixe.
+- K4:Gaussian-base+independenceMH theo [contract](../research/pilot-v10-energy.md);
+  localτ0,05/energyweight0,1/20burn-in+1transition/batch. UnbasedR66 vẫnnormalizabilityFAIL.
+- K2/K4 **cost≤2×freshdenseCE T4**, khóatrướcpilot; vượt thìgiữoutput vàdừngadaptation,
+  khônggiảmconfig đểcứucổng.
+- K4samplerprobe r1/5/10/20, hai khởi tạo noise×64chain×100transition;
+  movement≥5%, khôngchainfrozen cả100bước, mean-energygap≤0,1 pooled-SD.
+  Trượt thìchưa private/contact, khôngđổiHP saukếtquả.
+
+## Theo dõi — quyết định mới nhất
+
+Chủdựán: **"sau khi các tiến trình hiện tại đã đi vào hoạt động ổn định (thì không cần theo dõi nữa)"**.
+Ngừnghealthpoll kernel/arm có tiến độfinite, applied/skipped hợp lệ. Chỉkiểm lúcmới bắtđầu,
+chưarõ hoặc cólỗi; collect/auditterminal tiếp. Khônghứa theo dõi nền saukết thúcphiên.
+Nếu quan sát lỗi/bấtổn lúc kernelđangtrain thìbáolink/bằngchứng vàyêucầuchủdựándừng;
+khôngagent tựcancel. Notebook guard vẫnhoạtđộng theo manifestđãkhóa.
+[Run/collector/budget](expansion-2026-10-12.md).

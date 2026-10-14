@@ -1,0 +1,34 @@
+{
+  "rank4_s42": {
+    "quality": false,
+    "compression": true,
+    "byte_ratio": 0.19817418294686873,
+    "vs_exact": -0.01949754740229892,
+    "vs_own": 0.1054367024561993,
+    "vs_shuffle": 0.0016961542553781683
+  },
+  "rank8_s42": {
+    "quality": false,
+    "compression": true,
+    "byte_ratio": 0.3214533503742925,
+    "vs_exact": -0.01828046743385947,
+    "vs_own": 0.111994614383158,
+    "vs_shuffle": 0.010932295032603845
+  },
+  "rank4_s43": {
+    "quality": false,
+    "compression": true,
+    "byte_ratio": 0.19817418294686873,
+    "vs_exact": -0.02396095355637573,
+    "vs_own": 0.10747208754372889,
+    "vs_shuffle": 0.0009340961293929917
+  },
+  "rank8_s43": {
+    "quality": false,
+    "compression": true,
+    "byte_ratio": 0.3214533503742925,
+    "vs_exact": -0.011720748858836116,
+    "vs_own": 0.11796472501059085,
+    "vs_shuffle": 0.012539084725021188
+  }
+}

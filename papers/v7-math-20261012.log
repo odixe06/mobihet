@@ -1,0 +1,12 @@
+V7 math PASS n_diag {'up': 8688, 'down': 4272}
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v7_math.py", line 77, in <module>
+    main()
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_v7_math.py", line 46, in main
+    decode(packet, actual, size, method.context)
+  File "/home/odixe/nckh/veremi/mobihet/mh/v7_nystrom.py", line 40, in decode
+    assert magic == b'MHN7' and schema == 1 and actual == kind and n == size
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+Peak tree RSS: 541 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_v7_math.py` failed. (See above for error)

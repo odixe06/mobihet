@@ -1,73 +1,77 @@
 # Git / DVC backup record
 
-Updated: 2026-10-12 UTC+7 — backup bổ sung9 target hoàn tất trênG:,verify+cleanup xong; không chờcloudsync.
+Updated: 2026-10-14 UTC+7 — delta verify G: hoàn tất; đã verify G:, chờ cleanup.
 Procedure: [repo-backup](../../.agents/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
 
-- Git: `git@github.com:odixe06/mobihet.git`, `main`; source/manifest snapshot `67d990982f822b27dbf52167391528925eedd679`, hồ sơ throttle `1678163ab4431a5899cee7c0b5da5d0aa5430e12` khớpremote trướccleanup. Hồ sơ nàycommit/push tiếp; HEAD kiểm riêng bằng `git ls-remote origin refs/heads/main`.
-- DVC `gdrive`: `/mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage`, chungarchive; khôngGCremote.
-- Bundle: `/mnt/g/My Drive/NCKH/veremi_build/mobihet/mobihet.bundle`; tạo từHEAD cuối, `--all`; verify/hash trước thaytrênG:.
-- Cloud upload chưa kiểm/khôngchờ; đủobject+manifest trênG: làgatecleanup. Giữ cacheDrive `D:\ggdrive_cached`.
+- Git: `git@github.com:odixe06/mobihet.git`, `main`; HEAD cuối kiểm bằng `git ls-remote origin refs/heads/main` và `git rev-parse HEAD`.
+- DVC `gdrive`: `/mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage`.
+- Bundle: `/mnt/g/My Drive/NCKH/veremi_build/mobihet/mobihet.bundle`; `--all`, verify trước atomic replace.
+- Cloud sync không kiểm/không chờ. Giữ Drive cache `D:\ggdrive_cached`; G: đủ object là gate cleanup.
 
 ## 2. Tracked artifacts
 
-[Chỉ mục35 manifest+lệnhpull](artifact-index.md); [inventory/proof/alias/cleanup mới](backup-delta-2026-10-12.json).
-Targetpartial đượcgộp oldentry+localnew theo relpath, localoverride cùngpath; giữ4.487 entryremote-only.
-Không tạo bảntrùng từ158 `runs/` symlink; mappingrelative cótronginventory.
+[Chỉ mục toàn manifest/lệnh pull](artifact-index.md). [Inventory/proof/alias/cleanup](backup-delta-2026-10-14.json).
+Entry remote-only giữ nguyên; local override cùng relpath. Không add partial trực tiếp.
 
-| Manifest cập nhật/mới | MD5 | Files | Logical bytes | Local |
+| Manifest | MD5 | Files | Logical bytes | Local |
 |---|---|---:|---:|---|
-| `papers/pilot/fixture.dvc` | `cb782c4671b1aa25a8a2c56bf465587c.dir` | 67 | 159554510 | đã xóa |
-| `papers/v2/kaggle.dvc` | `3c49c7ec142513d62f8e31da23534ee1.dir` | 2422 | 31674561783 | đã xóa |
-| `papers/v3/kaggle.dvc` | `6c988e51b04beb21f4fecffd3d68f193.dir` | 4556 | 134856256251 | đã xóa |
-| `papers/v4/kaggle.dvc` | `f216e372ed5243268f08347ab0e0bd27.dir` | 1784 | 19725857055 | đã xóa |
-| `papers/v5/kaggle.dvc` | `d55a71674bddb8f37e0f674d21e32a74.dir` | 3802 | 44386753600 | đã xóa |
-| `papers/v6/input.dvc` | `04561c8e53872cc5f20d0c1a22514e68.dir` | 396 | 639024584 | đã xóa |
-| `papers/v6/kaggle.dvc` | `ec521a9fcccb9633cf60cf28bf88911a.dir` | 1666 | 14056604948 | đã xóa |
-| `papers/v6/resume_reference.dvc` | `0c303ed9c577e514a3166ba867acce3a.dir` | 60 | 438528517 | đã xóa |
-| `papers/v6/smoke.dvc` | `f43239f0cee543729662d5e67faf475b.dir` | 240 | 1749631771 | đã xóa |
+| `papers/boundary-cells/controller-fixture.dvc` | `195b422d05d1a14eacf7e563725caef3.dir` | 76 | 16932 | đã verify G:, chờ cleanup |
+| `papers/boundary-cells/input.dvc` | `5d398f36a4ac5baebdc135fe9a364549.dir` | 230 | 319715058 | đã verify G:, chờ cleanup |
+| `papers/boundary-cells/kaggle.dvc` | `57c7e72fca8bd50a0ffcfc71391d09c6.dir` | 338 | 1240071864 | đã verify G:, chờ cleanup |
+| `papers/boundary-cells/smoke.dvc` | `bd1f76e8e88b0ab664224c4609eb5417.dir` | 210 | 2190821198 | đã verify G:, chờ cleanup |
+| `papers/full-validation/input.dvc` | `b50f3b5852c683e91058cb0dcef9e27c.dir` | 200 | 1282683 | đã verify G:, chờ cleanup |
+| `papers/full-validation/kaggle.dvc` | `789efb2da148689d271aa55e3f6d5170.dir` | 968 | 9278181515 | đã verify G:, chờ cleanup |
+| `papers/full-validation/mount-output.dvc` | `f98af0c07296f21e2b58d1f5469941da.dir` | 18 | 53171 | đã verify G:, chờ cleanup |
+| `papers/full-validation/resume_reference.dvc` | `a7c0717142b58fb5d24a157bc113b564.dir` | 63 | 658095993 | đã verify G:, chờ cleanup |
+| `papers/full-validation/smoke.dvc` | `da8ab9332b7cba1e5535639071bc93cc.dir` | 221 | 1314131032 | đã verify G:, chờ cleanup |
+| `papers/hybrid-full/diagnostics.dvc` | `b4c3578df19e67fff29bba3066d02465.dir` | 20 | 935609 | đã verify G:, chờ cleanup |
+| `papers/hybrid-full/input.dvc` | `637a09a84948d0db883c54aa8b18c861.dir` | 212 | 1297638 | đã verify G:, chờ cleanup |
+| `papers/hybrid-full/kaggle.dvc` | `89ba8972c2ee1062ab77a27d58fb08bc.dir` | 384 | 2834658221 | đã verify G:, chờ cleanup |
+| `papers/hybrid-full/resume_reference.dvc` | `b2ddeb62e648d9190650ce62ddcf1a1b.dir` | 81 | 1086355227 | đã verify G:, chờ cleanup |
+| `papers/hybrid-full/smoke.dvc` | `4dd92ca56796decf59ae3e200f13ee46.dir` | 111 | 1524677711 | đã verify G:, chờ cleanup |
+| `papers/pilot/fixture.dvc` | `cb782c4671b1aa25a8a2c56bf465587c.dir` | 67 | 159554510 | đã verify G:, chờ cleanup |
+| `papers/v10/input.dvc` | `743718b1dd83290b17491188e085e90d.dir` | 222 | 319641954 | đã verify G:, chờ cleanup |
+| `papers/v10/kaggle.dvc` | `8cde4b9a4e724ddc0fa35047c6f9cb48.dir` | 568 | 4523882900 | đã verify G:, chờ cleanup |
+| `papers/v10/resume_reference.dvc` | `456967a838675e3d0cf7763cec988aef.dir` | 102 | 1283401033 | đã verify G:, chờ cleanup |
+| `papers/v10/smoke.dvc` | `752fdb98ccc1bca8431d31d5f3024819.dir` | 246 | 2992749358 | đã verify G:, chờ cleanup |
+| `papers/v2/kaggle.dvc` | `3c49c7ec142513d62f8e31da23534ee1.dir` | 2422 | 31674561783 | đã verify G:, chờ cleanup |
+| `papers/v6/kaggle.dvc` | `ec521a9fcccb9633cf60cf28bf88911a.dir` | 1666 | 14056604948 | đã verify G:, chờ cleanup |
+| `papers/v7/input.dvc` | `fe759ba87afb08430620383790d01da1.dir` | 204 | 319545868 | đã verify G:, chờ cleanup |
+| `papers/v7/kaggle.dvc` | `6f1ac7fde1746d98c4ffd0bc2ede9460.dir` | 1618 | 14100779740 | đã verify G:, chờ cleanup |
+| `papers/v7/resume_reference.dvc` | `5a5d85b0c7fb4ade93e7e3add7915f2c.dir` | 60 | 422721575 | đã verify G:, chờ cleanup |
+| `papers/v7/smoke.dvc` | `94c9e76fb1d7f258b4a4bb8167a1e0e0.dir` | 150 | 1053189840 | đã verify G:, chờ cleanup |
+| `papers/v8/input.dvc` | `1f1c3423d9dc96f16606930a98ea6365.dir` | 210 | 319566420 | đã verify G:, chờ cleanup |
+| `papers/v8/kaggle.dvc` | `5e8f82e41e5204fff1d0efca49cbaaab.dir` | 1242 | 20412224345 | đã verify G:, chờ cleanup |
+| `papers/v8/resume_reference.dvc` | `ee5d508c6c69cd47549940bf6be64459.dir` | 51 | 663906613 | đã verify G:, chờ cleanup |
+| `papers/v8/smoke.dvc` | `b0da1af1f8498adb7a526192686c2fc4.dir` | 111 | 1526827464 | đã verify G:, chờ cleanup |
+| `papers/v9/input.dvc` | `347e0af95ba09acf7825b755fbc95e36.dir` | 222 | 319643036 | đã verify G:, chờ cleanup |
+| `papers/v9/kaggle.dvc` | `b9220ec4e71f82a1cb3fcedf034402fa.dir` | 2798 | 37425239839 | đã verify G:, chờ cleanup |
+| `papers/v9/resume_reference.dvc` | `9c657c34734d22cc2caebefa9ec1dfe6.dir` | 153 | 1944387156 | đã verify G:, chờ cleanup |
+| `papers/v9/smoke.dvc` | `f3ea67005856b761dc86fda011f40b57.dir` | 684 | 8402355983 | đã verify G:, chờ cleanup |
 
-26manifest khác giữ snapshot trước; [proof31target cũ](backup-2026-10-12-inventory.json). Hash mới xemchỉmục, không dùnghash bảngsnapshotcũ choV3–V5 hiện tại.
-Backup không thaytrainingaudit; source/publicnotebook/report/proposals trênGit, artifact trênDVC.
+Manifest khác giữ snapshot trước; proof cũ: `backup-delta-2026-10-12.json`, `backup-2026-10-12-inventory.json`.
 
 ## 3. Checks that passed
 
-- Quét4.648 filetext vàstaged227file: không thấycredential theo mẫuW&B/Kaggle/APIassignment; khôngstaged file>10MB. Credential private_push vàruntimecache khôngbackup.
--9 target merge/add:13.251 object unique,246.388.340.141B=229,47GiB trongscope. Prepush7.383 object/136.722.405.963B mới; mọientrycũ thiếulocal được giữ.
-- Theo chủdựán: syncsong song, cap20→60MiB/s,2worker; bufferretry256KiB. Mộtobject31,5MiB gặpENOMEM, retryV6exit0 (`2 files pushed`).
-- Finalpush cả9target exit0: `Everything is up to date.`; status-c exit0: `new/missing=0`,4.072path `deleted` chỉ làremote-only/cachelocal thiếu.
-- Kiểmđộc lập toàn13.251object: tồn tại+sizeđúng, mọi9directorymanifestMD5PASS; thiếu/lỗi0. Filemới quawrapper kiểmMD5payload trướcatomiccommit. Khôngrehash toànpayload246GB trênremote.
-- G: khônggiữ0444 khiếnDVCcheck hash lạipayloadcũ; wrappertạm chỉvới remote/scope đãchốt táidùngproof theoexistence+size vàMD5directory. Không sửa installedDVC/config. Logs ở `/tmp/mobihet-backup-delta-20261012/`.
-- Git vàbundle kiểmriêng; index/link kiểm trướccommit cuối.
+- CAS transfer trực tiếp theo format DVC `files/md5`, 2 worker, tổng cap60MiB/s, buffer256KiB; payload mới MD5 khi copy trước atomic replace.
+- Uploaded 8107 object / 105632333883 byte; toàn 11887 object chọn lọc tồn tại+size đúng; mọi directory manifest MD5 PASS. Payload cũ không rehash toàn remote.
+- Local file hash, size/mtime/inode lưu inventory; manifest mới giữ entry lịch sử remote-only.
+- Git candidate không file >10MiB; credential-assignment scan không hit. Private_push/runtimecache không đưa lên Git/DVC.
+- Git push và bundle kiểm riêng; không coi cloud sync là điều kiện hoàn tất.
 
 ## 4. Local cleanup
 
-- Chủdựán yêu cầu xóa saubackup trongđợt bổ sung2026-10-12. Xóa9workspace+5aliasdir và9.179cacheobject thuộcscope đãverify; exactpaths tronginventory.
--10.506fingerprint size/mtime/inode vàmanifesthash khôngđổi; khôngcollector/writer local trướcxóa. GitHEAD khớpremote trướccleanup.
-- Thu hồi152673230848B=142.19GiB trongWSL; free799852273664→952525504512B. Giữ code/docs/manifests,private_push vàcache ngoài scope.
-
-- Đợtcleanup trước thu hồi155,99GiB; đó làđợt riêng, không cộnghaiđợt thành dunglượng hiện tại.
-
-- WindowsVHDX chưacompact. Nếu cần trả dung lượng vật lý vềC:, thao tácmanual sau khi kết thúc mọiWSL:
-  1. TrongWSL: `sudo fstrim -v /` (cần password; agent không có sudo khôngpassword, chưatrim).
-  2. PowerShell Administrator: `wsl --shutdown`.
-  3. Mở `diskpart`, chạy:
-
-     ```text
-     select vdisk file="C:\Users\odixe\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx"
-     attach vdisk readonly
-     compact vdisk
-     detach vdisk
-     exit
-     ```
+- Chủ dự án yêu cầu 2026-10-14; đã verify G:, chờ cleanup. Exact target/file/alias trong inventory; cache chỉ object thuộc scope đã verify.
+- Thu hồi 0.00 GiB WSL; số free trước/sau trong inventory sau cleanup.
+- Giữ code/docs/notebook/manifests, private_push, cache ngoài scope, Drive upload cache và remote history.
+- Windows VHDX chưa compact. Nếu cần trả dung lượng vật lý C: về Windows: `sudo fstrim -v /`, PowerShell Administrator `wsl --shutdown`, rồi diskpart compact VHDX. Không bắt buộc cho backup/cleanup WSL.
 
 ## 5. Next session
 
-- Backup/cleanup đợt nàyxong; không target thiếu, khôngmanual bắtbuộc choGit/DVC. Cloud tựsync.
-- `conda activate nckh` → `dvc pull <manifest>` từ [chỉ mục](artifact-index.md). V3kaggle snapshot hiện≈125,60GiB logical; kiểmđĩa trước pull.
-- Metadata audit V2–V5 nhẹ: `python scripts/restore_audit_metadata.py`; sauđóworkspacepartial, không `dvc add` thaymanifestđầyđủ.
-- Restorealias theo đoạnPython trongchỉmục saupullkaggle. Đườngdẫn aliasrelative, không phụthuộc vịtríclone.
-- Targetđổi ⇒verify mới trướccleanup. Khôngadd workspaceđãxóa/partial; gộpentrycũ hoặcpullbổsung trướcadd.
-- Restoreproof cũ: [metadata](restored-metadata-2026-10-12.json), [V5H4resume](../../papers/v5/anchor-target-diagnostics.json). Source/artifact đãchạy giữhistory.
-- Archive: repo `odixe06/mobihet-archive-b9-b21`, tag `archive-3`, bundle `mobihet-archive-b9-b21.bundle`; giữremotehistory.
+- `conda activate nckh`; `dvc pull <manifest>` từ chỉ mục; kiểm đĩa trước pull.
+- Target partial: gộp manifest cũ+local delta theo relpath, giữ entry remote-only; không blanket `dvc add`.
+- Target đổi ⇒ verify mới trước cleanup. Không GC remote.
+- DVC `deleted` có thể chỉ thiếu local cache; `new/missing` mới là thiếu remote.
+- Archive `odixe06/mobihet-archive-b9-b21`, tag `archive-3`, bundle cũ giữ nguyên.

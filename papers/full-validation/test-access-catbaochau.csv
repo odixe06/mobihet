@@ -1,0 +1,12 @@
+name,size,creationDate
+upload/feature_schema.json,4164,2026-09-29 08:23:37.181000
+upload/label_mapping.json,1484,2026-09-29 08:24:22.855000
+upload/scaler.json,19593,2026-09-29 08:23:37.174000
+upload/test/part-00000.parquet,530479696,2026-09-29 09:59:25.271000
+upload/test/part-00000.stats.json,11956,2026-09-29 08:23:35.558000
+upload/test/part-00001.parquet,567474660,2026-09-29 08:36:09.957000
+upload/test/part-00001.stats.json,11967,2026-09-29 08:23:36.273000
+upload/test/part-00002.parquet,573344509,2026-09-29 09:17:12.692000
+upload/test/part-00002.stats.json,14151,2026-09-29 08:23:38.521000
+upload/test/part-00003.parquet,88695524,2026-09-29 08:27:21.108000
+upload/test/part-00003.stats.json,2154,2026-09-29 08:23:37.157000

@@ -7,12 +7,15 @@ Input66feature VeReMi NextGen/16lớp; hiện kiểm learned modelsDAGSNet, R2 �
 |---|---|
 | Bắt đầu phiên / trạng thái | [CONTEXT](CONTEXT.md) → [LESSONS](LESSONS.md) |
 | Đề xuất theo tên, cơ chế, code, kết quả, bài học | [proposals/](proposals/README.md) |
-| Tổng số hướng / triển vọng | [24 hướng, 5 ưu tiên](proposals/status-summary.md) |
+| Tổng số hướng / triển vọng | [26 nhóm, trạng thái ưu tiên](proposals/status-summary.md) |
+| Dự báo khả năng tăng metrics trước kiểm nghiệm | [Bằng chứng, giả thuyết và điều kiện bác bỏ](docs/research/performance-feasibility-2026-10-13.md) |
 | Tổng hợp bằng chứng và việc cần kiểm tiếp | [evidence-summary](proposals/evidence-summary.md) |
 | Từng file toàn dự án | [file-index](docs/file-index.md) |
 | Protocol, hợp đồng pilot và vận hành | [docs/](docs/README.md) |
 | Dữ liệu, scaler, DAGSNet, hạ tầng | [knowledge/](knowledge/README.md) |
-| Kernel/output đang collect | [live](docs/operations/live-2026-10-12.md) |
+| Kernel/output và phiên collect mới nhất | [audit14/10 và việc tiếp](docs/operations/collection-2026-10-14.md) |
+| Pilot mới / kiểm dài H1/H2 | [full report10metric](papers/full-validation/report.md), [full ledger](papers/full-validation/rebuild.md), [Hybrid full](docs/research/full-hybrid.md) |
+| Hybrid full: khả thi, lỗi budget, 10 metrics cuối | [kết luận14/10](papers/hybrid-full/feasibility-20261014.md), [10 metrics](papers/hybrid-full/latest-rounds.md) |
 | Artifact đã backup/xóa / khôi phục chọn lọc | [backup](docs/operations/backup.md) |
 
 ## Cấu trúc

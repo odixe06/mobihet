@@ -8,8 +8,8 @@ Source, notebook, training manifest và DVC giữ đường dẫn gốc. Một r
 
 | thư mục / phương pháp | mã cũ | trạng thái |
 |---|---|---|
-| [proxy-mutual-distillation](proxy-mutual-distillation/README.md) | H1/P1/P2 | P1 có lợi; P2 byte/prior còn giới hạn. |
-| [gaussian-class-moments](gaussian-class-moments/README.md) | H2/P1/P2 | P1 có lợi; deadline/bootstrap P2 chưa chứng minh đủ. |
+| [proxy-mutual-distillation](proxy-mutual-distillation/README.md) | H1/P1/P2 | P1 có lợi; full100%train/lịch50round đãlaunchcalibration. R1/R2 cònthiếu. |
+| [gaussian-class-moments](gaussian-class-moments/README.md) | H2/P1/P2 | P1 có lợi; full100%train/lịch50round đãlaunchcalibration. R1/R2 cònthiếu. |
 | [federated-head-transfer](federated-head-transfer/README.md) | H3/P1 | LG/FedGH không được ưu tiên tiếp. |
 | [class-prototypes](class-prototypes/README.md) | H4/P1 | Đối chứng tham chiếu; không ưu tiên thêm biến thể mean. |
 | [gaussian-logit-distillation](gaussian-logit-distillation/README.md) | H5/P1 | DS-FL/FedGen adaptation trượt ưu tiên. |
@@ -29,13 +29,25 @@ Source, notebook, training manifest và DVC giữ đường dẫn gốc. Một r
 | [gradient-synthetic-books](gradient-synthetic-books/README.md) | V5-G/J/K3 | IPC1/4 đủhai seed; qualityFAIL, costPASS. |
 | [geometry-primitive-moments](geometry-primitive-moments/README.md) | K5/V6 G59/G61 | V6 đãaudit: G59numericalFAIL; G61quality/compressionpairedFAIL. |
 
-## Backlog đã đề xuất, chưa nằm trong 20 thư mục đầu
+## Bốn cơ chế bổ sung, triển khai V7–V10
 
 | phương pháp | mã cũ | trạng thái |
 |---|---|---|
-| [covariance-nystrom](covariance-nystrom/README.md) | S1 | Thiết kế chưa pilot; đáng kiểm dựa trên lợi full covariance H2 và nút thắt upload P2. |
-| [gaussian-proxy-hybrid](gaussian-proxy-hybrid/README.md) | H1+H2 | Đã được đồng ý hướng kết hợp; chưa pilot kết hợp có đủ đối chứng riêng. |
-| [anchor-function-residual](anchor-function-residual/README.md) | K2 | Thiết kế chưa sẵn sàng; đồng bộ probe/teacher vẫn có chi phí lớn. K2b kernel-anchor là hướng khác đã pilot. |
-| [dagsnet-joint-energy](dagsnet-joint-energy/README.md) | K4 | Thiết kế chưa ready: bản không base measure bị bác bỏ về normalizability trước train. |
+| [covariance-nystrom](covariance-nystrom/README.md) | S1/V7 | Hai seed đãaudit: rank4/8 compressionPASS, qualitypairedFAIL; khôngcontact/full. |
+| [gaussian-proxy-hybrid](gaussian-proxy-hybrid/README.md) | H1+H2/V8 | Seed43 đãaudit/utilityPASS; seed42 cònpull/audit, chưapairedconfirmation. |
+| [anchor-function-residual](anchor-function-residual/README.md) | K2/V9 | Seed42 audit13arm×20round:M64/M512costPASS/qualityFAIL; seed43chờaudit. K2b V5 làcơ chếkhác. |
+| [dagsnet-joint-energy](dagsnet-joint-energy/README.md) | K4/V10 | Gaussian-base+MH hai seed đãaudit: costFAIL/r1samplerFLFAIL, F1r20chưađo. UnbasedR66normalizabilityFAIL vẫnđúng. |
 
 [Tổng số và phân loại triển vọng](status-summary.md). Mỗi cơ chế đếm một lần; không đếm seed/size/arm thành hướng mới.
+
+## Hướng mới 2026-10-13
+
+| phương pháp | trạng thái / dự báo |
+|---|---|
+| [BoundaryCells — đếm nhãn theo vùng input](boundary-cell-counts/README.md) | P2/P4 bounded probe xong; direct/teacher và gp hiệu dụng đã chốt; chưa DAGSNet utility |
+| [ResponseRisk — consistency theo phản ứng receiver](receiver-response-consistency/README.md) | Swap local được phép với fidelity gate; dự báo thấp/vừa, chưa pilot |
+| [EMA + BN + head riêng](ema-deployment-recipe/README.md) | Recipe H1/H2, không họ FL mới; fresh2×2+own đã chốt |
+
+24nhóm lịch sử +2hướng mới =26nhóm đề xuất; InputSensitivity/ErrorCosts trong
+[ghi chú](../docs/research/new-fl-primary-sources-2026-10-13.md) còn backlog, không cộng vào26.
+Phân loại24nhóm đãaudit giữ riêng; probe mới chưa tăng số pilot tích cực.

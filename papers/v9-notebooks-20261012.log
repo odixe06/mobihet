@@ -1,0 +1,168 @@
+start r_dense_ce gpu 0 phase probe
+COST r_dense_ce 1.0 True
+start r_dense_ce gpu 0 phase continue
+start r64_fl gpu 1 phase probe
+COST r64_fl 1.0 True
+start r64_fl gpu 1 phase continue
+start r64_own gpu 0 phase probe
+start r64_shuffle gpu 1 phase probe
+COST r64_own 1.0 True
+COST r64_shuffle 1.0 True
+start r64_own gpu 0 phase continue
+start r64_shuffle gpu 1 phase continue
+start r64_classmean gpu 0 phase probe
+start r64_hard gpu 1 phase probe
+COST r64_classmean 1.0 True
+COST r64_hard 1.0 True
+start r64_classmean gpu 0 phase continue
+start r64_hard gpu 1 phase continue
+start r64_frozen gpu 0 phase probe
+start r512_fl gpu 1 phase probe
+COST r64_frozen 1.0 True
+COST r512_fl 1.0 True
+start r64_frozen gpu 0 phase continue
+start r512_fl gpu 1 phase continue
+start r512_own gpu 0 phase probe
+start r512_shuffle gpu 1 phase probe
+COST r512_own 1.0 True
+COST r512_shuffle 1.0 True
+start r512_own gpu 0 phase continue
+start r512_shuffle gpu 1 phase continue
+start r512_classmean gpu 0 phase probe
+start r512_hard gpu 1 phase probe
+COST r512_classmean 1.0 True
+COST r512_hard 1.0 True
+start r512_classmean gpu 0 phase continue
+start r512_hard gpu 1 phase continue
+start r512_frozen gpu 0 phase probe
+COST r512_frozen 1.0 True
+start r512_frozen gpu 0 phase continue
+{'r_dense_ce': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK odixeuit/mobihet-v9a-s42-20261012-v1 normal 13 arms
+start r_dense_ce gpu 0 phase probe
+COST r_dense_ce 1.0 True
+start r_dense_ce gpu 0 phase continue
+start r64_fl gpu 1 phase probe
+COST r64_fl 3.0 False
+start r64_own gpu 0 phase probe
+start r64_shuffle gpu 1 phase probe
+COST r64_own 1.0 True
+COST r64_shuffle 1.0 True
+start r64_own gpu 0 phase continue
+start r64_shuffle gpu 1 phase continue
+start r64_classmean gpu 0 phase probe
+start r64_hard gpu 1 phase probe
+COST r64_classmean 1.0 True
+COST r64_hard 1.0 True
+start r64_classmean gpu 0 phase continue
+start r64_hard gpu 1 phase continue
+start r64_frozen gpu 0 phase probe
+start r512_fl gpu 1 phase probe
+COST r64_frozen 1.0 True
+COST r512_fl 1.0 True
+start r64_frozen gpu 0 phase continue
+start r512_fl gpu 1 phase continue
+start r512_own gpu 0 phase probe
+start r512_shuffle gpu 1 phase probe
+COST r512_own 1.0 True
+COST r512_shuffle 1.0 True
+start r512_own gpu 0 phase continue
+start r512_shuffle gpu 1 phase continue
+start r512_classmean gpu 0 phase probe
+start r512_hard gpu 1 phase probe
+COST r512_classmean 1.0 True
+COST r512_hard 1.0 True
+start r512_classmean gpu 0 phase continue
+start r512_hard gpu 1 phase continue
+start r512_frozen gpu 0 phase probe
+COST r512_frozen 1.0 True
+start r512_frozen gpu 0 phase continue
+{'r_dense_ce': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_fl': {'rc': -997, 'complete': False, 'cost_pass': False, 'cost_stopped': True, 'cost': {'measured_algorithm_seconds': [3.0, 3.0], 'mean_seconds': 3.0, 'baseline_mean_seconds': 1.0, 'ratio': 3.0, 'pass_cost': False, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK odixeuit/mobihet-v9a-s42-20261012-v1 cost 13 arms
+start r_dense_ce gpu 0 phase probe
+{'r_dense_ce': {'rc': -15, 'complete': False, 'cost_pass': None, 'reason': 'cost preflight failed before two complete rounds'}, 'r64_fl': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_own': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_shuffle': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_classmean': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_hard': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_frozen': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_fl': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_own': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_shuffle': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_classmean': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_hard': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_frozen': {'rc': -998, 'complete': False, 'cost_pass': None}}
+PASS TEACHER NOTEBOOK odixeuit/mobihet-v9a-s42-20261012-v1 deadline 13 arms
+start r_dense_ce gpu 0 phase probe
+COST r_dense_ce 1.0 True
+start r_dense_ce gpu 0 phase continue
+start r64_fl gpu 1 phase probe
+COST r64_fl 1.0 True
+start r64_fl gpu 1 phase continue
+start r64_own gpu 0 phase probe
+start r64_shuffle gpu 1 phase probe
+COST r64_own 1.0 True
+COST r64_shuffle 1.0 True
+start r64_own gpu 0 phase continue
+start r64_shuffle gpu 1 phase continue
+start r64_classmean gpu 0 phase probe
+start r64_hard gpu 1 phase probe
+COST r64_classmean 1.0 True
+COST r64_hard 1.0 True
+start r64_classmean gpu 0 phase continue
+start r64_hard gpu 1 phase continue
+start r64_frozen gpu 0 phase probe
+start r512_fl gpu 1 phase probe
+COST r64_frozen 1.0 True
+COST r512_fl 1.0 True
+start r64_frozen gpu 0 phase continue
+start r512_fl gpu 1 phase continue
+start r512_own gpu 0 phase probe
+start r512_shuffle gpu 1 phase probe
+COST r512_own 1.0 True
+COST r512_shuffle 1.0 True
+start r512_own gpu 0 phase continue
+start r512_shuffle gpu 1 phase continue
+start r512_classmean gpu 0 phase probe
+start r512_hard gpu 1 phase probe
+COST r512_classmean 1.0 True
+COST r512_hard 1.0 True
+start r512_classmean gpu 0 phase continue
+start r512_hard gpu 1 phase continue
+start r512_frozen gpu 0 phase probe
+COST r512_frozen 1.0 True
+start r512_frozen gpu 0 phase continue
+{'r_dense_ce': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK minhtrit06/mobihet-v9a-s43-20261012-v1 normal 13 arms
+start r_dense_ce gpu 0 phase probe
+COST r_dense_ce 1.0 True
+start r_dense_ce gpu 0 phase continue
+start r64_fl gpu 1 phase probe
+COST r64_fl 3.0 False
+start r64_own gpu 0 phase probe
+start r64_shuffle gpu 1 phase probe
+COST r64_own 1.0 True
+COST r64_shuffle 1.0 True
+start r64_own gpu 0 phase continue
+start r64_shuffle gpu 1 phase continue
+start r64_classmean gpu 0 phase probe
+start r64_hard gpu 1 phase probe
+COST r64_classmean 1.0 True
+COST r64_hard 1.0 True
+start r64_classmean gpu 0 phase continue
+start r64_hard gpu 1 phase continue
+start r64_frozen gpu 0 phase probe
+start r512_fl gpu 1 phase probe
+COST r64_frozen 1.0 True
+COST r512_fl 1.0 True
+start r64_frozen gpu 0 phase continue
+start r512_fl gpu 1 phase continue
+start r512_own gpu 0 phase probe
+start r512_shuffle gpu 1 phase probe
+COST r512_own 1.0 True
+COST r512_shuffle 1.0 True
+start r512_own gpu 0 phase continue
+start r512_shuffle gpu 1 phase continue
+start r512_classmean gpu 0 phase probe
+start r512_hard gpu 1 phase probe
+COST r512_classmean 1.0 True
+COST r512_hard 1.0 True
+start r512_classmean gpu 0 phase continue
+start r512_hard gpu 1 phase continue
+start r512_frozen gpu 0 phase probe
+COST r512_frozen 1.0 True
+start r512_frozen gpu 0 phase continue
+{'r_dense_ce': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_fl': {'rc': -997, 'complete': False, 'cost_pass': False, 'cost_stopped': True, 'cost': {'measured_algorithm_seconds': [3.0, 3.0], 'mean_seconds': 3.0, 'baseline_mean_seconds': 1.0, 'ratio': 3.0, 'pass_cost': False, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r64_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_fl': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_own': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_shuffle': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_classmean': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_hard': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 1, 'backend': 'same pinned 2T4; one arm per GPU'}}, 'r512_frozen': {'rc': 0, 'complete': True, 'cost_pass': True, 'cost': {'measured_algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'backend': 'same pinned 2T4; one arm per GPU'}}}
+PASS TEACHER NOTEBOOK minhtrit06/mobihet-v9a-s43-20261012-v1 cost 13 arms
+start r_dense_ce gpu 0 phase probe
+{'r_dense_ce': {'rc': -15, 'complete': False, 'cost_pass': None, 'reason': 'cost preflight failed before two complete rounds'}, 'r64_fl': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_own': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_shuffle': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_classmean': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_hard': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r64_frozen': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_fl': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_own': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_shuffle': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_classmean': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_hard': {'rc': -998, 'complete': False, 'cost_pass': None}, 'r512_frozen': {'rc': -998, 'complete': False, 'cost_pass': None}}
+PASS TEACHER NOTEBOOK minhtrit06/mobihet-v9a-s43-20261012-v1 deadline 13 arms

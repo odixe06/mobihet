@@ -1,0 +1,647 @@
+{
+  "evidence": "actual local raw-test prefix, scaler once, fp16 storage, saved predictions; client0 sampled only",
+  "raw_source": "/home/odixe/nckh/veremi/dataset/centralized/test/part-00000.parquet",
+  "parameter_count": 395024,
+  "audits": [
+    {
+      "arm": "h_local",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16279,
+      "ambiguous": 105,
+      "weights_sha": "574a0bbaeb544cd32dc713ebae9e4dcf9886ce47f4c8263ec329d2d1679e4d2b"
+    },
+    {
+      "arm": "h_local",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16256,
+      "ambiguous": 128,
+      "weights_sha": "574a0bbaeb544cd32dc713ebae9e4dcf9886ce47f4c8263ec329d2d1679e4d2b"
+    },
+    {
+      "arm": "h_local",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16326,
+      "ambiguous": 58,
+      "weights_sha": "8fa029ca901b372555c0ae56a854f64904c209fce985823b572bdced86e020a5"
+    },
+    {
+      "arm": "h_local",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16268,
+      "ambiguous": 116,
+      "weights_sha": "8fa029ca901b372555c0ae56a854f64904c209fce985823b572bdced86e020a5"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16331,
+      "ambiguous": 53,
+      "weights_sha": "48830e06f36b41d7df2a6c7f30ad020a1366228bc9be098634cddc8ba4d72199"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "48830e06f36b41d7df2a6c7f30ad020a1366228bc9be098634cddc8ba4d72199"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16350,
+      "ambiguous": 34,
+      "weights_sha": "01d525a150becc1c0f33ceb86200c128010a0afcd86ec495e86d3bf266be6b06"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16329,
+      "ambiguous": 55,
+      "weights_sha": "01d525a150becc1c0f33ceb86200c128010a0afcd86ec495e86d3bf266be6b06"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16331,
+      "ambiguous": 53,
+      "weights_sha": "48830e06f36b41d7df2a6c7f30ad020a1366228bc9be098634cddc8ba4d72199"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "48830e06f36b41d7df2a6c7f30ad020a1366228bc9be098634cddc8ba4d72199"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 10,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16334,
+      "ambiguous": 50,
+      "weights_sha": "ae4035cfecd1e856af3f4e481695792300627ebb63e115a90699fe28c9f5eacd"
+    },
+    {
+      "arm": "h_gaussian",
+      "round": 10,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16319,
+      "ambiguous": 65,
+      "weights_sha": "ae4035cfecd1e856af3f4e481695792300627ebb63e115a90699fe28c9f5eacd"
+    },
+    {
+      "arm": "h_local",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16279,
+      "ambiguous": 105,
+      "weights_sha": "574a0bbaeb544cd32dc713ebae9e4dcf9886ce47f4c8263ec329d2d1679e4d2b"
+    },
+    {
+      "arm": "h_local",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16256,
+      "ambiguous": 128,
+      "weights_sha": "574a0bbaeb544cd32dc713ebae9e4dcf9886ce47f4c8263ec329d2d1679e4d2b"
+    },
+    {
+      "arm": "h_local",
+      "round": 11,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16319,
+      "ambiguous": 65,
+      "weights_sha": "5af848b0e2756e7ddf91dfd32ee018cab7299dcaab1a63433ad0e779cb70d21a"
+    },
+    {
+      "arm": "h_local",
+      "round": 11,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16297,
+      "ambiguous": 87,
+      "weights_sha": "5af848b0e2756e7ddf91dfd32ee018cab7299dcaab1a63433ad0e779cb70d21a"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16280,
+      "ambiguous": 104,
+      "weights_sha": "12640a92f343e56cb8276fabba40d80cff6313f95c70c1ad3d11c52fc9101548"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16247,
+      "ambiguous": 137,
+      "weights_sha": "12640a92f343e56cb8276fabba40d80cff6313f95c70c1ad3d11c52fc9101548"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "6869c2247d1e1647110c25a2caa4460812ae6876ff2ae43c07b4649110baabfb"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16260,
+      "ambiguous": 124,
+      "weights_sha": "6869c2247d1e1647110c25a2caa4460812ae6876ff2ae43c07b4649110baabfb"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16307,
+      "ambiguous": 77,
+      "weights_sha": "b95640a7f3df7b86291db0e713211bae9c6044b45c034cd89dd3e0e3f9fa81fe"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16267,
+      "ambiguous": 117,
+      "weights_sha": "b95640a7f3df7b86291db0e713211bae9c6044b45c034cd89dd3e0e3f9fa81fe"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16310,
+      "ambiguous": 74,
+      "weights_sha": "8ba6f6c4ef99c15b938c2557a6a560d77d0c0ad8dd569213b40d5547ad973cc8"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16261,
+      "ambiguous": 123,
+      "weights_sha": "8ba6f6c4ef99c15b938c2557a6a560d77d0c0ad8dd569213b40d5547ad973cc8"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16307,
+      "ambiguous": 77,
+      "weights_sha": "b95640a7f3df7b86291db0e713211bae9c6044b45c034cd89dd3e0e3f9fa81fe"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16267,
+      "ambiguous": 117,
+      "weights_sha": "b95640a7f3df7b86291db0e713211bae9c6044b45c034cd89dd3e0e3f9fa81fe"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 9,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16323,
+      "ambiguous": 61,
+      "weights_sha": "4e8d74894e288158cdb51cf2e48a8f24b7c29141091ba4dbc1793925556b4d36"
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "round": 9,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16294,
+      "ambiguous": 90,
+      "weights_sha": "4e8d74894e288158cdb51cf2e48a8f24b7c29141091ba4dbc1793925556b4d36"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16280,
+      "ambiguous": 104,
+      "weights_sha": "12640a92f343e56cb8276fabba40d80cff6313f95c70c1ad3d11c52fc9101548"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16247,
+      "ambiguous": 137,
+      "weights_sha": "12640a92f343e56cb8276fabba40d80cff6313f95c70c1ad3d11c52fc9101548"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 10,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16315,
+      "ambiguous": 69,
+      "weights_sha": "82ca168339027824def3403518500994cdd24252b5c1ef0af3b9ef44403bd86a"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "round": 10,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16325,
+      "ambiguous": 59,
+      "weights_sha": "82ca168339027824def3403518500994cdd24252b5c1ef0af3b9ef44403bd86a"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16328,
+      "ambiguous": 56,
+      "weights_sha": "8c53f0dd45f7d2fa31fd8195bf6aef3b7f5def09decb5bdd9c9420b70f592f84"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16294,
+      "ambiguous": 90,
+      "weights_sha": "8c53f0dd45f7d2fa31fd8195bf6aef3b7f5def09decb5bdd9c9420b70f592f84"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16338,
+      "ambiguous": 46,
+      "weights_sha": "9d964e78085ad3d982acbd37f85d8f979a625ac8d9521430453582d56fd0ad72"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16313,
+      "ambiguous": 71,
+      "weights_sha": "9d964e78085ad3d982acbd37f85d8f979a625ac8d9521430453582d56fd0ad72"
+    },
+    {
+      "arm": "h_dml",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "282ca80bd3e989e4be331c35a925e361e45de8f6b52a48b159c677f983aec6f7"
+    },
+    {
+      "arm": "h_dml",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16199,
+      "ambiguous": 185,
+      "weights_sha": "282ca80bd3e989e4be331c35a925e361e45de8f6b52a48b159c677f983aec6f7"
+    },
+    {
+      "arm": "h_dml",
+      "round": 1,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 15795,
+      "ambiguous": 589,
+      "weights_sha": "282ca80bd3e989e4be331c35a925e361e45de8f6b52a48b159c677f983aec6f7"
+    },
+    {
+      "arm": "h_dml",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16286,
+      "ambiguous": 98,
+      "weights_sha": "d673830ae438608d7ccfd05df5a9276d1e323b7d711d199c146c032179dffadd"
+    },
+    {
+      "arm": "h_dml",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16206,
+      "ambiguous": 178,
+      "weights_sha": "d673830ae438608d7ccfd05df5a9276d1e323b7d711d199c146c032179dffadd"
+    },
+    {
+      "arm": "h_dml",
+      "round": 3,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16247,
+      "ambiguous": 137,
+      "weights_sha": "d673830ae438608d7ccfd05df5a9276d1e323b7d711d199c146c032179dffadd"
+    },
+    {
+      "arm": "h_dml",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "282ca80bd3e989e4be331c35a925e361e45de8f6b52a48b159c677f983aec6f7"
+    },
+    {
+      "arm": "h_dml",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16199,
+      "ambiguous": 185,
+      "weights_sha": "282ca80bd3e989e4be331c35a925e361e45de8f6b52a48b159c677f983aec6f7"
+    },
+    {
+      "arm": "h_dml",
+      "round": 1,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 15795,
+      "ambiguous": 589,
+      "weights_sha": "282ca80bd3e989e4be331c35a925e361e45de8f6b52a48b159c677f983aec6f7"
+    },
+    {
+      "arm": "h_dml",
+      "round": 7,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16241,
+      "ambiguous": 143,
+      "weights_sha": "40e6e867d567d46b574bed569f0711f5fdf9607aa29a270966a0a6bd6bdd7cc3"
+    },
+    {
+      "arm": "h_dml",
+      "round": 7,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16199,
+      "ambiguous": 185,
+      "weights_sha": "40e6e867d567d46b574bed569f0711f5fdf9607aa29a270966a0a6bd6bdd7cc3"
+    },
+    {
+      "arm": "h_dml",
+      "round": 7,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16036,
+      "ambiguous": 348,
+      "weights_sha": "40e6e867d567d46b574bed569f0711f5fdf9607aa29a270966a0a6bd6bdd7cc3"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16328,
+      "ambiguous": 56,
+      "weights_sha": "8c53f0dd45f7d2fa31fd8195bf6aef3b7f5def09decb5bdd9c9420b70f592f84"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16294,
+      "ambiguous": 90,
+      "weights_sha": "8c53f0dd45f7d2fa31fd8195bf6aef3b7f5def09decb5bdd9c9420b70f592f84"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 10,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16311,
+      "ambiguous": 73,
+      "weights_sha": "3be0cfbe02ee6f689c3b219c2b3f5930c0bb33655489b8afbb425346bdb92d5e"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "round": 10,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16310,
+      "ambiguous": 74,
+      "weights_sha": "3be0cfbe02ee6f689c3b219c2b3f5930c0bb33655489b8afbb425346bdb92d5e"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "6648f5cc9c4195a3034d74e61178e7e8b54b2f1adc0c053f61d18f1f25bd65c5"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16199,
+      "ambiguous": 185,
+      "weights_sha": "6648f5cc9c4195a3034d74e61178e7e8b54b2f1adc0c053f61d18f1f25bd65c5"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 1,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16261,
+      "ambiguous": 123,
+      "weights_sha": "6648f5cc9c4195a3034d74e61178e7e8b54b2f1adc0c053f61d18f1f25bd65c5"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 3,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16206,
+      "ambiguous": 178,
+      "weights_sha": "4a8b3275f57e3583917197d60e3c238c565829b4dde63e24e69dccc4ecc7f879"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 3,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16145,
+      "ambiguous": 239,
+      "weights_sha": "4a8b3275f57e3583917197d60e3c238c565829b4dde63e24e69dccc4ecc7f879"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 3,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16279,
+      "ambiguous": 105,
+      "weights_sha": "4a8b3275f57e3583917197d60e3c238c565829b4dde63e24e69dccc4ecc7f879"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 1,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16302,
+      "ambiguous": 82,
+      "weights_sha": "6648f5cc9c4195a3034d74e61178e7e8b54b2f1adc0c053f61d18f1f25bd65c5"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 1,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16199,
+      "ambiguous": 185,
+      "weights_sha": "6648f5cc9c4195a3034d74e61178e7e8b54b2f1adc0c053f61d18f1f25bd65c5"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 1,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16261,
+      "ambiguous": 123,
+      "weights_sha": "6648f5cc9c4195a3034d74e61178e7e8b54b2f1adc0c053f61d18f1f25bd65c5"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 7,
+      "role": "private",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16216,
+      "ambiguous": 168,
+      "weights_sha": "5d6c581df3e141e0e9a9a1bbf87b817694aaf172dbdd6b327fb34a9fab7096ca"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 7,
+      "role": "private",
+      "rule": "gp",
+      "rows": 16384,
+      "decisive": 16143,
+      "ambiguous": 241,
+      "weights_sha": "5d6c581df3e141e0e9a9a1bbf87b817694aaf172dbdd6b327fb34a9fab7096ca"
+    },
+    {
+      "arm": "h_dml_own",
+      "round": 7,
+      "role": "proxy",
+      "rule": "head",
+      "rows": 16384,
+      "decisive": 16265,
+      "ambiguous": 119,
+      "weights_sha": "5d6c581df3e141e0e9a9a1bbf87b817694aaf172dbdd6b327fb34a9fab7096ca"
+    }
+  ]
+}

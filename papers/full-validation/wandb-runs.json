@@ -1,0 +1,51 @@
+[
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_local_s42-f4dc2763",
+    "arm": "h_local",
+    "fingerprint": "f4dc276395210a94a48edb3fbdde5627df1e4d239bb720d411bcddb110975413",
+    "kernel": "catbaochau/mobihet-full1-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  },
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_gaussian_s42-6376f744",
+    "arm": "h_gaussian",
+    "fingerprint": "6376f7445519919315e7355842f6a73cac27b56ad562ec0a43695c88e5bc33b3",
+    "kernel": "catbaochau/mobihet-full1-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  },
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_dml_own_s42-cf3ef520",
+    "arm": "h_dml_own",
+    "fingerprint": "cf3ef520c2e0cf8220009ba1cda530d37cae6cfb1893d24e339057ccfc98cdd7",
+    "kernel": "catbaochau/mobihet-full4-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  },
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_gaussian_lr4_s42-054303fd",
+    "arm": "h_gaussian_lr4",
+    "fingerprint": "054303fdf7e35a7871bc55ae0281dfaac53580b8bf30122645b1ff2744a12bc9",
+    "kernel": "minhtriethihi/mobihet-full2-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  },
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_gaussian_diag_s42-d38c93e7",
+    "arm": "h_gaussian_diag",
+    "fingerprint": "d38c93e764b55965de5ec076c1727475cc2ad365d55e0dc358db20f4bee81b66",
+    "kernel": "minhtriethihi/mobihet-full2-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  },
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_gaussian_own_s42-ef59415d",
+    "arm": "h_gaussian_own",
+    "fingerprint": "ef59415d2d960e56bdebccf269caf92c01f297d9ebf18b964ed736ed759a6171",
+    "kernel": "khanhmay0304/mobihet-full3-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  },
+  {
+    "locator": "21522798-uit/mobihet-full-validation/h_dml_s42-c0f238e2",
+    "arm": "h_dml",
+    "fingerprint": "c0f238e2c0bbb33663e54db5073b8a07dc207401222f5dd30c868a510a42eced",
+    "kernel": "khanhmay0304/mobihet-full3-s42-20261012-cal-v1",
+    "evidence": "r1-r3 terminal source/config/data/weights/BN/payload/prediction audited 2026-10-13; same locator expected for continuation"
+  }
+]

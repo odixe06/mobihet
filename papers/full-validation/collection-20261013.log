@@ -1,0 +1,21 @@
+khanhmay0304/mobihet-full3-s42-20261012-cal-v1 has status "KernelWorkerStatus.COMPLETE"
+khanhmay0304/mobihet-full3-s42-20261012-cal-v1: 104 files, 6 parallel
+FAIL runs/h_dml_s42/weights/round_002.pt ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(18808475 bytes read, 28387354 more expected)', IncompleteRead(18808475 bytes read, 28387354 more expected)))
+FAIL runs/h_dml_s42/predictions/round_001.npz ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(26441763 bytes read, 43169978 more expected)', IncompleteRead(26441763 bytes read, 43169978 more expected)))
+FAIL runs/h_dml_s42/weights/round_003.pt ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(20826399 bytes read, 17980822 more expected)', IncompleteRead(20826399 bytes read, 17980822 more expected)))
+FAIL runs/h_dml_s42/predictions/round_003.npz ConnectionError(ReadTimeoutError("HTTPSConnectionPool(host='www.kaggleusercontent.com', port=443): Read timed out."))
+FAIL runs/h_dml_s42/weights/round_001.pt ConnectionError(ReadTimeoutError("HTTPSConnectionPool(host='www.kaggleusercontent.com', port=443): Read timed out."))
+pass 1: 5 missing, refreshing listing
+khanhmay0304/mobihet-full3-s42-20261012-cal-v1: 104 files ok, 0 missing, 435 MiB new in 1196 s (0.4 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full3-s42-20261012-cal-v1/executed.ipynb (13251 bytes, 5 outputs)
+VERIFIED FULL h_gaussian_own_s42 3 rounds
+VERIFIED FULL h_dml_s42 3 rounds
+AUDITED FULL CALIBRATION khanhmay0304/mobihet-full3-s42-20261012-cal-v1 True
+catbaochau/mobihet-full4-s42-20261012-cal-v1 has status "KernelWorkerStatus.COMPLETE"
+catbaochau/mobihet-full4-s42-20261012-cal-v1: 76 files, 6 parallel
+FAIL runs/h_dml_own_s42/weights/round_002.pt SSLError(MaxRetryError("HTTPSConnectionPool(host='www.kaggleusercontent.com', port=443): Max retries exceeded with url: /kf/357631359/[SIGNED-URL-REDACTED]/runs/h_dml_own_s42/weights/round_002.pt (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))"))
+FAIL runs/h_dml_own_s42/weights/round_003.pt ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(13495901 bytes read, 16922712 more expected)', IncompleteRead(13495901 bytes read, 16922712 more expected)))
+FAIL runs/h_dml_own_s42/predictions/round_003.npz ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(18411165 bytes read, 18571382 more expected)', IncompleteRead(18411165 bytes read, 18571382 more expected)))
+FAIL runs/h_dml_own_s42/predictions/round_001.npz ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(22933149 bytes read, 27001111 more expected)', IncompleteRead(22933149 bytes read, 27001111 more expected)))
+FAIL runs/h_dml_own_s42/predictions/round_002.npz ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(20808713 bytes read, 3646517 more expected)', IncompleteRead(20808713 bytes read, 3646517 more expected)))
+pass 1: 5 missing, refreshing listing

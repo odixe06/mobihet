@@ -1,0 +1,6 @@
+outs:
+- md5: f98af0c07296f21e2b58d1f5469941da.dir
+  size: 53171
+  nfiles: 18
+  hash: md5
+  path: mount-output

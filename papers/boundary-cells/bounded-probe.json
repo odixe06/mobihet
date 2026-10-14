@@ -1,0 +1,313 @@
+{
+  "stage": "BOUNDED_PROBE_ONLY",
+  "seed": 1729,
+  "training_rows": 40960,
+  "group_rows": 4096,
+  "official_test_read": false,
+  "model_training": false,
+  "provenance": {
+    "fixture_manifest_sha": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+    "source_sha": {
+      "cells.py": "5efedef6097d0ab3bdc03f987eab3370fbb50a9ab8f6f1185db400954dc919a0",
+      "probe.py": "a50a7d62e2c105ab12107e76de797acd7ab9ce5c7924451782866f4dc8a304e6"
+    },
+    "note": "Manifest referenced; full fixture file hashes not reverified by this bounded probe."
+  },
+  "results": {
+    "2": {
+      "pairs": [
+        [
+          "f_snd_spd",
+          "f_sess_implied_spd"
+        ],
+        [
+          "f_dist",
+          "f_sess_pos_pred_err"
+        ]
+      ],
+      "eligible_cells": 8,
+      "total_cells": 32,
+      "global_targets": {
+        "f1_macro": 0.08524653908307932,
+        "f1_per_class": [
+          0.0032948929159802307,
+          0.07692307692307693,
+          0.021621621621621623,
+          0.28651685393258425,
+          0.0,
+          0.0,
+          0.062111801242236024,
+          0.0,
+          0.0,
+          0.0,
+          0.6571428571428571,
+          0.0,
+          0.06542443064182195,
+          0.0,
+          0.19090909090909092,
+          0.0
+        ],
+        "balanced_nll": 2.5821123123168945,
+        "entropy_normalized": 0.9549598102786762,
+        "coverage": 0.9287109375,
+        "coverage_per_class": [
+          0.9978308026030369,
+          1.0,
+          1.0,
+          0.9661016949152542,
+          0.8603351955307262,
+          0.961730449251248,
+          1.0,
+          0.9896373056994818,
+          0.11560693641618497,
+          0.9947916666666666,
+          0.8571428571428571,
+          0.7391304347826086,
+          1.0,
+          1.0,
+          1.0,
+          0.3522727272727273
+        ],
+        "class_rows": [
+          922,
+          54,
+          162,
+          177,
+          179,
+          601,
+          42,
+          193,
+          173,
+          192,
+          119,
+          23,
+          79,
+          186,
+          906,
+          88
+        ]
+      },
+      "own_mean_f1": 0.0697419948744667,
+      "own_mean_balanced_nll": 2.6992082238197326,
+      "shuffle_targets": {
+        "f1_macro": 0.019941744240082375,
+        "f1_per_class": [
+          0.0032948929159802307,
+          0.0,
+          0.03508771929824561,
+          0.062034739454094295,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.021164021164021163,
+          0.19748653500897667,
+          0.0
+        ],
+        "balanced_nll": 2.9887659549713135,
+        "entropy_normalized": 0.8646912763203137,
+        "coverage": 0.9287109375,
+        "coverage_per_class": [
+          0.9978308026030369,
+          1.0,
+          1.0,
+          0.9661016949152542,
+          0.8603351955307262,
+          0.961730449251248,
+          1.0,
+          0.9896373056994818,
+          0.11560693641618497,
+          0.9947916666666666,
+          0.8571428571428571,
+          0.7391304347826086,
+          1.0,
+          1.0,
+          1.0,
+          0.3522727272727273
+        ],
+        "class_rows": [
+          922,
+          54,
+          162,
+          177,
+          179,
+          601,
+          42,
+          193,
+          173,
+          192,
+          119,
+          23,
+          79,
+          186,
+          906,
+          88
+        ]
+      },
+      "delta_f1_own": 0.015504544208612622,
+      "delta_f1_shuffle": 0.06530479484299695,
+      "balanced_nll_gain_own": 0.11709591150283805,
+      "balanced_nll_gain_uniform": 0.1904764099228866,
+      "upload_serialized_bytes": 2720,
+      "download_serialized_bytes": 2208,
+      "note": "Table argmax is a diagnostic; no DAGSNet trained and no deployment classifier."
+    },
+    "4": {
+      "pairs": [
+        [
+          "f_snd_spd",
+          "f_sess_implied_spd"
+        ],
+        [
+          "f_dist",
+          "f_sess_pos_pred_err"
+        ],
+        [
+          "f_sender_rate_5s",
+          "f_sender_share_5s"
+        ],
+        [
+          "f_snd_acl",
+          "f_sess_acl_residual"
+        ]
+      ],
+      "eligible_cells": 24,
+      "total_cells": 64,
+      "global_targets": {
+        "f1_macro": 0.22828129459812163,
+        "f1_per_class": [
+          0.10196078431372549,
+          0.1037037037037037,
+          0.10144927536231885,
+          0.32666666666666666,
+          0.0,
+          0.88909426987061,
+          0.12355212355212356,
+          0.08494208494208494,
+          0.0,
+          0.581039755351682,
+          0.5975103734439834,
+          0.0,
+          0.0853932584269663,
+          0.025974025974025976,
+          0.4816816816816817,
+          0.14953271028037382
+        ],
+        "balanced_nll": 2.4662699699401855,
+        "entropy_normalized": 0.9626766718228903,
+        "coverage": 1.0,
+        "coverage_per_class": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "class_rows": [
+          922,
+          54,
+          162,
+          177,
+          179,
+          601,
+          42,
+          193,
+          173,
+          192,
+          119,
+          23,
+          79,
+          186,
+          906,
+          88
+        ]
+      },
+      "own_mean_f1": 0.15584675573527135,
+      "own_mean_balanced_nll": 2.6832082152366636,
+      "shuffle_targets": {
+        "f1_macro": 0.027981123108027795,
+        "f1_per_class": [
+          0.0,
+          0.01932367149758454,
+          0.0,
+          0.01858736059479554,
+          0.0,
+          0.07253886010362694,
+          0.041025641025641026,
+          0.0,
+          0.0,
+          0.045813586097946286,
+          0.02962962962962963,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.22077922077922077
+        ],
+        "balanced_nll": 3.2317066192626953,
+        "entropy_normalized": 0.8417088047288894,
+        "coverage": 1.0,
+        "coverage_per_class": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "class_rows": [
+          922,
+          54,
+          162,
+          177,
+          179,
+          601,
+          42,
+          193,
+          173,
+          192,
+          119,
+          23,
+          79,
+          186,
+          906,
+          88
+        ]
+      },
+      "delta_f1_own": 0.07243453886285028,
+      "delta_f1_shuffle": 0.20030017149009383,
+      "balanced_nll_gain_own": 0.2169382452964781,
+      "balanced_nll_gain_uniform": 0.3063187522995956,
+      "upload_serialized_bytes": 5280,
+      "download_serialized_bytes": 4320,
+      "note": "Table argmax is a diagnostic; no DAGSNet trained and no deployment classifier."
+    }
+  },
+  "gate_status": "NOT_LOCKED; no pilot authorization inferred from diagnostic values"
+}

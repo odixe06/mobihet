@@ -1,0 +1,149 @@
+{
+  "observed_utc": "2026-10-13T03:17:42.925839+00:00",
+  "level": "initial live r4 heartbeat; not committed round or terminal audit",
+  "runs": [
+    {
+      "arm": "h_local",
+      "locator": "21522798-uit/mobihet-full-validation/h_local_s42-f4dc2763",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "progress/softmax_entropy": 0.0417206771671772,
+        "progress/client_steps": 3072,
+        "_step": 245,
+        "progress/grad_norm": 0.3060813844203949,
+        "progress/skipped": 0,
+        "progress/client": 5,
+        "progress/round_in_flight": 4,
+        "progress/loss": 0.055899787694215775,
+        "progress/max_logit": 115,
+        "progress/applied": 3072,
+        "progress/seconds": 35.84926629066467,
+        "_timestamp": 1791861420.1304538
+      }
+    },
+    {
+      "arm": "h_gaussian",
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_s42-6376f744",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "progress/loss": 0.5826063752174377,
+        "progress/max_logit": 55.15625,
+        "progress/client_steps": 3072,
+        "progress/grad_norm": 1.0253443717956543,
+        "progress/skipped": 1,
+        "_timestamp": 1791861440.4455817,
+        "progress/softmax_entropy": 0.2072947472333908,
+        "_step": 242,
+        "progress/client": 4,
+        "progress/round_in_flight": 4,
+        "progress/applied": 3071,
+        "progress/seconds": 45.11845588684082
+      }
+    },
+    {
+      "arm": "h_dml_own",
+      "locator": "21522798-uit/mobihet-full-validation/h_dml_own_s42-cf3ef520",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "progress/skipped": 1,
+        "progress/seconds": 68.66611623764038,
+        "_timestamp": 1791861427.9739883,
+        "progress/max_logit": 25.40625,
+        "progress/softmax_entropy": 0.116108238697052,
+        "_step": 235,
+        "progress/client": 2,
+        "progress/round_in_flight": 4,
+        "progress/applied": 3071,
+        "progress/loss": 0.2554471790790558,
+        "progress/client_steps": 3072,
+        "progress/grad_norm": 0.4913064241409302
+      }
+    },
+    {
+      "arm": "h_gaussian_lr4",
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_lr4_s42-054303fd",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "progress/loss": 0.47635167837142944,
+        "progress/max_logit": 51.15625,
+        "progress/softmax_entropy": 0.1876106560230255,
+        "_step": 271,
+        "progress/grad_norm": 0.9904088973999023,
+        "progress/seconds": 15.9112708568573,
+        "_timestamp": 1791862875.561946,
+        "progress/client_steps": 1024,
+        "progress/skipped": 0,
+        "progress/client": 13,
+        "progress/round_in_flight": 4,
+        "progress/applied": 1024
+      },
+      "observed_utc": "2026-10-13T03:41:38.291917+00:00"
+    },
+    {
+      "arm": "h_gaussian_diag",
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_diag_s42-d38c93e7",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "progress/max_logit": 69.5625,
+        "_step": 272,
+        "progress/client": 13,
+        "progress/round_in_flight": 4,
+        "progress/applied": 2048,
+        "progress/seconds": 31.17373251914978,
+        "progress/loss": 0.6044909358024597,
+        "progress/softmax_entropy": 0.23446343839168549,
+        "progress/client_steps": 2048,
+        "progress/grad_norm": 0.7752923369407654,
+        "progress/skipped": 0,
+        "_timestamp": 1791862877.3523507
+      },
+      "observed_utc": "2026-10-13T03:41:40.346918+00:00"
+    },
+    {
+      "arm": "h_gaussian_own",
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_own_s42-ef59415d",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "progress/applied": 2048,
+        "progress/seconds": 29.395107984542847,
+        "progress/loss": 0.3103472888469696,
+        "progress/client_steps": 2048,
+        "progress/client": 3,
+        "_timestamp": 1791861420.1250637,
+        "progress/max_logit": 53.9375,
+        "progress/softmax_entropy": 0.11290653795003891,
+        "_step": 239,
+        "progress/grad_norm": 0.9038263559341431,
+        "progress/skipped": 0,
+        "progress/round_in_flight": 4
+      }
+    },
+    {
+      "arm": "h_dml",
+      "locator": "21522798-uit/mobihet-full-validation/h_dml_s42-c0f238e2",
+      "state": "running",
+      "fresh_initial_healthy": true,
+      "latest": {
+        "_timestamp": 1791861441.602794,
+        "progress/max_logit": 23.765625,
+        "_step": 234,
+        "progress/client": 2,
+        "progress/round_in_flight": 4,
+        "progress/applied": 2047,
+        "progress/seconds": 45.60194492340088,
+        "progress/loss": 0.2940368950366974,
+        "progress/softmax_entropy": 0.14141236245632172,
+        "progress/client_steps": 2048,
+        "progress/grad_norm": 0.6602241396903992,
+        "progress/skipped": 1
+      }
+    }
+  ],
+  "last_unresolved_check_utc": "2026-10-13T03:45:12.224249+00:00"
+}

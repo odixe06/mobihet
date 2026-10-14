@@ -1,0 +1,72 @@
+setup h_local role private rows 20480 sec 2.6
+r1 h_local s42 private group gp 0.007475083988940647 loss 2.5757 8s
+r2 h_local s42 private group gp 0.006559180651046009 loss 1.7403 6s
+r3 h_local s42 private group gp 0.006438063210134517 loss 1.4401 6s
+done h_local complete True
+setup h_gaussian role private rows 20480 sec 2.0
+r1 h_gaussian s42 private group gp 0.00907803704452759 loss 5.3896 10s
+r2 h_gaussian s42 private group gp 0.006897993972538405 loss 4.5765 6s
+r3 h_gaussian s42 private group gp 0.006717823507655471 loss 4.2842 5s
+done h_gaussian complete True
+setup h_dml role private rows 20480 sec 1.8
+r1 h_dml s42 private group gp 0.007586240290877388 loss 2.5886 7s
+r2 h_dml s42 private group gp 0.006673237967688056 loss 1.7969 11s
+r3 h_dml s42 private group gp 0.006600048376184853 loss 1.5571 6s
+done h_dml complete True
+setup h_hybrid role private rows 20480 sec 2.2
+r1 h_hybrid s42 private group gp 0.009175618101363688 loss 5.4016 6s
+r2 h_hybrid s42 private group gp 0.007109331250066038 loss 4.6089 5s
+r3 h_hybrid s42 private group gp 0.006804930172019559 loss 4.3434 5s
+done h_hybrid complete True
+setup h_gaussian_own role private rows 20480 sec 2.0
+r1 h_gaussian_own s42 private group gp 0.007725098298245778 loss 5.2920 5s
+r2 h_gaussian_own s42 private group gp 0.006765153695194785 loss 4.2118 5s
+r3 h_gaussian_own s42 private group gp 0.006574542837900472 loss 3.8041 4s
+done h_gaussian_own complete True
+setup h_dml_own role private rows 20480 sec 1.7
+r1 h_dml_own s42 private group gp 0.007586240290877388 loss 2.5886 6s
+r2 h_dml_own s42 private group gp 0.006605752770892514 loss 1.7629 9s
+r3 h_dml_own s42 private group gp 0.006507858570455177 loss 1.4659 7s
+done h_dml_own complete True
+setup h_hybrid_own role private rows 20480 sec 2.2
+r1 h_hybrid_own s42 private group gp 0.007802961139084084 loss 5.3042 6s
+r2 h_hybrid_own s42 private group gp 0.006787387679524777 loss 4.2305 4s
+r3 h_hybrid_own s42 private group gp 0.006596850589125963 loss 3.8261 5s
+done h_hybrid_own complete True
+setup h_dml role private rows 20480 sec 1.8
+r1 h_dml s42 private group gp 0.007586240290877388 loss 2.5886 11s
+done h_dml complete False
+setup h_dml role private rows 20480 sec 2.9
+r2 h_dml s42 private group gp 0.006673237967688056 loss 1.7969 7s
+r3 h_dml s42 private group gp 0.006600048376184853 loss 1.5571 6s
+done h_dml complete True
+setup h_hybrid role private rows 20480 sec 6.5
+r1 h_hybrid s42 private group gp 0.009175618101363688 loss 5.4016 6s
+done h_hybrid complete False
+setup h_hybrid role private rows 20480 sec 2.9
+r2 h_hybrid s42 private group gp 0.007109331250066038 loss 4.6089 6s
+r3 h_hybrid s42 private group gp 0.006804930172019559 loss 4.3434 5s
+done h_hybrid complete True
+setup h_hybrid_own role private rows 20480 sec 5.6
+r1 h_hybrid_own s42 private group gp 0.007802961139084084 loss 5.3042 5s
+done h_hybrid_own complete False
+setup h_hybrid_own role private rows 20480 sec 2.9
+r2 h_hybrid_own s42 private group gp 0.006787387679524777 loss 4.2305 5s
+r3 h_hybrid_own s42 private group gp 0.006596850589125963 loss 3.8261 5s
+done h_hybrid_own complete True
+VERIFIED {"run": "h_local_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 246, "ambiguous": 10}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_local_s42
+VERIFIED {"run": "h_gaussian_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 227, "ambiguous": 29}, {"round": 3, "role": "private", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_gaussian_s42
+VERIFIED {"run": "h_dml_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 250, "ambiguous": 6}, {"round": 3, "role": "private", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_dml_s42
+VERIFIED {"run": "h_hybrid_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 226, "ambiguous": 30}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_hybrid_s42
+VERIFIED {"run": "h_gaussian_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 234, "ambiguous": 22}, {"round": 3, "role": "private", "rows": 256, "decisive": 249, "ambiguous": 7}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_gaussian_own_s42
+VERIFIED {"run": "h_dml_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 250, "ambiguous": 6}, {"round": 3, "role": "private", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_dml_own_s42
+VERIFIED {"run": "h_hybrid_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 233, "ambiguous": 23}, {"round": 3, "role": "private", "rows": 256, "decisive": 252, "ambiguous": 4}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V8 h_hybrid_own_s42
+PASS V8:7armsx3rounds;3exactresumes;strict/payload/inference
+Peak tree RSS: 2884 MiB; exit 0

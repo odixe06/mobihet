@@ -1,0 +1,72 @@
+setup h_local role private rows 20480 sec 1.5
+r1 h_local s42 private test gp 0.007005019749835417 loss 2.5734 6s
+r2 h_local s42 private test gp 0.0063214966822495635 loss 1.7456 2s
+r3 h_local s42 private test gp 0.006226132283917877 loss 1.4505 2s
+done h_local complete True
+setup h_gaussian role private rows 20480 sec 1.6
+r1 h_gaussian s42 private test gp 0.009062601959483354 loss 5.3959 4s
+r2 h_gaussian s42 private test gp 0.007759482197638748 loss 4.5837 3s
+r3 h_gaussian s42 private test gp 0.006891812702310526 loss 4.3011 2s
+done h_gaussian complete True
+setup h_gaussian_diag role private rows 20480 sec 4.4
+r1 h_gaussian_diag s42 private test gp 0.008640552995391706 loss 5.3944 4s
+r2 h_gaussian_diag s42 private test gp 0.007040785745422842 loss 4.5854 3s
+r3 h_gaussian_diag s42 private test gp 0.006559539513131071 loss 4.3054 3s
+done h_gaussian_diag complete True
+setup h_gaussian_lr4 role private rows 20480 sec 1.6
+r1 h_gaussian_lr4 s42 private test gp 0.007733734725104279 loss 5.4015 4s
+r2 h_gaussian_lr4 s42 private test gp 0.006642502524914518 loss 4.5938 3s
+r3 h_gaussian_lr4 s42 private test gp 0.006315896824400652 loss 4.3148 3s
+done h_gaussian_lr4 complete True
+setup h_gaussian_own role private rows 20480 sec 1.7
+r1 h_gaussian_own s42 private test gp 0.00575199773430369 loss 5.2889 7s
+r2 h_gaussian_own s42 private test gp 0.004565507955122135 loss 4.2244 3s
+r3 h_gaussian_own s42 private test gp 0.004276429684344163 loss 3.8362 2s
+done h_gaussian_own complete True
+setup h_dml role private rows 20480 sec 1.7
+r1 h_dml s42 private test gp 0.0071959280803807505 loss 2.5869 8s
+r2 h_dml s42 private test gp 0.006971923809604086 loss 1.8026 7s
+r3 h_dml s42 private test gp 0.007399129671031619 loss 1.5645 5s
+done h_dml complete True
+setup h_dml_own role private rows 20480 sec 4.8
+r1 h_dml_own s42 private test gp 0.0071959280803807505 loss 2.5869 6s
+r2 h_dml_own s42 private test gp 0.006469380808664438 loss 1.7687 4s
+r3 h_dml_own s42 private test gp 0.006300811349092333 loss 1.4750 5s
+done h_dml_own complete True
+setup h_gaussian role private rows 20480 sec 1.9
+r1 h_gaussian s42 private test gp 0.009062601959483354 loss 5.3959 5s
+done h_gaussian complete False
+setup h_gaussian role private rows 20480 sec 5.6
+r2 h_gaussian s42 private test gp 0.007759482197638748 loss 4.5837 4s
+r3 h_gaussian s42 private test gp 0.006891812702310526 loss 4.3011 3s
+done h_gaussian complete True
+setup h_gaussian_own role private rows 20480 sec 1.6
+r1 h_gaussian_own s42 private test gp 0.00575199773430369 loss 5.2889 4s
+done h_gaussian_own complete False
+setup h_gaussian_own role private rows 20480 sec 2.1
+r2 h_gaussian_own s42 private test gp 0.004565507955122135 loss 4.2244 4s
+r3 h_gaussian_own s42 private test gp 0.004276429684344163 loss 3.8362 2s
+done h_gaussian_own complete True
+setup h_dml role private rows 20480 sec 1.8
+r1 h_dml s42 private test gp 0.0071959280803807505 loss 2.5869 7s
+done h_dml complete False
+setup h_dml role private rows 20480 sec 2.9
+r2 h_dml s42 private test gp 0.006971923809604086 loss 1.8026 7s
+r3 h_dml s42 private test gp 0.007399129671031619 loss 1.5645 6s
+done h_dml complete True
+setup h_dml_own role private rows 20480 sec 1.8
+r1 h_dml_own s42 private test gp 0.0071959280803807505 loss 2.5869 6s
+done h_dml_own complete False
+setup h_dml_own role private rows 20480 sec 2.9
+r2 h_dml_own s42 private test gp 0.006469380808664438 loss 1.7687 7s
+r3 h_dml_own s42 private test gp 0.006300811349092333 loss 1.4750 5s
+done h_dml_own complete True
+VERIFIED FULL h_local_s42 3 rounds
+VERIFIED FULL h_gaussian_s42 3 rounds
+VERIFIED FULL h_gaussian_diag_s42 3 rounds
+VERIFIED FULL h_gaussian_lr4_s42 3 rounds
+VERIFIED FULL h_gaussian_own_s42 3 rounds
+VERIFIED FULL h_dml_s42 3 rounds
+VERIFIED FULL h_dml_own_s42 3 rounds
+PASS FULL local:7boundedarms/4exactresumes/strictBN/payload/pred/inference; T4compile/fullcoverage pending
+Peak tree RSS: 2759 MiB; exit 0

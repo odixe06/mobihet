@@ -1,0 +1,628 @@
+{
+  "observed_utc": "2026-10-12T10:59:01.875179+00:00",
+  "evidence": "initial live W&B identities/config; source and full data hashes await terminal pull",
+  "runs": [
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_local_s42-f4dc2763",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_local_s42-f4dc2763",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_local",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "f4dc276395210a94a48edb3fbdde5627df1e4d239bb720d411bcddb110975413",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 2450.031622753,
+        "_step": 133,
+        "_timestamp": 1791803865.896392,
+        "_wandb.runtime": 2450,
+        "algorithm_seconds": 999.4790012836456,
+        "applied": 84069,
+        "loss": 0.19232327155768872,
+        "lr": 0.001,
+        "preflight/online": 1,
+        "private/auxiliary": 0,
+        "private/real_ce": 0.19232327155768872,
+        "private/test/gp/accuracy": 0.6114591645299291,
+        "private/test/gp/f1_macro": 0.5616124435673447,
+        "private/test/gp/f1_micro": 0.6114591645299291,
+        "private/test/gp/f1_weighted": 0.6085755181692273,
+        "private/test/gp/precision_macro": 0.6109782206031735,
+        "private/test/gp/precision_micro": 0.6114591645299291,
+        "private/test/gp/precision_weighted": 0.6875832358170928,
+        "private/test/gp/recall_macro": 0.6018635093741163,
+        "private/test/gp/recall_micro": 0.6114591645299291,
+        "private/test/gp/recall_weighted": 0.6114591645299291,
+        "private/test/head/accuracy": 0.5576251124046506,
+        "private/test/head/f1_macro": 0.49934141182081915,
+        "private/test/head/f1_micro": 0.5576251124046506,
+        "private/test/head/f1_weighted": 0.5356854964818678,
+        "private/test/head/precision_macro": 0.6315496197096266,
+        "private/test/head/precision_micro": 0.5576251124046506,
+        "private/test/head/precision_weighted": 0.6897099201352769,
+        "private/test/head/recall_macro": 0.5596548696634562,
+        "private/test/head/recall_micro": 0.5576251124046506,
+        "private/test/head/recall_weighted": 0.5576251124046506,
+        "progress/applied": 1024,
+        "progress/client": 17,
+        "progress/client_steps": 1024,
+        "progress/grad_norm": 0.2553531527519226,
+        "progress/loss": 0.04171293601393699,
+        "progress/max_logit": 71.9375,
+        "progress/round_in_flight": 2,
+        "progress/seconds": 11.628193140029907,
+        "progress/skipped": 0,
+        "progress/softmax_entropy": 0.03624385595321655,
+        "public_teacher_applied": 0,
+        "round": 1,
+        "seconds": 1606.4134404659271,
+        "skipped": 14,
+        "version": 1
+      },
+      "observed_utc": "2026-10-12T11:17:54.027459+00:00"
+    },
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_s42-6376f744",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_gaussian_s42-6376f744",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_gaussian",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "6376f7445519919315e7355842f6a73cac27b56ad562ec0a43695c88e5bc33b3",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 2446.774811116,
+        "_step": 101,
+        "_timestamp": 1791803862.6213565,
+        "_wandb.runtime": 2446,
+        "algorithm_seconds": 1281.184026479721,
+        "applied": 84059,
+        "loss": 0.8571782957762479,
+        "lr": 0.001,
+        "preflight/online": 1,
+        "private/auxiliary": 0.6218359023332596,
+        "private/real_ce": 0.2353423934429884,
+        "private/test/gp/accuracy": 0.657499496113078,
+        "private/test/gp/f1_macro": 0.6437259353930636,
+        "private/test/gp/f1_micro": 0.657499496113078,
+        "private/test/gp/f1_weighted": 0.656833261089334,
+        "private/test/gp/precision_macro": 0.6849428484503941,
+        "private/test/gp/precision_micro": 0.657499496113078,
+        "private/test/gp/precision_weighted": 0.7283295316639568,
+        "private/test/gp/recall_macro": 0.6684276296272007,
+        "private/test/gp/recall_micro": 0.657499496113078,
+        "private/test/gp/recall_weighted": 0.657499496113078,
+        "private/test/head/accuracy": 0.6085102528559865,
+        "private/test/head/f1_macro": 0.5706919783129726,
+        "private/test/head/f1_micro": 0.6085102528559865,
+        "private/test/head/f1_weighted": 0.5850054050493135,
+        "private/test/head/precision_macro": 0.6914506423655067,
+        "private/test/head/precision_micro": 0.6085102528559865,
+        "private/test/head/precision_weighted": 0.7282661295420891,
+        "private/test/head/recall_macro": 0.6174320411535267,
+        "private/test/head/recall_micro": 0.6085102528559865,
+        "private/test/head/recall_weighted": 0.6085102528559865,
+        "progress/applied": 5119,
+        "progress/client": 6,
+        "progress/client_steps": 5120,
+        "progress/grad_norm": 0.9193283319473268,
+        "progress/loss": 0.5566480755805969,
+        "progress/max_logit": 46.25,
+        "progress/round_in_flight": 2,
+        "progress/seconds": 74.78760743141174,
+        "progress/skipped": 1,
+        "progress/softmax_entropy": 0.2094871699810028,
+        "public_teacher_applied": 0,
+        "round": 1,
+        "seconds": 1931.5395839214325,
+        "skipped": 24,
+        "version": 1
+      },
+      "observed_utc": "2026-10-12T11:17:54.027459+00:00"
+    },
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_dml_own_s42-cf3ef520",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_dml_own_s42-cf3ef520",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_dml_own",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "cf3ef520c2e0cf8220009ba1cda530d37cae6cfb1893d24e339057ccfc98cdd7",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 1959.576818745,
+        "_step": 73,
+        "_timestamp": 1791803077.035504,
+        "_wandb.runtime": 1959,
+        "preflight/online": 1,
+        "progress/applied": 2048,
+        "progress/client": 19,
+        "progress/client_steps": 2048,
+        "progress/grad_norm": 0.8058680891990662,
+        "progress/loss": 0.43182921409606934,
+        "progress/max_logit": 16.6875,
+        "progress/round_in_flight": 1,
+        "progress/seconds": 45.43439197540283,
+        "progress/skipped": 0,
+        "progress/softmax_entropy": 0.1964125782251358
+      },
+      "observed_utc": "2026-10-12T11:17:54.027459+00:00"
+    },
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_lr4_s42-054303fd",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_gaussian_lr4_s42-054303fd",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_gaussian_lr4",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "054303fdf7e35a7871bc55ae0281dfaac53580b8bf30122645b1ff2744a12bc9",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 2002.42334533,
+        "_step": 76,
+        "_timestamp": 1791802732.4118133,
+        "_wandb.runtime": 2002,
+        "algorithm_seconds": 1255.6275930404663,
+        "applied": 84058,
+        "loss": 0.8235007096081972,
+        "lr": 0.001,
+        "preflight/online": 1,
+        "private/auxiliary": 0.5806689873337746,
+        "private/real_ce": 0.24283172227442265,
+        "private/test/gp/accuracy": 0.6484116201853245,
+        "private/test/gp/f1_macro": 0.6282459864578839,
+        "private/test/gp/f1_micro": 0.6484116201853245,
+        "private/test/gp/f1_weighted": 0.6480450530442987,
+        "private/test/gp/precision_macro": 0.6672520066049016,
+        "private/test/gp/precision_micro": 0.6484116201853245,
+        "private/test/gp/precision_weighted": 0.7151599424976722,
+        "private/test/gp/recall_macro": 0.6542042813995873,
+        "private/test/gp/recall_micro": 0.6484116201853245,
+        "private/test/gp/recall_weighted": 0.6484116201853245,
+        "private/test/head/accuracy": 0.5998625171598004,
+        "private/test/head/f1_macro": 0.5599876232380561,
+        "private/test/head/f1_micro": 0.5998625171598004,
+        "private/test/head/f1_weighted": 0.5782516354169005,
+        "private/test/head/precision_macro": 0.6765001113649728,
+        "private/test/head/precision_micro": 0.5998625171598004,
+        "private/test/head/precision_weighted": 0.7200104215704333,
+        "private/test/head/recall_macro": 0.6057685144371033,
+        "private/test/head/recall_micro": 0.5998625171598004,
+        "private/test/head/recall_weighted": 0.5998625171598005,
+        "progress/applied": 2048,
+        "progress/client": 0,
+        "progress/client_steps": 2048,
+        "progress/grad_norm": 1.4057109355926514,
+        "progress/loss": 0.5910394191741943,
+        "progress/max_logit": 40.09375,
+        "progress/round_in_flight": 2,
+        "progress/seconds": 29.8240168094635,
+        "progress/skipped": 0,
+        "progress/softmax_entropy": 0.20177386701107025,
+        "public_teacher_applied": 0,
+        "round": 1,
+        "seconds": 1913.5541698932648,
+        "skipped": 25,
+        "version": 1
+      }
+    },
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_diag_s42-d38c93e7",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_gaussian_diag_s42-d38c93e7",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_gaussian_diag",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "d38c93e764b55965de5ec076c1727475cc2ad365d55e0dc358db20f4bee81b66",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 2004.271482386,
+        "_step": 77,
+        "_timestamp": 1791802733.2944157,
+        "_wandb.runtime": 2004,
+        "algorithm_seconds": 1253.4944260120392,
+        "applied": 84053,
+        "loss": 0.8611026391386986,
+        "lr": 0.001,
+        "preflight/online": 1,
+        "private/auxiliary": 0.6255469918251038,
+        "private/real_ce": 0.2355556473135948,
+        "private/test/gp/accuracy": 0.6390660301414051,
+        "private/test/gp/f1_macro": 0.6234382466444585,
+        "private/test/gp/f1_micro": 0.6390660301414051,
+        "private/test/gp/f1_weighted": 0.6357191326912811,
+        "private/test/gp/precision_macro": 0.6637050748853276,
+        "private/test/gp/precision_micro": 0.6390660301414051,
+        "private/test/gp/precision_weighted": 0.7124521757055957,
+        "private/test/gp/recall_macro": 0.6550815076889698,
+        "private/test/gp/recall_micro": 0.6390660301414051,
+        "private/test/gp/recall_weighted": 0.6390660301414052,
+        "private/test/head/accuracy": 0.6038533852140945,
+        "private/test/head/f1_macro": 0.5634762424809097,
+        "private/test/head/f1_micro": 0.6038533852140945,
+        "private/test/head/f1_weighted": 0.5800968371537949,
+        "private/test/head/precision_macro": 0.6771646927593991,
+        "private/test/head/precision_micro": 0.6038533852140945,
+        "private/test/head/precision_weighted": 0.7203195477463871,
+        "private/test/head/recall_macro": 0.6135912327722203,
+        "private/test/head/recall_micro": 0.6038533852140945,
+        "private/test/head/recall_weighted": 0.6038533852140945,
+        "progress/applied": 3072,
+        "progress/client": 0,
+        "progress/client_steps": 3072,
+        "progress/grad_norm": 0.9215072393417358,
+        "progress/loss": 0.6625743508338928,
+        "progress/max_logit": 75.5625,
+        "progress/round_in_flight": 2,
+        "progress/seconds": 44.211981773376465,
+        "progress/skipped": 0,
+        "progress/softmax_entropy": 0.21806266903877256,
+        "public_teacher_applied": 0,
+        "round": 1,
+        "seconds": 1905.336177110672,
+        "skipped": 30,
+        "version": 1
+      }
+    },
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_gaussian_own_s42-ef59415d",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_gaussian_own_s42-ef59415d",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_gaussian_own",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "ef59415d2d960e56bdebccf269caf92c01f297d9ebf18b964ed736ed759a6171",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 2173.881344959,
+        "_step": 88,
+        "_timestamp": 1791802733.0441108,
+        "_wandb.runtime": 2173,
+        "algorithm_seconds": 1254.901462316513,
+        "applied": 84056,
+        "loss": 0.5210936699062586,
+        "lr": 0.001,
+        "preflight/online": 1,
+        "private/auxiliary": 0.2839792035520077,
+        "private/real_ce": 0.2371144663542509,
+        "private/test/gp/accuracy": 0.6305162887197258,
+        "private/test/gp/f1_macro": 0.5882436839965509,
+        "private/test/gp/f1_micro": 0.6305162887197258,
+        "private/test/gp/f1_weighted": 0.6269907979617497,
+        "private/test/gp/precision_macro": 0.637196222190434,
+        "private/test/gp/precision_micro": 0.6305162887197258,
+        "private/test/gp/precision_weighted": 0.703406175761758,
+        "private/test/gp/recall_macro": 0.6223662639446678,
+        "private/test/gp/recall_micro": 0.6305162887197258,
+        "private/test/gp/recall_weighted": 0.6305162887197258,
+        "private/test/head/accuracy": 0.5838777975945939,
+        "private/test/head/f1_macro": 0.5279228371351081,
+        "private/test/head/f1_micro": 0.5838777975945939,
+        "private/test/head/f1_weighted": 0.5605334598573278,
+        "private/test/head/precision_macro": 0.6551412432090834,
+        "private/test/head/precision_micro": 0.5838777975945939,
+        "private/test/head/precision_weighted": 0.7132137059459694,
+        "private/test/head/recall_macro": 0.5808252403331755,
+        "private/test/head/recall_micro": 0.5838777975945939,
+        "private/test/head/recall_weighted": 0.5838777975945939,
+        "progress/applied": 5119,
+        "progress/client": 2,
+        "progress/client_steps": 5120,
+        "progress/grad_norm": 0.6157645583152771,
+        "progress/loss": 0.12887729704380035,
+        "progress/max_logit": 59.09375,
+        "progress/round_in_flight": 2,
+        "progress/seconds": 74.12705707550049,
+        "progress/skipped": 1,
+        "progress/softmax_entropy": 0.06423713266849518,
+        "public_teacher_applied": 0,
+        "round": 1,
+        "seconds": 1898.2177395820615,
+        "skipped": 27,
+        "version": 1
+      }
+    },
+    {
+      "locator": "21522798-uit/mobihet-full-validation/h_dml_s42-c0f238e2",
+      "url": "https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_dml_s42-c0f238e2",
+      "state": "running",
+      "config": {
+        "lr": 0.001,
+        "arm": "h_dml",
+        "tau": 0.05,
+        "clip": 1,
+        "seed": 42,
+        "batch": 512,
+        "smoke": false,
+        "_wandb": {
+          "m": [],
+          "t": {
+            "1": [
+              1
+            ],
+            "2": [
+              1
+            ],
+            "3": [
+              13,
+              14,
+              16
+            ],
+            "4": "3.12.13",
+            "5": "0.29.0",
+            "8": [
+              2
+            ],
+            "12": "0.29.0",
+            "13": "linux-x86_64"
+          },
+          "cli_version": "0.29.0",
+          "python_version": "3.12.13"
+        },
+        "lr_min": 1e-05,
+        "rounds": 50,
+        "backend": "compiled",
+        "private": "dagsnet",
+        "aux_batch": 256,
+        "aux_weight": 1,
+        "eval_every": 1,
+        "weight_cap": 10,
+        "fingerprint": "c0f238e2c0bbb33663e54db5073b8a07dc207401222f5dd30c868a510a42eced",
+        "temperature": 2
+      },
+      "summary": {
+        "_runtime": 2058.513233435,
+        "_step": 73,
+        "_timestamp": 1791802617.86577,
+        "_wandb.runtime": 2058,
+        "preflight/online": 1,
+        "progress/applied": 2048,
+        "progress/client": 19,
+        "progress/client_steps": 2048,
+        "progress/grad_norm": 0.8058680891990662,
+        "progress/loss": 0.43182921409606934,
+        "progress/max_logit": 16.6875,
+        "progress/round_in_flight": 1,
+        "progress/seconds": 47.87098145484924,
+        "progress/skipped": 0,
+        "progress/softmax_entropy": 0.1964125782251358
+      },
+      "observed_utc": "2026-10-12T11:17:54.027459+00:00"
+    }
+  ],
+  "last_unresolved_check_utc": "2026-10-12T11:17:54.027459+00:00"
+}

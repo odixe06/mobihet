@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/scripts/check_full_driver.py", line 12, in <module>
+    from full_method import ARMS
+  File "/home/odixe/nckh/veremi/mobihet/papers/full-validation/proj/full_method.py", line 5, in <module>
+    from mh import pilot as P
+ModuleNotFoundError: No module named 'mh'
+Peak tree RSS: 611 MiB; exit 1
+ERROR conda.cli.main_run:execute(148): `conda run python scripts/run_local_guarded.py python scripts/check_full_driver.py --tag initial1` failed. (See above for error)

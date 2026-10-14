@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py", line 77, in <module>
+    main()
+  File "/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py", line 57, in main
+    fail_without_url(exc, args.kernel, args.version)
+  File "/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py", line 34, in fail_without_url
+    raise RuntimeError(
+RuntimeError: Kaggle executed-notebook download failed for trietbackup/mobihet-v8h-s42-20261012-v1, version 1 (HTTP 404; signed URL suppressed)
+ERROR conda.cli.main_run:execute(148): `conda run python .agents/skills/kaggle-training-notebook/scripts/kaggle_as.py trietbackup -- python .agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py trietbackup/mobihet-v8h-s42-20261012-v1 --version 1 --output papers/v8/private_push/v8h-s42-20261012-v1/live-executed.ipynb` failed. (See above for error)

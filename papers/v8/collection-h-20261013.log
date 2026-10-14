@@ -1,0 +1,5 @@
+trietbackup/mobihet-v8h-s42-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+trietbackup/mobihet-v8h-s42-20261012-v1: 618 files, 6 parallel
+FAIL runs/h_dml_own_s42/weights/round_004.pt ConnectionError(ReadTimeoutError("HTTPSConnectionPool(host='www.kaggleusercontent.com', port=443): Read timed out."))
+FAIL runs/h_dml_own_s42/weights/round_003.pt ConnectionError(ReadTimeoutError("HTTPSConnectionPool(host='www.kaggleusercontent.com', port=443): Read timed out."))
+FAIL runs/h_dml_s42/weights/round_011.pt ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(18128546 bytes read, 5998611 more expected)', IncompleteRead(18128546 bytes read, 5998611 more expected)))

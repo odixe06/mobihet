@@ -1,0 +1,10 @@
+account            GPU left   TPU left  refreshes at
+catbaochau           19.46h     20.00h  2026-10-17T00:00:00
+minhtriethihi        19.33h     20.00h  2026-10-17T00:00:00
+khanhmay0304         18.13h     20.00h  2026-10-17T00:00:00
+minhtrit06           16.73h     20.00h  2026-10-17T00:00:00
+odixeuit             16.29h     20.00h  2026-10-17T00:00:00
+trietbackup          10.84h     20.00h  2026-10-17T00:00:00
+dinhan25              4.08h     20.00h  2026-10-17T00:00:00  <-- ACTIVE
+minhtran0601          3.61h     20.00h  2026-10-17T00:00:00
+odixe0502             0.27h     20.00h  2026-10-17T00:00:00

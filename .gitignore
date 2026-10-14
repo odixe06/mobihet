@@ -3,6 +3,14 @@
 .env
 .env.*
 **/private_push/
+papers/boundary-cells/input/
+papers/boundary-cells/smoke/
+papers/boundary-cells/runs/
+papers/boundary-cells/kaggle/
+papers/hybrid-full/input/
+papers/hybrid-full/kaggle/
+papers/hybrid-full/smoke/
+papers/hybrid-full/resume_reference/
 # Cấu hình MCP cục bộ chứa bearer token Kaggle.
 .mcp.json
 **/.vscode/mcp.json
@@ -60,3 +68,42 @@ papers/v6/kaggle/
 papers/v6/smoke/
 papers/v6/resume_reference/
 papers/*/collection-*.lock
+
+# V7 Nyström pilot staging/artifacts
+papers/v7/input/
+papers/v7/kaggle/
+papers/v7/smoke/
+papers/v7/resume_reference/
+
+# V8 Hybrid staging/artifacts
+papers/v8/input/
+papers/v8/kaggle/
+papers/v8/smoke/
+papers/v8/resume_reference/
+
+# v9 staging/artifacts
+papers/v9/input/
+papers/v9/kaggle/
+papers/v9/smoke/
+papers/v9/resume_reference/
+
+# v10 staging/artifacts
+papers/v10/input/
+papers/v10/kaggle/
+papers/v10/smoke/
+papers/v10/resume_reference/
+
+# full-validation staging/artifacts
+papers/full-validation/input/
+papers/full-validation/kaggle/
+papers/full-validation/smoke/
+papers/full-validation/resume_reference/
+papers/full-validation/initial-output/
+
+papers/boundary-cells/controller-fixture/
+
+papers/full-validation/mount-output/
+
+papers/hybrid-full/diagnostics/
+
+papers/pilot/fixture/

@@ -1,0 +1,21 @@
+BRANCH PASS bc_single
+BRANCH PASS bc_local
+BRANCH PASS bc_mean
+BRANCH PASS bc_gaussian
+BRANCH PASS bc_direct2_fl
+BRANCH PASS bc_direct2_own
+BRANCH PASS bc_direct2_shuffle
+BRANCH PASS bc_direct2_marginal
+BRANCH PASS bc_direct4_fl
+BRANCH PASS bc_direct4_own
+BRANCH PASS bc_direct4_shuffle
+BRANCH PASS bc_direct4_marginal
+BRANCH PASS bc_teacher2_fl
+BRANCH PASS bc_teacher2_own
+BRANCH PASS bc_teacher2_shuffle
+BRANCH PASS bc_teacher2_marginal
+BRANCH PASS bc_teacher4_fl
+BRANCH PASS bc_teacher4_own
+BRANCH PASS bc_teacher4_shuffle
+BRANCH PASS bc_teacher4_marginal
+Peak tree RSS: 2257 MiB; exit 0

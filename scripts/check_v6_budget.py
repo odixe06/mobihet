@@ -1,4 +1,5 @@
 """Actual generated controller: deadline terminates workers and identities survive."""
+import argparse
 import ast
 import hashlib
 import json
@@ -30,7 +31,7 @@ def check(folder, mode):
             @classmethod
             def time(cls):
                 cls.calls += 1
-                return 0. if cls.calls <= (1 if mode == 'unstarted' else 5) else 4.6 * 3600
+                return 0. if cls.calls <= (1 if mode == 'unstarted' else 5) else 6. * 3600
 
             @staticmethod
             def sleep(_):
@@ -80,6 +81,7 @@ def check(folder, mode):
 
 
 if __name__ == '__main__':
-    for folder in sorted((ROOT / 'papers/v6/notebook').iterdir()):
+    parser=argparse.ArgumentParser(); parser.add_argument('--build',choices=['v6','v7','v8'],default='v6'); args=parser.parse_args()
+    for folder in sorted((ROOT / f'papers/{args.build}/notebook').iterdir()):
         for mode in ('unstarted', 'terminate'):
             check(folder, mode)

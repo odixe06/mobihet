@@ -1,5 +1,5 @@
 {
-  "observed_utc": "2026-10-12T05:51:10.913630+00:00",
+  "observed_utc": "2026-10-12T08:24:03.214902+00:00",
   "evidence": "live W&B, not pulled artifact verification",
   "transport": "authenticated read-only GraphQL",
   "runs": [

@@ -79,7 +79,7 @@ def main():
             for k in range(a.retries):
                 try: return name, *fetch(sess, url, dest / name, a.timeout)
                 except Exception as e: err = e; time.sleep(2 ** k)
-            return name, 'fail', repr(err)
+            return name, 'fail', type(err).__name__  # Exceptions may contain a signed private-output URL.
         missing = set()
         with ThreadPoolExecutor(a.jobs) as ex:
             for f in as_completed([ex.submit(one, it) for it in todo.items()]):

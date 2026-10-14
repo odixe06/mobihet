@@ -5,9 +5,49 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 
 ## 1. Chủ dự án và cách làm việc
 
-- **2026-10-12, mở rộng:**H1/H2 full20client/100%train80%/50round/seed42-only;
+- **2026-10-13, chủ dự án:** dự báo khả năng **cải thiện hiệu năng** từ bằng chứng đã có trước khi mở hướng/pilot;
+  không dùng codec/đạo hàm/khả thi chạy code thay dự báo utility. Tách hơn local, hơn đối chứng mạnh và lợi kiểm dài.
+  [Dự báo trước kiểm](docs/research/performance-feasibility-2026-10-13.md).
+- **2026-10-13, chốt cải tiến/hướng mới:** BoundaryCells kiểm direct soft-target và teacher DAGSNet trung gian;
+  receiver stress được swap đồng bộ 9 noise/profile feature cùng lớp/cùng client/khác receiver, chỉ local,
+  phải qua fidelity gate. Fresh EMA backbone + BN local + head fit riêng kiểm 2×2 và own controls;
+  giữ nguyên run dài đang hoạt động. Mọi learned model vẫn DAGSNet; R2 chỉ ở thiết kế.
+- **2026-10-13, chốt BoundaryCells tiếp:** P2/P4, B4, z-scoreedges−1/0/1, alpha1/lambda0,5;
+  probe hơn own/shuffle trước pilot. gp chính theo khối lượng target CE thực tế; gp legacy/head báo phụ.
+  [Thiết kế/cổng đã chốt](proposals/boundary-cell-counts/design.md).
+- **2026-10-13, BoundaryCells utility/cost đã chốt:** mỗi P/mode, seed42/43 tại r20 phải hơn own/shuffle≥0,010,
+  hơn strongest(local/classmean/Gaussianfull)≥0,015; benign giảm≤0,005. Cost≤2×local một DAGSNet,
+  đo calibration trước rồi mới pilot; vượt giữoutput/dừng, không dummy-inflate denominator.
+
+- **2026-10-13, cấu hình ResponseRisk/EMA đã chốt:** ResponseRisk giữ receiver-group
+  g%20=1 từ train pilot làm probe, loại khỏi SGD ở mọi arm, giữ holdout cũ; swap9,
+  λJS=0,1, refresh5 round, variance/mean², mean weight1/cap2, controls đồng nhất.
+  EMA backbone half-life2 round, bỏ toàn bộ head, BN4096 local/head16 bước own real
+  và synthetic hợp lệ của H2; gp cũ là chính, head/head-fit prior phụ. Không sửa full đang chạy.
+
+- **2026-10-13, quyết định mới nhất ResponseRisk:** chủ dự án chọn **chỉ kiểm local augmentation trước**;
+  chưa mở shared/own response-weight pilot. Không gọi kết quả augmentation local là lợi FL.
+  EMA chọn cả nền Gaussian và DML; r20 mỗi seed: FL+EMA−FL plain≥0,010,
+  FL+EMA−own+EMA≥0,015, benign giảm≤0,005, cost≤2× plain cùng nền; interaction báo riêng.
+  Cổng chỉ mới chốt, chưa có source/training/utility proof.
+
+- **2026-10-13, chốt đợt dài:** H1/H2 giữ7arm/100%train/50round/seed42;
+  chạy theo quota hiện có, nối checkpoint sau refresh17/10. Không restart r1 hoặc đổi lịch LR50.
+  Hybrid nếu utilityPASS cảhai seed:100%train/50round/seed42, đủ7compute-matched controls.
+  [Phiên collect/continuation](docs/operations/continuation-2026-10-13.md).
+
+- **2026-10-12, quyết định mới nhất:** các tiến trình đãhoạtđộngổnđịnh khôngcầntheodõitiếp.
+  Chỉhealthcheck khi mớistart/chưarõ/lỗi; collect/auditoutputterminal vẫntiếptục.
+
+- **2026-10-12, chốt tiếp:**K2 residual M64/512 teacher-first, commonprobe weights+BN cóphí,
+  η1/L2trust0,25/targetclip±8/20publicstep/canonicalBN4096; K4commonGaussian-base+MH,
+  τ0,05 local/energy0,1/20burn-in/1transition-batch. Khôngrawrecord rời xe.
+  Chủdựán yêu cầu pushcác hướng khác đãsẵnsàng, khôngchỉ chờkernelcũ. K2/K4 khóa cost≤2×freshdenseCE T4.
+
+
+- **2026-10-12, mở rộng:**H1/H2 full20client/100%train80%/50round/seed42-only,7arm local/full/diag/lr4/own/DML/DMLown;
   Nyströmrank4/8 explicitW/FP32up-FP16down/cổngdesign§7; Hybrid2×2/own pilot42/43.
-  NotebookW&B online; giám sátround1–5, cóbấtổn/lỗi đangchạy thì báo vàyêucầuchủdựándừng.
+  NotebookW&B online; giám sát banđầuround1–5; quyếtđịnhmới: đãổnđịnh thìngừnghealthpoll, chỉcollect/auditterminal. Cóbấtổn/lỗi quan sátđược khitrain đangchạy thì báo vàyêucầuchủdựándừng.
   [Kế hoạch/runđãpush](docs/operations/expansion-2026-10-12.md).
 
 - **2026-10-12:** tổ chức theo tên phương pháp trong `proposals/`; source/artifact đã chạy giữ đường dẫn.
@@ -71,6 +111,104 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 - Kernel COMPLETE ≠ artifact hợp lệ: pull rồi verify bằng **đúng source đã chạy**.
 
 ## 4. Phương pháp — điều đã biết
+
+- **2026-10-14, Hybrid full đã pull/audit đủ 4 kernel:** 7 arm, 18 round hợp lệ;
+  local/DML/DML-own r2, Gaussian/own/Hybrid/own r3 của lịch50. Hybrid r3 gpF1≈0,704922;
+  hơn hybrid-own cùng r3 +0,054330; hơn DML cùng r2 +0,054897. Tín hiệu full-data đầu
+  có lợi, chưa r50 hoặc paired confirmation full. Interaction r2 −0,035280 vẫn âm.
+  Gaussian gp giảm r1→r3 dù còn lợi so own: thêm epoch không tự tăng metrics.
+  Không so round khác nhau, đổi HP/gp/best round theo official test.
+  [Báo cáo/giới hạn](papers/hybrid-full/feasibility-20261014.md),
+  [đủ 10 metrics](papers/hybrid-full/latest-rounds.md).
+
+- **2026-10-14, cost controls Hybrid full:** cùng hai DAGSNet/số bước không bảo đảm cùng
+  walltime. Nhánh không Gaussian worst round≈6.509–6.652s, Gaussian/Hybrid≈3.656–3.814s
+  ở các arm đã đo; dummy/eval-BN work có phí thật, chưa profiling nguyên nhân duy nhất.
+  Không dùng dummy-inflated baseline để tuyên bố cost hiệu quả chung. Budget phải theo từng arm
+  và lấy max ở pairing hai GPU, cộng preparation/import/compile lặp lại.
+
+- **2026-10-14, inference từ checkpoint:** Hybrid full42check và H1/H2 full64check PASS
+  trên16.384 raw-test-prefix row/client0, private head/gp và proxy head tại r1/round cuối hiện có.
+  Scaler một lần, decisive margin>0,02; giữ giới hạn prefix/client0, không full-inference/leakage proof.
+  H1/H2 proof mới đã bao round cuối tới r11; hạn chế “chỉ r1–r3” ở ghi chú13/10 đã superseded.
+  [Hybrid proof](papers/hybrid-full/inference-proof.json),
+  [H1/H2 proof](papers/full-validation/inference-proof.json).
+
+- **2026-10-13, Hybrid V8 đã audit cả hai seed:** hơn thành phần mạnh nhất
+  +0,04070/+0,04355 F1 macro, hơn hybrid-own +0,14704/+0,14994; utility paired PASS.
+  Interaction 2×2 −0,06769/−0,07224: thắng từng thành phần không chứng minh tương tác cộng hưởng.
+  Mở kiểm full đã được chốt: 20 client/100% train80%/50 round/seed42, đủ 7 controls hai DAGSNet.
+  Chưa có kết quả full r50 hoặc bằng chứng R1/R2. [Cổng](papers/v8/gates.json).
+
+- **2026-10-13, H1/H2 continuation đã audit:** private/test/gp hiện tới DML/own r7,
+  Gaussian full/diag/own r10, lr4 r9, local r11; chưa r50. Cùng r7, DML−own +0,04512;
+  cùng r10, Gaussian−own +0,04867. DML F1 tăng từ r3 đến r7, Gaussian full/diag/lr4
+  giảm ở đoạn đã đo: kéo dài không tự cải thiện mọi phương pháp. Official test chỉ mô tả;
+  không chọn HP/best round hoặc đổi gp theo các số này. Chưa cô lập nguyên nhân giảm.
+  Audit source/weights/pred→CM/10metrics đủ round hiện có; sample-inference r1–r3 cũ
+  không tự thành inference proof cho round mới. [10 metrics cuối](papers/full-validation/latest-rounds.md).
+
+- **2026-10-13, BoundaryCells T4 calibration hai seed đã audit:** cả direct/teacher P2/P4
+  qua cost≤2× single-DAGS; ratio 1,49–1,60. Direct P4−single tại r2 +0,00635/+0,00417;
+  direct P2 đổi dấu, teacher thấp hơn single cả hai seed. Cost PASS cho phép pilot r20,
+  không phải utility PASS; giữ mọi HP/cổng/control đã chốt, không sửa teacher để cứu r2.
+  Benign F1 tăng trong khi macro ít đổi: cải thiện lớp lớn không bảo đảm cải thiện toàn bộ lớp.
+  [Calibration/10 metrics](papers/boundary-cells/calibration-report.md).
+
+- **2026-10-13, receiver stress bounded fidelity:**4toy extractor case (finite/missing/nonfinite) closurePASS;
+  40.951/40.960sample row có donor cùng lớp/client/khác hashedreceiver, giữ55feature ngoài block.
+  Copy đồng bộ9noise/profile giữ identities của extractor; chưa bảo đảm sensor-generation/causal/utility.
+  Thiếu donor phải skip, không mượn record client khác. gp theo CEtargetmass vẫn có label-shift assumption,
+  không tự đảm bảo calibrated posterior. [Probe](papers/receiver-response/fidelity-probe.json).
+
+- **2026-10-13, BoundaryCells bounded probe:**40.960sample train/4.096group row, không SGD/test.
+  P4 hơn own/shuffle nhưng entropy/log16≈0,963/tableF1≈0,228; chưa utilityDAGSNet.
+  P2 meancoverage92,87% che randomPositionOffset11,56%/zeroSpeed35,23%.
+  Table transfer dương không bảo đảm cải thiện model mạnh hơn bảng.
+  Shuffle giữ multiset target trên bảng không tự giữ mass/entropy khi lookup trên record.
+  [Thiết kế/probe](proposals/boundary-cell-counts/design.md).
+
+- **2026-10-13, full H1/H2 calibration:**7arm đủr1–r3 với50roundschedule,
+  43.045.415train/10.761.343testrow. Source/BN/weights/payload/pred→10metric auditPASS;
+  toàn bộtest-label/orderhash và32sample-inferencechecks trênrawtest/scaleronce PASS.
+  Prefix/client0 inference khônglàfull-inference/leakageproof. R3 privategpGaussian−local≈+0,0854,
+  DML−local≈+0,1268; DML−own≈+0,0261. Đây earlydescriptive, khôngutilityr50,
+  khôngđổiHP/decisionhead/bestround theoofficialtest. Chiphí đoT4 rồi budgettoànchuỗi;
+  group2arm/GPU2 dùngmaxwalltime đểđọcquota, khôngcộng2GPU-time thànhsession-time.
+  [Report](papers/full-validation/report.md), [budget](papers/full-validation/budget-measured.json).
+
+- **2026-10-13, V7 Nyström đủ20arm×20round/hai seed đãaudit:** rank4/8 compressionPASS
+  (byte/full≈0,198/0,321) nhưngqualitypairedFAIL. FL−exactlr4≈−0,0195/−0,0240;
+  FL−exactlr8≈−0,0183/−0,0117, vượt mức giảm cho phép0,01.
+  Rank8−shuffle≈+0,0109/+0,0125 PASS riêng; rank4−shuffle chỉ+0,0017/+0,0009.
+  Hơnown/cócontribution/giảmbyte không tự giữ covarianceutility. Khôngtune rank/Ω/ridge
+  hoặc kéo dài adaptation trượt cổng đểtìmđiểm thắng; khôngcontact/full adaptation này.
+  [Report](papers/v7/report.md), [cổng](papers/v7/gates.json).
+
+- **V9 residual teacher cả hai seed đã audit 26 arm-seed×20 round:** M64/M512 cost PASS nhưng quality paired FAIL.
+  FL−own≈+0,0595/+0,0382; FL−classmean≈+0,0016 cảhai; FL−hard≈+0,0033/−0,0014.
+  Hơnown không chứng minh mangranhgiới; residualđộng chưađủhơn thống kêtheolớp hoặc nhãnGaussian miễnphí.
+  Refreshcontribution M64PASS/M512FAIL khôngđồngnghĩa teacherutilityPASS.
+  Cảhai chọn h4 từ1.000.369pilottrainrow; r20fitMSE≈0,000171/0,001728 vẫnqualityFAIL.
+  Coverage/fitPASS khôngchứngminh tri thức ra ngoài Gaussiananchorbook; chưacôlập nguyênnhân riêng.
+  M512 điểmcaohơnM64 vẫnthualocal; khôngđổiM/bandwidth/bestround đểcứucổng.
+  Seed43: M64/M512−local −0,26382/−0,13688; −classmean −0,00356/+0,00088;
+  −shuffle +0,00042/+0,00325. M64 refresh contribution PASS, M512 FAIL như seed42.
+  Paired confirmation đã có; không private KD/contact/full hoặc rerun y nguyên.
+  [Report](papers/v9/report.md), [cổng](papers/v9/gates.json).
+
+- **V10 Gaussian-base+MH cảhai seed đãaudit:**energyFL chỉ2round, cost/freshdenseCE≈2,969/3,107>2.
+  CE-matched≈2,958/3,042, CEaug≈2,897/2,942; q-negative khôngMH≈2,323/2,248 cũngFAIL.
+  Khônggánmọichiphí choMH: cảpositive/negative extra-forwards vàFP32 density training
+  cùngcótrongadaptation; chưacôlậptừngphần. Numeric/source/weights/BN/prediction gatesPASS
+  cho committedround;12candidatearm giữ2commit,2CErawcontrol đủ20round.
+  Khôngcór20candidateF1: **costFAIL, qualitychưađo**, không gọiqualityFAIL hoặcphủđịnhJEM/FLfamily.
+  **r1 sampler FL FAIL cả hai seed:** movement≈5,27%/6,31% nhưng có2/1chain đứngyên;
+  seed43 chênh mean-energy hai khởi tạo≈0,177 pooled-SD>0,1. ESS energy≈4,20/4,04 mỗi chain.
+  Probe local nhỏ PASS không bảo đảm sampler production; acceptance/movement riêng không chứng minh mixing.
+  Dừngadaptation, khôngprivate/contact/rerun y nguyên. Sửa ghi chú r1PASS trước đây theo artifact đã audit.
+  [Report](papers/v10/report.md), [cổng](papers/v10/gates.json).
+
 
 - **V6 cả4kernel/30arm đãaudit:**12G59numericaloverflow,18control/G61 đủ20round;
   G61M/Jquality/compressionpairedFAIL. JointG61−full66joint≈+0,0075/+0,0079,
@@ -165,6 +303,63 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
 
 ## 6. Vận hành
 
+- **2026-10-14, Hybrid full hai kernel ERROR do budget:** worker exit0/dừng trước r3;
+  controller assert đủ3round khiến kernel ERROR. Local/DML/DML-own vẫn có r2 hợp lệ,
+  Gaussian-own cùng kernel ERROR vẫn đủ r3. Không auth/nonfinite/OOM worker failure theo log.
+  Đã audit toàn bộ checkpoint/metrics; không rerun từ r1 hoặc sửa source đã PUSHED.
+  Continuation dùng last-round riêng mỗi arm và chấp nhận completed boundary theo budget.
+  COMPLETE chỉ là session kết thúc, target r50 vẫn chưa đạt.
+
+- **2026-10-14, crash giữa collect:** cả4 marker Hybrid full đã ghi trước crash;
+  kiểm marker/process rồi tiếp report/inference, không tải hoặc train lại phần đã đủ.
+  376file/0thiếu sau pull exit0; lưu log/hash/source trước chuyển sang bước kế.
+  [Phiên/việc còn thiếu](docs/operations/collection-2026-10-14.md).
+
+- **2026-10-13, nối sau reboot:** kiểm process thực trước khởi động lại collector, giữ `.part`/source/PUSHEDmarkers.
+  BoundaryCells notebook chuẩn bị chưapush thiếu `nb.metadata.kaggle`; bổ sungGPU/Internet trongnotebookdocument
+  vàtáchmỗiseed mộtsession trướcpush. Scientificsource/smokeSHA giữ nguyên, khôngreruntraining.
+  Maskfalse không tự che giá trị raretarget trongpacket; sanitize trướcserialize. GP phải dùng priordecoded
+  từpaidwire, khôngđọcservercountstate trực tiếp. [Bàn giao](docs/operations/resume-after-reboot-2026-10-13.md).
+
+- **2026-10-13 live-log:** CLI hiệncó `kaggle kernels logs <owner/slug> --follow`
+  vàSSE endpoint đãđọcthật trênfull2cont01. Ghi chú APIchỉRUNNING/no-log cũ khôngcònápdụng
+  tuyệtđối. Dùngowner-scopedchild/timecap, redactkey trướclogpublic; không cầnownercopylog
+  khiendpoint hoạtđộng. Full2 đãauth/2×T4/import r3/datafull trongstream dùW&Bworkers
+  lúcđó vẫnoldr3. Noheartbeat chưađủkếtluận hung; pipconflictwarning khôngtựlàtrainingtraceback.
+
+- **2026-10-13 datasetaccess:** `datasets status trietbackup/veremi-fl-20client`
+  trả404 từaccountminhtrit06, nhưng `datasets files` cùngaccount/slug PASS.
+  Khôngsuy inaccessible từprocessing-statusendpoint. Dùngowner-scopedfilelisting,
+  rồi giữactualmount/datahash gate trongnotebook; metadataread khônglàfull-data-readproof.
+
+- **2026-10-13 CPUmount preflight:** chỉthayGPUassert chưađủ; dònglog
+  `get_device_name(0/1)` vẫnkhởi tạoCUDA trênCPUworker vàlỗi trướcimportgate.
+  Giữ4notebookmount01PUSHED/source/log, sửa generator bỏmọiGPUquery vàkiểmstatic,
+  dùngmount02 riêng. Khônggọi đây làcheckpoint/model/trainingfailure hoặcrerunGPUtraining.
+  Mount02 sửaCUDAquery nhưng lộ thiếu dependency `check_v3_driver.equal` của frozenverifier;
+  localimportPASS cóthể dựa vàoROOT/scripts sẵn có. Đóng gói đúng supportmodule ngoài
+  scientificfingerprint, kiểmimport bằng isolated subprocess rồi dùngmount03. Khôngsửa fullsource đãtrain.
+
+- **2026-10-13, collector thực sự dùng helper nào phải kiểm:**V8/V9 gọi `.claude/` còn
+  full gọi `.agents/`; bảnClaude cũ chưaRange-resume và tựxóa`.part` khi kếtthúc.
+  Khôngsuy tínhnăng từbảnAgents đãđọc. Đãsync helperhai nơi: kiểmContent-Range,
+  appendđúngoffset, giữpartial, exitnonzero khi thiếu. Networkchange/EOF/readtimeout
+  khônglàtrainingfailure. Khôngprint`repr(exception)` vì cóthể chứa signedprivate-outputURL;
+  logtypeexception, giữtênartifact. Các logtải phiên này đãredact URL, khôngsửaartifact/source đãtrain.
+
+- **Teacher cost/resume instrumentation:**preflight W&B heartbeat dùngcommit=False trước loground
+  cóstep=r, tránhadvance step tựđộng trướcr đầu sauresume. Publicteacher_applied vàfitMSE
+  báo riêng: K2clientresidualscan khôngSGD nênapplied0 khôngtự làtrainingerror.
+  Cost2× soalgorithm_seconds của2completedroundfreshCE, khôngdummy-inflatedbaseline.
+  Khôngtrộn walltime vàalgorithmstate đểđòibitwise. Sourceallmh frozen trướcfinalsmoke/push.
+
+
+- **V7 notebook/math preflight:**full covariance upload packedupper-triangle, khôngfull66×66.
+  Checker đầu dùngsai shape nênassertFAIL; sửachecker và kiểm lại math trướctrain,
+  khônggọi lỗi checker làthấtbại phươngpháp. 10arm/4exactresume/payload/inferencePASS local
+  chỉ chứngminhcode bounded; chưaT4/fullpilot/F1 hoặccontact.
+
+
 - **Backupdelta2026-10-12:** restore/collectpartial không được thaymanifest đầyđủ bằng local snapshot.
   Gộpoldentry+localnew theo relpath, giữ entryremote-only/hashhistory. `runs/` cóthể làsymlinkalias
   vào`kaggle/`; backup data tạiđích, giữ mappingrelative đểrestorealias, không thêm bảntrùng.
@@ -179,7 +374,7 @@ Chi tiết và số gốc: [kiến thức kế thừa](docs/legacy/kien-thuc-ke-
   khônglàm mất3controlfull66 đã xong20round. KhôngW&B/auth/OOMfailure.
   Probe4096draw/3smoke khôngbảochứng tails khi productiondrawhàngtriệupoint.
   Chỉlog chưa chỉrafeature gâyoverflow; inverse(dist>0) cóđiểm illconditioned làcơchế
-  khảdĩ, chưađổlỗicho duy nhấtbearing. Source/codec/prediction auditđangthu đủ2seed.
+  khảdĩ, chưađổlỗicho duy nhấtbearing. Cảhai seed đãaudit. Guard kiểm cảhai syntheticdraw, kểcảdraw chưa dùng; không suy riêng input đãfeed overflow.
   [Manifest](docs/research/pilot-v6-geometry.md), [live](docs/operations/expansion-2026-10-12.md).
 
 - **V3 cả8kernel/48run đãaudit:**R/T/O/P đều pairedFAIL, khôngnumericalfailure.

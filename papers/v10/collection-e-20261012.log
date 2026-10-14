@@ -1,0 +1,88 @@
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.QUEUED"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.QUEUED"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.QUEUED"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.QUEUED"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.QUEUED"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.QUEUED"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+trietbackup/mobihet-v10e-s42-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+trietbackup/mobihet-v10e-s42-20261012-v1: 282 files, 6 parallel
+trietbackup/mobihet-v10e-s42-20261012-v1: 282 files ok, 0 missing, 2157 MiB new in 83 s (25.9 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v10/private_push/v10e-s42-20261012-v1/executed.ipynb (21363 bytes, 5 outputs)
+VERIFIED {"run": "e_ce_raw_s42", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16355, "ambiguous": 29}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16283, "ambiguous": 101}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_raw_s42
+VERIFIED {"run": "e_ce_matched_s42", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_matched_s42
+VERIFIED {"run": "e_ce_aug_s42", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_aug_s42
+VERIFIED {"run": "e_fl_s42", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_fl_s42
+VERIFIED {"run": "e_own_s42", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_own_s42
+VERIFIED {"run": "e_shuffle_s42", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_shuffle_s42
+VERIFIED {"run": "e_q_s42", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_q_s42
+AUDITED KERNEL trietbackup/mobihet-v10e-s42-20261012-v1 complete False
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.RUNNING"
+odixe0502/mobihet-v10e-s43-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+odixe0502/mobihet-v10e-s43-20261012-v1: 282 files, 6 parallel
+odixe0502/mobihet-v10e-s43-20261012-v1: 282 files ok, 0 missing, 2157 MiB new in 84 s (25.7 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v10/private_push/v10e-s43-20261012-v1/executed.ipynb (21355 bytes, 5 outputs)
+VERIFIED {"run": "e_ce_raw_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16355, "ambiguous": 29}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16280, "ambiguous": 104}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_raw_s43
+VERIFIED {"run": "e_ce_matched_s43", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_matched_s43
+VERIFIED {"run": "e_ce_aug_s43", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_aug_s43
+VERIFIED {"run": "e_fl_s43", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_fl_s43
+VERIFIED {"run": "e_own_s43", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_own_s43
+VERIFIED {"run": "e_shuffle_s43", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_shuffle_s43
+VERIFIED {"run": "e_q_s43", "rounds": 2, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_q_s43
+AUDITED KERNEL odixe0502/mobihet-v10e-s43-20261012-v1 complete False

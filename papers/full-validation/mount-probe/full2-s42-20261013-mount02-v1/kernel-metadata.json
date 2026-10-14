@@ -1,0 +1,18 @@
+{
+  "id": "minhtriethihi/mobihet-full2-s42-20261013-mount02-v1",
+  "title": "mobihet-full2-s42-20261013-mount02-v1",
+  "code_file": "full2-s42-20261013-mount02-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "minhtriethihi/mobihet-full-h1h2-20261012-src"
+  ],
+  "kernel_sources": [
+    "minhtriethihi/mobihet-full2-s42-20261012-cal-v1"
+  ],
+  "competition_sources": []
+}

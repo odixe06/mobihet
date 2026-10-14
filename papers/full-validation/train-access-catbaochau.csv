@@ -1,0 +1,22 @@
+Next Page Token = CfDJ8JDwKpgsc5hJpcljKjpYpOHKPywjLPiEDly34qJkrngFSwlZ8jslACvm1d25BCwfgd_vneNVJlzgeeatMal0-RWNJraTak3XwNaTJk7OUzEBcklo9yUXRgpyvr5ni4CkV_8vyVdMdGz5E3JjydnqYO2Ce6gOh2T7L_wKOb68IeaFYSx83K4lk9dy
+name,size,creationDate
+20_client/20client_analysis.md,22182,2026-09-29 13:14:20.587000
+20_client/client_class_matrix.csv,2384,2026-09-29 13:14:20.562000
+20_client/client_scenario_matrix.csv,813,2026-09-29 13:14:20.540000
+20_client/client_stats.json,31293,2026-09-29 13:14:20.540000
+20_client/manifest/assignment.parquet,195061,2026-09-29 13:14:20.638000
+20_client/manifest/dirichlet_proportions.json,19384,2026-09-29 13:14:20.546000
+20_client/manifest/partition_config.json,1373,2026-09-29 13:14:20.552000
+20_client/manifest/shards.json,61010,2026-09-29 13:14:20.558000
+20_client/train/client_id=000/part-00000.parquet,21229218,2026-09-29 13:14:21.154000
+20_client/train/client_id=000/part-00001.parquet,27188558,2026-09-29 13:14:21.349000
+20_client/train/client_id=000/part-00002.parquet,21033934,2026-09-29 13:14:21.349000
+20_client/train/client_id=000/part-00003.parquet,28074984,2026-09-29 13:14:21.540000
+20_client/train/client_id=000/part-00004.parquet,23828368,2026-09-29 13:14:21.487000
+20_client/train/client_id=000/part-00005.parquet,22378355,2026-09-29 13:14:21.535000
+20_client/train/client_id=000/part-00006.parquet,21796582,2026-09-29 13:14:21.572000
+20_client/train/client_id=000/part-00007.parquet,20214718,2026-09-29 13:14:21.487000
+20_client/train/client_id=000/part-00008.parquet,21084060,2026-09-29 13:14:21.717000
+20_client/train/client_id=000/part-00009.parquet,27029180,2026-09-29 13:14:21.779000
+20_client/train/client_id=000/part-00010.parquet,21638261,2026-09-29 13:14:21.800000
+20_client/train/client_id=000/part-00011.parquet,20773812,2026-09-29 13:14:21.665000

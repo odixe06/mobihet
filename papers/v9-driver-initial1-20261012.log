@@ -1,0 +1,114 @@
+setup r_dense_ce role proxy rows 20480 sec 2.7
+r1 r_dense_ce s42 proxy group head 0.03541076487252125 loss 2.4744 9s
+r2 r_dense_ce s42 proxy group head 0.04222074468085106 loss 2.3636 5s
+r3 r_dense_ce s42 proxy group head 0.010893092414831546 loss 2.5656 4s
+done r_dense_ce complete True
+setup r64_fl role proxy rows 20480 sec 3.2
+r1 r64_fl s42 proxy group head 0.01782822440717178 loss 0.0000 2s
+r2 r64_fl s42 proxy group head 0.01716820987654321 loss 0.0000 2s
+r3 r64_fl s42 proxy group head 0.013853570671752488 loss 0.0000 2s
+done r64_fl complete True
+setup r64_own role proxy rows 20480 sec 3.1
+r1 r64_own s42 proxy group head 0.01586041277206099 loss 0.0000 13s
+r2 r64_own s42 proxy group head 0.016843457433813422 loss 0.0000 10s
+r3 r64_own s42 proxy group head 0.017464761085965348 loss 0.0000 10s
+done r64_own complete True
+setup r64_shuffle role proxy rows 20480 sec 6.8
+r1 r64_shuffle s42 proxy group head 0.01624909222948439 loss 0.0000 2s
+r2 r64_shuffle s42 proxy group head 0.014701104613385316 loss 0.0000 2s
+r3 r64_shuffle s42 proxy group head 0.014546571364753184 loss 0.0000 2s
+done r64_shuffle complete True
+setup r64_classmean role proxy rows 20480 sec 3.2
+r1 r64_classmean s42 proxy group head 0.0158289241622575 loss 0.0000 2s
+r2 r64_classmean s42 proxy group head 0.014701104613385316 loss 0.0000 2s
+r3 r64_classmean s42 proxy group head 0.014190952588081776 loss 0.0000 2s
+done r64_classmean complete True
+setup r64_hard role proxy rows 20480 sec 3.4
+r1 r64_hard s42 proxy group head 0.017431399010346384 loss 0.0000 2s
+r2 r64_hard s42 proxy group head 0.0174804262722923 loss 0.0000 2s
+r3 r64_hard s42 proxy group head 0.0174804262722923 loss 0.0000 6s
+done r64_hard complete True
+setup r64_frozen role proxy rows 20480 sec 3.3
+r1 r64_frozen s42 proxy group head 0.01782822440717178 loss 0.0000 2s
+r2 r64_frozen s42 proxy group head 0.017674180327868848 loss 0.0000 2s
+r3 r64_frozen s42 proxy group head 0.016658057851239673 loss 0.0000 2s
+done r64_frozen complete True
+setup r512_fl role proxy rows 20480 sec 3.5
+r1 r512_fl s42 proxy group head 0.06142498559789319 loss 0.0000 2s
+r2 r512_fl s42 proxy group head 0.05659906914893618 loss 0.0000 2s
+r3 r512_fl s42 proxy group head 0.05230044106200813 loss 0.0000 2s
+done r512_fl complete True
+setup r512_own role proxy rows 20480 sec 3.1
+r1 r512_own s42 proxy group head 0.05810339883917095 loss 0.0000 15s
+r2 r512_own s42 proxy group head 0.057776132021553996 loss 0.0000 12s
+r3 r512_own s42 proxy group head 0.0564416945458928 loss 0.0000 17s
+done r512_own complete True
+setup r512_shuffle role proxy rows 20480 sec 3.4
+r1 r512_shuffle s42 proxy group head 0.06061679594272078 loss 0.0000 2s
+r2 r512_shuffle s42 proxy group head 0.05538245356793744 loss 0.0000 2s
+r3 r512_shuffle s42 proxy group head 0.052083333333333336 loss 0.0000 2s
+done r512_shuffle complete True
+setup r512_classmean role proxy rows 20480 sec 3.4
+r1 r512_classmean s42 proxy group head 0.06078869047619049 loss 0.0000 2s
+r2 r512_classmean s42 proxy group head 0.05557728410513142 loss 0.0000 2s
+r3 r512_classmean s42 proxy group head 0.052083333333333336 loss 0.0000 2s
+done r512_classmean complete True
+setup r512_hard role proxy rows 20480 sec 7.0
+r1 r512_hard s42 proxy group head 0.05778265851795263 loss 0.0000 2s
+r2 r512_hard s42 proxy group head 0.060320124447355496 loss 0.0000 2s
+r3 r512_hard s42 proxy group head 0.05985318444995863 loss 0.0000 2s
+done r512_hard complete True
+setup r512_frozen role proxy rows 20480 sec 3.3
+r1 r512_frozen s42 proxy group head 0.06142498559789319 loss 0.0000 2s
+r2 r512_frozen s42 proxy group head 0.04941561477325853 loss 0.0000 3s
+r3 r512_frozen s42 proxy group head 0.05273118279569892 loss 0.0000 3s
+done r512_frozen complete True
+setup r64_fl role proxy rows 20480 sec 3.1
+r1 r64_fl s42 proxy group head 0.01782822440717178 loss 0.0000 3s
+done r64_fl complete False
+setup r64_fl role proxy rows 20480 sec 6.6
+r2 r64_fl s42 proxy group head 0.01716820987654321 loss 0.0000 3s
+r3 r64_fl s42 proxy group head 0.013853570671752488 loss 0.0000 2s
+done r64_fl complete True
+setup r512_own role proxy rows 20480 sec 3.4
+r1 r512_own s42 proxy group head 0.05810339883917095 loss 0.0000 13s
+done r512_own complete False
+setup r512_own role proxy rows 20480 sec 6.4
+r2 r512_own s42 proxy group head 0.057776132021553996 loss 0.0000 13s
+r3 r512_own s42 proxy group head 0.0564416945458928 loss 0.0000 12s
+done r512_own complete True
+setup r512_frozen role proxy rows 20480 sec 4.1
+r1 r512_frozen s42 proxy group head 0.06142498559789319 loss 0.0000 2s
+done r512_frozen complete False
+setup r512_frozen role proxy rows 20480 sec 2.8
+r2 r512_frozen s42 proxy group head 0.04941561477325853 loss 0.0000 4s
+r3 r512_frozen s42 proxy group head 0.05273118279569892 loss 0.0000 2s
+done r512_frozen complete True
+VERIFIED {"run": "r_dense_ce_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 233, "ambiguous": 23}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 212, "ambiguous": 44}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r_dense_ce_s42
+VERIFIED {"run": "r64_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 244, "ambiguous": 12}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 249, "ambiguous": 7}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_fl_s42
+VERIFIED {"run": "r64_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 247, "ambiguous": 9}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 245, "ambiguous": 11}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_own_s42
+VERIFIED {"run": "r64_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 247, "ambiguous": 9}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 251, "ambiguous": 5}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_shuffle_s42
+VERIFIED {"run": "r64_classmean_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 252, "ambiguous": 4}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 252, "ambiguous": 4}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_classmean_s42
+VERIFIED {"run": "r64_hard_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 247, "ambiguous": 9}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 247, "ambiguous": 9}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_hard_s42
+VERIFIED {"run": "r64_frozen_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 244, "ambiguous": 12}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 251, "ambiguous": 5}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_frozen_s42
+VERIFIED {"run": "r512_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 253, "ambiguous": 3}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_fl_s42
+VERIFIED {"run": "r512_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 255, "ambiguous": 1}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_own_s42
+VERIFIED {"run": "r512_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 253, "ambiguous": 3}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_shuffle_s42
+VERIFIED {"run": "r512_classmean_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 252, "ambiguous": 4}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_classmean_s42
+VERIFIED {"run": "r512_hard_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 251, "ambiguous": 5}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 249, "ambiguous": 7}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_hard_s42
+VERIFIED {"run": "r512_frozen_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 253, "ambiguous": 3}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_frozen_s42
+PASS V9:13armsx3rounds;3exactresumes;strict/payload/inference
+Peak tree RSS: 2920 MiB; exit 0

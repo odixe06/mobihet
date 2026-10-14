@@ -1,0 +1,34 @@
+setup bc_single role private rows 5120 sec 0.9
+r1 bc_single s42 private group gp 0.007113550004042364 loss 2.8360 3s
+r2 bc_single s42 private group gp 0.006686937232275548 loss 2.1533 2s
+r3 bc_single s42 private group gp 0.006415122880176644 loss 1.8372 2s
+done bc_single complete True
+setup bc_direct2_fl role private rows 5120 sec 1.2
+r1 bc_direct2_fl s42 private group gp 0.005232963181894951 loss 4.2492 13s
+r2 bc_direct2_fl s42 private group gp 0.004736294202143111 loss 3.5572 16s
+r3 bc_direct2_fl s42 private group gp 0.004744985906824451 loss 3.2478 12s
+done bc_direct2_fl complete True
+setup bc_direct4_fl role private rows 5120 sec 1.1
+r1 bc_direct4_fl s42 private group gp 0.01112222469826598 loss 4.2409 17s
+r2 bc_direct4_fl s42 private group gp 0.011553468419652432 loss 3.5358 13s
+r3 bc_direct4_fl s42 private group gp 0.011730395529766652 loss 3.2320 17s
+done bc_direct4_fl complete True
+setup bc_teacher2_fl role private rows 5120 sec 1.2
+r1 bc_teacher2_fl s42 private group gp 0.005788082437275986 loss 4.2464 13s
+r2 bc_teacher2_fl s42 private group gp 0.004927698292800932 loss 3.5572 11s
+r3 bc_teacher2_fl s42 private group gp 0.004989470036454698 loss 3.2484 16s
+done bc_teacher2_fl complete True
+setup bc_teacher4_fl role private rows 5120 sec 1.2
+r1 bc_teacher4_fl s42 private group gp 0.01003155277059683 loss 4.2430 13s
+r2 bc_teacher4_fl s42 private group gp 0.011758486347535513 loss 3.5378 15s
+r3 bc_teacher4_fl s42 private group gp 0.01208290649637062 loss 3.2342 11s
+done bc_teacher4_fl complete True
+setup bc_teacher4_fl role private rows 5120 sec 1.2
+r1 bc_teacher4_fl s42 private group gp 0.01003155277059683 loss 4.2430 17s
+done bc_teacher4_fl complete False
+setup bc_teacher4_fl role private rows 5120 sec 2.3
+r2 bc_teacher4_fl s42 private group gp 0.011758486347535513 loss 3.5378 12s
+r3 bc_teacher4_fl s42 private group gp 0.01208290649637062 loss 3.2342 11s
+done bc_teacher4_fl complete True
+BoundaryCells smoke/rebuild/exact-resume PASS
+Peak tree RSS: 2834 MiB; exit 0

@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-10-13T07:28:52.024782+00:00",
+  "allocations": [
+    {
+      "seed": 42,
+      "owner": "minhtran0601",
+      "available_hours": 2.83,
+      "reserved_hours": 2.3,
+      "parent_budget_hours": 2.0,
+      "kernel": "minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1",
+      "input_files": 114
+    },
+    {
+      "seed": 43,
+      "owner": "dinhan25",
+      "available_hours": 3.33,
+      "reserved_hours": 2.3,
+      "parent_budget_hours": 2.0,
+      "kernel": "dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1",
+      "input_files": 114
+    }
+  ],
+  "global_active_unchanged": "dinhan25",
+  "source_matches_local_smoke": true,
+  "paired_calibration_only": true
+}

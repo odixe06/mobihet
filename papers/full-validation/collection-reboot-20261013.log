@@ -1,0 +1,27 @@
+catbaochau/mobihet-full1-s42-20261013-cont01-v1 has status "KernelWorkerStatus.COMPLETE"
+catbaochau/mobihet-full1-s42-20261013-cont01-v1: 164 files, 6 parallel
+catbaochau/mobihet-full1-s42-20261013-cont01-v1: 164 files ok, 0 missing, 1973 MiB new in 299 s (6.6 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full1-s42-20261013-cont01-v1/executed.ipynb (28307 bytes, 5 outputs)
+VERIFIED FULL h_gaussian_s42 10 rounds
+VERIFIED FULL h_local_s42 11 rounds
+AUDITED FULL CALIBRATION catbaochau/mobihet-full1-s42-20261013-cont01-v1 False
+minhtriethihi/mobihet-full2-s42-20261013-cont01-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtriethihi/mobihet-full2-s42-20261013-cont01-v1: 156 files, 6 parallel
+minhtriethihi/mobihet-full2-s42-20261013-cont01-v1: 156 files ok, 0 missing, 1732 MiB new in 317 s (5.5 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full2-s42-20261013-cont01-v1/executed.ipynb (28394 bytes, 5 outputs)
+VERIFIED FULL h_gaussian_lr4_s42 9 rounds
+VERIFIED FULL h_gaussian_diag_s42 10 rounds
+AUDITED FULL CALIBRATION minhtriethihi/mobihet-full2-s42-20261013-cont01-v1 False
+khanhmay0304/mobihet-full3-s42-20261013-cont01-v1 has status "KernelWorkerStatus.COMPLETE"
+khanhmay0304/mobihet-full3-s42-20261013-cont01-v1: 155 files, 6 parallel
+khanhmay0304/mobihet-full3-s42-20261013-cont01-v1: 155 files ok, 0 missing, 1911 MiB new in 300 s (6.4 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full3-s42-20261013-cont01-v1/executed.ipynb (28324 bytes, 5 outputs)
+VERIFIED FULL h_dml_s42 7 rounds
+VERIFIED FULL h_gaussian_own_s42 10 rounds
+AUDITED FULL CALIBRATION khanhmay0304/mobihet-full3-s42-20261013-cont01-v1 False
+catbaochau/mobihet-full4-s42-20261013-cont01-v1 has status "KernelWorkerStatus.COMPLETE"
+catbaochau/mobihet-full4-s42-20261013-cont01-v1: 95 files, 6 parallel
+catbaochau/mobihet-full4-s42-20261013-cont01-v1: 95 files ok, 0 missing, 982 MiB new in 134 s (7.3 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full4-s42-20261013-cont01-v1/executed.ipynb (23644 bytes, 5 outputs)
+VERIFIED FULL h_dml_own_s42 7 rounds
+AUDITED FULL CALIBRATION catbaochau/mobihet-full4-s42-20261013-cont01-v1 False

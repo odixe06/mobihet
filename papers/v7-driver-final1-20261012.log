@@ -1,0 +1,100 @@
+setup n_diag role private rows 20480 sec 2.3
+r1 n_diag s42 private group gp 0.007600103797947416 loss 5.3891 9s
+r2 n_diag s42 private group gp 0.00645702453238519 loss 4.6035 3s
+r3 n_diag s42 private group gp 0.006370015748234777 loss 4.3387 3s
+done n_diag complete True
+setup n_full role private rows 20480 sec 1.7
+r1 n_full s42 private group gp 0.007905638324421742 loss 5.3877 6s
+r2 n_full s42 private group gp 0.0065259445475793374 loss 4.6128 7s
+r3 n_full s42 private group gp 0.006391759072580645 loss 4.3411 3s
+done n_full complete True
+setup n_lr4 role private rows 20480 sec 1.8
+r1 n_lr4 s42 private group gp 0.006738290098880935 loss 5.3907 4s
+r2 n_lr4 s42 private group gp 0.0062972030209933446 loss 4.6184 3s
+r3 n_lr4 s42 private group gp 0.0062253169388026015 loss 4.3553 3s
+done n_lr4 complete True
+setup n_lr8 role private rows 20480 sec 1.8
+r1 n_lr8 s42 private group gp 0.006920188267364189 loss 5.3997 4s
+r2 n_lr8 s42 private group gp 0.006274103663704851 loss 4.6256 3s
+r3 n_lr8 s42 private group gp 0.006275711767010579 loss 4.3549 6s
+done n_lr8 complete True
+setup n_nys4_fl role private rows 20480 sec 1.7
+r1 n_nys4_fl s42 private group gp 0.007263457415737334 loss 5.3974 5s
+r2 n_nys4_fl s42 private group gp 0.006628660060768088 loss 4.6229 3s
+r3 n_nys4_fl s42 private group gp 0.006609372569520333 loss 4.3616 3s
+done n_nys4_fl complete True
+setup n_nys4_own role private rows 20480 sec 1.7
+r1 n_nys4_own s42 private group gp 0.006799521090327569 loss 5.2960 4s
+r2 n_nys4_own s42 private group gp 0.005985901151782437 loss 4.2797 3s
+r3 n_nys4_own s42 private group gp 0.005664792212747856 loss 3.9305 3s
+done n_nys4_own complete True
+setup n_nys4_shuffle role private rows 20480 sec 1.5
+r1 n_nys4_shuffle s42 private group gp 0.008801482423528987 loss 5.3932 4s
+r2 n_nys4_shuffle s42 private group gp 0.006631068375394208 loss 4.6051 3s
+r3 n_nys4_shuffle s42 private group gp 0.006488611879104241 loss 4.3399 2s
+done n_nys4_shuffle complete True
+setup n_nys8_fl role private rows 20480 sec 1.4
+r1 n_nys8_fl s42 private group gp 0.0074739014406246754 loss 5.3939 4s
+r2 n_nys8_fl s42 private group gp 0.006393074378801629 loss 4.6201 3s
+r3 n_nys8_fl s42 private group gp 0.0063232046850998464 loss 4.3558 3s
+done n_nys8_fl complete True
+setup n_nys8_own role private rows 20480 sec 1.8
+r1 n_nys8_own s42 private group gp 0.006652435285939115 loss 5.2990 8s
+r2 n_nys8_own s42 private group gp 0.0065140526022193805 loss 4.2750 3s
+r3 n_nys8_own s42 private group gp 0.0063719532821416205 loss 3.9273 3s
+done n_nys8_own complete True
+setup n_nys8_shuffle role private rows 20480 sec 1.4
+r1 n_nys8_shuffle s42 private group gp 0.00724917681860352 loss 5.4032 4s
+r2 n_nys8_shuffle s42 private group gp 0.006476463972084676 loss 4.6161 3s
+r3 n_nys8_shuffle s42 private group gp 0.006340215890548513 loss 4.3524 3s
+done n_nys8_shuffle complete True
+setup n_full role private rows 20480 sec 1.4
+r1 n_full s42 private group gp 0.007905638324421742 loss 5.3877 4s
+done n_full complete False
+setup n_full role private rows 20480 sec 1.8
+r2 n_full s42 private group gp 0.0065259445475793374 loss 4.6128 8s
+r3 n_full s42 private group gp 0.006391759072580645 loss 4.3411 3s
+done n_full complete True
+setup n_nys4_fl role private rows 20480 sec 1.5
+r1 n_nys4_fl s42 private group gp 0.007263457415737334 loss 5.3974 4s
+done n_nys4_fl complete False
+setup n_nys4_fl role private rows 20480 sec 1.8
+r2 n_nys4_fl s42 private group gp 0.006628660060768088 loss 4.6229 5s
+r3 n_nys4_fl s42 private group gp 0.006609372569520333 loss 4.3616 4s
+done n_nys4_fl complete True
+setup n_nys8_own role private rows 20480 sec 2.1
+r1 n_nys8_own s42 private group gp 0.006652435285939115 loss 5.2990 6s
+done n_nys8_own complete False
+setup n_nys8_own role private rows 20480 sec 1.9
+r2 n_nys8_own s42 private group gp 0.0065140526022193805 loss 4.2750 4s
+r3 n_nys8_own s42 private group gp 0.0063719532821416205 loss 3.9273 3s
+done n_nys8_own complete True
+setup n_nys8_shuffle role private rows 20480 sec 1.6
+r1 n_nys8_shuffle s42 private group gp 0.00724917681860352 loss 5.4032 4s
+done n_nys8_shuffle complete False
+setup n_nys8_shuffle role private rows 20480 sec 1.8
+r2 n_nys8_shuffle s42 private group gp 0.006476463972084676 loss 4.6161 4s
+r3 n_nys8_shuffle s42 private group gp 0.006340215890548513 loss 4.3524 3s
+done n_nys8_shuffle complete True
+VERIFIED {"run": "n_diag_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 244, "ambiguous": 12}, {"round": 3, "role": "private", "rows": 256, "decisive": 256, "ambiguous": 0}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_diag_s42
+VERIFIED {"run": "n_full_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 240, "ambiguous": 16}, {"round": 3, "role": "private", "rows": 256, "decisive": 256, "ambiguous": 0}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_full_s42
+VERIFIED {"run": "n_lr4_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 240, "ambiguous": 16}, {"round": 3, "role": "private", "rows": 256, "decisive": 254, "ambiguous": 2}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_lr4_s42
+VERIFIED {"run": "n_lr8_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 238, "ambiguous": 18}, {"round": 3, "role": "private", "rows": 256, "decisive": 256, "ambiguous": 0}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_lr8_s42
+VERIFIED {"run": "n_nys4_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 243, "ambiguous": 13}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_nys4_fl_s42
+VERIFIED {"run": "n_nys4_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 234, "ambiguous": 22}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_nys4_own_s42
+VERIFIED {"run": "n_nys4_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 238, "ambiguous": 18}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_nys4_shuffle_s42
+VERIFIED {"run": "n_nys8_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 241, "ambiguous": 15}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_nys8_fl_s42
+VERIFIED {"run": "n_nys8_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 248, "ambiguous": 8}, {"round": 3, "role": "private", "rows": 256, "decisive": 253, "ambiguous": 3}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_nys8_own_s42
+VERIFIED {"run": "n_nys8_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "private", "rows": 256, "decisive": 250, "ambiguous": 6}, {"round": 3, "role": "private", "rows": 256, "decisive": 255, "ambiguous": 1}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED V7 n_nys8_shuffle_s42
+PASS V7:10armsx3rounds;4exactresumes;strict/payload/inference
+Peak tree RSS: 2760 MiB; exit 0

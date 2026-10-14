@@ -1,0 +1,53 @@
+start calibration bc_single seed 42 gpu 0
+COST bc_single_s42 1.0 True
+start calibration bc_direct2_fl seed 42 gpu 0
+start calibration bc_direct4_fl seed 42 gpu 1
+COST bc_direct2_fl_s42 1.5 True
+COST bc_direct4_fl_s42 1.5 True
+start calibration bc_teacher2_fl seed 42 gpu 0
+start calibration bc_teacher4_fl seed 42 gpu 1
+COST bc_teacher2_fl_s42 2.1 False
+COST bc_teacher4_fl_s42 1.5 True
+CALIBRATION ONLY; no utility continuation {'bc_single_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct2_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct4_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 1, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_teacher2_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [2.1, 2.1], 'mean_seconds': 2.1, 'baseline_mean_seconds': 1.0, 'ratio': 2.1, 'pass_cost': False, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_teacher4_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 1, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}}
+start calibration bc_single seed 42 gpu 0
+CALIBRATION ONLY; no utility continuation {'bc_single_s42': {'rc': 0, 'rounds': 1, 'calibration_valid': False}, 'bc_direct2_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_direct4_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher2_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher4_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}}
+start calibration bc_single seed 42 gpu 0
+COST bc_single_s42 1.0 True
+start calibration bc_direct2_fl seed 42 gpu 0
+start calibration bc_direct4_fl seed 42 gpu 1
+COST bc_direct2_fl_s42 1.5 True
+start calibration bc_teacher2_fl seed 42 gpu 0
+start calibration bc_teacher4_fl seed 42 gpu 1
+COST bc_teacher2_fl_s42 2.1 False
+COST bc_teacher4_fl_s42 1.5 True
+CALIBRATION ONLY; no utility continuation {'bc_single_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct2_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct4_fl_s42': {'rc': 7, 'rounds': 2, 'calibration_valid': False}, 'bc_teacher2_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [2.1, 2.1], 'mean_seconds': 2.1, 'baseline_mean_seconds': 1.0, 'ratio': 2.1, 'pass_cost': False, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_teacher4_fl_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 1, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}}
+start calibration bc_single seed 42 gpu 0
+COST bc_single_s42 1.0 True
+CALIBRATION ONLY; no utility continuation {'bc_single_s42': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'seed': 42, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct2_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_direct4_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher2_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher4_fl_s42': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}}
+start calibration bc_single seed 43 gpu 0
+COST bc_single_s43 1.0 True
+start calibration bc_direct2_fl seed 43 gpu 0
+start calibration bc_direct4_fl seed 43 gpu 1
+COST bc_direct2_fl_s43 1.5 True
+COST bc_direct4_fl_s43 1.5 True
+start calibration bc_teacher2_fl seed 43 gpu 0
+start calibration bc_teacher4_fl seed 43 gpu 1
+COST bc_teacher2_fl_s43 2.1 False
+COST bc_teacher4_fl_s43 1.5 True
+CALIBRATION ONLY; no utility continuation {'bc_single_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct2_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct4_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 1, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_teacher2_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [2.1, 2.1], 'mean_seconds': 2.1, 'baseline_mean_seconds': 1.0, 'ratio': 2.1, 'pass_cost': False, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_teacher4_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 1, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}}
+start calibration bc_single seed 43 gpu 0
+CALIBRATION ONLY; no utility continuation {'bc_single_s43': {'rc': 0, 'rounds': 1, 'calibration_valid': False}, 'bc_direct2_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_direct4_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher2_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher4_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}}
+start calibration bc_single seed 43 gpu 0
+COST bc_single_s43 1.0 True
+start calibration bc_direct2_fl seed 43 gpu 0
+start calibration bc_direct4_fl seed 43 gpu 1
+COST bc_direct2_fl_s43 1.5 True
+start calibration bc_teacher2_fl seed 43 gpu 0
+start calibration bc_teacher4_fl seed 43 gpu 1
+COST bc_teacher2_fl_s43 2.1 False
+COST bc_teacher4_fl_s43 1.5 True
+CALIBRATION ONLY; no utility continuation {'bc_single_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct2_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct4_fl_s43': {'rc': 7, 'rounds': 2, 'calibration_valid': False}, 'bc_teacher2_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [2.1, 2.1], 'mean_seconds': 2.1, 'baseline_mean_seconds': 1.0, 'ratio': 2.1, 'pass_cost': False, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_teacher4_fl_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.5, 1.5], 'mean_seconds': 1.5, 'baseline_mean_seconds': 1.0, 'ratio': 1.5, 'pass_cost': True, 'physical_gpu': 1, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}}
+start calibration bc_single seed 43 gpu 0
+COST bc_single_s43 1.0 True
+CALIBRATION ONLY; no utility continuation {'bc_single_s43': {'rc': 0, 'rounds': 2, 'calibration_valid': True, 'cost': {'algorithm_seconds': [1.0, 1.0], 'mean_seconds': 1.0, 'baseline_mean_seconds': 1.0, 'ratio': 1.0, 'pass_cost': True, 'physical_gpu': 0, 'seed': 43, 'rounds': 2, 'round_schedule': 20, 'utility_measured': False}}, 'bc_direct2_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_direct4_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher2_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}, 'bc_teacher4_fl_s43': {'reason': 'missing baseline or parent budget before start', 'calibration_valid': False}}
+Boundary notebooks/controller PASS 8

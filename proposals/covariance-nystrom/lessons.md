@@ -1,7 +1,16 @@
 # Bài học — covariance Nyström
 
-S1 chưautilitypilot; không gọi proposal đãthắng IDS hoặc thêmfamily mới vào danh mục24hướng.
+V7 hai seed đãaudit20arm×20round: **compressionPASS, qualitypairedFAIL**.
+Không mở contact/full hoặc rerun y nguyên. Không thêmfamily mới vào danh mục24hướng.
 [Thiết kế/cổng](design.md), [proof](../../papers/nystrom/math-probe.json).
+
+- Byte/full rank4≈0,198; rank8≈0,321. FL−exactlr4≈−0,0195/−0,0240;
+  FL−exactlr8≈−0,0183/−0,0117, vượt mức giảm cho phép0,01.
+- Rank8−shuffle≈+0,0109/+0,0125 đạt contribution riêng; rank4 chỉ+0,0017/+0,0009.
+  Hơnown/cócontribution không đủ giữ utility của covariance chính xác.
+- Local covarianceerror và quantizationerror là diagnostic, chưa cô lập nguyên nhân F1.
+  Không đổi rank/Ω/ridge/head/bestround để cứu cổng.
+- [Kết quả/audit](../../papers/v7/report.md), [cổng khóa](../../papers/v7/gates.json).
 
 - 40.960uniformtrainrow, CPU78MiB: additiveFP32upload/FP64aggregate +FP16factor r4/8,
   PSD/finite/context/CRC/tamper/truncationgates PASS. KhôngMH/sourceV6mutation, khôngtrain/GPU.

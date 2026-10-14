@@ -3,6 +3,7 @@
 No DVC checkout, manifest update or cache deletion. Heavy model files stay remote.
 """
 import concurrent.futures
+import argparse
 import hashlib
 import json
 import os
@@ -19,11 +20,14 @@ def md5(path):
 
 def main():
     import configparser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--build', choices=['v2', 'v3', 'v4', 'v5', 'v6'], action='append')
+    args = parser.parse_args()
     config = configparser.ConfigParser()
     config.read(ROOT / '.dvc/config')
     remote = Path(config['\'remote "gdrive"\'']['url']) / 'files/md5'
     jobs = []
-    for build in ('v2', 'v3', 'v4', 'v5'):
+    for build in args.build or ('v2', 'v3', 'v4', 'v5'):
         manifest = ROOT / f'papers/{build}/kaggle.dvc'
         directory_hash = yaml.safe_load(manifest.read_text())['outs'][0]['md5']
         directory = remote / directory_hash[:2] / directory_hash[2:]
@@ -64,7 +68,7 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         proof = list(pool.map(restore, jobs))
     # Recreate lightweight navigation links, never duplicate checkpoints.
-    for marker in ROOT.glob('papers/v[2345]/kaggle/*/AUDITED.json'):
+    for marker in ROOT.glob('papers/v[23456]/kaggle/*/AUDITED.json'):
         audit = json.loads(marker.read_text())
         base = marker.parents[2] / 'runs'
         base.mkdir(exist_ok=True)
@@ -75,8 +79,9 @@ def main():
             if target.is_symlink():
                 assert target.resolve() == run.resolve()
             elif not target.exists():
-                target.symlink_to(run.resolve(), target_is_directory=True)
-    record = ROOT / 'docs/operations/restored-metadata-2026-10-12.json'
+                target.symlink_to(os.path.relpath(run, target.parent), target_is_directory=True)
+    name = 'restored-metadata-2026-10-12' + ('-' + '-'.join(args.build) if args.build else '')
+    record = ROOT / f'docs/operations/{name}.json'
     record.write_text(json.dumps(dict(files=proof, model_files_restored=False), indent=2))
     print('DVC metadata MD5 PASS:', len(proof), 'files;',
           sum(v['restored'] for v in proof), 'restored')

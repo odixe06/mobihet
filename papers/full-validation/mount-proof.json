@@ -1,0 +1,90 @@
+{
+  "observed_utc": "2026-10-13T03:03:48.579932+00:00",
+  "checks": [
+    {
+      "kernel": "catbaochau/mobihet-full1-s42-20261013-mount03-v1",
+      "imports": [
+        {
+          "arm": "h_local",
+          "fingerprint": "f4dc276395210a94a48edb3fbdde5627df1e4d239bb720d411bcddb110975413",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/catbaochau/mobihet-full1-s42-20261012-cal-v1/runs/h_local_s42",
+          "files": 15,
+          "markers_published_last": true
+        },
+        {
+          "arm": "h_gaussian",
+          "fingerprint": "6376f7445519919315e7355842f6a73cac27b56ad562ec0a43695c88e5bc33b3",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/catbaochau/mobihet-full1-s42-20261012-cal-v1/runs/h_gaussian_s42",
+          "files": 15,
+          "markers_published_last": true
+        }
+      ],
+      "cpu_only": true,
+      "trained_rounds": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-full2-s42-20261013-mount03-v1",
+      "imports": [
+        {
+          "arm": "h_gaussian_diag",
+          "fingerprint": "d38c93e764b55965de5ec076c1727475cc2ad365d55e0dc358db20f4bee81b66",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/minhtriethihi/mobihet-full2-s42-20261012-cal-v1/runs/h_gaussian_diag_s42",
+          "files": 15,
+          "markers_published_last": true
+        },
+        {
+          "arm": "h_gaussian_lr4",
+          "fingerprint": "054303fdf7e35a7871bc55ae0281dfaac53580b8bf30122645b1ff2744a12bc9",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/minhtriethihi/mobihet-full2-s42-20261012-cal-v1/runs/h_gaussian_lr4_s42",
+          "files": 15,
+          "markers_published_last": true
+        }
+      ],
+      "cpu_only": true,
+      "trained_rounds": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-full3-s42-20261013-mount03-v1",
+      "imports": [
+        {
+          "arm": "h_gaussian_own",
+          "fingerprint": "ef59415d2d960e56bdebccf269caf92c01f297d9ebf18b964ed736ed759a6171",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/khanhmay0304/mobihet-full3-s42-20261012-cal-v1/runs/h_gaussian_own_s42",
+          "files": 15,
+          "markers_published_last": true
+        },
+        {
+          "arm": "h_dml",
+          "fingerprint": "c0f238e2c0bbb33663e54db5073b8a07dc207401222f5dd30c868a510a42eced",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/khanhmay0304/mobihet-full3-s42-20261012-cal-v1/runs/h_dml_s42",
+          "files": 18,
+          "markers_published_last": true
+        }
+      ],
+      "cpu_only": true,
+      "trained_rounds": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-full4-s42-20261013-mount03-v1",
+      "imports": [
+        {
+          "arm": "h_dml_own",
+          "fingerprint": "cf3ef520c2e0cf8220009ba1cda530d37cae6cfb1893d24e339057ccfc98cdd7",
+          "last_round": 3,
+          "source_path": "/kaggle/input/notebooks/catbaochau/mobihet-full4-s42-20261012-cal-v1/runs/h_dml_own_s42",
+          "files": 15,
+          "markers_published_last": true
+        }
+      ],
+      "cpu_only": true,
+      "trained_rounds": 0
+    }
+  ],
+  "level": "actual CPU import; immutable training source and three committed rounds verified, no training performed"
+}

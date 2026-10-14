@@ -1,0 +1,44 @@
+{
+  "observed_utc": "2026-10-13T07:53:48.984310+00:00",
+  "paired_v8_gates": {
+    "hybrid_s42": {
+      "quality": true,
+      "vs_stronger": 0.04069545395228158,
+      "vs_own": 0.1470400387791695,
+      "interaction": -0.06769032792402996
+    },
+    "hybrid_s43": {
+      "quality": true,
+      "vs_stronger": 0.04355081093130497,
+      "vs_own": 0.14993825304464536,
+      "interaction": -0.07223769600825458
+    }
+  },
+  "allocations": [
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
+      "owner": "minhtrit06",
+      "available_hours": 16.18,
+      "reserved_hours": 5.52
+    },
+    {
+      "kernel": "odixeuit/mobihet-hybf2-s42-20261013-cal-v1",
+      "owner": "odixeuit",
+      "available_hours": 15.74,
+      "reserved_hours": 5.52
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
+      "owner": "trietbackup",
+      "available_hours": 9.77,
+      "reserved_hours": 5.52
+    },
+    {
+      "kernel": "odixe0502/mobihet-hybf4-s42-20261013-cal-v1",
+      "owner": "odixe0502",
+      "available_hours": 10.64,
+      "reserved_hours": 5.52
+    }
+  ],
+  "total_reserved_hours": 22.08
+}

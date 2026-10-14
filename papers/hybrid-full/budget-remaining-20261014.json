@@ -1,0 +1,81 @@
+{
+  "target_rounds": 50,
+  "seed": 42,
+  "groups": [
+    {
+      "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
+      "arms": [
+        {
+          "arm": "h_dml",
+          "last_round": 2,
+          "remaining_rounds": 48,
+          "worst_round_seconds": 6648.6314198970795,
+          "remaining_worker_hours": 88.64841893196106
+        },
+        {
+          "arm": "h_local",
+          "last_round": 2,
+          "remaining_rounds": 48,
+          "worst_round_seconds": 6652.05893778801,
+          "remaining_worker_hours": 88.6941191705068
+        }
+      ],
+      "fixed_pairing_remaining_session_hours_with_15pct": 101.9982370460828
+    },
+    {
+      "kernel": "odixeuit/mobihet-hybf2-s42-20261013-cal-v1",
+      "arms": [
+        {
+          "arm": "h_hybrid",
+          "last_round": 3,
+          "remaining_rounds": 47,
+          "worst_round_seconds": 3656.082690477371,
+          "remaining_worker_hours": 47.732190681232346
+        },
+        {
+          "arm": "h_gaussian",
+          "last_round": 3,
+          "remaining_rounds": 47,
+          "worst_round_seconds": 3706.085267305374,
+          "remaining_worker_hours": 48.385002100931274
+        }
+      ],
+      "fixed_pairing_remaining_session_hours_with_15pct": 55.64275241607096
+    },
+    {
+      "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
+      "arms": [
+        {
+          "arm": "h_gaussian_own",
+          "last_round": 3,
+          "remaining_rounds": 47,
+          "worst_round_seconds": 3669.0691154003143,
+          "remaining_worker_hours": 47.901735673281884
+        },
+        {
+          "arm": "h_dml_own",
+          "last_round": 2,
+          "remaining_rounds": 48,
+          "worst_round_seconds": 6508.642173290253,
+          "remaining_worker_hours": 86.78189564387003
+        }
+      ],
+      "fixed_pairing_remaining_session_hours_with_15pct": 99.79917999045053
+    },
+    {
+      "kernel": "odixe0502/mobihet-hybf4-s42-20261013-cal-v1",
+      "arms": [
+        {
+          "arm": "h_hybrid_own",
+          "last_round": 3,
+          "remaining_rounds": 47,
+          "worst_round_seconds": 3814.121841907501,
+          "remaining_worker_hours": 49.79547960268127
+        }
+      ],
+      "fixed_pairing_remaining_session_hours_with_15pct": 57.26480154308346
+    }
+  ],
+  "fixed_pairing_total_hours_with_15pct": 314.70497099568775,
+  "limits": "Worst observed round held fixed; original arm pairing; excludes repeated preparation/import/compile. Not a reservation or timing guarantee; faster future rounds or regrouping changes estimate."
+}

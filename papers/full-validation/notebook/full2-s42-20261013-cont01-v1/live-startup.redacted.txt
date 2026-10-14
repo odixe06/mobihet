@@ -1,0 +1,57 @@
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+   ââââââââââââââââââââââââââââââââââââââââ 29.8/29.8 MB 59.3 MB/s eta 0:00:00
+   ââââââââââââââââââââââââââââââââââââââââ 60.3/60.3 kB 2.8 MB/s eta 0:00:00
+   ââââââââââââââââââââââââââââââââââââââââ 29.8/29.8 MB 59.3 MB/s eta 0:00:00
+   ââââââââââââââââââââââââââââââââââââââââ 60.3/60.3 kB 2.8 MB/s eta 0:00:00
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+google-adk 1.29.0 requires google-cloud-bigquery-storage>=2.0.0, which is not installed.
+opentelemetry-sdk 1.38.0 requires opentelemetry-api==1.38.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+opentelemetry-semantic-conventions 0.59b0 requires opentelemetry-api==1.38.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+google-adk 1.29.0 requires opentelemetry-api<1.39.0,>=1.36.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+google-adk 1.29.0 requires google-cloud-bigquery-storage>=2.0.0, which is not installed.
+opentelemetry-sdk 1.38.0 requires opentelemetry-api==1.38.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+opentelemetry-semantic-conventions 0.59b0 requires opentelemetry-api==1.38.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+google-adk 1.29.0 requires opentelemetry-api<1.39.0,>=1.36.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+google-adk 1.29.0 requires google-cloud-bigquery-storage>=2.0.0, which is not installed.
+opentelemetry-sdk 1.38.0 requires opentelemetry-api==1.38.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+opentelemetry-semantic-conventions 0.59b0 requires opentelemetry-api==1.38.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+google-adk 1.29.0 requires opentelemetry-api<1.39.0,>=1.36.0, but you have opentelemetry-api 1.45.1 which is incompatible.
+[34m[1mwandb[0m: [33mWARNING[0m The anonymous parameter to wandb.login() has no effect and will be removed in future versions.
+
+[34m[1mwandb[0m: [33mWARNING[0m The anonymous parameter to wandb.login() has no effect and will be removed in future versions.
+[34m[1mwandb[0m: [33mWARNING[0m If you're specifying your api key in code, ensure this code is not shared publicly.
+[34m[1mwandb[0m: [33mWARNING[0m Consider setting the WANDB_API_KEY environment variable, or running `wandb login` from the command line.
+
+[34m[1mwandb[0m: [33mWARNING[0m If you're specifying your api key in code, ensure this code is not shared publicly.
+[34m[1mwandb[0m: [33mWARNING[0m Consider setting the WANDB_API_KEY environment variable, or running `wandb login` from the command line.
+[34m[1mwandb[0m: [wandb.login()] Using explicit session credentials for https://api.wandb.ai.
+
+[34m[1mwandb[0m: [wandb.login()] Using explicit session credentials for https://api.wandb.ai.
+[34m[1mwandb[0m: No netrc file found, creating one.
+
+[34m[1mwandb[0m: No netrc file found, creating one.
+[34m[1mwandb[0m: Appending key for api.wandb.ai to your netrc file: /root/.netrc
+
+[34m[1mwandb[0m: Appending key for api.wandb.ai to your netrc file: /root/.netrc
+[34m[1mwandb[0m: Currently logged in as: [33mminhtriet[0m ([33m21522798-uit[0m) to [32mhttps://api.wandb.ai[0m. Use [1m`wandb login --relogin`[0m to force relogin
+
+[34m[1mwandb[0m: Currently logged in as: [33mminhtriet[0m ([33m21522798-uit[0m) to [32mhttps://api.wandb.ai[0m. Use [1m`wandb login --relogin`[0m to force relogin
+W&B authenticated online
+torch 2.10.0+cu128 gpus ['Tesla T4', 'Tesla T4']
+VERIFIED FULL h_gaussian_diag_s42 3 rounds
+VERIFIED FULL h_gaussian_diag_s42 3 rounds
+VERIFIED FULL h_gaussian_lr4_s42 3 rounds
+VERIFIED FULL h_gaussian_lr4_s42 3 rounds
+REQUIRE RESUME PASS before data decode [{'arm': 'h_gaussian_diag', 'fingerprint': 'd38c93e764b55965de5ec076c1727475cc2ad365d55e0dc358db20f4bee81b66', 'last_round': 3, 'source_path': '/kaggle/input/notebooks/minhtriethihi/mobihet-full2-s42-20261012-cal-v1/runs/h_gaussian_diag_s42', 'files': 15, 'markers_published_last': True}, {'arm': 'h_gaussian_lr4', 'fingerprint': '054303fdf7e35a7871bc55ae0281dfaac53580b8bf30122645b1ff2744a12bc9', 'last_round': 3, 'source_path': '/kaggle/input/notebooks/minhtriethihi/mobihet-full2-s42-20261012-cal-v1/runs/h_gaussian_lr4_s42', 'files': 15, 'markers_published_last': True}]
+Prepared real pilot {'train_0': 3352748, 'train_1': 1783872, 'train_2': 2652819, 'train_3': 1455566, 'train_4': 1864534, 'train_5': 1932238, 'train_6': 3372587, 'train_7': 1472203, 'train_8': 2845626, 'train_9': 1240841, 'train_10': 2671366, 'train_11': 1851046, 'train_12': 1495960, 'train_13': 1779645, 'train_14': 3063594, 'train_15': 1212957, 'train_16': 870217, 'train_17': 5890990, 'train_18': 1063458, 'train_19': 1173148} old cut: 0
+verified full source and data 43045415 10761343

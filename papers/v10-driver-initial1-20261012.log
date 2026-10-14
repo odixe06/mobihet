@@ -1,0 +1,72 @@
+setup e_ce_raw role proxy rows 20480 sec 6.5
+r1 e_ce_raw s42 proxy group head 0.03541076487252125 loss 2.4744 5s
+r2 e_ce_raw s42 proxy group head 0.04222074468085106 loss 2.3636 4s
+r3 e_ce_raw s42 proxy group head 0.010893092414831546 loss 2.5656 4s
+done e_ce_raw complete True
+setup e_ce_matched role proxy rows 20480 sec 1.9
+r1 e_ce_matched s42 proxy group head 0.0343839541547278 loss 2.4766 11s
+r2 e_ce_matched s42 proxy group head 0.039256198347107446 loss 2.3601 13s
+r3 e_ce_matched s42 proxy group head 0.009936444697400872 loss 2.5635 9s
+done e_ce_matched complete True
+setup e_ce_aug role proxy rows 20480 sec 1.8
+r1 e_ce_aug s42 proxy group head 0.034642857142857156 loss 2.7243 10s
+r2 e_ce_aug s42 proxy group head 0.03949175824175824 loss 2.5962 13s
+r3 e_ce_aug s42 proxy group head 0.01534770010865628 loss 2.8198 10s
+done e_ce_aug complete True
+setup e_fl role proxy rows 20480 sec 1.9
+r1 e_fl s42 proxy group head 0.03333333333333333 loss 2.4724 19s
+r2 e_fl s42 proxy group head 0.038541666666666675 loss 2.3548 10s
+r3 e_fl s42 proxy group head 0.01023406374501992 loss 2.5582 9s
+done e_fl complete True
+setup e_own role proxy rows 20480 sec 1.9
+r1 e_own s42 proxy group head 0.023215355278064852 loss 2.4724 14s
+r2 e_own s42 proxy group head 0.021495666823820023 loss 2.1115 11s
+r3 e_own s42 proxy group head 0.01528156502532076 loss 2.1843 10s
+done e_own complete True
+setup e_shuffle role proxy rows 20480 sec 1.9
+r1 e_shuffle s42 proxy group head 0.03306686046511629 loss 2.4736 14s
+r2 e_shuffle s42 proxy group head 0.03830083565459609 loss 2.3575 10s
+r3 e_shuffle s42 proxy group head 0.01023406374501992 loss 2.5602 13s
+done e_shuffle complete True
+setup e_q role proxy rows 20480 sec 1.9
+r1 e_q s42 proxy group head 0.03359826589595375 loss 2.4719 6s
+r2 e_q s42 proxy group head 0.03830083565459609 loss 2.3542 5s
+r3 e_q s42 proxy group head 0.009750000000000002 loss 2.5579 5s
+done e_q complete True
+setup e_fl role proxy rows 20480 sec 1.9
+r1 e_fl s42 proxy group head 0.03333333333333333 loss 2.4724 19s
+done e_fl complete False
+setup e_fl role proxy rows 20480 sec 2.9
+r2 e_fl s42 proxy group head 0.038541666666666675 loss 2.3548 10s
+r3 e_fl s42 proxy group head 0.01023406374501992 loss 2.5582 13s
+done e_fl complete True
+setup e_own role proxy rows 20480 sec 2.7
+r1 e_own s42 proxy group head 0.023215355278064852 loss 2.4724 12s
+done e_own complete False
+setup e_own role proxy rows 20480 sec 2.8
+r2 e_own s42 proxy group head 0.021495666823820023 loss 2.1115 15s
+r3 e_own s42 proxy group head 0.01528156502532076 loss 2.1843 12s
+done e_own complete True
+setup e_shuffle role proxy rows 20480 sec 1.8
+r1 e_shuffle s42 proxy group head 0.03306686046511629 loss 2.4736 17s
+done e_shuffle complete False
+setup e_shuffle role proxy rows 20480 sec 2.8
+r2 e_shuffle s42 proxy group head 0.03830083565459609 loss 2.3575 10s
+r3 e_shuffle s42 proxy group head 0.01023406374501992 loss 2.5602 14s
+done e_shuffle complete True
+VERIFIED {"run": "e_ce_raw_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 233, "ambiguous": 23}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 212, "ambiguous": 44}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_raw_s42
+VERIFIED {"run": "e_ce_matched_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 238, "ambiguous": 18}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 216, "ambiguous": 40}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_matched_s42
+VERIFIED {"run": "e_ce_aug_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 239, "ambiguous": 17}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 216, "ambiguous": 40}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_ce_aug_s42
+VERIFIED {"run": "e_fl_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 236, "ambiguous": 20}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 224, "ambiguous": 32}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_fl_s42
+VERIFIED {"run": "e_own_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 255, "ambiguous": 1}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 235, "ambiguous": 21}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_own_s42
+VERIFIED {"run": "e_shuffle_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 235, "ambiguous": 21}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 219, "ambiguous": 37}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_shuffle_s42
+VERIFIED {"run": "e_q_s42", "rounds": 3, "complete": true, "inference": [{"round": 1, "role": "proxy", "rows": 256, "decisive": 237, "ambiguous": 19}, {"round": 3, "role": "proxy", "rows": 256, "decisive": 222, "ambiguous": 34}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER e_q_s42
+PASS V10:7armsx3rounds;3exactresumes;strict/payload/inference
+Peak tree RSS: 3116 MiB; exit 0

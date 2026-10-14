@@ -1,0 +1,331 @@
+Starting upload for file train_14_y.npy
+  0%|          | 0.00/69.6k [00:00<?, ?B/s]100%|██████████| 69.6k/69.6k [00:00<00:00, 76.8kB/s]
+Upload successful: train_14_y.npy (70KB)
+Starting upload for file train_13_y.npy
+  0%|          | 0.00/41.0k [00:00<?, ?B/s]100%|██████████| 41.0k/41.0k [00:00<00:00, 49.5kB/s]
+Upload successful: train_13_y.npy (41KB)
+Starting upload for file train_17_g.npy
+  0%|          | 0.00/1.04M [00:00<?, ?B/s] 15%|█▌        | 160k/1.04M [00:00<00:00, 1.27MB/s]100%|██████████| 1.04M/1.04M [00:01<00:00, 589kB/s]
+Upload successful: train_17_g.npy (1MB)
+Starting upload for file v5_books.py
+  0%|          | 0.00/7.29k [00:00<?, ?B/s]100%|██████████| 7.29k/7.29k [00:00<00:00, 9.67kB/s]
+Upload successful: v5_books.py (7KB)
+Starting upload for file train_7_g.npy
+  0%|          | 0.00/270k [00:00<?, ?B/s] 59%|█████▉    | 160k/270k [00:00<00:00, 1.26MB/s]100%|██████████| 270k/270k [00:01<00:00, 170kB/s] 
+Upload successful: train_7_g.npy (270KB)
+Starting upload for file train_14_X.npy
+  0%|          | 0.00/8.96M [00:00<?, ?B/s]  1%|          | 80.0k/8.96M [00:00<00:11, 818kB/s]  8%|▊         | 704k/8.96M [00:00<00:02, 3.91MB/s] 50%|█████     | 4.48M/8.96M [00:00<00:00, 14.9MB/s] 83%|████████▎ | 7.47M/8.96M [00:01<00:00, 4.41MB/s]100%|██████████| 8.96M/8.96M [00:03<00:00, 2.85MB/s]
+Upload successful: train_14_X.npy (9MB)
+Starting upload for file v3_methods.py
+  0%|          | 0.00/7.72k [00:00<?, ?B/s]100%|██████████| 7.72k/7.72k [00:00<00:00, 10.4kB/s]
+Upload successful: v3_methods.py (8KB)
+Starting upload for file old_g.npy
+  0%|          | 0.00/512k [00:00<?, ?B/s] 44%|████▎     | 224k/512k [00:00<00:00, 1.69MB/s]100%|██████████| 512k/512k [00:01<00:00, 361kB/s] 
+Upload successful: old_g.npy (512KB)
+Starting upload for file v4_mala.py
+  0%|          | 0.00/4.42k [00:00<?, ?B/s]100%|██████████| 4.42k/4.42k [00:00<00:00, 5.24kB/s]
+Upload successful: v4_mala.py (4KB)
+Starting upload for file train_0_y.npy
+  0%|          | 0.00/76.7k [00:00<?, ?B/s]100%|██████████| 76.7k/76.7k [00:00<00:00, 84.6kB/s]
+Upload successful: train_0_y.npy (77KB)
+Starting upload for file train_12_X.npy
+  0%|          | 0.00/4.38M [00:00<?, ?B/s]  5%|▍         | 224k/4.38M [00:00<00:02, 1.63MB/s] 50%|████▉     | 2.17M/4.38M [00:00<00:00, 9.79MB/s] 96%|█████████▌| 4.19M/4.38M [00:00<00:00, 13.0MB/s]100%|██████████| 4.38M/4.38M [00:02<00:00, 1.74MB/s]
+Upload successful: train_12_X.npy (4MB)
+Starting upload for file v7_nystrom.py
+  0%|          | 0.00/12.0k [00:00<?, ?B/s]100%|██████████| 12.0k/12.0k [00:00<00:00, 15.9kB/s]
+Upload successful: v7_nystrom.py (12KB)
+Starting upload for file v9_anchor.py
+  0%|          | 0.00/9.67k [00:00<?, ?B/s]100%|██████████| 9.67k/9.67k [00:00<00:00, 13.1kB/s]
+Upload successful: v9_anchor.py (10KB)
+Starting upload for file v8_run.py
+  0%|          | 0.00/642 [00:00<?, ?B/s]100%|██████████| 642/642 [00:00<00:00, 829B/s]
+Upload successful: v8_run.py (642B)
+Starting upload for file train_0_X.npy
+  0%|          | 0.00/9.87M [00:00<?, ?B/s]  0%|          | 16.0k/9.87M [00:00<01:12, 142kB/s]  3%|▎         | 336k/9.87M [00:00<00:05, 1.87MB/s]  8%|▊         | 832k/9.87M [00:00<00:03, 3.02MB/s] 14%|█▎        | 1.34M/9.87M [00:00<00:02, 3.72MB/s] 20%|█▉        | 1.94M/9.87M [00:00<00:01, 4.33MB/s] 28%|██▊       | 2.77M/9.87M [00:00<00:01, 3.89MB/s] 33%|███▎      | 3.30M/9.87M [00:01<00:02, 3.16MB/s] 45%|████▌     | 4.48M/9.87M [00:01<00:01, 4.56MB/s] 57%|█████▋    | 5.67M/9.87M [00:01<00:00, 6.03MB/s] 73%|███████▎  | 7.22M/9.87M [00:01<00:00, 7.97MB/s] 92%|█████████▏| 9.06M/9.87M [00:01<00:00, 10.2MB/s]100%|██████████| 9.87M/9.87M [00:02<00:00, 4.14MB/s]
+Upload successful: train_0_X.npy (10MB)
+Starting upload for file teacher_driver.py
+  0%|          | 0.00/13.4k [00:00<?, ?B/s]100%|██████████| 13.4k/13.4k [00:00<00:00, 15.8kB/s]
+Upload successful: teacher_driver.py (13KB)
+Starting upload for file v9_run.py
+  0%|          | 0.00/479 [00:00<?, ?B/s]100%|██████████| 479/479 [00:00<00:00, 4.65kB/s]100%|██████████| 479/479 [00:00<00:00, 601B/s]  
+Upload successful: v9_run.py (479B)
+Starting upload for file train_10_y.npy
+  0%|          | 0.00/60.8k [00:00<?, ?B/s]100%|██████████| 60.8k/60.8k [00:00<00:00, 71.9kB/s]
+Upload successful: train_10_y.npy (61KB)
+Starting upload for file v5_run.py
+  0%|          | 0.00/1.00k [00:00<?, ?B/s]100%|██████████| 1.00k/1.00k [00:00<00:00, 10.1kB/s]100%|██████████| 1.00k/1.00k [00:00<00:00, 1.27kB/s]
+Upload successful: v5_run.py (1020B)
+Starting upload for file new_methods.py
+  0%|          | 0.00/7.57k [00:00<?, ?B/s]100%|██████████| 7.57k/7.57k [00:00<00:00, 72.1kB/s]100%|██████████| 7.57k/7.57k [00:00<00:00, 9.55kB/s]
+Upload successful: new_methods.py (8KB)
+Starting upload for file prepare.py
+  0%|          | 0.00/9.86k [00:00<?, ?B/s]100%|██████████| 9.86k/9.86k [00:00<00:00, 11.6kB/s]
+Upload successful: prepare.py (10KB)
+Starting upload for file group_y.npy
+  0%|          | 0.00/64.1k [00:00<?, ?B/s]100%|██████████| 64.1k/64.1k [00:00<00:00, 75.0kB/s]
+Upload successful: group_y.npy (64KB)
+Starting upload for file archs.py
+  0%|          | 0.00/1.18k [00:00<?, ?B/s]100%|██████████| 1.18k/1.18k [00:00<00:00, 1.40kB/s]
+Upload successful: archs.py (1KB)
+Starting upload for file v6_schema.py
+  0%|          | 0.00/4.04k [00:00<?, ?B/s]100%|██████████| 4.04k/4.04k [00:00<00:00, 34.5kB/s]100%|██████████| 4.04k/4.04k [00:00<00:00, 4.66kB/s]
+Upload successful: v6_schema.py (4KB)
+Starting upload for file __init__.py
+0.00B [00:00, ?B/s]0.00B [00:00, ?B/s]
+Upload successful: __init__.py (0B)
+Starting upload for file train_1_y.npy
+  0%|          | 0.00/39.6k [00:00<?, ?B/s] 40%|████      | 16.0k/39.6k [00:00<00:00, 157kB/s]100%|██████████| 39.6k/39.6k [00:04<00:00, 9.25kB/s]
+Upload successful: train_1_y.npy (40KB)
+Starting upload for file channel.py
+  0%|          | 0.00/2.99k [00:00<?, ?B/s]100%|██████████| 2.99k/2.99k [00:00<00:00, 27.0kB/s]100%|██████████| 2.99k/2.99k [00:00<00:00, 3.70kB/s]
+Upload successful: channel.py (3KB)
+Starting upload for file train_5_g.npy
+  0%|          | 0.00/351k [00:00<?, ?B/s] 64%|██████▎   | 224k/351k [00:00<00:00, 1.60MB/s]100%|██████████| 351k/351k [00:01<00:00, 234kB/s] 
+Upload successful: train_5_g.npy (351KB)
+Starting upload for file v3_dense.py
+  0%|          | 0.00/621 [00:00<?, ?B/s]100%|██████████| 621/621 [00:00<00:00, 6.13kB/s]100%|██████████| 621/621 [00:00<00:00, 659B/s]  
+Upload successful: v3_dense.py (621B)
+Starting upload for file train_7_X.npy
+  0%|          | 0.00/4.35M [00:00<?, ?B/s]  0%|          | 16.0k/4.35M [00:00<00:29, 155kB/s] 12%|█▏        | 528k/4.35M [00:00<00:01, 2.93MB/s] 91%|█████████ | 3.95M/4.35M [00:00<00:00, 15.9MB/s]100%|██████████| 4.35M/4.35M [00:02<00:00, 1.94MB/s]
+Upload successful: train_7_X.npy (4MB)
+Starting upload for file v10_run.py
+  0%|          | 0.00/457 [00:00<?, ?B/s]100%|██████████| 457/457 [00:00<00:00, 569B/s]
+Upload successful: v10_run.py (457B)
+Starting upload for file train_7_y.npy
+  0%|          | 0.00/33.8k [00:00<?, ?B/s]100%|██████████| 33.8k/33.8k [00:00<00:00, 42.7kB/s]
+Upload successful: train_7_y.npy (34KB)
+Starting upload for file train_13_g.npy
+  0%|          | 0.00/327k [00:00<?, ?B/s]  5%|▍         | 16.0k/327k [00:00<00:02, 157kB/s]100%|██████████| 327k/327k [00:01<00:00, 200kB/s] 
+Upload successful: train_13_g.npy (327KB)
+Starting upload for file v6_run.py
+  0%|          | 0.00/1.48k [00:00<?, ?B/s]100%|██████████| 1.48k/1.48k [00:00<00:00, 13.5kB/s]100%|██████████| 1.48k/1.48k [00:00<00:00, 1.77kB/s]
+Upload successful: v6_run.py (1KB)
+Starting upload for file group_X.npy
+  0%|          | 0.00/8.25M [00:00<?, ?B/s]  0%|          | 16.0k/8.25M [00:00<01:00, 143kB/s]  6%|▌         | 528k/8.25M [00:00<00:03, 2.65MB/s] 43%|████▎     | 3.55M/8.25M [00:00<00:00, 14.6MB/s] 79%|███████▉  | 6.52M/8.25M [00:00<00:00, 17.2MB/s] 99%|█████████▉| 8.19M/8.25M [00:01<00:00, 5.82MB/s]100%|██████████| 8.25M/8.25M [00:02<00:00, 3.39MB/s]
+Upload successful: group_X.npy (8MB)
+Starting upload for file source_manifest.json
+  0%|          | 0.00/3.49k [00:00<?, ?B/s]100%|██████████| 3.49k/3.49k [00:00<00:00, 34.6kB/s]100%|██████████| 3.49k/3.49k [00:01<00:00, 2.39kB/s]
+Upload successful: source_manifest.json (3KB)
+Starting upload for file dagsnet.py
+  0%|          | 0.00/7.78k [00:00<?, ?B/s]100%|██████████| 7.78k/7.78k [00:00<00:00, 9.07kB/s]
+Upload successful: dagsnet.py (8KB)
+Starting upload for file train_19_y.npy
+  0%|          | 0.00/26.6k [00:00<?, ?B/s]100%|██████████| 26.6k/26.6k [00:00<00:00, 35.4kB/s]
+Upload successful: train_19_y.npy (27KB)
+Starting upload for file train_10_g.npy
+  0%|          | 0.00/485k [00:00<?, ?B/s]  3%|▎         | 16.0k/485k [00:00<00:03, 159kB/s]100%|██████████| 485k/485k [00:01<00:00, 311kB/s] 
+Upload successful: train_10_g.npy (485KB)
+Starting upload for file train_8_g.npy
+  0%|          | 0.00/513k [00:00<?, ?B/s] 44%|████▎     | 224k/513k [00:00<00:00, 1.63MB/s]100%|██████████| 513k/513k [00:01<00:00, 332kB/s] 
+Upload successful: train_8_g.npy (513KB)
+Starting upload for file train_0_g.npy
+  0%|          | 0.00/612k [00:00<?, ?B/s]  3%|▎         | 16.0k/612k [00:00<00:03, 154kB/s] 86%|████████▌ | 528k/612k [00:00<00:00, 3.00MB/s]100%|██████████| 612k/612k [00:02<00:00, 230kB/s] 
+Upload successful: train_0_g.npy (612KB)
+Starting upload for file train_2_g.npy
+  0%|          | 0.00/482k [00:00<?, ?B/s] 47%|████▋     | 224k/482k [00:00<00:00, 1.71MB/s]100%|██████████| 482k/482k [00:05<00:00, 89.5kB/s]
+Upload successful: train_2_g.npy (482KB)
+Starting upload for file metrics.py
+  0%|          | 0.00/2.29k [00:00<?, ?B/s]100%|██████████| 2.29k/2.29k [00:01<00:00, 1.67kB/s]
+Upload successful: metrics.py (2KB)
+Starting upload for file v4_schema.py
+  0%|          | 0.00/3.18k [00:00<?, ?B/s]100%|██████████| 3.18k/3.18k [00:00<00:00, 3.78kB/s]
+Upload successful: v4_schema.py (3KB)
+Starting upload for file new_fl.py
+  0%|          | 0.00/10.6k [00:00<?, ?B/s]100%|██████████| 10.6k/10.6k [00:00<00:00, 14.0kB/s]
+Upload successful: new_fl.py (11KB)
+Starting upload for file train_12_y.npy
+  0%|          | 0.00/34.1k [00:00<?, ?B/s]100%|██████████| 34.1k/34.1k [00:00<00:00, 40.1kB/s]
+Upload successful: train_12_y.npy (34KB)
+Starting upload for file train_8_y.npy
+  0%|          | 0.00/64.2k [00:00<?, ?B/s] 25%|██▍       | 16.0k/64.2k [00:00<00:00, 163kB/s]100%|██████████| 64.2k/64.2k [00:00<00:00, 69.1kB/s]
+Upload successful: train_8_y.npy (64KB)
+Starting upload for file train_2_X.npy
+  0%|          | 0.00/7.76M [00:00<?, ?B/s]  3%|▎         | 224k/7.76M [00:00<00:04, 1.77MB/s] 32%|███▏      | 2.47M/7.76M [00:00<00:00, 12.5MB/s] 71%|███████   | 5.48M/7.76M [00:00<00:00, 20.5MB/s]100%|██████████| 7.76M/7.76M [00:02<00:00, 3.12MB/s]
+Upload successful: train_2_X.npy (8MB)
+Starting upload for file v7_run.py
+  0%|          | 0.00/513 [00:00<?, ?B/s]100%|██████████| 513/513 [00:00<00:00, 612B/s]
+Upload successful: v7_run.py (513B)
+Starting upload for file train_18_g.npy
+  0%|          | 0.00/194k [00:00<?, ?B/s]100%|██████████| 194k/194k [00:00<00:00, 1.58MB/s]100%|██████████| 194k/194k [00:01<00:00, 155kB/s] 
+Upload successful: train_18_g.npy (194KB)
+Starting upload for file model_packet.py
+  0%|          | 0.00/3.22k [00:00<?, ?B/s]100%|██████████| 3.22k/3.22k [00:00<00:00, 4.40kB/s]
+Upload successful: model_packet.py (3KB)
+Starting upload for file group_g.npy
+  0%|          | 0.00/512k [00:00<?, ?B/s] 44%|████▎     | 224k/512k [00:00<00:00, 1.59MB/s]100%|██████████| 512k/512k [00:01<00:00, 278kB/s] 
+Upload successful: group_g.npy (512KB)
+Starting upload for file train_6_g.npy
+  0%|          | 0.00/614k [00:00<?, ?B/s] 36%|███▋      | 224k/614k [00:00<00:00, 1.70MB/s] 86%|████████▌ | 528k/614k [00:00<00:00, 1.86MB/s]100%|██████████| 614k/614k [00:01<00:00, 329kB/s] 
+Upload successful: train_6_g.npy (614KB)
+Starting upload for file train_17_y.npy
+  0%|          | 0.00/133k [00:00<?, ?B/s] 12%|█▏        | 16.0k/133k [00:00<00:00, 149kB/s]100%|██████████| 133k/133k [00:01<00:00, 121kB/s] 
+Upload successful: train_17_y.npy (133KB)
+Starting upload for file train_16_X.npy
+  0%|          | 0.00/2.50M [00:00<?, ?B/s]  9%|▊         | 224k/2.50M [00:00<00:01, 1.73MB/s] 94%|█████████▎| 2.34M/2.50M [00:00<00:00, 11.7MB/s]100%|██████████| 2.50M/2.50M [00:02<00:00, 1.10MB/s]
+Upload successful: train_16_X.npy (3MB)
+Starting upload for file train_11_X.npy
+  0%|          | 0.00/5.40M [00:00<?, ?B/s]  0%|          | 16.0k/5.40M [00:00<00:35, 160kB/s] 14%|█▍        | 768k/5.40M [00:00<00:01, 4.35MB/s] 95%|█████████▌| 5.14M/5.40M [00:00<00:00, 17.1MB/s]100%|██████████| 5.40M/5.40M [00:02<00:00, 2.45MB/s]
+Upload successful: train_11_X.npy (5MB)
+Starting upload for file train_6_X.npy
+  0%|          | 0.00/9.89M [00:00<?, ?B/s]  3%|▎         | 336k/9.89M [00:00<00:04, 2.16MB/s] 39%|███▉      | 3.84M/9.89M [00:00<00:00, 16.0MB/s] 74%|███████▎  | 7.28M/9.89M [00:00<00:00, 22.1MB/s]100%|██████████| 9.89M/9.89M [00:02<00:00, 3.56MB/s]
+Upload successful: train_6_X.npy (10MB)
+Starting upload for file v6_geometry.py
+  0%|          | 0.00/15.5k [00:00<?, ?B/s]100%|██████████| 15.5k/15.5k [00:00<00:00, 20.9kB/s]
+Upload successful: v6_geometry.py (15KB)
+Starting upload for file train_8_X.npy
+  0%|          | 0.00/8.26M [00:00<?, ?B/s]  4%|▍         | 336k/8.26M [00:00<00:04, 2.05MB/s] 21%|██        | 1.70M/8.26M [00:00<00:00, 7.05MB/s] 36%|███▋      | 3.00M/8.26M [00:00<00:00, 8.13MB/s] 47%|████▋     | 3.89M/8.26M [00:00<00:00, 8.27MB/s] 57%|█████▋    | 4.72M/8.26M [00:01<00:01, 3.58MB/s] 79%|███████▉  | 6.56M/8.26M [00:01<00:00, 5.70MB/s]100%|██████████| 8.26M/8.26M [00:02<00:00, 3.52MB/s]
+Upload successful: train_8_X.npy (8MB)
+Starting upload for file train_5_y.npy
+  0%|          | 0.00/44.0k [00:00<?, ?B/s] 36%|███▋      | 16.0k/44.0k [00:00<00:00, 146kB/s]100%|██████████| 44.0k/44.0k [00:00<00:00, 56.2kB/s]
+Upload successful: train_5_y.npy (44KB)
+Starting upload for file meta.json
+  0%|          | 0.00/3.04k [00:00<?, ?B/s]100%|██████████| 3.04k/3.04k [00:00<00:00, 3.82kB/s]
+Upload successful: meta.json (3KB)
+Starting upload for file train_10_X.npy
+  0%|          | 0.00/7.82M [00:00<?, ?B/s]  4%|▍         | 336k/7.82M [00:00<00:03, 2.02MB/s] 48%|████▊     | 3.78M/7.82M [00:00<00:00, 15.3MB/s] 69%|██████▉   | 5.39M/7.82M [00:00<00:00, 15.2MB/s] 89%|████████▊ | 6.92M/7.82M [00:01<00:00, 5.51MB/s]100%|██████████| 7.82M/7.82M [00:02<00:00, 2.91MB/s]
+Upload successful: train_10_X.npy (8MB)
+Starting upload for file train_15_X.npy
+  0%|          | 0.00/3.57M [00:00<?, ?B/s]  0%|          | 16.0k/3.57M [00:00<00:27, 134kB/s]  9%|▉         | 336k/3.57M [00:00<00:02, 1.61MB/s] 73%|███████▎  | 2.59M/3.57M [00:00<00:00, 9.33MB/s]100%|██████████| 3.57M/3.57M [00:07<00:00, 468kB/s] 
+Upload successful: train_15_X.npy (4MB)
+Starting upload for file train_3_g.npy
+  0%|          | 0.00/265k [00:00<?, ?B/s]  6%|▌         | 16.0k/265k [00:00<00:01, 151kB/s]100%|██████████| 265k/265k [00:01<00:00, 158kB/s] 
+Upload successful: train_3_g.npy (265KB)
+Starting upload for file v3_run.py
+  0%|          | 0.00/611 [00:00<?, ?B/s]100%|██████████| 611/611 [00:00<00:00, 4.69kB/s]100%|██████████| 611/611 [00:00<00:00, 626B/s]  
+Upload successful: v3_run.py (611B)
+Starting upload for file v8_hybrid.py
+  0%|          | 0.00/7.16k [00:00<?, ?B/s]100%|██████████| 7.16k/7.16k [00:00<00:00, 70.8kB/s]100%|██████████| 7.16k/7.16k [00:00<00:00, 8.17kB/s]
+Upload successful: v8_hybrid.py (7KB)
+Starting upload for file mobility.py
+  0%|          | 0.00/9.56k [00:00<?, ?B/s]100%|██████████| 9.56k/9.56k [00:00<00:00, 91.8kB/s]100%|██████████| 9.56k/9.56k [00:00<00:00, 10.8kB/s]
+Upload successful: mobility.py (10KB)
+Starting upload for file train_16_g.npy
+  0%|          | 0.00/155k [00:00<?, ?B/s] 10%|█         | 16.0k/155k [00:00<00:01, 103kB/s]100%|██████████| 155k/155k [00:01<00:00, 115kB/s] 
+Upload successful: train_16_g.npy (155KB)
+Starting upload for file p2.py
+  0%|          | 0.00/11.2k [00:00<?, ?B/s]100%|██████████| 11.2k/11.2k [00:00<00:00, 114kB/s]100%|██████████| 11.2k/11.2k [00:00<00:00, 13.0kB/s]
+Upload successful: p2.py (11KB)
+Starting upload for file train_17_X.npy
+  0%|          | 0.00/17.2M [00:00<?, ?B/s]  0%|          | 16.0k/17.2M [00:00<02:36, 115kB/s]  2%|▏         | 336k/17.2M [00:00<00:11, 1.52MB/s] 14%|█▎        | 2.34M/17.2M [00:00<00:01, 8.40MB/s] 28%|██▊       | 4.78M/17.2M [00:00<00:01, 12.8MB/s] 36%|███▌      | 6.22M/17.2M [00:00<00:00, 12.8MB/s] 44%|████▍     | 7.58M/17.2M [00:00<00:00, 11.0MB/s] 55%|█████▍    | 9.36M/17.2M [00:01<00:02, 3.49MB/s] 68%|██████▊   | 11.7M/17.2M [00:02<00:01, 4.36MB/s] 77%|███████▋  | 13.3M/17.2M [00:02<00:00, 4.21MB/s] 87%|████████▋ | 14.9M/17.2M [00:02<00:00, 5.34MB/s] 96%|█████████▌| 16.4M/17.2M [00:03<00:00, 6.07MB/s]100%|██████████| 17.2M/17.2M [00:04<00:00, 4.38MB/s]
+Upload successful: train_17_X.npy (17MB)
+Starting upload for file train_13_X.npy
+  0%|          | 0.00/5.27M [00:00<?, ?B/s]  0%|          | 16.0k/5.27M [00:00<00:34, 161kB/s]  6%|▌         | 336k/5.27M [00:00<00:02, 1.74MB/s] 41%|████      | 2.17M/5.27M [00:00<00:00, 8.63MB/s] 89%|████████▊ | 4.67M/5.27M [00:00<00:00, 13.4MB/s]100%|██████████| 5.27M/5.27M [00:02<00:00, 1.93MB/s]
+Upload successful: train_13_X.npy (5MB)
+Starting upload for file train_9_g.npy
+  0%|          | 0.00/227k [00:00<?, ?B/s]  7%|▋         | 16.0k/227k [00:00<00:01, 153kB/s]100%|██████████| 227k/227k [00:01<00:00, 152kB/s] 
+Upload successful: train_9_g.npy (227KB)
+Starting upload for file train_4_g.npy
+  0%|          | 0.00/344k [00:00<?, ?B/s]  5%|▍         | 16.0k/344k [00:00<00:02, 113kB/s] 98%|█████████▊| 336k/344k [00:00<00:00, 1.29MB/s]100%|██████████| 344k/344k [00:01<00:00, 188kB/s] 
+Upload successful: train_4_g.npy (344KB)
+Starting upload for file train_6_y.npy
+  0%|          | 0.00/76.8k [00:00<?, ?B/s] 21%|██        | 16.0k/76.8k [00:00<00:00, 153kB/s]100%|██████████| 76.8k/76.8k [00:01<00:00, 69.5kB/s]
+Upload successful: train_6_y.npy (77KB)
+Starting upload for file train_9_y.npy
+  0%|          | 0.00/28.5k [00:00<?, ?B/s] 56%|█████▌    | 16.0k/28.5k [00:00<00:00, 138kB/s]100%|██████████| 28.5k/28.5k [00:00<00:00, 31.7kB/s]
+Upload successful: train_9_y.npy (29KB)
+Starting upload for file train_18_y.npy
+  0%|          | 0.00/24.3k [00:00<?, ?B/s] 66%|██████▌   | 16.0k/24.3k [00:00<00:00, 111kB/s]100%|██████████| 24.3k/24.3k [00:01<00:00, 24.2kB/s]
+Upload successful: train_18_y.npy (24KB)
+Starting upload for file pilot.py
+  0%|          | 0.00/27.2k [00:00<?, ?B/s] 59%|█████▉    | 16.0k/27.2k [00:00<00:00, 142kB/s]100%|██████████| 27.2k/27.2k [00:00<00:00, 28.8kB/s]
+Upload successful: pilot.py (27KB)
+Starting upload for file v7_basis.py
+  0%|          | 0.00/5.87k [00:00<?, ?B/s]100%|██████████| 5.87k/5.87k [00:00<00:00, 55.2kB/s]100%|██████████| 5.87k/5.87k [00:01<00:00, 6.00kB/s]
+Upload successful: v7_basis.py (6KB)
+Starting upload for file train_15_y.npy
+  0%|          | 0.00/27.8k [00:00<?, ?B/s] 58%|█████▊    | 16.0k/27.8k [00:00<00:00, 154kB/s]100%|██████████| 27.8k/27.8k [00:00<00:00, 29.5kB/s]
+Upload successful: train_15_y.npy (28KB)
+Starting upload for file v2_run.py
+  0%|          | 0.00/12.9k [00:00<?, ?B/s]100%|██████████| 12.9k/12.9k [00:00<00:00, 82.2kB/s]100%|██████████| 12.9k/12.9k [00:01<00:00, 11.1kB/s]
+Upload successful: v2_run.py (13KB)
+Starting upload for file train_16_y.npy
+  0%|          | 0.00/19.5k [00:00<?, ?B/s] 82%|████████▏ | 16.0k/19.5k [00:00<00:00, 139kB/s]100%|██████████| 19.5k/19.5k [00:00<00:00, 20.9kB/s]
+Upload successful: train_16_y.npy (20KB)
+Starting upload for file train_14_g.npy
+  0%|          | 0.00/556k [00:00<?, ?B/s]  3%|▎         | 16.0k/556k [00:00<00:03, 150kB/s] 60%|██████    | 336k/556k [00:00<00:00, 1.68MB/s]100%|██████████| 556k/556k [00:01<00:00, 312kB/s] 
+Upload successful: train_14_g.npy (556KB)
+Starting upload for file train_11_g.npy
+  0%|          | 0.00/335k [00:00<?, ?B/s]100%|██████████| 335k/335k [00:00<00:00, 1.53MB/s]100%|██████████| 335k/335k [00:01<00:00, 206kB/s] 
+Upload successful: train_11_g.npy (335KB)
+Starting upload for file v3_math.py
+  0%|          | 0.00/3.53k [00:00<?, ?B/s]100%|██████████| 3.53k/3.53k [00:00<00:00, 32.8kB/s]100%|██████████| 3.53k/3.53k [00:01<00:00, 3.60kB/s]
+Upload successful: v3_math.py (4KB)
+Starting upload for file train_15_g.npy
+  0%|          | 0.00/221k [00:00<?, ?B/s]  7%|▋         | 16.0k/221k [00:00<00:01, 114kB/s]100%|██████████| 221k/221k [00:01<00:00, 135kB/s] 
+Upload successful: train_15_g.npy (221KB)
+Starting upload for file v5_anchor.py
+  0%|          | 0.00/7.02k [00:00<?, ?B/s]100%|██████████| 7.02k/7.02k [00:00<00:00, 9.03kB/s]
+Upload successful: v5_anchor.py (7KB)
+Starting upload for file v4_run.py
+  0%|          | 0.00/845 [00:00<?, ?B/s]100%|██████████| 845/845 [00:00<00:00, 6.22kB/s]100%|██████████| 845/845 [00:00<00:00, 916B/s]  
+Upload successful: v4_run.py (845B)
+Starting upload for file v10_energy.py
+  0%|          | 0.00/7.72k [00:00<?, ?B/s]100%|██████████| 7.72k/7.72k [00:00<00:00, 9.93kB/s]
+Upload successful: v10_energy.py (8KB)
+Starting upload for file train_11_y.npy
+  0%|          | 0.00/42.0k [00:00<?, ?B/s]100%|██████████| 42.0k/42.0k [00:00<00:00, 45.7kB/s]
+Upload successful: train_11_y.npy (42KB)
+Starting upload for file train_3_y.npy
+  0%|          | 0.00/33.2k [00:00<?, ?B/s] 48%|████▊     | 16.0k/33.2k [00:00<00:00, 158kB/s]100%|██████████| 33.2k/33.2k [00:00<00:00, 41.8kB/s]
+Upload successful: train_3_y.npy (33KB)
+Starting upload for file manifest.json
+  0%|          | 0.00/12.6k [00:00<?, ?B/s]100%|██████████| 12.6k/12.6k [00:00<00:00, 14.4kB/s]
+Upload successful: manifest.json (13KB)
+Starting upload for file v4_support.py
+  0%|          | 0.00/5.44k [00:00<?, ?B/s]100%|██████████| 5.44k/5.44k [00:00<00:00, 6.72kB/s]
+Upload successful: v4_support.py (5KB)
+Starting upload for file train_4_X.npy
+  0%|          | 0.00/5.54M [00:00<?, ?B/s]  0%|          | 16.0k/5.54M [00:00<00:40, 143kB/s]  6%|▌         | 336k/5.54M [00:00<00:03, 1.73MB/s] 52%|█████▏    | 2.89M/5.54M [00:00<00:00, 11.3MB/s]100%|██████████| 5.54M/5.54M [00:04<00:00, 1.32MB/s]
+Upload successful: train_4_X.npy (6MB)
+Starting upload for file train_5_X.npy
+  0%|          | 0.00/5.66M [00:00<?, ?B/s]  6%|▌         | 336k/5.66M [00:00<00:03, 1.68MB/s] 41%|████▏     | 2.34M/5.66M [00:00<00:00, 9.32MB/s] 84%|████████▎ | 4.73M/5.66M [00:00<00:00, 14.2MB/s]100%|██████████| 5.66M/5.66M [00:02<00:00, 2.05MB/s]
+Upload successful: train_5_X.npy (6MB)
+Starting upload for file train_9_X.npy
+  0%|          | 0.00/3.66M [00:00<?, ?B/s]  0%|          | 16.0k/3.66M [00:00<00:28, 135kB/s]  9%|▉         | 336k/3.66M [00:00<00:02, 1.74MB/s] 64%|██████▍   | 2.34M/3.66M [00:00<00:00, 9.81MB/s]100%|██████████| 3.66M/3.66M [00:02<00:00, 1.61MB/s]
+Upload successful: train_9_X.npy (4MB)
+Starting upload for file train_2_y.npy
+  0%|          | 0.00/60.3k [00:00<?, ?B/s]100%|██████████| 60.3k/60.3k [00:00<00:00, 77.3kB/s]
+Upload successful: train_2_y.npy (60KB)
+Starting upload for file train_1_g.npy
+  0%|          | 0.00/316k [00:00<?, ?B/s]100%|██████████| 316k/316k [00:00<00:00, 1.58MB/s]100%|██████████| 316k/316k [00:01<00:00, 223kB/s] 
+Upload successful: train_1_g.npy (316KB)
+Starting upload for file train_18_X.npy
+  0%|          | 0.00/3.12M [00:00<?, ?B/s]  1%|          | 16.0k/3.12M [00:00<00:20, 160kB/s] 11%|█         | 336k/3.12M [00:00<00:01, 1.78MB/s] 79%|███████▉  | 2.47M/3.12M [00:00<00:00, 9.89MB/s]100%|██████████| 3.12M/3.12M [00:02<00:00, 1.48MB/s]
+Upload successful: train_18_X.npy (3MB)
+Starting upload for file old_X.npy
+  0%|          | 0.00/8.25M [00:00<?, ?B/s]  4%|▍         | 336k/8.25M [00:00<00:04, 1.72MB/s] 15%|█▍        | 1.22M/8.25M [00:00<00:01, 4.76MB/s] 48%|████▊     | 3.95M/8.25M [00:00<00:00, 10.9MB/s] 77%|███████▋  | 6.33M/8.25M [00:00<00:00, 11.2MB/s] 95%|█████████▍| 7.81M/8.25M [00:00<00:00, 9.29MB/s]100%|██████████| 8.25M/8.25M [00:02<00:00, 3.45MB/s]
+Upload successful: old_X.npy (8MB)
+Starting upload for file train_4_y.npy
+  0%|          | 0.00/43.1k [00:00<?, ?B/s]100%|██████████| 43.1k/43.1k [00:00<00:00, 54.0kB/s]
+Upload successful: train_4_y.npy (43KB)
+Starting upload for file train_19_X.npy
+  0%|          | 0.00/3.42M [00:00<?, ?B/s]  0%|          | 16.0k/3.42M [00:00<00:28, 126kB/s] 10%|▉         | 336k/3.42M [00:00<00:01, 1.68MB/s] 69%|██████▊   | 2.34M/3.42M [00:00<00:00, 9.19MB/s]100%|██████████| 3.42M/3.42M [00:02<00:00, 1.58MB/s]
+Upload successful: train_19_X.npy (3MB)
+Starting upload for file old_y.npy
+  0%|          | 0.00/64.1k [00:00<?, ?B/s]100%|██████████| 64.1k/64.1k [00:00<00:00, 71.1kB/s]
+Upload successful: old_y.npy (64KB)
+Starting upload for file train_1_X.npy
+  0%|          | 0.00/5.09M [00:00<?, ?B/s]  0%|          | 16.0k/5.09M [00:00<00:32, 162kB/s]  6%|▋         | 336k/5.09M [00:00<00:02, 1.75MB/s] 54%|█████▍    | 2.77M/5.09M [00:00<00:00, 11.4MB/s]100%|██████████| 5.09M/5.09M [00:02<00:00, 2.14MB/s]
+Upload successful: train_1_X.npy (5MB)
+Starting upload for file train_12_g.npy
+  0%|          | 0.00/272k [00:00<?, ?B/s]100%|██████████| 272k/272k [00:01<00:00, 196kB/s]
+Upload successful: train_12_g.npy (272KB)
+Starting upload for file v2_methods.py
+  0%|          | 0.00/12.2k [00:00<?, ?B/s]100%|██████████| 12.2k/12.2k [00:00<00:00, 100kB/s]100%|██████████| 12.2k/12.2k [00:00<00:00, 13.4kB/s]
+Upload successful: v2_methods.py (12KB)
+Starting upload for file v2_math.py
+  0%|          | 0.00/7.50k [00:00<?, ?B/s]100%|██████████| 7.50k/7.50k [00:00<00:00, 61.9kB/s]100%|██████████| 7.50k/7.50k [00:00<00:00, 9.10kB/s]
+Upload successful: v2_math.py (8KB)
+Starting upload for file teacher_base.py
+  0%|          | 0.00/4.50k [00:00<?, ?B/s]100%|██████████| 4.50k/4.50k [00:00<00:00, 5.80kB/s]
+Upload successful: teacher_base.py (5KB)
+Starting upload for file train_19_g.npy
+  0%|          | 0.00/212k [00:00<?, ?B/s]100%|██████████| 212k/212k [00:04<00:00, 47.9kB/s]
+Upload successful: train_19_g.npy (212KB)
+Starting upload for file train_3_X.npy
+  0%|          | 0.00/4.26M [00:00<?, ?B/s]  0%|          | 16.0k/4.26M [00:00<00:33, 132kB/s]  8%|▊         | 336k/4.26M [00:00<00:02, 1.70MB/s] 56%|█████▋    | 2.41M/4.26M [00:00<00:00, 9.02MB/s]100%|██████████| 4.26M/4.26M [00:02<00:00, 1.88MB/s]
+Upload successful: train_3_X.npy (4MB)
+Starting upload for file pilot-v9-residual.md
+  0%|          | 0.00/3.13k [00:00<?, ?B/s]100%|██████████| 3.13k/3.13k [00:00<00:00, 25.4kB/s]100%|██████████| 3.13k/3.13k [00:00<00:00, 3.84kB/s]
+Upload successful: pilot-v9-residual.md (3KB)
+Your private Dataset is being created. Please check progress at https://www.kaggle.com/datasets/odixeuit/mobihet-v9-teacher-20261012-src

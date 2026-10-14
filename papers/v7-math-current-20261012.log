@@ -1,0 +1,11 @@
+V7 math PASS n_diag {'up': 8688, 'down': 4272}
+V7 math PASS n_full {'up': 145968, 'down': 72912}
+V7 math PASS n_lr4 {'up': 145968, 'down': 12720}
+V7 math PASS n_lr8 {'up': 145968, 'down': 21168}
+V7 math PASS n_nys4_fl {'up': 26224, 'down': 16992}
+V7 math PASS n_nys4_own {'up': 0, 'down': 4272}
+V7 math PASS n_nys4_shuffle {'up': 26224, 'down': 16992}
+V7 math PASS n_nys8_fl {'up': 44784, 'down': 25440}
+V7 math PASS n_nys8_own {'up': 0, 'down': 4272}
+V7 math PASS n_nys8_shuffle {'up': 44784, 'down': 25440}
+Peak tree RSS: 540 MiB; exit 0

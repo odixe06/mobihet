@@ -1,0 +1,171 @@
+{
+  "packages": [
+    {
+      "seed": 42,
+      "kernel": "minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1",
+      "notebook_sha": "4bc777fe8d2747ba3eac172023932b403ea0c89d0768c3d31052e7a16a9dfa6e"
+    },
+    {
+      "seed": 43,
+      "kernel": "dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1",
+      "notebook_sha": "23e28870d36deafc038d3d4884f5d956c989e3bd26b45880f6f41daa2fae1832"
+    }
+  ],
+  "controller_tests": [
+    {
+      "seed": 42,
+      "case": "normal",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ],
+        [
+          "bc_direct2_fl",
+          0
+        ],
+        [
+          "bc_direct4_fl",
+          1
+        ],
+        [
+          "bc_teacher2_fl",
+          0
+        ],
+        [
+          "bc_teacher4_fl",
+          1
+        ]
+      ],
+      "expected_failure": false
+    },
+    {
+      "seed": 42,
+      "case": "baseline_fail",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ]
+      ],
+      "expected_failure": true
+    },
+    {
+      "seed": 42,
+      "case": "candidate_fail",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ],
+        [
+          "bc_direct2_fl",
+          0
+        ],
+        [
+          "bc_direct4_fl",
+          1
+        ],
+        [
+          "bc_teacher2_fl",
+          0
+        ],
+        [
+          "bc_teacher4_fl",
+          1
+        ]
+      ],
+      "expected_failure": true
+    },
+    {
+      "seed": 42,
+      "case": "budget",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ]
+      ],
+      "expected_failure": true
+    },
+    {
+      "seed": 43,
+      "case": "normal",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ],
+        [
+          "bc_direct2_fl",
+          0
+        ],
+        [
+          "bc_direct4_fl",
+          1
+        ],
+        [
+          "bc_teacher2_fl",
+          0
+        ],
+        [
+          "bc_teacher4_fl",
+          1
+        ]
+      ],
+      "expected_failure": false
+    },
+    {
+      "seed": 43,
+      "case": "baseline_fail",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ]
+      ],
+      "expected_failure": true
+    },
+    {
+      "seed": 43,
+      "case": "candidate_fail",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ],
+        [
+          "bc_direct2_fl",
+          0
+        ],
+        [
+          "bc_direct4_fl",
+          1
+        ],
+        [
+          "bc_teacher2_fl",
+          0
+        ],
+        [
+          "bc_teacher4_fl",
+          1
+        ]
+      ],
+      "expected_failure": true
+    },
+    {
+      "seed": 43,
+      "case": "budget",
+      "starts": [
+        [
+          "bc_single",
+          0
+        ]
+      ],
+      "expected_failure": true
+    }
+  ],
+  "online_key_boundary": true,
+  "dual_GPU_metadata": true,
+  "T4_execution_proven": false
+}

@@ -31,6 +31,18 @@ def collect(family,build='v2',jobs=12):
     elif build=='v6':
         from mh.v6_run import FAMILIES as families
         from verify_v6 import verify as verifier
+    elif build=='v7':
+        from mh.v7_run import FAMILIES as families
+        from verify_v7 import verify as verifier
+    elif build=='v8':
+        from mh.v8_run import FAMILIES as families
+        from verify_v8 import verify as verifier
+    elif build in ('v9','v10'):
+        if build=='v9':
+            from mh.v9_run import FAMILIES as families
+        else:
+            from mh.v10_run import FAMILIES as families
+        from verify_teacher import verify as verifier
     completed=0
     for folder in sorted((base/'notebook').glob(f'{build}{family}-s*')):
         if not (folder/'PUSHED').exists(): continue
@@ -83,6 +95,16 @@ def collect(family,build='v2',jobs=12):
         elif build=='v6':
             for name in ('v6_geometry.py','v6_schema.py','v6_run.py','v2_methods.py','v2_run.py'):
                 assert digest(ROOT/'mh'/name)==expected[name],('V6 source drift',name)
+        elif build=='v7':
+            for name in ('v7_basis.py','v7_nystrom.py','v7_run.py','v6_run.py','v2_methods.py','v2_run.py'):
+                assert digest(ROOT/'mh'/name)==expected[name],('V7 source drift',name)
+        elif build=='v8':
+            for name in ('v8_hybrid.py','v8_run.py','model_packet.py','v7_nystrom.py','v7_basis.py','v6_run.py','v2_methods.py','v2_run.py'):
+                assert digest(ROOT/'mh'/name)==expected[name],('V8 source drift',name)
+        elif build in ('v9','v10'):
+            specific=('v9_anchor.py','v9_run.py') if build=='v9' else ('v10_energy.py','v10_run.py')
+            for name in (*specific,'teacher_driver.py','teacher_base.py','model_packet.py','v6_run.py','v2_methods.py','v2_run.py'):
+                assert digest(ROOT/'mh'/name)==expected[name],('teacher source drift',name)
         seed=int(folder.name.split('-')[1][1:])
         summary=json.loads((dest/'runs'/f'summary_s{seed}.json').read_text())
         assert set(summary)==set(families[family]),summary
@@ -107,7 +129,7 @@ def collect(family,build='v2',jobs=12):
                 audit=dict(run=run.name,rounds=0,complete=False,inference=[],
                     level='source/config audited; failure before any committed round, no model evidence')
             audit.update(arm=arm,complete=finished,returncode=summary[arm]['rc'])
-            if build=='v5': audit['cost_pass']=summary[arm].get('cost_pass')
+            if build in ('v5','v9','v10'): audit['cost_pass']=summary[arm].get('cost_pass')
             if not finished:
                 tail='\n'.join((run/'log.txt').read_text().splitlines()[-25:])
                 audit.update(failure_tail=tail,failure_category='numerical' if
@@ -134,7 +156,7 @@ def collect(family,build='v2',jobs=12):
 if __name__=='__main__':
     torch.set_num_threads(1)
     p=argparse.ArgumentParser(); p.add_argument('--family',required=True)
-    p.add_argument('--build',choices=['v2','v3','v4','v5','v6'],default='v2')
+    p.add_argument('--build',choices=['v2','v3','v4','v5','v6','v7','v8','v9','v10'],default='v2')
     p.add_argument('--jobs',type=int,default=12,choices=range(1,13),help='download connections per kernel')
     p.add_argument('--watch',action='store_true'); a=p.parse_args()
     with (ROOT/f'papers/{a.build}/collection-{a.family}.lock').open('a') as lock:

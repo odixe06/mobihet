@@ -1,0 +1,31 @@
+minhtrit06/mobihet-v9a-s43-20261012-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtrit06/mobihet-v9a-s43-20261012-v1: 1396 files, 2 parallel
+minhtrit06/mobihet-v9a-s43-20261012-v1: 1396 files ok, 0 missing, 12729 MiB new in 2469 s (5.2 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/v9/private_push/v9a-s43-20261012-v1/executed.ipynb (24530 bytes, 5 outputs)
+VERIFIED {"run": "r_dense_ce_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16355, "ambiguous": 29}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16280, "ambiguous": 104}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r_dense_ce_s43
+VERIFIED {"run": "r64_fl_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16082, "ambiguous": 302}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16043, "ambiguous": 341}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_fl_s43
+VERIFIED {"run": "r64_own_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16056, "ambiguous": 328}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16119, "ambiguous": 265}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_own_s43
+VERIFIED {"run": "r64_shuffle_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16008, "ambiguous": 376}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16050, "ambiguous": 334}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_shuffle_s43
+VERIFIED {"run": "r64_classmean_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16043, "ambiguous": 341}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16021, "ambiguous": 363}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_classmean_s43
+VERIFIED {"run": "r64_hard_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16080, "ambiguous": 304}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16171, "ambiguous": 213}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_hard_s43
+VERIFIED {"run": "r64_frozen_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 15984, "ambiguous": 400}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 15980, "ambiguous": 404}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r64_frozen_s43
+VERIFIED {"run": "r512_fl_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16096, "ambiguous": 288}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16102, "ambiguous": 282}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_fl_s43
+VERIFIED {"run": "r512_own_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16159, "ambiguous": 225}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16186, "ambiguous": 198}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_own_s43
+VERIFIED {"run": "r512_shuffle_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16131, "ambiguous": 253}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16067, "ambiguous": 317}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_shuffle_s43
+VERIFIED {"run": "r512_classmean_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16142, "ambiguous": 242}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16135, "ambiguous": 249}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_classmean_s43
+VERIFIED {"run": "r512_hard_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16148, "ambiguous": 236}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16128, "ambiguous": 256}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_hard_s43
+VERIFIED {"run": "r512_frozen_s43", "rounds": 20, "complete": true, "inference": [{"round": 5, "role": "proxy", "rows": 16384, "decisive": 16132, "ambiguous": 252}, {"round": 20, "role": "proxy", "rows": 16384, "decisive": 16081, "ambiguous": 303}], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED TEACHER r512_frozen_s43
+AUDITED KERNEL minhtrit06/mobihet-v9a-s43-20261012-v1 complete True

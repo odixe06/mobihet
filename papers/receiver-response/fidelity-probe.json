@@ -1,0 +1,116 @@
+{
+  "stage": "EXTRACTOR_AND_BOUNDED_SWAP_ONLY",
+  "block": [
+    "f_rcv_pos_noise_x",
+    "f_rcv_pos_noise_y",
+    "f_rcv_spd_noise",
+    "f_rcv_acl_noise",
+    "f_rcv_hed_noise",
+    "f_rcv_noise_mag",
+    "f_rcv_profile_normal",
+    "f_rcv_profile_cautious",
+    "f_rcv_profile_aggressive"
+  ],
+  "seed": 1729,
+  "extractor_sha": "6b808dec839873f3128dcfde4a1c6ac89cdc3d6b48687d1f948c4d25233b2faa",
+  "script_sha": "cf2024c1b435c340b635bb2344b093b22f359871411ce70920e0920c9c9fd256",
+  "fixture_manifest_sha": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+  "toy_cases": [
+    {
+      "name": "finite",
+      "closure_pass": true,
+      "failed_features": []
+    },
+    {
+      "name": "nan_x",
+      "closure_pass": true,
+      "failed_features": []
+    },
+    {
+      "name": "nan_y",
+      "closure_pass": true,
+      "failed_features": []
+    },
+    {
+      "name": "infinite",
+      "closure_pass": true,
+      "failed_features": []
+    }
+  ],
+  "rows": 40960,
+  "valid_swaps": 40951,
+  "class_rows_valid": [
+    [
+      8462,
+      8461
+    ],
+    [
+      812,
+      812
+    ],
+    [
+      2043,
+      2043
+    ],
+    [
+      2042,
+      2042
+    ],
+    [
+      2166,
+      2166
+    ],
+    [
+      5484,
+      5484
+    ],
+    [
+      550,
+      550
+    ],
+    [
+      1512,
+      1511
+    ],
+    [
+      1781,
+      1781
+    ],
+    [
+      2953,
+      2953
+    ],
+    [
+      1429,
+      1429
+    ],
+    [
+      300,
+      298
+    ],
+    [
+      1406,
+      1404
+    ],
+    [
+      2329,
+      2329
+    ],
+    [
+      6610,
+      6607
+    ],
+    [
+      1081,
+      1081
+    ]
+  ],
+  "toy_closure_pass": true,
+  "no_changes_outside_block": true,
+  "same_label_client_different_hashed_receiver": true,
+  "rows_exported": 0,
+  "official_test_read": false,
+  "model_training": false,
+  "physical_counterfactual_or_causal_proof": false,
+  "note": "Copying annotations preserves extractor identities, not sensor-generation/label causality. Hashed receiver scope is scenario|receiver as in existing fixture; no raw IDs exported."
+}

@@ -1,0 +1,2 @@
+PASS actual full-test sample inference 42 checks; not full-data inference or a leakage audit
+Peak tree RSS: 1902 MiB; exit 0

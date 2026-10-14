@@ -1,0 +1,16 @@
+Plan for 55.00 h GPU, session cap 5.00 h (service cap 12 h)
+
+account           GPU left  allocate  sessions  note
+catbaochau          19.46h    19.46h         4  needs a confirmed switch
+minhtriethihi       19.40h    19.40h         4  needs a confirmed switch
+khanhmay0304        18.19h    16.14h         4  needs a confirmed switch
+dinhan25             4.37h         -         -  excluded by --exclude
+minhtrit06          17.02h         -         -  not needed by this plan
+odixeuit            16.58h         -         -  not needed by this plan
+odixe0502           12.55h         -         -  not needed by this plan
+minhtran0601         3.89h         -         -  excluded by --exclude
+trietbackup          0.00h         -         -  not needed by this plan
+
+covered 55.00 h of 55.00 h in 12 session(s) across 3 account(s)
+Session boundaries inside one account resume by attaching that account's previous output. A boundary BETWEEN accounts additionally needs the next owner to read the previous owner's private output, and the notebook's kernel_sources must name the PREVIOUS owner. Verify that read as the account that will run: group membership is not per-item access.
+At most 2 concurrent GPU sessions per account; every switch needs the user's confirmation under this project's account policy.

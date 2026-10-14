@@ -1,0 +1,61 @@
+{
+  "observed_utc": "2026-10-12T10:06:25.864314+00:00",
+  "evidence": "live W&B, not pulled artifact verification",
+  "transport": "authenticated read-only GraphQL",
+  "runs": [
+    {
+      "family": "e",
+      "seed": 42,
+      "arm": "e_ce_aug",
+      "run_id": "e_ce_aug_s42-69bed879",
+      "locator": "21522798-uit/mobihet-v10/e_ce_aug_s42-69bed879",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v10/runs/e_ce_aug_s42-69bed879",
+      "round": null,
+      "timestamp": 1791799416.0233457
+    },
+    {
+      "family": "e",
+      "seed": 42,
+      "arm": "e_ce_matched",
+      "run_id": "e_ce_matched_s42-65d79c54",
+      "locator": "21522798-uit/mobihet-v10/e_ce_matched_s42-65d79c54",
+      "state": "finished",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v10/runs/e_ce_matched_s42-65d79c54",
+      "round": 2,
+      "timestamp": 1791799405.8140278,
+      "loss": 0.7795629546046257,
+      "seconds": 129.1101610660553,
+      "version": 2,
+      "applied": 1957,
+      "skipped": 8,
+      "proxy/positive_ce": 0.7795629546046257,
+      "proxy/negative_ce": 0,
+      "public_teacher_applied": 0,
+      "algorithm_seconds": 128.39210081100464,
+      "algorithm/sampler_acceptance": 0.3324331354723181,
+      "algorithm/sampler_max_dwell": 251
+    },
+    {
+      "family": "e",
+      "seed": 42,
+      "arm": "e_ce_raw",
+      "run_id": "e_ce_raw_s42-be397252",
+      "locator": "21522798-uit/mobihet-v10/e_ce_raw_s42-be397252",
+      "state": "running",
+      "url": "https://wandb.ai/21522798-uit/mobihet-v10/runs/e_ce_raw_s42-be397252",
+      "round": 9,
+      "timestamp": 1791799485.0008197,
+      "loss": 0.39211424961686137,
+      "seconds": 46.17775130271912,
+      "version": 9,
+      "applied": 1958,
+      "skipped": 7,
+      "proxy/group/head/f1_macro": 0.6320341209323954,
+      "proxy/positive_ce": 0.39211424961686137,
+      "proxy/negative_ce": 0,
+      "public_teacher_applied": 0,
+      "algorithm_seconds": 45.503647565841675
+    }
+  ]
+}

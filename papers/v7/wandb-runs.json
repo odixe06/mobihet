@@ -1,0 +1,182 @@
+[
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_diag",
+    "run_id": "n_diag_s42-003983f5",
+    "fingerprint": "003983f55c1c2cc27250e2f61a50f80c896d4b5ce8657c93bc1a45be5d08c188",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_diag_s42-003983f5"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_full",
+    "run_id": "n_full_s42-236680bf",
+    "fingerprint": "236680bf5ee9e3fa1f71e90581af4ef738881923249e76cbebd52c2ada77d8f7",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_full_s42-236680bf"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_lr4",
+    "run_id": "n_lr4_s42-c5fb1812",
+    "fingerprint": "c5fb1812e996ebb3527111ce433e6449767cc51f21b6a76fe3a17b1aa9c85d31",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_lr4_s42-c5fb1812"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_lr8",
+    "run_id": "n_lr8_s42-06e38af8",
+    "fingerprint": "06e38af83550f76b3d0dad6ff4d55d19ec4e0c49d9720f12bbac583702aea6a9",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_lr8_s42-06e38af8"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_nys4_fl",
+    "run_id": "n_nys4_fl_s42-194dfff2",
+    "fingerprint": "194dfff26fb27bd19b8a91f37a878703ba52720886b1a54a2a0b75865268b0b9",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys4_fl_s42-194dfff2"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_nys4_own",
+    "run_id": "n_nys4_own_s42-04c5adde",
+    "fingerprint": "04c5adde0117ebc408a77c500ff471e9c2dc37c6456abafa68549ad1ddb2fc27",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys4_own_s42-04c5adde"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_nys4_shuffle",
+    "run_id": "n_nys4_shuffle_s42-548a822a",
+    "fingerprint": "548a822a79328bca573df7ff9942fe4a729d170801b62f153cdd0c9fd2d7e1e4",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys4_shuffle_s42-548a822a"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_nys8_fl",
+    "run_id": "n_nys8_fl_s42-d202ce25",
+    "fingerprint": "d202ce25cdd8a988ebcb77570a8d431f60ec772345e108bab0a0f555dae5e23e",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys8_fl_s42-d202ce25"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_nys8_own",
+    "run_id": "n_nys8_own_s42-b017aa5a",
+    "fingerprint": "b017aa5acbca1a753c83328a9f447d62116aaf24d9677eda078abc6b1f37183c",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys8_own_s42-b017aa5a"
+  },
+  {
+    "family": "n",
+    "seed": 42,
+    "arm": "n_nys8_shuffle",
+    "run_id": "n_nys8_shuffle_s42-7e105b30",
+    "fingerprint": "7e105b304206013f00537634758b07f09e1c6c3e1dfba7dbce6e82893157c629",
+    "kernel": "minhtran0601/mobihet-v7n-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys8_shuffle_s42-7e105b30"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_diag",
+    "run_id": "n_diag_s43-5f893879",
+    "fingerprint": "5f8938799eb58784e19de5758e0746a1125b5561ccabf01fcfd6482524a7c490",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_diag_s43-5f893879"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_full",
+    "run_id": "n_full_s43-eac08209",
+    "fingerprint": "eac08209baccf50e425fae9797a8f3e1827140e1a2664f9dde2fc3d2d8d6b3ee",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_full_s43-eac08209"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_lr4",
+    "run_id": "n_lr4_s43-6504c87b",
+    "fingerprint": "6504c87b687e8727d1c49dc8f638db3b7251feba685b919817c069b25b8d5c9d",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_lr4_s43-6504c87b"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_lr8",
+    "run_id": "n_lr8_s43-010912e6",
+    "fingerprint": "010912e649d3e6af64c157899b74b6bc58667fa94560244066f80bf33ce90f2e",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_lr8_s43-010912e6"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_nys4_fl",
+    "run_id": "n_nys4_fl_s43-bf96472b",
+    "fingerprint": "bf96472b0409fe163ee00f6654b56e93d50940867cd9f24937418f953140a601",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys4_fl_s43-bf96472b"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_nys4_own",
+    "run_id": "n_nys4_own_s43-b346ee61",
+    "fingerprint": "b346ee615451fa4fe9e6b4e7b1f674d147ec88d7d354d3652db7d5087bfbe380",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys4_own_s43-b346ee61"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_nys4_shuffle",
+    "run_id": "n_nys4_shuffle_s43-5fb64181",
+    "fingerprint": "5fb64181f21f1b44b2062327828c5b2a82d0b32ea1cee5291dbc80d06dad8295",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys4_shuffle_s43-5fb64181"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_nys8_fl",
+    "run_id": "n_nys8_fl_s43-31bc7e87",
+    "fingerprint": "31bc7e8748ce18734cd5aee9f0b4e49947dee5e44c7a895904b0f3c689bb50cb",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys8_fl_s43-31bc7e87"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_nys8_own",
+    "run_id": "n_nys8_own_s43-8e8d7691",
+    "fingerprint": "8e8d76918a679e429138388fb52c463024135f92412d7aacf014fcb5eb5587d4",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys8_own_s43-8e8d7691"
+  },
+  {
+    "family": "n",
+    "seed": 43,
+    "arm": "n_nys8_shuffle",
+    "run_id": "n_nys8_shuffle_s43-a13014db",
+    "fingerprint": "a13014db5e9042518ee90a95401eb51c229d51ca8bf0a7ef1103e00668569940",
+    "kernel": "dinhan25/mobihet-v7n-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v7/n_nys8_shuffle_s43-a13014db"
+  }
+]

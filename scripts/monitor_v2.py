@@ -34,11 +34,12 @@ def http_runs(build='v2'):
 
 def main():
     p=argparse.ArgumentParser(); p.add_argument('--family')
-    p.add_argument('--build',choices=['v2','v3','v4','v5','v6'],default='v2')
+    p.add_argument('--build',choices=['v2','v3','v4','v5','v6','v7','v8','v9','v10'],default='v2')
+    p.add_argument('--seed',type=int,choices=[42,43],help='only an unresolved seed; stable kernels no longer polled')
     p.add_argument('--http',action='store_true',help='read directly without local SDK service'); a=p.parse_args()
     base=Path(__file__).resolve().parents[1]/f'papers/{a.build}'
     registry=json.loads((base/'wandb-runs.json').read_text())
-    wanted={v['run_id']:v for v in registry if a.family is None or v['family']==a.family}
+    wanted={v['run_id']:v for v in registry if (a.family is None or v['family']==a.family) and (a.seed is None or v['seed']==a.seed)}
     rows=[]
     try:
         if a.http:
@@ -59,7 +60,9 @@ def main():
             row.update(state=run.state,url=run.url,round=run.summary.get('round'),timestamp=run.summary.get('_timestamp'))
             for key in ('loss','seconds','version','applied','skipped','private/group/gp/f1_macro',
                         'private/group/head/f1_macro','proxy/group/head/f1_macro','private/real_ce',
-                        'private/auxiliary','proxy/positive_ce','proxy/negative_ce'):
+                        'private/auxiliary','proxy/positive_ce','proxy/negative_ce','public_teacher_applied','algorithm_seconds',
+                        'algorithm/teacher_fit_mse','algorithm/residual_norm','algorithm/sampler_acceptance',
+                        'algorithm/sampler_max_dwell','sampler_probe/proposed_gate','sampler_probe/movement'):
                 if key in run.summary: row[key]=run.summary[key]
             rows.append(row)
     except (wandb.errors.CommError,ValueError) as error:
@@ -67,7 +70,7 @@ def main():
     snapshot=dict(observed_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
                   evidence='live W&B, not pulled artifact verification',transport=transport,
                   runs=sorted(rows,key=lambda v:(v['seed'],v['arm'])))
-    (base/'live-status.json').write_text(json.dumps(snapshot,indent=2))
+    (base/('live-status.json' if a.seed is None else f'live-status-s{a.seed}.json')).write_text(json.dumps(snapshot,indent=2))
     print(json.dumps(snapshot,indent=2))
 
 

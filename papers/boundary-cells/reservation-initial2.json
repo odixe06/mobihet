@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-13T05:56:15.519651+00:00",
+  "owner": "minhtran0601",
+  "observed_gpu_hours": 2.83,
+  "parent_budget_hours": 2.0,
+  "reserve_with_margin_hours": 2.3,
+  "other_new_jobs_for_owner": 0,
+  "active_login_unchanged": "dinhan25",
+  "kernel": "minhtran0601/mobihet-bc-cal-s4243-20261013-initial2-v1",
+  "stage": "calibration_only"
+}

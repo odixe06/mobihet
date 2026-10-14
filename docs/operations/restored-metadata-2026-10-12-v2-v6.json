@@ -1,0 +1,3055 @@
+{
+  "files": [
+    {
+      "path": "papers/v2/kaggle/v2a-s42-20261011-v1/AUDITED.json",
+      "md5": "8bd433d3cb52c28f2b5e9d27814e9cc5",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s42-20261011-v1/runs/a_own_s42/config.json",
+      "md5": "1bcd69bc1ea718801d00a69f33265286",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s42-20261011-v1/runs/a_own_s42/result.json",
+      "md5": "4ddce3118e6961b7e65c50f8cbf6174c",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s42-20261011-v1/runs/local_s42/config.json",
+      "md5": "8a0136d5dc2267bbab6cc9a28fd19d39",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s42-20261011-v1/runs/local_s42/result.json",
+      "md5": "4d543b83c04a6740eaed2d2f6dfff4dc",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s43-20261011-v1/AUDITED.json",
+      "md5": "db2353e1e4bb7727197e86fc04878471",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s43-20261011-v1/runs/a_own_s43/config.json",
+      "md5": "bb09698a7dc3e31468f6589617220bf8",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s43-20261011-v1/runs/a_own_s43/result.json",
+      "md5": "29492855d649d9f8c871dc61dd582a72",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s43-20261011-v1/runs/local_s43/config.json",
+      "md5": "398e7cb2070c3b50e0827001f49213bb",
+      "restored": true
+    },
+    {
+      "path": "papers/v2/kaggle/v2a-s43-20261011-v1/runs/local_s43/result.json",
+      "md5": "c57d49f0d9c0cf7906ff1577b67f52f4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/AUDITED.json",
+      "md5": "6e6b085d38fd81e31c69bd7fc8129d0c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/mobihet-v6a-s42-20261012-v1.log",
+      "md5": "16656fd55b5a3378e9bcfb5f4be5f361",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_fl_s42/config.json",
+      "md5": "8fb8a3bf7baae0a44217a97361f9a640",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_fl_s42/log.txt",
+      "md5": "ad037539d1cbf7a7c638b6148040d79e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_own_s42/config.json",
+      "md5": "56cc21b0d9ad6220aa1ee428e5f36370",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_own_s42/log.txt",
+      "md5": "1b5f415ad7928696d82e65fdfa94860d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_shuffle_s42/complete/round_001.json",
+      "md5": "ce1489c317089f35000cdbc295c274d2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_shuffle_s42/config.json",
+      "md5": "717ce1eb199f30ec662ede0c571a2a43",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_joint_shuffle_s42/log.txt",
+      "md5": "d2a099157ba0d8c7dc5a4b5a5b56ac74",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_fl_s42/config.json",
+      "md5": "b7c2e6a79eb470247e97239212c9119b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_fl_s42/log.txt",
+      "md5": "9dfe722bb103590b0550cb0ce908b54c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_own_s42/config.json",
+      "md5": "06b180a744aa47ed61559f12a8dfe93c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_own_s42/log.txt",
+      "md5": "d104b712b48b436998658bd3cd1f82c1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_shuffle_s42/config.json",
+      "md5": "8c9680ac6b69722c83027cafe461b407",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k59_marginal_shuffle_s42/log.txt",
+      "md5": "7ec2078bd84e724e2a86f8676c21dd9b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_001.json",
+      "md5": "e1da3077fc746fcf58d1bf11175601a0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_002.json",
+      "md5": "ad02635b70b874098b0da03f4b899832",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_003.json",
+      "md5": "2e3f69201162617685f6b0c071575d78",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_004.json",
+      "md5": "f759c465e9ec296c39107cecd3783499",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_005.json",
+      "md5": "2f973e45e4bda6a610af34c1b2290431",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_006.json",
+      "md5": "b56ed8fd84fef6479170b97fac355109",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_007.json",
+      "md5": "6954e5591182c7d5c420e9941601409d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_008.json",
+      "md5": "e48efaff16ba0b9fe782ef6d7ca40831",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_009.json",
+      "md5": "b2f9f73af3e92f6ef579b90871b89022",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_010.json",
+      "md5": "b171bdbd6dd6e0e2b03d566ded2a1aec",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_011.json",
+      "md5": "83b1031918cce219c6676c4e800b6779",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_012.json",
+      "md5": "f94b31006f6d48b6c646cec1f5017754",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_013.json",
+      "md5": "d1b585e7982b525e44736eecd7a079d5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_014.json",
+      "md5": "99b3b5822ebc7c7b3ca935a95da78351",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_015.json",
+      "md5": "ec44a4900a226fbb9f55a30634322ae7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_016.json",
+      "md5": "89e7709f630919f49295c06f4c649efb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_017.json",
+      "md5": "75f883d81581937f3bd02ee5ade17806",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_018.json",
+      "md5": "2d8189f2fdf6beff731dc2fb59720fd0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_019.json",
+      "md5": "939bd8a2f79dcd5bc41a0a7941391e67",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/complete/round_020.json",
+      "md5": "8db7a9fa01a9296293c0c9c7b2f3521d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/config.json",
+      "md5": "948cda15dea87eba4c6ed35c01d25bbc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/log.txt",
+      "md5": "8c3ea6e16725c0d70331b730c6c6019e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/metrics.csv",
+      "md5": "e8443cda9d94337568bb2592f5d3a12b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_joint_fl_s42/result.json",
+      "md5": "739c588a3a76468a3c9d07ad0432cf9a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_001.json",
+      "md5": "121d321298fdfa68e4641c7124b73ad6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_002.json",
+      "md5": "264eb27a774624c31b650b87266b014a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_003.json",
+      "md5": "a3d9336b638aadcc3b56fdfa8a66fcfc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_004.json",
+      "md5": "fce2071b55247b02f9a087d94a483318",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_005.json",
+      "md5": "05a487c3f9d2c001d6a20546326e1c20",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_006.json",
+      "md5": "4cefb3707059918a12258cf7327a4279",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_007.json",
+      "md5": "cdd4cc3177ed357b4c4d68fe6f6eabb9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_008.json",
+      "md5": "a5bcef23ff7b7575a0e01a5a384ee609",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_009.json",
+      "md5": "968e2523fc76244b01a023620582f34b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_010.json",
+      "md5": "348b4a3daaec9e339fdb1d95229e309e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_011.json",
+      "md5": "5a21414f401fd3b32754e6b8d023bffd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_012.json",
+      "md5": "fa7a7306ca7ee3969fee9d16785df927",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_013.json",
+      "md5": "3c35a381343b5801451c9e995a95483b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_014.json",
+      "md5": "31ea6ab78a1ddf4b3b8029e9f7402918",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_015.json",
+      "md5": "d226d9e7538562e4f2be5a4ebd4c4b51",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_016.json",
+      "md5": "32913827735540979596e8790e4fb5bc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_017.json",
+      "md5": "3018e700cfc51b4fd38fecac253d19e3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_018.json",
+      "md5": "38495acb5771edcbfdc5a3def39d52a6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_019.json",
+      "md5": "28d44ad3225586197b18c4693e676e3e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/complete/round_020.json",
+      "md5": "d32f634d6ad53920d01e7f94a38833a8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/config.json",
+      "md5": "e85f9fd79922f1108bead056d17062ca",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/log.txt",
+      "md5": "bef3de94952237b38d770d8518bfdc5b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/metrics.csv",
+      "md5": "729ab5ab16b637b374f8240047d2fce6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_marginal_fl_s42/result.json",
+      "md5": "71d959f180238284909a3fbe73bec7d1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_001.json",
+      "md5": "4cb5e3e9d4ed753e7b65249387fb6f04",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_002.json",
+      "md5": "1f67cf3ae096b3dc4d09b6d55893a119",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_003.json",
+      "md5": "64f1f09d445baf43a3ecc2e2d4e6217a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_004.json",
+      "md5": "4ed3e5b5f11390b4376518f424f386d3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_005.json",
+      "md5": "a5ff8710c4c6226f16c7157b8f35135d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_006.json",
+      "md5": "219282b2351217af58523d14e06e9828",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_007.json",
+      "md5": "0bfe98c0c9bdb14a1bf08b3626c58c8b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_008.json",
+      "md5": "6e12c52518dcb6e0c19283332e0e1ab5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_009.json",
+      "md5": "98c9d285fe590d44f4e4f308383b6fd3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_010.json",
+      "md5": "b187c19bd77b2ea6bce6a3e15b22dd40",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_011.json",
+      "md5": "76c2907369296f644b6724281dea9d30",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_012.json",
+      "md5": "81a2527fee5e8640a4e29e4a78bbbcb5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_013.json",
+      "md5": "99a1d3766e91dff7386a6a0a97adf073",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_014.json",
+      "md5": "258e837b184615b5df6a69425f9f8fde",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_015.json",
+      "md5": "80c920adb6dc2b3c3868bf8533f22b87",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_016.json",
+      "md5": "696ca60c53e39885165f89020f87fbfa",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_017.json",
+      "md5": "8a92e0ebd3c64e50eea5ec64b233aa08",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_018.json",
+      "md5": "bef68a55d138956637acb6b35938ec4f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_019.json",
+      "md5": "81d5a95d27ea1afc39932d9b7b3b142a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/complete/round_020.json",
+      "md5": "84551b0b10872cb6d1c2c7a2f31bb812",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/config.json",
+      "md5": "3ad0c52d3f9d28804e98d0c10f710c47",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/log.txt",
+      "md5": "aae5369631a32a675d6f22299ac88a20",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/metrics.csv",
+      "md5": "cf3469827fbf985c5ada0f99d23cf270",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/k66_plain_fl_s42/result.json",
+      "md5": "1d71eba55907288436d20570e52c57c9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/runs/summary_s42.json",
+      "md5": "fd60948afdba24ce523701c253baa5aa",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/__init__.py",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/archs.py",
+      "md5": "645e5b498347a3db14435cba9cace77d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/channel.py",
+      "md5": "bb3f34ac0105ca4c970a2b95fde83234",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/dagsnet.py",
+      "md5": "8961464640e8fd29b0021d24dd7aecbc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/fixture_manifest.json",
+      "md5": "5d1fbcf99e5f6bde4b15e42f4bd6001a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/meta.json",
+      "md5": "73af80dea3f8fa98eb260d5028e84d93",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/metrics.py",
+      "md5": "b00846b93823ca3915782e7ed02e01e2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/mobility.py",
+      "md5": "2994bac29dc4fb77a529cc0aff2d1015",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/new_fl.py",
+      "md5": "d24eb0cbe71bdaf5ab31392920095700",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/new_methods.py",
+      "md5": "8f0b5cba4f91397bdaf366f267fc2837",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/p2.py",
+      "md5": "515ca949a2a4db533d08750b2b42b47f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/pilot-v6-geometry.md",
+      "md5": "959e318336f45f40896e61ac53f94ba8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/pilot.py",
+      "md5": "4299f3a1d59991a32b136fb4b8be45f5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/prepare.py",
+      "md5": "ce96d5da2afddb62f28997db2cc8e871",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/source_manifest.json",
+      "md5": "f658239296c9d2369461e3ccb11cc3f1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v2_math.py",
+      "md5": "1e94809eb0a24e8db1fd3ee1048dda69",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v2_methods.py",
+      "md5": "85682f72e707b1eea81dc35e8af88827",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v2_run.py",
+      "md5": "0fb0725b41c9872a4460393ba42c90ea",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v3_dense.py",
+      "md5": "0345ccfd0ff29bd129987ef766c0832a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v3_math.py",
+      "md5": "3a3e4ad71e295f6156190583e358bd22",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v3_methods.py",
+      "md5": "394044140fdf713b636108d8f74ef6b1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v3_run.py",
+      "md5": "f33e8a0c3d20861303ebb8f66fde58d4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v4_mala.py",
+      "md5": "b7ea8bf8da258c45493f633ceed1fc96",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v4_run.py",
+      "md5": "6cfe2330438cb29d30a3636c07213a42",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v4_schema.py",
+      "md5": "f1135a7efe1fe0c19c4e1a6f8c4c1e58",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v4_support.py",
+      "md5": "9d7cd9b04a29d2179c2ea22a4feaadb1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v5_anchor.py",
+      "md5": "0556d2e53402693a587eac88621a76fd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v5_books.py",
+      "md5": "34aa204232ba01c8a8526634b695a19a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v5_run.py",
+      "md5": "c8dfa1f2913e160aba3b022af8950d72",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v6_geometry.py",
+      "md5": "a4c6d72c2353deda41a504f33e0b9df5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v6_run.py",
+      "md5": "e89031446330267908e3634f2b8f9d4c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s42-20261012-v1/source/v6_schema.py",
+      "md5": "f2aa63e16e99d8e2c3a85de1573f438c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/AUDITED.json",
+      "md5": "02b94eedea8378cac8c40c8695eca500",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/mobihet-v6a-s43-20261012-v1.log",
+      "md5": "9e7983f60e3c001c64a3b42b14e3b38f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_joint_fl_s43/config.json",
+      "md5": "ec640da4b6a9a9ffcbb780cb8ed58eb2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_joint_fl_s43/log.txt",
+      "md5": "f0ca3d8544977a251996dd47bcf5a41d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_joint_own_s43/config.json",
+      "md5": "0148c114904e4f4a9ba8c3863624ce49",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_joint_own_s43/log.txt",
+      "md5": "b14f84ab82651ab9aeb6473286f9a272",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_joint_shuffle_s43/config.json",
+      "md5": "54ee302fdf6e6b29f02f9c616df79907",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_joint_shuffle_s43/log.txt",
+      "md5": "864353c878c893784d275f3fb4e811ee",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_fl_s43/config.json",
+      "md5": "fb8acb10d61799f73d417373af7adf8d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_fl_s43/log.txt",
+      "md5": "7a2ebd0c8bbfe658ff87d77711b47e4b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_own_s43/config.json",
+      "md5": "8d22cf4ddf58a46cc797f3d9a0ed935b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_own_s43/log.txt",
+      "md5": "ca713ee08c714ed34a725fccc5ad58af",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_shuffle_s43/complete/round_001.json",
+      "md5": "8924f16a75f67d29b9cff238b3431a3a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_shuffle_s43/config.json",
+      "md5": "b7d18d87efe7f54ba9a3147d823daa78",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k59_marginal_shuffle_s43/log.txt",
+      "md5": "edc917b11a1f544ee2db3db4d54cbccc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_001.json",
+      "md5": "fa03c30c078d0d372430ded0e61a1cfb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_002.json",
+      "md5": "43c908bfc492ac7a3ccbdebefe876697",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_003.json",
+      "md5": "7cb83f3b3df58d5d35bcf91dfd4e1863",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_004.json",
+      "md5": "e53b38257361a15cc73ed79eb496e453",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_005.json",
+      "md5": "dfca847210f0b254723d25c7440a826e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_006.json",
+      "md5": "210bc284ea4106908bdadd381ba8b0ad",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_007.json",
+      "md5": "3cdded8f8bdd4f0783dc50d829c777a1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_008.json",
+      "md5": "51b332873edf34664d934f09ec67a3df",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_009.json",
+      "md5": "3a79ca1594aa11584e099ddd9200aec1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_010.json",
+      "md5": "f10db288d3298dff08c66126e9f5ba55",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_011.json",
+      "md5": "fe22b5e0ec13ecabac01315580b67d40",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_012.json",
+      "md5": "fe39f47c142854fc17c1c26baf26faed",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_013.json",
+      "md5": "2f96d3fbda3e4ac05e2808056f44bb93",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_014.json",
+      "md5": "4eb18bce9c8d526e9f5eedcc2c6b910d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_015.json",
+      "md5": "6b249468579d86af98332d076e465f06",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_016.json",
+      "md5": "aa432edb2a16e6c5a1aa737a2e085e8e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_017.json",
+      "md5": "e8c26c551646b8094b26f679e747cd44",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_018.json",
+      "md5": "75a1e111a3ab696dd19b6dc7a6be6af0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_019.json",
+      "md5": "8d5eaed0fd893cc7ddb2fd28f40f0c79",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/complete/round_020.json",
+      "md5": "3f78e87e818e58a5087f00041d15156c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/config.json",
+      "md5": "a6e82850f1b1481fab23d3e4c8ab39e6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/log.txt",
+      "md5": "dbdd22fe137e7ae62bb8a1c120fa27f7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/metrics.csv",
+      "md5": "d1e667399df7198f34bdb942703296af",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_joint_fl_s43/result.json",
+      "md5": "90d93b067352290da40f917bb6366ccf",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_001.json",
+      "md5": "6a8f6cc1eabefcf3fa5bccdeff1f3c94",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_002.json",
+      "md5": "9063d7b85a3e5c26285966171f5d9067",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_003.json",
+      "md5": "49d5fae5c151e8b8d6e5ac5c4f9bb86e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_004.json",
+      "md5": "1d5b82bfc84b959ffbafcfe9a759ffcc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_005.json",
+      "md5": "b6f3352508909a73f69d259d91f2bfac",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_006.json",
+      "md5": "ad91c82c6a82be794045fffd433536cd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_007.json",
+      "md5": "c2882ff0801eddd04bdf9da999e99d40",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_008.json",
+      "md5": "ddf0426a55e4ad737858cf9cc13e4f6c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_009.json",
+      "md5": "2bc32b48aad8d57e1f3c9d02bb69611f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_010.json",
+      "md5": "04849dfb87193c3df6e1ce28256c72a1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_011.json",
+      "md5": "4d0283bd381c35877d0ed5e515caa89c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_012.json",
+      "md5": "21340be6a38e915659d0d271dcbe7930",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_013.json",
+      "md5": "95bbe57c3ad20dd019282df6fc91ced8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_014.json",
+      "md5": "389b39201e0c589bf4cdaa34713f1739",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_015.json",
+      "md5": "1108acd9e8d2d70211be7a1da779cf51",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_016.json",
+      "md5": "971c344e8a10bcf0f3cefd9d1f0beb6f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_017.json",
+      "md5": "bb916a64ae33cb054997ae0065dd2f98",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_018.json",
+      "md5": "0bb4542d330610a73c1de1d419576026",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_019.json",
+      "md5": "45627c4f355ac8dac37b03c6d6104ec4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/complete/round_020.json",
+      "md5": "9d5e08ed74b48e6104dfbb4e640596ee",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/config.json",
+      "md5": "c5c2562c969481065b8d9c7ca7368480",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/log.txt",
+      "md5": "2339ba7ca23817fa3dc6a07bf6754086",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/metrics.csv",
+      "md5": "cecf5498e1df46bc29c0109f118c8460",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_marginal_fl_s43/result.json",
+      "md5": "a7132cade85fb7853fb46418a2abbd25",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_001.json",
+      "md5": "e275ded50f6c9fd9f98c44ddd4926125",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_002.json",
+      "md5": "4e2298bf3f2ea5c7e84d6fe11abcb025",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_003.json",
+      "md5": "529feda3753070a0cd5a0d3382559815",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_004.json",
+      "md5": "5c3bf265d25142cd5bbede3f10c3826a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_005.json",
+      "md5": "212e2e2e762fbcd66350b5706b3e2592",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_006.json",
+      "md5": "9e09ab49938df8a9b3163f576344744c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_007.json",
+      "md5": "54e8c494f248d9b33a7a90189ab77373",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_008.json",
+      "md5": "af271cc24f9205d8de309e1dd1335352",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_009.json",
+      "md5": "766cc46c532ab8ac5aa76a80b0a05117",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_010.json",
+      "md5": "6babb662009b770d425ef125a1d8fbce",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_011.json",
+      "md5": "27262e35b6ec3edcc6f03f2763bf67f6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_012.json",
+      "md5": "3acca1d39e43da0e56a5039ee8bbe194",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_013.json",
+      "md5": "6efde21d0473a9a242129ae1988ddc45",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_014.json",
+      "md5": "23735731294e07533241f7caf18b8d24",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_015.json",
+      "md5": "521fd00f382d79483f42802a1299d4d9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_016.json",
+      "md5": "d342818006b5aa414d99da4b912b79c0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_017.json",
+      "md5": "a2cfd4567126ff197d46471aa1ad5575",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_018.json",
+      "md5": "d0da3a7c7e68971b35e77c303893d9ab",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_019.json",
+      "md5": "d615bd7fbb7710337eda03aceb966508",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/complete/round_020.json",
+      "md5": "c99363f8a82139d3c1d2177acef561a9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/config.json",
+      "md5": "42e1eab7f30853f2d79936d15ad5fb81",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/log.txt",
+      "md5": "5f6b3c8fe58282fffb1cef3413c4f534",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/metrics.csv",
+      "md5": "ddfb4d2b72f2612349c1a0b08b500597",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/k66_plain_fl_s43/result.json",
+      "md5": "de37aa00afa9bd1ba14ebdc695d1c852",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/runs/summary_s43.json",
+      "md5": "fd60948afdba24ce523701c253baa5aa",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/__init__.py",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/archs.py",
+      "md5": "645e5b498347a3db14435cba9cace77d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/channel.py",
+      "md5": "bb3f34ac0105ca4c970a2b95fde83234",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/dagsnet.py",
+      "md5": "8961464640e8fd29b0021d24dd7aecbc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/fixture_manifest.json",
+      "md5": "5d1fbcf99e5f6bde4b15e42f4bd6001a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/meta.json",
+      "md5": "73af80dea3f8fa98eb260d5028e84d93",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/metrics.py",
+      "md5": "b00846b93823ca3915782e7ed02e01e2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/mobility.py",
+      "md5": "2994bac29dc4fb77a529cc0aff2d1015",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/new_fl.py",
+      "md5": "d24eb0cbe71bdaf5ab31392920095700",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/new_methods.py",
+      "md5": "8f0b5cba4f91397bdaf366f267fc2837",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/p2.py",
+      "md5": "515ca949a2a4db533d08750b2b42b47f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/pilot-v6-geometry.md",
+      "md5": "959e318336f45f40896e61ac53f94ba8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/pilot.py",
+      "md5": "4299f3a1d59991a32b136fb4b8be45f5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/prepare.py",
+      "md5": "ce96d5da2afddb62f28997db2cc8e871",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/source_manifest.json",
+      "md5": "f658239296c9d2369461e3ccb11cc3f1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v2_math.py",
+      "md5": "1e94809eb0a24e8db1fd3ee1048dda69",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v2_methods.py",
+      "md5": "85682f72e707b1eea81dc35e8af88827",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v2_run.py",
+      "md5": "0fb0725b41c9872a4460393ba42c90ea",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v3_dense.py",
+      "md5": "0345ccfd0ff29bd129987ef766c0832a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v3_math.py",
+      "md5": "3a3e4ad71e295f6156190583e358bd22",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v3_methods.py",
+      "md5": "394044140fdf713b636108d8f74ef6b1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v3_run.py",
+      "md5": "f33e8a0c3d20861303ebb8f66fde58d4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v4_mala.py",
+      "md5": "b7ea8bf8da258c45493f633ceed1fc96",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v4_run.py",
+      "md5": "6cfe2330438cb29d30a3636c07213a42",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v4_schema.py",
+      "md5": "f1135a7efe1fe0c19c4e1a6f8c4c1e58",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v4_support.py",
+      "md5": "9d7cd9b04a29d2179c2ea22a4feaadb1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v5_anchor.py",
+      "md5": "0556d2e53402693a587eac88621a76fd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v5_books.py",
+      "md5": "34aa204232ba01c8a8526634b695a19a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v5_run.py",
+      "md5": "c8dfa1f2913e160aba3b022af8950d72",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v6_geometry.py",
+      "md5": "a4c6d72c2353deda41a504f33e0b9df5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v6_run.py",
+      "md5": "e89031446330267908e3634f2b8f9d4c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6a-s43-20261012-v1/source/v6_schema.py",
+      "md5": "f2aa63e16e99d8e2c3a85de1573f438c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/AUDITED.json",
+      "md5": "2243d51fe1b118d8256b8e0d98540a4b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/VERIFIED.json",
+      "md5": "2243d51fe1b118d8256b8e0d98540a4b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/mobihet-v6b-s42-20261012-v1.log",
+      "md5": "2f17af06042448b6839fff33a198d634",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_001.json",
+      "md5": "18b930d0efa4eb0dc04c8255db773f03",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_002.json",
+      "md5": "84c3acd299321d5d159602ef09dcdbfb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_003.json",
+      "md5": "d9814d57afb742a628a9efea3ce391cb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_004.json",
+      "md5": "1337d6cb36c7de440c71728f9a9afdb7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_005.json",
+      "md5": "09d2a8b615de2d95846ec63728102015",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_006.json",
+      "md5": "308edd2e96906e8c3b96ca9bd795924e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_007.json",
+      "md5": "a6882ff08c24c520732f34e7d1fae36c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_008.json",
+      "md5": "18510b6fadfa30e7ba254835573e9a2e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_009.json",
+      "md5": "2dbf24d26b0c33d120ed61701113385d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_010.json",
+      "md5": "548b20e499509be41cb5b6e722285ebe",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_011.json",
+      "md5": "a2eb646ec911e04c53116d8c34e40a7f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_012.json",
+      "md5": "581ee52a81bd453fcb322023e06a385e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_013.json",
+      "md5": "6754635bba86b3a94d3d17f9a96f5bbd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_014.json",
+      "md5": "65a9e9b25d63648e11c2720c9d94b3c0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_015.json",
+      "md5": "ad74f388acc7cf80828ad76271485e9f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_016.json",
+      "md5": "14af0a3dbafb250f0de4987a6ec2fe6a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_017.json",
+      "md5": "161981a1120690b1ec3c5f2223c5705a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_018.json",
+      "md5": "03df40e4ef38a437cd9e6835191f242e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_019.json",
+      "md5": "22aefd2b5ba399457e61bed8f816f0ab",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/complete/round_020.json",
+      "md5": "dcb47c88b92881a9423cc7fc39a95214",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/config.json",
+      "md5": "46568e4c7bb0e64a1ea37c2b25edb609",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/log.txt",
+      "md5": "678f3086afa6b4e88f5b05c9afb6254a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/metrics.csv",
+      "md5": "cef1405adc7bc03c3d9084191d16c80e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_fl_s42/result.json",
+      "md5": "107ad807c1a3ad37c8c0704c69c74388",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_001.json",
+      "md5": "382ad19587c47e5971c95008e459b4a9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_002.json",
+      "md5": "0123c43e0518b33405873ccad7736e02",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_003.json",
+      "md5": "7c091b9c99e5acd65662d5e46cb365c0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_004.json",
+      "md5": "d0ed063320f176904d54f14df600fc5a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_005.json",
+      "md5": "ea593f24fba14753782bccbf4d855c51",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_006.json",
+      "md5": "99ea70e3d3c70e351871536db4962009",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_007.json",
+      "md5": "efba4e469122e9ae2c364aa24063cac8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_008.json",
+      "md5": "b0d475568e6f0a955f07407a8e10fc33",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_009.json",
+      "md5": "6bc64a23a4a7e76367f8d02d3d922b95",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_010.json",
+      "md5": "4ca2ef193c61d51564ca038738b68a32",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_011.json",
+      "md5": "6ceae76fb2be93d80c271af7e6c3791e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_012.json",
+      "md5": "729876ba6058cc02b25c0cce1d71b756",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_013.json",
+      "md5": "bc6f48f51ec5c1086be468d650109908",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_014.json",
+      "md5": "07712a6e9d1b20f82860033a5aa6f8ad",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_015.json",
+      "md5": "a53a024c372d67361b904a3326c9441f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_016.json",
+      "md5": "f6497ad225ba3b9450f70a9f521af8ff",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_017.json",
+      "md5": "030335ab0b61bbcd5d1a3c7b64c08d12",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_018.json",
+      "md5": "7c57eb089e598bb6bce668aa5de21615",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_019.json",
+      "md5": "de6f87c5d79a678b5d44b04f82f36fc6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/complete/round_020.json",
+      "md5": "a59f38a4428a59b9204ebb2e06e4c37b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/config.json",
+      "md5": "f1f8960d4803cda956af0da321757b74",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/log.txt",
+      "md5": "7af1145bb86f4bc0d9f4cf9446b1703c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/metrics.csv",
+      "md5": "eb553f064f2f517e10437eab87ecc776",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_own_s42/result.json",
+      "md5": "883b6544c9f38d01d8a8ba6c0e943e7f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_001.json",
+      "md5": "1f8339a906a0d9336bd420196af5d160",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_002.json",
+      "md5": "460c24524c4d10e01cb4635fffa1cea8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_003.json",
+      "md5": "8ea15d6e4bdd6246c26dd4379185b20e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_004.json",
+      "md5": "2e2f3f0ce5076946827fb1573b83f240",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_005.json",
+      "md5": "7d0be17407eb814d563223c9f45c5a84",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_006.json",
+      "md5": "8195d87ac6b3aa75d7c7a460b7e5a0c6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_007.json",
+      "md5": "efd5d1ec0c90dc2c8dfb88d49bdca352",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_008.json",
+      "md5": "9491264390d487c1dc31f56533d7822c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_009.json",
+      "md5": "d53f6364f1fe06f97b286d16f1a60278",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_010.json",
+      "md5": "7d1d00569bb388e93697bb5902a50319",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_011.json",
+      "md5": "ac2b38e5ec46d97a25401a8769bc1de2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_012.json",
+      "md5": "827f29ff2b5eee00373a23101713b637",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_013.json",
+      "md5": "abfcc5599aed71c256b7157c9568273a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_014.json",
+      "md5": "a51d35b16bb662d3ee2fd01fd79f3d75",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_015.json",
+      "md5": "1c8ff4c797acde288a542f0761a6ee6f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_016.json",
+      "md5": "beb51cd9023944e72e0d1693d4dd3d93",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_017.json",
+      "md5": "79cbfbf6e581f611f55b2020288eded6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_018.json",
+      "md5": "04187769a2e357993092003a336654d2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_019.json",
+      "md5": "b3f500016cf47b86f06d4cc932c7acd5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/complete/round_020.json",
+      "md5": "206e1587c9e441d989bf470b1b976075",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/config.json",
+      "md5": "c8867f4a7d02887140c9d25f7894bd58",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/log.txt",
+      "md5": "c0081e285826978d5a69694a887678e4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/metrics.csv",
+      "md5": "cab6f2f8e4d1315ab319738db50e902a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_joint_shuffle_s42/result.json",
+      "md5": "1515c0f5ad424d51e7e01fc48ef1ff89",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_001.json",
+      "md5": "8bf699e35a1dc6285f13bf29bfc2a499",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_002.json",
+      "md5": "fb39b800f25d2f90e4d37a5f60ef3f8b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_003.json",
+      "md5": "d817b3ccf7adcb9130f6bcdf5e35a778",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_004.json",
+      "md5": "dcca3accd0d1fae20060fc6e1ad815ba",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_005.json",
+      "md5": "b583103b57ddf6ec44102301ead3c6f2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_006.json",
+      "md5": "6f9906b847271075d271c729477daca9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_007.json",
+      "md5": "cec5f487b4827755e72750eeca8927d0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_008.json",
+      "md5": "76ea24b5916e1a72ae4d5cf4644b8d42",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_009.json",
+      "md5": "43009d92ab5899afc66ff72f304eecf5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_010.json",
+      "md5": "9df530ecbecd4d14574bb208e7e6885d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_011.json",
+      "md5": "74e76c0728c7613ff5d8921ea108f541",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_012.json",
+      "md5": "35d10794e77ed000298e0d58a2e7c2ff",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_013.json",
+      "md5": "95fbaa12286733b88fde83b3d26eb5ff",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_014.json",
+      "md5": "e43e8ef3ec03b4485fbb34d13356066b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_015.json",
+      "md5": "37c0fa1595cef43351a37466cdde7495",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_016.json",
+      "md5": "159407929377fdb306059a65a114a7ef",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_017.json",
+      "md5": "06ff3c1e8f02fc72e6184cb69afc26d0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_018.json",
+      "md5": "ada2f65cf5ebea9e4eebc9851b79e861",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_019.json",
+      "md5": "a5086c7f5dde061c381ea80c966fda1e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/complete/round_020.json",
+      "md5": "56b6827b542002109b71f68f87c5cb89",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/config.json",
+      "md5": "bd7cf690e825c5860050d319ed2c98dd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/log.txt",
+      "md5": "d65ddb4e4683c64c8123eb7a89c7d14f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/metrics.csv",
+      "md5": "6547907ba99ce97228f1e3eb0c14a840",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_fl_s42/result.json",
+      "md5": "85b4e4b9093b82223369b1e70a0974dc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_001.json",
+      "md5": "f7070fe1a2677de8e3ea764af82a27f2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_002.json",
+      "md5": "f0e19633571fb65e9d92e4eb30692596",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_003.json",
+      "md5": "8fa3acc41dc2381d92e3bfb29165e840",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_004.json",
+      "md5": "cb39dfa7a09d3284652a9fa8f86b57e8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_005.json",
+      "md5": "b10618e73e329102f261772d3a1706e7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_006.json",
+      "md5": "e87afeb7621e97afd42d300393e7fd05",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_007.json",
+      "md5": "57ffed6be90533677f46469f500b9606",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_008.json",
+      "md5": "7cc22f7983f123d9c4aa98200e0165c4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_009.json",
+      "md5": "50bdbc7a0c7ae0490c853921d24d139d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_010.json",
+      "md5": "b0d22000e756be231ecc71a7daf840ff",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_011.json",
+      "md5": "15c21692d92f6057fe15eb687df275d9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_012.json",
+      "md5": "69449123348662a85e984873a8f8f7ce",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_013.json",
+      "md5": "29bccc6626e872b5becfee610bd40e6c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_014.json",
+      "md5": "74c61789702024ce9e65344df971ab6d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_015.json",
+      "md5": "94244eae6421d0bc9a9de617a17a5de4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_016.json",
+      "md5": "032dce2e7a65f10adfa73a6f0864a8ab",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_017.json",
+      "md5": "59e7630039cb8ce6d68890bec7769aa6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_018.json",
+      "md5": "41437be280042415a8b2bcd75963b10c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_019.json",
+      "md5": "43907de6a7c3ec06d02e5d3735079ae8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/complete/round_020.json",
+      "md5": "b4b1b11da0ac0283ca8613f2adb268b8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/config.json",
+      "md5": "e0923a57a65b2aa1c4c9a46a517da6f0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/log.txt",
+      "md5": "65281d8a2e81222e5b45a40e43485694",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/metrics.csv",
+      "md5": "e22a499020e168f2d7c34b018407e6a0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_own_s42/result.json",
+      "md5": "013c2b907c158a57cd2dc84a264befbc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_001.json",
+      "md5": "c7135de99f46424df1a70493df8ca5b0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_002.json",
+      "md5": "1d75600491978ae3df0b9e70af5bb3c8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_003.json",
+      "md5": "f5541e3efd7d7c7546ce6bd78f9c6a40",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_004.json",
+      "md5": "396a4a0c9ec012c3d2817e56ed087d84",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_005.json",
+      "md5": "42511ec158a8fbb97173e7992950c7af",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_006.json",
+      "md5": "8f00b8269cf849ab7b0ec35224fdafa9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_007.json",
+      "md5": "1314084b288d60ebf6feb8d3beeba7ea",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_008.json",
+      "md5": "fe213ed6f21bd8b1f813d563a172592a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_009.json",
+      "md5": "2d526caf4bceb3719e0f9efcc7f9a9d2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_010.json",
+      "md5": "3132161745c9c91192d4c0157c6c2ef5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_011.json",
+      "md5": "75ccd23b9f42a0c838244bd7e4a74e74",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_012.json",
+      "md5": "dba838d8a2736aac075a482456cd2560",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_013.json",
+      "md5": "08e9c990154b935cc6c60c31714403e5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_014.json",
+      "md5": "002863173d696ca03f2fb9d15e9030fe",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_015.json",
+      "md5": "e4fd8324c976aad95cbfc472b6f0bff4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_016.json",
+      "md5": "ac11ba7bf367596c7dee0042e351c8a9",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_017.json",
+      "md5": "e30b9183ab7f75c760821286fc57f9f6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_018.json",
+      "md5": "c895e34a4803b9b99cdfcced9ae45352",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_019.json",
+      "md5": "daa4eaaf3a353f9ca28128dc0fdbc573",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/complete/round_020.json",
+      "md5": "863bab8ae4bfe78b4bb146c8f6931a85",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/config.json",
+      "md5": "5148e459bf7c67c2a18e13b9839e1c12",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/log.txt",
+      "md5": "eb9cf82973735ac774f0c7dbc28ac8da",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/metrics.csv",
+      "md5": "1c5286bbce2e9ae7fde163050da0e63c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/k61_marginal_shuffle_s42/result.json",
+      "md5": "c366a503fbbf09232265b3cd7fa5d6f8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/runs/summary_s42.json",
+      "md5": "8747cd47b2b67e37e3383d4474a28ee4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/__init__.py",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/archs.py",
+      "md5": "645e5b498347a3db14435cba9cace77d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/channel.py",
+      "md5": "bb3f34ac0105ca4c970a2b95fde83234",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/dagsnet.py",
+      "md5": "8961464640e8fd29b0021d24dd7aecbc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/fixture_manifest.json",
+      "md5": "5d1fbcf99e5f6bde4b15e42f4bd6001a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/meta.json",
+      "md5": "73af80dea3f8fa98eb260d5028e84d93",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/metrics.py",
+      "md5": "b00846b93823ca3915782e7ed02e01e2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/mobility.py",
+      "md5": "2994bac29dc4fb77a529cc0aff2d1015",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/new_fl.py",
+      "md5": "d24eb0cbe71bdaf5ab31392920095700",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/new_methods.py",
+      "md5": "8f0b5cba4f91397bdaf366f267fc2837",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/p2.py",
+      "md5": "515ca949a2a4db533d08750b2b42b47f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/pilot-v6-geometry.md",
+      "md5": "959e318336f45f40896e61ac53f94ba8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/pilot.py",
+      "md5": "4299f3a1d59991a32b136fb4b8be45f5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/prepare.py",
+      "md5": "ce96d5da2afddb62f28997db2cc8e871",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/source_manifest.json",
+      "md5": "f658239296c9d2369461e3ccb11cc3f1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v2_math.py",
+      "md5": "1e94809eb0a24e8db1fd3ee1048dda69",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v2_methods.py",
+      "md5": "85682f72e707b1eea81dc35e8af88827",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v2_run.py",
+      "md5": "0fb0725b41c9872a4460393ba42c90ea",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v3_dense.py",
+      "md5": "0345ccfd0ff29bd129987ef766c0832a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v3_math.py",
+      "md5": "3a3e4ad71e295f6156190583e358bd22",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v3_methods.py",
+      "md5": "394044140fdf713b636108d8f74ef6b1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v3_run.py",
+      "md5": "f33e8a0c3d20861303ebb8f66fde58d4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v4_mala.py",
+      "md5": "b7ea8bf8da258c45493f633ceed1fc96",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v4_run.py",
+      "md5": "6cfe2330438cb29d30a3636c07213a42",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v4_schema.py",
+      "md5": "f1135a7efe1fe0c19c4e1a6f8c4c1e58",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v4_support.py",
+      "md5": "9d7cd9b04a29d2179c2ea22a4feaadb1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v5_anchor.py",
+      "md5": "0556d2e53402693a587eac88621a76fd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v5_books.py",
+      "md5": "34aa204232ba01c8a8526634b695a19a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v5_run.py",
+      "md5": "c8dfa1f2913e160aba3b022af8950d72",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v6_geometry.py",
+      "md5": "a4c6d72c2353deda41a504f33e0b9df5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v6_run.py",
+      "md5": "e89031446330267908e3634f2b8f9d4c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s42-20261012-v1/source/v6_schema.py",
+      "md5": "f2aa63e16e99d8e2c3a85de1573f438c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/AUDITED.json",
+      "md5": "d7683cbfc051911f3fbcf5dd3372fa9c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/VERIFIED.json",
+      "md5": "d7683cbfc051911f3fbcf5dd3372fa9c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/mobihet-v6b-s43-20261012-v1.log",
+      "md5": "e4b2d237be2366d677995ea5108c6fde",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_001.json",
+      "md5": "b61bc24bd950a7ea9d6cf8db8056d851",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_002.json",
+      "md5": "ec5abaddd6fa16e04d127a9eddf0235d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_003.json",
+      "md5": "0f10c4d59a22d32fa8ebf04796b5028a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_004.json",
+      "md5": "d9545775e9fca8018246b2f5ed9e0ec3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_005.json",
+      "md5": "448056420553d761c20a85a118cae4ee",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_006.json",
+      "md5": "20e6e4d6695188f12dfe16bff07fb27e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_007.json",
+      "md5": "3fd49d4fb114e0662e0f86037d62c088",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_008.json",
+      "md5": "bf84545521a039b710400448153b287a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_009.json",
+      "md5": "b504c634c3ad26930002ec448b023b41",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_010.json",
+      "md5": "062ac07f135fd5b5dd2902b0c3f4fe9e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_011.json",
+      "md5": "1f4ebd48f32dd09f6d06082c873e44c3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_012.json",
+      "md5": "270abc139defceea3212fbeb55553bdb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_013.json",
+      "md5": "a72d17eb6a1d98e73ae1cd2df7e8ca4d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_014.json",
+      "md5": "85cb977ef80a6f7a4028f63938ccea39",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_015.json",
+      "md5": "78f563bc6aac8fd2c069a82959b3b600",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_016.json",
+      "md5": "ad99926e21c2be5ddc4bce02413d03a7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_017.json",
+      "md5": "b69426d56d1fc9d778bacb39b05d23ed",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_018.json",
+      "md5": "4ab868619907f6df041b0f6c92d2e83f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_019.json",
+      "md5": "a1f02a398f4e55aa626ab8ab7ad9a863",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/complete/round_020.json",
+      "md5": "a3c282ce65658575819019b9edef381d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/config.json",
+      "md5": "3718f970703ea6ec3a09a3b26630eebd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/log.txt",
+      "md5": "ccb04aa2438c2daab74ed29bd5572684",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/metrics.csv",
+      "md5": "65c94a51e919986e4c865962b5e1d7ad",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_fl_s43/result.json",
+      "md5": "348071769aea06e516a12104b427881f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_001.json",
+      "md5": "819f931fd9a82007776e8e508c63bb52",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_002.json",
+      "md5": "bb1bc7eb8e6557c448bc9ff88523eb9d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_003.json",
+      "md5": "4ce5789dd9a19749b3b5b976c94e7c58",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_004.json",
+      "md5": "e37c6ce46073285e2dc2f9b391bdb681",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_005.json",
+      "md5": "7898d9ef14fbc519b895fe1a968e6d92",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_006.json",
+      "md5": "6a8449f94bf4e866aae1585a0d9f741c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_007.json",
+      "md5": "ebc05f5100362ff6728731b63a985e10",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_008.json",
+      "md5": "c1acb33479bab5a074aaae4933af2ec6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_009.json",
+      "md5": "7e6909c43b5c880543f0c44bd452ac7b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_010.json",
+      "md5": "979713c326d3182164e4c65799722866",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_011.json",
+      "md5": "ba2beea5149555d72f4db1cbc1e25ff1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_012.json",
+      "md5": "5942841b21d98cad97c8d14d02fb6318",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_013.json",
+      "md5": "bde77ee52c6922b998b9ce8953e39956",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_014.json",
+      "md5": "123a81d6fa244cd15bebccc9033e0dc3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_015.json",
+      "md5": "b0c65082d9147b727e78783941f02e08",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_016.json",
+      "md5": "4d8afa88bd1cbe838543cc7f7951bf2d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_017.json",
+      "md5": "44ae9ddec79cd1c3e65db7cf51ead0b3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_018.json",
+      "md5": "0770637ce0ef5e997d8367bf1597f16a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_019.json",
+      "md5": "6f579b3514cd19b79d14bf3e7e02a9b0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/complete/round_020.json",
+      "md5": "490a1888d5483b755fad8f5f89948509",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/config.json",
+      "md5": "ebb127254ffbf71817ced944e05c4ae8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/log.txt",
+      "md5": "5130d6e6d476e159a565d6a09fda6877",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/metrics.csv",
+      "md5": "098a4c057a3899888fb646655ec2c086",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_own_s43/result.json",
+      "md5": "36b6e557f17f5a4e9270b6d3c3eefedc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_001.json",
+      "md5": "6cd04e93f6c24d241170f646ee451a2f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_002.json",
+      "md5": "e0ca7306527a0f1a666f0960b76631f4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_003.json",
+      "md5": "c520297f68da0d95896c0d09ceda0983",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_004.json",
+      "md5": "63da7f6a6aa6e4b5f38af39ca43d3aac",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_005.json",
+      "md5": "42892a7f28ba531188bf771db18cebfb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_006.json",
+      "md5": "93f1c69a64db0fafd7bb9343793457a6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_007.json",
+      "md5": "cc012557a92581c836eca36e52796cca",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_008.json",
+      "md5": "2345abca8af9db72e5cd564d35847668",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_009.json",
+      "md5": "c37fc06b5a7353678f2e78d72e9b383a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_010.json",
+      "md5": "364da9d2408a75561ae92aa5bb46e938",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_011.json",
+      "md5": "437a4650edffba672cefb650534d2f27",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_012.json",
+      "md5": "425df43c32931ed467cb89d2765ec39e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_013.json",
+      "md5": "6b917bcc0b9d501a5c00554ad18a8d6a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_014.json",
+      "md5": "9e7b5996384b64076137a9a2c67d9642",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_015.json",
+      "md5": "0a58ae47e94c67f77dad83518783e9e5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_016.json",
+      "md5": "723ce61ab33cb0da95fd1b52e63a1f4f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_017.json",
+      "md5": "1b367a0cdfc04ace0834d2b59c448587",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_018.json",
+      "md5": "3289c64e184b640dc114d94ca493d441",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_019.json",
+      "md5": "b602fabe79cc63908f09a6332b1ad01c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/complete/round_020.json",
+      "md5": "ca0055f5e6432bf815eb05b8b8c1b1a2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/config.json",
+      "md5": "eda0248a648788e5cc1bb83a0d6cd242",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/log.txt",
+      "md5": "4eb85e92498eccfb909c8d462f72749b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/metrics.csv",
+      "md5": "7929769cbc2e07ff78028f205ebb870d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_joint_shuffle_s43/result.json",
+      "md5": "e2c5db4b3934083186da6f0c6134b8ee",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_001.json",
+      "md5": "5511996d302e132f4dfdf73de2ee7ce0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_002.json",
+      "md5": "645cff4b6ba810185a765c5f7431f002",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_003.json",
+      "md5": "1246249df97f9406eedf91c072c33155",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_004.json",
+      "md5": "daffa1c7e9d4a4938edf545e0b342980",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_005.json",
+      "md5": "eb8979d85ff9821d6d9404c148c847fb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_006.json",
+      "md5": "af95fa978be3b8060aed802f63796410",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_007.json",
+      "md5": "53175d89f389a8ce2bb6386a58351605",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_008.json",
+      "md5": "f71732c93bbaf9d6ea8bc51f477adaab",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_009.json",
+      "md5": "ffa228f9aba1950ad93fcca6c959b140",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_010.json",
+      "md5": "5618eae404e279f1aa2811b45cb211e7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_011.json",
+      "md5": "8e828164b623ee2ce06465de1037cf89",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_012.json",
+      "md5": "41bd98738c791fed77625840f51d9390",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_013.json",
+      "md5": "b720c6b87f53577147771738f0e7e8fe",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_014.json",
+      "md5": "3718e980174cdde377ecf1c6ccb6ee07",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_015.json",
+      "md5": "5ba2d7614431774526455bf618f5c124",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_016.json",
+      "md5": "b6c633f593398cb2c5812a58cd7c108b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_017.json",
+      "md5": "55397c0c8fe4879fbe941e33fceeb5f3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_018.json",
+      "md5": "5e0015bb15cd46d2f3a73d4d3145cd77",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_019.json",
+      "md5": "27971ba201de37d92187c16033311c68",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/complete/round_020.json",
+      "md5": "6504b5e27fd8c699a305535fae832d5d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/config.json",
+      "md5": "89733366cca0631bb6c4d7b7b4c51b30",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/log.txt",
+      "md5": "34db6ac7205e917855d55b0c236b975b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/metrics.csv",
+      "md5": "5f64ea7ebc465436947bf189e1b27b06",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_fl_s43/result.json",
+      "md5": "62368bffc2631b84de945d328a64c314",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_001.json",
+      "md5": "b27dcaa174d8736b3b2b96088d122760",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_002.json",
+      "md5": "308c5b210dbd89b7aa7451a9fb006a7a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_003.json",
+      "md5": "59419f0259b9f8585e2938bbccf20e42",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_004.json",
+      "md5": "40fb215c48bafc4b0d0548f42349c04e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_005.json",
+      "md5": "333ebb46f711d062e24fc3ca752c3d46",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_006.json",
+      "md5": "cf8bb177d39b9777014afb61e657e5eb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_007.json",
+      "md5": "21b62270d0e45da9a20367de470703f0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_008.json",
+      "md5": "1dac7e991814efb0a15f2c9e432e5184",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_009.json",
+      "md5": "1b3fdf3c1e034c88c173b5f763010b3f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_010.json",
+      "md5": "c7b8c6d863afe7f352a859d328f413be",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_011.json",
+      "md5": "8f1f6d7b555ab6af95206fdd0c657dd5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_012.json",
+      "md5": "54860f378b81a20b86fd4f8947450359",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_013.json",
+      "md5": "195774a5420fe1b7004290aec984eb37",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_014.json",
+      "md5": "06e12d0fe54fdc1cfdf6cf8d811317dd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_015.json",
+      "md5": "a2b7a4613cd05202dd222b40d07c2d8b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_016.json",
+      "md5": "f110b6996f51f98dfef6548e6e5a968f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_017.json",
+      "md5": "c277bd595876a36322590796feb9fe36",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_018.json",
+      "md5": "f9e4805d20f5bde9ecaf8a6a5e25c6b3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_019.json",
+      "md5": "eeec243d41b1f921e0a9d69baff4d629",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/complete/round_020.json",
+      "md5": "cc36b0d94c417b49d7e9e905d846f36c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/config.json",
+      "md5": "4434cbcb4c677348aa3f546c4a581d89",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/log.txt",
+      "md5": "b5c9e7db23ee101605bbbfd0e4cdbae0",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/metrics.csv",
+      "md5": "6142c5ff903652c908d10ca869cd04f4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_own_s43/result.json",
+      "md5": "e0a0e65f47a5226475107bbe686ece25",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_001.json",
+      "md5": "95430d89817eafb5ddaf277607d7eaa3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_002.json",
+      "md5": "bde831528af31c3eb36f4cae823ea727",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_003.json",
+      "md5": "41f2e837fecfe7b917da48d05dab368e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_004.json",
+      "md5": "98c81ba6b3b5c0b5cff1e3578143f1fb",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_005.json",
+      "md5": "058a16ae464011601c4f79265b7428e3",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_006.json",
+      "md5": "e911217bdaf40211610656a8b22104b5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_007.json",
+      "md5": "076d3d26cfcbdb8cc81c86f9677e8b32",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_008.json",
+      "md5": "8dff90c34c1f2c05ba36887f63a21afa",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_009.json",
+      "md5": "8f28a4c040902108d4e8062d87eb1c1f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_010.json",
+      "md5": "ec60ed7320ca5f3ebd68c53880093ec7",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_011.json",
+      "md5": "ba16417336251f81483c34bf0a02c32b",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_012.json",
+      "md5": "71f96f404baec552155de4e9d3d14c41",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_013.json",
+      "md5": "949d792e47d4c4ee4c05c7d6d0bbd1ec",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_014.json",
+      "md5": "a5457c30750538302c65a34054ea3ff1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_015.json",
+      "md5": "2e2ce7fa59f06b9211a407c545fe8294",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_016.json",
+      "md5": "d8fb59a67e0d432d298354828d56098a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_017.json",
+      "md5": "4c136104671193b55ae9e62a140c568c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_018.json",
+      "md5": "8cf3d2c974c1a2a9cdfe21a8396329aa",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_019.json",
+      "md5": "4977f85748860cfefe90edc74eed4e32",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/complete/round_020.json",
+      "md5": "8376965de22674bf26afe3e79341e608",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/config.json",
+      "md5": "313945b25e1b9ee47de0280180ba7505",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/log.txt",
+      "md5": "48abfe27983c649db726a1b84e83603c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/metrics.csv",
+      "md5": "7fd340ce9238d784c45aa6b916290633",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/k61_marginal_shuffle_s43/result.json",
+      "md5": "39ea40ccb9b821c5176875029b8372b6",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/runs/summary_s43.json",
+      "md5": "8747cd47b2b67e37e3383d4474a28ee4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/__init__.py",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/archs.py",
+      "md5": "645e5b498347a3db14435cba9cace77d",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/channel.py",
+      "md5": "bb3f34ac0105ca4c970a2b95fde83234",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/dagsnet.py",
+      "md5": "8961464640e8fd29b0021d24dd7aecbc",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/fixture_manifest.json",
+      "md5": "5d1fbcf99e5f6bde4b15e42f4bd6001a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/meta.json",
+      "md5": "73af80dea3f8fa98eb260d5028e84d93",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/metrics.py",
+      "md5": "b00846b93823ca3915782e7ed02e01e2",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/mobility.py",
+      "md5": "2994bac29dc4fb77a529cc0aff2d1015",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/new_fl.py",
+      "md5": "d24eb0cbe71bdaf5ab31392920095700",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/new_methods.py",
+      "md5": "8f0b5cba4f91397bdaf366f267fc2837",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/p2.py",
+      "md5": "515ca949a2a4db533d08750b2b42b47f",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/pilot-v6-geometry.md",
+      "md5": "959e318336f45f40896e61ac53f94ba8",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/pilot.py",
+      "md5": "4299f3a1d59991a32b136fb4b8be45f5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/prepare.py",
+      "md5": "ce96d5da2afddb62f28997db2cc8e871",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/source_manifest.json",
+      "md5": "f658239296c9d2369461e3ccb11cc3f1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v2_math.py",
+      "md5": "1e94809eb0a24e8db1fd3ee1048dda69",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v2_methods.py",
+      "md5": "85682f72e707b1eea81dc35e8af88827",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v2_run.py",
+      "md5": "0fb0725b41c9872a4460393ba42c90ea",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v3_dense.py",
+      "md5": "0345ccfd0ff29bd129987ef766c0832a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v3_math.py",
+      "md5": "3a3e4ad71e295f6156190583e358bd22",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v3_methods.py",
+      "md5": "394044140fdf713b636108d8f74ef6b1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v3_run.py",
+      "md5": "f33e8a0c3d20861303ebb8f66fde58d4",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v4_mala.py",
+      "md5": "b7ea8bf8da258c45493f633ceed1fc96",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v4_run.py",
+      "md5": "6cfe2330438cb29d30a3636c07213a42",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v4_schema.py",
+      "md5": "f1135a7efe1fe0c19c4e1a6f8c4c1e58",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v4_support.py",
+      "md5": "9d7cd9b04a29d2179c2ea22a4feaadb1",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v5_anchor.py",
+      "md5": "0556d2e53402693a587eac88621a76fd",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v5_books.py",
+      "md5": "34aa204232ba01c8a8526634b695a19a",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v5_run.py",
+      "md5": "c8dfa1f2913e160aba3b022af8950d72",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v6_geometry.py",
+      "md5": "a4c6d72c2353deda41a504f33e0b9df5",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v6_run.py",
+      "md5": "e89031446330267908e3634f2b8f9d4c",
+      "restored": true
+    },
+    {
+      "path": "papers/v6/kaggle/v6b-s43-20261012-v1/source/v6_schema.py",
+      "md5": "f2aa63e16e99d8e2c3a85de1573f438c",
+      "restored": true
+    }
+  ],
+  "model_files_restored": false
+}

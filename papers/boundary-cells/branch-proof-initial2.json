@@ -1,0 +1,217 @@
+{
+  "stage": "LOCAL_BOUNDED_BRANCH_SMOKE",
+  "branches": [
+    {
+      "arm": "bc_single",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 2.6122894287109375,
+      "eligible_rows": 0,
+      "wire_events": 40
+    },
+    {
+      "arm": "bc_local",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 2.6122894287109375,
+      "eligible_rows": 0,
+      "wire_events": 40
+    },
+    {
+      "arm": "bc_mean",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.019499778747559,
+      "eligible_rows": 1024,
+      "wire_events": 80
+    },
+    {
+      "arm": "bc_gaussian",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 5.402219772338867,
+      "eligible_rows": 1024,
+      "wire_events": 80
+    },
+    {
+      "arm": "bc_direct2_fl",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.023174285888672,
+      "eligible_rows": 943,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_direct2_own",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.016228795051575,
+      "eligible_rows": 943,
+      "wire_events": 100
+    },
+    {
+      "arm": "bc_direct2_shuffle",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.044552683830261,
+      "eligible_rows": 943,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_direct2_marginal",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.021704077720642,
+      "eligible_rows": 943,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_direct4_fl",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.019846677780151,
+      "eligible_rows": 1023,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_direct4_own",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.012457370758057,
+      "eligible_rows": 1023,
+      "wire_events": 100
+    },
+    {
+      "arm": "bc_direct4_shuffle",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.036336898803711,
+      "eligible_rows": 1023,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_direct4_marginal",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.0198609828948975,
+      "eligible_rows": 1023,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_teacher2_fl",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.023506164550781,
+      "eligible_rows": 943,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_teacher2_own",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.017155051231384,
+      "eligible_rows": 943,
+      "wire_events": 100
+    },
+    {
+      "arm": "bc_teacher2_shuffle",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.047514200210571,
+      "eligible_rows": 943,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_teacher2_marginal",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.021848201751709,
+      "eligible_rows": 943,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_teacher4_fl",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.02153742313385,
+      "eligible_rows": 1023,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_teacher4_own",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.01639461517334,
+      "eligible_rows": 1023,
+      "wire_events": 100
+    },
+    {
+      "arm": "bc_teacher4_shuffle",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.035945415496826,
+      "eligible_rows": 1023,
+      "wire_events": 60
+    },
+    {
+      "arm": "bc_teacher4_marginal",
+      "client": 0,
+      "rows": 1024,
+      "applied": 2,
+      "skipped": 0,
+      "loss": 4.020852565765381,
+      "eligible_rows": 1023,
+      "wire_events": 60
+    }
+  ],
+  "cohort_clients": 20,
+  "trained_clients_per_branch": 1,
+  "rounds": 1,
+  "rows_per_client": 1024,
+  "utility_claim": false,
+  "T4_cost_claim": false,
+  "source_sha": {
+    "cells.py": "456e0400470a0f5f76b3808b71d4e256535d3e62f6f0e1ceddf2278925875fe0",
+    "probe.py": "a50a7d62e2c105ab12107e76de797acd7ab9ce5c7924451782866f4dc8a304e6",
+    "boundary_method.py": "456945b64182dcdb2dfa41d5a42a6cea37f36667606d018ae3b2df47398c9530",
+    "boundary_driver.py": "bebe94c6c2483235d271fbb75d794df81d59533b4a88a9478193a14ffb96c19d"
+  }
+}

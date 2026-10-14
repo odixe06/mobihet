@@ -1,0 +1,128 @@
+[
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_local",
+    "run_id": "h_local_s42-1f785fa4",
+    "fingerprint": "1f785fa4d6a4830e70b85c0f190fdb9387872c5ad740d6fe3938a31e02372741",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_local_s42-1f785fa4"
+  },
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_gaussian",
+    "run_id": "h_gaussian_s42-6a22d476",
+    "fingerprint": "6a22d476a0478ac5ad88cf8eac8acaef7c768a57775273ff3be2c5434a5c6aed",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_gaussian_s42-6a22d476"
+  },
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_dml",
+    "run_id": "h_dml_s42-4c725c33",
+    "fingerprint": "4c725c339d9913e01d20ad412ff9053ff09ebd66acb12630e9641f449bc45820",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_dml_s42-4c725c33"
+  },
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_hybrid",
+    "run_id": "h_hybrid_s42-9c7ab9c7",
+    "fingerprint": "9c7ab9c7af66f0c8a8ff69bd4c413c8a61ec55605fbb6e7f03b1da0c57e74f49",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_hybrid_s42-9c7ab9c7"
+  },
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_gaussian_own",
+    "run_id": "h_gaussian_own_s42-65b169d7",
+    "fingerprint": "65b169d7519cbc54eaa978e569936a807fa94e525986f373362f5e5153062aac",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_gaussian_own_s42-65b169d7"
+  },
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_dml_own",
+    "run_id": "h_dml_own_s42-6505204e",
+    "fingerprint": "6505204ef8d8b24c36cd7f8e154589b9d8d6ca76468859346912603eb06594ea",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_dml_own_s42-6505204e"
+  },
+  {
+    "family": "h",
+    "seed": 42,
+    "arm": "h_hybrid_own",
+    "run_id": "h_hybrid_own_s42-dc07afb8",
+    "fingerprint": "dc07afb87d4bc1792f9578c251de582dc60501c05514ecc30caabe3ee808588f",
+    "kernel": "trietbackup/mobihet-v8h-s42-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_hybrid_own_s42-dc07afb8"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_local",
+    "run_id": "h_local_s43-8b88efb0",
+    "fingerprint": "8b88efb0f18b6e224acc7cd0ced94244cd8c046b21aa6d2e75aa6adabcf64dd0",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_local_s43-8b88efb0"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_gaussian",
+    "run_id": "h_gaussian_s43-d68a77c7",
+    "fingerprint": "d68a77c705830a42a66844410966ebef19ce813db183c616c89a6a968983c853",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_gaussian_s43-d68a77c7"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_dml",
+    "run_id": "h_dml_s43-de4f0dcb",
+    "fingerprint": "de4f0dcbafa033baf85ee9dc11de4e52bd2758f3d502b53ee9d708a8354cf126",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_dml_s43-de4f0dcb"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_hybrid",
+    "run_id": "h_hybrid_s43-a7931dc7",
+    "fingerprint": "a7931dc71429b36150eef1d8058f3f8d689f032a5daaeb3151e1ba8c33501c8f",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_hybrid_s43-a7931dc7"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_gaussian_own",
+    "run_id": "h_gaussian_own_s43-abe62965",
+    "fingerprint": "abe62965ff455b7beb57a279e67bc003e9fc749072ea6d6cab37b7e517b2be61",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_gaussian_own_s43-abe62965"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_dml_own",
+    "run_id": "h_dml_own_s43-30e28640",
+    "fingerprint": "30e2864053dd2909fc75621c32fa5c7650f19e829de61da84a55dc2166853bf1",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_dml_own_s43-30e28640"
+  },
+  {
+    "family": "h",
+    "seed": 43,
+    "arm": "h_hybrid_own",
+    "run_id": "h_hybrid_own_s43-47f597b5",
+    "fingerprint": "47f597b5f8603a9f4a5bf63ffc4143d3f095ea5b9f88290a082a7f455413639d",
+    "kernel": "odixe0502/mobihet-v8h-s43-20261012-v1",
+    "locator": "21522798-uit/mobihet-v8/h_hybrid_own_s43-47f597b5"
+  }
+]

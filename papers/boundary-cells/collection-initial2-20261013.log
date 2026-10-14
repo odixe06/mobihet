@@ -1,0 +1,30 @@
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.RUNNING"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1: 167 files, 2 parallel
+minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1: 167 files ok, 0 missing, 498 MiB new in 303 s (1.6 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/boundary-cells/private_push/bc-cal-s42-20261013-initial2-v1/executed.ipynb (19049 bytes, 5 outputs)
+AUDITED CALIBRATION minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1 utility r20 unmeasured
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 has status "KernelWorkerStatus.COMPLETE"
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1: 167 files, 2 parallel
+dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1: 167 files ok, 0 missing, 591 MiB new in 173 s (3.4 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/boundary-cells/private_push/bc-cal-s43-20261013-initial2-v1/executed.ipynb (19049 bytes, 5 outputs)
+AUDITED CALIBRATION dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1 utility r20 unmeasured

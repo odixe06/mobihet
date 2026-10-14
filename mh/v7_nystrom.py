@@ -154,6 +154,19 @@ class Method(Prior):
                           sd=values[:, D+D*self.rank:])
         return {name: torch.from_numpy(a.astype('float32')).to(self.R.dev) for name, a in fields.items()}
 
+    def factor_covariance(self, values):
+        if self.form == 'full':
+            l = np.zeros((C, D, D))
+            i, j = np.tril_indices(D)
+            l[:, i, j] = values[:, D:]
+            return l @ l.transpose(0, 2, 1)
+        sd = values[:, D:] if self.form == 'diag' else values[:, D+D*self.rank:]
+        cov = np.eye(D)[None] * sd[:, :, None]**2
+        if self.form != 'diag':
+            u = values[:, D:D+D*self.rank].reshape(C, D, self.rank)
+            cov += u @ u.transpose(0, 2, 1)
+        return cov
+
     def make_tables(self):
         R = self.R
         if self.form.startswith('nys'):
@@ -184,19 +197,27 @@ class Method(Prior):
             if self.mode == 'own':
                 decoded.append((n, a))
         assert (counts > 0).all() and (contributors >= 5).all(), 'V7 population class cohort gate'
+        if self.mode != 'own':
+            self.aggregate_counts = torch.from_numpy(counts.astype('int64'))
+            self.aggregate_contributors = torch.from_numpy(contributors.astype('int64'))
+            self.aggregate_statistics = torch.from_numpy(total.copy())
         # Trusted sum emulator gives RSU only cohort totals, not client records/statistics.
         groups = decoded if self.mode == 'own' else [(counts, total)]
         for n, a in groups:
             values, diag = self.reconstruct(n, a)
             packet = encode(2, values, self.context)
             _, _, wire = decode(packet, 2, values.size, self.context)
-            table = self.table(wire.reshape(values.shape))
+            wire = wire.reshape(values.shape)
+            before, after = self.factor_covariance(values), self.factor_covariance(wire)
+            error = np.linalg.norm(after-before, axis=(1,2))/np.maximum(np.linalg.norm(before, axis=(1,2)), EPS)
+            assert (error <= .01).all(), 'V7 factor quantization covariance gate'
+            self.diag['factor_quantization_max_error'] = max(float(error.max()), self.diag.get('factor_quantization_max_error', 0.))
+            table = self.table(wire)
             if self.mode == 'shuffle':
                 signs = np.random.default_rng(7603).integers(0, 2, D)*2-1
                 table['factor'] *= torch.from_numpy(signs.astype('float32')).to(R.dev)[None, :, None]
             self.tables.append(table)
             if self.mode != 'own':
-                self.latest_packet = packet
                 self.packets['factors'] = packet
                 for k in range(R.K):
                     self.record(packet, 0, k, 'down', 'gaussian')
@@ -233,5 +254,9 @@ class Method(Prior):
         pass
 
     def state(self):
-        return dict(global_vector=self.global_vector, version=self.version,
-                    tables=self.tables, packets=self.packets, diag=self.diag)
+        values = dict(global_vector=self.global_vector, version=self.version,
+                      tables=self.tables, packets=self.packets, diag=self.diag)
+        if self.mode != 'own':
+            for name in ('aggregate_counts', 'aggregate_contributors', 'aggregate_statistics'):
+                values[name] = getattr(self, name)
+        return values

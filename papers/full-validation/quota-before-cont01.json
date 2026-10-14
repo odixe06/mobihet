@@ -1,0 +1,37 @@
+{
+  "observed_utc": "2026-10-13T03:03:14.582811+00:00",
+  "quotas": [
+    {
+      "user": "catbaochau",
+      "gpu_left": 15.058446388888889,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "minhtriethihi",
+      "gpu_left": 17.729800555555556,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "khanhmay0304",
+      "gpu_left": 15.339282777777777,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  ],
+  "reserve_hours_by_owner": {
+    "catbaochau": 11.04,
+    "minhtriethihi": 5.52,
+    "khanhmay0304": 5.52
+  }
+}

@@ -1,0 +1,6 @@
+outs:
+- md5: ee5d508c6c69cd47549940bf6be64459.dir
+  size: 663906613
+  nfiles: 51
+  hash: md5
+  path: resume_reference

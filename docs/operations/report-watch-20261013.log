@@ -1,0 +1,9 @@
+v8 7 audited arms; 168 ten-metric rows; {'hybrid_s43': {'quality': True, 'vs_stronger': 0.04355081093130497, 'vs_own': 0.14993825304464536, 'interaction': -0.07223769600825458}}
+docs/file-index.md: 1120 files
+UPDATED audited report v8 1 / 2
+v9 13 audited arms; 104 ten-metric rows; {'M64_s42': {'quality': False, 'cost': True, 'vs_local': -0.25045266332984945, 'vs_own': 0.05950613741443295, 'vs_shuffle': 0.0076774093968979, 'vs_classmean': 0.001611414075400247, 'vs_hard': 0.0033045096653754324, 'refresh_contribution': True, 'vs_frozen': 0.021421408714410062}, 'M512_s42': {'quality': False, 'cost': True, 'vs_local': -0.13249479924217045, 'vs_own': 0.038218785106682085, 'vs_shuffle': -0.0007320152787252954, 'vs_classmean': 0.0015964721242283098, 'vs_hard': -0.0013991060985687476, 'refresh_contribution': False, 'vs_frozen': 0.0009782260325364445}}
+docs/file-index.md: 1120 files
+UPDATED audited report v9 1 / 2
+Full report: 7 audited arms, 48 ten-metric rows; actual maxrounds {'h_local': 3, 'h_gaussian': 3, 'h_gaussian_diag': 3, 'h_gaussian_lr4': 3, 'h_gaussian_own': 3, 'h_dml': 3, 'h_dml_own': 3}
+docs/file-index.md: 1120 files
+UPDATED audited report full-validation 4 / 8

@@ -1,0 +1,20 @@
+{'h_local': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}, 'h_gaussian': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK catbaochau/mobihet-full1-s42-20261013-cont01-v1 normal
+{'h_local': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}, 'h_gaussian': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK catbaochau/mobihet-full1-s42-20261013-cont01-v1 no-progress
+PASS CONTINUATION NOTEBOOK catbaochau/mobihet-full1-s42-20261013-cont01-v1 exhausted
+{'h_gaussian_diag': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}, 'h_gaussian_lr4': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK minhtriethihi/mobihet-full2-s42-20261013-cont01-v1 normal
+{'h_gaussian_diag': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}, 'h_gaussian_lr4': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK minhtriethihi/mobihet-full2-s42-20261013-cont01-v1 no-progress
+PASS CONTINUATION NOTEBOOK minhtriethihi/mobihet-full2-s42-20261013-cont01-v1 exhausted
+{'h_gaussian_own': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}, 'h_dml': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK khanhmay0304/mobihet-full3-s42-20261013-cont01-v1 normal
+{'h_gaussian_own': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}, 'h_dml': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK khanhmay0304/mobihet-full3-s42-20261013-cont01-v1 no-progress
+PASS CONTINUATION NOTEBOOK khanhmay0304/mobihet-full3-s42-20261013-cont01-v1 exhausted
+{'h_dml_own': {'rc': 0, 'complete': False, 'rounds': 6, 'previous_round': 3, 'new_rounds': 3, 'target_rounds': 50, 'continuation_verified': True, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK catbaochau/mobihet-full4-s42-20261013-cont01-v1 normal
+{'h_dml_own': {'rc': 0, 'complete': False, 'rounds': 3, 'previous_round': 3, 'new_rounds': 0, 'target_rounds': 50, 'continuation_verified': False, 'worst_round_seconds': 100.0}}
+PASS CONTINUATION NOTEBOOK catbaochau/mobihet-full4-s42-20261013-cont01-v1 no-progress
+PASS CONTINUATION NOTEBOOK catbaochau/mobihet-full4-s42-20261013-cont01-v1 exhausted
