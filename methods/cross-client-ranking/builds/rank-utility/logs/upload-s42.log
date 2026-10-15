@@ -1,0 +1,743 @@
+Starting upload for file train_14_y.npy
+Upload successful: train_14_y.npy (70KB)
+Starting upload for file train_13_y.npy
+Upload successful: train_13_y.npy (41KB)
+Starting upload for file rank_driver.py
+Upload successful: rank_driver.py (13KB)
+Starting upload for file train_17_g.npy
+Upload successful: train_17_g.npy (1MB)
+Starting upload for file v5_books.py
+Upload successful: v5_books.py (7KB)
+Starting upload for file train_7_g.npy
+Upload successful: train_7_g.npy (270KB)
+Starting upload for file boundary_logging.py
+Upload successful: boundary_logging.py (695B)
+Starting upload for file train_14_X.npy
+Upload successful: train_14_X.npy (9MB)
+Starting upload for file v3_methods.py
+Upload successful: v3_methods.py (8KB)
+Starting upload for file old_g.npy
+Upload successful: old_g.npy (512KB)
+Starting upload for file v4_mala.py
+Upload successful: v4_mala.py (4KB)
+Starting upload for file train_0_y.npy
+Upload successful: train_0_y.npy (77KB)
+Starting upload for file train_12_X.npy
+Upload successful: train_12_X.npy (4MB)
+Starting upload for file v7_nystrom.py
+Upload successful: v7_nystrom.py (12KB)
+Starting upload for file v9_anchor.py
+Upload successful: v9_anchor.py (10KB)
+Starting upload for file v8_run.py
+Upload successful: v8_run.py (642B)
+Starting upload for file rank_math.py
+Upload successful: rank_math.py (6KB)
+Starting upload for file train_0_X.npy
+Upload successful: train_0_X.npy (10MB)
+Starting upload for file teacher_driver.py
+Upload successful: teacher_driver.py (13KB)
+Starting upload for file v9_run.py
+Upload successful: v9_run.py (479B)
+Starting upload for file train_10_y.npy
+Upload successful: train_10_y.npy (61KB)
+Starting upload for file v5_run.py
+Upload successful: v5_run.py (1020B)
+Starting upload for file input_manifest.json
+Upload successful: input_manifest.json (10KB)
+Starting upload for file new_methods.py
+Upload successful: new_methods.py (8KB)
+Starting upload for file prepare.py
+Upload successful: prepare.py (10KB)
+Starting upload for file group_y.npy
+Upload successful: group_y.npy (64KB)
+Starting upload for file archs.py
+Upload successful: archs.py (1KB)
+Starting upload for file v6_schema.py
+Upload successful: v6_schema.py (4KB)
+Starting upload for file __init__.py
+Upload successful: __init__.py (0B)
+Starting upload for file train_1_y.npy
+Upload successful: train_1_y.npy (40KB)
+Starting upload for file channel.py
+Upload successful: channel.py (3KB)
+Starting upload for file train_5_g.npy
+Upload successful: train_5_g.npy (351KB)
+Starting upload for file v3_dense.py
+Upload successful: v3_dense.py (621B)
+Starting upload for file train_7_X.npy
+Upload successful: train_7_X.npy (4MB)
+Starting upload for file v10_run.py
+Upload successful: v10_run.py (457B)
+Starting upload for file train_7_y.npy
+Upload successful: train_7_y.npy (34KB)
+Starting upload for file train_13_g.npy
+Upload successful: train_13_g.npy (327KB)
+Starting upload for file v6_run.py
+Upload successful: v6_run.py (1KB)
+Starting upload for file group_X.npy
+Upload successful: group_X.npy (8MB)
+Starting upload for file source_manifest.json
+Upload successful: source_manifest.json (4KB)
+Starting upload for file dagsnet.py
+Upload successful: dagsnet.py (8KB)
+Starting upload for file train_19_y.npy
+Upload successful: train_19_y.npy (27KB)
+Starting upload for file train_10_g.npy
+Upload successful: train_10_g.npy (485KB)
+Starting upload for file train_8_g.npy
+Upload successful: train_8_g.npy (513KB)
+Starting upload for file train_0_g.npy
+Upload successful: train_0_g.npy (612KB)
+Starting upload for file train_2_g.npy
+Upload successful: train_2_g.npy (482KB)
+Starting upload for file metrics.py
+Upload successful: metrics.py (2KB)
+Starting upload for file v4_schema.py
+Upload successful: v4_schema.py (3KB)
+Starting upload for file new_fl.py
+Upload successful: new_fl.py (11KB)
+Starting upload for file train_12_y.npy
+Upload successful: train_12_y.npy (34KB)
+Starting upload for file train_8_y.npy
+Upload successful: train_8_y.npy (64KB)
+Starting upload for file train_2_X.npy
+Upload successful: train_2_X.npy (8MB)
+Starting upload for file v7_run.py
+Upload successful: v7_run.py (513B)
+Starting upload for file train_18_g.npy
+Upload successful: train_18_g.npy (194KB)
+Starting upload for file model_packet.py
+Upload successful: model_packet.py (3KB)
+Starting upload for file group_g.npy
+Upload successful: group_g.npy (512KB)
+Starting upload for file train_6_g.npy
+Upload successful: train_6_g.npy (614KB)
+Starting upload for file train_17_y.npy
+Upload successful: train_17_y.npy (133KB)
+Starting upload for file train_16_X.npy
+Upload successful: train_16_X.npy (3MB)
+Starting upload for file train_11_X.npy
+Upload successful: train_11_X.npy (5MB)
+Starting upload for file train_6_X.npy
+Upload successful: train_6_X.npy (10MB)
+Starting upload for file v6_geometry.py
+Upload successful: v6_geometry.py (15KB)
+Starting upload for file train_8_X.npy
+Upload successful: train_8_X.npy (8MB)
+Starting upload for file train_5_y.npy
+Upload successful: train_5_y.npy (44KB)
+Starting upload for file meta.json
+Upload successful: meta.json (3KB)
+Starting upload for file warm-proof.json
+Upload successful: warm-proof.json (360B)
+Starting upload for file train_10_X.npy
+Upload successful: train_10_X.npy (8MB)
+Starting upload for file train_15_X.npy
+Upload successful: train_15_X.npy (4MB)
+Starting upload for file train_3_g.npy
+Upload successful: train_3_g.npy (265KB)
+Starting upload for file v3_run.py
+Upload successful: v3_run.py (611B)
+Starting upload for file v8_hybrid.py
+Upload successful: v8_hybrid.py (7KB)
+Starting upload for file mobility.py
+Upload successful: mobility.py (10KB)
+Starting upload for file train_16_g.npy
+Upload successful: train_16_g.npy (155KB)
+Starting upload for file p2.py
+Upload successful: p2.py (11KB)
+Starting upload for file train_17_X.npy
+Upload successful: train_17_X.npy (17MB)
+Starting upload for file train_13_X.npy
+Upload successful: train_13_X.npy (5MB)
+Starting upload for file train_9_g.npy
+Upload successful: train_9_g.npy (227KB)
+Starting upload for file train_4_g.npy
+Upload successful: train_4_g.npy (344KB)
+Starting upload for file train_6_y.npy
+Upload successful: train_6_y.npy (77KB)
+Starting upload for file train_9_y.npy
+Upload successful: train_9_y.npy (29KB)
+Starting upload for file train_18_y.npy
+Upload successful: train_18_y.npy (24KB)
+Starting upload for file pilot.py
+Upload successful: pilot.py (27KB)
+Starting upload for file v7_basis.py
+Upload successful: v7_basis.py (6KB)
+Starting upload for file train_15_y.npy
+Upload successful: train_15_y.npy (28KB)
+Starting upload for file v2_run.py
+Upload successful: v2_run.py (13KB)
+Starting upload for file train_16_y.npy
+Upload successful: train_16_y.npy (20KB)
+Starting upload for file train_14_g.npy
+Upload successful: train_14_g.npy (556KB)
+Starting upload for file train_11_g.npy
+Upload successful: train_11_g.npy (335KB)
+Starting upload for file v3_math.py
+Upload successful: v3_math.py (4KB)
+Starting upload for file train_15_g.npy
+Upload successful: train_15_g.npy (221KB)
+Starting upload for file v5_anchor.py
+Upload successful: v5_anchor.py (7KB)
+Starting upload for file v4_run.py
+Upload successful: v4_run.py (845B)
+Starting upload for file v10_energy.py
+Upload successful: v10_energy.py (8KB)
+Starting upload for file train_11_y.npy
+Upload successful: train_11_y.npy (42KB)
+Starting upload for file train_3_y.npy
+Upload successful: train_3_y.npy (33KB)
+Starting upload for file manifest.json
+Upload successful: manifest.json (13KB)
+Starting upload for file v4_support.py
+Upload successful: v4_support.py (5KB)
+Starting upload for file rank_method.py
+Upload successful: rank_method.py (9KB)
+Starting upload for file train_4_X.npy
+Upload successful: train_4_X.npy (6MB)
+Starting upload for file train_5_X.npy
+Upload successful: train_5_X.npy (6MB)
+Starting upload for file train_9_X.npy
+Upload successful: train_9_X.npy (4MB)
+Starting upload for file train_2_y.npy
+Upload successful: train_2_y.npy (60KB)
+Starting upload for file train_1_g.npy
+Upload successful: train_1_g.npy (316KB)
+Starting upload for file rank_verify.py
+Upload successful: rank_verify.py (6KB)
+Starting upload for file train_18_X.npy
+Upload successful: train_18_X.npy (3MB)
+Starting upload for file old_X.npy
+Upload successful: old_X.npy (8MB)
+Starting upload for file train_4_y.npy
+Upload successful: train_4_y.npy (43KB)
+Starting upload for file train_19_X.npy
+Upload successful: train_19_X.npy (3MB)
+Starting upload for file old_y.npy
+Upload successful: old_y.npy (64KB)
+Starting upload for file train_1_X.npy
+Upload successful: train_1_X.npy (5MB)
+Starting upload for file warm_weights.pt
+Upload successful: warm_weights.pt (32MB)
+Starting upload for file train_12_g.npy
+Upload successful: train_12_g.npy (272KB)
+Starting upload for file v2_methods.py
+Upload successful: v2_methods.py (12KB)
+Starting upload for file v2_math.py
+Upload successful: v2_math.py (8KB)
+Starting upload for file teacher_base.py
+Upload successful: teacher_base.py (5KB)
+Starting upload for file train_19_g.npy
+Upload successful: train_19_g.npy (212KB)
+Starting upload for file train_3_X.npy
+Upload successful: train_3_X.npy (4MB)
+Your private Dataset is being created. Please check progress at https://www.kaggle.com/datasets/minhtriethihi/mobihet-cr-u-s42-20261015-v1-src
+
+  0%|          | 0.00/69.6k [00:00<?, ?B/s]
+ 23%|██▎       | 16.0k/69.6k [00:00<00:00, 122kB/s]
+100%|██████████| 69.6k/69.6k [00:01<00:00, 61.9kB/s]
+
+  0%|          | 0.00/41.0k [00:00<?, ?B/s]
+100%|██████████| 41.0k/41.0k [00:00<00:00, 45.8kB/s]
+
+  0%|          | 0.00/13.2k [00:00<?, ?B/s]
+100%|██████████| 13.2k/13.2k [00:01<00:00, 12.4kB/s]
+
+  0%|          | 0.00/1.04M [00:00<?, ?B/s]
+  2%|▏         | 16.0k/1.04M [00:00<00:08, 133kB/s]
+ 26%|██▌       | 272k/1.04M [00:00<00:00, 1.47MB/s]
+100%|██████████| 1.04M/1.04M [00:02<00:00, 451kB/s]
+
+  0%|          | 0.00/7.29k [00:00<?, ?B/s]
+100%|██████████| 7.29k/7.29k [00:00<00:00, 62.9kB/s]
+100%|██████████| 7.29k/7.29k [00:00<00:00, 7.52kB/s]
+
+  0%|          | 0.00/270k [00:00<?, ?B/s]
+ 53%|█████▎    | 144k/270k [00:00<00:00, 972kB/s]
+100%|██████████| 270k/270k [00:01<00:00, 176kB/s]
+
+  0%|          | 0.00/695 [00:00<?, ?B/s]
+100%|██████████| 695/695 [00:00<00:00, 718B/s]
+
+  0%|          | 0.00/8.96M [00:00<?, ?B/s]
+  2%|▏         | 144k/8.96M [00:00<00:10, 877kB/s]
+ 17%|█▋        | 1.50M/8.96M [00:00<00:01, 6.98MB/s]
+ 50%|████▉     | 4.47M/8.96M [00:00<00:00, 15.3MB/s]
+ 68%|██████▊   | 6.11M/8.96M [00:00<00:00, 12.3MB/s]
+100%|██████████| 8.96M/8.96M [00:03<00:00, 3.10MB/s]
+
+  0%|          | 0.00/7.72k [00:00<?, ?B/s]
+100%|██████████| 7.72k/7.72k [00:00<00:00, 55.2kB/s]
+100%|██████████| 7.72k/7.72k [00:00<00:00, 8.00kB/s]
+
+  0%|          | 0.00/512k [00:00<?, ?B/s]
+ 28%|██▊       | 144k/512k [00:00<00:00, 990kB/s]
+100%|██████████| 512k/512k [00:01<00:00, 300kB/s]
+
+  0%|          | 0.00/4.42k [00:00<?, ?B/s]
+100%|██████████| 4.42k/4.42k [00:00<00:00, 4.73kB/s]
+
+  0%|          | 0.00/76.7k [00:00<?, ?B/s]
+ 21%|██        | 16.0k/76.7k [00:00<00:00, 136kB/s]
+100%|██████████| 76.7k/76.7k [00:01<00:00, 65.0kB/s]
+
+  0%|          | 0.00/4.38M [00:00<?, ?B/s]
+  0%|          | 16.0k/4.38M [00:00<00:33, 135kB/s]
+ 15%|█▌        | 688k/4.38M [00:00<00:01, 3.29MB/s]
+100%|██████████| 4.38M/4.38M [00:03<00:00, 1.51MB/s]
+
+  0%|          | 0.00/12.0k [00:00<?, ?B/s]
+100%|██████████| 12.0k/12.0k [00:00<00:00, 101kB/s]
+100%|██████████| 12.0k/12.0k [00:01<00:00, 11.6kB/s]
+
+  0%|          | 0.00/9.67k [00:00<?, ?B/s]
+100%|██████████| 9.67k/9.67k [00:00<00:00, 10.1kB/s]
+
+  0%|          | 0.00/642 [00:00<?, ?B/s]
+100%|██████████| 642/642 [00:00<00:00, 4.42kB/s]
+100%|██████████| 642/642 [00:01<00:00, 584B/s]  
+
+  0%|          | 0.00/6.40k [00:00<?, ?B/s]
+100%|██████████| 6.40k/6.40k [00:00<00:00, 64.9kB/s]
+100%|██████████| 6.40k/6.40k [00:01<00:00, 5.95kB/s]
+
+  0%|          | 0.00/9.87M [00:00<?, ?B/s]
+  0%|          | 16.0k/9.87M [00:00<01:15, 138kB/s]
+  7%|▋         | 688k/9.87M [00:00<00:02, 3.33MB/s]
+ 47%|████▋     | 4.66M/9.87M [00:00<00:00, 13.7MB/s]
+ 64%|██████▍   | 6.34M/9.87M [00:00<00:00, 12.6MB/s]
+ 86%|████████▋ | 8.52M/9.87M [00:00<00:00, 15.0MB/s]
+100%|██████████| 9.87M/9.87M [00:02<00:00, 3.59MB/s]
+
+  0%|          | 0.00/13.4k [00:00<?, ?B/s]
+100%|██████████| 13.4k/13.4k [00:00<00:00, 134kB/s]
+100%|██████████| 13.4k/13.4k [00:00<00:00, 14.4kB/s]
+
+  0%|          | 0.00/479 [00:00<?, ?B/s]
+100%|██████████| 479/479 [00:01<00:00, 421B/s]
+100%|██████████| 479/479 [00:01<00:00, 252B/s]
+
+  0%|          | 0.00/60.8k [00:00<?, ?B/s]
+ 26%|██▋       | 16.0k/60.8k [00:00<00:00, 128kB/s]
+100%|██████████| 60.8k/60.8k [00:01<00:00, 59.7kB/s]
+
+  0%|          | 0.00/1.00k [00:00<?, ?B/s]
+100%|██████████| 1.00k/1.00k [00:00<00:00, 9.96kB/s]
+100%|██████████| 1.00k/1.00k [00:01<00:00, 557B/s]  
+
+  0%|          | 0.00/9.80k [00:00<?, ?B/s]
+100%|██████████| 9.80k/9.80k [00:00<00:00, 10.2kB/s]
+
+  0%|          | 0.00/7.57k [00:00<?, ?B/s]
+100%|██████████| 7.57k/7.57k [00:00<00:00, 8.85kB/s]
+
+  0%|          | 0.00/9.86k [00:00<?, ?B/s]
+100%|██████████| 9.86k/9.86k [00:00<00:00, 87.3kB/s]
+100%|██████████| 9.86k/9.86k [00:00<00:00, 10.1kB/s]
+
+  0%|          | 0.00/64.1k [00:00<?, ?B/s]
+ 25%|██▍       | 16.0k/64.1k [00:00<00:00, 161kB/s]
+100%|██████████| 64.1k/64.1k [00:01<00:00, 60.4kB/s]
+
+  0%|          | 0.00/1.18k [00:00<?, ?B/s]
+100%|██████████| 1.18k/1.18k [00:00<00:00, 11.7kB/s]
+100%|██████████| 1.18k/1.18k [00:00<00:00, 1.28kB/s]
+
+  0%|          | 0.00/4.04k [00:00<?, ?B/s]
+100%|██████████| 4.04k/4.04k [00:00<00:00, 4.36kB/s]
+
+0.00B [00:00, ?B/s]
+0.00B [00:01, ?B/s]
+
+  0%|          | 0.00/39.6k [00:00<?, ?B/s]
+100%|██████████| 39.6k/39.6k [00:00<00:00, 41.9kB/s]
+
+  0%|          | 0.00/2.99k [00:00<?, ?B/s]
+100%|██████████| 2.99k/2.99k [00:00<00:00, 26.1kB/s]
+100%|██████████| 2.99k/2.99k [00:01<00:00, 2.02kB/s]
+
+  0%|          | 0.00/351k [00:00<?, ?B/s]
+ 41%|████      | 144k/351k [00:00<00:00, 937kB/s]
+100%|██████████| 351k/351k [00:01<00:00, 192kB/s]
+
+  0%|          | 0.00/621 [00:00<?, ?B/s]
+100%|██████████| 621/621 [00:00<00:00, 631B/s]
+
+  0%|          | 0.00/4.35M [00:00<?, ?B/s]
+  3%|▎         | 144k/4.35M [00:00<00:04, 957kB/s]
+ 49%|████▉     | 2.14M/4.35M [00:00<00:00, 9.42MB/s]
+100%|██████████| 4.35M/4.35M [00:02<00:00, 1.64MB/s]
+
+  0%|          | 0.00/457 [00:00<?, ?B/s]
+100%|██████████| 457/457 [00:00<00:00, 493B/s]
+
+  0%|          | 0.00/33.8k [00:00<?, ?B/s]
+100%|██████████| 33.8k/33.8k [00:00<00:00, 40.8kB/s]
+
+  0%|          | 0.00/327k [00:00<?, ?B/s]
+ 44%|████▍     | 144k/327k [00:00<00:00, 960kB/s]
+100%|██████████| 327k/327k [00:01<00:00, 213kB/s]
+
+  0%|          | 0.00/1.48k [00:00<?, ?B/s]
+100%|██████████| 1.48k/1.48k [00:00<00:00, 1.62kB/s]
+
+  0%|          | 0.00/8.25M [00:00<?, ?B/s]
+  2%|▏         | 144k/8.25M [00:00<00:08, 952kB/s]
+ 19%|█▊        | 1.55M/8.25M [00:00<00:00, 7.44MB/s]
+ 56%|█████▋    | 4.66M/8.25M [00:00<00:00, 14.8MB/s]
+ 78%|███████▊  | 6.41M/8.25M [00:00<00:00, 15.1MB/s]
+100%|██████████| 8.25M/8.25M [00:03<00:00, 2.45MB/s]
+
+  0%|          | 0.00/3.83k [00:00<?, ?B/s]
+100%|██████████| 3.83k/3.83k [00:00<00:00, 4.11kB/s]
+
+  0%|          | 0.00/7.78k [00:00<?, ?B/s]
+100%|██████████| 7.78k/7.78k [00:00<00:00, 8.60kB/s]
+
+  0%|          | 0.00/26.6k [00:00<?, ?B/s]
+100%|██████████| 26.6k/26.6k [00:00<00:00, 28.0kB/s]
+
+  0%|          | 0.00/485k [00:00<?, ?B/s]
+ 30%|██▉       | 144k/485k [00:00<00:00, 1.02MB/s]
+100%|██████████| 485k/485k [00:02<00:00, 243kB/s] 
+
+  0%|          | 0.00/513k [00:00<?, ?B/s]
+ 28%|██▊       | 144k/513k [00:00<00:00, 980kB/s]
+100%|██████████| 513k/513k [00:02<00:00, 254kB/s]
+
+  0%|          | 0.00/612k [00:00<?, ?B/s]
+ 24%|██▎       | 144k/612k [00:00<00:00, 924kB/s]
+100%|██████████| 612k/612k [00:02<00:00, 270kB/s]
+
+  0%|          | 0.00/482k [00:00<?, ?B/s]
+  3%|▎         | 16.0k/482k [00:00<00:03, 138kB/s]
+100%|██████████| 482k/482k [00:02<00:00, 239kB/s] 
+
+  0%|          | 0.00/2.29k [00:00<?, ?B/s]
+100%|██████████| 2.29k/2.29k [00:00<00:00, 21.0kB/s]
+100%|██████████| 2.29k/2.29k [00:01<00:00, 2.34kB/s]
+
+  0%|          | 0.00/3.18k [00:00<?, ?B/s]
+100%|██████████| 3.18k/3.18k [00:00<00:00, 3.38kB/s]
+
+  0%|          | 0.00/10.6k [00:00<?, ?B/s]
+100%|██████████| 10.6k/10.6k [00:00<00:00, 103kB/s]
+100%|██████████| 10.6k/10.6k [00:00<00:00, 11.3kB/s]
+
+  0%|          | 0.00/34.1k [00:00<?, ?B/s]
+100%|██████████| 34.1k/34.1k [00:00<00:00, 38.1kB/s]
+
+  0%|          | 0.00/64.2k [00:00<?, ?B/s]
+100%|██████████| 64.2k/64.2k [00:01<00:00, 60.2kB/s]
+
+  0%|          | 0.00/7.76M [00:00<?, ?B/s]
+  2%|▏         | 144k/7.76M [00:00<00:08, 952kB/s]
+  9%|▊         | 688k/7.76M [00:00<00:02, 2.81MB/s]
+ 28%|██▊       | 2.19M/7.76M [00:00<00:00, 6.07MB/s]
+ 43%|████▎     | 3.36M/7.76M [00:00<00:00, 5.84MB/s]
+ 52%|█████▏    | 4.06M/7.76M [00:00<00:00, 6.11MB/s]
+ 60%|██████    | 4.66M/7.76M [00:00<00:00, 5.39MB/s]
+ 69%|██████▉   | 5.36M/7.76M [00:01<00:00, 5.55MB/s]
+ 84%|████████▍ | 6.52M/7.76M [00:01<00:00, 6.26MB/s]
+ 99%|█████████▉| 7.69M/7.76M [00:01<00:00, 6.16MB/s]
+100%|██████████| 7.76M/7.76M [00:02<00:00, 2.79MB/s]
+
+  0%|          | 0.00/513 [00:00<?, ?B/s]
+100%|██████████| 513/513 [00:01<00:00, 437B/s]
+100%|██████████| 513/513 [00:02<00:00, 251B/s]
+
+  0%|          | 0.00/194k [00:00<?, ?B/s]
+  8%|▊         | 16.0k/194k [00:00<00:01, 156kB/s]
+100%|██████████| 194k/194k [00:01<00:00, 121kB/s] 
+
+  0%|          | 0.00/3.22k [00:00<?, ?B/s]
+100%|██████████| 3.22k/3.22k [00:00<00:00, 31.5kB/s]
+100%|██████████| 3.22k/3.22k [00:00<00:00, 3.61kB/s]
+
+  0%|          | 0.00/512k [00:00<?, ?B/s]
+  3%|▎         | 16.0k/512k [00:00<00:09, 54.7kB/s]
+ 53%|█████▎    | 272k/512k [00:00<00:00, 777kB/s]  
+100%|█████████▉| 512k/512k [00:00<00:00, 1.05MB/s]
+100%|██████████| 512k/512k [00:02<00:00, 241kB/s] 
+
+  0%|          | 0.00/614k [00:00<?, ?B/s]
+ 23%|██▎       | 144k/614k [00:00<00:00, 944kB/s]
+100%|██████████| 614k/614k [00:01<00:00, 337kB/s]
+
+  0%|          | 0.00/133k [00:00<?, ?B/s]
+ 12%|█▏        | 16.0k/133k [00:00<00:00, 157kB/s]
+100%|██████████| 133k/133k [00:01<00:00, 102kB/s] 
+
+  0%|          | 0.00/2.50M [00:00<?, ?B/s]
+  6%|▌         | 144k/2.50M [00:00<00:02, 1.03MB/s]
+ 60%|█████▉    | 1.50M/2.50M [00:00<00:00, 7.59MB/s]
+100%|██████████| 2.50M/2.50M [00:02<00:00, 894kB/s] 
+
+  0%|          | 0.00/5.40M [00:00<?, ?B/s]
+  3%|▎         | 144k/5.40M [00:00<00:05, 1.01MB/s]
+ 19%|█▉        | 1.03M/5.40M [00:00<00:00, 5.01MB/s]
+ 87%|████████▋ | 4.70M/5.40M [00:00<00:00, 15.7MB/s]
+100%|██████████| 5.40M/5.40M [00:03<00:00, 1.87MB/s]
+
+  0%|          | 0.00/9.89M [00:00<?, ?B/s]
+  1%|▏         | 144k/9.89M [00:00<00:10, 1.02MB/s]
+ 12%|█▏        | 1.14M/9.89M [00:00<00:01, 5.70MB/s]
+ 36%|███▌      | 3.55M/9.89M [00:00<00:00, 13.5MB/s]
+ 65%|██████▌   | 6.47M/9.89M [00:00<00:00, 13.6MB/s]
+ 82%|████████▏ | 8.16M/9.89M [00:00<00:00, 13.6MB/s]
+100%|██████████| 9.89M/9.89M [00:03<00:00, 2.97MB/s]
+
+  0%|          | 0.00/15.5k [00:00<?, ?B/s]
+100%|██████████| 15.5k/15.5k [00:00<00:00, 140kB/s]
+100%|██████████| 15.5k/15.5k [00:00<00:00, 17.0kB/s]
+
+  0%|          | 0.00/8.26M [00:00<?, ?B/s]
+  2%|▏         | 144k/8.26M [00:00<00:08, 1.02MB/s]
+ 25%|██▌       | 2.08M/8.26M [00:00<00:00, 9.72MB/s]
+ 69%|██████▉   | 5.70M/8.26M [00:00<00:00, 16.5MB/s]
+ 88%|████████▊ | 7.28M/8.26M [00:00<00:00, 15.3MB/s]
+100%|██████████| 8.26M/8.26M [00:03<00:00, 2.69MB/s]
+
+  0%|          | 0.00/44.0k [00:00<?, ?B/s]
+ 36%|███▋      | 16.0k/44.0k [00:00<00:00, 136kB/s]
+100%|██████████| 44.0k/44.0k [00:00<00:00, 46.6kB/s]
+
+  0%|          | 0.00/3.04k [00:00<?, ?B/s]
+100%|██████████| 3.04k/3.04k [00:00<00:00, 3.39kB/s]
+
+  0%|          | 0.00/360 [00:00<?, ?B/s]
+100%|██████████| 360/360 [00:00<00:00, 382B/s]
+
+  0%|          | 0.00/7.82M [00:00<?, ?B/s]
+  0%|          | 16.0k/7.82M [00:00<00:59, 137kB/s]
+  9%|▊         | 688k/7.82M [00:00<00:02, 3.34MB/s]
+ 59%|█████▉    | 4.59M/7.82M [00:00<00:00, 14.3MB/s]
+ 79%|███████▉  | 6.17M/7.82M [00:00<00:00, 13.3MB/s]
+100%|██████████| 7.82M/7.82M [00:03<00:00, 2.52MB/s]
+
+  0%|          | 0.00/3.57M [00:00<?, ?B/s]
+  0%|          | 16.0k/3.57M [00:00<00:24, 152kB/s]
+ 17%|█▋        | 624k/3.57M [00:00<00:00, 3.24MB/s]
+100%|██████████| 3.57M/3.57M [00:02<00:00, 1.31MB/s]
+
+  0%|          | 0.00/265k [00:00<?, ?B/s]
+  6%|▌         | 16.0k/265k [00:00<00:01, 129kB/s]
+100%|██████████| 265k/265k [00:01<00:00, 136kB/s] 
+
+  0%|          | 0.00/611 [00:00<?, ?B/s]
+100%|██████████| 611/611 [00:00<00:00, 643B/s]
+
+  0%|          | 0.00/7.16k [00:00<?, ?B/s]
+100%|██████████| 7.16k/7.16k [00:01<00:00, 7.27kB/s]
+
+  0%|          | 0.00/9.56k [00:00<?, ?B/s]
+100%|██████████| 9.56k/9.56k [00:00<00:00, 10.1kB/s]
+
+  0%|          | 0.00/155k [00:00<?, ?B/s]
+100%|██████████| 155k/155k [00:01<00:00, 116kB/s]
+
+  0%|          | 0.00/11.2k [00:00<?, ?B/s]
+100%|██████████| 11.2k/11.2k [00:00<00:00, 13.0kB/s]
+
+  0%|          | 0.00/17.2M [00:00<?, ?B/s]
+  1%|          | 208k/17.2M [00:00<00:13, 1.35MB/s]
+ 15%|█▌        | 2.66M/17.2M [00:00<00:01, 11.3MB/s]
+ 31%|███       | 5.36M/17.2M [00:00<00:00, 13.0MB/s]
+ 50%|█████     | 8.62M/17.2M [00:00<00:00, 16.8MB/s]
+ 61%|██████    | 10.5M/17.2M [00:02<00:02, 3.21MB/s]
+ 80%|███████▉  | 13.7M/17.2M [00:02<00:00, 4.92MB/s]
+ 88%|████████▊ | 15.2M/17.2M [00:02<00:00, 5.65MB/s]
+ 99%|█████████▉| 17.0M/17.2M [00:03<00:00, 5.88MB/s]
+100%|██████████| 17.2M/17.2M [00:04<00:00, 4.01MB/s]
+
+  0%|          | 0.00/5.27M [00:00<?, ?B/s]
+  5%|▌         | 272k/5.27M [00:00<00:03, 1.61MB/s]
+ 66%|██████▌   | 3.48M/5.27M [00:00<00:00, 14.3MB/s]
+100%|██████████| 5.27M/5.27M [00:02<00:00, 1.93MB/s]
+
+  0%|          | 0.00/227k [00:00<?, ?B/s]
+  7%|▋         | 16.0k/227k [00:00<00:05, 41.9kB/s]
+100%|██████████| 227k/227k [00:01<00:00, 128kB/s]  
+
+  0%|          | 0.00/344k [00:00<?, ?B/s]
+ 79%|███████▉  | 272k/344k [00:00<00:00, 1.59MB/s]
+100%|██████████| 344k/344k [00:01<00:00, 186kB/s] 
+
+  0%|          | 0.00/76.8k [00:00<?, ?B/s]
+100%|██████████| 76.8k/76.8k [00:01<00:00, 67.6kB/s]
+
+  0%|          | 0.00/28.5k [00:00<?, ?B/s]
+ 56%|█████▌    | 16.0k/28.5k [00:00<00:00, 134kB/s]
+100%|██████████| 28.5k/28.5k [00:01<00:00, 28.2kB/s]
+
+  0%|          | 0.00/24.3k [00:00<?, ?B/s]
+ 66%|██████▌   | 16.0k/24.3k [00:00<00:00, 161kB/s]
+100%|██████████| 24.3k/24.3k [00:00<00:00, 26.0kB/s]
+
+  0%|          | 0.00/27.2k [00:00<?, ?B/s]
+100%|██████████| 27.2k/27.2k [00:00<00:00, 28.2kB/s]
+
+  0%|          | 0.00/5.87k [00:00<?, ?B/s]
+100%|██████████| 5.87k/5.87k [00:00<00:00, 52.2kB/s]
+100%|██████████| 5.87k/5.87k [00:00<00:00, 6.34kB/s]
+
+  0%|          | 0.00/27.8k [00:00<?, ?B/s]
+100%|██████████| 27.8k/27.8k [00:01<00:00, 14.4kB/s]
+
+  0%|          | 0.00/12.9k [00:00<?, ?B/s]
+100%|██████████| 12.9k/12.9k [00:00<00:00, 13.8kB/s]
+
+  0%|          | 0.00/19.5k [00:00<?, ?B/s]
+100%|██████████| 19.5k/19.5k [00:00<00:00, 21.0kB/s]
+
+  0%|          | 0.00/556k [00:00<?, ?B/s]
+ 49%|████▉     | 272k/556k [00:00<00:00, 1.59MB/s]
+100%|██████████| 556k/556k [00:02<00:00, 259kB/s] 
+
+  0%|          | 0.00/335k [00:00<?, ?B/s]
+ 81%|████████  | 272k/335k [00:00<00:00, 1.59MB/s]
+100%|██████████| 335k/335k [00:01<00:00, 196kB/s] 
+
+  0%|          | 0.00/3.53k [00:00<?, ?B/s]
+100%|██████████| 3.53k/3.53k [00:00<00:00, 4.11kB/s]
+
+  0%|          | 0.00/221k [00:00<?, ?B/s]
+100%|██████████| 221k/221k [00:01<00:00, 136kB/s]
+
+  0%|          | 0.00/7.02k [00:00<?, ?B/s]
+100%|██████████| 7.02k/7.02k [00:00<00:00, 62.0kB/s]
+100%|██████████| 7.02k/7.02k [00:00<00:00, 7.21kB/s]
+
+  0%|          | 0.00/845 [00:00<?, ?B/s]
+100%|██████████| 845/845 [00:00<00:00, 878B/s]
+
+  0%|          | 0.00/7.72k [00:00<?, ?B/s]
+100%|██████████| 7.72k/7.72k [00:00<00:00, 8.50kB/s]
+
+  0%|          | 0.00/42.0k [00:00<?, ?B/s]
+100%|██████████| 42.0k/42.0k [00:00<00:00, 46.5kB/s]
+
+  0%|          | 0.00/33.2k [00:00<?, ?B/s]
+ 48%|████▊     | 16.0k/33.2k [00:00<00:00, 148kB/s]
+100%|██████████| 33.2k/33.2k [00:00<00:00, 34.9kB/s]
+
+  0%|          | 0.00/12.6k [00:00<?, ?B/s]
+100%|██████████| 12.6k/12.6k [00:01<00:00, 11.2kB/s]
+
+  0%|          | 0.00/5.44k [00:00<?, ?B/s]
+100%|██████████| 5.44k/5.44k [00:00<00:00, 50.8kB/s]
+100%|██████████| 5.44k/5.44k [00:00<00:00, 5.67kB/s]
+
+  0%|          | 0.00/8.55k [00:00<?, ?B/s]
+100%|██████████| 8.55k/8.55k [00:00<00:00, 9.06kB/s]
+
+  0%|          | 0.00/5.54M [00:00<?, ?B/s]
+  5%|▍         | 272k/5.54M [00:00<00:03, 1.44MB/s]
+ 59%|█████▊    | 3.25M/5.54M [00:00<00:00, 13.6MB/s]
+100%|██████████| 5.54M/5.54M [00:03<00:00, 1.88MB/s]
+
+  0%|          | 0.00/5.66M [00:00<?, ?B/s]
+  0%|          | 16.0k/5.66M [00:00<00:44, 134kB/s]
+ 11%|█         | 624k/5.66M [00:00<00:01, 3.02MB/s]
+ 72%|███████▏  | 4.06M/5.66M [00:00<00:00, 14.9MB/s]
+ 97%|█████████▋| 5.47M/5.66M [00:00<00:00, 13.8MB/s]
+100%|██████████| 5.66M/5.66M [00:03<00:00, 1.85MB/s]
+
+  0%|          | 0.00/3.66M [00:00<?, ?B/s]
+ 10%|█         | 384k/3.66M [00:00<00:01, 2.02MB/s]
+100%|██████████| 3.66M/3.66M [00:03<00:00, 1.23MB/s]
+
+  0%|          | 0.00/60.3k [00:00<?, ?B/s]
+ 27%|██▋       | 16.0k/60.3k [00:00<00:00, 141kB/s]
+100%|██████████| 60.3k/60.3k [00:00<00:00, 65.9kB/s]
+
+  0%|          | 0.00/316k [00:00<?, ?B/s]
+100%|██████████| 316k/316k [00:01<00:00, 181kB/s]
+
+  0%|          | 0.00/6.14k [00:00<?, ?B/s]
+100%|██████████| 6.14k/6.14k [00:00<00:00, 6.53kB/s]
+
+  0%|          | 0.00/3.12M [00:00<?, ?B/s]
+ 12%|█▏        | 384k/3.12M [00:00<00:01, 2.16MB/s]
+ 85%|████████▌ | 2.66M/3.12M [00:00<00:00, 11.6MB/s]
+100%|██████████| 3.12M/3.12M [00:02<00:00, 1.22MB/s]
+
+  0%|          | 0.00/8.25M [00:00<?, ?B/s]
+  0%|          | 16.0k/8.25M [00:00<00:53, 162kB/s]
+  7%|▋         | 576k/8.25M [00:00<00:02, 2.95MB/s]
+ 54%|█████▍    | 4.47M/8.25M [00:00<00:00, 14.0MB/s]
+ 76%|███████▌  | 6.23M/8.25M [00:00<00:00, 14.7MB/s]
+100%|██████████| 8.25M/8.25M [00:03<00:00, 2.67MB/s]
+
+  0%|          | 0.00/43.1k [00:00<?, ?B/s]
+100%|██████████| 43.1k/43.1k [00:00<00:00, 47.6kB/s]
+
+  0%|          | 0.00/3.42M [00:00<?, ?B/s]
+ 11%|█         | 384k/3.42M [00:00<00:02, 1.28MB/s]
+ 16%|█▋        | 576k/3.42M [00:00<00:02, 1.35MB/s]
+ 27%|██▋       | 928k/3.42M [00:00<00:01, 1.62MB/s]
+ 37%|███▋      | 1.27M/3.42M [00:00<00:01, 1.37MB/s]
+ 52%|█████▏    | 1.78M/3.42M [00:01<00:00, 1.81MB/s]
+ 69%|██████▉   | 2.38M/3.42M [00:01<00:00, 2.35MB/s]
+ 80%|███████▉  | 2.72M/3.42M [00:01<00:00, 1.97MB/s]
+ 90%|█████████ | 3.08M/3.42M [00:01<00:00, 2.17MB/s]
+100%|██████████| 3.42M/3.42M [00:01<00:00, 2.25MB/s]
+100%|██████████| 3.42M/3.42M [00:02<00:00, 1.32MB/s]
+
+  0%|          | 0.00/64.1k [00:00<?, ?B/s]
+ 25%|██▍       | 16.0k/64.1k [00:00<00:00, 136kB/s]
+100%|██████████| 64.1k/64.1k [00:01<00:00, 61.7kB/s]
+
+  0%|          | 0.00/5.09M [00:00<?, ?B/s]
+  7%|▋         | 384k/5.09M [00:00<00:02, 2.22MB/s]
+ 19%|█▉        | 992k/5.09M [00:00<00:01, 3.21MB/s]
+ 33%|███▎      | 1.67M/5.09M [00:00<00:00, 4.18MB/s]
+ 49%|████▉     | 2.48M/5.09M [00:00<00:00, 5.11MB/s]
+ 70%|██████▉   | 3.55M/5.09M [00:00<00:00, 5.59MB/s]
+ 82%|████████▏ | 4.19M/5.09M [00:00<00:00, 5.49MB/s]
+ 97%|█████████▋| 4.94M/5.09M [00:01<00:00, 5.64MB/s]
+100%|██████████| 5.09M/5.09M [00:02<00:00, 1.93MB/s]
+
+  0%|          | 0.00/31.5M [00:00<?, ?B/s]
+  0%|          | 16.0k/31.5M [00:00<03:43, 147kB/s]
+  2%|▏         | 576k/31.5M [00:00<00:10, 2.98MB/s]
+ 12%|█▏        | 3.83M/31.5M [00:00<00:02, 14.0MB/s]
+ 21%|██▏       | 6.75M/31.5M [00:00<00:02, 12.7MB/s]
+ 31%|███       | 9.73M/31.5M [00:01<00:02, 8.63MB/s]
+ 36%|███▌      | 11.3M/31.5M [00:01<00:04, 4.79MB/s]
+ 45%|████▌     | 14.2M/31.5M [00:02<00:02, 6.56MB/s]
+ 51%|█████     | 16.0M/31.5M [00:02<00:02, 7.76MB/s]
+ 62%|██████▏   | 19.4M/31.5M [00:02<00:01, 10.2MB/s]
+ 67%|██████▋   | 21.2M/31.5M [00:02<00:00, 11.1MB/s]
+ 74%|███████▎  | 23.2M/31.5M [00:02<00:00, 12.4MB/s]
+ 78%|███████▊  | 24.7M/31.5M [00:02<00:00, 12.7MB/s]
+ 88%|████████▊ | 27.6M/31.5M [00:02<00:00, 16.4MB/s]
+ 94%|█████████▎| 29.5M/31.5M [00:03<00:00, 15.6MB/s]
+100%|██████████| 31.5M/31.5M [00:04<00:00, 7.32MB/s]
+
+  0%|          | 0.00/272k [00:00<?, ?B/s]
+100%|██████████| 272k/272k [00:01<00:00, 184kB/s]
+
+  0%|          | 0.00/12.2k [00:00<?, ?B/s]
+100%|██████████| 12.2k/12.2k [00:00<00:00, 12.9kB/s]
+
+  0%|          | 0.00/7.50k [00:00<?, ?B/s]
+100%|██████████| 7.50k/7.50k [00:00<00:00, 8.32kB/s]
+
+  0%|          | 0.00/4.50k [00:00<?, ?B/s]
+100%|██████████| 4.50k/4.50k [00:00<00:00, 4.73kB/s]
+
+  0%|          | 0.00/212k [00:00<?, ?B/s]
+  8%|▊         | 16.0k/212k [00:00<00:01, 152kB/s]
+100%|██████████| 212k/212k [00:01<00:00, 134kB/s] 
+
+  0%|          | 0.00/4.26M [00:00<?, ?B/s]
+  0%|          | 16.0k/4.26M [00:00<00:41, 107kB/s]
+  9%|▉         | 384k/4.26M [00:00<00:03, 1.28MB/s]
+ 21%|██▏       | 928k/4.26M [00:00<00:01, 2.52MB/s]
+ 39%|███▉      | 1.67M/4.26M [00:00<00:00, 3.59MB/s]
+ 58%|█████▊    | 2.48M/4.26M [00:00<00:00, 4.62MB/s]
+ 83%|████████▎ | 3.55M/4.26M [00:01<00:00, 2.62MB/s]
+ 97%|█████████▋| 4.12M/4.26M [00:01<00:00, 2.50MB/s]
+100%|██████████| 4.26M/4.26M [00:03<00:00, 1.40MB/s]

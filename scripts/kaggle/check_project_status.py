@@ -13,10 +13,15 @@ AS = ROOT / '.agents/skills/kaggle-training-notebook/scripts/kaggle_as.py'
 
 def main():
     notebooks = []
-    for path in sorted((ROOT / 'papers').glob('*/notebook/*/kernel-metadata.json')):
+    paths=list((ROOT/'papers').glob('*/notebook/*/kernel-metadata.json'))
+    paths+=list((ROOT/'methods').glob('*/builds/*/notebooks/*/kernel-metadata.json'))
+    seen=set()
+    for path in sorted(paths):
         if not (path.parent / 'PUSHED').exists():
             continue
         meta = json.loads(path.read_text())
+        if meta['id'] in seen:continue
+        seen.add(meta['id'])
         notebooks.append(dict(kernel=meta['id'], build=path.parts[-4], folder=str(path.parent.relative_to(ROOT))))
 
     def read(item):

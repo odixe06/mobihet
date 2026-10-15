@@ -1,0 +1,8 @@
+{
+  "gradient": true,
+  "wire": true,
+  "overflow_fallback": true,
+  "exact_resume_arms": 4,
+  "effective_mass": true,
+  "scope": "bounded fixture on local GPU; not T4 cost/utility/whole-data evidence"
+}

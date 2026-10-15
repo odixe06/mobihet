@@ -1,0 +1,10 @@
+odixeuit/mobihet-bc-u-s42-20261015-cont02-v1 has status "KernelWorkerStatus.COMPLETE"
+odixeuit/mobihet-bc-u-s42-20261015-cont02-v1: 1244 files, 2 parallel
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/odixe/nckh/veremi/mobihet/methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/collect_boundary_calibration.py", line 93, in collect
+    subprocess.run(prefix+[sys.executable,str(HELPER/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','6',
+  File "/home/odixe/miniforge3/envs/nckh/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/odixe/miniforge3/envs/nckh/bin/python', '/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/kaggle_as.py', 'odixeuit', '--', '/home/odixe/miniforge3/envs/nckh/bin/python', '/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/pull_kernel_output.py', 'odixeuit/mobihet-bc-u-s42-20261015-cont02-v1', '-p', '/home/odixe/nckh/veremi/mobihet/papers/boundary-cells/kaggle/bc-u-s42-20261015-cont02-v1', '-j', '2', '--pattern', '^(source/|runs/(?![^/]+/wandb/))']' returned non-zero exit status 241.
+ERROR conda.cli.main_run:execute(148): `conda run python -c import sys,torch;from pathlib import Path;sys.path.insert(0,'methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts');from collect_boundary_calibration import collect;torch.set_num_threads(1);[collect(Path('methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks')/f'bc-u-s{s}-20261015-cont02-v1',utility=True) for s in (42,43)]` failed. (See above for error)

@@ -1,0 +1,11 @@
+{
+  "42": {
+    "ratios": {
+      "algorithm_seconds": 1.2556339353151218,
+      "sec": 1.217978837105666
+    },
+    "pass_cost": true,
+    "source": "methods/cross-client-ranking/builds/rank-utility/artifacts/kaggle/cr-u-s42-20261015-v1/AUDITED.json",
+    "round": 3
+  }
+}

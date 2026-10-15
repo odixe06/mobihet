@@ -1,0 +1,50 @@
+[
+  {
+    "kernel": "minhtriethihi/mobihet-ccr-diag-s42-20261015-v1",
+    "version": 1,
+    "result": {
+      "seed": 42,
+      "parent": "minhtriethihi/mobihet-ccr-probe-s42-20261015-v1",
+      "all_original_energies_reproduced": true,
+      "models": 20,
+      "diagnostic_sha": "51a45e101f2e614203a826e858cc27d8b6c1758e3d4eeb5c1b68ab7519a7153d",
+      "model_training": false,
+      "holdout_read": false,
+      "gate_changed": false,
+      "elapsed_seconds": 61.40490779200002
+    },
+    "diagnostic": {
+      "sha256": "51a45e101f2e614203a826e858cc27d8b6c1758e3d4eeb5c1b68ab7519a7153d",
+      "parent": "minhtriethihi/mobihet-ccr-probe-s42-20261015-v1",
+      "audit_sha": "3ec6f566aab2e8173e9d088953e12ae87f3949df794a09488286c8bc3e5eec0a"
+    },
+    "max_condition": 5.177596969974733,
+    "min_rank": 30,
+    "max_abs_coefficient": 817.9484353986564,
+    "evidence": "Exact executed/frozen source; original energies reproduced on T4; scalar/SVD/class accounting audit; no independent local full-gradient inference"
+  },
+  {
+    "kernel": "khanhmay0304/mobihet-ccr-diag-s43-20261015-v1",
+    "version": 1,
+    "result": {
+      "seed": 43,
+      "parent": "khanhmay0304/mobihet-ccr-probe-s43-20261015-v1",
+      "all_original_energies_reproduced": true,
+      "models": 20,
+      "diagnostic_sha": "51a45e101f2e614203a826e858cc27d8b6c1758e3d4eeb5c1b68ab7519a7153d",
+      "model_training": false,
+      "holdout_read": false,
+      "gate_changed": false,
+      "elapsed_seconds": 56.48116990200003
+    },
+    "diagnostic": {
+      "sha256": "51a45e101f2e614203a826e858cc27d8b6c1758e3d4eeb5c1b68ab7519a7153d",
+      "parent": "khanhmay0304/mobihet-ccr-probe-s43-20261015-v1",
+      "audit_sha": "204152849e06a6c5975eb8520f16a21bfac10b4a92c88d967ee79bfe53cd6432"
+    },
+    "max_condition": 5.198769188643932,
+    "min_rank": 30,
+    "max_abs_coefficient": 58.76499989759889,
+    "evidence": "Exact executed/frozen source; original energies reproduced on T4; scalar/SVD/class accounting audit; no independent local full-gradient inference"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "arm": "h_local",
+    "fingerprint": "f4dc276395210a94a48edb3fbdde5627df1e4d239bb720d411bcddb110975413",
+    "last_round": 16,
+    "source_path": "/kaggle/input/datasets/accanniez/mobihet-full1-s42-20261015-q1-v1-ckpt/runs/h_local_s42",
+    "files": 67,
+    "markers_published_last": true
+  },
+  {
+    "arm": "h_gaussian",
+    "fingerprint": "6376f7445519919315e7355842f6a73cac27b56ad562ec0a43695c88e5bc33b3",
+    "last_round": 14,
+    "source_path": "/kaggle/input/datasets/accanniez/mobihet-full1-s42-20261015-q1-v1-ckpt/runs/h_gaussian_s42",
+    "files": 59,
+    "markers_published_last": true
+  }
+]

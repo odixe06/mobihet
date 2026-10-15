@@ -1,0 +1,21 @@
+[{"stream_name":"stderr","time":9.662278972,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.662337195,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.662344323,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.662349526,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":10.483919791,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":10.483985757,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":10.483992671,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":10.483997395,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":20.002476315,"data":"CPU checkpoint probe\n"}
+,{"stream_name":"stdout","time":183.966914569,"data":"VERIFIED FULL h_hybrid_own_s42 14 rounds\n"}
+,{"stream_name":"stdout","time":332.873212255,"data":"VERIFIED FULL h_hybrid_own_s42 14 rounds\n"}
+,{"stream_name":"stdout","time":332.894468582,"data":"REQUIRE RESUME PASS before data decode [{'arm': 'h_hybrid_own', 'fingerprint': '537ebdd0f453acac6ad8ad5b0a026272b26133dcfed39c00646adf9cb51e3aa8', 'last_round': 14, 'source_path': '/kaggle/input/datasets/takids1909/mobihet-hybf4-s42-20261015-q2-v1-ckpt/runs/h_hybrid_own_s42', 'files': 59, 'markers_published_last': True}]\n"}
+,{"stream_name":"stderr","time":338.840394429,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":338.840439363,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":339.035540323,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":339.035586439,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":339.774559587,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":340.15232521,"data":"[NbConvertApp] Writing 15136 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":343.27151381,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":344.31032523,"data":"[NbConvertApp] Writing 315753 bytes to __results__.html\n"}
+]

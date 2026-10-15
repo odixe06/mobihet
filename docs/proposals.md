@@ -1,19 +1,24 @@
 # Phương pháp đang làm và bài học từ các hướng đã kiểm
 
-26 nhóm FL + recipe EMA. Hiện 6 hồ sơ còn làm việc, gồm 5 hướng và EMA; 21 nhóm đã kiểm/đóng chuyển archive. Gaussian, DML và Hybrid có pilot tích cực; chưa có proof đủ r50/R1/R2.
+28 nhóm FL + recipe EMA. ClassTail và CrossClientRank thêm15/10; CountSketch sửa là adaptation của họ cũ, không đếm mới.
+9 hồ sơ còn làm việc; adaptation lịch sử giữ archive. Gaussian, DML và Hybrid có pilot tích cực;
+chưa có proof đủ r50/R1/R2.
 
 V2–V10 là nhãn đợt thí nghiệm, [không phải các version thay thế nhau](operations/experiment-names.md).
 
-## Đang làm hoặc đã chốt triển khai
+## Trạng thái hồ sơ trong methods/
 
 | phương pháp | trạng thái | tài liệu |
 |---|---|---|
 | Proxy DAGSNet chưng cất hai chiều | Pilot có lợi; full đang nối tới r50 | [Thiết kế](methods/proxy-mutual-distillation/design.md), [build/kết quả](methods/proxy-mutual-distillation/README.md) |
 | Gaussian từ moment lớp gộp | Pilot có lợi; full đang nối tới r50 | [Thiết kế](methods/gaussian-class-moments/design.md), [build/kết quả](methods/gaussian-class-moments/README.md) |
 | Kết hợp Gaussian moment và proxy DAGSNet | Pilot hai seed PASS; full đang nối tới r50 | [Thiết kế](methods/gaussian-proxy-hybrid/design.md), [build/kết quả](methods/gaussian-proxy-hybrid/README.md) |
-| BoundaryCells — đếm nhãn theo ô input | Calibration cost PASS; utility pilot đã push | [Thiết kế](methods/boundary-cell-counts/design.md), [build/kết quả](methods/boundary-cell-counts/README.md) |
+| BoundaryCells — đếm nhãn theo ô input | P2/P4 direct/teacher r20 hai seed FAIL; dừng adaptation | [Thiết kế](methods/boundary-cell-counts/design.md), [build/kết quả](methods/boundary-cell-counts/README.md) |
 | ResponseRisk — consistency chống receiver shortcut | Fidelity probe PASS; chưa train augmentation | [Thiết kế](methods/receiver-response-consistency/design.md), [build/kết quả](methods/receiver-response-consistency/README.md) |
 | EMA backbone + local BN + head triển khai | Thiết kế đã chốt; chưa triển khai | [Thiết kế](methods/ema-deployment-recipe/design.md), [build/kết quả](methods/ema-deployment-recipe/README.md) |
+| ClassTail — histogram CE classwise, tail-risk hardlabel local | Calibrationr2 PASS; paired utilityr20 FAIL; không nối thêm | [Nguồn/cơ chế](research/new-directions-2026-10-15.md), [contract](methods/class-tail-risk/builds/class-tail-pilot/README.md) |
+| CountSketch EF sửa overshoot | Co norm PASS; smallr20 hai seed qualityFAIL, mediumr17/r14 kém own; không nối | [Sửa và cổng cũ](methods/proxy-countsketch-repair/builds/contractive-ef-pilot/README.md) |
+| CrossClientRank — pooled positive/negative score moments | Probe/diagnostic đã audit; utility42 recoveryr4,43 chờ startup; chưa utilityPASS | [Nguồn](research/new-directions-2026-10-15-afternoon.md), [contract](methods/cross-client-ranking/builds/rank-probe/README.md) |
 
 ## Đã kết thúc — giữ bài học, source và báo cáo trong archive
 

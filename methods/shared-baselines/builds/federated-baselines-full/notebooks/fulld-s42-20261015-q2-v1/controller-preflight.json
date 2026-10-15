@@ -1,0 +1,22 @@
+[
+  {
+    "kernel": "accanniez/mobihet-fulld-s42-20261015-q2-v1",
+    "case": "normal",
+    "pass_check": true
+  },
+  {
+    "kernel": "accanniez/mobihet-fulld-s42-20261015-q2-v1",
+    "case": "boundary",
+    "pass_check": true
+  },
+  {
+    "kernel": "accanniez/mobihet-fulld-s42-20261015-q2-v1",
+    "case": "exhausted",
+    "pass_check": true
+  },
+  {
+    "kernel": "accanniez/mobihet-fulld-s42-20261015-q2-v1",
+    "case": "worker-fail",
+    "pass_check": true
+  }
+]

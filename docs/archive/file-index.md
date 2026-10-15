@@ -2,7 +2,7 @@
 
 [Mục lục hiện tại](../README.md) · [Index khu làm việc](../file-index.md) · [Các build đã kết thúc](README.md)
 
-1074 file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.
+1078 file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.
 
 - [archive/README.md](../../archive/README.md)
 - [archive/logs/README.md](../../archive/logs/README.md)
@@ -24,6 +24,7 @@
 - [archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261013.log](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a-20261013.log)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a.lock](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-a.lock)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-reboot-20261013.log](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/collection-reboot-20261013.log)
+- [archive/methods/anchor-function-residual/builds/anchor-residual/logs/forensics-20261015.log](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/forensics-20261015.log)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/logs/input-upload-s42.log](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/input-upload-s42.log)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/logs/input-upload-s43.log](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/input-upload-s43.log)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/logs/monitor-20261012.log](../../archive/methods/anchor-function-residual/builds/anchor-residual/logs/monitor-20261012.log)
@@ -47,6 +48,7 @@
 - [archive/methods/anchor-function-residual/builds/anchor-residual/notebooks/v9a-s43-20261012-v1/source_manifest.json](../../archive/methods/anchor-function-residual/builds/anchor-residual/notebooks/v9a-s43-20261012-v1/source_manifest.json)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/notebooks/v9a-s43-20261012-v1/v9a-s43-20261012-v1.ipynb](../../archive/methods/anchor-function-residual/builds/anchor-residual/notebooks/v9a-s43-20261012-v1/v9a-s43-20261012-v1.ipynb)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/probes/README.md](../../archive/methods/anchor-function-residual/builds/anchor-residual/probes/README.md)
+- [archive/methods/anchor-function-residual/builds/anchor-residual/probes/forensics-20261015.json](../../archive/methods/anchor-function-residual/builds/anchor-residual/probes/forensics-20261015.json)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/probes/gates.json](../../archive/methods/anchor-function-residual/builds/anchor-residual/probes/gates.json)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/probes/live-status-s43.json](../../archive/methods/anchor-function-residual/builds/anchor-residual/probes/live-status-s43.json)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/probes/live-status.json](../../archive/methods/anchor-function-residual/builds/anchor-residual/probes/live-status.json)
@@ -54,6 +56,7 @@
 - [archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc](../../archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/scripts/README.md](../../archive/methods/anchor-function-residual/builds/anchor-residual/scripts/README.md)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/scripts/check_anchor_residual_driver.py](../../archive/methods/anchor-function-residual/builds/anchor-residual/scripts/check_anchor_residual_driver.py)
+- [archive/methods/anchor-function-residual/builds/anchor-residual/scripts/forensics_20261015.py](../../archive/methods/anchor-function-residual/builds/anchor-residual/scripts/forensics_20261015.py)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc](../../archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/source/README.md](../../archive/methods/anchor-function-residual/builds/anchor-residual/source/README.md)
 - [archive/methods/anchor-function-residual/builds/anchor-residual/source/mh/README.md](../../archive/methods/anchor-function-residual/builds/anchor-residual/source/mh/README.md)
@@ -847,6 +850,7 @@
 - [docs/archive/methods/anchor-function-residual/builds/README.md](methods/anchor-function-residual/builds/README.md)
 - [docs/archive/methods/anchor-function-residual/builds/anchor-residual/README.md](methods/anchor-function-residual/builds/anchor-residual/README.md)
 - [docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/README.md](methods/anchor-function-residual/builds/anchor-residual/results/README.md)
+- [docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/forensics-20261015.md](methods/anchor-function-residual/builds/anchor-residual/results/forensics-20261015.md)
 - [docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/metrics-all.csv](methods/anchor-function-residual/builds/anchor-residual/results/metrics-all.csv)
 - [docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/per-class-f1.csv](methods/anchor-function-residual/builds/anchor-residual/results/per-class-f1.csv)
 - [docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/rebuild.md](methods/anchor-function-residual/builds/anchor-residual/results/rebuild.md)

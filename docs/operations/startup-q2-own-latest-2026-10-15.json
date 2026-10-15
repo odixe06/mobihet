@@ -1,0 +1,64 @@
+{
+  "observed_utc": "2026-10-15T09:11:18.734391+00:00",
+  "runs": [
+    {
+      "kernel": "takids1909/mobihet-hybf3-s42-20261015-q2-v1",
+      "run": "h_gaussian_own_s42",
+      "project": "mobihet-hybrid-full",
+      "fingerprint": "0a77b9e505ceedaded07fe5be979f38cf75326b36b46dfc7eee454fcbb06d085",
+      "parent_round": 15,
+      "locator": "21522798-uit/mobihet-hybrid-full/h_gaussian_own_s42-0a77b9e5",
+      "state": "finished",
+      "url": "https://wandb.ai/21522798-uit/mobihet-hybrid-full/runs/h_gaussian_own_s42-0a77b9e5",
+      "summary": {
+        "round": 15,
+        "loss": 0.14557113260962068,
+        "lr": 0.0008136274519200731,
+        "applied": 168092,
+        "skipped": 74,
+        "seconds": 3556.000862121582,
+        "_timestamp": 1792039319.830849,
+        "progress/round_in_flight": 15,
+        "progress/applied": 2047,
+        "progress/skipped": 1,
+        "progress/loss": 0.4979371130466461,
+        "progress/grad_norm": 1.000200271606445,
+        "progress/max_logit": 172.5,
+        "progress/softmax_entropy": 0.0800539180636406,
+        "preflight/online": 1
+      },
+      "fresh_training": false,
+      "nonfinite": []
+    },
+    {
+      "kernel": "takids1909/mobihet-hybf3-s42-20261015-q2-v1",
+      "run": "h_dml_own_s42",
+      "project": "mobihet-hybrid-full",
+      "fingerprint": "6565b7a2acc041793b97acc6f2fc73c5c7f35502a19f2177bc1774057ef5d10b",
+      "parent_round": 8,
+      "locator": "21522798-uit/mobihet-hybrid-full/h_dml_own_s42-6565b7a2",
+      "state": "finished",
+      "url": "https://wandb.ai/21522798-uit/mobihet-hybrid-full/runs/h_dml_own_s42-6565b7a2",
+      "summary": {
+        "round": 8,
+        "loss": 0.1487133739516139,
+        "lr": 0.0009509795896116976,
+        "applied": 168110,
+        "skipped": 56,
+        "seconds": 6212.157926559448,
+        "_timestamp": 1792036058.288364,
+        "progress/round_in_flight": 8,
+        "progress/applied": 2048,
+        "progress/skipped": 0,
+        "progress/loss": 0.30797383189201355,
+        "progress/grad_norm": 0.3462357521057129,
+        "progress/max_logit": 19.28125,
+        "progress/softmax_entropy": 0.16662710905075073,
+        "preflight/online": 1
+      },
+      "fresh_training": false,
+      "nonfinite": []
+    }
+  ],
+  "evidence": "Read-only initial snapshot; exact run identity; old resumed history not counted as fresh training; not terminal audit"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+  "title": "mobihet-ct-u-s43-20261015-v1",
+  "code_file": "ct-u-s43-20261015-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "enable_internet": true,
+  "dataset_sources": [
+    "khanhmay0304/mobihet-ct-u-s43-20261015-v1-ckpt"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461"
+}

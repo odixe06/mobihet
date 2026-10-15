@@ -18,6 +18,7 @@ Nhãn lịch sử `v9`; Pilot hai seed quality FAIL; cost PASS.
 
 - [rebuild.md](results/rebuild.md)
 - [report.md](results/report.md)
+- [Forensics saved target hai seed15/10](results/forensics-20261015.md): kernel rộng, residual ít tín hiệu không gian; không nối nguyên trạng.
 
 ## Khôi phục artifact
 

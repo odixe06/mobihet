@@ -1,0 +1,6 @@
+outs:
+- md5: 04176508256fcea8616e87c92c2eecd0.dir
+  size: 14186661461
+  nfiles: 736
+  hash: md5
+  path: artifacts/checkpoint-staging

@@ -1,0 +1,13 @@
+{
+  "rows": [
+    {
+      "build": "hybrid-full",
+      "owner": "takids1909",
+      "rid": "hybf4-s42-20261015-q2-v1",
+      "hours": 4.0,
+      "parents": {
+        "h_hybrid_own": "hybf4-s42-20261015-q1-v1"
+      }
+    }
+  ]
+}

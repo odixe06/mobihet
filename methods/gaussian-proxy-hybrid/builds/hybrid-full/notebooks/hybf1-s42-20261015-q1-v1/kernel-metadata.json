@@ -1,0 +1,19 @@
+{
+  "id": "annhtnt/mobihet-hybf1-s42-20261015-q1-v1",
+  "title": "mobihet-hybf1-s42-20261015-q1-v1",
+  "code_file": "hybf1-s42-20261015-q1-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "annhtnt/mobihet-hybf1-s42-20261015-q1-v1-ckpt",
+    "trietbackup/veremi-fl-20client",
+    "trietbackup/veremi-nextgen2026-test"
+  ],
+  "kernel_sources": [],
+  "competition_sources": []
+}

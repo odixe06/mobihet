@@ -1,0 +1,1 @@
+Rank utility local PASS {'rank_gradient_error': 2.168404344971009e-19, 'nnls_matches_independent_solver': True, 'frame_refusals': True, 'bounded_synthetic_clients': 5, 'rows_per_client': 512, 'actual_dagsnet_sgd': True, 'exact_next_round_state': True, 'fixed_prior': True, 'pass_check': True, 'scope': 'Local synthetic fixture only; not production training, T4 cost or utility'}

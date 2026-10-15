@@ -1,0 +1,27 @@
+{
+  "actual_driver_fork": true,
+  "exact_resume": true,
+  "orphan_ignored": true,
+  "tamper_rejected": true,
+  "audit": {
+    "run": "cr_fl_s42",
+    "committed_rounds": 2,
+    "inherited_rounds": 2,
+    "logical_rounds": 4,
+    "complete": false,
+    "metric_checks": 80,
+    "level": "all strict SD/BN/state/wire/fixed priors and saved predictions to ten metrics; no independent saved-weight inference or NNLS refit"
+  },
+  "ce_compat_resume": true,
+  "ce_audit": {
+    "run": "cr_local_s42",
+    "committed_rounds": 2,
+    "inherited_rounds": 2,
+    "logical_rounds": 4,
+    "complete": false,
+    "metric_checks": 80,
+    "level": "all strict SD/BN/state/wire/fixed priors and saved predictions to ten metrics; no independent saved-weight inference or NNLS refit"
+  },
+  "pass_check": true,
+  "scope": "Tiny synthetic 20x512-row fixture; mocked W&B; no production data, cost or utility claim"
+}

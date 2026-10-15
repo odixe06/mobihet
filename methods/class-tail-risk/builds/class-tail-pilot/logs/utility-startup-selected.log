@@ -1,0 +1,18 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/odixe/.netrc.
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_local running {'round': 6, 'loss': 0.1853835823014379, 'applied': 1964, 'skipped': 1, 'seconds': 76.90286064147949, '_timestamp': 1792012198.4217377}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_fixed running {'round': 5, 'loss': 0.885301199555397, 'applied': 1964, 'skipped': 1, 'seconds': 83.8886570930481, '_timestamp': 1792012142.3935783}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_own finished {'round': 2, 'loss': 0.4390215776860714, 'applied': 1965, 'skipped': 0, 'seconds': 76.89238166809082, '_timestamp': 1792010649.4461546}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_fl finished {'round': 2, 'loss': 0.4390215776860714, 'applied': 1965, 'skipped': 0, 'seconds': 77.86686587333679, '_timestamp': 1792010652.0756457}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_shuffle finished {'round': 2, 'loss': 0.4390215776860714, 'applied': 1965, 'skipped': 0, 'seconds': 80.14641785621643, '_timestamp': 1792010819.4047368}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_classmass finished {'round': 2, 'loss': 0.4390215776860714, 'applied': 1965, 'skipped': 0, 'seconds': 78.2533278465271, '_timestamp': 1792010819.6988945}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_gaussian finished {'round': 2, 'loss': 2.900403589010238, 'applied': 3930, 'skipped': 0, 'seconds': 145.1176955699921, '_timestamp': 1792011126.7704926}
+catbaochau/mobihet-ct-u-s42-20261015-v1 ct_dml finished {'round': 2, 'loss': 1.216649627685547, 'applied': 3922, 'skipped': 8, 'seconds': 140.68655824661255, '_timestamp': 1792011119.7939231}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_local running {'round': 7, 'loss': 0.15130804851651192, 'applied': 1964, 'skipped': 1, 'seconds': 65.73940443992615, '_timestamp': 1792012210.4985962}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_fixed running {'round': 6, 'loss': 0.8522296458482742, 'applied': 1965, 'skipped': 0, 'seconds': 70.59655594825745, '_timestamp': 1792012158.528145}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_own finished {'round': 2, 'loss': 0.43409849852323534, 'applied': 1964, 'skipped': 1, 'seconds': 73.07374382019043, '_timestamp': 1792009286.9757247}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_fl finished {'round': 2, 'loss': 0.43409849852323534, 'applied': 1964, 'skipped': 1, 'seconds': 74.36268305778503, '_timestamp': 1792009289.687255}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_shuffle finished {'round': 2, 'loss': 0.43409849852323534, 'applied': 1964, 'skipped': 1, 'seconds': 72.83096742630005, '_timestamp': 1792009446.784989}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_classmass finished {'round': 2, 'loss': 0.43409849852323534, 'applied': 1964, 'skipped': 1, 'seconds': 72.14344191551208, '_timestamp': 1792009447.8531425}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_gaussian finished {'round': 2, 'loss': 2.907617712020874, 'applied': 3926, 'skipped': 4, 'seconds': 124.53784561157228, '_timestamp': 1792009720.6936047}
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 ct_dml finished {'round': 2, 'loss': 1.2053263485431671, 'applied': 3926, 'skipped': 4, 'seconds': 129.0144453048706, '_timestamp': 1792009727.9640863}
+New pilots: 16 identities; 16 visible; 0 nonfinite

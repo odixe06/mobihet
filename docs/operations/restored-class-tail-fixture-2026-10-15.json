@@ -1,0 +1,346 @@
+{
+  "targets": [
+    {
+      "metadata": "archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc",
+      "md5": "cb782c4671b1aa25a8a2c56bf465587c.dir"
+    }
+  ],
+  "files": [
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/group_X.npy",
+      "md5": "6e63e06d97d4fcd1ad92d3d6ee2afbf3",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/group_g.npy",
+      "md5": "4ba202a34f63f1a956bba36bd8c0d2e6",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/group_y.npy",
+      "md5": "5283239cda3728d3a512ce3d4d62333e",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/manifest.json",
+      "md5": "5d1fbcf99e5f6bde4b15e42f4bd6001a",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/old_X.npy",
+      "md5": "23ccfb1dacf2eb30130df2a59475cf8c",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/old_g.npy",
+      "md5": "7df2ddf2bdf62096d87669767b894c25",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/old_y.npy",
+      "md5": "d5a81abb52d4a510cdbb385df4e61d93",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_0_X.npy",
+      "md5": "ba366481a2169ac38fef50c8cab5a488",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_0_g.npy",
+      "md5": "70a437ae8dac2d363082cd04b6a6b964",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_0_y.npy",
+      "md5": "e122740f75e4356c1a4ab5b6ddd29ce9",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_10_X.npy",
+      "md5": "3392e6e1cc16ff10d35fdbe74324e250",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_10_g.npy",
+      "md5": "72b55637b00d3965d71ea5e4ece7936d",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_10_y.npy",
+      "md5": "6f5a83dd3af7148e8ab5d29a0408c149",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_11_X.npy",
+      "md5": "ea3c7c149e9ff29ecddd445bb2f7aa62",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_11_g.npy",
+      "md5": "633814346be989e8e629c1044040640d",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_11_y.npy",
+      "md5": "c120e4a95902c82dab611592279c3c2c",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_12_X.npy",
+      "md5": "a7727736e71979d37b769040203a4f3b",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_12_g.npy",
+      "md5": "d5790394a0434bc3b46e1285f20c8e68",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_12_y.npy",
+      "md5": "038a5b29bf44f99dd9e966579efef7ad",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_13_X.npy",
+      "md5": "ef4865611e345a37e076c3bc0a0b9020",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_13_g.npy",
+      "md5": "da9ae2b2a7db0675bea7d53471e9fd10",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_13_y.npy",
+      "md5": "ff1b6a5008c34290648863169b494414",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_14_X.npy",
+      "md5": "5a6f07aa95e5f34ff8b7f9fb6cee0dbe",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_14_g.npy",
+      "md5": "c76132bfbd698b8b084a9a08dff47627",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_14_y.npy",
+      "md5": "9ebd6986592e4e7fd0befcf0cb92a0a1",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_15_X.npy",
+      "md5": "2bd3b9421548656242747594b1d8bc01",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_15_g.npy",
+      "md5": "f0a7e08c909fb2e0db651677c73cb536",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_15_y.npy",
+      "md5": "a7cb060e6aa14f1e64c60134c71d22f3",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_16_X.npy",
+      "md5": "ed4e7649b3bfc48d3f657e2543ddb9cf",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_16_g.npy",
+      "md5": "15d3bd9eb020624bf97c466a5c46237b",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_16_y.npy",
+      "md5": "60c8f2be20afc6e6863fa02351628009",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_17_X.npy",
+      "md5": "189b0b7b28311dc74ef176e2fcf8dc90",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_17_g.npy",
+      "md5": "7473822b4434b8711d0d444fc25d2e64",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_17_y.npy",
+      "md5": "ed9d4c18938c54c58acc0fc2e25d1ee9",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_18_X.npy",
+      "md5": "f62dbf656dec3a5f4601f2ecc14f1788",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_18_g.npy",
+      "md5": "4d3ba5403c78bde65aeadc5ed10fb096",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_18_y.npy",
+      "md5": "ec4482f36d536918a2ec2db61447c911",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_19_X.npy",
+      "md5": "b3d8d47b4d2ca390b3d10a5f63109bcd",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_19_g.npy",
+      "md5": "82a0a85f75f56dd5243b516b398154a8",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_19_y.npy",
+      "md5": "a35da6d2fce7ac2a306d18675cc75f45",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_1_X.npy",
+      "md5": "b3056da3fbd9e2a86adbfe97ee3ff653",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_1_g.npy",
+      "md5": "cb4d06aa8ba0a0cfd1ccb1f8f72a91c9",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_1_y.npy",
+      "md5": "bdee0c5411996d3340815c20adaee33b",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_2_X.npy",
+      "md5": "93ff373ab1553da96a94c95d563087f7",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_2_g.npy",
+      "md5": "2fef86082617022fc037b1609b412a7e",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_2_y.npy",
+      "md5": "a0e1d907d3fea0f5b9ae169d7ad407f6",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_3_X.npy",
+      "md5": "bfa81254f3bd7c0e6bbaed0a08839638",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_3_g.npy",
+      "md5": "060fca3bbb40b592e04810d1cb161c8a",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_3_y.npy",
+      "md5": "4d10b73cd45054d92bfe9dd1397b89c4",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_4_X.npy",
+      "md5": "fd5eb8606e1839b285c1a39a412b5abb",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_4_g.npy",
+      "md5": "379c80f30e710a142959b7468035ab84",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_4_y.npy",
+      "md5": "db3872db9e37b8ad0162854445463d22",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_5_X.npy",
+      "md5": "7ab4f05e9ff4d757f38cbeefa2dbcaaf",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_5_g.npy",
+      "md5": "b32409adaeb2649c679d815c7f99de7c",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_5_y.npy",
+      "md5": "480e6e88cec4c576957596a0eac8f7f1",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_6_X.npy",
+      "md5": "32cc94bc006708d0521f64c6d3d6208b",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_6_g.npy",
+      "md5": "0f45296ad6fd5d1d6df4322fa8138a58",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_6_y.npy",
+      "md5": "42c4e68aa718c9bf73f3cc093b71bd57",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_7_X.npy",
+      "md5": "33a21c295c44422fcd60e252d3cd12fe",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_7_g.npy",
+      "md5": "dde1b3521bc956223f5e71cc9206002d",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_7_y.npy",
+      "md5": "436ffa5a9aa07eecd68689142153d333",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_8_X.npy",
+      "md5": "b60fad9f04dba25da8810054abf89e14",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_8_g.npy",
+      "md5": "e8c0df329545c111bba9667c23613608",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_8_y.npy",
+      "md5": "eb0ac24538987f8f6592fe620642d600",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_9_X.npy",
+      "md5": "978be4dbd05aa99f9caa85e21924420c",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_9_g.npy",
+      "md5": "b5cb58f6bc2306dcce0db64bb11af7db",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture/train_9_y.npy",
+      "md5": "3cce2dbf47825402b1d1f93e685e2b8c",
+      "restored": true
+    }
+  ],
+  "heavy_files_restored": false
+}

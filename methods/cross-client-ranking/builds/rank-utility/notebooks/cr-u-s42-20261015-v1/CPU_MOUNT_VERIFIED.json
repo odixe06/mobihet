@@ -1,0 +1,9 @@
+{
+  "kernel": "minhtriethihi/mobihet-cr-u-s42-20261015-v1-cpu",
+  "version": 1,
+  "cpu_only": true,
+  "inputs_verified": 116,
+  "models": 20,
+  "round": 2,
+  "weights_sha": "b4638d7178a6a2238d55c1036c420ab9468b4436bb20367a97f8b653a5783d2e"
+}

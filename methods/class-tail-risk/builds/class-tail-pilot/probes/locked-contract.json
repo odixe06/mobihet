@@ -1,0 +1,36 @@
+{
+  "owner_locked": "2026-10-15",
+  "seeds": [
+    42,
+    43
+  ],
+  "rounds": 20,
+  "warmup_ce_rounds": 2,
+  "alpha": 0.25,
+  "lambda": 0.25,
+  "bins": "32 logarithmic to8 plus overflow; upper-edge quantile",
+  "probe": {
+    "minimum_classes_tail_fraction_10_40percent": 12,
+    "macro_membership_difference": 0.05,
+    "both_seeds_required": true
+  },
+  "utility": {
+    "vs_local": 0.015,
+    "vs_own": 0.01,
+    "vs_shuffle": 0.01,
+    "benign_degradation_max": 0.005
+  },
+  "scale_gate": {
+    "vs_strongest_reference": 0.015,
+    "both_seeds_required": true
+  },
+  "primary": "private/group/gp effective weighted target mass",
+  "cost_max_vs_plain_local": 2.0,
+  "new_quota_not_queried": true,
+  "calibration_owners": {
+    "42": "minhtriethihi",
+    "43": "khanhmay0304"
+  },
+  "calibration_session_hours_each": 3.0,
+  "quota_evidence": "docs/operations/quota-existing-2026-10-15.json"
+}

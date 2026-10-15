@@ -1,0 +1,53 @@
+{
+  "observed_utc": "2026-10-15T09:24:22.563775+00:00",
+  "runs": [
+    {
+      "seed": 42,
+      "arm": "cr_fl",
+      "run": "cr_fl_s42-b115debd",
+      "url": "https://wandb.ai/21522798-uit/mobihet-cross-client-rank-utility/runs/cr_fl_s42-b115debd",
+      "state": "running",
+      "fingerprint": "b115debdc24ecc0f5150b115a7dab918e84ffa0e16ff9f8ef55cccc39428e552",
+      "summary": {
+        "round": 4,
+        "loss": 0.31915319971740247,
+        "seconds": 81.5839147567749,
+        "applied": 1964,
+        "skipped": 1,
+        "progress/round": 4,
+        "progress/client": 19,
+        "progress/applied": 33,
+        "progress/skipped": 0,
+        "progress/real_ce": 0.2637873888015747,
+        "_timestamp": 1792056210.0477996
+      },
+      "nonfinite": [],
+      "utility_after_cost_observed": true
+    },
+    {
+      "seed": 42,
+      "arm": "cr_local",
+      "run": "cr_local_s42-088500d8",
+      "url": "https://wandb.ai/21522798-uit/mobihet-cross-client-rank-utility/runs/cr_local_s42-088500d8",
+      "state": "running",
+      "fingerprint": "088500d8eed4a0f6b24131727564b55c0dcc3a3491aaad9ad86e063e3ddf1b26",
+      "summary": {
+        "round": 4,
+        "loss": 0.27231009043753146,
+        "seconds": 67.72838950157166,
+        "applied": 1964,
+        "skipped": 1,
+        "progress/round": 4,
+        "progress/client": 19,
+        "progress/applied": 33,
+        "progress/skipped": 0,
+        "progress/real_ce": 0.2591593265533447,
+        "_timestamp": 1792056196.1539092
+      },
+      "nonfinite": [],
+      "utility_after_cost_observed": true
+    }
+  ],
+  "evidence": "W&B fingerprint reconstructed from actual config/frozen source/fixture/fork; fresh project; initial progress, not terminal artifact acceptance",
+  "paired_after_cost": false
+}

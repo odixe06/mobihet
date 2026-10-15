@@ -1,0 +1,23 @@
+{
+  "rows": [
+    {
+      "build": "hybrid-full",
+      "owner": "takids1909",
+      "rid": "hybf3-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_gaussian_own": "hybf3-s42-20261014-dsresume-v1",
+        "h_dml_own": "hybf3-s42-20261014-dsresume-v1"
+      }
+    },
+    {
+      "build": "hybrid-full",
+      "owner": "takids1909",
+      "rid": "hybf4-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_hybrid_own": "hybf4-s42-20261014-cont01-v1"
+      }
+    }
+  ]
+}

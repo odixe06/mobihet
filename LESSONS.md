@@ -19,11 +19,20 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   không thay retention/utility PASS. [Subspace](docs/archive/methods/proxy-seeded-subspace/README.md), [carriers](docs/archive/methods/proxy-compression/README.md).
 - Synthesis loss giảm, codec/đạo hàm PASS không chứng minh IDS tốt hơn. KME/DM/gradientbooks đã trượt utility;
   coverage cao có thể đi cùng soft target gần uniform. [Synthetic knowledge](docs/archive/methods/synthetic-knowledge/README.md).
+- V9 M512 r20: 95–96% correction energy chung giữa anchors; bootstrap vẫn khoảng95%, kernel group entropy0,955
+  dù coverage>99%. Coverage/teacher-fit loss thấp không bảo đảm chở ranh giới; không kéo dài adaptation này.
+  Chẩn đoán saved-target không cô lập toàn bộ BN/fit/extrapolation, không bác cả họ residual.
+  [Forensics hai seed](docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/forensics-20261015.md).
 
 ## Những cơ chế làm train kém hoặc gây kết luận sai
 
 - Sketch-space error feedback không mặc định co: collision có thể khuếch đại residual và parameter rồi BN overflow.
   Đo decoded/residual norm, tính co và full-epoch stability; không suy toàn họ FetchSGD/EF bị bác bỏ từ adaptation này.
+  Repro15/10 tối giản CPU FP32 cho residual2×, không cần BN/AMP. Line-search kiểm **wire-decoded** patch
+  chặn overshoot trong80ca đại số. Repaired hai seed terminal: smallr20 vẫn qualityFAIL;
+  mediumr17/r14 còn thiếu horizon, last5 group/gp phẳng/giảm và xa own. Decoded patch chỉ đổi0,638%/7,818%
+  tọa độ small/medium, không đủ để quy lỗi duy nhất cho collision/ties. Co norm không chứng minh teacher
+  fidelity hoặc giữ ranh giới. [Sửa, forensic và cổng cũ](docs/methods/proxy-countsketch-repair/builds/contractive-ef-pilot/results/report.md).
 - Gaussian liên tục và real có feature atom/missing có thể khác support; ratio fit cao không chứng minh ratio hữu ích.
   Clip/class-normalize không sửa support hoặc tạo ESS tốt. Clip floor có thể triệt input score correction;
   finite burn-in không chứng minh MALA mixing. [Ratio](docs/archive/methods/gaussian-density-ratio/README.md), [MALA](docs/archive/methods/gaussian-mala-transport/README.md).
@@ -35,6 +44,15 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 - gp theo prior local có thể sửa quá tay khi KD làm private gần global; benign F1 có thể giảm dù head tăng.
   Định nghĩa prior hiệu dụng từ loss trước run, primary rule cố định. BoundaryCells khóa target-mass gp;
   các full cũ giữ gp đã chốt, không đổi headline để cứu cổng.
+- Tail-risk bằng histogram có lỗi lượng tử hóa: quantile ở mép bin có thể làm tail rỗng và chỉ đổi scale loss.
+  Kiểm tail fraction/membership thực tế, overflow và cohort trước utility; weighted target mass cần audit nhưng
+  x-dependent weighting không tự có bảo đảm label-shift. ClassTail cả hai seed: probe r2PASS nhưng utilityr20FAIL;
+  pooled không hơn local/own/shuffle/class-mass, kém DML0,1967/0,1917. Probe chỉ loại tail rỗng/calibration hỏng,
+  không chứng minh hard-example knowledge hữu ích. [Gates đã audit](docs/methods/class-tail-risk/builds/class-tail-pilot/results/gates.json).
+- BoundaryCells P2 phủ95,65% group probe nhưng target entropy0,915/table F1≈0,129; coverage không thay
+  discrimination. Target tĩnh không nhận tri thức mới khi thêm round. P4direct/P2-P4teacher r20 hai seed cũng FAIL
+  so Gaussian; learned teacher head≈0,144–0,260 phù hợp table yếu. Không nối cả bốn adaptation;
+  không suy cả họ bị bác. [Actual payload forensics](docs/methods/boundary-cell-counts/builds/boundary-cell-pilot/direct-target-forensics-20261015.md).
 - Tổng CEreal+CEsynthetic cao chưa chứng minh real CE cao hoặc đã chống học thuộc. Tách loss và dùng holdout.
   Ngược lại, loss FL tăng khi LR gần0 có thể vì weights tải xuống không được fit thêm, không tự là trôi.
 - EMA không gồm toàn head; BN phải khớp backbone EMA và head triển khai fit riêng. Recipe local có lợi chưa là lợi FL:
@@ -57,8 +75,15 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   không là utility, full coverage, leakage hoặc physical consistency proof.
 - Khóa gp/cổng/seed/controls trước chạy, so cùng round và một yếu tố mỗi arm. Mean-client metrics khác pooled confusion;
   lưu predictions, per-client CM, đủ10metric/per-class/benign để kiểm lại.
+- CrossClientRank CE-r2: residual/delta macro cực lớn có thể do class delta gần0 và fit/test extrapolation;
+  không mặc định SVD lỗi. Diagnostic cùng mẫu tái hiện energies, condition≈5,2; class5/client17 có coefficient lớn
+  và vài test record chi phối. Probe gate PASS không định lượng tri thức hoặc utility; báo energy tuyệt đối,
+  singular values và class influence trước khi diễn giải. [Probe/diagnostic đã audit](docs/methods/cross-client-ranking/builds/rank-probe/results/report.md).
 - Pilot ngắn không dự báo độ bền; full thường giảm lợi hoặc đổi dấu. Không kéo dài adaptation FAIL để tìm điểm thắng.
   Full một seed là xác nhận mô tả theo protocol, không paired confidence interval.
+- Exact-resume fixture phải cover state của cả local/control và FL arm. CrossClientRank pooled replay PASS
+  đã bỏ sót CE empty-byte state, khiến production verifier dừng dù r3 hợp lệ;
+  [repro và recovery](docs/operations/notebook-errors.md) giữ nguyên weights/source, không cần SGD lại.
 - Lợi mutual learning khi chưa nhận snapshot RSU không được gọi là lợi FL. Tính đủ bootstrap/prior/header/ACK/retransmission;
   deadline-cut trả phí nhưng không commit, chỉ activate snapshot coherent. [Contact](docs/archive/methods/contact-fragmentation/README.md).
 - R1 giới hạn giao tiếp và R2 khác kiến trúc phải kiểm riêng; unlimited-channel/DAGSNet-only PASS không giải quyết cả hai.

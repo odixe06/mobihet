@@ -1,0 +1,49 @@
+{
+  "sources": {
+    "42": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+    "43": "khanhmay0304/mobihet-ct-u-s43-20261015-v1"
+  },
+  "gates": {
+    "42": {
+      "utility_pass": false,
+      "contrasts": {
+        "local": -0.0026833463923239265,
+        "own": -0.001644416970972784,
+        "shuffle": -0.0015089565028463814,
+        "classmass": -0.0007130106453723251
+      },
+      "benign_pass": false,
+      "strongest": "ct_dml",
+      "vs_strongest": -0.19672850203037273,
+      "cost_ratios_postwarmup": {
+        "algorithm_seconds": 1.0679961157045665,
+        "sec": 1.0580564537657062
+      },
+      "cost_pass": true,
+      "scale_eligible": false
+    },
+    "43": {
+      "utility_pass": false,
+      "contrasts": {
+        "local": -0.002532593134673078,
+        "own": -0.002840286265228642,
+        "shuffle": -0.0010339929079303256,
+        "classmass": -0.00016446775743744757
+      },
+      "benign_pass": false,
+      "strongest": "ct_dml",
+      "vs_strongest": -0.191719145681764,
+      "cost_ratios_postwarmup": {
+        "algorithm_seconds": 1.1032006400106313,
+        "sec": 1.0819373257311842
+      },
+      "cost_pass": true,
+      "scale_eligible": false
+    }
+  },
+  "paired_r20": true,
+  "paired_utility_pass": false,
+  "paired_scale_eligible": false,
+  "classmass_mechanism_unsupported": true,
+  "scope": "fixed r20; primary group/private/gp; postwarmup cost r3-20; no automatic launch or official test"
+}

@@ -1,0 +1,27 @@
+WANDB fixture-only
+setup cr_fl role private rows 10240 sec 2.7
+r3 cr_fl s42 private group gp 0.014813742370240034 loss 3.3085 3s
+r4 cr_fl s42 private group gp 0.01862099935613765 loss 3.0323 2s
+done cr_fl complete False
+WANDB fixture-only
+setup cr_fl role private rows 10240 sec 2.0
+r3 cr_fl s42 private group gp 0.014813742370240034 loss 3.3085 3s
+done cr_fl complete False
+WANDB fixture-only
+setup cr_fl role private rows 10240 sec 1.9
+r4 cr_fl s42 private group gp 0.01862099935613765 loss 3.0323 3s
+done cr_fl complete False
+WANDB fixture-only
+setup cr_local role private rows 10240 sec 1.5
+r3 cr_local s42 private group gp 0.014605109176033979 loss 2.8082 2s
+r4 cr_local s42 private group gp 0.020640660292025183 loss 2.5426 2s
+done cr_local complete False
+WANDB fixture-only
+setup cr_local role private rows 10240 sec 1.7
+r3 cr_local s42 private group gp 0.014605109176033979 loss 2.8082 2s
+done cr_local complete False
+WANDB fixture-only
+setup cr_local role private rows 10240 sec 1.8
+r4 cr_local s42 private group gp 0.020640660292025183 loss 2.5426 3s
+done cr_local complete False
+Rank driver fixture PASS {'actual_driver_fork': True, 'exact_resume': True, 'orphan_ignored': True, 'tamper_rejected': True, 'audit': {'run': 'cr_fl_s42', 'committed_rounds': 2, 'inherited_rounds': 2, 'logical_rounds': 4, 'complete': False, 'metric_checks': 80, 'level': 'all strict SD/BN/state/wire/fixed priors and saved predictions to ten metrics; no independent saved-weight inference or NNLS refit'}, 'ce_compat_resume': True, 'ce_audit': {'run': 'cr_local_s42', 'committed_rounds': 2, 'inherited_rounds': 2, 'logical_rounds': 4, 'complete': False, 'metric_checks': 80, 'level': 'all strict SD/BN/state/wire/fixed priors and saved predictions to ten metrics; no independent saved-weight inference or NNLS refit'}, 'pass_check': True, 'scope': 'Tiny synthetic 20x512-row fixture; mocked W&B; no production data, cost or utility claim'}

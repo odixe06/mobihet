@@ -1,0 +1,31 @@
+{
+  "rows": [
+    {
+      "build": "hybrid-full",
+      "owner": "annhtnt",
+      "rid": "hybf1-s42-20261015-q2-v1",
+      "hours": 4.0,
+      "parents": {
+        "h_local": "hybf1-s42-20261015-q1-v1",
+        "h_dml": "hybf1-s42-20261015-q1-v1"
+      }
+    },
+    {
+      "build": "full-validation",
+      "owner": "accanniez",
+      "rid": "full1-s42-20261015-q2-v1",
+      "hours": 4.0,
+      "parents": {
+        "h_local": "full1-s42-20261014-cont02-v1",
+        "h_gaussian": "full1-s42-20261014-cont02-v1"
+      },
+      "wandb_project": "mobihet-full-validation-recovery-20261015"
+    }
+  ],
+  "quota_evidence": "owner30h each; no quota query",
+  "previous_budget_with_margin": 62.1,
+  "new_session_hours": 24,
+  "new_with_margin": 27.6,
+  "total_envelope": 89.7,
+  "remaining_scope": "fixed50 not guaranteed; q1 full1 maintenance loss, recover old r16/r14; test descriptive only"
+}

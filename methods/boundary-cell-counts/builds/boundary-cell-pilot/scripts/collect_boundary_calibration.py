@@ -82,7 +82,7 @@ def verify(run, expected, fixture_sha, expected_rounds=2, calibration=True):
                 checkpoint_strict_rebuild=True,sampled_saved_prediction_inference=False,utility_r20=False)
 
 
-def collect(folder):
+def collect(folder, utility=False):
     metadata=json.loads((folder/'kernel-metadata.json').read_text());kernel=metadata['id'];owner=kernel.split('/')[0]
     dest=BASE/'kaggle'/folder.name;marker=dest/'AUDITED.json'
     if marker.exists():return True
@@ -90,8 +90,8 @@ def collect(folder):
     result=subprocess.run(prefix+['kaggle','kernels','status',kernel],capture_output=True,text=True,check=True)
     print(result.stdout.strip(),flush=True)
     if not any(word in result.stdout for word in ('COMPLETE','ERROR')):return False
-    subprocess.run(prefix+[sys.executable,str(HELPER/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','2',
-                   '--pattern',r'^(runs|source)/'],check=True)
+    subprocess.run(prefix+[sys.executable,str(HELPER/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','6',
+                   '--pattern',r'^(source/|runs/(?![^/]+/wandb/))'],check=True)
     private=BASE/'private_push'/folder.name
     executed=private/'executed.ipynb'
     subprocess.run(prefix+[sys.executable,str(HELPER/'download_executed_notebook.py'),kernel,'--version','1',
@@ -115,22 +115,39 @@ def collect(folder):
         assert sha(source/name)==digest
         assert key not in (source/name).read_text(errors='ignore')
     fixture_sha=sha(source/'fixture_manifest.json')
-    path=dest/'runs/calibration_summary.json'
-    assert path.exists(), 'terminal output missing calibration summary; inspect failure before retry'
-    summary=json.loads(path.read_text());assert len(summary)==5
+    path=dest/'runs'/('utility_summary.json' if utility else 'calibration_summary.json')
+    assert path.exists(), 'terminal output missing summary; inspect failure before retry'
+    target_arms=None
+    if utility:
+        node=next(n for n in ast.parse(reference.cells[3].source).body if isinstance(n,ast.Assign)
+                  and any(isinstance(t,ast.Name) and t.id=='METHODS' for t in n.targets))
+        target_arms=ast.literal_eval(node.value)
+    summary=json.loads(path.read_text());assert len(summary)==(len(target_arms) if utility else 5)
     audits=[]
     with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         for name,item in summary.items():
-            assert item['calibration_valid'] and item['rc']==0
-            audits.append(verify(dest/'runs'/name,expected,fixture_sha))
-    for seed in {int(name.rsplit('_s',1)[1]) for name in summary}:
-        baseline=next(a['cost']['mean_seconds'] for a in audits if a['run']==f'bc_single_s{seed}')
-        assert all(np.isclose(a['cost']['baseline_mean_seconds'],baseline) for a in audits if a['run'].endswith(f'_s{seed}'))
+            if utility:
+                assert item['target_rounds']==20 and item.get('rc',0)==0
+                rounds=item['rounds']
+                run=dest/'runs'/name
+                assert len(list((run/'complete').glob('round_*.json')))==rounds
+                if rounds:
+                    audits.append(verify(run,expected,fixture_sha,expected_rounds=rounds,calibration=False))
+            else:
+                assert item['calibration_valid'] and item['rc']==0
+                audits.append(verify(dest/'runs'/name,expected,fixture_sha))
+    if not utility:
+        for seed in {int(name.rsplit('_s',1)[1]) for name in summary}:
+            baseline=next(a['cost']['mean_seconds'] for a in audits if a['run']==f'bc_single_s{seed}')
+            assert all(np.isclose(a['cost']['baseline_mean_seconds'],baseline) for a in audits if a['run'].endswith(f'_s{seed}'))
     record=dict(kernel=kernel,version=1,source=expected,summary=summary,audits=audits,
-                calibration_valid=True,utility_r20=False)
+                calibration_valid=not utility,
+                target_arms=target_arms,
+                utility_r20=utility and all(v['complete'] and v['rounds']==20 for v in summary.values()))
     tmp=marker.with_suffix('.tmp');tmp.write_text(json.dumps(record,indent=2)+'\n');tmp.replace(marker)
-    print('AUDITED CALIBRATION',kernel,'utility r20 unmeasured',flush=True)
+    print('AUDITED UTILITY' if utility else 'AUDITED CALIBRATION',kernel,
+          'all arms r20',record['utility_r20'],flush=True)
     return True
 
 

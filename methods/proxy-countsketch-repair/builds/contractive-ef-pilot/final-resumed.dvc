@@ -1,0 +1,6 @@
+outs:
+- md5: 051bc4becc15f1ec40a69f091d443f5b.dir
+  size: 203926816
+  nfiles: 18
+  hash: md5
+  path: artifacts/final-resumed

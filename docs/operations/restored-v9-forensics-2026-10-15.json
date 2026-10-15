@@ -1,0 +1,31 @@
+{
+  "targets": [
+    {
+      "metadata": "archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc",
+      "md5": "b9220ec4e71f82a1cb3fcedf034402fa.dir"
+    }
+  ],
+  "files": [
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_fl_s42/config.json",
+      "md5": "23784bc5dc7b7c5d5b5ed9f1a7f5d7d2",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s42-20261012-v1/runs/r512_fl_s42/resume/round_020.pt",
+      "md5": "242bd7373d6d53905ff65c19542cf8bb",
+      "restored": false
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_fl_s43/config.json",
+      "md5": "072a2112a83684724a0ce53a39761f1c",
+      "restored": true
+    },
+    {
+      "path": "archive/methods/anchor-function-residual/builds/anchor-residual/artifacts/kaggle/v9a-s43-20261012-v1/runs/r512_fl_s43/resume/round_020.pt",
+      "md5": "11a8b571b2837e7e4de9bea798aa7d28",
+      "restored": false
+    }
+  ],
+  "heavy_files_restored": false
+}

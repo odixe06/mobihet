@@ -2,6 +2,7 @@
 
 Chạy từ repository root; Python/Kaggle trong env `nckh`. Train nặng trên Kaggle.
 Helper riêng nằm trong build/scripts; công cụ cũ nằm trong [archive/tools](../archive/tools/README.md).
+CrossClientRank probe/utility/operational recovery tại [build scripts](../methods/cross-client-ranking/builds/rank-utility/README.md).
 
 | công cụ | nhiệm vụ |
 |---|---|
@@ -22,6 +23,11 @@ Helper riêng nằm trong build/scripts; công cụ cũ nằm trong [archive/too
 | [check_project_status.py](kaggle/check_project_status.py) | Status exact versions, chưa là scientific evidence |
 | [push_nb.py](kaggle/push_nb.py) | Owner-scoped immutable notebook push |
 | [inspect_resume_startup.py](kaggle/inspect_resume_startup.py) | Startup health; ổn định thì dừng polling |
+| [prepare_cross_account_resume.py](kaggle/prepare_cross_account_resume.py) | Private checkpoint bridge từ audited parents, không đổi scientific source |
+| [verify_checkpoint_dataset.py](kaggle/verify_checkpoint_dataset.py) | All-page names/sizes, exact hoặc một prefix bị strip; CPU import kiểm SHA |
+| [audit_mount_probe.py](kaggle/audit_mount_probe.py) | CPU production-import proof, exact rounds/state/markers trước GPU push |
+| [verify_source_dataset.py](kaggle/verify_source_dataset.py) | Names/sizes của flat source/fixture dataset |
+| [inspect_new_pilots.py](kaggle/inspect_new_pilots.py) | Exact ClassTail/repair W&B identities; operational snapshot |
 
 Namespace `scripts` tìm helper cũ trong `.compat/scripts`; alias cũ không nằm trong thư mục làm việc.
 Path reads dùng current_path; script frozen của Kaggle vẫn dựng runtime nguyên bản.

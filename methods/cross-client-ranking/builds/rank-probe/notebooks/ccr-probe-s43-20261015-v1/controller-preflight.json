@@ -1,0 +1,17 @@
+[
+  {
+    "kernel": "khanhmay0304/mobihet-ccr-probe-s43-20261015-v1",
+    "case": "normal",
+    "pass_check": true
+  },
+  {
+    "kernel": "khanhmay0304/mobihet-ccr-probe-s43-20261015-v1",
+    "case": "failure",
+    "pass_check": true
+  },
+  {
+    "kernel": "khanhmay0304/mobihet-ccr-probe-s43-20261015-v1",
+    "case": "budget",
+    "pass_check": true
+  }
+]

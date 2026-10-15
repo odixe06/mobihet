@@ -1,5 +1,6 @@
 """Read-only link, frozen-byte, DVC identity, Git index and credential-boundary verification."""
 import configparser
+import argparse
 import hashlib
 import json
 import os
@@ -20,6 +21,9 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--output',default='docs/operations/layout-verification-2026-10-14.json')
+    args=parser.parse_args()
     migration=json.loads((ROOT/'docs/operations/layout-migration-2026-10-14.json').read_text())
     config=configparser.ConfigParser();config.read(ROOT/'.dvc/config')
     remote=Path(config['\'remote "gdrive"\'']['url'])/'files/md5'
@@ -92,7 +96,7 @@ def main():
         limits='Directory-manifest identities verified; no rehash of every heavy remote object, no Git/DVC add/push. Partial restores stay partial.')
     from dvc.repo import Repo
     with Repo(str(ROOT)) as repo:result['native_dvc_stage_count']=len(repo.index.stages)
-    proof=ROOT/'docs/operations/layout-verification-2026-10-14.json'
+    proof=ROOT/args.output
     proof.write_text(json.dumps(result,indent=2)+'\n')
     print('Layout:',len(dvc),'DVC identities/remote manifests;',result['frozen_files'],'frozen files;',checked,
         'links;',len(missing),'missing;',len(remote_links),'remote-only;',len(private),'private notebooks ignored0600')

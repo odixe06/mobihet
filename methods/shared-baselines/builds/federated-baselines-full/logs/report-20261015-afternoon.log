@@ -1,0 +1,1 @@
+Full report: 7 audited arms, 280 ten-metric rows; actual maxrounds {'h_gaussian': 14, 'h_local': 16, 'h_gaussian_diag': 18, 'h_gaussian_lr4': 17, 'h_gaussian_own': 18, 'h_dml': 20, 'h_dml_own': 18}

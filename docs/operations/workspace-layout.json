@@ -5,7 +5,10 @@
     "gaussian-class-moments",
     "gaussian-proxy-hybrid",
     "proxy-mutual-distillation",
-    "receiver-response-consistency"
+    "receiver-response-consistency",
+    "class-tail-risk",
+    "proxy-countsketch-repair",
+    "cross-client-ranking"
   ],
   "archived_methods": [
     "anchor-function-residual",
@@ -194,6 +197,40 @@
       "path": "methods/receiver-response-consistency/builds/receiver-augmentation",
       "archived": false,
       "legacy_build": "local-augmentation-v1"
+    },
+    "class-tail": {
+      "family": "class-tail-risk",
+      "build": "class-tail-pilot",
+      "related": [],
+      "path": "methods/class-tail-risk/builds/class-tail-pilot",
+      "archived": false,
+      "legacy_build": "none-new-20261015"
+    },
+    "contract-ef": {
+      "family": "proxy-countsketch-repair",
+      "build": "contractive-ef-pilot",
+      "related": [
+        "proxy-countsketch"
+      ],
+      "path": "methods/proxy-countsketch-repair/builds/contractive-ef-pilot",
+      "archived": false,
+      "legacy_build": "new-repair-20261015"
+    },
+    "cross-client-rank": {
+      "family": "cross-client-ranking",
+      "build": "rank-probe",
+      "related": [],
+      "path": "methods/cross-client-ranking/builds/rank-probe",
+      "archived": false,
+      "legacy_build": "none-new-20261015-afternoon"
+    },
+    "cross-client-rank-utility": {
+      "family": "cross-client-ranking",
+      "build": "rank-utility",
+      "related": [],
+      "path": "methods/cross-client-ranking/builds/rank-utility",
+      "archived": false,
+      "legacy_build": "none-new-20261015-utility"
     }
   },
   "modules": [

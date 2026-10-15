@@ -18,8 +18,9 @@ def import_run(mount, output, name, expected, manifest, verify):
     source = candidates[0]
     identity = json.loads((source / 'config.json').read_text())
     assert identity['source'] == expected['source'] and identity['fixture'] == expected['fixture']
-    audit = verify(source, manifest, expected['fixture'], expected['last_round'], calibration=True)
-    assert audit['cost']['pass_cost'], 'cost FAIL cannot open utility'
+    calibration = expected.get('calibration', True)
+    audit = verify(source, manifest, expected['fixture'], expected['last_round'], calibration=calibration)
+    assert audit['cost']['pass_cost'] if calibration else expected['cost_calibration_pass'], 'cost FAIL cannot open utility'
     destination = Path(output) / name
     files = [p for p in source.rglob('*') if p.is_file() and
              'wandb' not in p.relative_to(source).parts and p.name != 'log.txt']
@@ -37,6 +38,6 @@ def import_run(mount, output, name, expected, manifest, verify):
             shutil.copyfile(path, temporary)
             assert sha(temporary) == sha(path)
             os.replace(temporary, target)
-    assert verify(destination, manifest, expected['fixture'], expected['last_round'], calibration=True)['rounds'] == expected['last_round']
+    assert verify(destination, manifest, expected['fixture'], expected['last_round'], calibration=calibration)['rounds'] == expected['last_round']
     return dict(run=name, last_round=expected['last_round'], fingerprint=expected['fingerprint'],
                 copied_files=len(files), markers_last=True)

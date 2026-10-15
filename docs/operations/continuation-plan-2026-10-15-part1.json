@@ -1,0 +1,31 @@
+{
+  "quota": {
+    "annhtnt": 30,
+    "takids1909": 30,
+    "accanniez": 30
+  },
+  "quota_evidence": "owner confirmed full quota; not queried",
+  "margin": 1.15,
+  "rows": [
+    {
+      "build": "hybrid-full",
+      "owner": "annhtnt",
+      "rid": "hybf1-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_local": "hybf1-s42-20261014-dsresume-v1",
+        "h_dml": "hybf1-s42-20261014-dsresume-v1"
+      }
+    },
+    {
+      "build": "hybrid-full",
+      "owner": "annhtnt",
+      "rid": "hybf2-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_gaussian": "hybf2-s42-20261014-cont01-v1",
+        "h_hybrid": "hybf2-s42-20261014-cont01-v1"
+      }
+    }
+  ]
+}

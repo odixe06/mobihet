@@ -1,0 +1,3 @@
+DIAGNOSTIC COMPLETE {'seed': 42, 'parent': 'fixture', 'all_original_energies_reproduced': True, 'models': 20, 'diagnostic_sha': 'fixture', 'model_training': False, 'holdout_read': False, 'gate_changed': False, 'elapsed_seconds': 0}
+DIAGNOSTIC COMPLETE {'seed': 43, 'parent': 'fixture', 'all_original_energies_reproduced': True, 'models': 20, 'diagnostic_sha': 'fixture', 'model_training': False, 'holdout_read': False, 'gate_changed': False, 'elapsed_seconds': 0}
+Diagnostic PASS: exact calibration-span residual; 6 emitted controller cases

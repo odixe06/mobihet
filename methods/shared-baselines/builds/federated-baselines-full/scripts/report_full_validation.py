@@ -4,6 +4,7 @@ import csv
 import hashlib
 import io
 import json
+import os
 import sys
 from pathlib import Path
 import numpy as np
@@ -18,6 +19,9 @@ def main():
     parser.add_argument('--build',choices=('full-validation','hybrid-full'),default='full-validation')
     build=parser.parse_args().build
     base=ROOT/'papers'/build
+    doc_dir=(base/'report.md').resolve().parent
+    dataset_link=os.path.relpath(ROOT/'knowledge/dataset.md',doc_dir)
+    budget_link=os.path.relpath((base/'budget-measured.json').resolve(),doc_dir)
     metrics=[];classes=[];runs={};budget=[]
     for marker in sorted((base/'kaggle').glob('*/AUDITED.json')):
         record=json.loads(marker.read_text())
@@ -31,6 +35,8 @@ def main():
             assert hashlib.sha256((json.dumps(data,indent=2)+'\n').encode()).hexdigest()==identity['fixture']
             rows=[json.loads(p.read_text()) for p in sorted((run/'complete').glob('round_*.json'))]
             assert len(rows)==audit['rounds']
+            if any(not (run/f'predictions/round_{row["round"]:03d}.npz').exists() for row in rows):
+                continue  # Historical metadata-only restore; later audited sessions carry full history.
             for row in rows:
                 with np.load(run/f'predictions/round_{row["round"]:03d}.npz') as predictions:
                     labels=predictions['test_y']
@@ -68,11 +74,11 @@ def main():
         'Protocol train80%/test20% cốđịnh; testdescriptive, khôngHP/roundselection. StageU, chưaR1/R2/DP.',
         'Meanclient10metric; pooledconfusion khônglàheadline. Accuracy=precision_micro=recall_micro=recall_weighted=f1_micro.',
         'Sybil/session vàreceiverfingerprint shortcuts, benign-source bias; timeDelay khôngcóđủsignal trongcontent.',
-        'Nhữnggiớihạn này khôngđượcgiải quyết bằngsource/weightsaudit. [Dataset](../../knowledge/dataset.md).','',
+        f'Nhữnggiớihạn này khôngđượcgiải quyết bằngsource/weightsaudit. [Dataset]({dataset_link}).','',
         '| arm | completed/planned | source/weights/prediction |','|---|---:|---|']
     for arm,run in sorted(runs.items()):lines.append(f'| {arm} | {len(run["rows"])}/50 | `{run["path"]}` |')
     lines+=['','## Mọi evaluation đã commit — đủ10metrics','',
-        '[CSV sốđầyđủ](metrics-all.csv), [F1 từnglớp](per-class-f1.csv), [budget T4](budget-measured.json), [ledger](rebuild.md).',
+        f'[CSV sốđầyđủ](metrics-all.csv), [F1 từnglớp](per-class-f1.csv), [budget T4]({budget_link}), [ledger](rebuild.md).',
         'R3calibration khônglàrun50round đãhoànthành; khôngchọnbestround hoặcđổihead đểcứu kếtquả.','',
         '| arm | round | role | rule | '+' | '.join(METRIC_KEYS)+' |',
         '|---|---:|---|---|'+'---:|'*10]

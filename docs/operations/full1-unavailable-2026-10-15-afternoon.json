@@ -1,0 +1,57 @@
+{
+  "kernel": "accanniez/mobihet-full1-s42-20261015-q1-v1",
+  "output_files": 0,
+  "executed_notebook_http": 404,
+  "kaggle_failure_message": "",
+  "wandb": [
+    {
+      "run": "21522798-uit/mobihet-full-validation/h_local_s42-f4dc2763",
+      "state": "crashed",
+      "summary": {
+        "round": 25,
+        "progress/round_in_flight": 26,
+        "progress/applied": 2048,
+        "_timestamp": 1792025599.3424358,
+        "_runtime": 42018.755205714
+      },
+      "files": [
+        "config.yaml",
+        "output.log",
+        "requirements.txt",
+        "wandb-metadata.json",
+        "wandb-summary.json"
+      ],
+      "tail": "WANDB https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_local_s42-f4dc2763\nW1014 10:50:56.258000 80 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode\nCOMPILE PREFLIGHT PASS [{'role': 'private', 'rows': 512, 'max_error': 0.000732421875, 'decisive': 456}, {'role': 'eval', 'rows': 16384, 'max_error': 0.0006103515625, 'decisive': 13667}]\nsetup h_local role private rows 43045415 sec 51.0\nr12 h_local s42 private test gp 0.5179664680357859 loss 0.0221 1757s\nr13 h_local s42 private test gp 0.5171828404325091 loss 0.0206 1706s\nr14 h_local s42 private test gp 0.5143766514232985 loss 0.0193 1709s\nr15 h_local s42 private test gp 0.5161872149174216 loss 0.0181 1712s\nr16 h_local s42 private test gp 0.5132812263650897 loss 0.0170 1708s\nbudget stop before round 17"
+    },
+    {
+      "run": "21522798-uit/mobihet-full-validation/h_gaussian_s42-6376f744",
+      "state": "crashed",
+      "summary": {
+        "round": 22,
+        "progress/round_in_flight": 23,
+        "progress/applied": 2048,
+        "_timestamp": 1792026178.0215771,
+        "_runtime": 42381.364955725
+      },
+      "files": [
+        "config.yaml",
+        "output.log",
+        "requirements.txt",
+        "wandb-metadata.json",
+        "wandb-summary.json"
+      ],
+      "tail": "WANDB https://wandb.ai/21522798-uit/mobihet-full-validation/runs/h_gaussian_s42-6376f744\nW1014 10:50:56.257000 81 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode\nCOMPILE PREFLIGHT PASS [{'role': 'private', 'rows': 768, 'max_error': 0.000732421875, 'decisive': 687}, {'role': 'eval', 'rows': 16384, 'max_error': 0.0006103515625, 'decisive': 13667}]\nsetup h_gaussian role private rows 43045415 sec 51.1\nr11 h_gaussian s42 private test gp 0.6047576279855486 loss 0.4588 1996s\nr12 h_gaussian s42 private test gp 0.6047257121186547 loss 0.4533 1950s\nr13 h_gaussian s42 private test gp 0.6028080159802472 loss 0.4489 1945s\nr14 h_gaussian s42 private test gp 0.6002809084754739 loss 0.4450 1930s\nbudget stop before round 15"
+    }
+  ],
+  "evidence": "W&B operational logs, not model/checkpoint evidence",
+  "owner_console": {
+    "duration_seconds": 16299.7,
+    "cause": "host maintenance event: Cannot connect to Docker daemon",
+    "checkpoint_visibility_unknown_to_owner": true
+  },
+  "recoverable_audited_rounds": {
+    "h_local": 16,
+    "h_gaussian": 14
+  },
+  "new_rounds_not_recoverable_from_wandb_files": true
+}

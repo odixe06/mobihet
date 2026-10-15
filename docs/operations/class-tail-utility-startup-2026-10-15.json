@@ -1,0 +1,326 @@
+{
+  "observed_utc": "2026-10-14T21:10:29.554900+00:00",
+  "runs": [
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_local",
+      "seed": 42,
+      "fingerprint": "43caa4c83e016c8232593fd65c188da0b5e96c7b4c7b90ac50c1ac4bbafee1e5",
+      "locator": "21522798-uit/mobihet-class-tail/ct_local_s42-43caa4c8",
+      "parent_round": 2,
+      "state": "running",
+      "summary": {
+        "round": 6,
+        "loss": 0.1853835823014379,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 76.90286064147949,
+        "_timestamp": 1792012198.4217377
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_local_s42-43caa4c8",
+      "fresh_training": true
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_fixed",
+      "seed": 42,
+      "fingerprint": "8e4272e72f2283e6da80c282a84f23361eb3ebbc469b02e09f5762efba418490",
+      "locator": "21522798-uit/mobihet-class-tail/ct_fixed_s42-8e4272e7",
+      "parent_round": 2,
+      "state": "running",
+      "summary": {
+        "round": 5,
+        "loss": 0.885301199555397,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 83.8886570930481,
+        "_timestamp": 1792012142.3935783
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_fixed_s42-8e4272e7",
+      "fresh_training": true
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_own",
+      "seed": 42,
+      "fingerprint": "384f7c5c0540c2a9fe71108b461b0d6c27d553413cf99147e74e9af3421fb236",
+      "locator": "21522798-uit/mobihet-class-tail/ct_own_s42-384f7c5c",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.4390215776860714,
+        "applied": 1965,
+        "skipped": 0,
+        "seconds": 76.89238166809082,
+        "_timestamp": 1792010649.4461546
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_own_s42-384f7c5c",
+      "fresh_training": false
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_fl",
+      "seed": 42,
+      "fingerprint": "06562d3a3469908ec408f3186ba7a44333a5f0ad9e3b4398e4212b3fac37c216",
+      "locator": "21522798-uit/mobihet-class-tail/ct_fl_s42-06562d3a",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.4390215776860714,
+        "applied": 1965,
+        "skipped": 0,
+        "seconds": 77.86686587333679,
+        "_timestamp": 1792010652.0756457
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_fl_s42-06562d3a",
+      "fresh_training": false
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_shuffle",
+      "seed": 42,
+      "fingerprint": "a8887e6a3a807f730c1fa5539fe033b53a3091ee94fc6d6739b8c21630493e15",
+      "locator": "21522798-uit/mobihet-class-tail/ct_shuffle_s42-a8887e6a",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.4390215776860714,
+        "applied": 1965,
+        "skipped": 0,
+        "seconds": 80.14641785621643,
+        "_timestamp": 1792010819.4047368
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_shuffle_s42-a8887e6a",
+      "fresh_training": false
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_classmass",
+      "seed": 42,
+      "fingerprint": "176847760f9ddd940b1cca8ff70feeede6af85d79a0087b61b89a4e306aaa422",
+      "locator": "21522798-uit/mobihet-class-tail/ct_classmass_s42-17684776",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.4390215776860714,
+        "applied": 1965,
+        "skipped": 0,
+        "seconds": 78.2533278465271,
+        "_timestamp": 1792010819.6988945
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_classmass_s42-17684776",
+      "fresh_training": false
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_gaussian",
+      "seed": 42,
+      "fingerprint": "bba6d77e8591bf7b5ac3596d381dcb0508d048833913aaf6b1783aa647f9e918",
+      "locator": "21522798-uit/mobihet-class-tail/ct_gaussian_s42-bba6d77e",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 2.900403589010238,
+        "applied": 3930,
+        "skipped": 0,
+        "seconds": 145.1176955699921,
+        "_timestamp": 1792011126.7704926
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_gaussian_s42-bba6d77e",
+      "fresh_training": false
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "arm": "ct_dml",
+      "seed": 42,
+      "fingerprint": "e3200809b3b5c2e7d9270a3ba71a59d69e6e249a55670f37191bb12e244938f4",
+      "locator": "21522798-uit/mobihet-class-tail/ct_dml_s42-e3200809",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 1.216649627685547,
+        "applied": 3922,
+        "skipped": 8,
+        "seconds": 140.68655824661255,
+        "_timestamp": 1792011119.7939231
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_dml_s42-e3200809",
+      "fresh_training": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_local",
+      "seed": 43,
+      "fingerprint": "760cca63fe2d61582404cb55b986cb1c7602872bc4d3f055e1a6d647fdd1f1da",
+      "locator": "21522798-uit/mobihet-class-tail/ct_local_s43-760cca63",
+      "parent_round": 2,
+      "state": "running",
+      "summary": {
+        "round": 7,
+        "loss": 0.15130804851651192,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 65.73940443992615,
+        "_timestamp": 1792012210.4985962
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_local_s43-760cca63",
+      "fresh_training": true
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_fixed",
+      "seed": 43,
+      "fingerprint": "0c6618f6354bd828177c9ce75966a217f4c8c49495598053a85049304623f45f",
+      "locator": "21522798-uit/mobihet-class-tail/ct_fixed_s43-0c6618f6",
+      "parent_round": 2,
+      "state": "running",
+      "summary": {
+        "round": 6,
+        "loss": 0.8522296458482742,
+        "applied": 1965,
+        "skipped": 0,
+        "seconds": 70.59655594825745,
+        "_timestamp": 1792012158.528145
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_fixed_s43-0c6618f6",
+      "fresh_training": true
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_own",
+      "seed": 43,
+      "fingerprint": "bc2aacb3f5f3a25ce95d034cc2e214eb8a491bc975c88b196eac363d173dbb4d",
+      "locator": "21522798-uit/mobihet-class-tail/ct_own_s43-bc2aacb3",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.43409849852323534,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 73.07374382019043,
+        "_timestamp": 1792009286.9757247
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_own_s43-bc2aacb3",
+      "fresh_training": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_fl",
+      "seed": 43,
+      "fingerprint": "3d079199975ef4968ab9308e62f6afa3a12e90d0170bbf987b9258fc1313e209",
+      "locator": "21522798-uit/mobihet-class-tail/ct_fl_s43-3d079199",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.43409849852323534,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 74.36268305778503,
+        "_timestamp": 1792009289.687255
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_fl_s43-3d079199",
+      "fresh_training": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_shuffle",
+      "seed": 43,
+      "fingerprint": "d950145cbfaae45599b7b80d9e0d6fbb977920e764bd5c6ea1304000dac36a65",
+      "locator": "21522798-uit/mobihet-class-tail/ct_shuffle_s43-d950145c",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.43409849852323534,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 72.83096742630005,
+        "_timestamp": 1792009446.784989
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_shuffle_s43-d950145c",
+      "fresh_training": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_classmass",
+      "seed": 43,
+      "fingerprint": "3f5aa172842c0c43042788e346bb6312f5445f268cf77d6b1d830e13efd0cc5d",
+      "locator": "21522798-uit/mobihet-class-tail/ct_classmass_s43-3f5aa172",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 0.43409849852323534,
+        "applied": 1964,
+        "skipped": 1,
+        "seconds": 72.14344191551208,
+        "_timestamp": 1792009447.8531425
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_classmass_s43-3f5aa172",
+      "fresh_training": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_gaussian",
+      "seed": 43,
+      "fingerprint": "96811b32b3e6c871715e26666bc8e52b13dd2a568afca67876370b3a089a1d87",
+      "locator": "21522798-uit/mobihet-class-tail/ct_gaussian_s43-96811b32",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 2.907617712020874,
+        "applied": 3926,
+        "skipped": 4,
+        "seconds": 124.53784561157228,
+        "_timestamp": 1792009720.6936047
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_gaussian_s43-96811b32",
+      "fresh_training": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "arm": "ct_dml",
+      "seed": 43,
+      "fingerprint": "ffc5e596f5ef24fc877a9449b4381c8c052ad9590db0071460fcac713d2c7fac",
+      "locator": "21522798-uit/mobihet-class-tail/ct_dml_s43-ffc5e596",
+      "parent_round": 2,
+      "state": "finished",
+      "summary": {
+        "round": 2,
+        "loss": 1.2053263485431671,
+        "applied": 3926,
+        "skipped": 4,
+        "seconds": 129.0144453048706,
+        "_timestamp": 1792009727.9640863
+      },
+      "nonfinite": [],
+      "url": "https://wandb.ai/21522798-uit/mobihet-class-tail/runs/ct_dml_s43-ffc5e596",
+      "fresh_training": false
+    }
+  ],
+  "evidence": "Exact config/source/fixture identity; read-only startup; not artifact/utility evidence"
+}

@@ -1,0 +1,647 @@
+{
+  "original_minimal_ratio": 2.0,
+  "repaired_minimal_ratio": 0.000244140625,
+  "production_size_probes": [
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 1,
+      "gamma": 0.04839164078549354,
+      "contraction": 0.941611647605896,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 2,
+      "gamma": 0.044135929581352734,
+      "contraction": 0.9541491270065308,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 3,
+      "gamma": 0.04192226295820405,
+      "contraction": 0.9511959552764893,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 4,
+      "gamma": 0.043359640039117305,
+      "contraction": 0.9552167654037476,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 5,
+      "gamma": 0.04745153764659491,
+      "contraction": 0.9499126076698303,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 6,
+      "gamma": 0.042471418165792016,
+      "contraction": 0.9554839134216309,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 7,
+      "gamma": 0.04360293953439091,
+      "contraction": 0.9578850865364075,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 8,
+      "gamma": 0.04959779918142496,
+      "contraction": 0.9546542763710022,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 9,
+      "gamma": 0.045971051839983616,
+      "contraction": 0.9562109112739563,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 10,
+      "gamma": 0.04584568364437836,
+      "contraction": 0.9520752429962158,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 11,
+      "gamma": 0.04423720625885634,
+      "contraction": 0.9543740153312683,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 12,
+      "gamma": 0.043505948498651456,
+      "contraction": 0.9624831080436707,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 13,
+      "gamma": 0.04176846434506598,
+      "contraction": 0.9558579921722412,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 14,
+      "gamma": 0.044335513514750485,
+      "contraction": 0.9581447243690491,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 15,
+      "gamma": 0.04296571689226649,
+      "contraction": 0.9557397961616516,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 16,
+      "gamma": 0.04574685340915891,
+      "contraction": 0.9573731422424316,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 17,
+      "gamma": 0.04347492649784538,
+      "contraction": 0.9600875973701477,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 18,
+      "gamma": 0.04298845178077709,
+      "contraction": 0.9631621837615967,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 19,
+      "gamma": 0.045115445794588066,
+      "contraction": 0.9596648216247559,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 256,
+      "round": 20,
+      "gamma": 0.04575230562395313,
+      "contraction": 0.9594654440879822,
+      "bytes": 800
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 1,
+      "gamma": 0.18566527834204935,
+      "contraction": 0.7999348044395447,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 2,
+      "gamma": 0.1885432335654598,
+      "contraction": 0.8034258484840393,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 3,
+      "gamma": 0.18783175497477525,
+      "contraction": 0.8034994602203369,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 4,
+      "gamma": 0.186683361258375,
+      "contraction": 0.8074706792831421,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 5,
+      "gamma": 0.18812343857999805,
+      "contraction": 0.8077823519706726,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 6,
+      "gamma": 0.1865247579959019,
+      "contraction": 0.8114171028137207,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 7,
+      "gamma": 0.18767105216297156,
+      "contraction": 0.8053428530693054,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 8,
+      "gamma": 0.18437403683745496,
+      "contraction": 0.8134942054748535,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 9,
+      "gamma": 0.1839810432647954,
+      "contraction": 0.8127713203430176,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 10,
+      "gamma": 0.18521482133926273,
+      "contraction": 0.8081512451171875,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 11,
+      "gamma": 0.18734360590082946,
+      "contraction": 0.8079165816307068,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 12,
+      "gamma": 0.18555161417914326,
+      "contraction": 0.8113880157470703,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 13,
+      "gamma": 0.18369830774417395,
+      "contraction": 0.8083520531654358,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 14,
+      "gamma": 0.18278429266060475,
+      "contraction": 0.8112973570823669,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 15,
+      "gamma": 0.18638711389824872,
+      "contraction": 0.8081805109977722,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 16,
+      "gamma": 0.18558152149884277,
+      "contraction": 0.8096052408218384,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 17,
+      "gamma": 0.18410660895205472,
+      "contraction": 0.813808262348175,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 18,
+      "gamma": 0.18661704814450536,
+      "contraction": 0.8084694147109985,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 19,
+      "gamma": 0.18490058369759338,
+      "contraction": 0.8128671050071716,
+      "bytes": 12320
+    },
+    {
+      "seed": 42,
+      "width": 2048,
+      "round": 20,
+      "gamma": 0.18507164246730085,
+      "contraction": 0.8127290606498718,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 1,
+      "gamma": 0.04447984834088641,
+      "contraction": 0.9463077783584595,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 2,
+      "gamma": 0.045045035120863046,
+      "contraction": 0.9517759084701538,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 3,
+      "gamma": 0.044088936121811736,
+      "contraction": 0.9534931182861328,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 4,
+      "gamma": 0.041413951710984144,
+      "contraction": 0.9519268274307251,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 5,
+      "gamma": 0.04416230597876308,
+      "contraction": 0.9589071273803711,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 6,
+      "gamma": 0.043828704870957684,
+      "contraction": 0.952912449836731,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 7,
+      "gamma": 0.043129240546343144,
+      "contraction": 0.9586213231086731,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 8,
+      "gamma": 0.04460876537019555,
+      "contraction": 0.955832302570343,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 9,
+      "gamma": 0.04460184350908676,
+      "contraction": 0.9536008834838867,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 10,
+      "gamma": 0.04173273488250216,
+      "contraction": 0.957368016242981,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 11,
+      "gamma": 0.04614596568491712,
+      "contraction": 0.954409658908844,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 12,
+      "gamma": 0.04114386837180729,
+      "contraction": 0.9612519145011902,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 13,
+      "gamma": 0.04755746754259019,
+      "contraction": 0.9548290967941284,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 14,
+      "gamma": 0.043158713117137655,
+      "contraction": 0.9591847658157349,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 15,
+      "gamma": 0.04357477644086714,
+      "contraction": 0.9586822986602783,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 16,
+      "gamma": 0.045015748640881835,
+      "contraction": 0.9565142393112183,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 17,
+      "gamma": 0.04249026384203795,
+      "contraction": 0.9576427340507507,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 18,
+      "gamma": 0.04271029194408169,
+      "contraction": 0.9595729112625122,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 19,
+      "gamma": 0.045631543407922935,
+      "contraction": 0.9535943865776062,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 256,
+      "round": 20,
+      "gamma": 0.046954492453648404,
+      "contraction": 0.9529082179069519,
+      "bytes": 800
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 1,
+      "gamma": 0.1892243089936072,
+      "contraction": 0.7965832352638245,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 2,
+      "gamma": 0.1874044119076463,
+      "contraction": 0.8005812764167786,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 3,
+      "gamma": 0.18609463195731973,
+      "contraction": 0.8046456575393677,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 4,
+      "gamma": 0.1853487212814617,
+      "contraction": 0.8045411109924316,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 5,
+      "gamma": 0.18640832171869914,
+      "contraction": 0.8087177276611328,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 6,
+      "gamma": 0.18646811456492443,
+      "contraction": 0.804003894329071,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 7,
+      "gamma": 0.18986296267375735,
+      "contraction": 0.8046258687973022,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 8,
+      "gamma": 0.18585516989576348,
+      "contraction": 0.8112425804138184,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 9,
+      "gamma": 0.18831330073179964,
+      "contraction": 0.8087097406387329,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 10,
+      "gamma": 0.18914340670563587,
+      "contraction": 0.8055031895637512,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 11,
+      "gamma": 0.18509577586006618,
+      "contraction": 0.8103448748588562,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 12,
+      "gamma": 0.1884263847903704,
+      "contraction": 0.8048937320709229,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 13,
+      "gamma": 0.18693124625622431,
+      "contraction": 0.805913507938385,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 14,
+      "gamma": 0.18788626740366893,
+      "contraction": 0.8055358529090881,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 15,
+      "gamma": 0.18582969779655648,
+      "contraction": 0.812884509563446,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 16,
+      "gamma": 0.1835822869293279,
+      "contraction": 0.8117860555648804,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 17,
+      "gamma": 0.1871657723301426,
+      "contraction": 0.8108975291252136,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 18,
+      "gamma": 0.18227777788531074,
+      "contraction": 0.8140314221382141,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 19,
+      "gamma": 0.18295398170537894,
+      "contraction": 0.8155450820922852,
+      "bytes": 12320
+    },
+    {
+      "seed": 43,
+      "width": 2048,
+      "round": 20,
+      "gamma": 0.18500114911728016,
+      "contraction": 0.8108548521995544,
+      "bytes": 12320
+    }
+  ],
+  "scope": "codec algebra on generated updates; not real-update fidelity, epoch stability, teacher or IDS utility"
+}

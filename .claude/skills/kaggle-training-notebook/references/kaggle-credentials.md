@@ -17,6 +17,15 @@ Use the skill's `scripts/kaggle_account.py list` for current account inventory. 
 Do not select a dataset owner's account merely because its datasets are attached. Never print
 credential files or token values; report only filenames, account names and verification results.
 
+## Project account roster
+
+For this MobiHet checkout, read repository-root
+[docs/operations/kaggle-accounts.md](../../../../docs/operations/kaggle-accounts.md)
+when selecting or verifying accounts added on 2026-10-15 (`annhtnt`, `takids1909`,
+`accanniez`, `nguyenminhtran060113`). It records usernames, owner-provided emails and credential filenames;
+secret values remain in `~/.kaggle/accounts/`. Discover current files with `list`;
+read live quota before allocating work. Account setup does not authorize new launches.
+
 ## Current host configuration
 
 As of 2026-09-08 this repository has its own copies of `scripts/kaggle_mcp_headers.py`,

@@ -1,0 +1,6 @@
+setup a_medium_contract_ef role private rows 5120 sec 2.7
+r1 a_medium_contract_ef s42 private group gp 0.007089835338893435 loss 2.8350 7s
+r2 a_medium_contract_ef s42 private group gp 0.00670443076424118 loss 2.2084 6s
+r3 a_medium_contract_ef s42 private group gp 0.00648337201808227 loss 1.9498 6s
+done a_medium_contract_ef complete True
+Peak tree RSS: 2294 MiB; exit 0

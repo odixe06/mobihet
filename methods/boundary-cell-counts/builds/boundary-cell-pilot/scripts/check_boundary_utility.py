@@ -36,6 +36,11 @@ def helpers():
             return dict(rounds=1,cost={'pass_cost':True})
         record=import_run(root/'mount',root/'out',source.name,expected,{},verify)
         assert record['markers_last'] and record['copied_files']==3
+        def utility_verify(folder,*args,**kwargs):
+            assert kwargs['calibration'] is False
+            return dict(rounds=1,cost=None)
+        import_run(root/'mount',root/'utility',source.name,
+                   dict(expected,calibration=False,cost_calibration_pass=True),{},utility_verify)
         for label,path,value,checker in (
             ('empty',root/'missing',expected,verify),
             ('source',root/'mount',dict(expected,source={}),verify),
@@ -91,11 +96,11 @@ def controller(folder,case):
         except AssertionError:assert case=='failure'
         else:assert case!='failure'
         summary=json.loads((out/'utility_summary.json').read_text())
-        assert len(summary)==20
+        assert len(summary)==len(scope['METHODS'])
         if case=='budget':
             assert not launches and not any(x['complete'] for x in summary.values())
-            assert sum(x['rounds'] for x in summary.values())==10
-        elif case=='normal':assert len(launches)==20 and all(x['complete'] for x in summary.values())
+            assert sum(x['rounds'] for x in summary.values())==sum(x['last_round'] for x in expected.values())
+        elif case=='normal':assert len(launches)==len(scope['METHODS']) and all(x['complete'] for x in summary.values())
         else:assert any(x.get('rc')==7 for x in summary.values())
     return dict(kernel=meta['id'],case=case,pass_check=True)
 

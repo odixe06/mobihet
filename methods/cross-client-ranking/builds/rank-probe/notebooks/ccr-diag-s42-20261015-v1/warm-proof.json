@@ -1,0 +1,10 @@
+{
+  "kernel": "minhtriethihi/mobihet-ct-cal-s42-20261015-v1",
+  "version": 1,
+  "arm": "ct_local_s42",
+  "round": 2,
+  "fingerprint": "43caa4c83e016c8232593fd65c188da0b5e96c7b4c7b90ac50c1ac4bbafee1e5",
+  "weights_sha": "b4638d7178a6a2238d55c1036c420ab9468b4436bb20367a97f8b653a5783d2e",
+  "original_fixture_sha": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+  "audited": true
+}

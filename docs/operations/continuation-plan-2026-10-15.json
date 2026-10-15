@@ -1,0 +1,72 @@
+{
+  "rows": [
+    {
+      "build": "hybrid-full",
+      "owner": "annhtnt",
+      "rid": "hybf1-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_local": "hybf1-s42-20261014-dsresume-v1",
+        "h_dml": "hybf1-s42-20261014-dsresume-v1"
+      }
+    },
+    {
+      "build": "hybrid-full",
+      "owner": "annhtnt",
+      "rid": "hybf2-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_gaussian": "hybf2-s42-20261014-cont01-v1",
+        "h_hybrid": "hybf2-s42-20261014-cont01-v1"
+      }
+    },
+    {
+      "build": "hybrid-full",
+      "owner": "takids1909",
+      "rid": "hybf3-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_gaussian_own": "hybf3-s42-20261014-dsresume-v1",
+        "h_dml_own": "hybf3-s42-20261014-dsresume-v1"
+      }
+    },
+    {
+      "build": "hybrid-full",
+      "owner": "takids1909",
+      "rid": "hybf4-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_hybrid_own": "hybf4-s42-20261014-cont01-v1"
+      }
+    },
+    {
+      "build": "full-validation",
+      "owner": "accanniez",
+      "rid": "full1-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_local": "full1-s42-20261014-cont02-v1",
+        "h_gaussian": "full1-s42-20261014-cont02-v1"
+      }
+    },
+    {
+      "build": "full-validation",
+      "owner": "accanniez",
+      "rid": "fulld-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_dml": "full3-s42-20261014-cont02-v1",
+        "h_dml_own": "full4-s42-20261014-cont02-v1"
+      }
+    }
+  ],
+  "quota": {
+    "annhtnt": 30,
+    "takids1909": 30,
+    "accanniez": 30
+  },
+  "quota_evidence": "owner confirmed full quota; no quota query",
+  "session_hours": 54,
+  "with_15percent_margin": 62.1,
+  "pending_budget_scope": "not r50 completion; remaining rounds require later quota"
+}

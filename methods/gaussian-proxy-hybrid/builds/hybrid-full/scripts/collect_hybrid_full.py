@@ -13,7 +13,11 @@ import torch
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[2])
 H=ROOT/'.agents/skills/kaggle-training-notebook/scripts'
 BASE=ROOT/'papers/hybrid-full'
+sys.path.insert(0,str(ROOT))
+import scripts
 sys.path.insert(0,str(BASE/'proj'))
+import full_verify
+full_verify.ROOT=ROOT
 from full_verify import verify
 
 
@@ -32,7 +36,7 @@ def collect():
         print(status.stdout.strip(),flush=True)
         if not any(s in status.stdout for s in ('COMPLETE','ERROR')):continue
         subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','6',
-            '--pattern',r'^(runs|source)/'],check=True)
+            '--pattern',r'^(source/|runs/(?![^/]+/wandb/))'],check=True)
         private=BASE/'private_push'/folder.name;executed=private/'executed.ipynb'
         subprocess.run(prefix+[sys.executable,str(H/'download_executed_notebook.py'),kernel,'--version','1',
             '--output',str(executed)],check=True,umask=0o077)

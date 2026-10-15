@@ -1,0 +1,12 @@
+{
+  "rank_gradient_error": 2.168404344971009e-19,
+  "nnls_matches_independent_solver": true,
+  "frame_refusals": true,
+  "bounded_synthetic_clients": 5,
+  "rows_per_client": 512,
+  "actual_dagsnet_sgd": true,
+  "exact_next_round_state": true,
+  "fixed_prior": true,
+  "pass_check": true,
+  "scope": "Local synthetic fixture only; not production training, T4 cost or utility"
+}

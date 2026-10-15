@@ -1,0 +1,23 @@
+[{"stream_name":"stderr","time":9.892454215,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.892504652,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.892509240999999,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.892512217,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":10.677200652,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":10.677241077,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":10.67724678,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":10.677250966,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":21.268518037,"data":"CPU checkpoint probe\n"}
+,{"stream_name":"stdout","time":146.602012658,"data":"VERIFIED FULL h_local_s42 16 rounds\n"}
+,{"stream_name":"stdout","time":266.096412407,"data":"VERIFIED FULL h_local_s42 16 rounds\n"}
+,{"stream_name":"stdout","time":372.254398204,"data":"VERIFIED FULL h_gaussian_s42 14 rounds\n"}
+,{"stream_name":"stdout","time":475.956326295,"data":"VERIFIED FULL h_gaussian_s42 14 rounds\n"}
+,{"stream_name":"stdout","time":475.957759279,"data":"REQUIRE RESUME PASS before data decode [{'arm': 'h_local', 'fingerprint': 'f4dc276395210a94a48edb3fbdde5627df1e4d239bb720d411bcddb110975413', 'last_round': 16, 'source_path': '/kaggle/input/datasets/accanniez/mobihet-full1-s42-20261015-q2-v1-ckpt/runs/h_local_s42', 'files': 67, 'markers_published_last': True}, {'arm': 'h_gaussian', 'fingerprint': '6376f7445519919315e7355842f6a73cac27b56ad562ec0a43695c88e5bc33b3', 'last_round': 14, 'source_path': '/kaggle/input/datasets/accanniez/mobihet-full1-s42-20261015-q2-v1-ckpt/runs/h_gaussian_s42', 'files': 59, 'markers_published_last': True}]\n"}
+,{"stream_name":"stderr","time":482.939999501,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":482.940038995,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":483.182592873,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":483.182624431,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":483.986256445,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":484.394942001,"data":"[NbConvertApp] Writing 19491 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":487.650452834,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":488.845352744,"data":"[NbConvertApp] Writing 325421 bytes to __results__.html\n"}
+]

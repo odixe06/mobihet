@@ -1,0 +1,47 @@
+{
+  "minhtran0601": {
+    "user": "minhtran0601",
+    "gpu_left": 0.6682352777777787,
+    "gpu_total": 30.0,
+    "gpu_reserved": 0.0,
+    "tpu_left": 20.0,
+    "tpu_total": 20.0,
+    "refresh_at": "2026-10-17T00:00:00"
+  },
+  "dinhan25": {
+    "user": "dinhan25",
+    "gpu_left": 0.8507255555555524,
+    "gpu_total": 30.0,
+    "gpu_reserved": 0.0,
+    "tpu_left": 20.0,
+    "tpu_total": 20.0,
+    "refresh_at": "2026-10-17T00:00:00"
+  },
+  "minhtriethihi": {
+    "user": "minhtriethihi",
+    "gpu_left": 9.468653055555556,
+    "gpu_total": 30.0,
+    "gpu_reserved": 0.0,
+    "tpu_left": 20.0,
+    "tpu_total": 20.0,
+    "refresh_at": "2026-10-17T00:00:00"
+  },
+  "khanhmay0304": {
+    "user": "khanhmay0304",
+    "gpu_left": 7.186645000000002,
+    "gpu_total": 30.0,
+    "gpu_reserved": 0.0,
+    "tpu_left": 20.0,
+    "tpu_total": 20.0,
+    "refresh_at": "2026-10-17T00:00:00"
+  },
+  "catbaochau": {
+    "user": "catbaochau",
+    "gpu_left": 2.9525716666666675,
+    "gpu_total": 30.0,
+    "gpu_reserved": 0.0,
+    "tpu_left": 20.0,
+    "tpu_total": 20.0,
+    "refresh_at": "2026-10-17T00:00:00"
+  }
+}

@@ -1,0 +1,10 @@
+catbaochau/mobihet-ct-u-s42-20261015-v1 has status "KernelWorkerStatus.COMPLETE"
+catbaochau/mobihet-ct-u-s42-20261015-v1: 837 files, 6 parallel
+catbaochau/mobihet-ct-u-s42-20261015-v1: 837 files ok, 0 missing, 6835 MiB new in 1286 s (5.3 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/methods/class-tail-risk/builds/class-tail-pilot/private_push/ct-u-s42-20261015-v1/executed.ipynb (49352 bytes, 6 outputs)
+AUDITED ClassTail 42 mechanism None all r20 True
+khanhmay0304/mobihet-ct-u-s43-20261015-v1 has status "KernelWorkerStatus.COMPLETE"
+khanhmay0304/mobihet-ct-u-s43-20261015-v1: 837 files, 6 parallel
+khanhmay0304/mobihet-ct-u-s43-20261015-v1: 837 files ok, 0 missing, 6835 MiB new in 1474 s (4.6 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/methods/class-tail-risk/builds/class-tail-pilot/private_push/ct-u-s43-20261015-v1/executed.ipynb (49352 bytes, 6 outputs)
+AUDITED ClassTail 43 mechanism None all r20 True

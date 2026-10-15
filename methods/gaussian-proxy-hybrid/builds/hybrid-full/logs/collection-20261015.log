@@ -1,0 +1,29 @@
+minhtrit06/mobihet-hybf1-s42-20261014-cont01-v1 has status "KernelWorkerStatus.CANCEL_ACKNOWLEDGED"
+minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1: 117 files, 6 parallel
+minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1: 117 files ok, 0 missing, 1186 MiB new in 57 s (21.0 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf1-s42-20261014-dsresume-v1/executed.ipynb (37547 bytes, 5 outputs)
+VERIFIED FULL h_local_s42 4 rounds
+VERIFIED FULL h_dml_s42 4 rounds
+AUDITED HYBRID FULL CALIBRATION minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1 False
+odixeuit/mobihet-hybf2-s42-20261014-cont01-v1 has status "KernelWorkerStatus.COMPLETE"
+odixeuit/mobihet-hybf2-s42-20261014-cont01-v1: 144 files, 6 parallel
+odixeuit/mobihet-hybf2-s42-20261014-cont01-v1: 144 files ok, 0 missing, 2017 MiB new in 77 s (26.1 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf2-s42-20261014-cont01-v1/executed.ipynb (37475 bytes, 5 outputs)
+VERIFIED FULL h_hybrid_s42 7 rounds
+VERIFIED FULL h_gaussian_s42 7 rounds
+AUDITED HYBRID FULL CALIBRATION odixeuit/mobihet-hybf2-s42-20261014-cont01-v1 False
+trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1 has status "KernelWorkerStatus.COMPLETE"
+trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1: 125 files, 6 parallel
+trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1: 125 files ok, 0 missing, 1685 MiB new in 71 s (23.6 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf3-s42-20261014-dsresume-v1/executed.ipynb (37639 bytes, 5 outputs)
+VERIFIED FULL h_dml_own_s42 4 rounds
+VERIFIED FULL h_gaussian_own_s42 7 rounds
+AUDITED HYBRID FULL CALIBRATION trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1 False
+odixe0502/mobihet-hybf4-s42-20261014-cont01-v1 has status "KernelWorkerStatus.COMPLETE"
+odixe0502/mobihet-hybf4-s42-20261014-cont01-v1: 92 files, 6 parallel
+odixe0502/mobihet-hybf4-s42-20261014-cont01-v1: 92 files ok, 0 missing, 875 MiB new in 42 s (20.7 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/hybrid-full/private_push/hybf4-s42-20261014-cont01-v1/executed.ipynb (28531 bytes, 5 outputs)
+VERIFIED FULL h_hybrid_own_s42 6 rounds
+AUDITED HYBRID FULL CALIBRATION odixe0502/mobihet-hybf4-s42-20261014-cont01-v1 False
+8

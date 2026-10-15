@@ -1,0 +1,60 @@
+{
+  "small_s42": {
+    "rounds": 20,
+    "quality_pass": false,
+    "teacher_pass": true,
+    "gain_vs_own": -0.25615981445396385,
+    "retention": -1.3307939992988238,
+    "ef_contrast": 0.002476801710561388,
+    "ef_contribution": false,
+    "last5": [
+      0.2145077941667934,
+      0.21129916969946558,
+      0.2135633970930389,
+      0.211185920570066,
+      0.2132800513280441
+    ]
+  },
+  "medium_s42": {
+    "rounds": 17,
+    "quality_pass": null,
+    "aligned_gain_vs_own": -0.24860105048501288,
+    "last5": [
+      0.21830368508160256,
+      0.21714726047968397,
+      0.2176107021533534,
+      0.21742706631840605,
+      0.21413717234288918
+    ],
+    "feasibility": "no support for extension if far below own and flat/declining; not fixed-r20 FAIL"
+  },
+  "small_s43": {
+    "rounds": 20,
+    "quality_pass": false,
+    "teacher_pass": true,
+    "gain_vs_own": -0.26927370713728144,
+    "retention": -1.5116267367166236,
+    "ef_contrast": -0.007404359070437377,
+    "ef_contribution": false,
+    "last5": [
+      0.20235192810667466,
+      0.20102651910991906,
+      0.20122953396213877,
+      0.2016232803021678,
+      0.19799648280098625
+    ]
+  },
+  "medium_s43": {
+    "rounds": 14,
+    "quality_pass": null,
+    "aligned_gain_vs_own": -0.2576800887833658,
+    "last5": [
+      0.2132762686142477,
+      0.22006800956239686,
+      0.2117731775848001,
+      0.214058159040228,
+      0.2135017786099879
+    ],
+    "feasibility": "no support for extension if far below own and flat/declining; not fixed-r20 FAIL"
+  }
+}

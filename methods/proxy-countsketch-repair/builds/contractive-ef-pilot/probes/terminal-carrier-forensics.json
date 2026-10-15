@@ -1,0 +1,2022 @@
+{
+  "a_medium_contract_ef_s42": {
+    "rounds": 17,
+    "unique_coordinates": 30883,
+    "parameter_fraction": 0.07818005979061127,
+    "zero_updates": 0,
+    "median_ties_at_topk_cutoff": 5.0,
+    "layers": [
+      {
+        "name": "stems.0.0.weight",
+        "parameters": 576,
+        "touched": 40
+      },
+      {
+        "name": "stems.0.1.weight",
+        "parameters": 96,
+        "touched": 7
+      },
+      {
+        "name": "stems.0.1.bias",
+        "parameters": 96,
+        "touched": 8
+      },
+      {
+        "name": "stems.1.0.weight",
+        "parameters": 576,
+        "touched": 39
+      },
+      {
+        "name": "stems.1.1.weight",
+        "parameters": 96,
+        "touched": 6
+      },
+      {
+        "name": "stems.1.1.bias",
+        "parameters": 96,
+        "touched": 13
+      },
+      {
+        "name": "stems.2.0.weight",
+        "parameters": 576,
+        "touched": 42
+      },
+      {
+        "name": "stems.2.1.weight",
+        "parameters": 96,
+        "touched": 6
+      },
+      {
+        "name": "stems.2.1.bias",
+        "parameters": 96,
+        "touched": 7
+      },
+      {
+        "name": "stems.3.0.weight",
+        "parameters": 576,
+        "touched": 51
+      },
+      {
+        "name": "stems.3.1.weight",
+        "parameters": 96,
+        "touched": 11
+      },
+      {
+        "name": "stems.3.1.bias",
+        "parameters": 96,
+        "touched": 10
+      },
+      {
+        "name": "dense.blocks.0.0.weight",
+        "parameters": 9216,
+        "touched": 706
+      },
+      {
+        "name": "dense.blocks.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.0.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "dense.blocks.1.0.weight",
+        "parameters": 12288,
+        "touched": 955
+      },
+      {
+        "name": "dense.blocks.1.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "dense.blocks.1.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "dense.blocks.2.0.weight",
+        "parameters": 15360,
+        "touched": 1195
+      },
+      {
+        "name": "dense.blocks.2.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "dense.blocks.2.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b1.0.weight",
+        "parameters": 3072,
+        "touched": 242
+      },
+      {
+        "name": "google.net.0.b1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.b1.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.b3.0.0.weight",
+        "parameters": 3072,
+        "touched": 238
+      },
+      {
+        "name": "google.net.0.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 5
+      },
+      {
+        "name": "google.net.0.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 260
+      },
+      {
+        "name": "google.net.0.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 4
+      },
+      {
+        "name": "google.net.0.b5.0.0.weight",
+        "parameters": 3072,
+        "touched": 249
+      },
+      {
+        "name": "google.net.0.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 5
+      },
+      {
+        "name": "google.net.0.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.0.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 409
+      },
+      {
+        "name": "google.net.0.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.0.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.bp.1.0.weight",
+        "parameters": 3072,
+        "touched": 225
+      },
+      {
+        "name": "google.net.0.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.b1.0.weight",
+        "parameters": 4096,
+        "touched": 334
+      },
+      {
+        "name": "google.net.1.b1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.b1.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.b3.0.0.weight",
+        "parameters": 4096,
+        "touched": 341
+      },
+      {
+        "name": "google.net.1.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 227
+      },
+      {
+        "name": "google.net.1.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.1.b5.0.0.weight",
+        "parameters": 4096,
+        "touched": 320
+      },
+      {
+        "name": "google.net.1.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 406
+      },
+      {
+        "name": "google.net.1.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 4
+      },
+      {
+        "name": "google.net.1.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 5
+      },
+      {
+        "name": "google.net.1.bp.1.0.weight",
+        "parameters": 4096,
+        "touched": 326
+      },
+      {
+        "name": "google.net.1.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 4
+      },
+      {
+        "name": "google.net.1.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "alex.net.0.0.weight",
+        "parameters": 36864,
+        "touched": 2921
+      },
+      {
+        "name": "alex.net.0.1.weight",
+        "parameters": 128,
+        "touched": 6
+      },
+      {
+        "name": "alex.net.0.1.bias",
+        "parameters": 128,
+        "touched": 7
+      },
+      {
+        "name": "alex.net.2.0.weight",
+        "parameters": 49152,
+        "touched": 3786
+      },
+      {
+        "name": "alex.net.2.1.weight",
+        "parameters": 128,
+        "touched": 8
+      },
+      {
+        "name": "alex.net.2.1.bias",
+        "parameters": 128,
+        "touched": 9
+      },
+      {
+        "name": "alex.net.4.0.weight",
+        "parameters": 49152,
+        "touched": 3858
+      },
+      {
+        "name": "alex.net.4.1.weight",
+        "parameters": 128,
+        "touched": 10
+      },
+      {
+        "name": "alex.net.4.1.bias",
+        "parameters": 128,
+        "touched": 8
+      },
+      {
+        "name": "squeeze.net.0.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 236
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.0.e1.0.weight",
+        "parameters": 1536,
+        "touched": 114
+      },
+      {
+        "name": "squeeze.net.0.e1.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e1.1.bias",
+        "parameters": 48,
+        "touched": 4
+      },
+      {
+        "name": "squeeze.net.0.e3.0.weight",
+        "parameters": 4608,
+        "touched": 368
+      },
+      {
+        "name": "squeeze.net.0.e3.1.weight",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.0.e3.1.bias",
+        "parameters": 48,
+        "touched": 6
+      },
+      {
+        "name": "squeeze.net.1.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 255
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.1.e1.0.weight",
+        "parameters": 1536,
+        "touched": 104
+      },
+      {
+        "name": "squeeze.net.1.e1.1.weight",
+        "parameters": 48,
+        "touched": 5
+      },
+      {
+        "name": "squeeze.net.1.e1.1.bias",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.1.e3.0.weight",
+        "parameters": 4608,
+        "touched": 371
+      },
+      {
+        "name": "squeeze.net.1.e3.1.weight",
+        "parameters": 48,
+        "touched": 5
+      },
+      {
+        "name": "squeeze.net.1.e3.1.bias",
+        "parameters": 48,
+        "touched": 4
+      },
+      {
+        "name": "squeeze.net.2.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 242
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "squeeze.net.2.e1.0.weight",
+        "parameters": 1536,
+        "touched": 103
+      },
+      {
+        "name": "squeeze.net.2.e1.1.weight",
+        "parameters": 48,
+        "touched": 4
+      },
+      {
+        "name": "squeeze.net.2.e1.1.bias",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.2.e3.0.weight",
+        "parameters": 4608,
+        "touched": 355
+      },
+      {
+        "name": "squeeze.net.2.e3.1.weight",
+        "parameters": 48,
+        "touched": 6
+      },
+      {
+        "name": "squeeze.net.2.e3.1.bias",
+        "parameters": 48,
+        "touched": 2
+      },
+      {
+        "name": "head.0.weight",
+        "parameters": 544,
+        "touched": 40
+      },
+      {
+        "name": "head.0.bias",
+        "parameters": 544,
+        "touched": 42
+      },
+      {
+        "name": "head.2.weight",
+        "parameters": 139264,
+        "touched": 10897
+      },
+      {
+        "name": "head.2.bias",
+        "parameters": 256,
+        "touched": 26
+      },
+      {
+        "name": "head.5.weight",
+        "parameters": 4096,
+        "touched": 310
+      },
+      {
+        "name": "head.5.bias",
+        "parameters": 16,
+        "touched": 2
+      }
+    ],
+    "note": "Actual nonzero wire patches; coverage does not measure raw-update reconstruction error"
+  },
+  "a_small_contract_ef_s42": {
+    "rounds": 20,
+    "unique_coordinates": 2521,
+    "parameter_fraction": 0.00638189073652029,
+    "zero_updates": 0,
+    "median_ties_at_topk_cutoff": 24.0,
+    "layers": [
+      {
+        "name": "stems.0.0.weight",
+        "parameters": 576,
+        "touched": 3
+      },
+      {
+        "name": "stems.0.1.weight",
+        "parameters": 96,
+        "touched": 2
+      },
+      {
+        "name": "stems.0.1.bias",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.1.0.weight",
+        "parameters": 576,
+        "touched": 3
+      },
+      {
+        "name": "stems.1.1.weight",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.1.1.bias",
+        "parameters": 96,
+        "touched": 1
+      },
+      {
+        "name": "stems.2.0.weight",
+        "parameters": 576,
+        "touched": 7
+      },
+      {
+        "name": "stems.2.1.weight",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.2.1.bias",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.3.0.weight",
+        "parameters": 576,
+        "touched": 2
+      },
+      {
+        "name": "stems.3.1.weight",
+        "parameters": 96,
+        "touched": 1
+      },
+      {
+        "name": "stems.3.1.bias",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.0.0.weight",
+        "parameters": 9216,
+        "touched": 65
+      },
+      {
+        "name": "dense.blocks.0.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "dense.blocks.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.1.0.weight",
+        "parameters": 12288,
+        "touched": 86
+      },
+      {
+        "name": "dense.blocks.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.2.0.weight",
+        "parameters": 15360,
+        "touched": 113
+      },
+      {
+        "name": "dense.blocks.2.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "dense.blocks.2.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b1.0.weight",
+        "parameters": 3072,
+        "touched": 20
+      },
+      {
+        "name": "google.net.0.b1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.0.0.weight",
+        "parameters": 3072,
+        "touched": 20
+      },
+      {
+        "name": "google.net.0.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 19
+      },
+      {
+        "name": "google.net.0.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b5.0.0.weight",
+        "parameters": 3072,
+        "touched": 22
+      },
+      {
+        "name": "google.net.0.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 42
+      },
+      {
+        "name": "google.net.0.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.bp.1.0.weight",
+        "parameters": 3072,
+        "touched": 22
+      },
+      {
+        "name": "google.net.0.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b1.0.weight",
+        "parameters": 4096,
+        "touched": 29
+      },
+      {
+        "name": "google.net.1.b1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.0.0.weight",
+        "parameters": 4096,
+        "touched": 29
+      },
+      {
+        "name": "google.net.1.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 22
+      },
+      {
+        "name": "google.net.1.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.0.0.weight",
+        "parameters": 4096,
+        "touched": 22
+      },
+      {
+        "name": "google.net.1.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 33
+      },
+      {
+        "name": "google.net.1.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.bp.1.0.weight",
+        "parameters": 4096,
+        "touched": 24
+      },
+      {
+        "name": "google.net.1.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "alex.net.0.0.weight",
+        "parameters": 36864,
+        "touched": 241
+      },
+      {
+        "name": "alex.net.0.1.weight",
+        "parameters": 128,
+        "touched": 1
+      },
+      {
+        "name": "alex.net.0.1.bias",
+        "parameters": 128,
+        "touched": 2
+      },
+      {
+        "name": "alex.net.2.0.weight",
+        "parameters": 49152,
+        "touched": 291
+      },
+      {
+        "name": "alex.net.2.1.weight",
+        "parameters": 128,
+        "touched": 1
+      },
+      {
+        "name": "alex.net.2.1.bias",
+        "parameters": 128,
+        "touched": 3
+      },
+      {
+        "name": "alex.net.4.0.weight",
+        "parameters": 49152,
+        "touched": 327
+      },
+      {
+        "name": "alex.net.4.1.weight",
+        "parameters": 128,
+        "touched": 0
+      },
+      {
+        "name": "alex.net.4.1.bias",
+        "parameters": 128,
+        "touched": 2
+      },
+      {
+        "name": "squeeze.net.0.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 18
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.0.e1.0.weight",
+        "parameters": 1536,
+        "touched": 10
+      },
+      {
+        "name": "squeeze.net.0.e1.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e1.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e3.0.weight",
+        "parameters": 4608,
+        "touched": 38
+      },
+      {
+        "name": "squeeze.net.0.e3.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e3.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 21
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.1.e1.0.weight",
+        "parameters": 1536,
+        "touched": 9
+      },
+      {
+        "name": "squeeze.net.1.e1.1.weight",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.1.e1.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.e3.0.weight",
+        "parameters": 4608,
+        "touched": 25
+      },
+      {
+        "name": "squeeze.net.1.e3.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.e3.1.bias",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 18
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.e1.0.weight",
+        "parameters": 1536,
+        "touched": 9
+      },
+      {
+        "name": "squeeze.net.2.e1.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.e1.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.e3.0.weight",
+        "parameters": 4608,
+        "touched": 37
+      },
+      {
+        "name": "squeeze.net.2.e3.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.e3.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "head.0.weight",
+        "parameters": 544,
+        "touched": 2
+      },
+      {
+        "name": "head.0.bias",
+        "parameters": 544,
+        "touched": 5
+      },
+      {
+        "name": "head.2.weight",
+        "parameters": 139264,
+        "touched": 834
+      },
+      {
+        "name": "head.2.bias",
+        "parameters": 256,
+        "touched": 2
+      },
+      {
+        "name": "head.5.weight",
+        "parameters": 4096,
+        "touched": 27
+      },
+      {
+        "name": "head.5.bias",
+        "parameters": 16,
+        "touched": 1
+      }
+    ],
+    "note": "Actual nonzero wire patches; coverage does not measure raw-update reconstruction error"
+  },
+  "a_medium_contract_ef_s43": {
+    "rounds": 14,
+    "unique_coordinates": 25627,
+    "parameter_fraction": 0.06487453728914261,
+    "zero_updates": 0,
+    "median_ties_at_topk_cutoff": 6.5,
+    "layers": [
+      {
+        "name": "stems.0.0.weight",
+        "parameters": 576,
+        "touched": 31
+      },
+      {
+        "name": "stems.0.1.weight",
+        "parameters": 96,
+        "touched": 4
+      },
+      {
+        "name": "stems.0.1.bias",
+        "parameters": 96,
+        "touched": 10
+      },
+      {
+        "name": "stems.1.0.weight",
+        "parameters": 576,
+        "touched": 34
+      },
+      {
+        "name": "stems.1.1.weight",
+        "parameters": 96,
+        "touched": 9
+      },
+      {
+        "name": "stems.1.1.bias",
+        "parameters": 96,
+        "touched": 6
+      },
+      {
+        "name": "stems.2.0.weight",
+        "parameters": 576,
+        "touched": 37
+      },
+      {
+        "name": "stems.2.1.weight",
+        "parameters": 96,
+        "touched": 5
+      },
+      {
+        "name": "stems.2.1.bias",
+        "parameters": 96,
+        "touched": 13
+      },
+      {
+        "name": "stems.3.0.weight",
+        "parameters": 576,
+        "touched": 37
+      },
+      {
+        "name": "stems.3.1.weight",
+        "parameters": 96,
+        "touched": 8
+      },
+      {
+        "name": "stems.3.1.bias",
+        "parameters": 96,
+        "touched": 7
+      },
+      {
+        "name": "dense.blocks.0.0.weight",
+        "parameters": 9216,
+        "touched": 603
+      },
+      {
+        "name": "dense.blocks.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.1.0.weight",
+        "parameters": 12288,
+        "touched": 784
+      },
+      {
+        "name": "dense.blocks.1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "dense.blocks.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.2.0.weight",
+        "parameters": 15360,
+        "touched": 984
+      },
+      {
+        "name": "dense.blocks.2.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "dense.blocks.2.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.b1.0.weight",
+        "parameters": 3072,
+        "touched": 197
+      },
+      {
+        "name": "google.net.0.b1.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.0.b1.1.bias",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.b3.0.0.weight",
+        "parameters": 3072,
+        "touched": 193
+      },
+      {
+        "name": "google.net.0.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.0.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 200
+      },
+      {
+        "name": "google.net.0.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 5
+      },
+      {
+        "name": "google.net.0.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.0.b5.0.0.weight",
+        "parameters": 3072,
+        "touched": 228
+      },
+      {
+        "name": "google.net.0.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 344
+      },
+      {
+        "name": "google.net.0.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.0.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.bp.1.0.weight",
+        "parameters": 3072,
+        "touched": 182
+      },
+      {
+        "name": "google.net.0.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b1.0.weight",
+        "parameters": 4096,
+        "touched": 260
+      },
+      {
+        "name": "google.net.1.b1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.0.0.weight",
+        "parameters": 4096,
+        "touched": 237
+      },
+      {
+        "name": "google.net.1.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.1.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 4
+      },
+      {
+        "name": "google.net.1.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 170
+      },
+      {
+        "name": "google.net.1.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.0.0.weight",
+        "parameters": 4096,
+        "touched": 260
+      },
+      {
+        "name": "google.net.1.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.1.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 367
+      },
+      {
+        "name": "google.net.1.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 3
+      },
+      {
+        "name": "google.net.1.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.bp.1.0.weight",
+        "parameters": 4096,
+        "touched": 248
+      },
+      {
+        "name": "google.net.1.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 2
+      },
+      {
+        "name": "google.net.1.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 4
+      },
+      {
+        "name": "alex.net.0.0.weight",
+        "parameters": 36864,
+        "touched": 2436
+      },
+      {
+        "name": "alex.net.0.1.weight",
+        "parameters": 128,
+        "touched": 8
+      },
+      {
+        "name": "alex.net.0.1.bias",
+        "parameters": 128,
+        "touched": 8
+      },
+      {
+        "name": "alex.net.2.0.weight",
+        "parameters": 49152,
+        "touched": 3140
+      },
+      {
+        "name": "alex.net.2.1.weight",
+        "parameters": 128,
+        "touched": 8
+      },
+      {
+        "name": "alex.net.2.1.bias",
+        "parameters": 128,
+        "touched": 7
+      },
+      {
+        "name": "alex.net.4.0.weight",
+        "parameters": 49152,
+        "touched": 3195
+      },
+      {
+        "name": "alex.net.4.1.weight",
+        "parameters": 128,
+        "touched": 5
+      },
+      {
+        "name": "alex.net.4.1.bias",
+        "parameters": 128,
+        "touched": 5
+      },
+      {
+        "name": "squeeze.net.0.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 210
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e1.0.weight",
+        "parameters": 1536,
+        "touched": 104
+      },
+      {
+        "name": "squeeze.net.0.e1.1.weight",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.0.e1.1.bias",
+        "parameters": 48,
+        "touched": 5
+      },
+      {
+        "name": "squeeze.net.0.e3.0.weight",
+        "parameters": 4608,
+        "touched": 313
+      },
+      {
+        "name": "squeeze.net.0.e3.1.weight",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.0.e3.1.bias",
+        "parameters": 48,
+        "touched": 6
+      },
+      {
+        "name": "squeeze.net.1.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 202
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.e1.0.weight",
+        "parameters": 1536,
+        "touched": 90
+      },
+      {
+        "name": "squeeze.net.1.e1.1.weight",
+        "parameters": 48,
+        "touched": 5
+      },
+      {
+        "name": "squeeze.net.1.e1.1.bias",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.1.e3.0.weight",
+        "parameters": 4608,
+        "touched": 315
+      },
+      {
+        "name": "squeeze.net.1.e3.1.weight",
+        "parameters": 48,
+        "touched": 2
+      },
+      {
+        "name": "squeeze.net.1.e3.1.bias",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 223
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.e1.0.weight",
+        "parameters": 1536,
+        "touched": 90
+      },
+      {
+        "name": "squeeze.net.2.e1.1.weight",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.e1.1.bias",
+        "parameters": 48,
+        "touched": 3
+      },
+      {
+        "name": "squeeze.net.2.e3.0.weight",
+        "parameters": 4608,
+        "touched": 304
+      },
+      {
+        "name": "squeeze.net.2.e3.1.weight",
+        "parameters": 48,
+        "touched": 4
+      },
+      {
+        "name": "squeeze.net.2.e3.1.bias",
+        "parameters": 48,
+        "touched": 4
+      },
+      {
+        "name": "head.0.weight",
+        "parameters": 544,
+        "touched": 57
+      },
+      {
+        "name": "head.0.bias",
+        "parameters": 544,
+        "touched": 34
+      },
+      {
+        "name": "head.2.weight",
+        "parameters": 139264,
+        "touched": 9017
+      },
+      {
+        "name": "head.2.bias",
+        "parameters": 256,
+        "touched": 16
+      },
+      {
+        "name": "head.5.weight",
+        "parameters": 4096,
+        "touched": 287
+      },
+      {
+        "name": "head.5.bias",
+        "parameters": 16,
+        "touched": 1
+      }
+    ],
+    "note": "Actual nonzero wire patches; coverage does not measure raw-update reconstruction error"
+  },
+  "a_small_contract_ef_s43": {
+    "rounds": 20,
+    "unique_coordinates": 2441,
+    "parameter_fraction": 0.006179371383041143,
+    "zero_updates": 0,
+    "median_ties_at_topk_cutoff": 20.5,
+    "layers": [
+      {
+        "name": "stems.0.0.weight",
+        "parameters": 576,
+        "touched": 4
+      },
+      {
+        "name": "stems.0.1.weight",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.0.1.bias",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.1.0.weight",
+        "parameters": 576,
+        "touched": 6
+      },
+      {
+        "name": "stems.1.1.weight",
+        "parameters": 96,
+        "touched": 1
+      },
+      {
+        "name": "stems.1.1.bias",
+        "parameters": 96,
+        "touched": 2
+      },
+      {
+        "name": "stems.2.0.weight",
+        "parameters": 576,
+        "touched": 8
+      },
+      {
+        "name": "stems.2.1.weight",
+        "parameters": 96,
+        "touched": 1
+      },
+      {
+        "name": "stems.2.1.bias",
+        "parameters": 96,
+        "touched": 1
+      },
+      {
+        "name": "stems.3.0.weight",
+        "parameters": 576,
+        "touched": 6
+      },
+      {
+        "name": "stems.3.1.weight",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "stems.3.1.bias",
+        "parameters": 96,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.0.0.weight",
+        "parameters": 9216,
+        "touched": 53
+      },
+      {
+        "name": "dense.blocks.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.1.0.weight",
+        "parameters": 12288,
+        "touched": 91
+      },
+      {
+        "name": "dense.blocks.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.2.0.weight",
+        "parameters": 15360,
+        "touched": 95
+      },
+      {
+        "name": "dense.blocks.2.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "dense.blocks.2.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b1.0.weight",
+        "parameters": 3072,
+        "touched": 22
+      },
+      {
+        "name": "google.net.0.b1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.0.0.weight",
+        "parameters": 3072,
+        "touched": 20
+      },
+      {
+        "name": "google.net.0.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 14
+      },
+      {
+        "name": "google.net.0.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b5.0.0.weight",
+        "parameters": 3072,
+        "touched": 23
+      },
+      {
+        "name": "google.net.0.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 29
+      },
+      {
+        "name": "google.net.0.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.0.bp.1.0.weight",
+        "parameters": 3072,
+        "touched": 18
+      },
+      {
+        "name": "google.net.0.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.0.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b1.0.weight",
+        "parameters": 4096,
+        "touched": 36
+      },
+      {
+        "name": "google.net.1.b1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.0.0.weight",
+        "parameters": 4096,
+        "touched": 35
+      },
+      {
+        "name": "google.net.1.b3.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.0.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.1.0.weight",
+        "parameters": 3072,
+        "touched": 17
+      },
+      {
+        "name": "google.net.1.b3.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b3.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.0.0.weight",
+        "parameters": 4096,
+        "touched": 25
+      },
+      {
+        "name": "google.net.1.b5.0.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.0.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.b5.1.0.weight",
+        "parameters": 5120,
+        "touched": 42
+      },
+      {
+        "name": "google.net.1.b5.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.b5.1.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "google.net.1.bp.1.0.weight",
+        "parameters": 4096,
+        "touched": 18
+      },
+      {
+        "name": "google.net.1.bp.1.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "google.net.1.bp.1.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "alex.net.0.0.weight",
+        "parameters": 36864,
+        "touched": 249
+      },
+      {
+        "name": "alex.net.0.1.weight",
+        "parameters": 128,
+        "touched": 1
+      },
+      {
+        "name": "alex.net.0.1.bias",
+        "parameters": 128,
+        "touched": 0
+      },
+      {
+        "name": "alex.net.2.0.weight",
+        "parameters": 49152,
+        "touched": 314
+      },
+      {
+        "name": "alex.net.2.1.weight",
+        "parameters": 128,
+        "touched": 1
+      },
+      {
+        "name": "alex.net.2.1.bias",
+        "parameters": 128,
+        "touched": 1
+      },
+      {
+        "name": "alex.net.4.0.weight",
+        "parameters": 49152,
+        "touched": 307
+      },
+      {
+        "name": "alex.net.4.1.weight",
+        "parameters": 128,
+        "touched": 0
+      },
+      {
+        "name": "alex.net.4.1.bias",
+        "parameters": 128,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 17
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.0.e1.0.weight",
+        "parameters": 1536,
+        "touched": 6
+      },
+      {
+        "name": "squeeze.net.0.e1.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e1.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e3.0.weight",
+        "parameters": 4608,
+        "touched": 25
+      },
+      {
+        "name": "squeeze.net.0.e3.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.0.e3.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 13
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.e1.0.weight",
+        "parameters": 1536,
+        "touched": 10
+      },
+      {
+        "name": "squeeze.net.1.e1.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.e1.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.1.e3.0.weight",
+        "parameters": 4608,
+        "touched": 34
+      },
+      {
+        "name": "squeeze.net.1.e3.1.weight",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.1.e3.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.squeeze.0.weight",
+        "parameters": 3072,
+        "touched": 22
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.weight",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.squeeze.1.bias",
+        "parameters": 32,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.e1.0.weight",
+        "parameters": 1536,
+        "touched": 10
+      },
+      {
+        "name": "squeeze.net.2.e1.1.weight",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.e1.1.bias",
+        "parameters": 48,
+        "touched": 1
+      },
+      {
+        "name": "squeeze.net.2.e3.0.weight",
+        "parameters": 4608,
+        "touched": 27
+      },
+      {
+        "name": "squeeze.net.2.e3.1.weight",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "squeeze.net.2.e3.1.bias",
+        "parameters": 48,
+        "touched": 0
+      },
+      {
+        "name": "head.0.weight",
+        "parameters": 544,
+        "touched": 4
+      },
+      {
+        "name": "head.0.bias",
+        "parameters": 544,
+        "touched": 5
+      },
+      {
+        "name": "head.2.weight",
+        "parameters": 139264,
+        "touched": 794
+      },
+      {
+        "name": "head.2.bias",
+        "parameters": 256,
+        "touched": 2
+      },
+      {
+        "name": "head.5.weight",
+        "parameters": 4096,
+        "touched": 21
+      },
+      {
+        "name": "head.5.bias",
+        "parameters": 16,
+        "touched": 0
+      }
+    ],
+    "note": "Actual nonzero wire patches; coverage does not measure raw-update reconstruction error"
+  }
+}

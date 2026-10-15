@@ -1,0 +1,22 @@
+[
+  {
+    "kernel": "takids1909/mobihet-hybf4-s42-20261015-q1-v1",
+    "case": "normal",
+    "pass_check": true
+  },
+  {
+    "kernel": "takids1909/mobihet-hybf4-s42-20261015-q1-v1",
+    "case": "boundary",
+    "pass_check": true
+  },
+  {
+    "kernel": "takids1909/mobihet-hybf4-s42-20261015-q1-v1",
+    "case": "exhausted",
+    "pass_check": true
+  },
+  {
+    "kernel": "takids1909/mobihet-hybf4-s42-20261015-q1-v1",
+    "case": "worker-fail",
+    "pass_check": true
+  }
+]

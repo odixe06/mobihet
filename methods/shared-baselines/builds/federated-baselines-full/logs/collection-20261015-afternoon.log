@@ -1,0 +1,21 @@
+accanniez/mobihet-full1-s42-20261015-q1-v1 has status "KernelWorkerStatus.ERROR"
+accanniez/mobihet-full1-s42-20261015-q1-v1: 0 files, 6 parallel
+accanniez/mobihet-full1-s42-20261015-q1-v1: 0 files ok, 0 missing, 0 MiB new in 3 s (0.0 MiB/s)
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py", line 77, in <module>
+    main()
+  File "/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py", line 57, in main
+    fail_without_url(exc, args.kernel, args.version)
+  File "/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py", line 34, in fail_without_url
+    raise RuntimeError(
+RuntimeError: Kaggle executed-notebook download failed for accanniez/mobihet-full1-s42-20261015-q1-v1, version 1 (HTTP 404; signed URL suppressed)
+Traceback (most recent call last):
+  File "/home/odixe/nckh/veremi/mobihet/methods/shared-baselines/builds/federated-baselines-full/scripts/collect_full.py", line 101, in <module>
+    while collect()<required:time.sleep(55)
+          ^^^^^^^^^
+  File "/home/odixe/nckh/veremi/mobihet/methods/shared-baselines/builds/federated-baselines-full/scripts/collect_full.py", line 41, in collect
+    subprocess.run(prefix+[sys.executable,str(H/'download_executed_notebook.py'),kernel,'--version','1',
+  File "/home/odixe/miniforge3/envs/nckh/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/odixe/miniforge3/envs/nckh/bin/python', '/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/kaggle_as.py', 'accanniez', '--', '/home/odixe/miniforge3/envs/nckh/bin/python', '/home/odixe/nckh/veremi/mobihet/.agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py', 'accanniez/mobihet-full1-s42-20261015-q1-v1', '--version', '1', '--output', '/home/odixe/nckh/veremi/mobihet/papers/full-validation/private_push/full1-s42-20261015-q1-v1/executed.ipynb']' returned non-zero exit status 1.
+ERROR conda.cli.main_run:execute(148): `conda run python methods/shared-baselines/builds/federated-baselines-full/scripts/collect_full.py` failed. (See above for error)

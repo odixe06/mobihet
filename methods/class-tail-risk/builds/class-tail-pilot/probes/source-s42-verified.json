@@ -1,0 +1,7 @@
+{
+  "dataset": "minhtriethihi/mobihet-ct-cal-s42-20261015-v1-src",
+  "files": 113,
+  "bytes": 159849277,
+  "all_pages": true,
+  "evidence": "owner-scoped names/sizes; runtime verifies all source/fixture SHA before training"
+}

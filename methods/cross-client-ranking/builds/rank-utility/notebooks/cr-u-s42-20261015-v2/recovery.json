@@ -1,0 +1,8 @@
+{
+  "parent": "minhtriethihi/mobihet-cr-u-s42-20261015-v1",
+  "version": 1,
+  "round": 3,
+  "seed": 42,
+  "session_hours": 2.25,
+  "change": "only scoped built-in bytes allowlist for PyTorch2.10; frozen source and scientific fingerprints unchanged"
+}

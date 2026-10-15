@@ -1,0 +1,23 @@
+[
+  {
+    "run": "bc_direct4_fl_s43",
+    "last_round": 12,
+    "fingerprint": "1e33c74329df39eb1c0be1851a565acde38447ce25f33c0051f5abfb72e2d470",
+    "copied_files": 64,
+    "markers_last": true
+  },
+  {
+    "run": "bc_teacher2_fl_s43",
+    "last_round": 2,
+    "fingerprint": "7b09d2e325ac07f555deb8ca791350957f3208e50eaab0e43bd172154d4db3d8",
+    "copied_files": 14,
+    "markers_last": true
+  },
+  {
+    "run": "bc_teacher4_fl_s43",
+    "last_round": 2,
+    "fingerprint": "14a7ae2b7fb5e512222e619cb9f0c4bb7a024f77dda90db5724b48ab4d0bcf95",
+    "copied_files": 14,
+    "markers_last": true
+  }
+]

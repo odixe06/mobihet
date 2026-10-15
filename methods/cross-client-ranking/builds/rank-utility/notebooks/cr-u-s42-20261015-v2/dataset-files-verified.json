@@ -1,0 +1,26 @@
+{
+  "dataset": "minhtriethihi/mobihet-cr-u-s42-20261015-v2-ckpt",
+  "matched_files": 18,
+  "all_pages": true,
+  "paths": {
+    "runs/cr_fl_s42/complete/round_003.json": "runs/cr_fl_s42/complete/round_003.json",
+    "runs/cr_fl_s42/config.json": "runs/cr_fl_s42/config.json",
+    "runs/cr_fl_s42/fork.json": "runs/cr_fl_s42/fork.json",
+    "runs/cr_fl_s42/knowledge/round_003.bin": "runs/cr_fl_s42/knowledge/round_003.bin",
+    "runs/cr_fl_s42/metrics.csv": "runs/cr_fl_s42/metrics.csv",
+    "runs/cr_fl_s42/predictions/round_003.npz": "runs/cr_fl_s42/predictions/round_003.npz",
+    "runs/cr_fl_s42/result.json": "runs/cr_fl_s42/result.json",
+    "runs/cr_fl_s42/resume/round_003.pt": "runs/cr_fl_s42/resume/round_003.pt",
+    "runs/cr_fl_s42/weights/round_003.pt": "runs/cr_fl_s42/weights/round_003.pt",
+    "runs/cr_local_s42/complete/round_003.json": "runs/cr_local_s42/complete/round_003.json",
+    "runs/cr_local_s42/config.json": "runs/cr_local_s42/config.json",
+    "runs/cr_local_s42/fork.json": "runs/cr_local_s42/fork.json",
+    "runs/cr_local_s42/metrics.csv": "runs/cr_local_s42/metrics.csv",
+    "runs/cr_local_s42/predictions/round_003.npz": "runs/cr_local_s42/predictions/round_003.npz",
+    "runs/cr_local_s42/result.json": "runs/cr_local_s42/result.json",
+    "runs/cr_local_s42/resume/round_003.pt": "runs/cr_local_s42/resume/round_003.pt",
+    "runs/cr_local_s42/weights/round_003.pt": "runs/cr_local_s42/weights/round_003.pt",
+    "resume_manifest.json": "resume_manifest.json"
+  },
+  "evidence": "names and sizes; SHA/state verified by CPU production import probe"
+}

@@ -1,0 +1,65 @@
+START cr_local 42 0 stop 3
+START cr_fl 42 1 stop 3
+COST GATE {'seed': 42, 'ratios': {'algorithm_seconds': 1.5, 'sec': 1.25}, 'pass_cost': True, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+START cr_local 42 0 stop None
+START cr_fl 42 1 stop None
+FINISH cr_local {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+FINISH cr_fl {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+START cr_own 42 0 stop None
+START cr_shuffle 42 1 stop None
+FINISH cr_own {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+FINISH cr_shuffle {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+START cr_fixed 42 0 stop None
+START cr_classweight 42 1 stop None
+FINISH cr_fixed {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+FINISH cr_classweight {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+START cr_gaussian 42 0 stop None
+START cr_dml 42 1 stop None
+FINISH cr_gaussian {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}
+FINISH cr_dml {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}
+RANK UTILITY BATCH {'cr_local': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_fl': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_own': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_shuffle': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_fixed': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_classweight': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_gaussian': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}, 'cr_dml': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}}
+START cr_local 42 0 stop 3
+START cr_fl 42 1 stop 3
+COST GATE {'seed': 42, 'ratios': {'algorithm_seconds': 2.5, 'sec': 1.25}, 'pass_cost': False, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+START cr_local 42 0 stop 3
+START cr_fl 42 1 stop 3
+COST GATE {'seed': 42, 'ratios': {'algorithm_seconds': 1.5, 'sec': 1.25}, 'pass_cost': True, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+START cr_local 42 0 stop None
+START cr_fl 42 1 stop None
+START cr_local 42 0 stop 3
+START cr_fl 42 1 stop 3
+COST GATE {'seed': 42, 'ratios': {'algorithm_seconds': 1.5, 'sec': 1.25}, 'pass_cost': True, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+RANK UTILITY BATCH {'cr_local': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_fl': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_own': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_shuffle': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_fixed': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_classweight': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_gaussian': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_dml': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}}
+START cr_local 43 0 stop 3
+START cr_fl 43 1 stop 3
+COST GATE {'seed': 43, 'ratios': {'algorithm_seconds': 1.5, 'sec': 1.25}, 'pass_cost': True, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+START cr_local 43 0 stop None
+START cr_fl 43 1 stop None
+FINISH cr_local {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+FINISH cr_fl {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+START cr_own 43 0 stop None
+START cr_shuffle 43 1 stop None
+FINISH cr_own {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+FINISH cr_shuffle {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+START cr_fixed 43 0 stop None
+START cr_classweight 43 1 stop None
+FINISH cr_fixed {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+FINISH cr_classweight {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}
+START cr_gaussian 43 0 stop None
+START cr_dml 43 1 stop None
+FINISH cr_gaussian {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}
+FINISH cr_dml {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}
+RANK UTILITY BATCH {'cr_local': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_fl': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_own': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_shuffle': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_fixed': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_classweight': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 2, 'complete': True}, 'cr_gaussian': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}, 'cr_dml': {'rc': 0, 'logical_rounds': 20, 'inherited_rounds': 0, 'complete': True}}
+START cr_local 43 0 stop 3
+START cr_fl 43 1 stop 3
+COST GATE {'seed': 43, 'ratios': {'algorithm_seconds': 2.5, 'sec': 1.25}, 'pass_cost': False, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+START cr_local 43 0 stop 3
+START cr_fl 43 1 stop 3
+COST GATE {'seed': 43, 'ratios': {'algorithm_seconds': 1.5, 'sec': 1.25}, 'pass_cost': True, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+START cr_local 43 0 stop None
+START cr_fl 43 1 stop None
+START cr_local 43 0 stop 3
+START cr_fl 43 1 stop 3
+COST GATE {'seed': 43, 'ratios': {'algorithm_seconds': 1.5, 'sec': 1.25}, 'pass_cost': True, 'round': 3, 'basis': 'actual full-T post-warm epoch+scan and full round; initialization/import/eval charged separately in session budget'}
+RANK UTILITY BATCH {'cr_local': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_fl': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_own': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_shuffle': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_fixed': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_classweight': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_gaussian': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}, 'cr_dml': {'complete': False, 'reason': 'session boundary; inspect committed rounds before continuation'}}
+Rank notebooks PASS:8 emitted controller cases; private0600/metadata/CE-r3 cost gate

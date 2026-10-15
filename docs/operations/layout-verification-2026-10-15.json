@@ -1,0 +1,434 @@
+{
+  "dvc": [
+    {
+      "metadata": "archive/methods/shared-baselines/builds/pilot-baselines/runs.dvc",
+      "object": "ca8715563f5d94932638a588f9999bda.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc",
+      "object": "cb782c4671b1aa25a8a2c56bf465587c.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc",
+      "object": "bbba5ff279d47c2932690e74b63c9c6f.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/kaggle.dvc",
+      "object": "05d670af724058a6a42f6c291c1dd054.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/contact-fragmentation/builds/fragmented-snapshots/source_audit.dvc",
+      "object": "36f834ab0207195ab6f24922755fe781.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/runs.dvc",
+      "object": "d751713988987e9331980363e24189ce.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/kaggle.dvc",
+      "object": "2a40c2e202c8c5416ab275ab665644e2.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/smoke.dvc",
+      "object": "0a67a58b6ba9c09beac284e920193d09.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/input.dvc",
+      "object": "d35c8fbd6931d9ab021e4b328f111b04.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/resume_reference.dvc",
+      "object": "0291d66b53d9538c8e7298eafeb11227.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/runs.dvc",
+      "object": "d751713988987e9331980363e24189ce.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc",
+      "object": "3c49c7ec142513d62f8e31da23534ee1.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/smoke.dvc",
+      "object": "f0da440b6a89ca4822cd1530b539f7d2.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/input.dvc",
+      "object": "e1ca6a39074fe9722422189daaadc96c.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/resume_reference.dvc",
+      "object": "f2d71818d8042456a84190ae8f20fee4.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/proxy-compression/builds/proxy-carriers/runs.dvc",
+      "object": "d751713988987e9331980363e24189ce.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/proxy-compression/builds/proxy-carriers/kaggle.dvc",
+      "object": "6c988e51b04beb21f4fecffd3d68f193.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/proxy-compression/builds/proxy-carriers/smoke.dvc",
+      "object": "57f87a065d3b2adb2742e8aa8b2e386c.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/proxy-compression/builds/proxy-carriers/input.dvc",
+      "object": "806adf3969b5fc9c790c6d413a05e8bc.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/proxy-compression/builds/proxy-carriers/resume_reference.dvc",
+      "object": "aa3ae580e241cf9a81a63b3c4966b2f5.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-sampling/builds/support-mala/runs.dvc",
+      "object": "d751713988987e9331980363e24189ce.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-sampling/builds/support-mala/kaggle.dvc",
+      "object": "f216e372ed5243268f08347ab0e0bd27.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-sampling/builds/support-mala/smoke.dvc",
+      "object": "3d13b231afb166fa9e2797c2f5f5e135.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-sampling/builds/support-mala/input.dvc",
+      "object": "1651b7aa22451ee804890c0fa0a1b629.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-sampling/builds/support-mala/resume_reference.dvc",
+      "object": "cac2264d8acce624b3ab5de91cfe194b.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/runs.dvc",
+      "object": "d751713988987e9331980363e24189ce.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/kaggle.dvc",
+      "object": "d55a71674bddb8f37e0f674d21e32a74.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/smoke.dvc",
+      "object": "e48def3346891828a1b2755be71e4526.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/input.dvc",
+      "object": "9903334ead144123e02263bd76b47af5.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/resume_reference.dvc",
+      "object": "4b00c9e1fcdd5f0f3549546b58c86dec.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc",
+      "object": "ec521a9fcccb9633cf60cf28bf88911a.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/smoke.dvc",
+      "object": "f43239f0cee543729662d5e67faf475b.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/input.dvc",
+      "object": "04561c8e53872cc5f20d0c1a22514e68.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/resume_reference.dvc",
+      "object": "0c303ed9c577e514a3166ba867acce3a.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc",
+      "object": "6f1ac7fde1746d98c4ffd0bc2ede9460.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc",
+      "object": "94c9e76fb1d7f258b4a4bb8167a1e0e0.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc",
+      "object": "fe759ba87afb08430620383790d01da1.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc",
+      "object": "5a5d85b0c7fb4ade93e7e3add7915f2c.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc",
+      "object": "5e8f82e41e5204fff1d0efca49cbaaab.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc",
+      "object": "b0da1af1f8498adb7a526192686c2fc4.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc",
+      "object": "1f1c3423d9dc96f16606930a98ea6365.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc",
+      "object": "ee5d508c6c69cd47549940bf6be64459.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc",
+      "object": "b9220ec4e71f82a1cb3fcedf034402fa.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc",
+      "object": "f3ea67005856b761dc86fda011f40b57.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc",
+      "object": "347e0af95ba09acf7825b755fbc95e36.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc",
+      "object": "9c657c34734d22cc2caebefa9ec1dfe6.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc",
+      "object": "8cde4b9a4e724ddc0fa35047c6f9cb48.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc",
+      "object": "752fdb98ccc1bca8431d31d5f3024819.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc",
+      "object": "743718b1dd83290b17491188e085e90d.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc",
+      "object": "456967a838675e3d0cf7763cec988aef.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc",
+      "object": "f98af0c07296f21e2b58d1f5469941da.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc",
+      "object": "789efb2da148689d271aa55e3f6d5170.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/shared-baselines/builds/federated-baselines-full/smoke.dvc",
+      "object": "da8ab9332b7cba1e5535639071bc93cc.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/shared-baselines/builds/federated-baselines-full/input.dvc",
+      "object": "b50f3b5852c683e91058cb0dcef9e27c.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc",
+      "object": "a7c0717142b58fb5d24a157bc113b564.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc",
+      "object": "89ba8972c2ee1062ab77a27d58fb08bc.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc",
+      "object": "4dd92ca56796decf59ae3e200f13ee46.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc",
+      "object": "b4c3578df19e67fff29bba3066d02465.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc",
+      "object": "637a09a84948d0db883c54aa8b18c861.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc",
+      "object": "b2ddeb62e648d9190650ce62ddcf1a1b.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc",
+      "object": "57c7e72fca8bd50a0ffcfc71391d09c6.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc",
+      "object": "bd1f76e8e88b0ab664224c4609eb5417.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc",
+      "object": "5d398f36a4ac5baebdc135fe9a364549.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    },
+    {
+      "metadata": "methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc",
+      "object": "195b422d05d1a14eacf7e563725caef3.dir",
+      "identity_preserved": true,
+      "remote_manifest_verified": true
+    }
+  ],
+  "frozen_files": 433,
+  "git_head": "4a6893eeb8eaaeed799a2b59680a7b57cef13d4a",
+  "migration_git_head": "7a681cfe06c1a49f155008c90493635257ba3f66",
+  "git_head_unchanged": false,
+  "git_staged_content_unchanged": true,
+  "git_index_bytes_unchanged": false,
+  "git_workspace_status_counts": {
+    " M": 34,
+    "??": 76
+  },
+  "relative_links_checked": 4655,
+  "missing_links": [],
+  "remote_only_links": [
+    {
+      "file": "docs/archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/results/report.md",
+      "target": "../../../../../../../archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/artifacts/runs"
+    },
+    {
+      "file": "docs/archive/methods/kernel-anchor-distillation/diagnostics.md",
+      "target": "../../../../archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/source/v5_anchor.py#L38"
+    },
+    {
+      "file": "docs/archive/methods/kernel-anchor-distillation/diagnostics.md",
+      "target": "../../../../archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/source/v5_anchor.py#L74"
+    },
+    {
+      "file": "docs/archive/methods/kernel-anchor-distillation/diagnostics.md",
+      "target": "../../../../archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/source/v2_methods.py#L60"
+    },
+    {
+      "file": "docs/archive/methods/kernel-anchor-distillation/diagnostics.md",
+      "target": "../../../../archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/source/v5_anchor.py#L87"
+    },
+    {
+      "file": "docs/archive/methods/kernel-anchor-distillation/diagnostics.md",
+      "target": "../../../../archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/artifacts/kaggle/v5h-s42-20261012-v1/source/v5_anchor.py#L112"
+    }
+  ],
+  "private_notebooks_ignored0600": 141,
+  "public_key_scan_pass": true,
+  "skill_parity": true,
+  "package_legacy_fingerprint_preserved": true,
+  "shared_package_modules": 19,
+  "build_owned_modules": 21,
+  "limits": "Directory-manifest identities verified; no rehash of every heavy remote object, no Git/DVC add/push. Partial restores stay partial.",
+  "native_dvc_stage_count": 65
+}

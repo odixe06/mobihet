@@ -1,0 +1,18 @@
+[{"stream_name":"stderr","time":8.651811814,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.651864385,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.65187162,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.651876646,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":9.426247605,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.426284678,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.426291181,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.426296555,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":52.282204511,"data":"REQUIRE RESUME / COST PASS before fixture decoding [{'run': 'bc_direct4_fl_s42', 'last_round': 2, 'fingerprint': '790398062be45159832c3975c705fea287ea121c2a390fe83ee2995092e9aeec', 'copied_files': 14, 'markers_last': True}, {'run': 'bc_teacher2_fl_s42', 'last_round': 2, 'fingerprint': '35aa3356c375f588bfe16011619f48dab133c8e8ec5ab8e1e5d2d3c2107db4f8', 'copied_files': 14, 'markers_last': True}, {'run': 'bc_teacher4_fl_s42', 'last_round': 2, 'fingerprint': 'cc43e682188e93b378a68256225cb71a1a2da20ae24c4a58f5cbe46bc6950219', 'copied_files': 14, 'markers_last': True}]\n"}
+,{"stream_name":"stderr","time":58.808165063,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":58.808206042,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":59.010704936,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":59.010735812,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":59.778011158,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":60.179683611,"data":"[NbConvertApp] Writing 31190 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":63.382492676,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":64.483362616,"data":"[NbConvertApp] Writing 361201 bytes to __results__.html\n"}
+]

@@ -1,0 +1,28 @@
+{
+  "seeds": [
+    42,
+    43
+  ],
+  "hours_each": 2.5,
+  "target_rounds": 20,
+  "imported_rounds": 2,
+  "spare_fraction": 0.15,
+  "new_accounts_quota_queried": false,
+  "paired_probe_pass": true,
+  "owners": {
+    "42": "catbaochau",
+    "43": "khanhmay0304"
+  },
+  "budget": {
+    "42": {
+      "available": 2.9525716666666675,
+      "required_with_margin": 2.875
+    },
+    "43": {
+      "available_snapshot": 6.4918071247222215,
+      "existing_repair_worst_hours": 3,
+      "repair_plus_utility_with_margin": 6.325
+    }
+  },
+  "evidence": "account-scoped quota of old accounts only; not reservation or all-r20 completion"
+}

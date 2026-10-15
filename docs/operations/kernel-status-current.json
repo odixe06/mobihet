@@ -1,180 +1,362 @@
 {
-  "observed_utc": "2026-10-14T11:10:11.859706+00:00",
+  "observed_utc": "2026-10-15T09:01:51.865262+00:00",
   "evidence": "owner-scoped latest batch version status, not artifact verification or session heartbeat",
   "kernels": [
     {
       "kernel": "minhtran0601/mobihet-bc-cal-s42-20261013-initial2-v1",
-      "build": "boundary-cells",
-      "folder": "papers/boundary-cells/notebook/bc-cal-s42-20261013-initial2-v1",
+      "build": "boundary-cell-pilot",
+      "folder": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks/bc-cal-s42-20261013-initial2-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "dinhan25/mobihet-bc-cal-s43-20261013-initial2-v1",
-      "build": "boundary-cells",
-      "folder": "papers/boundary-cells/notebook/bc-cal-s43-20261013-initial2-v1",
+      "build": "boundary-cell-pilot",
+      "folder": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks/bc-cal-s43-20261013-initial2-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
-      "build": "boundary-cells",
-      "folder": "papers/boundary-cells/notebook/bc-u-s42-20261014-stage01-v1",
-      "status": "RUNNING",
+      "build": "boundary-cell-pilot",
+      "folder": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks/bc-u-s42-20261014-stage01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+      "build": "boundary-cell-pilot",
+      "folder": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks/bc-u-s42-20261015-cont02-v1",
+      "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
-      "build": "boundary-cells",
-      "folder": "papers/boundary-cells/notebook/bc-u-s43-20261014-stage01-v1",
+      "build": "boundary-cell-pilot",
+      "folder": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks/bc-u-s43-20261014-stage01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+      "build": "boundary-cell-pilot",
+      "folder": "methods/boundary-cell-counts/builds/boundary-cell-pilot/notebooks/bc-u-s43-20261015-cont02-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-ct-cal-s42-20261015-v1",
+      "build": "class-tail-pilot",
+      "folder": "methods/class-tail-risk/builds/class-tail-pilot/notebooks/ct-cal-s42-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-cal-s43-20261015-v1",
+      "build": "class-tail-pilot",
+      "folder": "methods/class-tail-risk/builds/class-tail-pilot/notebooks/ct-cal-s43-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "build": "class-tail-pilot",
+      "folder": "methods/class-tail-risk/builds/class-tail-pilot/notebooks/ct-u-s42-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "build": "class-tail-pilot",
+      "folder": "methods/class-tail-risk/builds/class-tail-pilot/notebooks/ct-u-s43-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-ccr-diag-s42-20261015-v1",
+      "build": "rank-probe",
+      "folder": "methods/cross-client-ranking/builds/rank-probe/notebooks/ccr-diag-s42-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ccr-diag-s43-20261015-v1",
+      "build": "rank-probe",
+      "folder": "methods/cross-client-ranking/builds/rank-probe/notebooks/ccr-diag-s43-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-ccr-probe-s42-20261015-v1",
+      "build": "rank-probe",
+      "folder": "methods/cross-client-ranking/builds/rank-probe/notebooks/ccr-probe-s42-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-ccr-probe-s43-20261015-v1",
+      "build": "rank-probe",
+      "folder": "methods/cross-client-ranking/builds/rank-probe/notebooks/ccr-probe-s43-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cr-u-s42-20261015-v1",
+      "build": "rank-utility",
+      "folder": "methods/cross-client-ranking/builds/rank-utility/notebooks/cr-u-s42-20261015-v1",
+      "status": "RUNNING",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cr-u-s43-20261015-v1",
+      "build": "rank-utility",
+      "folder": "methods/cross-client-ranking/builds/rank-utility/notebooks/cr-u-s43-20261015-v1",
       "status": "RUNNING",
       "returncode": 0
     },
     {
       "kernel": "catbaochau/mobihet-full1-s42-20261012-cal-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full1-s42-20261012-cal-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full1-s42-20261012-cal-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "catbaochau/mobihet-full1-s42-20261013-cont01-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full1-s42-20261013-cont01-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full1-s42-20261013-cont01-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "catbaochau/mobihet-full1-s42-20261014-cont02-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full1-s42-20261014-cont02-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full1-s42-20261014-cont02-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "accanniez/mobihet-full1-s42-20261015-q1-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full1-s42-20261015-q1-v1",
+      "status": "ERROR",
+      "returncode": 0
+    },
+    {
+      "kernel": "accanniez/mobihet-full1-s42-20261015-q2-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full1-s42-20261015-q2-v1",
       "status": "RUNNING",
       "returncode": 0
     },
     {
       "kernel": "minhtriethihi/mobihet-full2-s42-20261012-cal-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full2-s42-20261012-cal-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full2-s42-20261012-cal-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "minhtriethihi/mobihet-full2-s42-20261013-cont01-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full2-s42-20261013-cont01-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full2-s42-20261013-cont01-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "minhtriethihi/mobihet-full2-s42-20261014-cont02-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full2-s42-20261014-cont02-v1",
-      "status": "RUNNING",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full2-s42-20261014-cont02-v1",
+      "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "khanhmay0304/mobihet-full3-s42-20261012-cal-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full3-s42-20261012-cal-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full3-s42-20261012-cal-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "khanhmay0304/mobihet-full3-s42-20261013-cont01-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full3-s42-20261013-cont01-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full3-s42-20261013-cont01-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "khanhmay0304/mobihet-full3-s42-20261014-cont02-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full3-s42-20261014-cont02-v1",
-      "status": "RUNNING",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full3-s42-20261014-cont02-v1",
+      "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "catbaochau/mobihet-full4-s42-20261012-cal-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full4-s42-20261012-cal-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full4-s42-20261012-cal-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "catbaochau/mobihet-full4-s42-20261013-cont01-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full4-s42-20261013-cont01-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full4-s42-20261013-cont01-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "catbaochau/mobihet-full4-s42-20261014-cont02-v1",
-      "build": "full-validation",
-      "folder": "papers/full-validation/notebook/full4-s42-20261014-cont02-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/full4-s42-20261014-cont02-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "accanniez/mobihet-fulld-s42-20261015-q1-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/fulld-s42-20261015-q1-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "accanniez/mobihet-fulld-s42-20261015-q2-v1",
+      "build": "federated-baselines-full",
+      "folder": "methods/gaussian-class-moments/builds/federated-baselines-full/notebooks/fulld-s42-20261015-q2-v1",
       "status": "RUNNING",
       "returncode": 0
     },
     {
       "kernel": "minhtrit06/mobihet-hybf1-s42-20261013-cal-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261013-cal-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf1-s42-20261013-cal-v1",
       "status": "ERROR",
       "returncode": 0
     },
     {
       "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-cont01-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261014-cont01-v1",
-      "status": "RUNNING",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf1-s42-20261014-cont01-v1",
+      "status": "CANCEL_ACKNOWLEDGED",
       "returncode": 0
     },
     {
       "kernel": "minhtrit06/mobihet-hybf1-s42-20261014-dsresume-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf1-s42-20261014-dsresume-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf1-s42-20261014-dsresume-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "annhtnt/mobihet-hybf1-s42-20261015-q1-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf1-s42-20261015-q1-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "annhtnt/mobihet-hybf1-s42-20261015-q2-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf1-s42-20261015-q2-v1",
       "status": "RUNNING",
       "returncode": 0
     },
     {
       "kernel": "odixeuit/mobihet-hybf2-s42-20261013-cal-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf2-s42-20261013-cal-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf2-s42-20261013-cal-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "odixeuit/mobihet-hybf2-s42-20261014-cont01-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf2-s42-20261014-cont01-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf2-s42-20261014-cont01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "annhtnt/mobihet-hybf2-s42-20261015-q1-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf2-s42-20261015-q1-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "annhtnt/mobihet-hybf2-s42-20261015-q2-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf2-s42-20261015-q2-v1",
       "status": "RUNNING",
       "returncode": 0
     },
     {
       "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf3-s42-20261013-cal-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf3-s42-20261013-cal-v1",
       "status": "ERROR",
       "returncode": 0
     },
     {
       "kernel": "trietbackup/mobihet-hybf3-s42-20261014-dsresume-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf3-s42-20261014-dsresume-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf3-s42-20261014-dsresume-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "takids1909/mobihet-hybf3-s42-20261015-q1-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf3-s42-20261015-q1-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "takids1909/mobihet-hybf3-s42-20261015-q2-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf3-s42-20261015-q2-v1",
       "status": "RUNNING",
       "returncode": 0
     },
     {
       "kernel": "odixe0502/mobihet-hybf4-s42-20261013-cal-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf4-s42-20261013-cal-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf4-s42-20261013-cal-v1",
       "status": "COMPLETE",
       "returncode": 0
     },
     {
       "kernel": "odixe0502/mobihet-hybf4-s42-20261014-cont01-v1",
       "build": "hybrid-full",
-      "folder": "papers/hybrid-full/notebook/hybf4-s42-20261014-cont01-v1",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf4-s42-20261014-cont01-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "takids1909/mobihet-hybf4-s42-20261015-q1-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf4-s42-20261015-q1-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "takids1909/mobihet-hybf4-s42-20261015-q2-v1",
+      "build": "hybrid-full",
+      "folder": "methods/gaussian-proxy-hybrid/builds/hybrid-full/notebooks/hybf4-s42-20261015-q2-v1",
       "status": "RUNNING",
+      "returncode": 0
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cef-s42-20261015-v1",
+      "build": "contractive-ef-pilot",
+      "folder": "methods/proxy-countsketch-repair/builds/contractive-ef-pilot/notebooks/cef-s42-20261015-v1",
+      "status": "COMPLETE",
+      "returncode": 0
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-cef-s43-20261015-v1",
+      "build": "contractive-ef-pilot",
+      "folder": "methods/proxy-countsketch-repair/builds/contractive-ef-pilot/notebooks/cef-s43-20261015-v1",
+      "status": "COMPLETE",
       "returncode": 0
     },
     {

@@ -1,0 +1,7 @@
+{
+  "dataset": "minhtriethihi/mobihet-ccr-probe-s42-20261015-v1-src",
+  "files": 89,
+  "bytes": 166387689,
+  "all_pages": true,
+  "evidence": "owner-scoped names/sizes; runtime verifies all source/fixture SHA before training"
+}

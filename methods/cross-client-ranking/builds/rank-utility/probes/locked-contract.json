@@ -1,0 +1,34 @@
+{
+  "owner_locked": true,
+  "seeds": [
+    42,
+    43
+  ],
+  "rounds": 20,
+  "clients": 20,
+  "base": "original pilot T/group/old; no official test",
+  "fork": "six arms audited CE-r2 weights; per-round RNG; fresh Gaussian/DML fromr1",
+  "score": "softmaxT1",
+  "margin": 1,
+  "weight": 0.25,
+  "primary": "fixed true-class Laplace gp; head diagnostic",
+  "refresh": "full-T BN-eval FP32 each round; FP64 sums; frozen stop-gradient means",
+  "support": "global128 rows and5contributors each side; common own32 each side",
+  "shuffle": "roll both means1class, keep counts/support",
+  "fixed": "snapshotr2",
+  "classweight": "orthogonal NNLS16 true-class CE directions on seeded fit-half T; clip beta0..4; (1+beta[y])CE; no renorm",
+  "gate": {
+    "own": 0.01,
+    "shuffle": 0.01,
+    "local": 0.015,
+    "benign_drop": 0.005,
+    "strongest_for_extension": 0.015,
+    "cost_ratio": 2
+  },
+  "sessions": {
+    "owner": "minhtriethihi",
+    "hours_each": 2.5,
+    "total_with_margin": 5.75
+  },
+  "utility_measured": false
+}

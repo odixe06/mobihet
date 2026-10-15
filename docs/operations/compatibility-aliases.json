@@ -3063,6 +3063,14 @@
     {
       "alias": ".compat/scripts/kaggle/push_kaggle.py",
       "target": "archive/tools/kaggle/push_legacy_kernel.py"
+    },
+    {
+      "alias": ".compat/papers/pilot/fixture",
+      "target": "archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture"
+    },
+    {
+      "alias": ".compat/papers/hybrid-full/mount-probe",
+      "target": "methods/gaussian-proxy-hybrid/builds/hybrid-full/probes/mount-probe"
     }
   ],
   "contains_file_copies": false

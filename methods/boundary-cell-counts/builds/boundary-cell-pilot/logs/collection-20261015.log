@@ -1,0 +1,11 @@
+minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1: 841 files, 2 parallel
+minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1: 841 files ok, 0 missing, 9064 MiB new in 938 s (9.7 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/boundary-cells/private_push/bc-u-s42-20261014-stage01-v1/executed.ipynb (69832 bytes, 5 outputs)
+AUDITED UTILITY minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1 all arms r20 False
+dinhan25/mobihet-bc-u-s43-20261014-stage01-v1 has status "KernelWorkerStatus.COMPLETE"
+dinhan25/mobihet-bc-u-s43-20261014-stage01-v1: 946 files, 2 parallel
+dinhan25/mobihet-bc-u-s43-20261014-stage01-v1: 946 files ok, 0 missing, 10431 MiB new in 1362 s (7.7 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/papers/boundary-cells/private_push/bc-u-s43-20261014-stage01-v1/executed.ipynb (72107 bytes, 5 outputs)
+AUDITED UTILITY dinhan25/mobihet-bc-u-s43-20261014-stage01-v1 all arms r20 False
+[True, True]

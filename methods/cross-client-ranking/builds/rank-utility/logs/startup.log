@@ -1,0 +1,4 @@
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from /home/odixe/.netrc.
+Rank startup 2 identities; paired after-cost False nonfinite 0
+42 cr_fl finished 3 3
+42 cr_local finished 3 3

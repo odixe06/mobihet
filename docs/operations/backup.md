@@ -1,7 +1,22 @@
 # Git / DVC backup record
 
-Updated: 2026-10-14 UTC+7 — backup/cleanup trước giữ nguyên; Git layout mới và đường dẫn phục hồi canonical được kiểm trong phiên tiếp.
+Updated: 2026-10-15 tối UTC+7 — đợt 15/10: 21 manifest mới/gộp đã push; cleanup ba build đóng. Đợt 14/10 giữ nguyên bên dưới.
 Procedure: [repo-backup](../../.agents/skills/repo-backup/SKILL.md).
+
+## 0. Đợt 2026-10-15 tối (owner yêu cầu backup + cleanup)
+
+- Không dùng `dvc add` (manifest root + `artifacts/` bị git-ignore khiến DVC3 từ chối). Script tạm tự MD5 file theo format DVC,
+  gộp entry `.dir` cũ trên remote (local override cùng relpath), ghi `.dir` vào `.dvc/cache`, copy object thẳng lên `gdrive`
+  (tmp→MD5 verify→rename, trần90MB/s, thực tế TB59MB/s). 8333 object mới / 99,44GB.
+- `dvc status -c` 21 manifest: 8312 `deleted` (không cache local, đúng thiết kế), new/missing=0.
+- Manifest (build root, `path: artifacts/<tên>`): boundary-cell-pilot `kaggle` (gộp 338+local→4621), `checkpoint-staging`;
+  class-tail-pilot `kaggle`,`checkpoint-staging`,`input`,`smoke-reference[-timing-state-fixed]`,`smoke-resumed[-timing-state-fixed]`;
+  contractive-ef-pilot `kaggle`,`final-resumed`,`final-smoke`,`smoke`; federated-baselines-full `kaggle` (968→1948), `checkpoint-staging`;
+  hybrid-full `kaggle` (384→1481), `checkpoint-staging`; rank-probe/rank-utility `input`,`kaggle`.
+- **Đã xóa local** 15/10: workspace của boundary-cell-pilot, class-tail-pilot, contractive-ef-pilot (build đóng/FAIL). WSL 192→109GB used.
+- **Giữ local** (đang chạy/cần recovery): federated-baselines-full, hybrid-full, rank-probe, rank-utility artifacts.
+  Collect mới sẽ làm workspace lệch manifest: lần sau gộp lại theo relpath, không blanket add.
+- Pull lại build đã xóa: `dvc pull <build>/<tên>.dvc`.
 
 ## 1. Destinations
 

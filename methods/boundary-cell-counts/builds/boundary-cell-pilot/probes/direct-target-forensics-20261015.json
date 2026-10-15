@@ -1,0 +1,100 @@
+{
+  "scope": "actual full-T count packets; balanced128/class group=2048; table diagnostic is not DAGSNet utility or causal isolation",
+  "fixture_sha": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+  "official_test_read": false,
+  "model_training": false,
+  "records": [
+    {
+      "seed": 42,
+      "pairs": 2,
+      "audited_packet_round": 20,
+      "payload_sha": "ffee868416c4df44ce31b9272cbc23c51ddebd0fbad980d0e86e1c73f6825bca",
+      "coverage": 0.95654296875,
+      "eligible_cells": 16,
+      "entropy_normalized": 0.9145989217741922,
+      "mean_true_class_probability": 0.11100120097398758,
+      "mean_max_probability": 0.1502169519662857,
+      "metrics": {
+        "accuracy": 0.197265625,
+        "precision_macro": 0.1384865324440985,
+        "precision_micro": 0.197265625,
+        "precision_weighted": 0.1384865324440985,
+        "recall_macro": 0.197265625,
+        "recall_micro": 0.197265625,
+        "recall_weighted": 0.197265625,
+        "f1_macro": 0.1294888367774109,
+        "f1_micro": 0.197265625,
+        "f1_weighted": 0.1294888367774109
+      }
+    },
+    {
+      "seed": 42,
+      "pairs": 4,
+      "audited_packet_round": 2,
+      "payload_sha": "b82624b790a0ea1cdbc287f35039e261999d743df6e4efeebb3bfaac0d0e20b8",
+      "coverage": 1.0,
+      "eligible_cells": 33,
+      "entropy_normalized": 0.9613622084223459,
+      "mean_true_class_probability": 0.11596514284610748,
+      "mean_max_probability": 0.13933783769607544,
+      "metrics": {
+        "accuracy": 0.34423828125,
+        "precision_macro": 0.3288005479666303,
+        "precision_micro": 0.34423828125,
+        "precision_weighted": 0.3288005479666303,
+        "recall_macro": 0.34423828125,
+        "recall_micro": 0.34423828125,
+        "recall_weighted": 0.34423828125,
+        "f1_macro": 0.280165451039205,
+        "f1_micro": 0.34423828125,
+        "f1_weighted": 0.280165451039205
+      }
+    },
+    {
+      "seed": 43,
+      "pairs": 2,
+      "audited_packet_round": 20,
+      "payload_sha": "ffee868416c4df44ce31b9272cbc23c51ddebd0fbad980d0e86e1c73f6825bca",
+      "coverage": 0.95654296875,
+      "eligible_cells": 16,
+      "entropy_normalized": 0.9145989217741922,
+      "mean_true_class_probability": 0.11100120097398758,
+      "mean_max_probability": 0.1502169519662857,
+      "metrics": {
+        "accuracy": 0.197265625,
+        "precision_macro": 0.1384865324440985,
+        "precision_micro": 0.197265625,
+        "precision_weighted": 0.1384865324440985,
+        "recall_macro": 0.197265625,
+        "recall_micro": 0.197265625,
+        "recall_weighted": 0.197265625,
+        "f1_macro": 0.1294888367774109,
+        "f1_micro": 0.197265625,
+        "f1_weighted": 0.1294888367774109
+      }
+    },
+    {
+      "seed": 43,
+      "pairs": 4,
+      "audited_packet_round": 12,
+      "payload_sha": "b82624b790a0ea1cdbc287f35039e261999d743df6e4efeebb3bfaac0d0e20b8",
+      "coverage": 1.0,
+      "eligible_cells": 33,
+      "entropy_normalized": 0.9613622084223459,
+      "mean_true_class_probability": 0.11596514284610748,
+      "mean_max_probability": 0.13933783769607544,
+      "metrics": {
+        "accuracy": 0.34423828125,
+        "precision_macro": 0.3288005479666303,
+        "precision_micro": 0.34423828125,
+        "precision_weighted": 0.3288005479666303,
+        "recall_macro": 0.34423828125,
+        "recall_micro": 0.34423828125,
+        "recall_weighted": 0.34423828125,
+        "f1_macro": 0.280165451039205,
+        "f1_micro": 0.34423828125,
+        "f1_weighted": 0.280165451039205
+      }
+    }
+  ]
+}

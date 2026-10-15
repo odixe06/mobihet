@@ -1,5 +1,6 @@
 """Collect full calibration outputs; report actual committed rounds, never call3-of50 complete."""
 import ast
+import argparse
 import fcntl
 import hashlib
 import json
@@ -13,16 +14,20 @@ import torch
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[2])
 H=ROOT/'.agents/skills/kaggle-training-notebook/scripts'
 BASE=ROOT/'papers/full-validation'
+sys.path.insert(0,str(ROOT))
+import scripts
 sys.path.insert(0,str(BASE/'proj'))
+import full_verify
+full_verify.ROOT=ROOT
 from full_verify import verify
 
 
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def collect():
+def collect(pattern='*'):
     total=0
-    for folder in sorted((BASE/'notebook').iterdir()):
+    for folder in sorted((BASE/'notebook').glob(pattern)):
         if not (folder/'PUSHED').exists():continue
         meta=json.loads((folder/'kernel-metadata.json').read_text());kernel=meta['id'];owner=kernel.split('/')[0]
         dest=BASE/'kaggle'/folder.name;marker=dest/'AUDITED.json'
@@ -32,7 +37,11 @@ def collect():
         print(status.stdout.strip(),flush=True)
         if not any(s in status.stdout for s in ('COMPLETE','ERROR')):continue
         subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','6',
-            '--pattern',r'^(runs|source)/'],check=True)
+            '--pattern',r'^(source/|runs/(?![^/]+/wandb/))'],check=True)
+        if not any(p.is_file() and p.name!='UNAVAILABLE.json' for p in dest.rglob('*')):
+            (dest/'UNAVAILABLE.json').write_text(json.dumps(dict(kernel=kernel,version=1,
+                output_files=0,scientific_audit=False,reason='terminal API exposes no source/checkpoint/log; preserve prior audited parents'),indent=2)+'\n')
+            print('UNAVAILABLE; NOT AUDITED',kernel,flush=True);total+=1;continue
         private=BASE/'private_push'/folder.name;executed=private/'executed.ipynb'
         subprocess.run(prefix+[sys.executable,str(H/'download_executed_notebook.py'),kernel,'--version','1',
             '--output',str(executed)],check=True,umask=0o077)
@@ -92,6 +101,10 @@ def collect():
 
 
 if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--only',default='*');parser.add_argument('--once',action='store_true')
+    args=parser.parse_args()
     torch.set_num_threads(1)
-    required=sum((p/'PUSHED').exists() for p in (BASE/'notebook').iterdir())
-    while collect()<required:time.sleep(55)
+    required=sum((p/'PUSHED').exists() for p in (BASE/'notebook').glob(args.only))
+    while True:
+        if collect(args.only)>=required or args.once:break
+        time.sleep(55)

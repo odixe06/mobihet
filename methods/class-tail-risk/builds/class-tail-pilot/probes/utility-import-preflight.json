@@ -1,0 +1,22 @@
+{
+  "imports": [
+    {
+      "run": "ct_fl_s43",
+      "last_round": 2,
+      "fingerprint": "3d079199975ef4968ab9308e62f6afa3a12e90d0170bbf987b9258fc1313e209",
+      "copied_files": 12,
+      "markers_last": true,
+      "all_models_strict": true
+    },
+    {
+      "run": "ct_dml_s43",
+      "last_round": 2,
+      "fingerprint": "ffc5e596f5ef24fc877a9449b4381c8c052ad9590db0071460fcac713d2c7fac",
+      "copied_files": 13,
+      "markers_last": true,
+      "all_models_strict": true
+    }
+  ],
+  "pass_check": true,
+  "scope": "actual saved seed43 pooled and DML r2; CPU mount still required"
+}

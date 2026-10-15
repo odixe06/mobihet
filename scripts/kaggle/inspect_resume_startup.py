@@ -3,6 +3,7 @@ import ast
 import argparse
 import concurrent.futures
 import datetime
+from fnmatch import fnmatch
 import json
 import math
 from pathlib import Path
@@ -15,13 +16,18 @@ ROOT=Path(__file__).resolve().parents[2]
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--pending-datasets-only',action='store_true')
+    parser.add_argument('--tag',default='20261014')
+    parser.add_argument('--since-utc',default='2026-10-14T10:39:00+00:00')
+    parser.add_argument('--output')
+    parser.add_argument('--only',action='append',default=[],help='notebook glob; skip runs whose startup is already stable')
     args=parser.parse_args()
     api=wandb.Api(timeout=25);entity=api.default_entity;jobs={}
     for build in ('full-validation','hybrid-full','boundary-cells'):
-        for path in (ROOT/'papers'/build/'notebook').glob('*20261014*/PUSHED'):
+        for path in (ROOT/'papers'/build/'notebook').glob(f'*{args.tag}*/PUSHED'):
             folder=path.parent
+            if args.only and not any(fnmatch(folder.name,pattern) for pattern in args.only):continue
             if args.pending_datasets_only and 'dsresume' not in folder.name:continue
-            if 'dsresume' not in folder.name and folder.name.startswith(('hybf1','hybf3')):continue
+            if args.tag=='20261014' and 'dsresume' not in folder.name and folder.name.startswith(('hybf1','hybf3')):continue
             metadata=json.loads((folder/'kernel-metadata.json').read_text())
             nb=nbformat.read(folder/metadata['code_file'],as_version=4)
             plan=json.loads((folder/'resume-plan.json').read_text())
@@ -46,14 +52,14 @@ def main():
         r=summary.get('round') or 0;flight=summary.get('progress/round_in_flight') or 0
         progressing=r>item['parent_round'] or flight>item['parent_round'] and (summary.get('progress/applied') or 0)>0
         stamp=summary.get('_timestamp') or 0
-        fresh=stamp>=datetime.datetime(2026,10,14,10,39,tzinfo=datetime.timezone.utc).timestamp()
+        fresh=stamp>=datetime.datetime.fromisoformat(args.since_utc).timestamp()
         nonfinite=[k for k,v in summary.items() if isinstance(v,(int,float)) and not math.isfinite(v)]
         return dict(item,state=run.state,url=run.url,summary=summary,fresh_training=bool(progressing and fresh),nonfinite=nonfinite)
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:rows=list(pool.map(read,jobs.values()))
     record=dict(observed_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),runs=rows,
         evidence='Read-only initial snapshot; exact run identity; old resumed history not counted as fresh training; not terminal audit')
     filename='startup-dataset-resume-2026-10-14.json' if args.pending_datasets_only else 'startup-batch-2026-10-14.json'
-    (ROOT/'docs/operations'/filename).write_text(json.dumps(record,indent=2)+'\n')
+    (ROOT/'docs/operations'/(args.output or filename)).write_text(json.dumps(record,indent=2)+'\n')
     print('Initial W&B:',len(rows),'identities;',sum(x['fresh_training'] for x in rows),'fresh training;',
         sum(bool(x.get('nonfinite')) for x in rows),'nonfinite')
     for row in rows:

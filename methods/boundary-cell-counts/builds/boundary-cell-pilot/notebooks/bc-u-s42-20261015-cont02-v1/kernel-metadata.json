@@ -1,0 +1,17 @@
+{
+  "id": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+  "title": "mobihet-bc-u-s42-20261015-cont02-v1",
+  "code_file": "bc-u-s42-20261015-cont02-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1-ckpt"
+  ],
+  "kernel_sources": [],
+  "competition_sources": []
+}

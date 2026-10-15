@@ -1,0 +1,23 @@
+{
+  "observed_utc": "2026-10-14T20:49:09.651175+00:00",
+  "accounts": [
+    {
+      "user": "minhtriethihi",
+      "gpu_left": 0.0,
+      "gpu_total": 30.0,
+      "gpu_reserved": 11.534737492222222,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    },
+    {
+      "user": "khanhmay0304",
+      "gpu_left": 6.4918071247222215,
+      "gpu_total": 30.0,
+      "gpu_reserved": 0.0,
+      "tpu_left": 20.0,
+      "tpu_total": 20.0,
+      "refresh_at": "2026-10-17T00:00:00"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "sources": {
+    "bc_single_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_local_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_mean_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_gaussian_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_direct2_fl_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_direct2_own_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_direct2_marginal_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_direct2_shuffle_s42": "minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1",
+    "bc_direct4_fl_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher2_fl_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher4_fl_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_direct4_own_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_direct4_shuffle_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_direct4_marginal_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher2_own_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher2_shuffle_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher2_marginal_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher4_own_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher4_shuffle_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_teacher4_marginal_s42": "odixeuit/mobihet-bc-u-s42-20261015-cont02-v1",
+    "bc_single_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_local_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_mean_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_gaussian_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_direct2_fl_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_direct2_own_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_direct2_shuffle_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_direct4_fl_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_direct2_marginal_s43": "dinhan25/mobihet-bc-u-s43-20261014-stage01-v1",
+    "bc_teacher2_fl_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher4_fl_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_direct4_own_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_direct4_shuffle_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_direct4_marginal_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher2_own_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher2_shuffle_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher2_marginal_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher4_own_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher4_shuffle_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1",
+    "bc_teacher4_marginal_s43": "minhtrit06/mobihet-bc-u-s43-20261015-cont02-v1"
+  },
+  "gates": {
+    "bc_direct2_s42": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s42",
+      "vs_strongest": -0.12683313026015242,
+      "contrasts": {
+        "own": 0.009266434068355756,
+        "shuffle": null,
+        "marginal": null
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 19,
+        "marginal": 3
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": false,
+      "utility_pass": null,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.0686153740866984,
+        "sec": 1.060326520775826
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_direct4_s42": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s42",
+      "vs_strongest": -0.11819600321710311,
+      "contrasts": {
+        "own": 0.013206539525218997,
+        "shuffle": 0.05104734487329071,
+        "marginal": 0.016537031584184347
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 20
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": true,
+      "utility_pass": false,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.1121584142670642,
+        "sec": 1.0770995100935554
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_teacher2_s42": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s42",
+      "vs_strongest": -0.1295031173593858,
+      "contrasts": {
+        "own": 0.00987429854844929,
+        "shuffle": 0.02832048274980059,
+        "marginal": 0.012638840976466004
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 20
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": true,
+      "utility_pass": false,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.0717929080122177,
+        "sec": 1.0420807859599137
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_teacher4_s42": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s42",
+      "vs_strongest": -0.12411537011634155,
+      "contrasts": {
+        "own": 0.0067591608920440915,
+        "shuffle": 0.04457793944983107,
+        "marginal": 0.011682354305051157
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 20
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": true,
+      "utility_pass": false,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.044373260449095,
+        "sec": 1.024473873037604
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_direct2_s43": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s43",
+      "vs_strongest": -0.1311814532777279,
+      "contrasts": {
+        "own": 0.011508924590755809,
+        "shuffle": 0.03471867403871226,
+        "marginal": null
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 13
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": false,
+      "utility_pass": null,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.0421042355715564,
+        "sec": 1.0340139165857845
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_direct4_s43": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s43",
+      "vs_strongest": -0.12420291181745935,
+      "contrasts": {
+        "own": 0.009519691754127702,
+        "shuffle": 0.049270806403159284,
+        "marginal": 0.014711671337666932
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 20
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": true,
+      "utility_pass": false,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.1078262372145884,
+        "sec": 1.0895935323662609
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_teacher2_s43": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s43",
+      "vs_strongest": -0.13467394429151103,
+      "contrasts": {
+        "own": 0.011827253639810076,
+        "shuffle": 0.03154622425101361,
+        "marginal": 0.0149128778636608
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 20
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": true,
+      "utility_pass": false,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.2397718317918978,
+        "sec": 1.205700182506936
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    },
+    "bc_teacher4_s43": {
+      "rounds": 20,
+      "strongest": "bc_gaussian_s43",
+      "vs_strongest": -0.12969677426175852,
+      "contrasts": {
+        "own": 0.008478670971363789,
+        "shuffle": 0.04394519479583642,
+        "marginal": 0.013206702990514796
+      },
+      "control_rounds": {
+        "own": 20,
+        "shuffle": 20,
+        "marginal": 20
+      },
+      "benign_pass": false,
+      "necessary_gate_pass": false,
+      "full_r20_controls": true,
+      "utility_pass": false,
+      "cost_ratios_r3_20": {
+        "algorithm_seconds": 1.321173888136129,
+        "sec": 1.2635518202225537
+      },
+      "decision": "FAIL necessary reference/benign gate; no extension needed"
+    }
+  },
+  "scope": "fixed r20; marginal diagnostic; own/shuffle>=.010; strongest>=.015; benign>=max(local,strongest)-.005",
+  "all_candidates_necessary_fail": true
+}

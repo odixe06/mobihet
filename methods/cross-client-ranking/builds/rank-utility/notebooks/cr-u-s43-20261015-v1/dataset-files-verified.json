@@ -1,0 +1,7 @@
+{
+  "dataset": "minhtriethihi/mobihet-cr-u-s43-20261015-v1-src",
+  "files": 117,
+  "bytes": 192899210,
+  "all_pages": true,
+  "evidence": "owner-scoped names/sizes; runtime verifies all source/fixture SHA before training"
+}

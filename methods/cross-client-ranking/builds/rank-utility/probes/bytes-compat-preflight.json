@@ -1,0 +1,28 @@
+{
+  "pass_check": true,
+  "empty_bytes_refusal_reproduced": true,
+  "scoped_allowlist": true,
+  "subprocess_launcher": true,
+  "audits": [
+    {
+      "run": "cr_local_s42",
+      "committed_rounds": 1,
+      "inherited_rounds": 2,
+      "logical_rounds": 3,
+      "complete": false,
+      "metric_checks": 40,
+      "level": "all strict SD/BN/state/wire/fixed priors and saved predictions to ten metrics; no independent saved-weight inference or NNLS refit"
+    },
+    {
+      "run": "cr_fl_s42",
+      "committed_rounds": 1,
+      "inherited_rounds": 2,
+      "logical_rounds": 3,
+      "complete": false,
+      "metric_checks": 40,
+      "level": "all strict SD/BN/state/wire/fixed priors and saved predictions to ten metrics; no independent saved-weight inference or NNLS refit"
+    }
+  ],
+  "source_unchanged": true,
+  "scope": "synthetic serializer regression plus existing committed artifacts; no production SGD"
+}

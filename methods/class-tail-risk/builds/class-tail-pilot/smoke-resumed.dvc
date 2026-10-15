@@ -1,0 +1,6 @@
+outs:
+- md5: 867fef6e11c835fa04cf801a0f143904.dir
+  size: 99801523
+  nfiles: 17
+  hash: md5
+  path: artifacts/smoke-resumed

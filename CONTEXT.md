@@ -1,76 +1,73 @@
 # CONTEXT — MobiHet / federated IDS V2X
 
-Đọc CONTEXT → [LESSONS](LESSONS.md) → [mục lục tài liệu](docs/README.md).
-[Tất cả đề xuất/trạng thái](docs/proposals.md) · [Index từng file](docs/file-index.md).
+Bắt đầu: CONTEXT → [LESSONS](LESSONS.md) → [bàn giao hiện tại](docs/operations/continuation-2026-10-15-afternoon.md).
+[Mục lục](docs/README.md) · [Danh mục phương pháp](docs/proposals.md) · [Index file](docs/file-index.md).
 
-## Bài toán và quyết định đang áp dụng
+## Bài toán và ràng buộc
 
-Xe học IDS cộng tác qua RSU: giao tiếp hữu hạn, private model có thể khác kiến trúc ở thiết kế.
-Không raw/perturbed record rời xe; synthetic từ noise được phép. Giữ 66 feature, partition/protocol gốc.
-Mọi learned model hiện DAGSNet; R2 đa kiến trúc chưa kiểm. Local chỉ smoke/probe/collect/audit/report;
-train nặng trên Kaggle, W&B online/key trước train. Official test chỉ báo, không chọn HP/best round.
+Xe học IDS cộng tác qua RSU với giao tiếp hữu hạn. Giữ66features, partition/scaler/protocol gốc;
+không raw/perturbed record hoặc per-record activation/gradient rời xe. Mọi learned model hiện DAGSNet;
+heterogeneous R2 và contact/deadline R1 chưa được chứng minh.
+Train/probe production nặng trên Kaggle, local chỉ fixture/algebra/collect/audit/report.
+Official test chỉ báo cáo, không chọn HP/best round/continuation; group/old pilot nội bộ có protocol riêng.
+[Protocol](docs/research/protocol.md) · [Dữ liệu/kiến trúc](knowledge/README.md).
 
-- **14/10, layout mới nhất:** core cho code chung; methods chỉ hướng đang làm; archive cho build đã kết thúc.
-  Thiết kế/report lịch sử ở docs/archive; bài học dùng tiếp ở LESSONS và docs/lessons.
-  Tên theo cơ chế/nhiệm vụ; V2–V10 là ID đợt, không là chuỗi version thay thế nhau.
-  mh/papers chỉ facade runtime cũ; nguồn Python/notebook và hash DVC giữ nguyên.
-  [Cấu trúc](docs/operations/project-layout.md), [tên cũ/mới](docs/operations/experiment-names.md),
-  [ownership/map](docs/operations/workspace-layout.json).
-- Không tự Git/DVC add/commit/push/backup/cleanup. Được restore chọn lọc để phân tích hoặc dựng checkpoint input.
-  14/10 phiên tiếp: chủ dự án yêu cầu push Git layout mới; DVC snapshot giữ nguyên, pull bằng manifest canonical trong chỉ mục backup. Git index có thể đổi byte cache/stat;
-  kiểm HEAD/nội dung staged riêng, không ghi đè index để làm khớp SHA cũ.
-- **14/10, đã cho phép:** dùng quota còn lại ngay để nối H1/H2/Hybrid và BoundaryCells; nối tiếp sau refresh khi cần.
-  Giữ H1/H2/Hybrid 20client, 100%train80%, 50round, seed42 và đủ7controls, lịchLR50 từr1.
-- BoundaryCells direct/teacher P2/P4 đã costPASS hai seed; utility20round giữ toàn bộ controls/gp target-mass/cổng đã chốt.
-  ResponseRisk chỉ local augmentation trước; EMA cả Gaussian/DML giữ thiết kế/cổng, chưa triển khai.
-- Đã ổn định thì ngừng health polling; vẫn collect/audit terminal. Bất ổn training quan sát được thì báo và yêu cầu chủ dự án dừng.
+## Quyết định còn hiệu lực
 
-## Trạng thái — 14/10/2026
+- Owner15/10: ưu tiên DML/Hybrid +controls và pilot mới; không dùng quota để nối adaptation đã FAIL.
+  Ba account mới được owner xác nhận quota; **không query lại quota**. Full giữ lịch50 từr1,
+  seed42,20clients,100%train80%, không internal holdout. [Plan/budget](docs/operations/continuation-2026-10-15-afternoon.md).
+- Freeze source/notebook đã PUSHED và toàn40module `mh/*.py`; source build mới riêng.
+  Exact-resume từ actual committed checkpoint, không W&B summary hoặc r1. Đổi vận hành dùng tag mới.
+  [Lỗi và recovery](docs/operations/notebook-errors.md).
+- Giữ scientific settings/gp/gates đã chốt; nghi vấn khoa học hoặc budget vượt scope thì hỏi owner trước.
+  CrossClientRank primary fixed true-class-prior gp mọi arm/reference, head diagnostic.
+  [Contract utility](docs/methods/cross-client-ranking/builds/rank-probe/utility-proposal.md).
+- 15/10 tối owner yêu cầu backup+cleanup: đã push Git/DVC, xóa local ba build đóng ([backup](docs/operations/backup.md)).
+  Ngoài yêu cầu mới, không Git/DVC add/commit/push/cleanup; selective restore được phép. Giữ owner edits credential reference.
+  Private inline W&B key chỉ ignored private_push0600; private platform history vẫn giữ key.
+  [Layout](docs/operations/project-layout.md) · [Account paths](docs/operations/kaggle-accounts.md).
 
-26 nhóm đề xuất +1recipe EMA; 3 nhóm có pilot tích cực: Gaussian moments, DML DAGSNet, Hybrid.
-Không nhóm nào đủ r50/R1/R2 proof. Adaptation FAIL V2–V7/V9/V10 không rerun y nguyên.
+## Trạng thái chốt15/10/2026 — đã dừng poll theo owner
 
-Full H1/H2 đã audit r7–r11; Hybrid full r2/r3, 7arm/18round. Hai Hybrid calibration ERROR do budget/controller,
-checkpoint vẫn hợp lệ. Batch continuation và BoundaryCells utility đã chuẩn bị/push; trạng thái exact version,
-checkpoint bridge, quota và phần còn thiếu tại [bàn giao phiên này](docs/operations/reorganization-2026-10-14.md).
-PUSHED/RUNNING không thay terminal artifact audit. Mọi số đo tại [hồ sơ build](docs/proposals.md).
+Snapshot bằng chứng trước yêu cầu bàn giao; không là trạng thái live. Không poll/launch thêm trong phiên này.
+[PUSHED/RUNNING không thay terminal audit](docs/operations/continuation-2026-10-15-afternoon.md).
 
-## Lỗi/lưu ý bắt buộc trước tạo notebook
+- Batch cũ đã collect/audit toàn bộ output có thể lấy. H1 q1 maintenance mất output;
+  W&B round cao hơn không checkpoint, recovery từ audited parent.
+- Six q2 full đã PUSHED, import/controller PASS; chín identities có initial fresh heartbeat.
+  Hybrid-own pair chưa heartbeat mới; owner thấy còn chạy nhưng Console không load. Giữ session, không rerun/cancel.
+- ClassTail pairedr20 FAIL; CountSketch repair smallr20 FAIL, medium partial kém own;
+  BoundaryCells cả bốn adaptation direct/teacher FAIL hai seed. **Không nối các adaptation này**.
+  Nguyên nhân và giới hạn kết luận tại [LESSONS](LESSONS.md) và [danh mục](docs/proposals.md).
+- CrossClientRank probe/diagnostic hai seed đã audit, locked probePASS; chưa utilityPASS.
+  Utility hai seed đã push. Seed42 lỗi loader emptybytes, r3 hợp lệ/costPASS;
+  recoveryv2 giữ source/fingerprint/weights, CPU audit PASS và đã tiếnr4.
+  Seed43 owner thấy còn chạy, chưa fresh heartbeat/artifact; giữ session.
+  [Build và recovery](docs/methods/cross-client-ranking/builds/rank-utility/README.md).
+- ResponseRisk/EMA/SAM chỉ thiết kế/nghiên cứu, chưa mở trial mới.
+  Fullr50 và paired utilityr20 chưa hoàn tất. Không có yêu cầu thao tác tay pending.
 
-Đọc [sổ lỗi kernel](docs/operations/notebook-errors.md), dùng skill
-[Codex](.agents/skills/federated-experiment-workflow/SKILL.md) hoặc
-[Claude Code](.claude/skills/federated-experiment-workflow/SKILL.md).
+## Phiên sau
 
-- Kernel ERROR có thể sau nhiều arm/round hợp lệ: pull/audit trước rerun, nối actual committed round, không r1.
-- Hybrid controller cũ đòi3round dù worker budget-stop rc0: controller mới chấp nhận boundary; phân biệt target50 với sessioncomplete.
-- Output listing đọc được chưa chứng minh attach được parent ERROR. Kaggle có thể refused input mà push vẫn exit0;
-  dùng dataset private checkpoint có SHA/import gate; require-resume trước data decode. Mất response thì kiểm status trước retry.
-- Alias không giữ `__file__.resolve()` depth. Source frozen dựng đúng runtime tree; helper dùng root discovery.
-  `git check-ignore` phải dùng đường dẫn canonical `.resolve()` trước nhúng key, nếu không lỗi beyond symbolic link.
-- Fingerprint hash đủ40 tên mh/*.py qua facade, gồm core và source build/archive: không sửa/thêm/xóa tên module trong exact-resume
-  hoặc đổi source run đã PUSHED. Chuyển vị trí vật lý giữ byte/hash và alias; kiểm `scripts/check_package_layout.py`.
-- Metadata cả notebook/JSON, pinned image, assert2T4/sm75/torch trước train; không reinstall torch hoặc bỏ guard.
-- W&B preflight không tự tăng restored step; key chỉ ignored private_push0600. Private platform history vẫn chứa key;
-  pull executed vào private, audit redacted; không key trong dataset/log/Git/chat.
-- Upload checkpoint dataset `-r zip -t`; kiểm file/hash/size, không tabular conversion hoặc mất thư mục.
-- Budget cả batch: worst round từngarm, pairmax haiGPU, preparation/import/compile/eval/I/O và dư≥15%.
-  Refresh service hiện báo17/10; không suy timezone chưa được API xác nhận. Phiên quota không là GPU-worker hours.
-- Quota/listing network reset: retry read-only có giới hạn; UNKNOWN nếu chưa đọc được. Không tự lặp push.
-- Verifier CPU map_location; CUDA deterministic/stable ties/CUBLAS trước CUDA; lỗi checker không yêu cầu train lại.
-- DVC workspace thiếu sau cleanup không được add thay manifest đầy đủ. `deleted` cloud-status có thể là thiếu localcache;
-  kiểm remote .dir/object riêng. DriveFS Errno5 có thể do cacheD: đầy, không tự là artifact nguồn hỏng.
+1. Đọc [checklist và lệnh bàn giao](docs/operations/continuation-2026-10-15-afternoon.md#việc-còn-thiếu--phiên-sau).
+   Collector terminal chạy một lượt; không mở polling loop hoặc poll lại run đã stable.
+2. Collect/audit q2 và CrossClientRank khi terminal. Seed43 chỉ recovery sau actual artifact/error/cost audit;
+   đủ mounted SHA/state proof trước GPU, không push trùng hoặc lặp SGD đã commit.
+3. Regenerate đủ10metrics/per-class/gates; giữ FAIL theo scope và ghi việc còn thiếu.
+   Cân budget còn lại trước continuation; không mặc định quota được bổ sung hoặc gate đã PASS.
 
 ## Muốn biết → mở
 
-| nhu cầu | tài liệu |
+| cần biết | tài liệu |
 |---|---|
-| Toàn bộ đề xuất, thành công/thất bại/chưa kiểm | [docs/proposals](docs/proposals.md) |
-| Căn cứ/cơ chế/build/kết quả/artifact | [Đang làm](docs/methods/README.md), [lưu trữ](docs/archive/README.md) |
-| Đọc lại 10 metrics các round cuối | [H1/H2](docs/methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md), [Hybrid](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md) |
-| Kernel/quota/việc còn thiếu | [Bàn giao hiện tại](docs/operations/reorganization-2026-10-14.md), [sổ lỗi](docs/operations/notebook-errors.md) |
-| Bài học khiến train chưa tốt | [LESSONS](LESSONS.md), [bài học hướng đã đóng](docs/lessons/README.md) |
-| Dữ liệu/kiến trúc/scaler | [knowledge](knowledge/README.md), [protocol](docs/research/protocol.md) |
-| Scripts dùng chung, cấu trúc, khôi phục | [scripts](scripts/README.md), [layout](docs/operations/project-layout.md), [backup/restore](docs/operations/backup.md) |
+| Kernel, checkpoint, budget, việc chưa làm, lệnh tiếp tục | [Bàn giao hiện tại](docs/operations/continuation-2026-10-15-afternoon.md) |
+| Toàn bộ phương pháp, PASS/FAIL/chưa kiểm, research mới | [Danh mục](docs/proposals.md), [hồ sơ](docs/methods/README.md) |
+| Mọi con số/full metrics đã audit | [H1/H2](docs/methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md), [Hybrid](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md) |
+| Lỗi runtime/recovery và nguyên tắc không lặp | [Sổ lỗi](docs/operations/notebook-errors.md), [LESSONS](LESSONS.md) |
+| Dữ liệu, kiến trúc, protocol | [Knowledge](knowledge/README.md), [protocol](docs/research/protocol.md) |
+| Script, layout, alias, restore/backup | [Scripts](scripts/README.md), [layout](docs/operations/project-layout.md), [backup](docs/operations/backup.md) |
 
-Cập nhật trạng thái/lỗi ở CONTEXT, bài học chất lượng train ở LESSONS; số đo chi tiết ở docs của build.
-Sau thêm/chuyển file chạy index và kiểm link/hash/ignore. Không backup hoặc dọn artifact nếu chưa được yêu cầu.
+CONTEXT giữ trạng thái/quyết định và đường dẫn; số đo/commands/contracts ở docs của build hoặc operations.
+Tri thức dữ liệu/kiến trúc ở knowledge; quy trình dùng lại ở skills. Bài học mới cập nhật LESSONS ngay.
+Sau thêm/chuyển file: cập nhật index, kiểm link/hash/ignore; không tự backup hoặc dọn artifact.

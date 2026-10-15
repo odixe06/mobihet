@@ -1,0 +1,24 @@
+{
+  "rows": [
+    {
+      "build": "full-validation",
+      "owner": "accanniez",
+      "rid": "full1-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_local": "full1-s42-20261014-cont02-v1",
+        "h_gaussian": "full1-s42-20261014-cont02-v1"
+      }
+    },
+    {
+      "build": "full-validation",
+      "owner": "accanniez",
+      "rid": "fulld-s42-20261015-q1-v1",
+      "hours": 9.0,
+      "parents": {
+        "h_dml": "full3-s42-20261014-cont02-v1",
+        "h_dml_own": "full4-s42-20261014-cont02-v1"
+      }
+    }
+  ]
+}

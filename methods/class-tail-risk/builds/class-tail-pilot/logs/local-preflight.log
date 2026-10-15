@@ -1,0 +1,50 @@
+setup ct_fl role private rows 5120 sec 1.4
+r1 ct_fl s42 private group gp 0.007089835338893435 loss 2.8350 3s
+r2 ct_fl s42 private group gp 0.006700296662618186 loss 2.1531 2s
+r3 ct_fl s42 private group gp 0.007496314056054447 loss 2.1546 2s
+done ct_fl complete True
+setup ct_fl role private rows 5120 sec 1.5
+r1 ct_fl s42 private group gp 0.007089835338893435 loss 2.8350 3s
+r2 ct_fl s42 private group gp 0.006700296662618186 loss 2.1531 2s
+done ct_fl complete False
+setup ct_fl role private rows 5120 sec 2.3
+r3 ct_fl s42 private group gp 0.007496314056054447 loss 2.1546 4s
+done ct_fl complete True
+setup ct_classmass role private rows 5120 sec 1.4
+r1 ct_classmass s42 private group gp 0.007089835338893435 loss 2.8350 3s
+r2 ct_classmass s42 private group gp 0.006700296662618186 loss 2.1531 2s
+r3 ct_classmass s42 private group gp 0.007514688402744343 loss 1.4451 2s
+done ct_classmass complete True
+setup ct_classmass role private rows 5120 sec 1.4
+r1 ct_classmass s42 private group gp 0.007089835338893435 loss 2.8350 3s
+r2 ct_classmass s42 private group gp 0.006700296662618186 loss 2.1531 2s
+done ct_classmass complete False
+setup ct_classmass role private rows 5120 sec 2.2
+r3 ct_classmass s42 private group gp 0.007514688402744343 loss 1.4451 3s
+done ct_classmass complete True
+setup ct_dml role private rows 5120 sec 2.0
+r1 ct_dml s42 private group gp 0.011914901492606104 loss 5.6756 6s
+r2 ct_dml s42 private group gp 0.011773773185956187 loss 4.8185 5s
+r3 ct_dml s42 private group gp 0.011611237634176038 loss 4.4511 4s
+done ct_dml complete True
+setup ct_dml role private rows 5120 sec 2.0
+r1 ct_dml s42 private group gp 0.011914901492606104 loss 5.6756 6s
+r2 ct_dml s42 private group gp 0.011773773185956187 loss 4.8185 5s
+done ct_dml complete False
+setup ct_dml role private rows 5120 sec 3.1
+r3 ct_dml s42 private group gp 0.011611237634176038 loss 4.4511 5s
+done ct_dml complete True
+setup ct_gaussian role private rows 5120 sec 2.1
+r1 ct_gaussian s42 private group gp 0.015587919743857778 loss 11.2660 4s
+r2 ct_gaussian s42 private group gp 0.014147269021182806 loss 9.9911 3s
+r3 ct_gaussian s42 private group gp 0.013734270112233707 loss 9.4522 3s
+done ct_gaussian complete True
+setup ct_gaussian role private rows 5120 sec 2.0
+r1 ct_gaussian s42 private group gp 0.015587919743857778 loss 11.2660 4s
+r2 ct_gaussian s42 private group gp 0.014147269021182806 loss 9.9911 4s
+done ct_gaussian complete False
+setup ct_gaussian role private rows 5120 sec 3.2
+r3 ct_gaussian s42 private group gp 0.013734270112233707 loss 9.4522 4s
+done ct_gaussian complete True
+ClassTail gradients/wire/4-arm exact resume/mass PASS
+Peak tree RSS: 2686 MiB; exit 0

@@ -1,0 +1,17 @@
+[
+  {
+    "kernel": "minhtriethihi/mobihet-ccr-diag-s42-20261015-v1",
+    "case": "normal",
+    "pass_check": true
+  },
+  {
+    "kernel": "minhtriethihi/mobihet-ccr-diag-s42-20261015-v1",
+    "case": "failure",
+    "pass_check": true
+  },
+  {
+    "kernel": "minhtriethihi/mobihet-ccr-diag-s42-20261015-v1",
+    "case": "budget",
+    "pass_check": true
+  }
+]

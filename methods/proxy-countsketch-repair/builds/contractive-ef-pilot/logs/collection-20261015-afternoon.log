@@ -1,0 +1,24 @@
+minhtriethihi/mobihet-cef-s42-20261015-v1 has status "KernelWorkerStatus.COMPLETE"
+minhtriethihi/mobihet-cef-s42-20261015-v1: 719 files, 4 parallel
+minhtriethihi/mobihet-cef-s42-20261015-v1: 719 files ok, 0 missing, 8519 MiB new in 1595 s (5.3 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/methods/proxy-countsketch-repair/builds/contractive-ef-pilot/private_push/cef-s42-20261015-v1/executed.ipynb (34030 bytes, 6 outputs)
+VERIFIED {"run": "a_dense_s42", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_medium_contract_ef_s42", "rounds": 17, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_medium_noef_s42", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_own_s42", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_small_contract_ef_s42", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_small_noef_s42", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "local_s42", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+AUDITED repaired EF 42 arms 7 all r20 False
+khanhmay0304/mobihet-cef-s43-20261015-v1 has status "KernelWorkerStatus.COMPLETE"
+khanhmay0304/mobihet-cef-s43-20261015-v1: 704 files, 4 parallel
+khanhmay0304/mobihet-cef-s43-20261015-v1: 704 files ok, 0 missing, 8313 MiB new in 2206 s (3.8 MiB/s)
+downloaded /home/odixe/nckh/veremi/mobihet/methods/proxy-countsketch-repair/builds/contractive-ef-pilot/private_push/cef-s43-20261015-v1/executed.ipynb (34030 bytes, 6 outputs)
+VERIFIED {"run": "a_dense_s43", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_medium_contract_ef_s43", "rounds": 14, "complete": false, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_medium_noef_s43", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_own_s43", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_small_contract_ef_s43", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "a_small_noef_s43", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+VERIFIED {"run": "local_s43", "rounds": 20, "complete": true, "inference": [], "level": "strict model/state/payload + saved predictions to client metrics; optional sampled decisive inference"}
+AUDITED repaired EF 43 arms 7 all r20 False

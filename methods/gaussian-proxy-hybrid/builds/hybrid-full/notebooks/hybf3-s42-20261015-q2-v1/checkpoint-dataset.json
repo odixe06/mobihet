@@ -1,0 +1,608 @@
+{
+  "dataset": "takids1909/mobihet-hybf3-s42-20261015-q2-v1-ckpt",
+  "parents": {
+    "h_gaussian_own": {
+      "kernel": "takids1909/mobihet-hybf3-s42-20261015-q1-v1",
+      "version": 1,
+      "round": 15
+    },
+    "h_dml_own": {
+      "kernel": "takids1909/mobihet-hybf3-s42-20261015-q1-v1",
+      "version": 1,
+      "round": 8
+    }
+  },
+  "files": {
+    "runs/h_gaussian_own_s42/config.json": {
+      "sha256": "6d6a106f933aa5bf74be398ef51e4023464502ae8c702241f85771c4d3e438ee",
+      "size": 4443
+    },
+    "runs/h_gaussian_own_s42/result.json": {
+      "sha256": "81c2967a824e8b973177295f87b43ef332c64d21aa6bc8471439f5b3daed0578",
+      "size": 1425471
+    },
+    "runs/h_gaussian_own_s42/metrics.csv": {
+      "sha256": "a4fecac61f854f2c34305b038aa3a6e456a51f3510872f9aad82e04a454ac2e0",
+      "size": 9552
+    },
+    "runs/h_gaussian_own_s42/predictions/round_003.npz": {
+      "sha256": "b49a03afde897216118941f149f5a77c94a22dd5fffa2dfd3cacf49707717e1a",
+      "size": 89640095
+    },
+    "runs/h_gaussian_own_s42/predictions/round_005.npz": {
+      "sha256": "92caa4314ff95c761b67236613671ba45c387edc3b691cb383766850a6c7bd25",
+      "size": 89848886
+    },
+    "runs/h_gaussian_own_s42/predictions/round_011.npz": {
+      "sha256": "10ad62cb4ebdf5ce11d7d1c7dededdf0eb3445926dd184172b7c280ea66c55e6",
+      "size": 90861268
+    },
+    "runs/h_gaussian_own_s42/predictions/round_002.npz": {
+      "sha256": "565bb1027f9f6c2ff0dcd2f778de16b2d0fece592f7a97f3834c48a4d21f71f7",
+      "size": 89534865
+    },
+    "runs/h_gaussian_own_s42/predictions/round_009.npz": {
+      "sha256": "3c2b49f3661c496db5585aa8083f37f87ef700690771e1385c5d8d4a976e28f8",
+      "size": 91830435
+    },
+    "runs/h_gaussian_own_s42/predictions/round_012.npz": {
+      "sha256": "b0ba0bb69de34d5166e62f76ae663d97320316ed56c1c913aac7774d9cc0f5e6",
+      "size": 91955253
+    },
+    "runs/h_gaussian_own_s42/predictions/round_010.npz": {
+      "sha256": "fbbeb79f72e4f22919b2a752e0fa702c2f327506f9116d3584ac7456b04eba39",
+      "size": 91204052
+    },
+    "runs/h_gaussian_own_s42/predictions/round_001.npz": {
+      "sha256": "773a78107f1e9f3f41b974ca04a581b067958aff10af4c1778c83d28ea05d9d5",
+      "size": 90446984
+    },
+    "runs/h_gaussian_own_s42/predictions/round_013.npz": {
+      "sha256": "5f8b799b84758ddd6855a336cefdcd8abc63c82e3d6945dddb3c3e373f8343ce",
+      "size": 92459008
+    },
+    "runs/h_gaussian_own_s42/predictions/round_006.npz": {
+      "sha256": "7a5d938260313c96ef6f03b83a982423ab43456417087eceb95c1896e712dba4",
+      "size": 89670946
+    },
+    "runs/h_gaussian_own_s42/predictions/round_007.npz": {
+      "sha256": "499d463be44ae9c9d5a76a79c7b23c7556e58b313a0fd32df10dcf0bd3609ae5",
+      "size": 91118965
+    },
+    "runs/h_gaussian_own_s42/predictions/round_008.npz": {
+      "sha256": "90ba7211e144344d3b19bc44bafa841a3eb5a9ef17efcc4dd172fb6593037eec",
+      "size": 90804833
+    },
+    "runs/h_gaussian_own_s42/predictions/round_014.npz": {
+      "sha256": "a65a5a38cd1d0e51e8f633626c76aba0090560f30011f00d6a209fcbcdd9811a",
+      "size": 91858301
+    },
+    "runs/h_gaussian_own_s42/predictions/round_015.npz": {
+      "sha256": "563dde6eb63a9af6abd3c5d094f268f30db2a23f28eda7794f20b096908d462f",
+      "size": 92337560
+    },
+    "runs/h_gaussian_own_s42/predictions/round_004.npz": {
+      "sha256": "8e7a6e02362cab8ef6a6efb90a37a26d4954f93d4c2fb6fd02c8912b5577c2d6",
+      "size": 89890398
+    },
+    "runs/h_gaussian_own_s42/weights/round_002.pt": {
+      "sha256": "74a0e42fdf684bda52f38bfcc3d39ee23454df535e11dbc53e15618a0fdbacdf",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_013.pt": {
+      "sha256": "a9ccf997c8351b93319c6c2897d24c99d35637562994c6d09a918c845870c6a1",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_003.pt": {
+      "sha256": "b21c1bc8644d6498ce38c7eb5ff98860f6414003dbea9ae8b4fb24cb071e3bcf",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_015.pt": {
+      "sha256": "25105664546d055bb66d9b35b5609c95243843f8b2e42acd248416bb51e72db3",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_006.pt": {
+      "sha256": "a05ab7ef88dc60be6fe220508095061ba0e6f353f625162fcd6e50fba14f64d6",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_012.pt": {
+      "sha256": "1308cbc117ca2d1e2631240f6145d5f39985f3ab3e63f7993049f3ba92da39e7",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_004.pt": {
+      "sha256": "d17bcaded7d56afb0a3693faa9d86c21a00fd574de5338f04a4919bbb5e9990b",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_010.pt": {
+      "sha256": "6793a44acdfc54dd343bdd57cda71e7a04dbb2de8a15c0b6bdc629518cb16c2d",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_001.pt": {
+      "sha256": "9907beca636cf4e0b38a366f1d9f19509e863ad16644f53a68ee44a8245b9dc8",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_014.pt": {
+      "sha256": "a41dc3ac9b84b25bee8afa4852c25e5525b2301c227a299cc89e361d1617f8f4",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_009.pt": {
+      "sha256": "a5249d6985ee092feeb6ac6e22ba5c29c847bb26d93d1e190a3553e74f813f05",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_005.pt": {
+      "sha256": "32ec0f8c65746f739a5f327c033d457bf2f54feeb7e15db24eceae57ee64ae18",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_011.pt": {
+      "sha256": "53f2b6c020ee3aa96850c1796fdf9af2e56b54da987ec7ff58668334384fba4b",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_008.pt": {
+      "sha256": "28cda1543269b348cbe9d6087697c6b5e8ec458baffc0b2790038f60b9614213",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/weights/round_007.pt": {
+      "sha256": "89fc04f9d00fb5e015538783010c99e4388d0adc9a34cbbde5581a7959b4da63",
+      "size": 66070197
+    },
+    "runs/h_gaussian_own_s42/resume/round_002.pt": {
+      "sha256": "f677f44fe17f77b42bae8a7f51d0786cc5831e55b795818e1e321548f92b793b",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_013.pt": {
+      "sha256": "b1584e830e36a35ea1b9f8fe37d7dd11dacb1039ed4569bf177f11e9f3c00652",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_003.pt": {
+      "sha256": "c7d34d35e718f40ed504c1abf0c882bc7ba9f2e5cedeafef9a66b7d74474490f",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_015.pt": {
+      "sha256": "7537c3b34a6694640360ff9e953daa41e5d61ac7ef8a5ef6b30e225549fc5b3a",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_006.pt": {
+      "sha256": "183c9ab2fd204aa1c97d2782e8c91904246c82079b53e01567f4e799baddfbae",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_012.pt": {
+      "sha256": "8bcc444aa7589d7f28bfc32a37c55364b0cc3cfbf0ad991cd7037ba6595f4bd8",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_004.pt": {
+      "sha256": "cc97c7084841f3a94f8a8b1fa9acfe1cf803b96302f4b13e5d9746f07c8107b6",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_010.pt": {
+      "sha256": "fb352f238a1d7bf34d6352419d89e6107087caf22ccccec6df563f3bc58c0ee5",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_001.pt": {
+      "sha256": "b5d3f3ff9f63671e69fb55eed152dc6c170c8ee5f3b23664854cbc2de8504ca2",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_014.pt": {
+      "sha256": "1686802ff80d7f8b60611fc03e77793e5515e7de68f9d39c483a16a7e515e3c2",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_009.pt": {
+      "sha256": "1a54112e6ee0634f81a32bccd9dfe8c696bfbadb6880736a599f30bb68145d81",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_005.pt": {
+      "sha256": "b2dc2d3392e6f80c777daa3c9b47bfed7a01107b851475b5a7a2c8809b76d959",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_011.pt": {
+      "sha256": "c062c6669ecadef50bfac49ab772acea9fa48a9482a37fb43c528f2a3ceaf903",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_008.pt": {
+      "sha256": "3fe9ee3bdaa347d24fc07f936cbf9cbeae9a7f33c7ceaef264d5a84ee4413c51",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/resume/round_007.pt": {
+      "sha256": "90907ac2380b37ff58e33479511ccc4b7001f0e57d64e7bc0412742bb254ac49",
+      "size": 10489825
+    },
+    "runs/h_gaussian_own_s42/complete/round_014.json": {
+      "sha256": "5d70221be1067f0288ae08b72176e516f792e3f02ca705f9abe72f551d11e254",
+      "size": 95300
+    },
+    "runs/h_gaussian_own_s42/complete/round_001.json": {
+      "sha256": "b40acaa08d950244a3db842a1cf53f8aba462446839f793c81e47a8445f8a26b",
+      "size": 94078
+    },
+    "runs/h_gaussian_own_s42/complete/round_008.json": {
+      "sha256": "f4257f4dc3c7042466678e7d3d1c1878851331f0cff6729d5f41ba094dbf9107",
+      "size": 95033
+    },
+    "runs/h_gaussian_own_s42/complete/round_007.json": {
+      "sha256": "f8c5fc766e50fc6c20d54c5049c9709503b1e995b094dd4304e032b268403878",
+      "size": 95002
+    },
+    "runs/h_gaussian_own_s42/complete/round_012.json": {
+      "sha256": "c8c2dd507c08dfcdc0110281b6f41540c8debd11df87231138be592187d6c734",
+      "size": 95057
+    },
+    "runs/h_gaussian_own_s42/complete/round_010.json": {
+      "sha256": "8e6208992dab0734ed979a0737c6d2c21b49a058d8fb39b0707c9300afcd7fbc",
+      "size": 95143
+    },
+    "runs/h_gaussian_own_s42/complete/round_004.json": {
+      "sha256": "1ef6c39b0f0a8f202a3b91579ec40bf8f8d1d1e9ce8196066a8a6b3ea94f436b",
+      "size": 94795
+    },
+    "runs/h_gaussian_own_s42/complete/round_013.json": {
+      "sha256": "531e04d4c752ed415a7e246e8b037ee5a7dc857157aab5f25a905070cfab40b3",
+      "size": 95174
+    },
+    "runs/h_gaussian_own_s42/complete/round_005.json": {
+      "sha256": "0e08fc9daab6d68b4793a3bdae7761c4e1c1b353d6a1677b758fa886ad5ec3af",
+      "size": 94820
+    },
+    "runs/h_gaussian_own_s42/complete/round_002.json": {
+      "sha256": "03e538427b23fbf643b489382c1f5af3d6e1cee2d1f58274ef2114fe00040ce7",
+      "size": 94476
+    },
+    "runs/h_gaussian_own_s42/complete/round_011.json": {
+      "sha256": "17e7d5bfcf9976511aaa14053aecdca7f0e4f8ef345c85659ccbc083867677e7",
+      "size": 94995
+    },
+    "runs/h_gaussian_own_s42/complete/round_006.json": {
+      "sha256": "8e71903acd3af676d2cb14959d86a8fa3e09946d3098846eb56f7d52e3156cfd",
+      "size": 94697
+    },
+    "runs/h_gaussian_own_s42/complete/round_003.json": {
+      "sha256": "9b5ecd5c89bd123f7f9ced3e0d223c3c53defc681f73240a148db74aafe63f5e",
+      "size": 94599
+    },
+    "runs/h_gaussian_own_s42/complete/round_009.json": {
+      "sha256": "98223b11ea431cf774c71e40355eda7da113c44486953c9b07297b69fc900337",
+      "size": 95038
+    },
+    "runs/h_gaussian_own_s42/complete/round_015.json": {
+      "sha256": "05e1934d21ff3423d7f5ad9dca61651665e4dbf30fc00ed627cd99fa16c1479f",
+      "size": 95272
+    },
+    "runs/h_dml_own_s42/config.json": {
+      "sha256": "ba2528c9365663bf1eff75119ee48fa620fda4fcdb1a03c0a3a92b550c940199",
+      "size": 4438
+    },
+    "runs/h_dml_own_s42/result.json": {
+      "sha256": "eecc74c0bf90a276b80bb76df38c3a511abd411069792dcde2a36f9403f3391c",
+      "size": 727697
+    },
+    "runs/h_dml_own_s42/metrics.csv": {
+      "sha256": "55714b2761295606549b3a2283a0fa1b23f0dfab81bd1f6c3309e7eca53386a9",
+      "size": 5151
+    },
+    "runs/h_dml_own_s42/predictions/round_003.npz": {
+      "sha256": "c740876d3fce9788f9c233cf73caa4a9e6b54afad3ae44be15d1962a6d7b3ea2",
+      "size": 76828435
+    },
+    "runs/h_dml_own_s42/predictions/round_005.npz": {
+      "sha256": "f3b55122316c679d149b17d96ff5335ae3b5b232ac562bc1d1cc4db2759d3395",
+      "size": 75387465
+    },
+    "runs/h_dml_own_s42/predictions/round_002.npz": {
+      "sha256": "e9355cbffe7d002f88945d1d4ad83b5273426567edf20831a8a54afa7026ebe6",
+      "size": 80029758
+    },
+    "runs/h_dml_own_s42/predictions/round_001.npz": {
+      "sha256": "0b0b798623c312cbe8b0ae289d27b32b226d720da42de26d6c7eb8db6e81eaa4",
+      "size": 83488692
+    },
+    "runs/h_dml_own_s42/predictions/round_006.npz": {
+      "sha256": "7106708e57ee8ab57ffa14d9d2edcef509e15162e71841431a3ee9778dc3fecd",
+      "size": 74363927
+    },
+    "runs/h_dml_own_s42/predictions/round_007.npz": {
+      "sha256": "fa1e0ce18f3db54ccb15c35be54970e0a0fc794675c74c2e4c9b0a0b31eeb26f",
+      "size": 74955167
+    },
+    "runs/h_dml_own_s42/predictions/round_008.npz": {
+      "sha256": "6fe9747f409745a0b392881c7e42b12895c6df075c5913b0595912866ebae975",
+      "size": 74451445
+    },
+    "runs/h_dml_own_s42/predictions/round_004.npz": {
+      "sha256": "839286d7e8ce6041a85ed6ad9c3a1c8f524964b2e494e7c4e27099f467c04806",
+      "size": 75946483
+    },
+    "runs/h_dml_own_s42/weights/round_002.pt": {
+      "sha256": "ffcc4ae548ea5224a5ce287420fdc419d7270520168703e6c8ea38e8e3924645",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_003.pt": {
+      "sha256": "0fa435bc982e2f5f0846db2ae15cba0da58fd8e7588a629b524e4214ae4d9f9e",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_006.pt": {
+      "sha256": "e2ed6458a2f43aebe77e44dff3518eed8dfe3361f13da071fe937426cc2ccc09",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_004.pt": {
+      "sha256": "3cb8e7cb270c40286d085f55f14f7175a16d5df0528ccd47fb76725b4cb729e3",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_001.pt": {
+      "sha256": "9deef5e55407203429bb5132e1225952d8f699a789d1fa53543d3d406040cd8f",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_005.pt": {
+      "sha256": "e3976366b8174e436c16ca954712767ed1736e03ec86d600aacf76db49ccfa19",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_008.pt": {
+      "sha256": "f2940ac9b3a95a0ef0e257af96e3cd071e34eabedc9ad24daaf21b42772297a5",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/weights/round_007.pt": {
+      "sha256": "75b8ebe1b67d7caf1063edb5e07645268da151a537e0f4ded7e40bc4980ced20",
+      "size": 66070197
+    },
+    "runs/h_dml_own_s42/resume/round_002.pt": {
+      "sha256": "0c400132298240c6b3c6b14d58f41aa9b6f9a2abda1bb03b3257a92f33f735ee",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_003.pt": {
+      "sha256": "21bb51c40fa9935b2c8934f651b358d99fa4c126db686e2cdb2a10452471d9b2",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_006.pt": {
+      "sha256": "65e7223de9a54f3acf9b1b7f0ec6b1506de316cc7caab841d7c57ad56934956d",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_004.pt": {
+      "sha256": "86681f9e4adf9f29063a20929c35a18620da83a52acc84e80d1f0817178708cd",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_001.pt": {
+      "sha256": "be3bf4ac7784605aae6564b891620f2f4654861181b85398897be8d79f39c570",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_005.pt": {
+      "sha256": "d4c35a5928fa727a2ccf3f78667d9fb9ced834f390080133c84664fef4fcc84e",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_008.pt": {
+      "sha256": "7c9198b47d1709356ba1697c7cb0163586859d665efae14c1618c6d241a67b2f",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/resume/round_007.pt": {
+      "sha256": "9a0ec0b508168ee3044bba17082dc867267c95e27dbd1c84fef539071ccd942d",
+      "size": 3236838
+    },
+    "runs/h_dml_own_s42/complete/round_001.json": {
+      "sha256": "422ac9f707adb748c4b896d229afed090b6cc2ba870f88e922cbc5ed313dabad",
+      "size": 91229
+    },
+    "runs/h_dml_own_s42/complete/round_008.json": {
+      "sha256": "0cb2d4a82b4b70d1da34a3b7583d26c5c99f0c14836d9a5d72dceba9b5e4e0e0",
+      "size": 90419
+    },
+    "runs/h_dml_own_s42/complete/round_007.json": {
+      "sha256": "ba17036e15d626dd2d3769e0496aedb3de1f9fe613be8fdce934e5a06bec547a",
+      "size": 90574
+    },
+    "runs/h_dml_own_s42/complete/round_004.json": {
+      "sha256": "62989858f7d200f610235235d7eb777829939556c392e50af10eb1bedb3419c5",
+      "size": 90704
+    },
+    "runs/h_dml_own_s42/complete/round_005.json": {
+      "sha256": "39f90c29d385fc0c2af4a8394a9388039811205d003352f584aec4dc9dcd244b",
+      "size": 90581
+    },
+    "runs/h_dml_own_s42/complete/round_002.json": {
+      "sha256": "55237a7ae1727ba19517cd8adfb2a957889d479e755a83498f49db4c117ab7db",
+      "size": 90984
+    },
+    "runs/h_dml_own_s42/complete/round_006.json": {
+      "sha256": "17ca7b9e7f00fafc4b9d1253e489d9ad62944d3f557e9b14002a8f40768297c3",
+      "size": 90391
+    },
+    "runs/h_dml_own_s42/complete/round_003.json": {
+      "sha256": "852170935a25567d6389c237fbbb228eae80d398c1a1e63da6bcfcdeae203fcb",
+      "size": 90835
+    },
+    "package/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "package/archs.py": {
+      "sha256": "0c24ae80e1ff5401412ea9642c9f168843c965b0dcc36942c5e85b658d9666bd",
+      "size": 1205
+    },
+    "package/channel.py": {
+      "sha256": "609b114023990e9b7cdf30cf86b18b388e7fac2884b432ef90bc31b6399b0dc2",
+      "size": 3065
+    },
+    "package/dagsnet.py": {
+      "sha256": "5bafe8a571934397194da42f263564ca56093547b03d7eb5735d9c0c65944a5c",
+      "size": 7968
+    },
+    "package/metrics.py": {
+      "sha256": "8f23006318a246673eec8c566291a5447b53a16483bcab855a9f768d1da2a712",
+      "size": 2345
+    },
+    "package/mobility.py": {
+      "sha256": "450ae2599f4a4cbeff1a63292d492b7ab080fa8b119aea1cb7438ced7c9369d7",
+      "size": 9792
+    },
+    "package/model_packet.py": {
+      "sha256": "3c4fc9485c936b81804865796191f34b0c353ed5acd8fc8bbe9e53b5c65b77bd",
+      "size": 3294
+    },
+    "package/new_fl.py": {
+      "sha256": "2d5abcb1813c1399cc29b442ed76a6eea93ce03f4600987773bb1bddec954179",
+      "size": 10866
+    },
+    "package/new_methods.py": {
+      "sha256": "b306660ea84d6bc42f3dcbbef1977e959487f1db3bd333e6b53ed3612df0d2e3",
+      "size": 7753
+    },
+    "package/p2.py": {
+      "sha256": "62889bb18a1d448f139dc5e1b01480ea444ef41bcc3ee3394568507cecd28145",
+      "size": 11452
+    },
+    "package/pilot.py": {
+      "sha256": "3a7a6474d029b6857d2a5acf71c53a696e9e56b466efefea1307b62809a71a02",
+      "size": 27845
+    },
+    "package/prepare.py": {
+      "sha256": "9dd51acb3c23df4a00cec29f60f1805056d0292cfd62a809f071411550111e2e",
+      "size": 10098
+    },
+    "package/teacher_base.py": {
+      "sha256": "e59ff569cd51041efe1beed91399b28f1164eaa426511c43eea2f312ce516416",
+      "size": 4612
+    },
+    "package/teacher_driver.py": {
+      "sha256": "b46da25f871c7c0fd6fdd78dde9f541168faade2f825dfe32dd86ffa4e95c968",
+      "size": 13730
+    },
+    "package/v10_energy.py": {
+      "sha256": "a44777714bce1b0b6068d0d614e4f4574a9de0fbcd96420bc29bfa2e561b8284",
+      "size": 7904
+    },
+    "package/v10_run.py": {
+      "sha256": "660cc41c51514a49e8afc28f86c98ee65ab45eb45210ef93350e4f9f27902986",
+      "size": 457
+    },
+    "package/v2_math.py": {
+      "sha256": "187216ea4796afb81cfc9d5350a767e8b795bcd54d24c5544a3d921be661cc62",
+      "size": 7681
+    },
+    "package/v2_methods.py": {
+      "sha256": "90fa6ff5fa91cd559f9995d12a5dda0d6b9f4d6cdff435811f814adbfd664398",
+      "size": 12480
+    },
+    "package/v2_run.py": {
+      "sha256": "b5cf0daf5348bcd77dbab09876ee57950f469509f52485a15252fd873802ef2d",
+      "size": 13160
+    },
+    "package/v3_dense.py": {
+      "sha256": "11a1caad91455da4c013a1f48bd3ccc51c56b6cdce90ff3db26ffa9d1e40292e",
+      "size": 621
+    },
+    "package/v3_math.py": {
+      "sha256": "3adf452d537f36904453ed48d8f2cb0c71aed87fe274a02d8f484da23e649fe7",
+      "size": 3613
+    },
+    "package/v3_methods.py": {
+      "sha256": "8c3faad01d13756bd7e27806a7fbb8d75c1f0d7c5751e54c5b4e37c66e4b0f84",
+      "size": 7903
+    },
+    "package/v3_run.py": {
+      "sha256": "6903adafd39211907b25385dd74ecf3063922252b364d6f172842ace588c778f",
+      "size": 611
+    },
+    "package/v4_mala.py": {
+      "sha256": "7d916530164cb7fa3bc9dadf051c47688327659b0e50f825e05e61ca4f805aea",
+      "size": 4530
+    },
+    "package/v4_run.py": {
+      "sha256": "be172c5464d0eea816a84dc2c43c012244a8c5b03e8db3b30497d2ed1354a6e9",
+      "size": 845
+    },
+    "package/v4_schema.py": {
+      "sha256": "0828b4a83a75ed160643e5f0fb7c6ea418e274c8a2f9a73b01d4f3a6dc94555c",
+      "size": 3261
+    },
+    "package/v4_support.py": {
+      "sha256": "726777438af9ca7590cbaa6e26123d8da7bf7f05d8ee6e38cf2e45eea7b2c4f8",
+      "size": 5566
+    },
+    "package/v5_anchor.py": {
+      "sha256": "1cd919e1ba39424e5a1f4afeb2e7441d4215a2637f91645db14e6906b7f077ae",
+      "size": 7191
+    },
+    "package/v5_books.py": {
+      "sha256": "1123938877061d903c6ebbb029d6f641ee7422c637181dfc93e3a0a600e7b475",
+      "size": 7469
+    },
+    "package/v5_run.py": {
+      "sha256": "9c257035c4388aaf0c48886b9e83f126bca86c812b7fe8a17843894e0200c71e",
+      "size": 1020
+    },
+    "package/v6_geometry.py": {
+      "sha256": "f277b7631e109be19de998e4055a21c33a94bf2789097a2f36e2f6a2660fd2cb",
+      "size": 15831
+    },
+    "package/v6_run.py": {
+      "sha256": "d71baa60141a36992810f091894ff8ea84acbd99f227dc0a297e15c429a57f9f",
+      "size": 1517
+    },
+    "package/v6_schema.py": {
+      "sha256": "46cf470ef781f5ecf9007e96be2fe0b0bd446bce49e4727fc7df19fe0ee6b654",
+      "size": 4141
+    },
+    "package/v7_basis.py": {
+      "sha256": "7f018d9a6e388976b56f8c858aaa67e696068394623e5737049fa032220f4517",
+      "size": 6008
+    },
+    "package/v7_nystrom.py": {
+      "sha256": "114e23dcf2ee15f6083f79fe8456edf58b08aad78d807b0ffce9b91d6dc22713",
+      "size": 12281
+    },
+    "package/v7_run.py": {
+      "sha256": "d2ca47dadbe17374e639569ddb277b21708031db174944842c19b9736036d428",
+      "size": 513
+    },
+    "package/v8_hybrid.py": {
+      "sha256": "17683b9c566310bdb22cdde361347d6af7332826c8a95589bc61d4a46b755e72",
+      "size": 7334
+    },
+    "package/v8_run.py": {
+      "sha256": "dd362c93df255e901a274e3925a11acc9f7271ccacccd2e53c33789000dd4041",
+      "size": 642
+    },
+    "package/v9_anchor.py": {
+      "sha256": "2d15e9b4f53006658a755b8d75e959eb314967773cb557cb1dbb8137ae6a0688",
+      "size": 9902
+    },
+    "package/v9_run.py": {
+      "sha256": "2f4f460fef23e6d01315b8b80c89a2f2cf5da132119352cb50d3d15a52204614",
+      "size": 479
+    },
+    "package/full_driver.py": {
+      "sha256": "66622498ae30f657a2e4b6baedfb645f12003809f63935f49d5551e564060f93",
+      "size": 13821
+    },
+    "package/full_method.py": {
+      "sha256": "2f3741a2a3ca12d97dd135b5b96f3303a37b3e341c4826ddeeae0e90f69d9c46",
+      "size": 374
+    },
+    "package/full_prepare.py": {
+      "sha256": "c269bab22efbe2ac2d1f65c9727f6a21072056d57bfe065b1cc304577a49376a",
+      "size": 1679
+    },
+    "package/full_run.py": {
+      "sha256": "65cfea41f76fa80382a49dbb1fd9dd03fdca6e5b1b7f0be5e34c88a553f75cd5",
+      "size": 7163
+    },
+    "package/full_verify.py": {
+      "sha256": "3cb9bedb5952ee2cf6948cf1ace82d65177f3e860790f2900fe28cf2a0f0fa9b",
+      "size": 5650
+    },
+    "package/parent_run.py": {
+      "sha256": "259de296cc080200ec8cb4948f19bd85043c409284bf3e3c711f0b607b25af86",
+      "size": 9016
+    },
+    "package/meta.json": {
+      "sha256": "1aeb0c9156c1f7d77694ffbee6f24a3f6abeec0c0dad48c1a45741cdb85fbff4",
+      "size": 3114
+    },
+    "package/scaler.json": {
+      "sha256": "1b07ea714eee74d18f1304d3f18c50b1d025a6accfca5aa9b036c18164c02a37",
+      "size": 19593
+    },
+    "package/full-hybrid.md": {
+      "sha256": "3fd957006ba9f742a7c64f51245fdc637d8d321323229da8bfac54dcd5d4732a",
+      "size": 2652
+    }
+  },
+  "verified_full_parent": true,
+  "private": true,
+  "uploaded": true
+}

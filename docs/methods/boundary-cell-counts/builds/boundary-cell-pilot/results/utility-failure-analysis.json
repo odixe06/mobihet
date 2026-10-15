@@ -1,0 +1,226 @@
+{
+  "bc_direct2_fl_s42": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 16,
+      "total_cells": 32,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.500806834211368,
+      0.5054268787396493,
+      0.5055913328956174,
+      0.5039557085287927,
+      0.5040560042970615
+    ],
+    "private_head": 0.47123971102354706,
+    "proxy_head": 0.1441753567952292,
+    "last5_proxy_head": [
+      0.14723485125360872,
+      0.1446632809884309,
+      0.14468480734827824,
+      0.14435999255570336,
+      0.1441753567952292
+    ],
+    "mean_private_real_ce": 0.3863642156124115,
+    "mean_teacher_loss": 2.593136076331139,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_direct4_fl_s42": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 33,
+      "total_cells": 64,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.5098464730353676,
+      0.5138595657411758,
+      0.514205212292363,
+      0.511693404276551,
+      0.5126931313401109
+    ],
+    "private_head": 0.4678444581609321,
+    "proxy_head": 0.2601554491089967,
+    "last5_proxy_head": [
+      0.26040051603520686,
+      0.2596533899527117,
+      0.26076616020717636,
+      0.2598328736140368,
+      0.2601554491089967
+    ],
+    "mean_private_real_ce": 0.3808153301477432,
+    "mean_teacher_loss": 2.6797577077150345,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_teacher2_fl_s42": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 16,
+      "total_cells": 32,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.4991693406718564,
+      0.5033654013330426,
+      0.5028818220781542,
+      0.5016598556927963,
+      0.5013860171978282
+    ],
+    "private_head": 0.4674195395959327,
+    "proxy_head": 0.1441753567952292,
+    "last5_proxy_head": [
+      0.14723485125360872,
+      0.1446632809884309,
+      0.14468480734827824,
+      0.14435999255570336,
+      0.1441753567952292
+    ],
+    "mean_private_real_ce": 0.38635537326335906,
+    "mean_teacher_loss": 2.593136076331139,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_teacher4_fl_s42": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 33,
+      "total_cells": 64,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.5045604449944822,
+      0.5082757040758794,
+      0.5084715263249591,
+      0.5059165648180465,
+      0.5067737644408724
+    ],
+    "private_head": 0.46303688425263817,
+    "proxy_head": 0.2601554491089967,
+    "last5_proxy_head": [
+      0.26040051603520686,
+      0.2596533899527117,
+      0.26076616020717636,
+      0.2598328736140368,
+      0.2601554491089967
+    ],
+    "mean_private_real_ce": 0.3815885156393051,
+    "mean_teacher_loss": 2.6797577077150345,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_direct2_fl_s43": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 16,
+      "total_cells": 32,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.510945921502618,
+      0.5086838088667085,
+      0.5077824610628406,
+      0.5091853838603205,
+      0.509389300761223
+    ],
+    "private_head": 0.47317135050585746,
+    "proxy_head": 0.14671794803533772,
+    "last5_proxy_head": [
+      0.14635346147055558,
+      0.1465132635657019,
+      0.1465241551149028,
+      0.14726543291408684,
+      0.14671794803533772
+    ],
+    "mean_private_real_ce": 0.38713529258966445,
+    "mean_teacher_loss": 2.592488604187966,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_direct4_fl_s43": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 33,
+      "total_cells": 64,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.5180810083036516,
+      0.5141118777367725,
+      0.5145859996243558,
+      0.5156718509911077,
+      0.5163678422214916
+    ],
+    "private_head": 0.4688519310920876,
+    "proxy_head": 0.25990260363981665,
+    "last5_proxy_head": [
+      0.25870205503819477,
+      0.2588853992538545,
+      0.25977867701860535,
+      0.25951915872584985,
+      0.25990260363981665
+    ],
+    "mean_private_real_ce": 0.3810636758804321,
+    "mean_teacher_loss": 2.6798573917150494,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_teacher2_fl_s43": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 16,
+      "total_cells": 32,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.505850530840874,
+      0.5046546247062393,
+      0.5045215094119377,
+      0.5052563349481407,
+      0.5058968097474399
+    ],
+    "private_head": 0.47004047319774156,
+    "proxy_head": 0.14671794803533772,
+    "last5_proxy_head": [
+      0.14635346147055558,
+      0.1465132635657019,
+      0.1465241551149028,
+      0.14726543291408684,
+      0.14671794803533772
+    ],
+    "mean_private_real_ce": 0.38645247668027877,
+    "mean_teacher_loss": 2.592488604187966,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  },
+  "bc_teacher4_fl_s43": {
+    "rounds": 20,
+    "diagnostics": {
+      "eligible_cells": 33,
+      "total_cells": 64,
+      "teacher_steps": 20,
+      "prototype_or_rule_model": false
+    },
+    "last5_private_gp": [
+      0.5129412713244161,
+      0.5096916821357035,
+      0.5094559294808388,
+      0.5107851285936924,
+      0.5108739797771924
+    ],
+    "private_head": 0.46583692668627563,
+    "proxy_head": 0.25990260363981665,
+    "last5_proxy_head": [
+      0.25870205503819477,
+      0.2588853992538545,
+      0.25977867701860535,
+      0.25951915872584985,
+      0.25990260363981665
+    ],
+    "mean_private_real_ce": 0.3821969136595726,
+    "mean_teacher_loss": 2.6798573917150494,
+    "limits": "Saved learned teacher/private behavior; no isolation of static-table softness versus teacher fit/BN/extrapolation"
+  }
+}
