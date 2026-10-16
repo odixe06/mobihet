@@ -1,0 +1,18 @@
+[
+  {
+    "arm": "h_hybrid",
+    "fingerprint": "45041b539f738ecf71b688aa2a1474798c8cf838eb3b2616cbf61199f18e248e",
+    "last_round": 28,
+    "source_path": "/kaggle/input/datasets/annhannh331/mobihet-hybh-s42-20261016-q4-v1-ckpt/runs/h_hybrid_s42",
+    "files": 143,
+    "markers_published_last": true
+  },
+  {
+    "arm": "h_hybrid_own",
+    "fingerprint": "537ebdd0f453acac6ad8ad5b0a026272b26133dcfed39c00646adf9cb51e3aa8",
+    "last_round": 27,
+    "source_path": "/kaggle/input/datasets/annhannh331/mobihet-hybh-s42-20261016-q4-v1-ckpt/runs/h_hybrid_own_s42",
+    "files": 111,
+    "markers_published_last": true
+  }
+]

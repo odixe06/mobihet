@@ -1,0 +1,111 @@
+{
+  "dataset": "nguyenminhtran060113/mobihet-proxyfuse-inputs-20261015",
+  "files": {
+    "ckpt/s42/predictions_r020.npz": {
+      "size": 1634849
+    },
+    "ckpt/s42/resume_r020.pt": {
+      "size": 3267445
+    },
+    "ckpt/s42/weights_r020.pt": {
+      "size": 66070197
+    },
+    "ckpt/s43/predictions_r020.npz": {
+      "size": 1657482
+    },
+    "ckpt/s43/resume_r020.pt": {
+      "size": 3267445
+    },
+    "ckpt/s43/weights_r020.pt": {
+      "size": 66070197
+    },
+    "fixture/group_X.npy": {
+      "size": 8650880
+    },
+    "fixture/group_y.npy": {
+      "size": 65664
+    },
+    "fixture/old_X.npy": {
+      "size": 8650880
+    },
+    "fixture/old_y.npy": {
+      "size": 65664
+    },
+    "fixture/train_0_y.npy": {
+      "size": 78500
+    },
+    "fixture/train_10_y.npy": {
+      "size": 62231
+    },
+    "fixture/train_11_y.npy": {
+      "size": 43047
+    },
+    "fixture/train_12_y.npy": {
+      "size": 34916
+    },
+    "fixture/train_13_y.npy": {
+      "size": 41955
+    },
+    "fixture/train_14_y.npy": {
+      "size": 71311
+    },
+    "fixture/train_15_y.npy": {
+      "size": 28450
+    },
+    "fixture/train_16_y.npy": {
+      "size": 20010
+    },
+    "fixture/train_17_y.npy": {
+      "size": 136486
+    },
+    "fixture/train_18_y.npy": {
+      "size": 24932
+    },
+    "fixture/train_19_y.npy": {
+      "size": 27279
+    },
+    "fixture/train_1_y.npy": {
+      "size": 40531
+    },
+    "fixture/train_2_y.npy": {
+      "size": 61746
+    },
+    "fixture/train_3_y.npy": {
+      "size": 33986
+    },
+    "fixture/train_4_y.npy": {
+      "size": 44162
+    },
+    "fixture/train_5_y.npy": {
+      "size": 45097
+    },
+    "fixture/train_6_y.npy": {
+      "size": 78672
+    },
+    "fixture/train_7_y.npy": {
+      "size": 34653
+    },
+    "fixture/train_8_y.npy": {
+      "size": 65757
+    },
+    "fixture/train_9_y.npy": {
+      "size": 29208
+    },
+    "meta.json": {
+      "size": 3114
+    },
+    "proxyfuse.py": {
+      "size": 8323
+    },
+    "proxyfuse_manifest.json": {
+      "size": 3188
+    },
+    "src/dagsnet.py": {
+      "size": 7968
+    },
+    "src/metrics.py": {
+      "size": 2345
+    }
+  },
+  "uploaded": true
+}

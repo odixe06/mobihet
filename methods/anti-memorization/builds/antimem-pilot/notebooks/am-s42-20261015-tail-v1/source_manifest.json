@@ -1,0 +1,11 @@
+{
+  "antimem": "bfc7fc46c3ed33f5ddabaaf3f42b875d5dd4c14862e88d8f12a3f0755117bbbf",
+  "inputs": "35e39379da0027cdd80b07a8b0cd122bf60ac7dcb215ce639879b017a9d26a16",
+  "arms": [
+    "am_hybrid_swappos",
+    "am_gaussian_swappos",
+    "am_dml_q8",
+    "am_dml_q4"
+  ],
+  "session_hours": 3.75
+}

@@ -15,6 +15,8 @@ CrossClientRank probe/utility/operational recovery tại [build scripts](../meth
 | [restore_dvc_metadata.py](restore_dvc_metadata.py) | Restore chọn lọc, kiểm .dir/object |
 | [build_pilot_fixture.py](build_pilot_fixture.py) | Fixture cho thí nghiệm ngắn |
 | [run_local_guarded.py](run_local_guarded.py) | Memory guard cho local smoke/audit |
+| [client_view.py](client_view.py) | Per-client từ round JSON đã audit: global F1, F1/accuracy theo prior nhãn của client, client tệ nhất |
+| [contact_budget.py](contact_budget.py) | R1: contact/epoch theo mật độ RSU × slowdown, exchange q4/dense có vừa một contact (tốc độ InTAS, marker audited) |
 | [check_pull_range.py](check_pull_range.py) | Kiểm pull Range resume |
 | [check_resume_batch.py](check_resume_batch.py) | Actual emitted controller/continuation checks |
 | [gen_full_resume_batch.py](kaggle/gen_full_resume_batch.py) | Nối H1/H2/Hybrid đúng audited parent |

@@ -1,0 +1,7 @@
+{"rows":[
+ {"build":"full-validation","owner":"thuyanh316","rid":"fulld-s42-20261015-q3-v1","hours":11.5,
+  "parents":{"h_dml":"fulld-s42-20261015-q2-v1","h_dml_own":"fulld-s42-20261015-q2-v1"}},
+ {"build":"hybrid-full","owner":"thuyanh316","rid":"hybh-s42-20261015-q3-v1","hours":11.5,
+  "parents":{"h_hybrid":"hybf2-s42-20261015-q2-v1","h_hybrid_own":"hybf4-s42-20261015-q2-v1"}}],
+ "quota_evidence":"thuyanh316 live read 15/10 ~14:53Z 30.0h; owner 15/10: new techniques first, leftover quota continues full",
+ "new_session_hours":23,"remaining_scope":"fixed50 not reached (~11 rounds/arm/session at ~57 min/round); test descriptive only; Hybrid controls from full-validation (bit-exact)"}

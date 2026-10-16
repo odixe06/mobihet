@@ -9,6 +9,7 @@
 - [Hồ sơ phương pháp](methods/README.md): README ngắn → căn cứ/cơ chế → các build/source/artifact.
 - [Bài học dùng tiếp](lessons/README.md); [hồ sơ lịch sử](archive/README.md) giữ báo cáo và nguồn gốc số đo.
 - [Dự báo performance](research/performance-feasibility-2026-10-13.md): căn cứ trước mở pilot.
+- [Chẩn đoán chững sớm 15/10](research/plateau-diagnosis-2026-10-15.md): học thuộc receiver, proxy≫private, khối lớp nhầm lẫn.
 
 ## 2. Hồ sơ làm việc và trạng thái
 
@@ -20,7 +21,9 @@
 | BoundaryCells counts | Bốn adaptation hai seed FAIL; dừng | [Hồ sơ](methods/boundary-cell-counts/README.md), [fixed-r20 report](methods/boundary-cell-counts/builds/boundary-cell-pilot/results/utility-report.md) |
 | ClassTail risk | Pairedr20 FAIL; dừng | [Hồ sơ](methods/class-tail-risk/README.md), [gates/forensics](methods/class-tail-risk/builds/class-tail-pilot/results/report.md) |
 | CountSketch EF sửa overshoot | Smallr20 FAIL; medium partial kém own; dừng adaptation | [Hồ sơ](methods/proxy-countsketch-repair/README.md), [trial](methods/proxy-countsketch-repair/builds/contractive-ef-pilot/results/report.md) |
-| CrossClientRank | Probe/diagnostic auditPASS; utility42 recoveryr4,43 chờ startup; chưa utilityPASS | [Nguồn/cơ chế](methods/cross-client-ranking/README.md), [utility/recovery](methods/cross-client-ranking/builds/rank-utility/README.md) |
+| CrossClientRank | Seed42 utility r20 FAIL (audited); seed43 recovery v2 đang chạy | [Nguồn/cơ chế](methods/cross-client-ranking/README.md), [utility/recovery](methods/cross-client-ranking/builds/rank-utility/README.md) |
+| ProxyFuse | Probe hậu kiểm FAIL; proxy head thành headline DML/Hybrid | [Hồ sơ](methods/proxy-fusion/README.md) |
+| AntiMem + QProxy | Pilot r20 hai seed đang chạy (nguyenminhtran060113) | [Hồ sơ](methods/anti-memorization/README.md) |
 | ResponseRisk augmentation | Fidelity probe PASS; chưa train augmentation | [Thiết kế](methods/receiver-response-consistency/design.md), [build](methods/receiver-response-consistency/builds/receiver-augmentation/README.md) |
 | EMA deployment recipe | Thiết kế đã chốt; chưa source/pilot utility | [Thiết kế/cổng](methods/ema-deployment-recipe/design.md) |
 

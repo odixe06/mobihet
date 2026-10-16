@@ -34,3 +34,15 @@ Kiểm tra 15/10/2026: cả ba OAuth snapshot introspect đúng username; cả b
 Bổ sung 15/10/2026 tối: owner đăng nhập CLI `nguyenminhtran060113` (account active hiện tại) và cấp
 API token; token lưu `nguyenminhtran060113.mcp-token` mode0600. `health` = ok. Chưa đo quota/GPU;
 quota account này chưa được owner xác nhận, đọc live trước khi phân việc.
+Đọc live15/10 10:54Z: 30,0/30h GPU, reset 2026-10-17 00:00 UTC; owner giao cho ProxyFuse/AntiMem/QProxy.
+
+Bổ sung 15/10/2026 ~14:50Z: owner cấp ba account mới chỉ có API token (KGAT, không OAuth):
+`annhannh331`, `anhtruong1909`, `thuyanh316` (email metadata do owner cung cấp, không ghi token vào repo).
+Token lưu `<user>.mcp-token` mode0600; `kaggle_as.py` dùng đường dẫn file. Đọc live: mỗi account 30,0h GPU, reset 17/10 00:00 UTC.
+Account active CLI lúc đó là `thuyanh316` (owner đăng nhập), không ảnh hưởng push theo owner metadata.
+Phân việc: annhannh331 + anhtruong1909 → FullDrift seed42; thuyanh316 → dự trữ full continuation.
+`odixeuit`/`minhtrit06` bị 403 khi **tạo** dataset (đọc/push kernel vẫn được) — dùng dataset share từ owner gốc.
+
+16/10/2026 ~04:00Z: **không dùng `kaggle_account.py quota`** (quét mọi account, kể cả annhtnt/takids1909/accanniez bị cấm query).
+Đọc từng account bằng `kaggle_account.account_quota(user)`. Quota live và reset (17/10 00:00Z) ghi ở
+[bàn giao](continuation-2026-10-15-evening.md) mục "Dừng phiên 16/10 ~04:30Z".

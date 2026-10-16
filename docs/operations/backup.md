@@ -1,7 +1,19 @@
 # Git / DVC backup record
 
-Updated: 2026-10-15 tối UTC+7 — đợt 15/10: 21 manifest mới/gộp đã push; cleanup ba build đóng. Đợt 14/10 giữ nguyên bên dưới.
-Procedure: [repo-backup](../../.agents/skills/repo-backup/SKILL.md).
+Updated: 2026-10-17 UTC+7 — đợt 17/10: 12 manifest mới/gộp đã push; cleanup sáu build. Đợt 15/10, 14/10 giữ bên dưới.
+Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
+
+## 0a. Đợt 2026-10-17 (owner yêu cầu backup + xóa local, giữ phiên đang chạy)
+
+- Cách như 15/10 (MD5 tự tính, gộp `.dir` cũ theo relpath, copy tmp→MD5 verify→rename lên `gdrive`). File có trong manifest cũ
+  và mtime < 2026-10-15 16:00+07 tái dùng MD5 cũ. 3372 object mới / 32,98GB.
+- Manifest mới: antimem-pilot `input`,`kaggle`; fd-probe `input`,`kaggle`; fuse-probe `input`,`kaggle`.
+  Gộp: rank-utility `input` (274),`kaggle` (923); federated-baselines-full `kaggle` (3234),`checkpoint-staging` (1608);
+  hybrid-full `kaggle` (2668),`checkpoint-staging` (1560). rank-probe, class-tail-pilot không đổi.
+- `dvc status -c` 12 manifest exit0: 4708 `deleted` (chỉ thiếu cache local), new/missing=0.
+- **Đã xóa local** 17/10: artifacts của antimem-pilot, fuse-probe, rank-probe, rank-utility, class-tail-pilot, hybrid-full.
+- **Giữ local**: fd-probe (seed43 vòng 6–7 chờ collect), federated-baselines-full (q5 `h_dml` r41→r50). Collect mới làm lệch
+  manifest ⇒ lần sau gộp lại theo relpath.
 
 ## 0. Đợt 2026-10-15 tối (owner yêu cầu backup + cleanup)
 

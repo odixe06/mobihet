@@ -1,0 +1,15 @@
+{
+  "inputs": "15a82de2c9cd1fcb586dcbda945f5373608f7c84beb34d551e966474ce18a527",
+  "fd": "2a4316df0be28da62b0b70bdb04eb737541c64c42e69930620ef56dab1098cec",
+  "queues": [
+    [
+      "fd_dml_prox"
+    ],
+    [
+      "fd_gaussian",
+      "fd_gaussian_swappos"
+    ]
+  ],
+  "session_hours": 8.5,
+  "seed": 42
+}

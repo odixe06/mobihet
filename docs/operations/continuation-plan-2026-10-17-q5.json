@@ -1,0 +1,17 @@
+{
+ "rows": [
+  {
+   "build": "full-validation",
+   "owner": "thuyanh316",
+   "rid": "fulld-s42-20261017-q5-v1",
+   "hours": 9.8,
+   "parents": {
+    "h_dml": "fulld-s42-20261016-q4-v1"
+   }
+  }
+ ],
+ "quota_evidence": "live read 16/10 ~16:45Z: thuyanh316 1.68h; all accounts reset 17/10 00:00Z (30h); GPU push only after reset",
+ "new_session_hours": 9.8,
+ "owner_decision": "16/10 ~16:45Z: continue only h_dml r41->r50 as r50 control for a later m4b full run; h_dml_own (r39), h_hybrid (r35), h_hybrid_own (r33) stop (flat on FullDrift holdout / own controls flat since r25)",
+ "remaining_scope": "9 rounds at worst 57.8 min/round (q4) = 8.7h + import/setup; test descriptive only"
+}

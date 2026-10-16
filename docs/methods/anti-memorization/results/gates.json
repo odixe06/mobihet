@@ -1,0 +1,325 @@
+{
+  "audited": {
+    "42": [
+      "odixeuit/mobihet-am-s42-20261015-tail-v2",
+      "nguyenminhtran060113/mobihet-am-s42-20261015-v1"
+    ],
+    "43": [
+      "minhtrit06/mobihet-am-s43-20261015-tail-v2",
+      "nguyenminhtran060113/mobihet-am-s43-20261015-v1"
+    ]
+  },
+  "gates": {
+    "dml_swap": {
+      "primary": "proxy/head",
+      "seeds": {
+        "42": {
+          "delta": -0.0037440258813050686,
+          "benign_delta": 0.0012410378923086718,
+          "pass_": false
+        },
+        "43": {
+          "delta": 0.000605786808499098,
+          "benign_delta": 0.0023157143057530583,
+          "pass_": false
+        }
+      },
+      "pass_all": false
+    },
+    "dml_m4b": {
+      "primary": "proxy/head",
+      "seeds": {
+        "42": {
+          "delta": -0.0015967658136605278,
+          "benign_delta": 0.0025864866314864177,
+          "pass_": false
+        },
+        "43": {
+          "delta": 0.005810955779905869,
+          "benign_delta": 0.004241776138881326,
+          "pass_": false
+        }
+      },
+      "pass_all": false
+    },
+    "dml_swappos": {
+      "primary": "proxy/head",
+      "seeds": {
+        "42": {
+          "delta": -0.01175591966489431,
+          "benign_delta": 0.003734500587471712,
+          "pass_": false
+        },
+        "43": {
+          "delta": -0.003078591663368768,
+          "benign_delta": 0.003149300670672317,
+          "pass_": false
+        }
+      },
+      "pass_all": false
+    },
+    "dml_ema": {
+      "primary": "proxy_ema/head",
+      "runs": {
+        "42": {
+          "delta": -0.030281557702729667,
+          "benign_delta": -0.05661371507730961,
+          "pass_": false
+        },
+        "42_swap": {
+          "delta": -0.03045255201749486,
+          "benign_delta": -0.046312990285622524,
+          "pass_": false
+        },
+        "42_m4b": {
+          "delta": -0.016353305459543943,
+          "benign_delta": -0.035000238316867716,
+          "pass_": false
+        },
+        "42_swappos": {
+          "delta": -0.019009427723892358,
+          "benign_delta": -0.03308859817755694,
+          "pass_": false
+        },
+        "43": {
+          "delta": -0.034102393078959015,
+          "benign_delta": -0.07684496002347341,
+          "pass_": false
+        },
+        "43_swap": {
+          "delta": -0.03797468087228373,
+          "benign_delta": -0.0881783775718229,
+          "pass_": false
+        },
+        "43_m4b": {
+          "delta": -0.032192423346344534,
+          "benign_delta": -0.06005094923454757,
+          "pass_": false
+        },
+        "43_swappos": {
+          "delta": -0.027304546644941086,
+          "benign_delta": -0.07314243059207426,
+          "pass_": false
+        }
+      },
+      "pass_all_base": false
+    },
+    "hybrid_swap": {
+      "primary": "proxy/head",
+      "seeds": {
+        "42": {
+          "delta": -0.006137289825092318,
+          "benign_delta": -0.003506188659159415,
+          "pass_": false
+        },
+        "43": {
+          "delta": -0.005036375051552966,
+          "benign_delta": -0.0026300107830049546,
+          "pass_": false
+        }
+      },
+      "pass_all": false
+    },
+    "hybrid_m4b": {
+      "primary": "proxy/head",
+      "seeds": {
+        "42": {
+          "delta": -0.002295765784888326,
+          "benign_delta": -0.0016635798356789966,
+          "pass_": false
+        },
+        "43": {
+          "delta": -0.0056796660300419965,
+          "benign_delta": -0.004144342157429426,
+          "pass_": false
+        }
+      },
+      "pass_all": false
+    },
+    "hybrid_swappos": {
+      "primary": "proxy/head",
+      "seeds": {
+        "42": {
+          "delta": -0.005990459215577171,
+          "benign_delta": -0.0028747590860959127,
+          "pass_": false
+        },
+        "43": {
+          "delta": -0.0085604176114904,
+          "benign_delta": -0.002730369113378095,
+          "pass_": false
+        }
+      },
+      "pass_all": false
+    },
+    "hybrid_ema": {
+      "primary": "proxy_ema/head",
+      "runs": {
+        "42": {
+          "delta": -0.02822659392084481,
+          "benign_delta": -0.05531623163568089,
+          "pass_": false
+        },
+        "42_swap": {
+          "delta": -0.02503934457086876,
+          "benign_delta": -0.046196709108875966,
+          "pass_": false
+        },
+        "42_m4b": {
+          "delta": -0.019261482514608463,
+          "benign_delta": -0.03112448582814531,
+          "pass_": false
+        },
+        "42_swappos": {
+          "delta": -0.033321572671404565,
+          "benign_delta": -0.0592033120549762,
+          "pass_": false
+        },
+        "43": {
+          "delta": -0.028343170291339814,
+          "benign_delta": -0.0575300592205128,
+          "pass_": false
+        },
+        "43_swap": {
+          "delta": -0.024838607871522478,
+          "benign_delta": -0.05279952565336432,
+          "pass_": false
+        },
+        "43_m4b": {
+          "delta": -0.022502521145598697,
+          "benign_delta": -0.04300292629169311,
+          "pass_": false
+        },
+        "43_swappos": {
+          "delta": -0.031976199357743984,
+          "benign_delta": -0.05289462247807086,
+          "pass_": false
+        }
+      },
+      "pass_all_base": false
+    },
+    "gaussian_swap": {
+      "primary": "private/gp",
+      "seeds": {
+        "42": {
+          "delta": 0.012937283918178388,
+          "benign_delta": 0.03195479736476409,
+          "pass_": true
+        },
+        "43": {
+          "delta": 0.012503461800436266,
+          "benign_delta": 0.03279135754574369,
+          "pass_": true
+        }
+      },
+      "pass_all": true
+    },
+    "gaussian_m4b": {
+      "primary": "private/gp",
+      "seeds": {
+        "42": {
+          "delta": 0.025276550130585163,
+          "benign_delta": 0.040304254844893916,
+          "pass_": true
+        },
+        "43": {
+          "delta": 0.025311317594585825,
+          "benign_delta": 0.04233217151165869,
+          "pass_": true
+        }
+      },
+      "pass_all": true
+    },
+    "gaussian_swappos": {
+      "primary": "private/gp",
+      "seeds": {
+        "42": {
+          "delta": 0.015609335586071582,
+          "benign_delta": 0.045531746628620196,
+          "pass_": true
+        },
+        "43": {
+          "delta": 0.017788415173113914,
+          "benign_delta": 0.04491882901668137,
+          "pass_": true
+        }
+      },
+      "pass_all": true
+    },
+    "gaussian_ema": {
+      "primary": "private_ema/gp",
+      "runs": {
+        "42": {
+          "delta": 0.03892059547018323,
+          "benign_delta": 0.021277664958823383,
+          "pass_": true
+        },
+        "42_swap": {
+          "delta": 0.03927300002277467,
+          "benign_delta": 0.030316272401518796,
+          "pass_": true
+        },
+        "42_m4b": {
+          "delta": 0.028261394043226917,
+          "benign_delta": 0.029439972572461948,
+          "pass_": true
+        },
+        "42_swappos": {
+          "delta": 0.04198198519891916,
+          "benign_delta": 0.03250939565104066,
+          "pass_": true
+        },
+        "43": {
+          "delta": 0.03540444376787821,
+          "benign_delta": 0.024149960067760656,
+          "pass_": true
+        },
+        "43_swap": {
+          "delta": 0.03248986127720399,
+          "benign_delta": 0.03040814878537096,
+          "pass_": true
+        },
+        "43_m4b": {
+          "delta": 0.016828866803415443,
+          "benign_delta": 0.013687338621630574,
+          "pass_": true
+        },
+        "43_swappos": {
+          "delta": 0.037867654115907756,
+          "benign_delta": 0.02752263043636899,
+          "pass_": true
+        }
+      },
+      "pass_all_base": true
+    },
+    "qproxy": {
+      "seeds": {
+        "42_q8": {
+          "proxy_delta": -0.0006789067005876781,
+          "private_gp_delta": -7.937142506198036e-05,
+          "benign_delta": -0.0011928709804711612,
+          "pass_": true
+        },
+        "42_q4": {
+          "proxy_delta": 0.001241345490577861,
+          "private_gp_delta": -0.0002648043788062715,
+          "benign_delta": 0.0019793023217555827,
+          "pass_": true
+        },
+        "43_q8": {
+          "proxy_delta": -0.00010541947115771944,
+          "private_gp_delta": 8.230063716452296e-05,
+          "benign_delta": -0.0005925738572916117,
+          "pass_": true
+        },
+        "43_q4": {
+          "proxy_delta": -0.00028488566162809814,
+          "private_gp_delta": -0.0011160964936700601,
+          "benign_delta": 5.394704166050701e-05,
+          "pass_": true
+        }
+      },
+      "q4_pass_all": true
+    }
+  }
+}

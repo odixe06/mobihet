@@ -1,0 +1,17 @@
+{
+  "inputs": "7f1426292d29920d0f060a3d73bea09553061f5c003923451280de1e7e24e61b",
+  "fd": "ad31e773a3410592486f2c85773f162ed0d4126c316b30be0d1d0eb4a8d89901",
+  "queues": [
+    [
+      "fd_fedavg:15",
+      "fd_fedavg_sub4_q4",
+      "fd_fedavg_sub4_prox"
+    ],
+    [
+      "fd_fedavg_sub4:15",
+      "fd_fedavg_sub16_q4"
+    ]
+  ],
+  "session_hours": 9.0,
+  "seed": 42
+}

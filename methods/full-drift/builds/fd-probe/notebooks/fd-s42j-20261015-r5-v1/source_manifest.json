@@ -1,0 +1,15 @@
+{
+  "inputs": "4bf9bae3c914ce079f007d8f8a62a6b45988f9518e28a454e504b0d46f67b737",
+  "fd": "2b36282b093ad097410249fc01fadfc3772292f09c99a5628e366678903765e8",
+  "queues": [
+    [
+      "fd_dml_m4b:15"
+    ],
+    [
+      "fd_dml_m4b_q4",
+      "fd_dml_m4b_sub4_q4"
+    ]
+  ],
+  "session_hours": 8.95,
+  "seed": 42
+}

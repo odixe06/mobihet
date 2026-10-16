@@ -1,5 +1,12 @@
 # CrossClientRank — paired utility r20
 
+**Cập nhật15/10 tối.** Seed42 v2 terminal, collector audit PASS (7/8 arm r20; cr_dml dừng r16 do budget, owner chốt
+không nối reference). Group gp r20: pooled 0,466075; −CE local **+0,001735**, −own −0,000261, −shuffle +0,001196,
+−fixed +0,001099, −classweight +0,001142; Gaussian 0,571137; cr_dml r16 private gp 0,633531 / proxy 0,769833.
+⇒ **utility FAIL seed42** (cần −CE≥0,015, −own/shuffle≥0,010), không phụ thuộc reference. Gate theo seed nên CCR FAIL;
+seed43 recovery v2 (PUSHED10:49Z, CPU mounted r3 audit PASS, cost r3 1,2459/1,1991×CE) tiếp tục chỉ để mô tả.
+Collector đã sửa miễn `metrics.csv` ghi lại khi resume (checker bug, không đổi dữ liệu). Không nối hay đổi λ/gp.
+
 Kết phiên15/10: owner yêu cầu dừng poll; [checklist/lệnh phiên sau](../../../../operations/continuation-2026-10-15-afternoon.md#việc-còn-thiếu--phiên-sau).
 Không poll/launch thêm trong phiên bàn giao.
 

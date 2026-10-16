@@ -1,0 +1,71 @@
+{
+  "targets": [
+    {
+      "metadata": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+      "md5": "2fa22616e4101eb18ce42d955ff48778.dir"
+    }
+  ],
+  "files": [
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s42-20261015-v1/runs/ct_dml_s42/complete/round_020.json",
+      "md5": "c87241ab5280e922ca69d5454eb5a2ce",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s42-20261015-v1/runs/ct_dml_s42/config.json",
+      "md5": "d37cb004c5a833de9921f54bfb3ae763",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s42-20261015-v1/runs/ct_dml_s42/predictions/round_020.npz",
+      "md5": "9104e9c1cfa62bfffb5258577ccfe7a5",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s42-20261015-v1/runs/ct_dml_s42/result.json",
+      "md5": "499e82d733583d69211d8f156a573feb",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s42-20261015-v1/runs/ct_dml_s42/resume/round_020.pt",
+      "md5": "87fac6f3d7bfee228567fd7eefa0174d",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s42-20261015-v1/runs/ct_dml_s42/weights/round_020.pt",
+      "md5": "df10f3245ffd8d2d04ec94557501fe67",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s43-20261015-v1/runs/ct_dml_s43/complete/round_020.json",
+      "md5": "1b822c5d0ee89a6fc972f475239940b8",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s43-20261015-v1/runs/ct_dml_s43/config.json",
+      "md5": "3a0c70845001a34ecfb7830566b8c87e",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s43-20261015-v1/runs/ct_dml_s43/predictions/round_020.npz",
+      "md5": "19bd3ebac4b4adad2828d624d82e4a1a",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s43-20261015-v1/runs/ct_dml_s43/result.json",
+      "md5": "acc7659e2ab7595785547bf2d2598658",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s43-20261015-v1/runs/ct_dml_s43/resume/round_020.pt",
+      "md5": "c39619f59c75a921e1233ee42aab1552",
+      "restored": true
+    },
+    {
+      "path": "methods/class-tail-risk/builds/class-tail-pilot/artifacts/kaggle/ct-u-s43-20261015-v1/runs/ct_dml_s43/weights/round_020.pt",
+      "md5": "d3aa338f433c289a9339b5bda16baa2f",
+      "restored": true
+    }
+  ],
+  "heavy_files_restored": false
+}

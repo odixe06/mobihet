@@ -1,6 +1,6 @@
 outs:
-- md5: 8fb304c21a34da177c976fe8c1a3a241.dir
-  size: 69267320
-  nfiles: 72
+- md5: 73813342360f1d24647edd566ea74265.dir
+  size: 6534117900
+  nfiles: 923
   hash: md5
   path: artifacts/kaggle

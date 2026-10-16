@@ -47,8 +47,8 @@ def collect(seed,attempt='v1'):
         resume=json.loads((dest/'source/resume_manifest.json').read_text())
         assert resume==json.loads((BASE/'artifacts/input'/rid/'resume_manifest.json').read_text())
         for rel,digest in resume.items():
-            # result.json advances; original committed round/config/payload files stay identical.
-            if not rel.endswith('/result.json'):assert sha(dest/rel)==digest
+            # result.json/metrics.csv are rewritten by the resumed driver; committed round/config/payload files stay identical.
+            if not rel.endswith(('/result.json','/metrics.csv')):assert sha(dest/rel)==digest,rel
     inputs=json.loads((folder/'input_manifest.json').read_text());warm_proof=json.loads((folder/'warm-proof.json').read_text())
     fx=ROOT/'papers/pilot/fixture';fixture=sha(fx/'manifest.json');assert sha(dest/'source/fixture_manifest.json')==fixture
     audits=[]

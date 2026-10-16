@@ -20,6 +20,26 @@
       "kernel": "minhtriethihi/mobihet-cr-u-s42-20261015-v2",
       "case": "budget",
       "pass_check": true
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cr-u-s43-20261015-v2",
+      "case": "normal",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cr-u-s43-20261015-v2",
+      "case": "cost-fail",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cr-u-s43-20261015-v2",
+      "case": "worker-fail",
+      "pass_check": true
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-cr-u-s43-20261015-v2",
+      "case": "budget",
+      "pass_check": true
     }
   ]
 }

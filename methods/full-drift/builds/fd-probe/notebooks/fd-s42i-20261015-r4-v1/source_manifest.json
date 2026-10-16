@@ -1,0 +1,14 @@
+{
+  "inputs": "5c8eae021e8d02640b0e6b11fad910aedc56bb1865c7bed51981a85314053934",
+  "fd": "5d058879817a01b53d5e3672d3275edc39d0a1bb45f616b2f0ff7583e35cc00d",
+  "queues": [
+    [
+      "fd_dml_hkd"
+    ],
+    [
+      "fd_gaussian_m4b"
+    ]
+  ],
+  "session_hours": 3.95,
+  "seed": 42
+}

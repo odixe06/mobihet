@@ -1,0 +1,7 @@
+{
+  "dataset": "odixe0502/mobihet-fulldrift-src-20261015-r4",
+  "files": 48,
+  "bytes": 343689,
+  "all_pages": true,
+  "evidence": "owner-scoped names/sizes; runtime verifies all source/fixture SHA before training"
+}

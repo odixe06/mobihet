@@ -22,6 +22,10 @@ full_verify.ROOT=ROOT
 from full_verify import verify
 
 
+# pull connections: skill pull-outputs.md — throughput scales with open connections, ~32 total saturates the link
+JOBS='16'
+
+
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
@@ -36,7 +40,7 @@ def collect(pattern='*'):
         status=subprocess.run(prefix+['kaggle','kernels','status',kernel],check=True,capture_output=True,text=True)
         print(status.stdout.strip(),flush=True)
         if not any(s in status.stdout for s in ('COMPLETE','ERROR')):continue
-        subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','6',
+        subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j',JOBS,
             '--pattern',r'^(source/|runs/(?![^/]+/wandb/))'],check=True)
         if not any(p.is_file() and p.name!='UNAVAILABLE.json' for p in dest.rglob('*')):
             (dest/'UNAVAILABLE.json').write_text(json.dumps(dict(kernel=kernel,version=1,
@@ -102,7 +106,8 @@ def collect(pattern='*'):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--only',default='*');parser.add_argument('--once',action='store_true')
-    args=parser.parse_args()
+    parser.add_argument('--jobs',default=JOBS,help='pull connections for this process')
+    args=parser.parse_args();JOBS=args.jobs
     torch.set_num_threads(1)
     required=sum((p/'PUSHED').exists() for p in (BASE/'notebook').glob(args.only))
     while True:

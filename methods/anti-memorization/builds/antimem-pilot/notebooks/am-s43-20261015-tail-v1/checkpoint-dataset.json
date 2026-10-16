@@ -1,0 +1,336 @@
+{
+  "dataset": "nguyenminhtran060113/mobihet-antimem-src-20261015",
+  "files": {
+    "__init__.py": {
+      "size": 0
+    },
+    "antimem.py": {
+      "size": 15531
+    },
+    "archs.py": {
+      "size": 1205
+    },
+    "channel.py": {
+      "size": 3065
+    },
+    "dagsnet.py": {
+      "size": 7968
+    },
+    "group_X.npy": {
+      "size": 8650880
+    },
+    "group_g.npy": {
+      "size": 524416
+    },
+    "group_y.npy": {
+      "size": 65664
+    },
+    "input_manifest.json": {
+      "size": 9299
+    },
+    "manifest.json": {
+      "size": 12881
+    },
+    "meta.json": {
+      "size": 3114
+    },
+    "metrics.py": {
+      "size": 2345
+    },
+    "mobility.py": {
+      "size": 9792
+    },
+    "model_packet.py": {
+      "size": 3294
+    },
+    "new_fl.py": {
+      "size": 10866
+    },
+    "new_methods.py": {
+      "size": 7753
+    },
+    "old_X.npy": {
+      "size": 8650880
+    },
+    "old_g.npy": {
+      "size": 524416
+    },
+    "old_y.npy": {
+      "size": 65664
+    },
+    "p2.py": {
+      "size": 11452
+    },
+    "pilot.py": {
+      "size": 27845
+    },
+    "prepare.py": {
+      "size": 10098
+    },
+    "teacher_base.py": {
+      "size": 4612
+    },
+    "teacher_driver.py": {
+      "size": 13730
+    },
+    "train_0_X.npy": {
+      "size": 10345232
+    },
+    "train_0_g.npy": {
+      "size": 627104
+    },
+    "train_0_y.npy": {
+      "size": 78500
+    },
+    "train_10_X.npy": {
+      "size": 8197724
+    },
+    "train_10_g.npy": {
+      "size": 496952
+    },
+    "train_10_y.npy": {
+      "size": 62231
+    },
+    "train_11_X.npy": {
+      "size": 5665436
+    },
+    "train_11_g.npy": {
+      "size": 343480
+    },
+    "train_11_y.npy": {
+      "size": 43047
+    },
+    "train_12_X.npy": {
+      "size": 4592144
+    },
+    "train_12_g.npy": {
+      "size": 278432
+    },
+    "train_12_y.npy": {
+      "size": 34916
+    },
+    "train_13_X.npy": {
+      "size": 5521292
+    },
+    "train_13_g.npy": {
+      "size": 334744
+    },
+    "train_13_y.npy": {
+      "size": 41955
+    },
+    "train_14_X.npy": {
+      "size": 9396284
+    },
+    "train_14_g.npy": {
+      "size": 569592
+    },
+    "train_14_y.npy": {
+      "size": 71311
+    },
+    "train_15_X.npy": {
+      "size": 3738632
+    },
+    "train_15_g.npy": {
+      "size": 226704
+    },
+    "train_15_y.npy": {
+      "size": 28450
+    },
+    "train_16_X.npy": {
+      "size": 2624552
+    },
+    "train_16_g.npy": {
+      "size": 159184
+    },
+    "train_16_y.npy": {
+      "size": 20010
+    },
+    "train_17_X.npy": {
+      "size": 17999384
+    },
+    "train_17_g.npy": {
+      "size": 1090992
+    },
+    "train_17_y.npy": {
+      "size": 136486
+    },
+    "train_18_X.npy": {
+      "size": 3274256
+    },
+    "train_18_g.npy": {
+      "size": 198560
+    },
+    "train_18_y.npy": {
+      "size": 24932
+    },
+    "train_19_X.npy": {
+      "size": 3584060
+    },
+    "train_19_g.npy": {
+      "size": 217336
+    },
+    "train_19_y.npy": {
+      "size": 27279
+    },
+    "train_1_X.npy": {
+      "size": 5333324
+    },
+    "train_1_g.npy": {
+      "size": 323352
+    },
+    "train_1_y.npy": {
+      "size": 40531
+    },
+    "train_2_X.npy": {
+      "size": 8133704
+    },
+    "train_2_g.npy": {
+      "size": 493072
+    },
+    "train_2_y.npy": {
+      "size": 61746
+    },
+    "train_3_X.npy": {
+      "size": 4469384
+    },
+    "train_3_g.npy": {
+      "size": 270992
+    },
+    "train_3_y.npy": {
+      "size": 33986
+    },
+    "train_4_X.npy": {
+      "size": 5812616
+    },
+    "train_4_g.npy": {
+      "size": 352400
+    },
+    "train_4_y.npy": {
+      "size": 44162
+    },
+    "train_5_X.npy": {
+      "size": 5936036
+    },
+    "train_5_g.npy": {
+      "size": 359880
+    },
+    "train_5_y.npy": {
+      "size": 45097
+    },
+    "train_6_X.npy": {
+      "size": 10367936
+    },
+    "train_6_g.npy": {
+      "size": 628480
+    },
+    "train_6_y.npy": {
+      "size": 78672
+    },
+    "train_7_X.npy": {
+      "size": 4557428
+    },
+    "train_7_g.npy": {
+      "size": 276328
+    },
+    "train_7_y.npy": {
+      "size": 34653
+    },
+    "train_8_X.npy": {
+      "size": 8663156
+    },
+    "train_8_g.npy": {
+      "size": 525160
+    },
+    "train_8_y.npy": {
+      "size": 65757
+    },
+    "train_9_X.npy": {
+      "size": 3838688
+    },
+    "train_9_g.npy": {
+      "size": 232768
+    },
+    "train_9_y.npy": {
+      "size": 29208
+    },
+    "v10_energy.py": {
+      "size": 7904
+    },
+    "v10_run.py": {
+      "size": 457
+    },
+    "v2_math.py": {
+      "size": 7681
+    },
+    "v2_methods.py": {
+      "size": 12480
+    },
+    "v2_run.py": {
+      "size": 13160
+    },
+    "v3_dense.py": {
+      "size": 621
+    },
+    "v3_math.py": {
+      "size": 3613
+    },
+    "v3_methods.py": {
+      "size": 7903
+    },
+    "v3_run.py": {
+      "size": 611
+    },
+    "v4_mala.py": {
+      "size": 4530
+    },
+    "v4_run.py": {
+      "size": 845
+    },
+    "v4_schema.py": {
+      "size": 3261
+    },
+    "v4_support.py": {
+      "size": 5566
+    },
+    "v5_anchor.py": {
+      "size": 7191
+    },
+    "v5_books.py": {
+      "size": 7469
+    },
+    "v5_run.py": {
+      "size": 1020
+    },
+    "v6_geometry.py": {
+      "size": 15831
+    },
+    "v6_run.py": {
+      "size": 1517
+    },
+    "v6_schema.py": {
+      "size": 4141
+    },
+    "v7_basis.py": {
+      "size": 6008
+    },
+    "v7_nystrom.py": {
+      "size": 12281
+    },
+    "v7_run.py": {
+      "size": 513
+    },
+    "v8_hybrid.py": {
+      "size": 7334
+    },
+    "v8_run.py": {
+      "size": 642
+    },
+    "v9_anchor.py": {
+      "size": 9902
+    },
+    "v9_run.py": {
+      "size": 479
+    }
+  },
+  "uploaded": true
+}

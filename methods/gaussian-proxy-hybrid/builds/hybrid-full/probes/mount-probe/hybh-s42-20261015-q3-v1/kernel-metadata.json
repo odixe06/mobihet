@@ -1,0 +1,16 @@
+{
+  "id": "thuyanh316/mobihet-hybh-s42-20261015-q3-v1-cpu",
+  "title": "mobihet-hybh-s42-20261015-q3-v1-cpu",
+  "code_file": "hybh-s42-20261015-q3-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "thuyanh316/mobihet-hybh-s42-20261015-q3-v1-ckpt"
+  ],
+  "kernel_sources": [],
+  "competition_sources": []
+}

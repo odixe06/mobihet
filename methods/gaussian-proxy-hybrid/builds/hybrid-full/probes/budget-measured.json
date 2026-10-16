@@ -78,6 +78,32 @@
     "worst_round_seconds": 7020.778104543686
   },
   {
+    "kernel": "annhtnt/mobihet-hybf1-s42-20261015-q2-v1",
+    "arm": "h_local",
+    "rc": 0,
+    "complete": false,
+    "rounds": 9,
+    "previous_round": 8,
+    "new_rounds": 1,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 6659.056914567947
+  },
+  {
+    "kernel": "annhtnt/mobihet-hybf1-s42-20261015-q2-v1",
+    "arm": "h_dml",
+    "rc": 0,
+    "complete": false,
+    "rounds": 9,
+    "previous_round": 8,
+    "new_rounds": 1,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 7020.778104543686
+  },
+  {
     "kernel": "odixeuit/mobihet-hybf2-s42-20261014-cont01-v1",
     "arm": "h_hybrid",
     "rc": 0,
@@ -128,6 +154,32 @@
     "continuation_verified": true,
     "valid_budget_boundary": true,
     "worst_round_seconds": 3656.082690477371
+  },
+  {
+    "kernel": "annhtnt/mobihet-hybf2-s42-20261015-q2-v1",
+    "arm": "h_gaussian",
+    "rc": 0,
+    "complete": false,
+    "rounds": 18,
+    "previous_round": 15,
+    "new_rounds": 3,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3706.085267305374
+  },
+  {
+    "kernel": "annhtnt/mobihet-hybf2-s42-20261015-q2-v1",
+    "arm": "h_hybrid",
+    "rc": 0,
+    "complete": false,
+    "rounds": 18,
+    "previous_round": 15,
+    "new_rounds": 3,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3677.9349093437195
   },
   {
     "kernel": "trietbackup/mobihet-hybf3-s42-20261013-cal-v1",
@@ -232,5 +284,70 @@
     "continuation_verified": true,
     "valid_budget_boundary": true,
     "worst_round_seconds": 3952.6361978054047
+  },
+  {
+    "kernel": "takids1909/mobihet-hybf4-s42-20261015-q2-v1",
+    "arm": "h_hybrid_own",
+    "rc": 0,
+    "complete": false,
+    "rounds": 17,
+    "previous_round": 14,
+    "new_rounds": 3,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3952.6361978054047
+  },
+  {
+    "kernel": "thuyanh316/mobihet-hybh-s42-20261015-q3-v1",
+    "arm": "h_hybrid_own",
+    "rc": 0,
+    "complete": false,
+    "rounds": 27,
+    "previous_round": 17,
+    "new_rounds": 10,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3952.6361978054047
+  },
+  {
+    "kernel": "thuyanh316/mobihet-hybh-s42-20261015-q3-v1",
+    "arm": "h_hybrid",
+    "rc": 0,
+    "complete": false,
+    "rounds": 28,
+    "previous_round": 18,
+    "new_rounds": 10,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3764.287917613983
+  },
+  {
+    "kernel": "annhannh331/mobihet-hybh-s42-20261016-q4-v1",
+    "arm": "h_hybrid_own",
+    "rc": 0,
+    "complete": false,
+    "rounds": 33,
+    "previous_round": 27,
+    "new_rounds": 6,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3952.6361978054047
+  },
+  {
+    "kernel": "annhannh331/mobihet-hybh-s42-20261016-q4-v1",
+    "arm": "h_hybrid",
+    "rc": 0,
+    "complete": false,
+    "rounds": 35,
+    "previous_round": 28,
+    "new_rounds": 7,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3764.287917613983
   }
 ]

@@ -1,0 +1,27 @@
+{
+ "rows": [
+  {
+   "build": "full-validation",
+   "owner": "thuyanh316",
+   "rid": "fulld-s42-20261016-q4-v1",
+   "hours": 7.8,
+   "parents": {
+    "h_dml": "fulld-s42-20261015-q3-v1",
+    "h_dml_own": "fulld-s42-20261015-q3-v1"
+   }
+  },
+  {
+   "build": "hybrid-full",
+   "owner": "annhannh331",
+   "rid": "hybh-s42-20261016-q4-v1",
+   "hours": 7.8,
+   "parents": {
+    "h_hybrid": "hybh-s42-20261015-q3-v1",
+    "h_hybrid_own": "hybh-s42-20261015-q3-v1"
+   }
+  }
+ ],
+ "quota_evidence": "live read 16/10 ~04:00Z: thuyanh316 8.41h (idle), annhannh331 19.0h (FullDrift f capped 10.5h, ends <=12:50Z); all accounts reset 17/10 00:00Z; owner 15/10: new techniques first, leftover quota continues full",
+ "new_session_hours": 15.6,
+ "remaining_scope": "fixed50 not reached (~7 rounds/arm at ~57-62 min/round); test descriptive only; owner 16/10 primary = client private gp"
+}

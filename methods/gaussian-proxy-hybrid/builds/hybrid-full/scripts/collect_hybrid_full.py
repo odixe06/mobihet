@@ -21,6 +21,10 @@ full_verify.ROOT=ROOT
 from full_verify import verify
 
 
+# pull connections: skill pull-outputs.md — throughput scales with open connections, ~32 total saturates the link
+JOBS='16'
+
+
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
@@ -35,7 +39,7 @@ def collect():
         status=subprocess.run(prefix+['kaggle','kernels','status',kernel],check=True,capture_output=True,text=True)
         print(status.stdout.strip(),flush=True)
         if not any(s in status.stdout for s in ('COMPLETE','ERROR')):continue
-        subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j','6',
+        subprocess.run(prefix+[sys.executable,str(H/'pull_kernel_output.py'),kernel,'-p',str(dest),'-j',JOBS,
             '--pattern',r'^(source/|runs/(?![^/]+/wandb/))'],check=True)
         private=BASE/'private_push'/folder.name;executed=private/'executed.ipynb'
         subprocess.run(prefix+[sys.executable,str(H/'download_executed_notebook.py'),kernel,'--version','1',
@@ -96,6 +100,11 @@ def collect():
 
 
 if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--once',action='store_true')
+    parser.add_argument('--jobs',default=JOBS,help='pull connections for this process')
+    args=parser.parse_args();JOBS=args.jobs
     torch.set_num_threads(1)
+    # hybf1-cont01/hybf3-q2 never reach AUDITED (stopped/superseded): without --once this loop never ends
     required=sum((p/'PUSHED').exists() for p in (BASE/'notebook').iterdir())
-    while collect()<required:time.sleep(55)
+    while collect()<required and not args.once:time.sleep(55)

@@ -1,0 +1,23 @@
+[{"stream_name":"stderr","time":15.978241005,"data":"0.01s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":15.978299683,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":15.978306941,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":15.978311553,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":17.101007858,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":17.101064562,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":17.101071427,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":17.101076639,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":36.445244415,"data":"CPU checkpoint probe\n"}
+,{"stream_name":"stdout","time":466.209877345,"data":"VERIFIED FULL h_hybrid_s42 28 rounds\n"}
+,{"stream_name":"stdout","time":874.906505581,"data":"VERIFIED FULL h_hybrid_s42 28 rounds\n"}
+,{"stream_name":"stdout","time":1268.130432272,"data":"VERIFIED FULL h_hybrid_own_s42 27 rounds\n"}
+,{"stream_name":"stdout","time":1662.022926499,"data":"VERIFIED FULL h_hybrid_own_s42 27 rounds\n"}
+,{"stream_name":"stdout","time":1662.027015011,"data":"REQUIRE RESUME PASS before data decode [{'arm': 'h_hybrid', 'fingerprint': '45041b539f738ecf71b688aa2a1474798c8cf838eb3b2616cbf61199f18e248e', 'last_round': 28, 'source_path': '/kaggle/input/datasets/annhannh331/mobihet-hybh-s42-20261016-q4-v1-ckpt/runs/h_hybrid_s42', 'files': 143, 'markers_published_last': True}, {'arm': 'h_hybrid_own', 'fingerprint': '537ebdd0f453acac6ad8ad5b0a026272b26133dcfed39c00646adf9cb51e3aa8', 'last_round': 27, 'source_path': '/kaggle/input/datasets/annhannh331/mobihet-hybh-s42-20261016-q4-v1-ckpt/runs/h_hybrid_own_s42', 'files': 111, 'markers_published_last': True}]\n"}
+,{"stream_name":"stderr","time":1672.211097056,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1672.211151897,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1673.025780458,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1673.025825216,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1676.798504788,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":1677.280457964,"data":"[NbConvertApp] Writing 19697 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":1681.316521345,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1683.683716807,"data":"[NbConvertApp] Writing 325900 bytes to __results__.html\n"}
+]

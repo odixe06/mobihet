@@ -95,6 +95,15 @@ def main():
         for row in metrics:
             if row['arm']==arm and row['role']=='private' and row['rule']=='gp' and row['round']>max(0,last-3):
                 latest.append('| '+' | '.join([arm,str(row['round'])]+[f'{row[k]:.6f}' for k in METRIC_KEYS])+' |')
+    # Owner 2026-10-15: the shared proxy head is the DML/Hybrid headline; other arms' proxies are local controls.
+    latest+=['','## Proxy chung — headline DML/Hybrid (owner15/10), test/head','',
+        '| arm | round | '+' | '.join(METRIC_KEYS)+' |','|---|---:|'+'---:|'*10]
+    for arm,run in sorted(runs.items()):
+        if arm not in ('h_dml','h_hybrid'):continue
+        last=len(run['rows'])
+        for row in metrics:
+            if row['arm']==arm and row['role']=='proxy' and row['rule']=='head' and row['round']>max(0,last-3):
+                latest.append('| '+' | '.join([arm,str(row['round'])]+[f'{row[k]:.6f}' for k in METRIC_KEYS])+' |')
     (base/'latest-rounds.md').write_text('\n'.join(latest)+'\n')
     print('Full report:',len(runs),'audited arms,',len(metrics),'ten-metric rows; actual maxrounds',
         {k:len(v['rows']) for k,v in runs.items()})

@@ -1,0 +1,23 @@
+{
+  "kernel": "thuyanh316/mobihet-fulld-s42-20261015-q3-v1-cpu",
+  "version": 1,
+  "imports": [
+    {
+      "arm": "h_dml",
+      "fingerprint": "c0f238e2c0bbb33663e54db5073b8a07dc207401222f5dd30c868a510a42eced",
+      "last_round": 23,
+      "source_path": "/kaggle/input/datasets/thuyanh316/mobihet-fulld-s42-20261015-q3-v1-ckpt/runs/h_dml_s42",
+      "files": 118,
+      "markers_published_last": true
+    },
+    {
+      "arm": "h_dml_own",
+      "fingerprint": "cf3ef520c2e0cf8220009ba1cda530d37cae6cfb1893d24e339057ccfc98cdd7",
+      "last_round": 21,
+      "source_path": "/kaggle/input/datasets/thuyanh316/mobihet-fulld-s42-20261015-q3-v1-ckpt/runs/h_dml_own_s42",
+      "files": 87,
+      "markers_published_last": true
+    }
+  ],
+  "cpu_only": true
+}

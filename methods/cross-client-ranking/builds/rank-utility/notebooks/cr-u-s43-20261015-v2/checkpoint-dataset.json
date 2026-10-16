@@ -1,0 +1,78 @@
+{
+  "dataset": "minhtriethihi/mobihet-cr-u-s43-20261015-v2-ckpt",
+  "files": {
+    "runs/cr_fl_s43/complete/round_003.json": {
+      "size": 89113,
+      "sha256": "65705614f7309e28e4af0e5e915756c435acd2da38e37434e9b00ccdaae602f3"
+    },
+    "runs/cr_fl_s43/config.json": {
+      "size": 4593,
+      "sha256": "25026b94093cbaa7cfd6dee531e07b89072bc9baae4fed1662f15694e33f8358"
+    },
+    "runs/cr_fl_s43/fork.json": {
+      "size": 276,
+      "sha256": "5033208d6c5b7c25629076f8b591c696fb20ae153c1f20258534289548883ee8"
+    },
+    "runs/cr_fl_s43/knowledge/round_003.bin": {
+      "size": 778,
+      "sha256": "84dfd0504c54e31d078d0f77f1b317ba3859fa3ee63634efac38333bdf3f9c46"
+    },
+    "runs/cr_fl_s43/metrics.csv": {
+      "size": 965,
+      "sha256": "57399cc66486c4edd8115a860571e9dd7153e962a7e0a99819dc5ac2430eabb9"
+    },
+    "runs/cr_fl_s43/predictions/round_003.npz": {
+      "size": 1237291,
+      "sha256": "a2c53c16eba56950a6b1215d8a7c79dfaa6273929568da892e9cf166d8978ed2"
+    },
+    "runs/cr_fl_s43/result.json": {
+      "size": 94992,
+      "sha256": "56b70a2f176ce5e684f062442c615e664cedf4b13e475440d04495673b7444b7"
+    },
+    "runs/cr_fl_s43/resume/round_003.pt": {
+      "size": 39826,
+      "sha256": "8a052a60eae319d235e9004ece6a1e01de812cbd78cc379a5a2e2b2627148c10"
+    },
+    "runs/cr_fl_s43/weights/round_003.pt": {
+      "size": 33034485,
+      "sha256": "f4178dbd48a30413d8d101ce315aa2a20077c70faa89434df20b9d63feaadece"
+    },
+    "runs/cr_local_s43/complete/round_003.json": {
+      "size": 86417,
+      "sha256": "df9a4f42ddb9a3757e8406f0d9f8db6ea57a60c60c2a71b8ae3d047010e213de"
+    },
+    "runs/cr_local_s43/config.json": {
+      "size": 4596,
+      "sha256": "5a166437e049624a46154b99e6855069f551a1c42f902f3e287739d5d3199cec"
+    },
+    "runs/cr_local_s43/fork.json": {
+      "size": 276,
+      "sha256": "5033208d6c5b7c25629076f8b591c696fb20ae153c1f20258534289548883ee8"
+    },
+    "runs/cr_local_s43/metrics.csv": {
+      "size": 995,
+      "sha256": "d5c8e5e890334c6588c3523ffd8183b33bb304b7c4bc8aecabd23b9f552c20bf"
+    },
+    "runs/cr_local_s43/predictions/round_003.npz": {
+      "size": 1221250,
+      "sha256": "6938a21e2683703ebd4749e99f35c73a784222fbd6069f92bdab339804301de9"
+    },
+    "runs/cr_local_s43/result.json": {
+      "size": 88530,
+      "sha256": "473f3f69a9d61d1dec719627e76c430894ecfb4a938887d877255723dd6ea8c7"
+    },
+    "runs/cr_local_s43/resume/round_003.pt": {
+      "size": 12242,
+      "sha256": "11235348fc3a80562e9215a495caa202008497d63b361cb04d3e0a5c33fd2ea5"
+    },
+    "runs/cr_local_s43/weights/round_003.pt": {
+      "size": 33034485,
+      "sha256": "7570188fa7cccdf93cb02a5bcf28b6a735d2eca9f7c61c28490d9b48bfc0eafe"
+    },
+    "resume_manifest.json": {
+      "size": 1821,
+      "sha256": "3c397886e40a960fec20650a0aa96cc0925155de21c0653476e6f005865b381b"
+    }
+  },
+  "uploaded": true
+}

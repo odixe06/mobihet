@@ -1,0 +1,1 @@
+FAILED at arm start (all arms): fd.py production manifest gate summed per-class count lists (TypeError). Fixture setup itself OK (~5 min). Superseded by fd-s42b-20261015-v2.
