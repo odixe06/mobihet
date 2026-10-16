@@ -61,18 +61,42 @@ Không `dvc add` workspace partial; giữ entry remote-only. Kiểm dung lượn
 | `knowledge/ckpt_round_005.pt.dvc` | `ckpt_round_005.pt` | 1 | 0.005 | remote-only | `dvc pull knowledge/ckpt_round_005.pt.dvc` |
 | `methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc` | `artifacts/controller-fixture` | 76 | 0.000 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc` |
 | `methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc` | `artifacts/input` | 230 | 0.298 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc` |
-| `methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` | `artifacts/kaggle` | 338 | 1.155 | partial; không add | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` | `artifacts/kaggle` | 4621 | 50.902 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` |
 | `methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc` | `artifacts/smoke` | 210 | 2.040 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc` |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` | `artifacts/diagnostics` | 20 | 0.001 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` | `artifacts/input` | 212 | 0.001 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` | `artifacts/kaggle` | 384 | 2.640 | partial; không add | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` | `artifacts/kaggle` | 2668 | 46.660 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc` | `artifacts/resume_reference` | 81 | 1.012 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc` |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc` | `artifacts/smoke` | 111 | 1.420 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc` |
 | `methods/shared-baselines/builds/federated-baselines-full/input.dvc` | `artifacts/input` | 200 | 0.001 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/input.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` | `artifacts/kaggle` | 968 | 8.641 | partial; không add | `dvc pull methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` |
+| `methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` | `artifacts/kaggle` | 3234 | 52.583 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` |
 | `methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc` | `artifacts/mount-output` | 18 | 0.000 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc` |
 | `methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc` | `artifacts/resume_reference` | 63 | 0.613 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc` |
 | `methods/shared-baselines/builds/federated-baselines-full/smoke.dvc` | `artifacts/smoke` | 221 | 1.224 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/smoke.dvc` |
+| `methods/anti-memorization/builds/antimem-pilot/input.dvc` | `artifacts/input` | 111 | 0.149 | remote-only | `dvc pull methods/anti-memorization/builds/antimem-pilot/input.dvc` |
+| `methods/anti-memorization/builds/antimem-pilot/kaggle.dvc` | `artifacts/kaggle` | 1397 | 5.351 | remote-only | `dvc pull methods/anti-memorization/builds/antimem-pilot/kaggle.dvc` |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 366 | 1.704 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/checkpoint-staging.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 422 | 1.631 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/input.dvc` | `artifacts/input` | 228 | 0.298 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/input.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc` | `artifacts/kaggle` | 1986 | 14.683 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-reference-timing-state-fixed.dvc` | `artifacts/smoke-reference-timing-state-fixed` | 67 | 0.586 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-reference-timing-state-fixed.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-reference.dvc` | `artifacts/smoke-reference` | 17 | 0.093 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-reference.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed-timing-state-fixed.dvc` | `artifacts/smoke-resumed-timing-state-fixed` | 67 | 0.586 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed-timing-state-fixed.dvc` |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed.dvc` | `artifacts/smoke-resumed` | 17 | 0.093 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed.dvc` |
+| `methods/cross-client-ranking/builds/rank-probe/input.dvc` | `artifacts/input` | 180 | 0.310 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-probe/input.dvc` |
+| `methods/cross-client-ranking/builds/rank-probe/kaggle.dvc` | `artifacts/kaggle` | 348 | 0.002 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-probe/kaggle.dvc` |
+| `methods/cross-client-ranking/builds/rank-utility/input.dvc` | `artifacts/input` | 274 | 0.488 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-utility/input.dvc` |
+| `methods/cross-client-ranking/builds/rank-utility/kaggle.dvc` | `artifacts/kaggle` | 923 | 6.085 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-utility/kaggle.dvc` |
+| `methods/full-drift/builds/fd-probe/input.dvc` | `artifacts/input` | 384 | 0.003 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/full-drift/builds/fd-probe/input.dvc` |
+| `methods/full-drift/builds/fd-probe/kaggle.dvc` | `artifacts/kaggle` | 1074 | 3.564 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/full-drift/builds/fd-probe/kaggle.dvc` |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 1560 | 30.959 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/checkpoint-staging.dvc` |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-resumed.dvc` | `artifacts/final-resumed` | 18 | 0.190 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-resumed.dvc` |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-smoke.dvc` | `artifacts/final-smoke` | 18 | 0.190 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-smoke.dvc` |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/kaggle.dvc` | `artifacts/kaggle` | 1427 | 16.438 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/kaggle.dvc` |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/smoke.dvc` | `artifacts/smoke` | 18 | 0.190 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/smoke.dvc` |
+| `methods/proxy-fusion/builds/fuse-probe/input.dvc` | `artifacts/input` | 38 | 0.149 | remote-only | `dvc pull methods/proxy-fusion/builds/fuse-probe/input.dvc` |
+| `methods/proxy-fusion/builds/fuse-probe/kaggle.dvc` | `artifacts/kaggle` | 11 | 0.005 | remote-only | `dvc pull methods/proxy-fusion/builds/fuse-probe/kaggle.dvc` |
+| `methods/shared-baselines/builds/federated-baselines-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 1608 | 32.658 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/shared-baselines/builds/federated-baselines-full/checkpoint-staging.dvc` |
 
 Fresh checkout: `python3 scripts/restore_compat_aliases.py`; tạo facade source, không pull artifact.
 Sau `dvc pull` target cần thiết, khôi phục alias run canonical từ [map](artifact-aliases.json):

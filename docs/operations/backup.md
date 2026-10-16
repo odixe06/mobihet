@@ -12,6 +12,7 @@ Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
   hybrid-full `kaggle` (2668),`checkpoint-staging` (1560). rank-probe, class-tail-pilot không đổi.
 - `dvc status -c` 12 manifest exit0: 4708 `deleted` (chỉ thiếu cache local), new/missing=0.
 - **Đã xóa local** 17/10: artifacts của antimem-pilot, fuse-probe, rank-probe, rank-utility, class-tail-pilot, hybrid-full.
+  WSL 177→119GB used; `.dvc/cache` chỉ còn `.dir` (12MB). Git `deb3771` + hồ sơ commit sau đã push; bundle thay bằng HEAD cuối.
 - **Giữ local**: fd-probe (seed43 vòng 6–7 chờ collect), federated-baselines-full (q5 `h_dml` r41→r50). Collect mới làm lệch
   manifest ⇒ lần sau gộp lại theo relpath.
 
