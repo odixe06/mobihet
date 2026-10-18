@@ -1,7 +1,18 @@
 # Git / DVC backup record
 
-Updated: 2026-10-17 UTC+7 — đợt 17/10: 12 manifest mới/gộp đã push; cleanup sáu build. Đợt 15/10, 14/10 giữ bên dưới.
+Updated: 2026-10-19 — đợt 19/10: 4 manifest gộp + cleanup fd-probe/federated-baselines-full. Đợt 17/10, 15/10 giữ bên dưới.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
+
+## 0b. Đợt 2026-10-19 (owner: push Git + DVC, xóa local trừ file cần cho round tiếp)
+
+- `scripts/dvc_merge_push.py <x>.dvc` (gộp `.dir` cũ theo relpath, local override, copy tmp→MD5→rename lên `gdrive`): fd-probe `input`
+  `108ae44e…dir` (1348), `kaggle` `62a89154…dir` (5659); federated-baselines-full `kaggle` `01378fe8…dir` (3544), `checkpoint-staging` không đổi.
+  Đẩy 15,45GB. `dvc status -c` 4 manifest: new/missing = 0.
+- Git `f35ec8f` push `main`; bundle thay mới (verify OK).
+- **Đã xóa local**: fd-probe `weights/`+`predictions/` mọi session trừ vòng 19 (`*-r19-v1`, parent nối tiếp) và `fd-s42oc` (parent rd);
+  stage `artifacts/input` trừ `fd-src-20261015-r16..r19` (test/collect cần); federated-baselines-full `kaggle`, `checkpoint-staging`.
+  WSL 143→75GB used. JSON (`complete/`, `config.json`, AUDITED) giữ ⇒ `report_fd.py` chạy được.
+- Collect mới (rd, ta, tc, te, ua…) làm lệch manifest ⇒ lần sau chạy lại `dvc_merge_push.py`.
 
 ## 0a. Đợt 2026-10-17 (owner yêu cầu backup + xóa local, giữ phiên đang chạy)
 
