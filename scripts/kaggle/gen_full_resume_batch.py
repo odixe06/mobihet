@@ -61,9 +61,9 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--hours', type=float, nargs=4, required=True)
     args = parser.parse_args()
-    base = ROOT / 'papers' / args.build
+    base = ROOT / '.compat/papers' / args.build
     plan = FULL_PLAN if args.build == 'full-validation' else HYBRID_PLAN
-    template_folder = ROOT / 'papers/full-validation/notebook/full1-s42-20261013-cont01-v1'
+    template_folder = ROOT / '.compat/papers/full-validation/notebook/full1-s42-20261013-cont01-v1'
     template_meta = json.loads((template_folder / 'kernel-metadata.json').read_text())
     template = nbf.read(template_folder / template_meta['code_file'], as_version=4)
     setup_body = template.cells[2].source[template.cells[2].source.index('import hashlib'):]
@@ -97,7 +97,7 @@ def main():
         public = base / 'notebook' / rid
         private = base / 'private_push' / rid
         assert not public.exists() and not private.exists(), 'new immutable tag required'
-        code = [n for n in manifest if (ROOT / 'mh' / n).exists()]
+        code = [n for n in manifest if (ROOT / '.compat/mh' / n).exists()]
         project = [p.name for p in (base / 'proj').glob('*.py')]
         body = setup_body.replace('papers/full-validation/proj', f'papers/{args.build}/proj')
         setup = f'CODE={code!r}\nPROJ={project!r}\nEXPECTED={expected!r}\n' + body

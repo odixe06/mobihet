@@ -53,5 +53,5 @@ KernelAPI đãCOMPLETE; audit/collect đangtiếptục, khôngrerun.
 Oldauditmetadata khôiphục từDVCobject, MD5PASS; khônggọikiểmweights lạichooldkernel.
 Newkernelpull/verifyđủsource/checkpoint/payload/prediction trướcreport.
 [Phiêncollect](../../../../../operations/live-2026-10-12.md),
-[restoreproof](../../../../../../operations/restored-metadata-2026-10-12.json).
+[restoreproof](../../../../../operations/restored-metadata-2026-10-12.json).
 DVCmanifest cũkhôngbao hàmoutputmới; khôngadd/push/cleanup lúcnày.

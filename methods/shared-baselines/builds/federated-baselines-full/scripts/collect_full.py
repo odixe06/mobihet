@@ -13,7 +13,7 @@ import torch
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[2])
 H=ROOT/'.agents/skills/kaggle-training-notebook/scripts'
-BASE=ROOT/'papers/full-validation'
+BASE=ROOT/'.compat/papers/full-validation'
 sys.path.insert(0,str(ROOT))
 import scripts
 sys.path.insert(0,str(BASE/'proj'))
@@ -87,7 +87,7 @@ def collect(pattern='*'):
             for name,sha in identity['source'].items():assert expected[name.split('/',1)[1]]==sha
             rows=list((run/'complete').glob('round_*.json'))
             if rows:
-                with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+                with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
                     fcntl.flock(lock,fcntl.LOCK_EX);audit=verify(run,complete=False,infer=False)
                 assert audit['rounds']==item['rounds']
                 audit.update(arm=arm,calibration_complete=item.get('calibration_complete',False),

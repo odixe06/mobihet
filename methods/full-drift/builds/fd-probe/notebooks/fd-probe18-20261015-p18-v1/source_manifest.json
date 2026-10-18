@@ -1,0 +1,13 @@
+{
+  "inputs": "1ea47aaa3e1b568789bd72f318cb540f84a82738a1e5397b61f1dd1e2a925ff8",
+  "weights": {
+    "frz_s42.pt": "186ea82e20557de97c21987d10354cd4f4f451a6fc679a8ebcbe7cbfa28d5307",
+    "gpool_frz_s42.pt": "236c46f4f176abdec3a6d2e64cb2877e2398fa59c140c94c357465df13715b1c",
+    "gkd_s42.pt": "4814aad521906bb755ad1886030dc6b154934449d904fa81ae928b91eeda78de"
+  },
+  "expected": {
+    "frz_s42": 0.6399065757673486,
+    "gpool_frz_s42": 0.6365526010709551,
+    "gkd_s42": 0.6771971712951947
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "inputs": "d18bddaf21367683df6b221c3036cdfa9604fc373bdb912778ad2f7126437d66",
+  "fd": "5114d76768437b202e1207991d47a6085d9e517485136e90c1c7e5e21e6e3a66",
+  "queues": [
+    [
+      "fd_dml_swappos_cons"
+    ],
+    [
+      "fd_dml_swappos_cons0"
+    ]
+  ],
+  "session_hours": 8.5,
+  "seed": 42
+}

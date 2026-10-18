@@ -18,7 +18,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--build',choices=('full-validation','hybrid-full'),default='full-validation')
     build=parser.parse_args().build
-    base=ROOT/'papers'/build
+    base=ROOT/'.compat/papers'/build
     doc_dir=(base/'report.md').resolve().parent
     dataset_link=os.path.relpath(ROOT/'knowledge/dataset.md',doc_dir)
     budget_link=os.path.relpath((base/'budget-measured.json').resolve(),doc_dir)

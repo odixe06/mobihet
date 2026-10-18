@@ -109,7 +109,7 @@ def main():
     rows=[]
     with contextlib.redirect_stdout(io.StringIO()):
         support=helpers()
-        for folder in sorted((ROOT/'papers/boundary-cells/notebook').glob('*20261014-stage01*')):
+        for folder in sorted((ROOT/'.compat/papers/boundary-cells/notebook').glob('*20261014-stage01*')):
             rows.extend(controller(folder,case) for case in ('normal','budget','failure'))
     assert len(rows)==6
     (ROOT/'docs/operations/boundary-utility-preflight-2026-10-14.json').write_text(json.dumps(

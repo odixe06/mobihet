@@ -8,13 +8,13 @@ from pathlib import Path
 import wandb
 
 ROOT = next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-BASE = ROOT / 'papers/hybrid-full'
+BASE = ROOT / '.compat/papers/hybrid-full'
 
 
 def main():
     api = wandb.Api(timeout=25)
     entity = api.default_entity
-    prior = ROOT / 'papers/full-validation/kaggle/full1-s42-20261013-cont01-v1/source'
+    prior = ROOT / '.compat/papers/full-validation/kaggle/full1-s42-20261013-cont01-v1/source'
     # Both frozen preparations write the same cache manifest. Do not guess a latest run.
     assert (BASE / 'proj/full_prepare.py').read_bytes() == (prior / 'full_prepare.py').read_bytes()
     data = json.loads((prior / 'data_manifest.json').read_text())

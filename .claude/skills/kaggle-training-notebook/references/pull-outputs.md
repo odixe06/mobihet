@@ -73,7 +73,7 @@ A pulled notebook with zero rendered outputs is a signal, not a file to quietly 
    whole file in RAM, written straight to the final name. Every listed file carries its own signed storage URL, so
    files can be fetched in parallel. The script lists once (200/page), streams each file to `<name>.part` with
    timeout + retry, renames only when the byte count equals `Content-Length`, skips files already local at the remote
-   size (re-running resumes), refreshes the listing when signed URLs expire, and **exits non-zero if any file is
+   size (re-running resumes), resumes interrupted `.part` files with validated HTTP Range when supported, refreshes the listing when signed URLs expire, and **exits non-zero if any file is
    missing** — gate on that, not on the CLI's exit 0. The kernel log lands at `<dest>/<slug>.log` like the CLI's.
 
    MCP (`download_notebook_output*`) goes through the single account the host is connected to and returns the

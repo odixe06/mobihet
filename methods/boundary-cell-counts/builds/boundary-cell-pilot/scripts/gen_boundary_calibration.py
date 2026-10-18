@@ -113,12 +113,12 @@ assert len(summary)==5 and all(v.get('calibration_valid') for v in summary.value
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--owner',required=True);p.add_argument('--seed',type=int,choices=(42,43),required=True);a=p.parse_args()
-    base=ROOT/'papers/boundary-cells';rid=f'bc-cal-s{a.seed}-20261013-initial2-v1'
+    base=ROOT/'.compat/papers/boundary-cells';rid=f'bc-cal-s{a.seed}-20261013-initial2-v1'
     public=base/'notebook'/rid;private=base/'private_push'/rid;source=base/'input'/a.owner
     assert not public.exists(), 'immutable notebook already exists'
     private.mkdir(parents=True,exist_ok=True);os.chmod(private,0o700)
     subprocess.run(['git','check-ignore','-q',str(private.resolve())],cwd=ROOT,check=True)
-    mh=sorted((ROOT/'mh').glob('*.py'));proj=sorted((base/'proj').glob('*.py'))
+    mh=sorted((ROOT/'.compat/mh').glob('*.py'));proj=sorted((base/'proj').glob('*.py'))
     files=mh+proj+[ROOT/'knowledge/meta.json',base/'contract.md']
     assert len({f.name for f in files})==len(files)
     manifest={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in files}
@@ -130,7 +130,7 @@ def main():
     else:
         source.mkdir(parents=True)
         for f in files:shutil.copyfile(f,source/f.name)
-        for f in (ROOT/'papers/pilot/fixture').iterdir():
+        for f in (ROOT/'.compat/papers/pilot/fixture').iterdir():
             if f.is_file():shutil.copyfile(f,source/f.name)
         (source/'source_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
         (source/'dataset-metadata.json').write_text(json.dumps(dict(id=f'{a.owner}/{dataset}',title=dataset,

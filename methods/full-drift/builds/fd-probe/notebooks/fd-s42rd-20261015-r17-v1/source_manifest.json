@@ -1,0 +1,18 @@
+{
+  "inputs": "a5291125d4d668b5ebae844fcbd52be7566cf618e435b7fcc1a95c90a6cb3d40",
+  "fd": "0693ed2e17135bff75feb61f19b36e5e5101a5beeccf41487e9b2017645fc789",
+  "queues": {
+    "workers": 2,
+    "arms": [
+      "fd_dml_m4b_gpool_frz_gkd:50"
+    ],
+    "parent": {
+      "dataset": "trietbackup/mobihet-fd-parent-gkd-s42-e15",
+      "session": "fd-s42oc-20261015-r15-v1",
+      "run": "fd_dml_m4b_gpool_frz_gkd_s42_e15",
+      "round": 15
+    }
+  },
+  "session_hours": 11.75,
+  "seed": 42
+}

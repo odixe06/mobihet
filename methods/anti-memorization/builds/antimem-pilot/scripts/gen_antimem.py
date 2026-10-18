@@ -134,16 +134,16 @@ def main():
     args = parser.parse_args(); assert set(args.arms) <= set(ORDER)
     OWNER = args.owner; DATASET = f'{args.dataset_owner}/mobihet-antimem-src-{TAG}'
     stage = BASE / 'artifacts/input' / f'antimem-src-{TAG}'
-    mh = sorted(p.name for p in (ROOT / 'mh').glob('*.py'))
+    mh = sorted(p.name for p in (ROOT / '.compat/mh').glob('*.py'))
     assert len(mh) == 40
-    fx = ROOT / 'papers/pilot/fixture'; fixture = json.loads((fx / 'manifest.json').read_text())
+    fx = ROOT / '.compat/papers/pilot/fixture'; fixture = json.loads((fx / 'manifest.json').read_text())
     if stage.exists():   # reuse the uploaded dataset; its manifest must still match the files
         inputs = json.loads((stage / 'input_manifest.json').read_text())
         assert all(sha(stage / n) == d for n, d in inputs.items())
         assert inputs['antimem.py'] == sha(BASE / 'source/proj/antimem.py')
     else:
         inputs = None; stage.mkdir(parents=True)
-    for name in ([] if inputs else mh): shutil.copyfile(ROOT / 'mh' / name, stage / name)
+    for name in ([] if inputs else mh): shutil.copyfile(ROOT / '.compat/mh' / name, stage / name)
     if inputs is None:
         for name in list(fixture['files']) + ['manifest.json']: shutil.copyfile(fx / name, stage / name)
         shutil.copyfile(ROOT / 'knowledge/meta.json', stage / 'meta.json')

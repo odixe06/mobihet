@@ -1,7 +1,7 @@
 # AntiMem + QProxy — chống học thuộc receiver, EMA triển khai, nén proxy
 
 Pilot r20 hai seed PUSHED 15/10 12:00Z trên `nguyenminhtran060113` (14 arm/seed, 7h/session).
-**Kết quả audited:** [results.md](results.md) — Gaussian private PASS mọi kỹ thuật, proxy FAIL, QProxy q4 PASS. [Thiết kế/cổng](design.md) · [Chẩn đoán gốc](../../research/plateau-diagnosis-2026-10-15.md)
+**Kết quả audited:** [results.md](results.md) — Gaussian private PASS mọi kỹ thuật, proxy FAIL, QProxy q4 PASS. [Thiết kế/cổng](design.md) · [Chẩn đoán gốc](../../archive/research/plateau-diagnosis-2026-10-15.md)
 
 | kernel | arms |
 |---|---|

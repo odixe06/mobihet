@@ -66,7 +66,7 @@ def main():
     parser.add_argument('--seed',type=int,choices=(42,43),required=True)
     parser.add_argument('--hours',type=float,required=True)
     args=parser.parse_args()
-    base=ROOT/'papers/boundary-cells'
+    base=ROOT/'.compat/papers/boundary-cells'
     parent=f'bc-cal-s{args.seed}-20261013-initial2-v1'
     folder=base/'notebook'/parent
     metadata=json.loads((folder/'kernel-metadata.json').read_text())

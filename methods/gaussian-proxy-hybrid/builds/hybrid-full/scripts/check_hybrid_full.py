@@ -7,7 +7,7 @@ from pathlib import Path
 import torch
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-PROJECT=ROOT/'papers/hybrid-full/proj'
+PROJECT=ROOT/'.compat/papers/hybrid-full/proj'
 sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'scripts'));sys.path.insert(0,str(PROJECT))
 import scripts  # register compatibility imports before loading the frozen verifier
 from full_method import ARMS
@@ -22,9 +22,9 @@ def run(arm,out,extra=()):
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--tag',required=True);args=parser.parse_args()
-    base=ROOT/'papers/hybrid-full/smoke'/args.tag
-    resumed=ROOT/'papers/hybrid-full/resume_reference'/args.tag
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    base=ROOT/'.compat/papers/hybrid-full/smoke'/args.tag
+    resumed=ROOT/'.compat/papers/hybrid-full/resume_reference'/args.tag
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         for arm in ARMS:run(arm,base)
         for arm in ('h_gaussian','h_dml','h_hybrid','h_hybrid_own','h_dml_own'):

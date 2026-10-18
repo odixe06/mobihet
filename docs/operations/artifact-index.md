@@ -4,7 +4,7 @@ Môi trường `nckh`; remote `gdrive` trên G:. [Backup](backup.md). Chạy t�
 Dùng manifest canonical bên dưới; `papers/` chỉ facade runtime, bị `.dvcignore` loại khỏi scan.
 Không `dvc add` workspace partial; giữ entry remote-only. Kiểm dung lượng trước pull.
 Đổi layout chỉ đổi vị trí manifest và `outs.path`; MD5/size/nfiles và relpath bên trong payload giữ nguyên.
-[Kiểm đồng nhất](dvc-relocation-verification-2026-10-14.json).
+[Kiểm đồng nhất](../archive/operations/dvc-relocation-verification-2026-10-14.json).
 
 | Manifest | Output tương đối từ manifest | Files | GiB logical | Local | Khôi phục |
 |---|---|---:|---:|---|---|

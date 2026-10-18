@@ -10,5 +10,5 @@ ROOT = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(ROOT))
 from mh.prepare import prepare
 
 meta = json.loads((ROOT / 'knowledge/meta.json').read_text())
-prepare(ROOT.parent / 'dataset/fl_client/alpha05/20_client', ROOT / 'papers/pilot/fixture', meta['feature_cols'],
+prepare(ROOT.parent / 'dataset/fl_client/alpha05/20_client', ROOT / '.compat/papers/pilot/fixture', meta['feature_cols'],
         meta['class_names'], eval_cap=65536, clients=tuple(range(20)), train_frac=0.025)

@@ -8,7 +8,7 @@ Cont01 đủ output, không rerun; continuation mới dùng parent cont01 và ro
 Raw-test-prefix/client0 inference mới64check PASS, đã gồm round cuối tới11;
 [proof](../../../../../../methods/shared-baselines/builds/federated-baselines-full/probes/inference-proof.json), [log](../../../../../../methods/shared-baselines/builds/federated-baselines-full/logs/inference-20261014.log), không full-inference/leakage proof.
 Các ghi chú “terminal audit còn chờ”/quota156h bên dưới là lịch sử tại mốc viết,
-không dùng làm trạng thái hay reservation hiện tại. [Phiên mới](../../../../../operations/collection-2026-10-14.md).
+không dùng làm trạng thái hay reservation hiện tại. [Phiên mới](../../../../../archive/operations/collection-2026-10-14.md).
 
 ## 2026-10-13 — terminal audit và continuation
 

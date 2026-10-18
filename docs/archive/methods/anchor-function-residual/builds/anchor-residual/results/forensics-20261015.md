@@ -8,7 +8,7 @@ Restore chọn lọc config và resume r20 M512-FL hai seed, giữ manifest DVC 
 Đã kiểm fingerprint/round và toàn40source SHA khớp config. Không SGD, không official test,
 không tìm bandwidth mới. Mỗi hold T/group lấy128record/lớp, seeded1729, tổng2.048record;
 target/anchor dùng toàn512 từ checkpoint.
-[Restore proof](../../../../../../operations/restored-v9-forensics-2026-10-15.json),
+[Restore proof](../../../../../operations/restored-v9-forensics-2026-10-15.json),
 [script](../../../../../../../archive/methods/anchor-function-residual/builds/anchor-residual/scripts/forensics_20261015.py),
 [artifact](../../../../../../../archive/methods/anchor-function-residual/builds/anchor-residual/probes/forensics-20261015.json).
 

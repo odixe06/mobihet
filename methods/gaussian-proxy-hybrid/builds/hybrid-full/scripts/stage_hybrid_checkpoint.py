@@ -10,7 +10,7 @@ import sys
 import torch
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[2])
-BASE=ROOT/'papers/hybrid-full'
+BASE=ROOT/'.compat/papers/hybrid-full'
 sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'scripts'));sys.path.insert(0,str(BASE/'proj'))
 import scripts  # register compatibility imports before loading the frozen verifier
 import full_verify

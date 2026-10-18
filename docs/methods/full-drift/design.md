@@ -2,11 +2,12 @@
 
 Owner duyệt 15/10 tối: kiểm kỹ thuật mới **thẳng trên full** vì pilot không tái hiện động học full;
 **một seed chung (42)** để so sánh phương pháp, thử seed khác để sau. Cổng dưới đây khóa **trước** khi push.
+Owner 17/10 ~10:10Z: mọi arm một lần gộp đồng bộ sau mỗi epoch local (như FL_NIDS_10client).
 
 ## Vấn đề đã đo
 
 - Full mỗi round = 1 epoch ≈4.200 bước/client. DML proxy bão hòa ~0,78–0,79 từ r3–r5 trong khi LR còn ~1e-3;
-  Gaussian/local đạt đỉnh r1 rồi giảm ([chẩn đoán](../../research/plateau-diagnosis-2026-10-15.md)).
+  Gaussian/local đạt đỉnh r1 rồi giảm ([chẩn đoán](../../archive/research/plateau-diagnosis-2026-10-15.md)).
 - Trần centralized DAGSNet 0,8532; proxy DML r23 0,787 (test, mô tả).
 - Pilot: FedAvg > DML proxy +0,027, nhưng full chưa từng đo FedAvg thuần.
 - AntiMem pilot (W&B, chưa audit): chống học thuộc giúp Gaussian private (EMA, swappos) nhưng không giúp proxy.
@@ -23,63 +24,53 @@ Epoch 1–6 của lịch cosine T50 gốc (LR giống headline). Mean20client, �
 | arm | thay đổi so với recipe full | vì sao có thể giúp | dấu hiệu sai |
 |---|---|---|---|
 | `fd_dml` | recipe full DML (bit-exact epoch `full_run`) | đối chứng | — |
-| `fd_dml_sub4` | tổng hợp proxy 4 lần/epoch (~1.050 bước), optimizer giữ trong epoch, cùng LR/thứ tự batch | kiểm nhân quả drift: ít bước giữa hai lần tổng hợp | proxy group ep6 < đối chứng +0,010 ⇒ drift không phải nút thắt |
 | `fd_dml_prox` | FedProx μ=0,01 trên proxy, neo model chung đầu round | kéo proxy về model chung, giảm drift, không thêm byte | drift không giảm, hoặc F1 < +0,010 |
 | `fd_dml_avgm` | FedAvgM: server velocity β=0,9 trên delta trung bình (BN trung bình thường) | giữ hướng chung qua round, tắt nhiễu client; không thêm byte | F1 < +0,010 hoặc mất ổn định |
 | `fd_fedavg` | một model chung, chỉ CE, không private/KD | kiểm xem KD với private học thuộc có kéo proxy xuống | (so mô tả với `fd_dml`) |
-| `fd_fedavg_sub4` | FedAvg + 4 lần tổng hợp/epoch | drift trong bối cảnh FedAvg kinh điển | < `fd_fedavg` +0,010 |
 | `fd_gaussian` | recipe full Gaussian | đối chứng Gaussian | — |
 | `fd_gaussian_swappos` | swap 50% khối 9 feature receiver (dòng khác receiver cùng client) + đặt0 4 vị trí | cắt shortcut receiver; pilot +0,016–0,018 | private gp group < +0,010 |
 | role `private_ema` | EMA trọng số private β=0,5^0,5/epoch, BN tính lại trên 65.536 dòng local cố định | trung bình quỹ đạo, giảm học thuộc; pilot Gaussian +0,036–0,039 | < +0,010 so private |
 
 Mọi arm ghi `drift_mean` (‖θ_k−θ_chung‖/‖θ_chung‖ proxy sau train local), `prox_mean`, `server_velocity_norm`,
-`swap_fraction`. Byte: sub4 gấp 4 lần/epoch (báo kèm), prox/avgm/FedAvg không đổi byte.
+`swap_fraction`. Byte: prox/avgm/FedAvg không đổi byte.
 
 ## Cổng khóa (group holdout, epoch 6, seed 42 — sàng lọc)
 
 Primary: DML/FedAvg = proxy head; Gaussian = private gp; EMA = private_ema gp so private gp cùng arm.
 - Kỹ thuật **có triển vọng** nếu technique − đối chứng ≥ +0,010 và benign ≥ −0,005 ở epoch 6.
-- `fd_dml_sub4` dương ⇒ drift là nút thắt (ưu tiên kỹ thuật giảm drift/tăng tần suất tổng hợp có giới hạn byte);
-  âm/≈0 ⇒ drift không phải nút thắt, hướng sang trần thông tin/LR.
 - `fd_fedavg` vs `fd_dml` proxy: so sánh mô tả, quyết định headline FL cho bước sau (owner chốt).
 - Một seed là sàng lọc, không là kết luận cuối; kỹ thuật có triển vọng mới chạy seed khác/r50.
-- Không chọn epoch/HP theo holdout hay test; không quét μ/β/PARTS sau khi thấy kết quả. Old báo kèm.
+- Không chọn epoch/HP theo holdout hay test; không quét μ/β sau khi thấy kết quả. Old báo kèm.
 
 ## Giới hạn
 
-Epoch 6/50 không chứng minh r50. sub4 tăng byte 4×, cần đánh giá lại dưới B2/contact.
+Epoch 6/50 không chứng minh r50.
 FedProx/FedAvgM dẫn xuất cho SGD; ở đây optimizer AdamW của recipe (chỉ thêm số hạng/velocity).
 Không resume qua session: probe một session/arm.
 
 ## Vòng 2 — owner duyệt 15/10 ~22:00Z (cổng khóa trước push; PUSHED 16/10 02:19Z)
 
-Kết quả vòng 1: [results](results.md). Owner chọn **cả bốn hướng proxy**; Gaussian swappos/EMA chờ (ưu tiên proxy).
-Seed 42; đối chứng 6 epoch lấy từ vòng 1 (cùng fixture/seed/code path, chạy tất định).
+Kết quả vòng 1: [results](results.md). Seed 42; đối chứng 6 epoch lấy từ vòng 1 (cùng fixture/seed/code path, chạy tất định).
 
-| arm | thay đổi | cơ chế/kỳ vọng | cổng (group, epoch 6 trừ khi ghi) |
+| arm | thay đổi | cơ chế/kỳ vọng | cổng |
 |---|---|---|---|
-| `fd_dml_sub4_q4`, `fd_fedavg_sub4_q4` | sub4 + QProxy q4 (port antimem: up int4 stochastic theo hàng, server exact/EF, down int4 nearest) | giữ lợi sub4 với byte ≈0,52× dense | Δ so sub4 vòng 1 ≥ −0,010 primary và benign ≥ −0,010 |
-| `fd_dml_sub16_q4`, `fd_fedavg_sub16_q4` | 16 lần tổng hợp/epoch + q4 | drift sub4 còn 0,18; tổng hợp thường hơn giảm tiếp | Δ so `*_sub4_q4` ≥ +0,010, benign ≥ −0,005 |
-| `fd_dml_sub4_prox`, `fd_fedavg_sub4_prox` | sub4 + FedProx μ0,01 | prox giữ benign (+0,098 vòng 1) trong khi sub4 tăng macro | benign Δ so sub4 ≥ +0,010 và primary Δ ≥ −0,005 |
-| `fd_dml`, `fd_dml_sub4`, `fd_fedavg`, `fd_fedavg_sub4` @ep15 | cùng arm, 15 epoch (thư mục `_e15`) | lợi sub4 còn khi đi xa hơn về r50? | ep15: sub4 − đối chứng ≥ +0,010 (DML, FedAvg riêng); ep1–6 tái lập vòng 1 |
+| `fd_dml`, `fd_fedavg` @ep15 | cùng arm, 15 epoch (thư mục `_e15`) | đối chứng horizon cho các vòng sau | ep1–6 tái lập vòng 1 |
 
-Không quét μ/β/PARTS/bit sau khi thấy kết quả; old/test báo kèm, test chỉ epoch cuối.
+Old/test báo kèm, test chỉ epoch cuối.
 
 ### Cổng phụ private gp — owner 16/10 ~03:00Z (khóa ~04:00Z, trước mọi kết quả ep6 vòng 2)
 
 Owner đổi mục tiêu sang **dự đoán của client**: primary = private gp (A, giữ R2), báo kèm góc nhìn theo prior nhãn
-từng client và client tệ nhất ([hướng client](../../research/client-model-directions-2026-10-16.md)).
-Lúc khóa đã thấy W&B r2 (chưa audit), chưa thấy epoch 6. Arm DML dùng **cùng rule** với cổng proxy, đo trên private gp group:
-`fd_dml_sub4_q4` vs `fd_dml_sub4` noninferior; `fd_dml_sub16_q4` vs `fd_dml_sub4_q4` gain; `fd_dml_sub4_prox` vs
-`fd_dml_sub4` benign; `fd_dml_sub4@e15` vs `fd_dml@e15` ep15 horizon. FedAvg không có private (R2) ⇒ chỉ mô tả.
-Vòng 1 private gp (đã thấy trước khi khóa, chỉ mô tả): sub4 +0,035, prox −0,013, avgm +0,002.
+từng client và client tệ nhất ([hướng client](../../archive/research/client-model-directions-2026-10-16.md)).
+Arm DML dùng **cùng rule** với cổng proxy, đo trên private gp group. FedAvg không có private (R2) ⇒ chỉ mô tả.
+Vòng 1 private gp (đã thấy trước khi khóa, chỉ mô tả): prox −0,013, avgm +0,002.
 Mã: `PRIVATE_GATES` trong [report_fd.py](../../../methods/full-drift/builds/fd-probe/scripts/report_fd.py).
 
 ## Vòng 3 — mục tiêu client (owner 16/10; cổng khóa ~04:05Z trước push)
 
-Owner 16/10: primary = **private gp group ep6** (A), giữ **R1** (trao đổi ngắn, contact/byte hạn chế) và **R2**
-(private có thể khác kiến trúc; hiện DAGSNet để so). Mọi arm vòng 3 **không thêm byte, không thêm contact**
-(1 tổng hợp/epoch như `fd_dml`) và chỉ đổi phía client, nên dùng được với private bất kỳ kiến trúc.
+Owner 16/10: primary = **private gp group ep6** (A), giữ **R1** (trao đổi ngắn, byte hạn chế) và **R2**
+(private có thể khác kiến trúc; hiện DAGSNet để so). Mọi arm vòng 3 **không thêm byte** (1 lần gộp/epoch như
+`fd_dml`) và chỉ đổi phía client, nên dùng được với private bất kỳ kiến trúc.
 Đối chứng `fd_dml` vòng 1 (tất định; vòng 2 kiểm lại ep1–6 qua `fd_dml@e15`). Seed 42.
 
 | arm | thay đổi | bằng chứng → cơ chế | cổng private gp group ep6 |
@@ -87,7 +78,7 @@ Owner 16/10: primary = **private gp group ep6** (A), giữ **R1** (trao đổi n
 | `fd_dml_m4b` | đặt 0 khối 9 feature receiver + 4 vị trí (train và eval, cả hai model; như AntiMem) | pilot DML private gp +0,021/+0,028 hai seed → bỏ shortcut receiver mà private học thuộc | Δ ≥ +0,010, benign ≥ −0,005 |
 | `fd_dml_swappos` | swap 50% khối receiver giữa receiver khác cùng client + đặt 0 4 vị trí | pilot +0,019/+0,025; Gaussian full +0,052 → phi tương quan receiver–nhãn | như trên |
 | `fd_dml_ntd` | KL proxy→private chỉ trên lớp không đúng (FedNTD, Lee et al. NeurIPS 2022), trọng số giữ nguyên | head→gp +0,12 cho thấy private lệch prior local mạnh → bỏ xung đột giữa CE và lớp đúng của thầy, giữ tri thức lớp khác | như trên |
-| `fd_dml_q4` | QProxy q4 (up int4 stochastic, server exact/EF, down int4) ở 1 tổng hợp/epoch | pilot q4 ±0,001 byte 7,65× nhỏ → R1: payload/contact nhỏ hơn mà client không mất | private gp và proxy head Δ ≥ −0,010, benign ≥ −0,010 |
+| `fd_dml_q4` | QProxy q4 (up int4 stochastic, server exact/EF, down int4) | pilot q4 ±0,001 byte 7,65× nhỏ → R1: payload nhỏ hơn mà client không mất | private gp và proxy head Δ ≥ −0,010, benign ≥ −0,010 |
 
 Proxy head của m4b/swappos/ntd báo mô tả. Kèm cột local (prior nhãn từng client) và client tệ nhất, mô tả.
 Không quét tỉ lệ swap/feature/nhiệt độ NTD sau khi thấy kết quả. Session `nguyenminhtran060113` g: m4b ‖ swappos,
@@ -103,38 +94,32 @@ GPU0 `fd_dml_hkd`, GPU1 `fd_gaussian_m4b` (arm ≈3,62h/2,5h + setup 0,1h). Đ�
 | `fd_dml_hkd` | private khớp tầng ẩn 256-d của proxy qua projector tuyến tính **local** (khởi tạo đơn vị, không upload); MSE chuẩn hóa theo ‖h_proxy‖², cùng trọng số thích nghi với KL; proxy không đổi (FedKD hidden loss, Wu et al. Nat. Commun. 2022) | ProxyFuse: private đúng mà proxy sai chỉ ≈2% ⇒ private là bản chép kém của proxy; logit KL chỉ chở 16 số/dòng → thêm kênh đặc trưng | vs `fd_dml`: Δ ≥ +0,010, benign ≥ −0,005 |
 | `fd_gaussian_m4b` | Gaussian + đặt 0 13 feature receiver/vị trí (train, draw, eval) | AntiMem pilot Gaussian m4b +0,025 hai seed (lớn nhất); full swappos +0,052 → bỏ shortcut receiver | vs `fd_gaussian`: Δ ≥ +0,010, benign ≥ −0,005 |
 
-0 byte thêm, 1 contact/epoch (R1); projector/feature mask chỉ phía client (R2). Không quét trọng số/scale sau kết quả.
+0 byte thêm (R1); projector/feature mask chỉ phía client (R2). Không quét trọng số/scale sau kết quả.
 
 ## Vòng 5 — m4b: horizon và ghép (owner 16/10 ~08:20Z; cổng khóa ~08:25Z trước push)
 
 Vòng 3: m4b private gp +0,036, proxy +0,052 (ep6). Owner: kiểm horizon + ghép trước; headline full chỉ đổi khi
-horizon + seed 43 xác nhận. Session `nguyenminhtran060113` j (8,95h): GPU0 `fd_dml_m4b:15`; GPU1 `fd_dml_m4b_q4` →
-`fd_dml_m4b_sub4_q4`.
+horizon + seed 43 xác nhận. Session `nguyenminhtran060113` j (8,95h): GPU0 `fd_dml_m4b:15`; GPU1 `fd_dml_m4b_q4`.
 
 | arm | so với | câu hỏi | cổng (group) |
 |---|---|---|---|
 | `fd_dml_m4b@e15` | `fd_dml@e15` (vòng 2) | lợi m4b còn ở ep15? | private gp ep15 Δ ≥ +0,010 (proxy báo kèm, cùng rule); ep1–6 phải tái lập vòng 3 |
 | `fd_dml_m4b_q4` | `fd_dml_m4b` | R1: nén 7,65× có giữ lợi? | private gp và proxy Δ ≥ −0,010, benign ≥ −0,010 |
-| `fd_dml_m4b_sub4_q4` | `fd_dml_m4b` | m4b cộng với tổng hợp thường hơn? (4× contact, byte ≈0,52× dense) | private gp Δ ≥ +0,010, benign ≥ −0,005 |
 
 ## Vòng 6 — seed 43 xác nhận m4b (owner 16/10 ~16:45Z; cổng khóa ~16:50Z trước push)
 
 Owner: headline full chỉ đổi sang m4b khi horizon (vòng 5) + seed 43 xác nhận; chọn 2 session trên `anhtruong1909`
 (9,36h live, reset 17/10 00:00Z), mỗi session 4,2h (DML ep6 đo 205–217 phút + setup). Cùng source/fixture vòng 5
 (fd.py SHA không đổi), chỉ `--seed 43`; smoke local vốn chạy seed 43. Đối chứng cùng seed trong vòng (không tái dùng s42).
-Session k: GPU0 `fd_dml`, GPU1 `fd_dml_m4b`; session l: GPU0 `fd_dml_sub4_q4`, GPU1 `fd_dml_m4b_sub4_q4`.
-Lúc khóa đã thấy W&B s42 (chưa audit) `fd_dml_m4b_sub4_q4` ep6 private gp 0,732/proxy 0,849, `m4b_q4` 0,701/0,816, `m4b@e15` ep14 0,728/0,849.
+Session k: GPU0 `fd_dml`, GPU1 `fd_dml_m4b`.
+Lúc khóa đã thấy W&B s42 (chưa audit) `m4b_q4` ep6 private gp 0,701/proxy 0,816, `m4b@e15` ep14 0,728/0,849.
 
 | so sánh (seed 43, group ep6) | câu hỏi | cổng private gp (primary) | proxy head (cùng rule, báo kèm) |
 |---|---|---|---|
 | `fd_dml_m4b` vs `fd_dml` | lợi m4b lặp lại ở seed khác? | Δ ≥ +0,010, benign ≥ −0,005 | như trên |
-| `fd_dml_m4b_sub4_q4` vs `fd_dml_m4b` | tổng hợp 4×/epoch cộng thêm trên m4b? | như trên | như trên |
-| `fd_dml_m4b_sub4_q4` vs `fd_dml_sub4_q4` | m4b cộng thêm trên sub4_q4? | như trên | như trên |
-| `fd_dml_sub4_q4` vs `fd_dml` | lợi sub4_q4 lặp lại? | như trên | như trên |
 
 Quy tắc headline (owner): đổi khi `fd_dml_m4b@e15` PASS (vòng 5) **và** `fd_dml_m4b` vs `fd_dml` seed 43 PASS cả private
-gp lẫn proxy. Một seed thêm vẫn là sàng lọc, không paired CI. R1: sub4 = 4 contact/epoch; owner 16/10 yêu cầu
-mô phỏng contact thực tế trước khi chọn tần suất tổng hợp (sub16 chờ).
+gp lẫn proxy. Một seed thêm vẫn là sàng lọc, không paired CI.
 
 ## Vòng 7 — seed 43 swappos + Gaussian m4b (owner 16/10 ~17:25Z; cổng khóa ~17:29Z trước push)
 
@@ -145,3 +130,376 @@ GPU1 `fd_gaussian_m4b`, `--seed 43`, cùng source vòng 5/6. `fd_gaussian` s43 k
 |---|---|
 | `fd_dml_swappos` vs `fd_dml` (s43, vòng 6) | private gp Δ ≥ +0,010, benign ≥ −0,005; proxy head cùng rule báo kèm |
 | `fd_gaussian_m4b` s43 | **mô tả**: so `fd_gaussian` s42 (0,5882) và `fd_gaussian_m4b` s42 (0,6553); không có đối chứng cùng seed |
+
+## Vòng 8 — cập nhật client/trao đổi tri thức (owner 17/10 ~20:55Z; cổng khóa ~21:00Z trước push)
+
+Nguồn: [algorithm-improvement-plan](../../archive/research/algorithm-improvement-plan-2026-10-17.md) §4.1–4.5, §5.1, §7.1. Owner chốt:
+chạy mọi nhánh, dùng mọi slot quota; frozen teacher theo plan (tắt KD private trước snapshot gộp đầu tiên, thêm control
+warm-up); cổng §7.1, **dùng lại control `fd_dml_m4b` s42 ep6 đã audit** (vòng 3; bit-exact source mới kiểm local 2 epoch).
+Source mới tag `20261015-r8`; mọi arm cũ tính toán y hệt vòng 5 (đã kiểm).
+
+| arm (s42, ep6, m4b) | cơ chế (một yếu tố) |
+|---|---|
+| `fd_dml_m4b_kdcap` | A: hệ số KD `w=min(1/(CE_priv+CE_proxy), 1)` cho cả hai chiều KL |
+| `fd_dml_m4b_kdcap_wu` | A + KD private tắt khi chưa có snapshot gộp (ep1) — control warm-up |
+| `fd_dml_m4b_kdcap_frz` | A + B: private học teacher = proxy gộp đầu round (eval, đóng băng); ep1 như `wu` |
+| `fd_dml_m4b_own` | DML-m4b, proxy không gộp (no-peer, cùng 2 model/compute) |
+| `fd_gaussian_m4b_own` | Gaussian-m4b moment riêng từng client |
+| `fd_dml_m4b_dyn` | FedDyn α=0,01 trên tham số proxy (a_i local, h server từ tổng cohort) |
+| `fd_dml_swappos_cons` / `_cons0` | hai view (giữ / tráo khối 9 feature receiver), 4 vị trí = 0; JS λ=1 / λ=0 cùng 2 forward |
+| `fd_gaussian`, `fd_gaussian_swappos` **s43** | đối chứng cùng seed cho `fd_gaussian_m4b` s43 (vòng 7) |
+
+Cổng gain (private gp, group, ep6): **Δ ≥ +0,010, benign Δ ≥ −0,005, client tệ nhất (global macro-F1 private gp)
+không giảm quá 0,010**. Proxy head báo kèm.
+
+| so sánh | cổng |
+|---|---|
+| `kdcap` vs `fd_dml_m4b` | gain (A) |
+| `kdcap_frz` vs `kdcap_wu` | gain (B cô lập nguồn teacher); vs `kdcap`, `fd_dml_m4b` báo kèm |
+| `kdcap_wu` vs `kdcap` | mô tả (tác động warm-up) |
+| `fd_dml_m4b` vs `fd_dml_m4b_own` | gain (lợi FL của DML-m4b) |
+| `fd_gaussian_m4b` vs `fd_gaussian_m4b_own` | gain (lợi FL của Gaussian-m4b) |
+| `dyn` vs `fd_dml_m4b` | gain |
+| `cons` vs `cons0` | gain (cô lập JS); `cons` vs `fd_dml_m4b` mô tả (thua m4b ⇒ không ưu tiên) |
+| `fd_gaussian_m4b`@s43 vs `fd_gaussian`@s43; `fd_gaussian_swappos`@s43 vs `fd_gaussian`@s43 | gain (seed 43) |
+
+Chẩn đoán khóa trước: `kdcap` có `cap_hit` (tỷ lệ bước w_raw>1) median client < 0,5 ⇒ giả thuyết trọng số KD yếu.
+Log mỗi client/epoch: median/p95/max w_raw, cap_hit, KL hai chiều, probe cố định 512 dòng train (‖∇CE‖, ‖∇KL‖, tỷ số).
+FedDyn log ‖h‖, mean ‖a_i‖. Đã biết từ vòng 4 (không cần chạy): Gaussian-m4b + EMA 0,6452 < non-EMA 0,6553 (−0,010)
+⇒ nhánh EMA §4.3 trượt cổng dừng (+0,010) ở s42.
+Giới hạn: FedDyn với AdamW/DML là variant dự án, round 1 server ngoại suy w0+2·Δ̄; `own` chỉ chấm private.
+
+## Vòng 9 — SCAFFOLD-proxy, Hybrid private-only, horizon seed 43 (owner 17/10 ~20:55Z "chạy mọi nhánh"; cổng khóa ~21:10Z trước push)
+
+Source tag `20261015-r9` (arm vòng 5/8 bit-exact, kiểm local 2 epoch). Account nhỏ chỉ push khi
+(giờ tới reset × số session) < GPU left, để quota cũ không dừng giữa chừng (owner chọn).
+
+| arm | cơ chế |
+|---|---|
+| `fd_dml_m4b_sgd{1,3,10}` | proxy chuyển AdamW → SGD thuần lr 0,01/0,03/0,1 × cosine; private giữ AdamW (control c=0) |
+| `fd_dml_m4b_scaf{1,3,10}` | + SCAFFOLD Option II trên proxy: g+c−c_i sau clip, c_i⁺=c_i−c+(w−y_i)/(Kη), K = bước áp thật; c←c+mean Δc_i |
+| `fd_dml_m4b_gpool` / `_gown` | private thêm CE trên 256 mẫu Gaussian full-cov (moment gộp / riêng), proxy chỉ real, KD chỉ real |
+| `fd_dml_m4b_replay` | private thêm CE trên 256 dòng local cân bằng lớp (lớp client có), cùng số forward |
+| `fd_dml_m4b` (rerun, source r9) | log trọng số/gradient KD của baseline chưa cap (plan §3.2); nhân bản cross-source của control vòng 3 |
+| `fd_dml_m4b:15`, `fd_dml:15` **s43** | horizon ep15 seed 43 cho headline m4b |
+
+Quy tắc LR (khóa trước): chọn LR = argmax **old-holdout proxy head ep6** của ba control `sgd*`; không nhìn group/test.
+
+| so sánh (group, ep6 trừ khi ghi) | cổng |
+|---|---|
+| `scaf{LR*}` vs `sgd{LR*}` | gain (cô lập correction); hai LR còn lại mô tả |
+| `scaf{LR*}` vs `fd_dml_m4b` | gain (giá trị thực dụng so baseline AdamW) |
+| `sgd{LR*}` vs `fd_dml_m4b` | mô tả (tác động đổi optimizer) |
+| `gpool` vs `fd_dml_m4b`; `gpool` vs `gown`; `gpool` vs `replay` | gain cả ba (Hybrid phải hơn nền, hơn moment riêng, hơn replay local) |
+| `fd_dml_m4b` rerun vs vòng 3 | mô tả: bit-exact mong đợi (cùng tính toán) |
+| `fd_dml_m4b@e15@s43` vs `fd_dml@e15@s43` | horizon (private gp Δ ≥ +0,010) |
+
+Gain = private gp Δ ≥ +0,010, benign ≥ −0,005, client tệ nhất không giảm quá 0,010 (như vòng 8). Bytes thêm của SCAFFOLD
+(c xuống, Δc_i lên, FP32 ≈ 1,58 MB/chiều) ghi trong `bytes`; giai đoạn A không dùng byte để loại arm.
+
+## Vòng 10 — dùng nốt quota trước reset (owner 16/10 ~22:10Z; cổng khóa ~22:20Z trước push)
+
+Owner: push mọi account còn vừa trước 00:00Z, theo dõi và dừng nếu bất ổn. Source = bytes vòng 9 (tag `20261015-r10`).
+`y` (anhtruong1909, s42) thay `x` của trietbackup (không push). Seed 43 lặp các arm vòng 8–9, so đối chứng s43 đã audit
+(`fd_dml_m4b`@s43, `fd_gaussian_m4b`@s43 vòng 6–7) hoặc control cùng vòng: cùng cổng gain+worst như vòng 8.
+
+| arm s43 | so với |
+|---|---|
+| `fd_dml_m4b_own`, `fd_gaussian_m4b_own` | `fd_dml_m4b`@s43 / `fd_gaussian_m4b`@s43 phải hơn own (lợi FL) |
+| `fd_dml_m4b_kdcap`; `kdcap_frz` vs `kdcap_wu` | `fd_dml_m4b`@s43; cô lập teacher |
+| `fd_dml_m4b_q4` | `fd_dml_m4b`@s43 noninferior (Δ ≥ −0,010, benign ≥ −0,010) |
+| `fd_dml_m4b_gpool` vs `fd_dml_m4b`@s43, vs `gown`, vs `replay`; `fd_dml_m4b_dyn` | như vòng 8–9 |
+
+Quan sát trước khóa (W&B r2, không đổi cổng): `kdcap_frz` s42 private head 0,584 (> wu 0,549) nhưng **gp 0,244**:
+teacher gộp mang prior toàn cục, luật gp (đã khóa) cộng thêm `log π_g − log π_k` ⇒ sửa quá tay. Báo head kèm, không đổi rule.
+
+## Vòng 11 — cải tiến headline m4b + gpool (owner 17/10 ~05:10Z; cổng khóa ~06:00Z trước push)
+
+Owner: headline client = DML-m4b + `gpool`; trước khi chạy đủ 50 round, thử cải tiến kỹ thuật tốt nhất (ghép/bổ sung);
+phương pháp đã FAIL chỉ chạy lại khi có chỉnh sửa. Quota tuần mới: query mọi account. Seed 42 sàng lọc; arm PASS lặp
+seed 43 vòng sau. Source tag `20261015-r11`; kernel la (kd2 ‖ kdpx), lc (gpool:15 ‖ gw2).
+
+**Cải tiến** (đối chứng `fd_dml_m4b_gpool` s42 đã audit, private gp 0,7174; cổng gain+worst như vòng 8):
+
+| arm | bằng chứng → cơ chế → dấu hiệu sai |
+|---|---|
+| `gpool_kd2` | Proxy head > private gp ở 15/16 lớp (benign 0,759 vs 0,502; macro 0,79 vs 0,70) và giảm KD (`kdcap`) làm private −0,028/−0,025 ⇒ private chưa hấp thụ hết teacher. KD phía private ×2 (proxy giữ nguyên). Sai nếu Δ < +0,010 hoặc client tệ nhất < −0,010. |
+| `gpool_kdpx` | `kdcap` cho proxy +0,024/+0,033 nhưng hại private vì cap cả chiều private←proxy. Chỉ cap trọng số KL proxy←private ở 1 ⇒ proxy bớt bị kéo về dữ liệu local, private giữ KD đầy đủ, teacher tốt hơn. Sửa đổi của `kdcap` (FAIL). Sai như trên; proxy head báo kèm. |
+| `gpool_gw2` | gpool hơn gown/replay +0,03 (tri thức gộp có ích), liều chưa biết. Trọng số CE Gaussian 1 → 2. Sai nếu Δ < +0,010. |
+| `gpool:15` | Gaussian riêng đạt đỉnh sớm rồi giảm theo epoch; trước 50 round phải biết lợi gpool còn ở ep15. Horizon vs `fd_dml_m4b@e15` (s42 audited): private gp Δ ≥ +0,010 ở ep15. |
+
+## Vòng 12 — headline qua kênh int4 thật (owner 17/10 ~14:05Z; cổng khóa ~14:15Z trước push)
+
+Owner 17/10 ~13–14Z: ưu tiên communication budget hạn chế + metrics của private (computational cost không phải mục tiêu;
+bỏ hướng giảm độ phức tạp model). Owner chọn chỉ `gpool + q4`. Source tag `20261015-r12`: so r11 thêm vòng lặp không đồng
+bộ host, codec `QPacket` (byte = `len(packet)`), `--workers` — đều bit-exact (test `--part r12`, `par`, `checks`).
+Session `odixe0502/mobihet-fd-s42qa-20261015-r12-v1`: một arm trên cả hai GPU (`--workers 2`).
+
+| arm | bằng chứng → cơ chế → dấu hiệu sai |
+|---|---|
+| `fd_dml_m4b_gpool_q4` | q4 noninferior trên m4b hai seed (Δ +0,000 / −0,003), sai số downlink 2–5 % chuẩn model ⇒ proxy dense thừa độ chính xác; gpool chỉ thêm CE private nên kênh proxy giống m4b. Proxy lên/xuống bằng QPacket int4 (208.268 B/chiều, 7,65× nhỏ hơn fp32). Sai nếu private gp Δ < −0,010 hoặc benign < −0,010 so `fd_dml_m4b_gpool` s42 (client tệ nhất báo kèm). |
+
+Đối chứng: `fd_dml_m4b_gpool` s42 vòng 9 đã audit (private gp 0,7174). Round-1 private của `gpool_q4` = `gpool` (q4 chỉ tác
+động sau train local) — kiểm trong test `r12`.
+
+## Vòng 13 — A/B/C + đề xuất của owner (owner 17/10 ~16Z; cổng khóa ~16:40Z trước push)
+
+Owner: chạy thử A, B, C và các đề xuất trong file ưu tiên 17/10 (đã tách thành từng file phương pháp, xem
+[research/methods](../../research/methods/README.md)). Owner chọn: arm cần train chạy **từ đầu ep1→6** (không fork checkpoint);
+P4 chỉ kiểm **teacher-only**; q2 từ đầu. Source tag `20261015-r13`: arm cũ bit-exact so r12 (test `--part r13`). Seed 42,
+group holdout, ep6, `--workers 2`, mỗi session một arm. Đối chứng chung: `fd_dml_m4b_gpool` s42 vòng 9 (private gp 0,7174).
+
+| arm | bằng chứng → cơ chế → dấu hiệu sai |
+|---|---|
+| `gpool_fill` (A) | 56 % khoảng private–proxy ở lớp < 1 % dữ liệu local (recall private 0,57–0,60 vs proxy 0,73–0,76). Cùng 256 mẫu Gaussian/bước, nhãn chia theo water-filling: q = max(0, L − π_k), Σq = 1 (lớp lớn nhất local thường 0 mẫu, lớp hiếm 16 → 22–26). Sai nếu Δ < +0,010 hoặc recall nhóm lớp < 1 % không tăng. Bằng chứng ngược: gw2 (×2 liều mọi lớp, W&B chưa audit) −0,005. |
+| `gpool_rej` (B1) | Proxy gộp ep6 chỉ nhận 53 % mẫu Gaussian (benign 25 %, positionMirroring 3 %, timeDelay 0 %). Từ round 2: proxy snapshot nhận được đầu epoch (eval, no-grad) chấm mẫu; mẫu có argmax ≠ nhãn bị bỏ; mẫu được nhận của một lớp mang trọng lượng của lớp đó (lớp không còn mẫu nào thì mất phần đó trong bước). Round 1 = gpool. Sai nếu Δ < +0,010. |
+| `gpool_p1` (P1) | Như đề xuất P1: thêm λ_s T² /m Σ a_c a_j KL(q_teacher ‖ p_private) trên 256 mẫu Gaussian; teacher = proxy snapshot nhận được; a_j = argmax teacher = nhãn; a_c = {benign, dataReplay}; λ_s 0,25, T 1, chia m = 256; CE cứng giữ nguyên; tắt ở round 1. |
+| `gpool_p1self` | Control own: cùng công thức, teacher = private của chính client đầu epoch. |
+| `gpool_p1cm` | Control class-mean: cùng gate, target = trung bình xác suất teacher của các mẫu được gate cùng lớp trong batch (không phụ thuộc x). |
+| `gpool_q2` (C2) | q4 noninferior hai seed. Codec ternary 2-bit (q ∈ {−1,0,1}, scale fp16 theo hàng, 4 mã/byte, EF phía server như q4), byte = `len(packet)`. Sai nếu private gp Δ < −0,010 hoặc benign < −0,010 so gpool (so kèm `gpool_q4` của qa). |
+
+Cổng: quality arm (fill, rej, p1, p1self, p1cm) = gain + worst như vòng 8 (Δ ≥ +0,010, benign ≥ −0,005, client tệ nhất
+≥ −0,010) so gpool. P1 cơ chế (chỉ đọc khi p1 qua cổng): p1 − p1self ≥ +0,005 và p1 − p1cm ≥ +0,005. q2 noninferior.
+Luật chính vẫn private gp. Mọi arm paux giờ chấm thêm luật `gpe` (C): bias = log π_g − log π_e,k, π_e,k = (π_k + w·q_k)/(1 + w),
+q_k = phân bố nhãn Gaussian của client, w = trọng số CE Gaussian (= 1) — prior mà hai số hạng CE huấn luyện tới, bỏ qua KD
+(xấp xỉ, khóa trước, không tham số). Cổng C: gpe vs gp cùng weights, gain + worst; PASS chỉ khi qua trên **cả** gpool s42 và s43.
+Chẩn đoán log mỗi client/epoch: tỷ lệ teacher nhận mẫu (tổng, từng lớp), tỷ lệ gate P1, KL trung bình trên mẫu được gate.
+
+**Kernel probe (không train DAGSNet), khóa trước:**
+- C: chấm lại weights ep6 đã audit (gpool s42/s43, kd2, kdpx s42) bằng head/gp/gpe trên group + old; gp phải tái hiện số audit.
+- P3: `calibrate()` (BN tính lại trên 65.536 dòng thật của chính client, che m4b) cho cùng weights. Mở arm train P3 nếu gp
+  Δ ≥ +0,005 trên cả hai seed gpool; không thì backlog.
+- P1 coverage: proxy gpool s42 ep6 trên 16 × 4.000 mẫu từ bảng moment gộp — tỷ lệ nhận từng lớp, độ phủ gate {benign, dataReplay}.
+- P4 teacher-only: RFF `sqrt(2/M) cos(Ωx₅₃ + b)` + intercept, σ = trung vị khoảng cách cặp trên 4.096 dòng train gộp; G, H trên
+  mọi dòng train; λ ∈ {1e-4, 1e-3, 1e-2}·tr(G)/M chọn trên **old**; chấm group (argmax). Pooled M128/M256 (M1024 mô tả),
+  own (mỗi client, cùng hệ số λ), linear ridge. Mở train private P4 chỉ khi pooled M256 ≥ 0,7174 **và** pooled − own ≥ +0,010
+  **và** pooled M256 − linear ≥ +0,010. Tiền lệ âm: Build13 S13 (ridge/RFF tại RSU ≈ làm mượt theo lớp).
+- P2 chẩn đoán mode: moment theo (lớp, urban/highway) cho {benign, dataReplay, positionMirroring, timeDelay} (đọc scenario từ
+  parquet, gồm cả dòng holdout — chỉ chẩn đoán); proxy nhận mẫu hỗn hợp 2 mode vs 1 Gaussian. Mở arm P2a nếu hỗn hợp nhận
+  nhiều hơn ≥ +0,05 tuyệt đối ở ≥ 2/4 lớp.
+- C1 (moment53): không train — với m4b, mẫu 66 chiều đặt 0 có cùng phân phối N(μ_S, Σ_SS) với mẫu từ moment 53 chiều; chỉ kiểm
+  covariance + byte bằng unit test.
+P5/P6 chờ cổng teacher (tiền lệ âm: BoundaryCells, V9, Build7).
+
+## Vòng 14 — kiểm lặp arm PASS vòng 13 (khóa ~19:40Z 17/10 trước push)
+
+Theo quy ước "arm PASS lặp seed 43 vòng sau" và bài học lc (cổng ep6 đo tốc độ học, gpool horizon FAIL). Source = bytes r13
+(tag `20261015-r14`, cùng fd.py). `--workers 2`.
+
+| arm | so với | cổng |
+|---|---|---|
+| `gpool_rej:15` s42 | `fd_dml_m4b@e15` (0,7323) và `gpool@e15` (0,7342), ep15 | horizon: private gp Δ ≥ +0,010 so **m4b@e15** (cần để thay headline); vs gpool@e15 báo kèm |
+| `gpool_rej` s43 | `fd_dml_m4b_gpool@s43` (0,7175), ep6 | gain + worst |
+| `gpool_q2:15` s42 | `gpool@e15` | noninferior ở ep15 (Δ ≥ −0,010, benign ≥ −0,010); proxy head báo kèm |
+
+rej s42 ep1–6 phải trùng run vòng 13 (cùng source, cùng seed) — kiểm `replay_ep1-6` như gpool:15.
+
+## Probe 14 — vì sao private gp chững ~0,73–0,75 (owner 17/10 ~20Z; khóa ~20:30Z trước push, không train)
+
+Owner: phân tích thật kỹ nguyên nhân private không cải thiện, bằng phép thử thực tế; giữ nguyên dataset đã xử lý (chỉ đọc),
+mọi client DAGSNet, không đề xuất đổi mô hình; đề xuất sau phải giữ R1 (byte ít, ngắn hạn) và R2 (hỗ trợ client khác kiến trúc,
+không chạy thử). Weights ep15 đã audit: `fd_dml_m4b` s42 / s43, `fd_dml_m4b_gpool` s42 (gp phải tái hiện audit ±0,002).
+Mẫu: S = 16.384 dòng train ngẫu nhiên mỗi client (327.680 dòng gộp), Q = 16.384 dòng group. `fd_probe14.py`, `gen_probe14.py`.
+
+| phép đo | giả thuyết | đọc kết quả |
+|---|---|---|
+| T1 ma trận chéo: private k chấm dòng train của client j; đồng ý/KL với proxy trên dòng mình vs người khác | private khớp dữ liệu mình, hỏng khi sang phân phối client khác | acc/đồng ý own ≫ other ⇒ lỗi do lệch phân phối giữa client (coverage), không do thiếu học |
+| T2/T7 group: khoảng proxy − private theo lớp × số mẫu local; dòng private mất (proxy đúng, private sai) đi về lớp nào | khoảng nằm ở lớp hiếm local (vòng 11: 56 % ở lớp < 1 %) | phần lớn khoảng ở bin hiếm ⇒ nút thắt là tri thức lớp vắng mặt; ở lớp đủ mẫu ⇒ ranh giới/receiver |
+| T3 đóng băng backbone, fit lại head (Linear h256; MLP c544) trên mẫu gộp mọi client vs chỉ dòng own (cùng số bước) | backbone private đã đủ đặc trưng, head/prior là nút thắt | refit gộp ≈ proxy ⇒ nút thắt ở tầng cuối (kênh tri thức cỡ head đủ); ≈ gốc ⇒ nút thắt ở biểu diễn (cần kênh tác động backbone). Refit own ≈ gốc là kiểm thủ tục |
+| T4 bias 16 lớp oracle (fit trên `old`, chấm `group`) | luật quyết định/prior | bias oracle − gp nhỏ (< 0,01) ⇒ loại hướng sửa luật/prior |
+| T5 dòng trùng hệt (fp16 sau mask) khác nhãn trên toàn train; kNN own vs gộp cùng cỡ vs gộp ×10 | trần thông tin của 53 feature; giá trị của đa dạng dữ liệu | tỷ lệ dòng không thể đúng theo lớp = trần cứng; kNN gộp − own (cùng số dòng) = lợi của đa dạng client |
+
+Không cổng PASS/FAIL (chẩn đoán). Refit/oracle dùng dữ liệu nhiều client chỉ để đo, không là phương pháp. Kết luận chỉ phạm vi
+weights ep15 s42/s43; đề xuất tiếp theo phải dẫn từ bảng này (bằng chứng → cơ chế → dấu hiệu sai).
+
+## Probe 15 — quên do mục tiêu local hay thiếu phủ input (khóa ~20:50Z 17/10 trước push; 1 epoch có kiểm soát)
+
+Từ weights ep15 `fd_dml_m4b` s42 đã audit, mỗi client chạy thêm **một epoch local** (epoch 16, LR lịch T50 khóa = 7,88e-4,
+batch 512, AdamW mới, clip 1, fp16) dưới 8 mục tiêu private; đo private gp/head trên `group`, đồng ý với proxy gộp ep15, acc
+trên dòng own tại bước 0/64/256/1024/2048/cuối. Đủ 20 client (metric = trung bình client). `fd_probe15.py`, `gen_probe15.py`.
+Hàng oracle (dòng thật client khác) và khởi tạo private bằng proxy chỉ để đo, không là phương pháp.
+
+| biến thể | khởi tạo | mục tiêu | trả lời câu hỏi |
+|---|---|---|---|
+| `cont` | private ep15 | DML đúng như train | đường nền epoch 16 |
+| `kdfix` | private ep15 | CE + KD proxy gộp **cố định** trên dòng local | đối chứng của cov_* |
+| `cov_real` | private ep15 | kdfix + KD proxy trên 256 dòng thật client khác/bước (không nhãn) | thêm **input** vùng khác có kéo private lên proxy? |
+| `cov_gauss` | private ep15 | kdfix + KD proxy trên 256 mẫu Gaussian gộp/bước | input tổng hợp hiện có thay được input thật tới đâu |
+| `pinit` | proxy ep15 | DML đúng như train | private bắt đầu ở mức proxy có giữ được không |
+| `pinit_ce` | proxy ep15 | chỉ CE local | tốc độ quên thuần do ERM local |
+| `pinit_kdfix` | proxy ep15 | CE + KD proxy cố định trên dòng local | KD trên dòng local có giữ tri thức không |
+| `pinit_kdonly` | proxy ep15 | chỉ KD proxy cố định trên dòng local | vùng ngoài dữ liệu local có trôi khi không ai neo |
+
+Đọc: (1) `pinit*` rơi từ mức proxy về ~private ⇒ chững do **mục tiêu local kéo đi** (tri thức có sẵn vẫn bị mất), không do
+thiếu thông tin; `pinit_kdonly` cũng rơi ⇒ KD chỉ neo trên giá đỡ dữ liệu local. (2) `cov_real − kdfix` ≥ +0,02 ⇒ thiếu
+**phủ input** là nút thắt chính; `cov_gauss` đạt bao nhiêu phần khoảng đó đo giá trị của mẫu tổng hợp hiện tại. (3) `cov_real`
+≈ `kdfix` ⇒ nút thắt không ở input mà ở dung lượng/mục tiêu. Không cổng PASS/FAIL; mọi đề xuất sau dẫn từ đây và phải giữ R1/R2.
+
+## Probe 16 — nút thắt ở tầng quyết định: dữ liệu gửi được nào fit được nó (khóa ~20:50Z 17/10 trước push, không train)
+
+Probe 14 (AUDITED ~20:40Z): đóng băng backbone private ep15, fit lại **Linear cuối** trên mẫu gộp → 0,843 (MLP head 0,875) so private gp
+0,732 và proxy 0,851; mọi client +0,05…+0,19; bias oracle +0,045. ⇒ backbone đủ, head/quyết định là nút thắt. Probe 16 hỏi:
+
+| phần | đo | đọc |
+|---|---|---|
+| A | refit Linear/MLP gộp vs own trên backbone ep6 của DML-m4b, DML-m4b không gộp (own), Gaussian-m4b (không proxy), Gaussian-m4b own (không FL) | backbone không FL cũng refit lên ~0,84 ⇒ đặc trưng học được tại chỗ, lợi FL cần đến tầng quyết định; thấp hơn rõ ⇒ proxy/FL góp vào biểu diễn |
+| B | fit Linear cuối của private ep15 (m4b, gpool) bằng: own thật; + Gaussian gộp (nhãn cứng); + Gaussian proxy nhận; + Gaussian nhãn proxy; + dòng thật client khác nhãn proxy (oracle input); gộp thật (oracle). Bias-only fit trên Gaussian | nguồn gửi được (moment, R1 bootstrap 142,8 kB, R2 vì ở input-space) đạt bao nhiêu phần khoảng own → gộp thật; nhãn proxy trên input thật đạt gần gộp thật ⇒ proxy là người gán nhãn đủ tốt, chỉ thiếu input |
+| C | head proxy fit từ moment lớp gộp của đặc trưng 256-d proxy (CCVR; full / diag) | hiệu chỉnh head proxy chỉ bằng thống kê gộp; byte full 2,1 MB/diag 32 kB/client chỉ là dự toán |
+
+Chẩn đoán; không cổng. Đề xuất sau phải dẫn từ đây, giữ R1/R2, không đổi mô hình.
+
+## Probe 17 — mẫu tổng hợp tinh chỉnh bằng proxy cho tầng quyết định (khóa ~21:50Z 17/10 trước push, không train)
+
+Từ probe 16: input thực tế + nhãn proxy → 0,831; Gaussian gộp + nhãn proxy → 0,767. Hỏi: tinh chỉnh mẫu Gaussian ngay trên xe chỉ bằng
+thứ đã nhận (moment gộp + proxy gộp, gồm BN running stats đã trung bình) có thu hẹp khoảng không — **0 byte thêm**, R2 (mẫu ở input-space,
+mỗi private tự fit head của nó). Tối ưu x (Adam 200 bước, lr 0,05, fp32, cột m4b giữ 0; nhãn lô ∝ π_g, 16 lô × 4.096):
+`gauss` (không tinh chỉnh) · `ce` CE(proxy(x), c) + 0,1·Mahalanobis biên 53 chiều · `di_lo`/`di_hi` thêm 0,1/1,0 × khớp mean/var đầu vào
+mọi BN với running stats của proxy. Fit Linear cuối (own + mẫu, nhãn proxy argmax hoặc mềm) trên private m4b ep15 s42 / s43 và m4b ep6.
+Đo thêm độ thực: tỷ lệ proxy nhận, khoảng cách 1-NN tới dòng thật (so dòng thật giữ lại), nhãn 1-NN khớp. CCVR proxy sửa thứ tự nhãn.
+
+Đọc: biến thể tinh chỉnh ≥ gauss +0,02 hai seed và gần 0,83 ⇒ kênh "mẫu tinh chỉnh + fit tầng quyết định" đáng train; ≈ gauss ⇒ tinh chỉnh
+theo proxy không làm mẫu thực hơn, cần kênh input khác. Chẩn đoán; không cổng.
+
+## Vòng 15 — teacher snapshot cố định cho private (khóa ~00:10Z 18/10 trước push)
+
+**Bằng chứng** (probe 14–16, 15): backbone private đủ (refit Linear gộp 0,84); tầng quyết định trôi về dữ liệu local trong mỗi epoch
+dài (2–5k bước) vì teacher DML (bản proxy) cũng học local: `cont` gp 0,732 → 0,758 (bước 64) → 0,727 (cuối epoch). **Cơ chế:** KD
+private nhận teacher = proxy gộp **đóng băng suốt epoch** (proxy vẫn train DML để gộp như cũ) ⇒ private giữ ranh giới toàn cục; mẫu Gaussian
+gộp học KL từ snapshot đó (`gkd`) thay nhãn cứng ⇒ thêm input ngoài giá đỡ local có nhãn mềm nhất quán. **Kỳ vọng** (1 epoch từ ep15):
+kdfix head 0,770 (+0,043 so `cont`), cov_gauss head 0,792 (+0,065), client tệ nhất 0,676 / 0,755 vs 0,646. **Dấu hiệu sai:** từ đầu tới
+ep15 mà head ≤ control gp + 0,010 ⇒ lợi probe chỉ là trạng thái tạm từ lịch sử DML.
+
+**R1:** `frz` 0 byte thêm (snapshot đã nhận); `gkd` dùng moment gộp đã có (bootstrap C1 142.752 B/client một lần). **R2:** chỉ KD
+logit + mẫu ở input-space; private tùy kiến trúc. Không đổi mô hình. Token `frz` không cap (vòng 8 chỉ chạy kèm `kdcap`, gp sập vì cộng
+prior hai lần); `warm`: không KD private trước snapshot gộp đầu tiên; `gkd` ep1 = nhãn cứng (chưa có snapshot).
+
+| session | arm (s42, ep1→15 từ đầu, `--workers 2`) | vai trò |
+|---|---|---|
+| oa | `fd_dml_m4b_frz:15` | M1: teacher cố định, không Gaussian |
+| ob | `fd_dml_m4b_gpool_frz:15` | control của gkd (frz + gpool nhãn cứng) |
+| oc | `fd_dml_m4b_gpool_frz_gkd:15` | M2: frz + Gaussian KL từ snapshot |
+
+**Cổng (ep15, gain + worst: Δ ≥ +0,010, benign ≥ −0,005, client tệ nhất ≥ −0,010):** arm frz đọc **luật head** (teacher mang prior toàn
+cục — LESSONS: luật theo nguồn teacher); control giữ luật gp đã khóa: `m4b_frz` head vs `fd_dml_m4b@e15` gp 0,7323;
+`gpool_frz` head vs `gpool@e15` gp 0,7342; `gkd` head vs `gpool_frz` head (cô lập gkd) và vs `gpool@e15` gp. ep6 cùng cặp chỉ mô tả.
+Proxy head báo kèm. **Đổi luật triển khai sang head cho arm frz cần owner xác nhận trước khi nhận làm headline.**
+Test local: `--part r15` (7 arm vòng 13 bit-exact 2 epoch; gkd ep1 == gpool_frz, ep2 khác, hữu hạn; m4b_frz khác m4b) PASS;
+`--part par` gkd (compiled) + m4b_frz (eager): workers 3 == 1 PASS.
+
+## Vòng 16 — lặp seed 43 + gkd qua kênh q2 (khóa ~04:55Z 18/10 trước push)
+
+Vòng 15 PASS cả ba arm ở ep15 s42 (luật head; [kết quả](results.md)). Theo lệ vòng 6–7/14: arm PASS phải lặp seed 43 cùng horizon ep15.
+R1: private không phụ thuộc chất lượng proxy (q2:15 noninferior; probe 15) ⇒ thử headline mới qua kênh q2 (219.024 B/round vs q4 416.536 B).
+Source tag `20261015-r16` = r15 + một dòng ARMS (`fd_dml_m4b_gpool_q2_frz_gkd`); test `--part r15` PASS (gồm arm mới 2 epoch hữu hạn, khác gkd dense).
+
+| session | arm (ep1→15, `--workers 2`) | cổng (ep15) |
+|---|---|---|
+| pa | `fd_dml_m4b_gpool_frz_gkd:15` s43 | head vs `gpool@e15@s43` gp (pb) và vs `m4b@e15@s43` gp 0,7263: gain + worst |
+| pb | `fd_dml_m4b_gpool:15` s43 | control seed 43 cho pa (gpool s43 mới có ep6) |
+| pc | `fd_dml_m4b_gpool_q2_frz_gkd:15` s42 | head vs `gpool_frz_gkd@e15` head 0,8030: noninferior (Δ ≥ −0,010, benign ≥ −0,010) |
+| pd | `fd_dml_m4b_frz:15` s43 | head vs `m4b@e15@s43` gp: gain + worst |
+
+Luật head cho arm frz vẫn chờ owner xác nhận (như vòng 15).
+
+## Probe 18 — đo probe 14 trên weights vòng 15 (khóa ~05:05Z 18/10, không train)
+
+Cùng `fd_probe14.py` (T1 chéo client, T3 refit Linear/MLP gộp vs own, T4 bias oracle, T5) trên ep15 `m4b_frz`, `gpool_frz`, `gpool_frz_gkd` s42.
+Hỏi: sau frz/gkd, tầng quyết định còn cách refit gộp bao xa (probe 14: m4b 0,732 → 0,843) và backbone có đổi không (refit gộp ≈ 0,84 ⇒ lợi
+nằm hết ở tầng quyết định). Đọc `head` của private (teacher cố định); gp chỉ để tái hiện audit. Chẩn đoán; không cổng.
+
+## Probe 19 — bias 16 lớp ước federated (khóa ~05:40Z 18/10, không train)
+
+Probe 18: khoảng còn lại của gkd (0,803 → refit gộp 0,855) phần lớn là bias theo lớp (oracle +0,045); proxy cũng vậy. Đo trên ep15 m4b / frz /
+gkd s42: bias proxy fit trên `old` gộp (= tổng thống kê holdout temporal của mọi client qua secure aggregation) theo macro-F1 (oracle),
+CE, CE cân bằng lớp (lồi; federated chính xác: mỗi client gửi gradient/Hessian 16 + 136 số mỗi bước); chuyển nguyên bias proxy sang private
+(R2: chỉ cộng vào logit); bias private trên `old` (oracle) và trên dòng own (local, 0 byte). Đọc: bias proxy chuyển sang private đạt ≥ +0,02
+so head ⇒ đề xuất hiệu chỉnh bias federated (R1 vài kB, R2 OK, không đổi mô hình — là đổi luật quyết định, cần owner duyệt).
+
+## Luật triển khai head vs gp (owner 18/10 ~06Z: luật nào chính xác hơn thì làm luật chính)
+
+So cùng weights đã audit, group holdout, mean 20 client (min = client tệ nhất); local = confusion đánh lại theo prior nhãn
+train của từng client ([report §Góc nhìn client](results/report.md)):
+
+| arm (ep cuối) | luật | global F1 (min) | local F1 (min) | local acc (min) |
+|---|---|---|---|---|
+| m4b@e15 | head / **gp** | 0,609 (0,432) / **0,732** (0,629) | 0,696 / **0,708** | **0,891** / 0,867 |
+| gpool@e15 | head / **gp** | 0,614 (0,446) / **0,734** (0,633) | 0,697 / **0,709** | **0,892** / 0,867 |
+| m4b_frz@e15 | **head** / gp | **0,769** (0,673) / 0,640 (0,483) | **0,760** / 0,517 | **0,906** / 0,468 |
+| gpool_frz@e15 | **head** / gp | **0,772** (0,725) / 0,637 (0,473) | **0,758** / 0,514 | **0,903** / 0,466 |
+| **gpool_frz_gkd@e15** | **head** / gp | **0,803** (0,761) / 0,677 (0,557) | **0,775** (0,710) / 0,541 | **0,907** (0,842) / 0,501 |
+
+**Quyết định:** luật chính theo nguồn teacher — họ `frz` (teacher = snapshot gộp cố định, đã mang prior toàn cục) đọc **head**: hơn gp
+ở mọi góc (global +0,126, local F1 +0,234, local acc +0,406, client tệ nhất +0,20). Arm DML cũ (teacher = bản proxy học local) giữ **gp**
+(global +0,12; local F1 ≈ nhau; head chỉ hơn local acc +0,025). So sánh giữa phương pháp: mỗi bên đọc luật chính của nó (gkd head 0,803
+vs gpool gp 0,734 = +0,069; góc local F1 +0,066, local acc +0,015 so gpool head). Rò prior local còn lại trong head gkd (độ dốc
+over-prediction theo log π_k − log π_g, `prior_leak`): m4b head +0,74, frz +0,18, gkd **+0,13**; gp trên frz/gkd −0,41…−0,47 (sửa quá tay).
+
+## Vòng 17 — cải tiến nhỏ của gkd + gkd tới ep50 (owner 18/10 ~06Z; khóa ~06:25Z trước push)
+
+Owner: gkd hoạt động ổn thì thử cải tiến nhỏ trong phương án; chắc chắn là cách tốt nhất thì chạy 50 round. Source tag `20261015-r17`
+(r16 + token `la`, 3 arm, `--parent`); test `--part r17` (8 arm r16 bit-exact 2 epoch; la khác gkd từ ep1; kdpx privates ep1 == gkd,
+proxy khác; 3 arm mới hữu hạn), `--part parent` (r16 chạy liền ep1→2 == ep1 của r16 + nối tiếp ep2 bằng source mới, serial và
+workers 3: weights, predictions, eval) PASS.
+
+| session | arm (s42) | bằng chứng → cơ chế | kỳ vọng / dấu hiệu sai |
+|---|---|---|---|
+| ra | `..._gkd_la:15` (ep1→15) | head gkd còn rò prior local (độ dốc +0,13) và khoảng tới bias oracle +0,045 là bias **riêng từng private** (probe 18–19): CE local kéo head về π_k, KD teacher kéo về π_g. `la`: CE(z + log π_k − log π_g, y) trên dòng local ⇒ cả ba số hạng cùng huấn luyện posterior prior toàn cục (FedLC); lớp vắng local không bị CE đè xuống | head ≥ gkd + 0,010; sai nếu Δ < +0,010 hoặc độ dốc rò không giảm (< 0,07) |
+| rb | `..._gkd_kdpx:15` | private bám snapshot (khoảng proxy−private 0,03 suốt ep4→15); proxy frz thấp hơn m4b 0,018; `kdpx` (trần 1 cho KL proxy←private) từng nâng proxy +0,031 (vòng 11) nhưng hại private khi teacher là bản proxy. Với frz, teacher = snapshot gộp ⇒ proxy tốt hơn = teacher tốt hơn | private ≥ gkd + 0,010; sai nếu proxy không tăng ≥ +0,010 (cơ chế) hoặc proxy tăng mà private không theo |
+| rc | `..._gkd_la_kdpx:15` | kiểm tổ hợp (LESSONS: không cộng lợi) | mô tả vs đơn lẻ; cổng vs gkd |
+| rd | `fd_dml_m4b_gpool_frz_gkd:50`, nối tiếp từ ep15 audited của oc (`--parent`, SHA weights khớp marker) | headline tới 50 round (protocol full §1, cosine T50 đã khóa từ đầu) | mô tả horizon ep50; test một lần ở ep50 |
+
+**Cổng (ep15, gain + worst: Δ ≥ +0,010, benign ≥ −0,005, client tệ nhất ≥ −0,010):** ra/rb/rc head vs `gpool_frz_gkd@e15` head 0,8030
+(cùng luật). Proxy head và độ dốc rò prior báo kèm (dấu hiệu cơ chế). Arm PASS: nối tiếp ep16→50 từ ep15 của chính nó (`--parent`) và lặp
+seed 43; so ep50 với rd. R1: `la` 0 byte (π_g = đếm lớp gộp đã có cho gp/gpool); `kdpx` chỉ đổi trọng số loss proxy, 0 byte. R2: `la` chỉ
+dịch logit private, `kdpx` chỉ ở proxy ⇒ private tùy kiến trúc.
+
+## Vòng 18 — mọi cải tiến có bằng chứng trên gkd (owner 18/10 ~07Z: quota thoải mái, thử hết; khóa ~07:30Z trước push)
+
+Source tag `20261015-r18` = r17 + token `cop`/`pce`/`t2`/`g512`/`gk2`, arm q4 + hai sửa FL ([kiểm toán](../../research/federated-information-flow.md)):
+`la` lấy log π_g từ SecureSum (r17 tính trong tiến trình, lệch ≤ 2,4e-7), compile probe dùng dòng client của chính tiến trình (r17: client 0;
+trạng thái/RNG khôi phục, không đổi kết quả). Mỗi arm s42 ep1→15 từ đầu, `--workers 2`.
+
+| session | arm | bằng chứng → cơ chế | dấu hiệu sai |
+|---|---|---|---|
+| sa | `gkd_cop` | Biên Gaussian lệch thật: fixture 1M dòng, 53 feature m4b, KS trung vị 0,19 (p90 0,49), 33 % cặp lớp×feature có atom > 20 %. **Gaussian copula**: biên = histogram gộp theo lớp (256 bin asinh z, SecureSum cộng tính), phụ thuộc = tương quan normal-score gộp (phase 2 SecureSum). Kiểm local với snapshot gkd ep15: teacher đồng ý 0,673 vs Gaussian 0,473 (thật 0,805), benign 0,27 → 0,51, 1-NN 5,53 → 4,61 | head < gkd + 0,010, hoặc syn_accept trên Kaggle không tăng |
+| sb | `gkd_pce` | private bám snapshot (−0,03 suốt ep4→15); proxy frz thấp hơn gpool 0,02–0,03; FedAvg proxy ≥ DML +0,008 (ep15). Proxy chỉ CE (bỏ KL←private) ⇒ teacher = FedAvg-m4b | proxy không tăng hoặc private không theo |
+| sc | `gkd_t2` | lỗi còn lại trong khối 4 lớp nhầm; KD T=2 (×T²) cả dòng local và Gaussian chở xác suất tương đối giữa lớp không thắng | head < gkd + 0,010 |
+| sd | `gkd_g512` | phủ input là phần còn lại (probe 15 cov_gauss +0,022/epoch); 512 dòng tổng hợp mỗi bước (KL batchmean ⇒ cùng trọng số, nhiều phủ hơn) | head < gkd + 0,010 |
+| se | `gkd_gk2` | cùng lý do; trọng số KL trên dòng tổng hợp ×2 (so với CE local) | head < +0,010 hoặc client tệ nhất giảm |
+| sf | `q4_frz_gkd` | R1: q2_frz_gkd W&B ep5 0,638 vs gkd 0,768 (frz phụ thuộc chất lượng snapshot); int4 từng ±0,001 | noninferior Δ ≥ −0,010 |
+
+**Cổng (ep15):** sa–se head vs `gpool_frz_gkd@e15` head 0,8030 gain + worst; sf noninferior. Byte `cop` (một lần, đo ở test r18): lên histogram 868.392 B
++ normal-score 95.016 B/client, xuống histogram gộp 868.384 B + Cholesky tương quan 91.616 B (thay moment Gaussian 145.968 B lên / 72.912 B xuống); proxy mỗi epoch không đổi. R2: mẫu ở
+input space, mọi kiến trúc private. Privacy: histogram theo lớp cùng giả định SecAgg như moment (ô 4–10 dòng). Arm PASS → tổ hợp (vòng 19)
+rồi 50 round.
+
+## Code nhanh `--fast` — lớp tolerance (owner 18/10 ~09:15Z)
+
+Owner duyệt tối ưu lớp tolerance (`fused` AdamW + cuDNN autotune, bỏ thuật toán deterministic; local −25 %/bước,
+[computational cost §6](../../research/computational-cost.md)) với điều kiện **so sánh luôn cùng điều kiện code**:
+
+- Kernel đã chạy/đã build tới vòng 18 (gồm `rd` = gkd ep16→50 nối tiếp source r17) giữ code bit-exact cũ và so với đối chứng cũ.
+- Từ vòng 19 mọi kernel build mới chạy `--fast`; arm chỉ so với đối chứng **cũng chạy `--fast`** (chạy lại gkd s42 ep15, và mọi đối chứng
+  khác cổng vòng đó cần, kể cả seed 43 / ep50 nếu cổng dùng).
+- Cưỡng chế bằng code: `--fast` ghi `config.fast = true` (fingerprint khác; nối tiếp `--parent` từ run không fast bị từ chối vì config khác);
+  không cờ thì config và kết quả bit-exact source r18 (`test_fd_local --part fast`). `report_fd.py` gắn khóa `@fast`, nên cổng phải ghi rõ
+  `<arm>@e15@fast` vs `<đối chứng>@e15@fast`. W&B tên run thêm `-fast`. `gen_fd.py`: plan dạng dict thêm `'fast': True`.
+- Run `--fast` không bảo đảm lặp lại bit-for-bit (local cùng GPU thì lặp lại được), kể cả `--workers 1` vs `W`; mức chênh do đối chứng
+  chạy lại xác định (phải nằm trong dao động seed). Test local PASS: [computational cost §6](../../research/computational-cost.md).
+
+## Vòng 19 — code `--fast`: đối chứng chạy lại + tổ hợp PASS (khóa ~14:35Z 18/10 trước push)
+
+Source tag `20261015-r19` = r18 + cờ `--fast` + arm `fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx`. Mọi session `--fast`, `--workers 2`, ep1→15 từ đầu.
+Kết quả vòng 16–18 dùng: la_kdpx PASS +0,0195 (s42), la PASS +0,016, q4_frz_gkd PASS noninferior (byte proxy ÷7,6); kdpx, cop, t2, gk2, pce FAIL;
+g512 đang chạy (W&B ep12 +0,002 — nếu PASS thì vào vòng sau).
+
+| session | seed | arm | bằng chứng → cơ chế | dấu hiệu sai / cổng |
+|---|---|---|---|---|
+| ta | 42 | `gkd` | đối chứng code mới (owner: arm `--fast` chỉ so `--fast`) | `equiv`: \|head − gkd@e15 cũ 0,8030\| ≤ 0,010 (≈ chênh seed 0,008); lệch hơn ⇒ `--fast` đổi kết quả, dừng dùng |
+| td | 43 | `gkd` | như ta, seed 43 | `equiv` vs gkd@e15@s43 cũ 0,7953 |
+| tb | 42 | `gkd_la_kdpx` | rc +0,0195: `la` bỏ rò prior local khỏi head (độ dốc +0,133 → +0,032), `kdpx` thêm phần proxy | gain+worst vs ta (≥ +0,010) |
+| te | 43 | `gkd_la_kdpx` | lặp seed trước khi chạy 50 round (luật lặp seed) | gain+worst vs td |
+| tc | 42 | `q4_frz_gkd_la_kdpx` | R1: int4 giữ snapshot frz (sf Δ +0,001, q2 thì hỏng) ⇒ ghép với la_kdpx | noninferior vs tb (Δ ≥ −0,010, tệ nhất ≥ −0,010) |
+
+Cổng trong `report_fd.py` (khóa `@fast`). Sau vòng: arm thắng nối tiếp ep16→50 bằng `--parent` từ ep15 `--fast` của chính nó, kèm gkd `--fast` ep50
+làm đối chứng 50 round. Giới hạn: `load_parent` chặn arm q4 (trạng thái codec chưa lưu) ⇒ tc chỉ đến ep15 cho tới khi thêm resume codec.

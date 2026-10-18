@@ -5,11 +5,12 @@
 
 ## 1. Toàn bộ phương án
 
+- [Phương pháp theo tên](research/methods/README.md): mỗi phương pháp một file (cơ chế, trao đổi, bằng chứng, trạng thái).
 - [Một danh mục đề xuất](proposals.md): 28 nhóm +recipe EMA; đã kiểm/chưa kiểm, PASS/FAIL có phạm vi, link thiết kế/build/kết quả.
 - [Hồ sơ phương pháp](methods/README.md): README ngắn → căn cứ/cơ chế → các build/source/artifact.
 - [Bài học dùng tiếp](lessons/README.md); [hồ sơ lịch sử](archive/README.md) giữ báo cáo và nguồn gốc số đo.
-- [Dự báo performance](research/performance-feasibility-2026-10-13.md): căn cứ trước mở pilot.
-- [Chẩn đoán chững sớm 15/10](research/plateau-diagnosis-2026-10-15.md): học thuộc receiver, proxy≫private, khối lớp nhầm lẫn.
+- [Dự báo performance](archive/research/performance-feasibility-2026-10-13.md): căn cứ trước mở pilot.
+- [Chẩn đoán chững sớm 15/10](archive/research/plateau-diagnosis-2026-10-15.md): học thuộc receiver, proxy≫private, khối lớp nhầm lẫn.
 
 ## 2. Hồ sơ làm việc và trạng thái
 
@@ -31,17 +32,17 @@ Các adaptation FAIL khác đều có thiết kế/report/source qua [danh mục
 
 ## 3. Vận hành, lỗi và khả năng tái lập
 
-- [Bàn giao hiện tại và checklist phiên sau](operations/continuation-2026-10-15-afternoon.md): exact kernel/version, checkpoint, budget, lệnh one-shot. Owner đã dừng poll khi kết phiên.
+- [Bàn giao hiện tại và checklist phiên sau](operations/continuation-2026-10-17.md): exact kernel/version, checkpoint, budget, lệnh one-shot. Owner đã dừng poll khi kết phiên.
 - [Sổ lỗi kernel](operations/notebook-errors.md): nguyên nhân, output dùng được, preflight ngăn lặp.
-- [Launch plan/budget](operations/continuation-plan-2026-10-15-q2.json); [global snapshot09:01UTC](operations/kernel-status-current.json) cũ hơn CCR error/recovery, không trạng thái live.
-- [Layout hiện tại](operations/workspace-layout.json), [tên các đợt](operations/experiment-names.md), [manifest gốc](operations/layout-migration-2026-10-14.json), [Git/DVC verification](operations/layout-verification-2026-10-14.json).
-- [Backup/restore](operations/backup.md), [lịch sử collect trước đợt này](operations/collection-2026-10-14.md).
+- [Launch plan/budget](archive/operations/continuation-plan-2026-10-15-q2.json); [global snapshot09:01UTC](archive/operations/kernel-status-current.json) cũ hơn CCR error/recovery, không trạng thái live.
+- [Layout hiện tại](operations/workspace-layout.json), [tên các đợt](operations/experiment-names.md), [manifest gốc](archive/operations/layout-migration-2026-10-14.json), [Git/DVC verification](archive/operations/layout-verification-2026-10-14.json).
+- [Backup/restore](operations/backup.md), [lịch sử collect trước đợt này](archive/operations/collection-2026-10-14.md).
 - [Scripts dùng chung](../scripts/README.md); logs đúng build, không trộn với kết quả khoa học.
 - [Package chung và module riêng build](operations/package-ownership.md): ownership, source canonical, alias và fingerprint.
 
 ## 4. Protocol và kiến thức nền
 
-- [Protocol](research/protocol.md), [dataset](../knowledge/dataset.md), [architecture](../knowledge/architecture.md), [knowledge hub](../knowledge/README.md).
+- [Protocol](research/protocol.md), [chi phí tính toán so fl_dagsnet_veremi](research/computational-cost.md), [dataset](../knowledge/dataset.md), [architecture](../knowledge/architecture.md), [knowledge hub](../knowledge/README.md).
 - [Kiến thức kế thừa](archive/legacy/kien-thuc-ke-thua.md), [LESSONS trước tổ chức](archive/legacy/lessons-before-layout-20261014.md).
 - Source/codec/resume PASS không thay utility/R1/R2/DP proof; mọi kết quả headline cần terminal artifact audit.
 

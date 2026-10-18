@@ -1,6 +1,7 @@
 # Protocol so sánh — khớp `fl_dagsnet_veremi`
 
-Cập nhật 2026-10-10. **Chủ dự án chốt §1 + §3 (Q2) và mức ngân sách B0 + B2 (Q1).** Còn mở: số contact/round (Q3).
+Cập nhật 2026-10-10. **Chủ dự án chốt §1 + §3 (Q2) và mức ngân sách B0 + B2 (Q1).** Owner 17/10/2026: mỗi round mọi client train hết
+1 epoch local rồi mới trao đổi đồng bộ với server một lần (như `odixe06/FL_NIDS_10client`).
 Mục tiêu: số của MobiHet mới phải đặt được cạnh số của các bản dựng lại trong repo `odixe06/fl_dagsnet_veremi` (AFPHA, FD-IDS, NILM-FL,
 PerFed-SKD, TinyProto, pFedES, …) mà không cần chú thích lệch protocol.
 
@@ -22,9 +23,8 @@ PerFed-SKD, TinyProto, pFedES, …) mà không cần chú thích lệch protocol
 ## 2. Phần MobiHet thêm vào (khác repo anh em, phải báo kèm mọi số)
 
 1. **Kênh truyền có deadline (R1).** Báo ở hai mức ngân sách B0 (≈4,5 kB/contact) và B2 (≈231 kB/contact) ([đề xuất §3](../archive/research/de-xuat-huong-moi.md#3-ngân-sách-contact-và-kích-thước-tri-thức)).
-   - Mỗi round, mỗi xe có contact mô phỏng: ngân sách byte và `tau_true` lấy từ simulator archive ([kế thừa §6](../archive/legacy/kien-thuc-ke-thua.md#6-kênh-truyền-và-mô-phỏng-contact)).
-   - Xe không có contact hoặc chưa nhận đủ gói thì vẫn học local, dùng tri thức cũ.
-   - Repo anh em giả định full participation, không giới hạn byte. Muốn tách được hiệu ứng kênh thì mỗi phương pháp phải chạy cả hai chế độ:
+   - Mỗi round mọi xe trao đổi một lần sau epoch local; ngân sách byte áp cho lần trao đổi đó.
+   - Repo anh em không giới hạn byte. Muốn tách được hiệu ứng kênh thì mỗi phương pháp phải chạy cả hai chế độ:
      **không ràng buộc** (khớp anh em) và **có ràng buộc**.
 2. **Model khác kiến trúc (R2).** Chạy đồng nhất DAGSNet trước để so với repo anh em. Sau đó chạy kịch bản khác kiến trúc (H1/H2/H3 như `MobiHet_IDS.md` §4.3 cũ),
    báo theo từng kiến trúc.
@@ -40,4 +40,4 @@ Repo anh em không chọn checkpoint, nhưng có sweep HP trên validation 2% (T
 
 - **Pilot/chọn cấu hình:** holdout nội bộ (`old` temporal 2% + `group` receiver chưa thấy, fixture B như archive). Cổng khóa trước khi chạy, hai seed.
 - **Kết quả để so với anh em:** train lại theo đúng §1 trên toàn train80%, chấm test mọi round, headline round 50. Đã chấm thì không quay lại chỉnh.
-- Báo đủ 10 metric, F1 theo lớp, benign F1, byte up/down theo loại tri thức, số contact hoàn tất, thời gian.
+- Báo đủ 10 metric, F1 theo lớp, benign F1, byte up/down theo loại tri thức, thời gian.

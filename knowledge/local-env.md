@@ -30,6 +30,8 @@ Kích hoạt môi trường — **mọi lệnh Python và Kaggle CLI đều ph�
 
 ```bash
 source /home/odixe/miniforge3/etc/profile.d/conda.sh && conda activate nckh
+# 17/10: env cần file site-packages/mobihet-compat.pth chứa /home/odixe/nckh/veremi/mobihet/.compat
+# (thay symlink gốc mh/papers; xem docs/operations/project-layout.md)
 ```
 
 ⚠ `conda run -n nckh python - <<'PY' … PY` **nuốt stdout của script**. Một script sửa file báo

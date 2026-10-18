@@ -57,7 +57,7 @@ def collect(seed,utility=False):
     assert manifest==json.loads((dest/'source/source_manifest.json').read_text())
     for name,digest in manifest.items():assert sha(dest/'source'/name)==digest
     fixture=sha(dest/'source/fixture_manifest.json')
-    assert fixture==sha(ROOT/'papers/pilot/fixture/manifest.json')
+    assert fixture==sha(ROOT/'.compat/papers/pilot/fixture/manifest.json')
     path=dest/'runs'/('utility_summary.json' if utility else 'calibration_summary.json')
     summary=json.loads(path.read_text()) if path.exists() else {}
     rounds={p.name.rsplit('_s',1)[0]:len(list((p/'complete').glob('round_*.json')))
@@ -66,7 +66,7 @@ def collect(seed,utility=False):
     if not utility and 'KernelWorkerStatus.COMPLETE' in status.stdout:
         assert calibration_valid and len(summary)==8 and all(x['rc']==0 and x['rounds']==2 for x in summary.values())
     audits=[]
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         model=build_model(dict(CFG,n_features=66,num_classes=16),latent=True)
         for arm,n in rounds.items():
@@ -78,7 +78,7 @@ def collect(seed,utility=False):
                 for sd in state['private']+state['proxy']:model.load_state_dict(sd,strict=True)
                 with np.load(run/f'predictions/round_{r:03d}.npz') as pred:
                     for hold in ('group','old'):
-                        assert np.array_equal(pred[hold+'_y'],np.load(ROOT/f'papers/pilot/fixture/{hold}_y.npy'))
+                        assert np.array_equal(pred[hold+'_y'],np.load(ROOT/f'.compat/papers/pilot/fixture/{hold}_y.npy'))
     probe=summary.get('ct_local',{}).get('mechanism_probe') if calibration_valid else None
     if probe is not None:
         saved=json.loads((dest/'runs'/f'ct_local_s{seed}/complete/round_002.json').read_text())['diagnostics']

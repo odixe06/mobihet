@@ -17,6 +17,11 @@ def main():
         # The key-bearing directory is ignored; initialize it privately when a fresh checkout omitted it.
         if target.name=='private_push' and not target.exists():target.mkdir(parents=True,mode=0o700)
         expected=os.path.relpath(target,alias.parent)
+        if row.get('link')=='hard':   # .compat/mh: hardlinks keep mh's P.ROOT at .compat (no root mh/papers symlinks)
+            if alias.exists():
+                assert not alias.is_symlink() and os.path.samefile(alias,target), ('hardlink differs',row['alias'])
+                continue
+            alias.parent.mkdir(parents=True,exist_ok=True);os.link(target,alias);created+=1;continue
         if alias.is_symlink():
             assert os.path.normpath(str(alias.parent/alias.readlink()))==str(target), ('alias differs',row['alias'])
             continue

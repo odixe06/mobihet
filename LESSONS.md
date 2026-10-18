@@ -24,6 +24,9 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   Chẩn đoán saved-target không cô lập toàn bộ BN/fit/extrapolation, không bác cả họ residual.
   [Forensics hai seed](docs/archive/methods/anchor-function-residual/builds/anchor-residual/results/forensics-20261015.md).
 
+- **Biên lớp của Gaussian moment lệch xa dữ liệu thật** (fixture 1M dòng, 53 feature m4b): KS trung vị 0,19, p90 0,49; 33 % cặp lớp×feature
+  có atom > 20 %. Gaussian copula (histogram biên gộp + tương quan normal-score, đều SecureSum cộng tính) nâng độ đồng ý của snapshot gkd
+  với nhãn mẫu 0,473 → 0,673 (thật 0,805), benign 0,27 → 0,51. Kênh mẫu tổng hợp nên khớp biên trước khi tinh chỉnh khác (vòng 18 kiểm utility).
 - **Tri thức quần thể nằm trong proxy chung, không trong private** (khi đánh giá trên test toàn cục). DML proxy head hơn private gp
   +0,115/+0,122 group pilot và +0,056 full r20; trộn private vào proxy (ProxyFuse) **kém** proxy −0,032/−0,034,
   private đúng mà proxy sai chỉ ≈2% dòng. Owner15/10: proxy là headline DML/Hybrid. Cải tiến nên nhắm proxy
@@ -37,29 +40,79 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   không còn là nút thắt; muốn cải thiện headline phải nhắm tối ưu/tổng hợp proxy. [Kết quả](docs/methods/anti-memorization/results.md).
 - **Proxy dense thừa độ chính xác.** QProxy q4 (int4 theo hàng, EF phía server) = dense ±0,001 proxy và private
   hai seed, byte nhỏ 7,65×. Nén theo tọa độ có chặn lỗi giữ được utility, khác sketch/subspace đã FAIL.
-- **Phạm vi byte q4 — kiểm source 17/10:** tỷ lệ7,65× trên là bộ đếm codec dự kiến, chưa phải byte wire end-to-end.
+- **Phạm vi byte q4 — kiểm source 17/10 (đã sửa 17/10 chiều):** FullDrift giờ dùng codec thật `QPacket` (pack nibble, scale
+  fp16, CRC, base/version), server/client chỉ dùng tensor decode từ bytes; 208.268 B/chiều = `len(packet)`, train bit-exact
+  với q4 đã audit. Đoạn dưới là hồ sơ trước khi sửa: tỷ lệ7,65× khi đó là bộ đếm codec dự kiến, chưa phải byte wire end-to-end.
   FullDrift `quantize` đếm4bit nhưng `latest_packet` ghi `q` int8 chưa pack nibble; buffer/counter được đếm nhưng
   packet nhánh này chưa serialize đủ, upload cộng tensor decoded trực tiếp. Source khớp artifact vòng5 đã audit.
   Utility lượng tử hóa vẫn có bằng chứng; R1 cần codec pack/unpack thật, tính `len(packet)` cùng overhead và
-  decode/commit qua contact. [Chi tiết và source](docs/research/algorithm-improvement-plan-2026-10-17.md#31-q4-utility-đã-kiểm-wire-bytes-chưa-được-chứng-minh-đầy-đủ).
-- **Drift là nút thắt của proxy ở full; tổng hợp thường hơn giúp, regularize thì không.** FullDrift seed42 ep6 group:
-  4 lần tổng hợp/epoch (cùng compute/LR) DML proxy +0,026, FedAvg +0,034 (ep1: 0,751 so 0,187). FedProx μ0,01 giảm
-  drift 5× mà F1 không đổi (benign +0,098); FedAvgM β0,9 phân kỳ. FedAvg thuần ≈ DML proxy (+0,009).
+  decode/commit qua contact. [Chi tiết và source](docs/archive/research/algorithm-improvement-plan-2026-10-17.md#31-q4-utility-đã-kiểm-wire-bytes-chưa-được-chứng-minh-đầy-đủ).
+- **Kéo proxy về model chung không giúp ở full.** FullDrift seed42 ep6 group: FedProx μ0,01 giảm drift 5× mà F1
+  không đổi (benign +0,098); FedAvgM β0,9 phân kỳ. FedAvg thuần ≈ DML proxy (+0,009).
   Gaussian swappos ở full +0,052, ngừng suy giảm sau r1. [Kết quả](docs/methods/full-drift/results.md).
 
 - **Ở full, bỏ khối feature receiver giúp cả client lẫn proxy DML.** FullDrift vòng 3 seed42 ep6 group: m4b private gp
-  +0,036, proxy +0,052, benign +0,11; swappos +0,033/+0,049. 0 byte/contact thêm (R1), chỉ phía client (R2). Pilot r20
+  +0,036, proxy +0,052, benign +0,11; swappos +0,033/+0,049. 0 byte thêm (R1), chỉ phía client (R2). Pilot r20
   từng FAIL proxy ⇒ học thuộc receiver chỉ lộ khi mỗi epoch ~4.200 bước. FedNTD hại private (−0,042): khoảng private–proxy
-  không do lệch prior. q4 ở 1 contact/epoch không thua. [Kết quả](docs/methods/full-drift/results.md).
+  không do lệch prior. q4 không thua. [Kết quả](docs/methods/full-drift/results.md).
 - **Học thuộc receiver là lý do proxy DML chững và benign sụp theo epoch ở full** (vòng 5, ep15): `fd_dml` proxy phẳng
   0,763 từ ep4, benign proxy 0,74→0,36; m4b proxy còn tăng 0,815→0,851, benign giữ ~0,77, lợi lớn dần (+0,052 ep6 →
   +0,086 ep15; private +0,036). Plateau không phải hết capacity hay LR; kéo dài run không bỏ shortcut thì vô ích.
-  Gaussian m4b +0,067. Kỹ thuật cộng được: m4b + q4 (±0,000) + sub4 (private +0,031). Seed 43 đang kiểm.
+  Gaussian m4b +0,067. Kỹ thuật cộng được: m4b + q4 (±0,000). **Seed 43 lặp lại** (vòng 6–9): m4b private +0,031/
+  proxy +0,039, swappos +0,034/+0,031; ep15 private +0,025/proxy +0,063, benign proxy 0,78 vs 0,48 ⇒ headline DML = m4b.
+- **EMA private không cộng với m4b.** Gaussian-m4b private_ema −0,010 (s42), −0,021 (s43) dù EMA giúp Gaussian không
+  mask (+0,024) và swappos (+0,036): khi đã bỏ shortcut, trung bình quỹ đạo chỉ làm chậm. Kiểm từng tổ hợp, không cộng lợi.
 - **Đổi kênh KD không đóng khoảng private–proxy; đổi input phía client thì có.** FedNTD −0,042, hidden-state KD (FedKD,
   projector local) +0,006, cùng kênh KD m4b +0,036. Trước khi thêm kênh/loss chưng cất, kiểm private có học shortcut local không.
-- **Khi đã tổng hợp thường (sub4), FedProx chỉ làm chậm học local** (proxy −0,008, private −0,016). q4 ở sub4 làm benign
-  −0,014…−0,016 (lỗi lượng tử cộng theo số lần tổng hợp), ở 1 contact/epoch thì không. sub16_q4 thêm +0,041 proxy/+0,017
-  private nhưng 16 contact/epoch: R1 cần mô phỏng contact thực tế trước khi chọn tần suất (owner 16/10).
+- **Tri thức lớp gộp giúp client khi đưa vào private dưới dạng dữ liệu phụ, không phải qua proxy.** FullDrift vòng 9–10:
+  private DML-m4b thêm CE trên 256 mẫu Gaussian từ moment gộp (`gpool`) +0,016 (s42) / +0,024 (s43), hơn moment riêng
+  +0,030 và hơn replay local cân bằng lớp cùng số forward +0,032 ⇒ lợi do thông tin của client khác, không do thêm CE.
+  Proxy không đổi, +4,2 MiB/6 epoch. Hybrid cũ (proxy cũng học synthetic) thì interaction âm. Lợi FL thật: DML-m4b hơn
+  proxy không gộp +0,040–0,043, Gaussian-m4b hơn moment riêng +0,05 (cả hai seed).
+- **KD mạnh có lợi cho private, KL ngược mạnh hại proxy.** Trọng số `1/(CE+CE)` lên ~4 ở ep6 (‖w∇KL‖ ≈ ‖∇CE‖); trần 1
+  làm private −0,025…−0,028 nhưng proxy +0,024/+0,033 (hai seed). Nếu sửa trọng số, tách hai chiều KL.
+- **KD trên dòng local đã bão hòa; teacher tốt hơn không tự sang private** (vòng 11, gpool s42): KD private ×2 +0,001;
+  chỉ cap KL proxy←private làm proxy +0,031 nhưng private −0,008. 56 % khoảng F1 private–proxy ở lớp < 1 % dữ liệu local —
+  KD trên dòng local gần như không chạm các lớp đó. Không quét trọng số KD nữa; nhắm kênh mang tri thức lớp hiếm.
+- **Mẫu Gaussian gộp lệch xa dữ liệu thật ở lớp khó.** Proxy ep6 chỉ đồng ý 53 % mẫu (benign 25 %, positionMirroring 3 %,
+  timeDelay 0 %) trong khi private khớp 78 % ⇒ KD proxy trên mẫu Gaussian sẽ xung đột nhãn cứng. Đo độ đồng ý của proxy với
+  mẫu tổng hợp (local, miễn phí) trước khi đề xuất kênh dùng mẫu đó.
+- **Cổng ep6 đo tốc độ học, không đo mức hội tụ** (vòng 11 lc): gpool hơn m4b +0,054 ep1 → +0,016 ep6 → +0,002 ep15
+  (horizon FAIL; test ep15 0,7486 vs 0,7478), proxy gpool thấp hơn từ ep9. Lợi tri thức dạng dữ liệu phụ có thể chỉ là
+  khởi động nhanh mà KD từ proxy mạnh dần bù lại. Arm PASS ở ep6 phải lặp horizon ep15 trước khi nhận làm headline.
+  gw2 (×2 liều Gaussian) −0,005, client tệ nhất −0,010. [Kết quả](docs/methods/full-drift/results.md).
+- **Private gpool học prior gần π_k local; mẫu Gaussian không đổi prior của head trên dòng thật** (probe vòng 13): luật gpe theo
+  prior trộn (π_k + q)/2 −0,094/−0,095 hai seed; BN tính lại chỉ trên dòng thật −0,03/−0,04 (BN trộn là một phần hàm đã học);
+  hỗn hợp moment urban/highway không làm proxy nhận mẫu nhiều hơn; ridge RFF trên input thô M256 0,38 (M1024 0,48) ≪ DAGSNet 0,72.
+  Khó ở positionMirroring/timeDelay không do mode trong lớp. [Probe](docs/methods/full-drift/results.md).
+- **Rà kênh đã thử trước khi mở hướng mới; dùng lại weights đã lưu khi phép thử không cần train.** Đề xuất 17/10 P4 (ridge/RFF
+  teacher tại RSU) trùng Build13 S13 (lợi ≈ làm mượt theo lớp, thua replay −0,09) ⇒ chỉ còn kiểm teacher-only. Luật triển khai
+  (gpe), BN tính lại, độ phủ teacher chấm được trên weights ep6 đã audit. Với m4b, Gaussian 53 chiều = 66 chiều đặt 0 về phân phối
+  ⇒ moment53 không cần train. Danh sách kênh cũ: [kế thừa §4](docs/archive/legacy/kien-thuc-ke-thua.md).
+- **Private chững vì tầng quyết định, không vì backbone** (probe 14, 3 bộ weights ep15): đóng băng backbone private, fit lại riêng Linear
+  cuối trên dữ liệu gộp → 0,84 (MLP head 0,87) vs private gp 0,73 / proxy 0,85, mọi client +0,05…+0,19; refit trên dòng own 0,68;
+  bias oracle chỉ +0,045. Lỗi chính: gán tấn công cho benign ở receiver chưa thấy (benign recall 0,50 vs 0,82). Kênh mới phải nhắm
+  ranh giới quyết định trên phân phối toàn cục, không thêm KD/biểu diễn. [Kết quả](docs/methods/full-drift/results.md).
+  Probe 16: backbone ep6 không FL (Gaussian own) refit gộp 0,81/0,86 ≈ DML-m4b 0,83/0,87 ⇒ đặc trưng học được tại chỗ, lợi FL nằm ở
+  tầng quyết định. Fit Linear cuối bằng dòng thật client khác **nhãn proxy** 0,831 ≈ nhãn thật 0,843 ⇒ proxy gán nhãn đủ, thiếu input
+  thực tế; Gaussian gộp + nhãn proxy chỉ 0,767 (m4b) và hại trên backbone đã train bằng Gaussian (gpool 0,664).
+- **Tầng quyết định private trôi về local trong mỗi epoch dài; teacher DML cũng trôi** (probe 15, 1 epoch từ m4b ep15, 20 client):
+  `cont` đạt 0,758 ở bước 64 rồi về 0,727; private khởi tạo bằng proxy rơi 0,08 chỉ với CE local. Teacher = proxy gộp **cố định cả epoch**
+  giữ ranh giới (head 0,770, +0,043); thêm input thật client khác → 0,842 ≈ proxy, Gaussian gộp → 0,792. Mẫu tinh chỉnh bằng proxy
+  (CE + BN) chỉ +0,01…+0,02 so Gaussian (probe 17). ⇒ đòn bẩy: mục tiêu private (teacher cố định) và input phủ client khác, không phải
+  kênh KD mới. Teacher cố định mang prior toàn cục ⇒ luật head (vòng 15).
+  **Vòng 15 xác nhận từ đầu tới ep15 (s42):** frz +0,037, gpool_frz +0,038, gpool_frz_gkd **+0,069** (0,803; benign +0,20, tệ nhất +0,13),
+  lợi không teo theo epoch; cùng weights đọc gp chỉ 0,64–0,68 ⇒ luật phải theo nguồn teacher.
+  Khoảng còn lại (gkd 0,803 → refit gộp 0,855) chủ yếu là bias theo lớp **riêng từng private** (probe 18–19): bias proxy không chuyển
+  sang private; bias CE/bCE federated chỉ ≤ +0,02; F1 oracle +0,045 cần nhãn toàn cục qua chính private ⇒ không làm được với R2.
+- **Chọn luật quyết định bằng đo trên chính weights, theo mọi góc client** (owner 18/10): họ frz head hơn gp ở global, local F1/acc và client
+  tệ nhất (gkd global +0,126, local acc +0,406); DML cũ gp hơn ở global, head hơn local acc. Đo rò prior local bằng độ dốc over-prediction
+  theo log π_k − log π_g (`prior_leak.py`): m4b head +0,74, gkd +0,13, gp trên frz −0,41 ⇒ head gkd vẫn mang chút prior local — sửa ở mục
+  tiêu huấn luyện (CE logit-adjusted) thay vì luật hậu kỳ. [Design §Luật](docs/methods/full-drift/design.md).
+- **Sửa drift proxy (FedProx, FedDyn, SCAFFOLD) không giúp client ở full; hại client tệ nhất.** FedDyn −0,032/−0,034
+  (tệ nhất −0,18/−0,15), SCAFFOLD LR tốt nhất −0,007…−0,010 (tệ nhất −0,13). Drift ở đây phần lớn là thích nghi local có ích.
+- **Teacher đã mang prior toàn cục thì không áp luật gp lần nữa.** Frozen teacher (proxy gộp): private head 0,714/0,698 > gp
+  m4b nhưng gp sập 0,587/0,577 vì cộng `log π_g − log π_k` hai lần. Luật triển khai phải khóa theo nguồn teacher.
 
 ## Những cơ chế làm train kém hoặc gây kết luận sai
 
@@ -67,7 +120,16 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   (học thuộc receiver), proxy bão hòa từ r3–r5 khi LR còn ~1e-3 (FullDrift vòng 5: cũng do học thuộc receiver, m4b bỏ được). Pilot2,5% (~100 bước) không tái hiện; kết luận về
   drift/hội tụ từ pilot (vd FedAvg > DML proxy +0,027) có thể đảo ở full (repo anh em NILM proxy 0,823 > AFPHA 0,775).
   Macro F1 còn bị khối {benign, dataReplay, positionMirroring, timeDelay} chặn; lỗi dịch chuyển trong khối.
-  [Chẩn đoán](docs/research/plateau-diagnosis-2026-10-15.md).
+  [Chẩn đoán](docs/archive/research/plateau-diagnosis-2026-10-15.md).
+
+- **Mẫu tổng hợp "thật hơn" chưa chắc giúp client.** Gaussian copula (biên histogram gộp) nâng teacher đồng ý trên mẫu 0,48 → 0,67 suốt
+  15 epoch nhưng private chỉ +0,003 (vòng 18 sa); gấp đôi số mẫu/bước (g512) +0,001, KL ×2 0,000. Đo dự báo bằng chính utility
+  (F1 client) trên run ngắn, không suy từ độ khớp phân phối hay probe phủ input.
+- **Teacher snapshot cố định (frz) khuếch đại nhiễu kênh nén.** Proxy gộp qua q2 dao động mạnh (DML thường: 0,48–0,78 giữa epoch) nhưng
+  private DML vẫn ổn vì teacher là proxy local được train lại liên tục. Với frz, private học thẳng từ snapshot gộp bị lượng tử ⇒
+  q2_frz_gkd private head 0,675 (ep6) → 0,577 (ep15), proxy 0,479 (−0,354 vs gkd dense). Dùng frz thì snapshot phải gần dense;
+  kênh nén phải kiểm riêng với frz: **q4 (int4) qua** (Δ +0,001, byte proxy ÷7,6), q2 không.
+  [Kết quả vòng 16–18](docs/methods/full-drift/results.md).
 
 - Sketch-space error feedback không mặc định co: collision có thể khuếch đại residual và parameter rồi BN overflow.
   Đo decoded/residual norm, tính co và full-epoch stability; không suy toàn họ FetchSGD/EF bị bác bỏ từ adaptation này.
@@ -103,6 +165,15 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 - Hybrid tốt hơn thành phần mạnh nhất nhưng interaction âm; cộng hai cơ chế không có nghĩa synergy.
   Full dữ liệu sớm có tín hiệu tốt, chưa r50. Gaussian đã giảm metric qua một số round dù còn lợi so own;
   thêm epoch không tự tăng performance. [Hybrid full](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md).
+- Máy local ngủ (WSL) làm poll nền dừng, Kaggle vẫn chạy. Sau khi thức đừng để watcher mở collector cho mọi session cùng
+  lúc (mỗi audit đỉnh ~4 GB): chia nhóm session rời nhau cho 2–4 tiến trình `collect_fd.py --only`, pull ~20 s/session.
+- **Harness Kaggle bị giới hạn bởi CPU, không phải GPU** (T4 ~12 ms compute vs 26–27 ms/bước gpool, 4 vCPU cho 2 arm).
+  Mỗi `.item()`/`get_scale()`/`assert torch.isfinite(t)`/index-put bằng tensor là một lần đồng bộ host; deterministic mode
+  mặc định lấp NaN mọi `empty` (~500 kernel/bước). Gỡ chúng: −20 %/bước, bit-exact. Mọi tối ưu harness phải kiểm bit-exact
+  với source trước (test local) để đối chứng đã audit còn dùng được.
+- Tiến trình khởi động độc lập không dùng `Connection.send` cho tensor: ForkingPickler của torch chia sẻ tensor qua
+  resource_sharer với authkey của tiến trình gốc ⇒ AuthenticationError; dùng `pickle.dumps` + `send_bytes`.
+  Đừng chạy job nặng khác cùng lúc với test nhiều tiến trình (guard RAM dừng test, không phải lỗi code).
 - Cùng số model/SGD step không bảo đảm cùng walltime: dummy/eval-BN có overhead thật.
   Không dùng dummy-inflated denominator để gọi phương pháp rẻ; chưa profiling thì không chốt nguyên nhân duy nhất.
 
@@ -119,8 +190,8 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 - **"Proxy hơn private" chỉ đúng khi mọi client đánh giá trên cùng test toàn cục.** Đánh trọng số lại confusion theo
   prior nhãn của từng client (full DML r23): private head local macro F1 0,677 ≈ proxy 0,675, local accuracy 0,818 so 0,771;
   gp tốt cho global nhưng kém cho local. Trước khi so phương pháp "cho client", chốt định nghĩa metric (global/local)
-  và báo client tệ nhất. Mới mô phỏng lệch nhãn, chưa lệch receiver. [Bảng](docs/research/client-model-directions-2026-10-16.md).
-  gp có thể làm hỏng client tệ nhất ở góc local: sub16_q4 private gp local acc min 0,288 (head 0,673). Góc local dùng head.
+  và báo client tệ nhất. Mới mô phỏng lệch nhãn, chưa lệch receiver. [Bảng](docs/archive/research/client-model-directions-2026-10-16.md).
+  gp có thể làm hỏng client tệ nhất ở góc local: m4b ep15 s43 private gp local acc min 0,642 (head 0,776). Góc local dùng head.
 - Khóa gp/cổng/seed/controls trước chạy, so cùng round và một yếu tố mỗi arm. Mean-client metrics khác pooled confusion;
   lưu predictions, per-client CM, đủ10metric/per-class/benign để kiểm lại.
 - CrossClientRank CE-r2: residual/delta macro cực lớn có thể do class delta gần0 và fit/test extrapolation;
@@ -137,6 +208,9 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   [repro và recovery](docs/operations/notebook-errors.md) giữ nguyên weights/source, không cần SGD lại.
 - Lợi mutual learning khi chưa nhận snapshot RSU không được gọi là lợi FL. Tính đủ bootstrap/prior/header/ACK/retransmission;
   deadline-cut trả phí nhưng không commit, chỉ activate snapshot coherent. [Contact](docs/archive/methods/contact-fragmentation/README.md).
+- **"FL" phụ thuộc giả định SecAgg khi chia sẻ thống kê lớp.** Bootstrap Gaussian gửi Σx, Σxxᵀ theo lớp; `SecureSum` chỉ giả lập. Có ô client×lớp
+  chỉ 4–10 dòng ⇒ không SecAgg thật là gần lộ record. q4/q2 scale riêng từng client không cộng được dưới SecAgg. Mọi kênh mới phải ghi:
+  ai thấy gì nếu không có SecAgg, ô nhỏ nhất, có cộng tính được không. [Kiểm toán](docs/research/federated-information-flow.md).
 - R1 giới hạn giao tiếp và R2 khác kiến trúc phải kiểm riêng; unlimited-channel/DAGSNet-only PASS không giải quyết cả hai.
   Synthetic exception không tự là secure aggregation hoặc DP.
 

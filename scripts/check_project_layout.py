@@ -22,9 +22,9 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--output',default='docs/operations/layout-verification-2026-10-14.json')
+    parser.add_argument('--output',default='docs/archive/operations/layout-verification-2026-10-14.json')
     args=parser.parse_args()
-    migration=json.loads((ROOT/'docs/operations/layout-migration-2026-10-14.json').read_text())
+    migration=json.loads((ROOT/'docs/archive/operations/layout-migration-2026-10-14.json').read_text())
     config=configparser.ConfigParser();config.read(ROOT/'.dvc/config')
     remote=Path(config['\'remote "gdrive"\'']['url'])/'files/md5'
     dvc=[];remote_prefixes=[]
@@ -41,7 +41,7 @@ def main():
             dvc.append(dict(metadata=str(metadata.relative_to(ROOT)),object=after['md5'],identity_preserved=True,remote_manifest_verified=True))
     for old,digest in migration['protected_sha256'].items():assert sha(ROOT/current_path(old))==digest, ('frozen bytes drift',old)
     packages=json.loads((ROOT/'docs/operations/package-layout-2026-10-14.json').read_text())
-    assert {p.name:sha(p) for p in (ROOT/'mh').glob('*.py')}==packages['legacy_source_manifest']
+    assert {p.name:sha(p) for p in (ROOT/'.compat/mh').glob('*.py')}==packages['legacy_source_manifest']
     for row in packages['modules']:
         canonical=current_path(row['path'])
         assert (ROOT/row['old_path']).resolve()==(ROOT/canonical).resolve()

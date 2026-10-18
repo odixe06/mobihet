@@ -8,7 +8,7 @@ from pathlib import Path
 import nbformat
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-BASE=ROOT/'papers/full-validation'
+BASE=ROOT/'.compat/papers/full-validation'
 
 
 def main():

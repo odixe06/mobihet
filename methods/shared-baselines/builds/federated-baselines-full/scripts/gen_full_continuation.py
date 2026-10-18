@@ -16,7 +16,7 @@ from scripts.kaggle.gen_full_validation import PLAN, DATASET
 
 
 def main():
-    base = ROOT / 'papers/full-validation'
+    base = ROOT / '.compat/papers/full-validation'
     runtime = json.loads((ROOT / 'knowledge/runtime.json').read_text())
     key = netrc.netrc().authenticators('api.wandb.ai')[2]
     helper = (ROOT / current_path('scripts/kaggle/full_resume.py')).read_text()
@@ -32,7 +32,7 @@ def main():
         for arm in methods:
             identity = json.loads((base / 'kaggle' / parent / 'runs' / f'{arm}_s42/config.json').read_text())
             expected[arm] = dict(fingerprint=identity['fingerprint'], source=identity['source'], fixture=identity['fixture'], last_round=3)
-        code = [n for n in source_manifest if n in {p.name for p in (ROOT / 'mh').glob('*.py')}]
+        code = [n for n in source_manifest if n in {p.name for p in (ROOT / '.compat/mh').glob('*.py')}]
         project = [p.name for p in (base / 'proj').glob('*.py')]
         rid = f'full{index}-s42-20261013-cont01-v1'
         public = base / 'notebook' / rid

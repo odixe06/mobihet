@@ -1,5 +1,5 @@
 """Local code test (pilot fixture, 1024 rows/client, eager): fd_dml/fd_gaussian epoch == frozen full_run epoch bit-exact;
-sub4 with one part == control; every arm runs a 2-epoch smoke. Run via scripts/run_local_guarded.py.
+every arm runs a 2-epoch smoke. Run via scripts/run_local_guarded.py.
 
     python methods/full-drift/builds/fd-probe/scripts/test_fd_local.py --work <scratch> --part checks|smoke [--manifest m.json]
 """
@@ -15,34 +15,102 @@ ROOT = BASE.parents[3]
 FULL = ROOT / 'methods/shared-baselines/builds/federated-baselines-full/source/proj'
 
 
-def one_epoch(fd, arm, use_frozen, parts=None, batch=512):
+def one_epoch(fd, arm, use_frozen, batch=512, epochs=1, hook=None):
     import torch
     from full_run import Run as FullRun
-    a = SimpleNamespace(arm=arm, seed=42, rounds=50, batch=batch, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64, aux_weight=1.,
+    aux = 128 if 'g512' in arm.split('_') else 64   # round 18 g512: main() doubles the smoke aux_batch
+    a = SimpleNamespace(arm=arm, seed=42, rounds=50, batch=batch, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=aux, aux_weight=1.,
                         backend='eager', smoke=True, wandb_online=False)
     R = fd.Run(a)
-    if parts: R.parts = parts
-    m = fd.Method(R); m.prior(); step = 0
-    for part in range(R.parts):
-        step += 1; m.start_round()
+    if hook: hook(R)
+    m = fd.Method(R); m.prior()
+    for r in range(1, epochs + 1):
+        m.start_round()
         for k in range(R.K):
-            if m.kd: m.prepare(k, step)
-            if use_frozen: FullRun.private_epoch(R, m, k, 1)
-            else: R.private_epoch(m, k, 1, part)
+            if m.kd: m.prepare(k, r)
+            if use_frozen: FullRun.private_epoch(R, m, k, r)
+            else: R.private_epoch(m, k, r)
             if m.kd:
-                packet, _ = m.proxy_epoch(k, step)
+                packet, _ = m.proxy_epoch(k, r)
                 if packet is not None: m.aggregate_sum.add(k, packet)
-        m.aggregate(step)
+        m.aggregate(r)
     state = [v.clone() for model in R.priv for v in model.state_dict().values()]
-    if m.kd: state += [v.clone() for v in m.global_state.values()]
+    if m.kd: state += [v.clone() for p in (m.proxy if m.own else [m.global_state]) for v in (p.state_dict() if m.own else p).values()]
     return state
+
+
+def round8(fd, work):
+    """Round 8 hooks: old arms bit-exact vs the pushed round-5 fd.py (KD diagnostics/probe have no side effects); kdcap with an
+    infinite cap == m4b; frz epoch 1 == wu epoch 1 (no private KD before a snapshot); FedDyn server/client algebra; JS/two views."""
+    import importlib.util
+    import torch
+    stage = BASE / 'artifacts/input/fd-src-20261015-r5/fd.py'
+    spec = importlib.util.spec_from_file_location('fd_r5', stage); old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for arm in ('fd_dml_m4b', 'fd_dml_swappos', 'fd_gaussian_m4b'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs round-5 fd.py, 2 epochs:', arm, flush=True)
+    m4b = one_epoch(fd, 'fd_dml_m4b', False, batch=128, epochs=2)
+    cap, fd.KD_CAP = fd.KD_CAP, float('inf')
+    assert eq(one_epoch(fd, 'fd_dml_m4b_kdcap', False, batch=128, epochs=2), m4b); fd.KD_CAP = cap
+    kdcap = one_epoch(fd, 'fd_dml_m4b_kdcap', False, batch=128, epochs=2); assert not eq(kdcap, m4b)
+    print('kdcap: infinite cap == m4b; cap 1 differs', flush=True)
+    wu1, frz1 = one_epoch(fd, 'fd_dml_m4b_kdcap_wu', False, batch=128), one_epoch(fd, 'fd_dml_m4b_kdcap_frz', False, batch=128)
+    assert eq(wu1, frz1) and not eq(wu1, one_epoch(fd, 'fd_dml_m4b_kdcap', False, batch=128))
+    wu2, frz2 = (one_epoch(fd, a, False, batch=128, epochs=2) for a in ('fd_dml_m4b_kdcap_wu', 'fd_dml_m4b_kdcap_frz'))
+    assert not eq(wu2, frz2); print('wu/frz: epoch 1 identical (private KD off before a snapshot), epoch 2 differs', flush=True)
+    # own: proxies stay local (never averaged), private differs from the pooled arm
+    own = one_epoch(fd, 'fd_dml_m4b_own', False, batch=128); assert not eq(own[:len(own) // 2], m4b[:len(own) // 2])
+    print('own: one epoch runs with 20 local proxies', flush=True)
+    # FedDyn server: w1 = m1 + (m1 - w0); w2 = m2 - h2/alpha with h2 = -alpha (m1 - w0) - alpha (m2 - w1)
+    a = SimpleNamespace(arm='fd_dml_m4b_dyn', seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64,
+                        aux_weight=1., backend='eager', smoke=True, wandb_online=False)
+    R = fd.Run(a); m = fd.Method(R); m.prior(); names = [n for n, _ in m.proxy[0].named_parameters()]
+    w0 = {n: m.global_state[n].clone() for n in names}; g = torch.Generator(device=R.dev).manual_seed(0)
+    def push(step, base):
+        m.start_round(); means = {n: torch.zeros_like(base[n]) for n in names}
+        for k in range(R.K):
+            m.prepare(k, step)
+            with torch.no_grad():
+                for n, p in m.proxy[k].named_parameters():
+                    d = 1e-2 * torch.randn(p.shape, device=R.dev, generator=g); p.add_(d); means[n] += (base[n] + d) / R.K
+            m.logs[k] = {}; packet, _ = m.proxy_epoch(k, step); m.aggregate_sum.add(k, packet)
+        m.aggregate(step); return means
+    m1 = push(1, w0); w1 = {n: m.global_state[n].clone() for n in names}
+    err1 = max(float((w1[n] - (2 * m1[n] - w0[n])).abs().max()) for n in names)
+    m2 = push(2, w1); err2 = max(float((m.global_state[n] - (m2[n] + (m1[n] - w0[n]) + (m2[n] - w1[n]))).abs().max()) for n in names)
+    assert err1 < 1e-5 and err2 < 1e-5, (err1, err2); print('FedDyn server algebra PASS', err1, err2, flush=True)
+    # FedDyn client: a_k = -alpha (w_k - w_t) after one local epoch from a_k = 0
+    R = fd.Run(a); m = fd.Method(R); m.prior(); m.start_round(); m.prepare(0, 1); R.private_epoch(m, 0, 1)
+    errs = [float((ak + fd.DYN_ALPHA * (p.float() - m.global_state[n].float())).abs().max())
+            for ak, (n, p) in zip(m.dyn_a[0], m.proxy[0].named_parameters())]
+    assert max(errs) < 1e-7 and any(float(x.abs().max()) > 0 for x in m.dyn_a[0]); print('FedDyn client a_k PASS', flush=True)
+    dyn = one_epoch(fd, 'fd_dml_m4b_dyn', False, batch=128, epochs=2)
+    assert not eq(dyn, m4b) and all(torch.isfinite(v.float()).all() for v in dyn); print('dyn 2 epochs finite, differs', flush=True)
+    # JS and the two views
+    za, zb = torch.randn(32, 16), torch.randn(32, 16); p, q = za.softmax(1), zb.softmax(1); mm = (p + q) / 2
+    ref = 0.5 * ((p * (p / mm).log()).sum(1) + (q * (q / mm).log()).sum(1)).mean()
+    assert abs(float(fd.js(za, zb)) - float(ref)) < 1e-6 and float(fd.js(za, za)) < 1e-7
+    R = fd.Run(SimpleNamespace(arm='fd_dml_swappos_cons', seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64,
+                               aux_weight=1., backend='eager', smoke=True, wandb_online=False))
+    index = torch.arange(64, device=R.dev); x = R.X[0][index].float()
+    va, vb = R.two_views(x, index, 0, torch.Generator(device=R.dev).manual_seed(1))
+    other = [c for c in range(x.shape[1]) if c not in R.block.tolist()]
+    assert torch.equal(va, R.mask(x)) and torch.equal(va[:, other], vb[:, other]) and not torch.equal(va, vb) and (va[:, R.zero] == 0).all()
+    cons, cons0 = (one_epoch(fd, arm, False, batch=128) for arm in ('fd_dml_swappos_cons', 'fd_dml_swappos_cons0'))
+    assert not eq(cons, cons0); print('JS == reference; view b differs only in the 9-feature block; cons != cons0', flush=True)
+    for arm in ('fd_dml_m4b_kdcap', 'fd_dml_m4b_kdcap_wu', 'fd_dml_m4b_kdcap_frz', 'fd_dml_m4b_own', 'fd_gaussian_m4b_own',
+                'fd_dml_m4b_dyn', 'fd_dml_swappos_cons', 'fd_dml_swappos_cons0'):
+        state = one_epoch(fd, arm, False, batch=128); assert all(torch.isfinite(v.float()).all() for v in state)
+    print('round 8: every new arm one epoch finite', flush=True)
 
 
 def main():
     p = argparse.ArgumentParser(); p.add_argument('--work', required=True)
     p.add_argument('--manifest', help='data_manifest.json pulled from a Kaggle setup: exercises the production gate')
     # Owner RAM limit: run 'checks' and 'smoke' as separate invocations so only one CUDA process is alive at a time.
-    p.add_argument('--part', choices=('checks', 'smoke'), required=True)
+    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'fast', 'parent', 'par'), required=True)
+    p.add_argument('--arms', help='smoke only these comma-separated arms')
     a = p.parse_args()
     work = Path(a.work); proj = work / 'proj'
     if proj.exists(): shutil.rmtree(proj)
@@ -54,9 +122,31 @@ def main():
         import ast
         tree = ast.parse((proj / 'fd.py').read_text())
         arms = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign) and n.targets[0].id == 'ARMS')
-        return smoke(arms, proj, work)
+        return smoke([x for x in arms if not a.arms or x in a.arms.split(',')], proj, work)
+    if a.part == 'par':
+        return parallel(proj, work, a.arms.split(',') if a.arms else None)
+    if a.part == 'parent':
+        return parent(proj, work)
     import torch
     import fd
+    if a.part == 'r8':
+        return round8(fd, work)
+    if a.part == 'r9':
+        return round9(fd, work)
+    if a.part == 'r11':
+        return round11(fd, work)
+    if a.part == 'r12':
+        return round12(fd, work)
+    if a.part == 'r13':
+        return round13(fd, work)
+    if a.part == 'r15':
+        return round15(fd, work)
+    if a.part == 'r17':
+        return round17(fd, work)
+    if a.part == 'r18':
+        return round18(fd, work)
+    if a.part == 'fast':
+        return fast(fd, proj, work)
     if a.manifest:
         import json
         manifest = json.loads(Path(a.manifest).read_text()); n = [sum(manifest['counts'][f'train_{k}']) for k in range(20)]
@@ -70,14 +160,27 @@ def main():
         ours, frozen = one_epoch(fd, arm, False), one_epoch(fd, arm, True)
         assert len(ours) == len(frozen) and all(torch.equal(x, y) for x, y in zip(ours, frozen)), arm
         print('BIT-EXACT vs frozen full_run epoch:', arm, len(ours), 'tensors', flush=True)
-    # smoke has 1024 rows/client: batch128 gives 8 batches so every quarter is non-empty (full: ~4,000 batches)
-    ctl, sub1 = one_epoch(fd, 'fd_dml', False, batch=128), one_epoch(fd, 'fd_dml_sub4', False, parts=1, batch=128)
-    assert all(torch.equal(x, y) for x, y in zip(ctl, sub1)); print('sub4 with one part == control', flush=True)
-    sub4 = one_epoch(fd, 'fd_dml_sub4', False, batch=128)
-    assert any(not torch.equal(x, y) for x, y in zip(ctl, sub4)); print('sub4 four parts differs from control', flush=True)
-    dense, q4 = one_epoch(fd, 'fd_dml_sub4', False, batch=128), one_epoch(fd, 'fd_dml_sub4_q4', False, batch=128)
-    rel = max(float((x.float() - y.float()).norm() / y.float().norm().clamp_min(1e-12)) for x, y in zip(q4, dense) if y.is_floating_point())
-    assert 0 < rel < .5, rel; print('sub4_q4 differs from dense sub4 but stays close: max rel', round(rel, 4), flush=True)
+    ctl, q4 = one_epoch(fd, 'fd_dml', False, batch=128), one_epoch(fd, 'fd_dml_q4', False, batch=128)
+    rel = max(float((x.float() - y.float()).norm() / y.float().norm().clamp_min(1e-12)) for x, y in zip(q4, ctl) if y.is_floating_point())
+    assert 0 < rel < .5, rel; print('q4 differs from dense but stays close: max rel', round(rel, 4), flush=True)
+    # QPacket: decode == quantize() tensors; corrupted bytes refused; real bytes vs the old counter (32 + payload)
+    R = fd.Run(SimpleNamespace(arm='fd_dml_m4b_q4', seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64,
+                               aux_weight=1., backend='eager', smoke=True, wandb_online=False))
+    m = fd.Method(R); m.prior(); g = torch.Generator(device=R.dev).manual_seed(5); entries, expect, counter = {}, {}, 32
+    for name, v in m.proxy[0].state_dict().items():
+        if not v.is_floating_point(): entries[name] = expect[name] = v; counter += 8 * v.numel()
+        elif fd.is_buffer(name): entries[name] = v; expect[name] = v.half().float(); counter += 2 * v.numel()
+        else:
+            wire, q, scale, n = fd.quantize(0.01 * torch.randn(v.shape, device=R.dev, generator=g), 4, g)
+            entries[name] = (q, scale); expect[name] = wire; counter += n
+    packet = m.qpacket.encode(entries, 3, 4); got = m.qpacket.decode(packet, R.dev, 3)
+    assert got.keys() == expect.keys() and all(torch.equal(got[n], expect[n]) for n in expect)
+    bad = bytearray(packet); bad[-1] ^= 1
+    for wrong, base in ((bytes(bad), 3), (packet, 2)):
+        try: m.qpacket.decode(wrong, R.dev, base)
+        except AssertionError: pass
+        else: raise SystemExit('QPacket accepted a corrupted/stale packet')
+    print('QPacket int4: decode == quantize(); CRC/base checked; bytes', len(packet), 'counter', counter, flush=True)
     zs, zr, y = torch.randn(64, 16), torch.randn(64, 16), torch.randint(0, 16, (64,))
     kl = lambda a, b: float(torch.nn.functional.kl_div(fd.not_true(a, y), fd.not_true(b, y), log_target=True, reduction='batchmean'))
     moved = zr.clone(); moved[torch.arange(64), y] += 9.
@@ -88,7 +191,7 @@ def main():
     print('ntd KL ignores the teacher true-class logit and equals the 15-class KL', flush=True)
     base = dict(seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64, aux_weight=1., backend='eager',
                 smoke=True, wandb_online=False)
-    for arm, n in (('fd_dml_m4b', 13), ('fd_dml_swappos', 4), ('fd_dml_ntd', 0), ('fd_gaussian_m4b', 13), ('fd_dml_m4b_sub4_q4', 13)):
+    for arm, n in (('fd_dml_m4b', 13), ('fd_dml_swappos', 4), ('fd_dml_ntd', 0), ('fd_gaussian_m4b', 13)):
         R = fd.Run(SimpleNamespace(arm=arm, **base)); x = R.mask(R.X[0][:8].float())
         assert len(R.zero) == n and (x[:, R.zero] == 0).all() and R.swap == (arm == 'fd_dml_swappos') and R.ntd == (arm == 'fd_dml_ntd')
         del R
@@ -96,14 +199,441 @@ def main():
     for arm in ('fd_dml_ntd', 'fd_dml_hkd'):
         state = one_epoch(fd, arm, False, batch=128)
         assert any(not torch.equal(x, y) for x, y in zip(ctl, state)); print(arm, 'differs from control', flush=True)
-    for arm in ('fd_dml', 'fd_dml_avgm', 'fd_fedavg', 'fd_dml_sub16_q4', 'fd_fedavg_sub4_prox', 'fd_dml_m4b', 'fd_dml_swappos', 'fd_dml_ntd', 'fd_dml_q4', 'fd_dml_hkd', 'fd_dml_m4b_q4', 'fd_dml_m4b_sub4_q4'):
-        state = one_epoch(fd, arm, False, batch=32 if 'sub16' in arm else 128)
+    for arm in ('fd_dml', 'fd_dml_avgm', 'fd_fedavg', 'fd_dml_m4b', 'fd_dml_swappos', 'fd_dml_ntd', 'fd_dml_q4', 'fd_dml_hkd', 'fd_dml_m4b_q4'):
+        state = one_epoch(fd, arm, False, batch=128)
         assert all(torch.isfinite(v.float()).all() for v in state); print('one epoch finite:', arm, flush=True)
+
+
+def round9(fd, work):
+    """Round 9 hooks leave round-5/8 arms bit-exact; scaf epoch 1 == sgd epoch 1 (c = c_i = 0) then differs; SCAFFOLD Option II
+    client/server control algebra; private-only Gaussian/replay rows (replay labels match the drawn rows)."""
+    import importlib.util
+    import torch
+    load = lambda tag: importlib.util.spec_from_file_location('fd_' + tag, BASE / f'artifacts/input/fd-src-20261015-{tag}/fd.py')
+    olds = {}
+    for tag in ('r5', 'r8'):
+        spec = load(tag); olds[tag] = importlib.util.module_from_spec(spec); spec.loader.exec_module(olds[tag])
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for tag, arm in (('r5', 'fd_dml_m4b'), ('r5', 'fd_gaussian_m4b'), ('r8', 'fd_dml_m4b_kdcap_frz'), ('r8', 'fd_dml_m4b_dyn'),
+                     ('r8', 'fd_dml_swappos_cons'), ('r8', 'fd_dml_m4b_own')):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(olds[tag], arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs', tag, 'fd.py, 2 epochs:', arm, flush=True)
+    sgd1, scaf1 = one_epoch(fd, 'fd_dml_m4b_sgd3', False, batch=128), one_epoch(fd, 'fd_dml_m4b_scaf3', False, batch=128)
+    assert eq(sgd1, scaf1) and not eq(sgd1, one_epoch(fd, 'fd_dml_m4b', False, batch=128))
+    sgd2, scaf2 = (one_epoch(fd, a, False, batch=128, epochs=2) for a in ('fd_dml_m4b_sgd3', 'fd_dml_m4b_scaf3'))
+    assert not eq(sgd2, scaf2) and all(torch.isfinite(v.float()).all() for v in scaf2)
+    print('scaf epoch 1 == sgd epoch 1 (zero controls), epoch 2 differs; SGD proxy differs from AdamW', flush=True)
+    a = SimpleNamespace(arm='fd_dml_m4b_scaf3', seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64,
+                        aux_weight=1., backend='eager', smoke=True, wandb_online=False)
+    R = fd.Run(a); m = fd.Method(R); m.prior(); m.start_round(); names = [n for n, _ in m.proxy[0].named_parameters()]
+    eta = 0.03 * R.lr(1) / R.a.lr; news = []
+    for k in range(R.K):
+        m.prepare(k, 1); log = R.private_epoch(m, k, 1)
+        expect = [(m.global_state[n].float() - p.float()) / (log['applied'] * eta) for n, p in m.proxy[k].named_parameters()]
+        assert max(float((x - y).abs().max()) for x, y in zip(m.scaf_ci[k], expect)) < 1e-4; news.append(m.scaf_ci[k])
+        packet, _ = m.proxy_epoch(k, 1); m.aggregate_sum.add(k, packet)
+    m.aggregate(1)
+    mean = [sum(v[i] for v in news) / R.K for i in range(len(names))]
+    assert max(float((x - y).abs().max()) for x, y in zip(m.scaf_c, mean)) < 1e-5; print('SCAFFOLD Option II client/server PASS', flush=True)
+    R = fd.Run(SimpleNamespace(**dict(vars(a), arm='fd_dml_m4b_replay'))); g = torch.Generator(device=R.dev).manual_seed(3)
+    for k in range(R.K):
+        order, start, count, present = R.by_class[k]; rows, labels = R.replay_rows(k, 64, g)
+        idx = order[start[labels] + 0]; assert set(labels.tolist()) <= set(present.tolist())
+        assert torch.equal(R.Y[k][order[start[labels]]], labels) and (rows[:, R.zero] == 0).all()
+    print('replay: labels cycle over held classes; rows masked', flush=True)
+    states = {arm: one_epoch(fd, arm, False, batch=128) for arm in ('fd_dml_m4b_gpool', 'fd_dml_m4b_gown', 'fd_dml_m4b_replay',
+                                                                   'fd_dml_m4b_sgd1', 'fd_dml_m4b_sgd10', 'fd_dml_m4b_scaf10')}
+    assert all(torch.isfinite(v.float()).all() for s in states.values() for v in s)
+    assert not eq(states['fd_dml_m4b_gpool'], states['fd_dml_m4b_gown']) and not eq(states['fd_dml_m4b_gpool'], states['fd_dml_m4b_replay'])
+    print('round 9: every new arm one epoch finite; gpool != gown != replay', flush=True)
+
+
+def round11(fd, work):
+    """Round 11 hooks leave round-5/8/10 arms bit-exact; kd2 with multiplier 1 == gpool, kdpx with infinite cap == gpool,
+    gw2 with weight 1 == gpool; each differs at its real value."""
+    import importlib.util
+    import torch
+    spec = importlib.util.spec_from_file_location('fd_r10', BASE / 'artifacts/input/fd-src-20261015-r10/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for arm in ('fd_dml_m4b', 'fd_dml_m4b_gpool', 'fd_dml_m4b_kdcap', 'fd_dml_m4b_q4', 'fd_dml_m4b_replay', 'fd_gaussian_m4b',
+                'fd_dml_swappos'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r10 fd.py, 2 epochs:', arm, flush=True)
+    gpool = one_epoch(fd, 'fd_dml_m4b_gpool', False, batch=128, epochs=2)
+    up, fd.KD_UP = fd.KD_UP, 1.0
+    assert eq(one_epoch(fd, 'fd_dml_m4b_gpool_kd2', False, batch=128, epochs=2), gpool); fd.KD_UP = up
+    assert not eq(one_epoch(fd, 'fd_dml_m4b_gpool_kd2', False, batch=128, epochs=2), gpool)
+    cap, fd.KD_CAP = fd.KD_CAP, float('inf')
+    assert eq(one_epoch(fd, 'fd_dml_m4b_gpool_kdpx', False, batch=128, epochs=2), gpool); fd.KD_CAP = cap
+    assert not eq(one_epoch(fd, 'fd_dml_m4b_gpool_kdpx', False, batch=128, epochs=2), gpool)
+    gw, fd.GW2 = fd.GW2, 1.0
+    assert eq(one_epoch(fd, 'fd_dml_m4b_gpool_gw2', False, batch=128, epochs=2), gpool); fd.GW2 = gw
+    assert not eq(one_epoch(fd, 'fd_dml_m4b_gpool_gw2', False, batch=128, epochs=2), gpool)
+    print('kd2 (x1) == gpool, kdpx (cap inf) == gpool, gw2 (x1) == gpool; all differ at their real values', flush=True)
+
+
+def round12(fd, work):
+    """Source after round 11 (sync-free loop, QPacket, --workers) leaves every round-11 arm bit-exact over 2 epochs; gpool_q4:
+    round-1 privates == gpool (quantization acts only after local training), proxy differs, real QPacket bytes up/down."""
+    import importlib.util
+    import torch
+    from types import SimpleNamespace as NS
+    spec = importlib.util.spec_from_file_location('fd_r11', BASE / 'artifacts/input/fd-src-20261015-r11/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for arm in ('fd_dml_m4b_gpool', 'fd_dml_m4b_q4', 'fd_dml_m4b_gpool_kd2', 'fd_dml_m4b_gpool_kdpx', 'fd_dml_m4b_gpool_gw2',
+                'fd_dml_m4b', 'fd_gaussian_m4b', 'fd_dml_swappos', 'fd_dml_m4b_replay', 'fd_dml_m4b_own'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r11 fd.py, 2 epochs:', arm, flush=True)
+    gpool, q = (one_epoch(fd, arm, False, batch=128) for arm in ('fd_dml_m4b_gpool', 'fd_dml_m4b_gpool_q4'))
+    private = 20 * len(fd.P.make('dagsnet').state_dict())
+    assert eq(gpool[:private], q[:private]) and not eq(gpool[private:], q[private:])
+    q2 = one_epoch(fd, 'fd_dml_m4b_gpool_q4', False, batch=128, epochs=2)
+    assert all(torch.isfinite(v.float()).all() for v in q2) and not eq(q2, one_epoch(fd, 'fd_dml_m4b_q4', False, batch=128, epochs=2))
+    R = fd.Run(NS(arm='fd_dml_m4b_gpool_q4', seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64,
+                  aux_weight=1., backend='eager', smoke=True, wandb_online=False))
+    m = fd.Method(R); m.prior(); m.start_round()
+    for k in range(R.K):
+        m.prepare(k, 1); R.private_epoch(m, k, 1); m.proxy_epoch(k, 1)
+    m.aggregate(1)
+    rows = [b for b in R.bytes if b[0] == 1 and b[3] == 'proxy_quantized']
+    assert len(rows) == 2 * R.K and {b[4] for b in rows} == {208268} and len(m.latest_packet) == 208268
+    print('gpool_q4: round-1 privates == gpool, proxy differs, 2 epochs finite; QPacket 208268 B up and down per client', flush=True)
+
+
+def round15(fd, work):
+    """Round 15 hooks leave round-13 arms bit-exact over 2 epochs; gpool_frz_gkd epoch 1 == gpool_frz (no snapshot yet: hard CE),
+    epoch 2 differs and stays finite; frz arms train 2 finite epochs with the teacher compiled path untouched (eager here)."""
+    import importlib.util
+    import torch
+    spec = importlib.util.spec_from_file_location('fd_r13', BASE / 'artifacts/input/fd-src-20261015-r13/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for arm in ('fd_dml_m4b_gpool', 'fd_dml_m4b', 'fd_dml_m4b_gpool_rej', 'fd_dml_m4b_gpool_p1', 'fd_dml_m4b_kdcap_frz',
+                'fd_dml_m4b_gpool_q2', 'fd_dml_m4b_gpool_fill'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r13 fd.py, 2 epochs:', arm, flush=True)
+    frz1, frz2 = (one_epoch(fd, 'fd_dml_m4b_gpool_frz', False, batch=128, epochs=e) for e in (1, 2))
+    gkd1, gkd2 = (one_epoch(fd, 'fd_dml_m4b_gpool_frz_gkd', False, batch=128, epochs=e) for e in (1, 2))
+    assert eq(gkd1, frz1) and not eq(gkd2, frz2) and all(torch.isfinite(v.float()).all() for v in gkd2)
+    print('gkd: epoch 1 == gpool_frz (hard CE before the first snapshot), epoch 2 differs, finite', flush=True)
+    m4b_frz = one_epoch(fd, 'fd_dml_m4b_frz', False, batch=128, epochs=2)
+    assert all(torch.isfinite(v.float()).all() for v in m4b_frz) and not eq(m4b_frz, one_epoch(fd, 'fd_dml_m4b', False, batch=128, epochs=2))
+    print('fd_dml_m4b_frz: 2 finite epochs, differs from fd_dml_m4b', flush=True)
+    q2g = one_epoch(fd, 'fd_dml_m4b_gpool_q2_frz_gkd', False, batch=128, epochs=2)
+    assert all(torch.isfinite(v.float()).all() for v in q2g) and not eq(q2g, gkd2)
+    print('fd_dml_m4b_gpool_q2_frz_gkd: 2 finite epochs, differs from the dense-wire gkd', flush=True)
+
+
+def round17(fd, work):
+    """Round 17 hooks (la token, parent import) leave the round-16 arms bit-exact over 2 epochs; la differs from gkd from epoch 1
+    (its CE acts before any snapshot), kdpx keeps the epoch-1 privates of gkd (no private KD before the first snapshot) but not
+    its proxy; all new arms finite over 2 epochs."""
+    import importlib.util
+    import torch
+    spec = importlib.util.spec_from_file_location('fd_r16', BASE / 'artifacts/input/fd-src-20261015-r16/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    for arm in ('fd_dml_m4b_gpool_frz_gkd', 'fd_dml_m4b_gpool_frz', 'fd_dml_m4b_frz', 'fd_dml_m4b_gpool', 'fd_dml_m4b',
+                'fd_dml_m4b_gpool_kdpx', 'fd_dml_m4b_gpool_q2_frz_gkd', 'fd_dml_m4b_gpool_rej'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r16 fd.py, 2 epochs:', arm, flush=True)
+    private = 20 * len(fd.P.make('dagsnet').state_dict())
+    gkd1 = one_epoch(fd, 'fd_dml_m4b_gpool_frz_gkd', False, batch=128)
+    la1 = one_epoch(fd, 'fd_dml_m4b_gpool_frz_gkd_la', False, batch=128)
+    px1 = one_epoch(fd, 'fd_dml_m4b_gpool_frz_gkd_kdpx', False, batch=128)
+    assert not eq(la1[:private], gkd1[:private]) and eq(px1[:private], gkd1[:private]) and not eq(px1[private:], gkd1[private:])
+    print('epoch 1: la privates differ from gkd; kdpx privates == gkd, proxy differs', flush=True)
+    for arm in ('fd_dml_m4b_gpool_frz_gkd_la', 'fd_dml_m4b_gpool_frz_gkd_kdpx', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx'):
+        assert finite(one_epoch(fd, arm, False, batch=128, epochs=2)), arm
+        print('2 finite epochs:', arm, flush=True)
+
+
+def round18(fd, work):
+    """Round 18 (cop, pce, t2, g512, gk2, q4_frz_gkd; la prior from SecureSum; compile probe on own rows): r17 arms bit-exact over
+    2 epochs (la: reported, its shift now comes from the aggregate); epoch-1 identities of the new tokens; copula bootstrap bytes,
+    pooled histogram mass and sampled marginals; all new arms finite over 2 epochs."""
+    import importlib.util
+    import torch
+    from types import SimpleNamespace as NS
+    spec = importlib.util.spec_from_file_location('fd_r17', BASE / 'artifacts/input/fd-src-20261015-r17/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    for arm in ('fd_dml_m4b_gpool_frz_gkd', 'fd_dml_m4b_gpool_frz', 'fd_dml_m4b_frz', 'fd_dml_m4b_gpool', 'fd_dml_m4b',
+                'fd_dml_m4b_gpool_frz_gkd_kdpx', 'fd_dml_m4b_gpool_q2_frz_gkd', 'fd_dml_m4b_gpool_rej'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r17 fd.py, 2 epochs:', arm, flush=True)
+    la_new, la_old = (one_epoch(m, 'fd_dml_m4b_gpool_frz_gkd_la', False, batch=128, epochs=2) for m in (fd, old))
+    print('la (shift from the SecureSum prior) vs r17 in-process prior: bit-exact', eq(la_new, la_old),
+          'max abs diff', max(float((x.float() - y.float()).abs().max()) for x, y in zip(la_new, la_old)), flush=True)
+    private = 20 * len(fd.P.make('dagsnet').state_dict())
+    gkd1, gkd2 = (one_epoch(fd, 'fd_dml_m4b_gpool_frz_gkd', False, batch=128, epochs=e) for e in (1, 2))
+    for arm, same1, same_private1 in (('t2', True, True), ('gk2', True, True), ('pce', False, True), ('g512', False, False),
+                                      ('cop', False, False)):
+        a1, a2 = (one_epoch(fd, f'fd_dml_m4b_gpool_frz_gkd_{arm}', False, batch=128, epochs=e) for e in (1, 2))
+        assert eq(a1, gkd1) == same1 and eq(a1[:private], gkd1[:private]) == same_private1 and not eq(a2, gkd2) and finite(a2), arm
+        print(f'{arm}: epoch 1 == gkd {same1}, epoch-1 privates == gkd {same_private1}; epoch 2 differs, finite', flush=True)
+    q1, q2 = (one_epoch(fd, 'fd_dml_m4b_gpool_q4_frz_gkd', False, batch=128, epochs=e) for e in (1, 2))
+    assert eq(q1[:private], gkd1[:private]) and not eq(q1[private:], gkd1[private:]) and finite(q2)
+    print('q4_frz_gkd: epoch-1 privates == gkd, proxy differs, 2 finite epochs', flush=True)
+    a = NS(arm='fd_dml_m4b_gpool_frz_gkd_cop', seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64,
+           aux_weight=1., backend='eager', smoke=True, wandb_online=False)
+    R = fd.Run(a); m = fd.Method(R); t = m.copula; d = len(t['keep'])
+    kinds = {}
+    for _, k, way, kind, n in R.bytes: kinds.setdefault((way, kind), set()).add(n)
+    print('copula bytes per client', {k: sorted(v) for k, v in kinds.items()}, flush=True)
+    assert d == 53 and {(w, k) for w, k in kinds} == {('up', 'copula_hist'), ('down', 'copula_hist'), ('up', 'copula_scores'),
+                                                       ('down', 'copula_corr')}
+    assert torch.allclose(t['cum'][:, :, -1], torch.ones(16, d, device=R.dev)) and (t['cum'].diff(dim=2) >= 0).all()
+    g = torch.Generator(device=R.dev).manual_seed(5); labels = torch.arange(16, device=R.dev).repeat_interleave(4000)
+    x = m.draw(labels, g, 0); assert not m.draw_bad and (x[:, R.zero] == 0).all()
+    bins = torch.bucketize(torch.asinh(x[:, t['keep']]).clamp(-fd.COP_LIM, fd.COP_LIM - 1e-6), t['edges'][1:-1])
+    worst = 0.
+    for c in range(16):
+        h = torch.stack([torch.bincount(bins[labels == c][:, j], minlength=fd.COP_BINS) for j in range(d)]).float() / 4000
+        worst = max(worst, float((h.cumsum(1) - t['cum'][c, :, 1:]).abs().max()))
+    assert worst < .03, worst
+    print(f'copula draws: masked features 0, sampled marginal CDF within {worst:.4f} of the pooled histogram CDF', flush=True)
+
+
+def fast(fd, proj, work):
+    """Round 19 --fast (owner 2026-10-18, tolerance class: fused AdamW + nondeterministic cuDNN). Without the flag every path is
+    bit-exact with r18 fd.py over 2 epochs; with it one step per client from the same state changes private logits at rounding level
+    (fused alone < 1e-3, + nondet < 3e-2 of max|logit|) with no argmax flip on decisive rows and the same applied/skipped steps;
+    2 epochs stay finite; compiled main() --fast --workers 2 completes."""
+    import importlib.util
+    import json
+    import os
+    import torch
+    spec = importlib.util.spec_from_file_location('fd_r18', BASE / 'artifacts/input/fd-src-20261015-r18/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    arms = ('fd_dml_m4b_gpool_frz_gkd', 'fd_dml_m4b_gpool_frz', 'fd_dml_m4b', 'fd_dml_m4b_sgd3', 'fd_dml_m4b_gpool_frz_gkd_cop')
+    for arm in arms:
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT without --fast vs r18 fd.py, 2 epochs:', arm, flush=True)
+    def run(arm, fused, nondet, batch, epochs):
+        logs, keep = [], {}
+        def hook(R):
+            R.fused = fused or None; keep['R'] = R; inner = R.private_epoch
+            def counted(m, k, r):
+                log = inner(m, k, r); logs.append((k, r, log['applied'], log['skipped'])); return log
+            R.private_epoch = counted
+        fd.deterministic(nondet)
+        state = one_epoch(fd, arm, False, batch=batch, epochs=epochs, hook=hook); R = keep['R']; logits = []
+        with torch.no_grad():
+            for k, model in enumerate(R.priv):
+                model.eval(); logits.append(model(R.mask(R.X[k][:1024].float()))[0].float()); model.train()
+        return state, logs, logits
+    def compare(a, b):   # max|logit diff| / max|logit| over clients; argmax flips on decisive rows (top-2 gap > 10 x client max diff)
+        rel, flips = 0., 0
+        for x, y in zip(a, b):
+            d = float((x - y).abs().max()); top = y.topk(2, 1).values; decisive = top[:, 0] - top[:, 1] > 10 * d
+            rel = max(rel, d / float(y.abs().max())); flips += int((x.argmax(1) != y.argmax(1))[decisive].sum())
+        return rel, flips
+    # Tensor-wise relative diffs are no criterion: Adam's first update is about +-lr per coordinate, so BN biases with ~0 true
+    # gradient take a rounding-noise sign (local: 0.5-0.7 relative on such biases after one nondet step, logits 0.8 %).
+    for arm in arms[:4]:
+        _, lb, gb = run(arm, False, False, 1024, 1)   # one step per client from the same state (1024 smoke rows, batch 1024)
+        _, lf, gf = run(arm, True, False, 1024, 1); _, lq, gq = run(arm, True, True, 1024, 1)
+        (rf, ff), (rq, fq) = compare(gf, gb), compare(gq, gb)
+        assert lb == lf == lq and rf < 1e-3 and ff == 0 and rq < 3e-2 and fq == 0, (arm, rf, ff, rq, fq, lb, lq)
+        two, l2, _ = run(arm, True, True, 128, 2); assert finite(two), arm
+        print(f'--fast {arm}: one step logits fused {rf:.1e} / fused+nondet {rq:.1e} of max|logit|, 0 decisive argmax flips, same '
+              f'applied/skipped; 2 epochs x 8 steps finite, skipped {sum(x[3] for x in l2)}', flush=True)
+    fd.deterministic(False)
+    base = work / 'fastrun'; arm = 'fd_dml_m4b_gpool_frz_gkd'; out = base / f'{arm}_s42'
+    if out.exists(): shutil.rmtree(out)
+    cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--backend', 'compiled', '--batch', '128',
+           '--out', str(base), '--workers', '2', '--fast']
+    env = {**os.environ, 'PYTHONPATH': f'{proj}:{ROOT}', 'TORCHINDUCTOR_COMPILE_THREADS': '1'}
+    r = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
+    assert r.returncode == 0, (r.stdout[-2000:], r.stderr[-3000:], [(f.name, f.read_text()[-2000:]) for f in out.glob('worker*.log')])
+    cfg, res = (json.loads((out / f).read_text()) for f in ('config.json', 'result.json'))
+    assert cfg['config']['fast'] is True and res['complete'] and len(res['history']) == 2
+    print('compiled main() --fast --workers 2: complete, config fast=True', flush=True)
+
+
+def parent(proj, work):
+    """--parent: epoch 2 continued from the committed epoch 1 of a run made by the round-16 source == epoch 2 of that run
+    (weights, predictions, eval) -- serial and --workers 2 (every worker loads the parent privates)."""
+    import json
+    import os
+    import numpy as np
+    import torch
+    old = work / 'proj16'
+    if old.exists(): shutil.rmtree(old)
+    shutil.copytree(proj, old); shutil.copyfile(BASE / 'artifacts/input/fd-src-20261015-r16/fd.py', old / 'fd.py')
+    arm = 'fd_dml_m4b_gpool_frz_gkd'
+    def run(source, out, *extra):
+        cmd = [sys.executable, str(source / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--backend', 'eager', '--batch', '128',
+               '--out', str(out), *extra]
+        if (out / f'{arm}_s42').exists(): shutil.rmtree(out / f'{arm}_s42')
+        r = subprocess.run(cmd, cwd=ROOT, env={**os.environ, 'PYTHONPATH': f'{source}:{ROOT}'}, capture_output=True, text=True)
+        assert r.returncode == 0, (r.stdout[-2000:], r.stderr[-3000:])
+        return out / f'{arm}_s42'
+    a = run(old, work / 'parent_a')
+    for workers in (1, 2):   # local RAM (3 workers + eager parent run exceed ~9 GB)
+        b = run(proj, work / f'parent_b{workers}', '--parent', str(a), '--parent_round', '1', '--workers', str(workers))
+        assert sorted(p.name for p in (b / 'weights').glob('*.pt')) == ['round_002.pt']
+        wa, wb = (torch.load(d / 'weights/round_002.pt') for d in (a, b))
+        assert all(torch.equal(x, y) for s, t in zip(wa['private'] + wa['proxy'], wb['private'] + wb['proxy'], strict=True)
+                   for x, y in zip(s.values(), t.values(), strict=True))
+        x, y = (np.load(d / 'predictions/round_002.npz') for d in (a, b))
+        assert x.files == y.files and all(np.array_equal(x[k], y[k]) for k in x.files)
+        ra, rb = (json.loads((d / 'complete/round_002.json').read_text()) for d in (a, b))
+        assert ra['eval'] == rb['eval'] and rb['prev_sha'] == ra['prev_sha'] and rb['version'] == ra['version'] == 2
+        cb = json.loads((b / 'config.json').read_text())['config']
+        assert cb['parent']['round'] == 1 and cb['parent']['weights_sha'] == ra['prev_sha']
+        res = json.loads((b / 'result.json').read_text()); assert res['complete'] and len(res['history']) == 1
+        print(f'PARENT r1 -> r2 (r16 parent, new source, workers {workers}) == uninterrupted r16 run: weights, predictions, eval', flush=True)
+    # round 19: --fast continues only a --fast parent (config key 'fast'); a run without the flag is refused by the parent config check
+    fa = run(proj, work / 'parent_fa', '--fast')
+    fb = run(proj, work / 'parent_fb', '--parent', str(fa), '--parent_round', '1', '--fast', '--workers', '2')
+    cb = json.loads((fb / 'config.json').read_text())['config']; res = json.loads((fb / 'result.json').read_text())
+    assert cb['fast'] is True and cb['parent']['round'] == 1 and res['complete'] and len(res['history']) == 1
+    if (work / 'parent_fc' / f'{arm}_s42').exists(): shutil.rmtree(work / 'parent_fc' / f'{arm}_s42')
+    r = subprocess.run([sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--backend', 'eager', '--batch', '128',
+                        '--out', str(work / 'parent_fc'), '--parent', str(fa), '--parent_round', '1'],
+                       cwd=ROOT, env={**os.environ, 'PYTHONPATH': f'{proj}:{ROOT}'}, capture_output=True, text=True)
+    assert r.returncode != 0 and 'parent config differs' in r.stderr, r.stderr[-1500:]
+    print('PARENT --fast: fast parent -> fast continuation (workers 2) completes; non-fast continuation of a fast parent refused', flush=True)
+
+
+def round13(fd, work):
+    """Round 13 hooks leave every round-12 arm bit-exact over 2 epochs; rej/p1/p1self/p1cm epoch 1 == gpool (teacher off before
+    the first aggregated snapshot) and differ at epoch 2 with sane teacher diagnostics; fill water-fills the labels; QPacket
+    2-bit decode == quantize(), corrupted packets refused; gpool_q2 round-1 privates == gpool; gpe prior = (pi + w q) / (1 + w)."""
+    import importlib.util
+    import torch
+    from types import SimpleNamespace as NS
+    spec = importlib.util.spec_from_file_location('fd_r12', BASE / 'artifacts/input/fd-src-20261015-r12/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for arm in ('fd_dml_m4b_gpool', 'fd_dml_m4b_gpool_q4', 'fd_dml_m4b_gpool_kd2', 'fd_dml_m4b_gpool_gw2', 'fd_dml_m4b',
+                'fd_gaussian_m4b', 'fd_dml_swappos', 'fd_dml_m4b_replay', 'fd_dml_m4b_own', 'fd_dml_m4b_gown'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r12 fd.py, 2 epochs:', arm, flush=True)
+    gpool1, gpool2 = (one_epoch(fd, 'fd_dml_m4b_gpool', False, batch=128, epochs=e) for e in (1, 2))
+    for arm in ('fd_dml_m4b_gpool_rej', 'fd_dml_m4b_gpool_p1', 'fd_dml_m4b_gpool_p1self', 'fd_dml_m4b_gpool_p1cm'):
+        assert eq(one_epoch(fd, arm, False, batch=128), gpool1), arm
+        two = one_epoch(fd, arm, False, batch=128, epochs=2)
+        assert not eq(two, gpool2) and all(torch.isfinite(v.float()).all() for v in two), arm
+        print(arm, 'epoch 1 == gpool (no snapshot yet), epoch 2 differs, finite', flush=True)
+    base = dict(seed=42, rounds=50, batch=128, lr=1e-3, lr_min=1e-5, clip=1., aux_batch=64, aux_weight=1., backend='eager',
+                smoke=True, wandb_online=False)
+    for arm in ('fd_dml_m4b_gpool_rej', 'fd_dml_m4b_gpool_p1', 'fd_dml_m4b_gpool_p1cm'):   # epoch-2 teacher diagnostics
+        R = fd.Run(NS(arm=arm, **base)); m = fd.Method(R); m.prior()
+        for r in (1, 2):
+            m.start_round(); logs = []
+            for k in range(R.K):
+                m.prepare(k, r); logs.append(R.private_epoch(m, k, r)); packet, _ = m.proxy_epoch(k, r); m.aggregate_sum.add(k, packet)
+            m.aggregate(r)
+        for log in logs:
+            assert 0 <= log['syn_gate'] <= log['syn_accept'] <= 1 and len(log['synacc']) == 16 and all(0 <= v <= 1 for v in log['synacc'])
+            assert ('syn_kl' in log) == (arm != 'fd_dml_m4b_gpool_rej') and log.get('syn_kl', 0) >= 0
+        print(arm, 'epoch 2 acceptance', round(sum(l['syn_accept'] for l in logs) / R.K, 3), 'gate',
+              round(sum(l['syn_gate'] for l in logs) / R.K, 3), 'kl', logs[0].get('syn_kl'), flush=True)
+    labels = fd.fill_labels(torch.tensor([.5, .3, .1, .05, .05]), 10)
+    assert labels.tolist() == [1, 2, 2, 2, 3, 3, 3, 4, 4, 4], labels.tolist()   # level 0.375: q = 0,.075,.275,.325,.325
+    R = fd.Run(NS(arm='fd_dml_m4b_gpool_fill', **base))
+    for k in range(R.K):
+        pi, n = R.log_pi[k].exp().double(), torch.bincount(R.aux_labels[k], minlength=16).double().cpu()
+        assert int(n.sum()) == 64 and (n[pi.argsort()[-1]] == 0)   # the largest local class gets no Gaussian rows
+        q = n / 64; pe = (pi.cpu() + q) / 2
+        assert torch.allclose(R.log_pe[k].double().cpu(), pe.log(), atol=1e-6)
+    gp = fd.Run(NS(arm='fd_dml_m4b_gpool', **base))
+    assert torch.allclose(gp.log_pe.exp(), (gp.log_pi.exp() + 1 / 16) / 2, atol=1e-6) and gp.rules == ('head', 'gp', 'gpe')
+    assert fd.Run(NS(arm='fd_dml_m4b', **base)).rules == ('head', 'gp')
+    fill = one_epoch(fd, 'fd_dml_m4b_gpool_fill', False, batch=128)
+    assert not eq(fill, gpool1) and all(torch.isfinite(v.float()).all() for v in fill)
+    print('fill: water-filled labels (largest local class 0 rows), differs from gpool; gpe prior checked', flush=True)
+    R = fd.Run(NS(arm='fd_dml_m4b_gpool_q2', **base)); m = fd.Method(R); m.prior(); g = torch.Generator(device=R.dev).manual_seed(5)
+    entries, expect = {}, {}
+    for name, v in m.proxy[0].state_dict().items():
+        if not v.is_floating_point(): entries[name] = expect[name] = v
+        elif fd.is_buffer(name): entries[name] = v; expect[name] = v.half().float()
+        else:
+            wire, q, scale, _ = fd.quantize(0.01 * torch.randn(v.shape, device=R.dev, generator=g), 2, g)
+            assert set(q.unique().tolist()) <= {-1, 0, 1}; entries[name] = (q, scale); expect[name] = wire
+    packet = m.qpacket.encode(entries, 3, 4); got = m.qpacket.decode(packet, R.dev, 3)
+    assert got.keys() == expect.keys() and all(torch.equal(got[n], expect[n]) for n in expect)
+    bad = bytearray(packet); bad[-1] ^= 1
+    for wrong, b in ((bytes(bad), 3), (packet, 2)):
+        try: m.qpacket.decode(wrong, R.dev, b)
+        except AssertionError: pass
+        else: raise SystemExit('QPacket q2 accepted a corrupted/stale packet')
+    q4 = fd.QPacket(m.proxy[0], 'x', 4)
+    try: q4.decode(packet, R.dev, 3)
+    except AssertionError: pass
+    else: raise SystemExit('int4 decoder accepted a 2-bit packet')
+    q2 = one_epoch(fd, 'fd_dml_m4b_gpool_q2', False, batch=128)
+    private = 20 * len(fd.P.make('dagsnet').state_dict())
+    assert eq(gpool1[:private], q2[:private]) and not eq(gpool1[private:], q2[private:])
+    R = fd.Run(NS(arm='fd_dml_m4b_gpool_q2', **base)); m = fd.Method(R); m.prior(); m.start_round()
+    for k in range(R.K):
+        m.prepare(k, 1); R.private_epoch(m, k, 1); m.proxy_epoch(k, 1)
+    m.aggregate(1)
+    rows = [b for b in R.bytes if b[0] == 1 and b[3] == 'proxy_quantized']
+    assert len(rows) == 2 * R.K and len({b[4] for b in rows}) == 1 and rows[0][4] == len(m.latest_packet) == len(packet)
+    two = one_epoch(fd, 'fd_dml_m4b_gpool_q2', False, batch=128, epochs=2); assert all(torch.isfinite(v.float()).all() for v in two)
+    print('QPacket 2-bit: decode == quantize(), CRC/base/bits checked; gpool_q2 round-1 privates == gpool, proxy differs;',
+          len(packet), 'B per direction; q_residual_rel', round(m.diag['q_residual_rel'], 4), flush=True)
+
+
+def parallel(proj, work, only=None):
+    """--workers 3 (every rank on the local GPU) == --workers 1 on a 2-epoch smoke main(): weights, predictions, byte log,
+    history (timings and file hashes aside) and metrics.csv; compiled backend for the headline, eager for the other paths."""
+    import json
+    import os
+    import numpy as np
+    import torch
+    skip = {'sec', 'seconds', 'algorithm_seconds', 'predictions_sha', 'weights_sha', 'prev_sha'}
+    strip = lambda v: ({k: strip(x) for k, x in v.items() if k not in skip} if isinstance(v, dict) else
+                       [strip(x) for x in v] if isinstance(v, list) else v)
+    def same(x, y):
+        if isinstance(x, torch.Tensor): return torch.equal(x, y)
+        if isinstance(x, dict): return x.keys() == y.keys() and all(same(x[k], y[k]) for k in x)
+        if isinstance(x, list): return len(x) == len(y) and all(same(a, b) for a, b in zip(x, y))
+        return x == y
+    for arm, backend in (('fd_dml_m4b_gpool', 'compiled'), ('fd_dml_m4b_q4', 'eager'), ('fd_gaussian_m4b', 'eager'),
+                         ('fd_fedavg', 'eager'), ('fd_dml_m4b_own', 'eager'), ('fd_dml_swappos', 'eager'), ('fd_dml_m4b_replay', 'eager'),
+                         ('fd_dml_m4b_gpool_p1self', 'eager'), ('fd_dml_m4b_gpool_rej', 'eager'), ('fd_dml_m4b_gpool_fill', 'eager'),
+                         ('fd_dml_m4b_gpool_frz_gkd', 'compiled'), ('fd_dml_m4b_frz', 'eager'),
+                         ('fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'compiled'), ('fd_dml_m4b_gpool_frz_gkd_cop', 'compiled'),
+                         ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx', 'compiled')):
+        if only and arm not in only: continue
+        runs = {}
+        for workers in ((1, 2) if {'cop', 'q4'} & set(arm.split('_')) else (1, 3)):   # local RAM: cop (copula per rank), q4+la_kdpx compiled
+            base = work / f'par{workers}'; out = base / f'{arm}_s42'
+            if out.exists(): shutil.rmtree(out)
+            cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--backend', backend, '--batch', '128',
+                   '--out', str(base), '--workers', str(workers)]
+            env = {**os.environ, 'PYTHONPATH': f'{proj}:{ROOT}', 'TORCHINDUCTOR_COMPILE_THREADS': '1'}   # as on Kaggle; RAM
+            r = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
+            assert r.returncode == 0, (arm, workers, r.stdout[-2000:], r.stderr[-3000:],
+                                       [(f.name, f.read_text()[-2000:]) for f in out.glob('worker*.log')])
+            runs[workers] = out
+        a, b = runs[1], runs[max(runs)]
+        for f in sorted((a / 'weights').glob('*.pt')):
+            assert same(torch.load(f), torch.load(b / 'weights' / f.name)), (arm, f.name)
+        for f in sorted((a / 'predictions').glob('*.npz')):
+            x, y = np.load(f), np.load(b / 'predictions' / f.name)
+            assert x.files == y.files and all(np.array_equal(x[k], y[k]) for k in x.files), (arm, f.name)
+        ra, rb = (json.loads((d / 'result.json').read_text()) for d in (a, b))
+        assert ra['bytes'] == rb['bytes'] and strip(ra['history']) == strip(rb['history']) and ra['complete'] and rb['complete'], arm
+        assert (a / 'metrics.csv').read_text() == (b / 'metrics.csv').read_text(), arm
+        print('PARALLEL == SERIAL (weights, predictions, bytes, history, metrics):', arm, backend, flush=True)
 
 
 def smoke(arms, proj, work):
     for arm in arms:
-        cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '43', '--smoke', '--backend', 'eager', '--batch', '32' if 'sub16' in arm else '128',
+        cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '43', '--smoke', '--backend', 'eager',
+               '--batch', '128',
                '--out', str(work / 'runs')]
         out = work / 'runs' / f'{arm}_s43'
         if out.exists(): shutil.rmtree(out)

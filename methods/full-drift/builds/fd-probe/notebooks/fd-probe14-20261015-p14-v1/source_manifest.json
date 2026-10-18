@@ -1,0 +1,13 @@
+{
+  "inputs": "8ed39ecdf1f14f7e6ba60222c0f73b0c5448bcd9ae73de2ef79f4db84cc66cda",
+  "weights": {
+    "m4b_s42.pt": "b1d8a015730f7f1c3bd057e980e16656a088f0c61676baeb879486db8171672b",
+    "gpool_s42.pt": "81a38b8c670a59d721fbf359177dde323f5fbd32e73c405199a089756962a31e",
+    "m4b_s43.pt": "c3eb77c3bf6b35533869726a84cfa614a1f8cb4c86230fb204e0128cc0657d30"
+  },
+  "expected": {
+    "m4b_s42": 0.7322972117011854,
+    "gpool_s42": 0.7341915459506644,
+    "m4b_s43": 0.7262675517548317
+  }
+}

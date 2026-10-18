@@ -50,9 +50,9 @@ def collect(seed,attempt='v1'):
             # result.json/metrics.csv are rewritten by the resumed driver; committed round/config/payload files stay identical.
             if not rel.endswith(('/result.json','/metrics.csv')):assert sha(dest/rel)==digest,rel
     inputs=json.loads((folder/'input_manifest.json').read_text());warm_proof=json.loads((folder/'warm-proof.json').read_text())
-    fx=ROOT/'papers/pilot/fixture';fixture=sha(fx/'manifest.json');assert sha(dest/'source/fixture_manifest.json')==fixture
+    fx=ROOT/'.compat/papers/pilot/fixture';fixture=sha(fx/'manifest.json');assert sha(dest/'source/fixture_manifest.json')==fixture
     audits=[]
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         for run in sorted((dest/'runs').glob(f'cr_*_s{seed}')):
             if not list((run/'complete').glob('round_*.json')):continue

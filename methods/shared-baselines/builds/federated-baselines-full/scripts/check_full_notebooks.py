@@ -55,5 +55,5 @@ def check(folder,deadline=False):
 
 
 if __name__=='__main__':
-    for folder in sorted((ROOT/'papers/full-validation/notebook').iterdir()):
+    for folder in sorted((ROOT/'.compat/papers/full-validation/notebook').iterdir()):
         for deadline in (False,True):check(folder,deadline)

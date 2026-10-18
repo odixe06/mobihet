@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[2]
 parser=argparse.ArgumentParser();parser.add_argument('--kernel',default='');parser.add_argument('--output')
 args=parser.parse_args()
 api=wandb.Api(timeout=30);entity=api.default_entity
-fixture=hashlib.sha256((ROOT/'papers/pilot/fixture/manifest.json').read_bytes()).hexdigest()
+fixture=hashlib.sha256((ROOT/'.compat/papers/pilot/fixture/manifest.json').read_bytes()).hexdigest()
 rows=[]
 for family,build,project in [('class-tail-risk','class-tail-pilot','mobihet-class-tail'),
                             ('proxy-countsketch-repair','contractive-ef-pilot','mobihet-contract-ef')]:

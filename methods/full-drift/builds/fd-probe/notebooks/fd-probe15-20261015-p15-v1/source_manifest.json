@@ -1,0 +1,9 @@
+{
+  "inputs": "42b8c45ef2202983b500f99e165bbd821cd08a87c9c51cb824acf60d52240eec",
+  "weights": {
+    "m4b_s42.pt": "b1d8a015730f7f1c3bd057e980e16656a088f0c61676baeb879486db8171672b"
+  },
+  "expected": {
+    "m4b_s42": 0.7322972117011854
+  }
+}

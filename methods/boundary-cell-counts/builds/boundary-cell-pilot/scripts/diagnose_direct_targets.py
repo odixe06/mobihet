@@ -15,7 +15,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
 def main():
-    fx=ROOT/'papers/pilot/fixture';fixture=json.loads((fx/'manifest.json').read_text())
+    fx=ROOT/'.compat/papers/pilot/fixture';fixture=json.loads((fx/'manifest.json').read_text())
     for name in ('group_X.npy','group_y.npy'):assert sha(fx/name)==fixture['files'][name]
     x=np.load(fx/'group_X.npy',mmap_mode='r');y=np.load(fx/'group_y.npy')
     rng=np.random.default_rng(1729)

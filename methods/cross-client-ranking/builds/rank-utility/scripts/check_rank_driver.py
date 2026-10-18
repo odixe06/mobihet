@@ -22,7 +22,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix='rank-driver-fixture-') as tmp:
         runtime=Path(tmp);fx=runtime/'papers/pilot/fixture';proj=runtime/'proj'
         for p in (fx,proj,runtime/'mh',runtime/'knowledge',runtime/'stub'):p.mkdir(parents=True)
-        for p in (ROOT/'mh').glob('*.py'):shutil.copyfile(p,runtime/'mh'/p.name)
+        for p in (ROOT/'.compat/mh').glob('*.py'):shutil.copyfile(p,runtime/'mh'/p.name)
         for p in (BASE/'source/proj').glob('*.py'):shutil.copyfile(p,proj/p.name)
         shutil.copyfile(ROOT/'knowledge/meta.json',runtime/'knowledge/meta.json')
         rng=np.random.default_rng(1729)

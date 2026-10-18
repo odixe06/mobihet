@@ -1,6 +1,6 @@
 ---
 name: wandb-training-monitor
-description: Monitor and analyze active or completed Weights & Biases training runs. Use for progress, health, metrics, anomalies or ETA; do not start, stop or modify a run unless separately authorized.
+description: Monitor and analyse active or completed Weights & Biases training runs read-only: progress, heartbeat and liveness against Kaggle status, health tripwires (loss, AMP skip rate, gradient norm, non-finite values), per-round metrics and ETA. Use right after pushing runs, when asked whether a run is alive, healthy or progressing, or to read live metrics before artifacts exist (e.g. "theo dõi W&B", "run còn chạy không", "tiến độ", "health check", "kiểm W&B"). Does not start, stop or modify runs.
 ---
 
 # W&B Training Monitor

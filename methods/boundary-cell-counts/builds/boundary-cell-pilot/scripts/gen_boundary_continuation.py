@@ -55,7 +55,7 @@ def main():
         original=source/'source'/name;assert sha(original)==digest
         os.link(original,package/name)
         files['package/'+name]=dict(sha256=digest,size=original.stat().st_size)
-    for p in (ROOT/'papers/pilot/fixture').iterdir():
+    for p in (ROOT/'.compat/papers/pilot/fixture').iterdir():
         if not p.is_file():continue
         target=package/p.name
         assert not target.exists()

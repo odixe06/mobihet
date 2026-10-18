@@ -47,7 +47,7 @@ kiểm decoded residual không tăng ở mọi saved round kể cảr1. Chỉ t�
 hai seed/R1/cost vẫn kiểm riêng. Local collector đã kiểm saved medium3round thật, không T4 utility.
 
 [Source/scripts](../../../../../methods/proxy-countsketch-repair/builds/contractive-ef-pilot/README.md) ·
-[Bàn giao](../../../../operations/continuation-2026-10-15.md).
+[Bàn giao](../../../../archive/operations/continuation-2026-10-15.md).
 
 Cập nhật chiều15/10: hai seed đã terminal/pull/audit. Smallr20 qualityFAIL và không có EF contribution;
 mediumr17/r14 chưa strict-r20, nhưng kém aligned own0,2486/0,2577, last5 phẳng/giảm.

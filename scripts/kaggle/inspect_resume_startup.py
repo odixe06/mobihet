@@ -23,7 +23,7 @@ def main():
     args=parser.parse_args()
     api=wandb.Api(timeout=25);entity=api.default_entity;jobs={}
     for build in ('full-validation','hybrid-full','boundary-cells'):
-        for path in (ROOT/'papers'/build/'notebook').glob(f'*{args.tag}*/PUSHED'):
+        for path in (ROOT/'.compat/papers'/build/'notebook').glob(f'*{args.tag}*/PUSHED'):
             folder=path.parent
             if args.only and not any(fnmatch(folder.name,pattern) for pattern in args.only):continue
             if args.pending_datasets_only and 'dsresume' not in folder.name:continue

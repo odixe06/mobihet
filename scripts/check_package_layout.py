@@ -3,6 +3,7 @@ import ast
 import hashlib
 import importlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -16,31 +17,30 @@ from project_paths import current_path
 
 def main():
     record = json.loads((ROOT / 'docs/operations/package-layout-2026-10-14.json').read_text())
-    names = {p.name for p in (ROOT / 'mh').glob('*.py')}
+    names = {p.name for p in (ROOT / '.compat/mh').glob('*.py')}
     assert names == set(record['legacy_source_manifest']), 'old source-file set changed'
     sys.path.insert(0, str(ROOT))
     checked = []
     for row in record['modules']:
         canonical=current_path(row['path'])
-        source = ROOT / canonical; legacy = ROOT / row['old_path']
+        source = ROOT / canonical; legacy = ROOT / '.compat' / row['old_path']   # 17/10: hardlink, root mh removed
         assert source.is_file() and not source.is_symlink(), row['path']
         assert hashlib.sha256(source.read_bytes()).hexdigest() == row['sha256'], row['path']
-        assert legacy.resolve() == source.resolve(), row['old_path']
-        assert legacy.is_symlink(), row['old_path']
+        assert os.path.samefile(legacy, source), row['old_path']
         ast.parse(source.read_text(), filename=row['path'])
         name = 'mh' if row['module'] == '__init__' else f"mh.{row['module']}"
         module = importlib.import_module(name)
-        assert Path(module.__file__).resolve() == source.resolve(), name
+        assert os.path.samefile(module.__file__, source), name
         checked.append(dict(module=name,canonical=canonical,hash_preserved=True,import_pass=True))
     from mh import pilot
-    assert pilot.ROOT == ROOT, 'data/fingerprint root changed'
+    assert pilot.ROOT == ROOT / '.compat', 'data/fingerprint root changed'   # 17/10: old-layout root is .compat
     plans={p.resolve() for p in (ROOT/'methods').glob('*/builds/*/notebooks/*20261014*/resume-plan.json')}
     source_checks=0
     for plan in plans:
         for identity in json.loads(plan.read_text()).values():
             for filename,expected in identity['source'].items():
                 if filename.startswith('mh/'):
-                    assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest()==expected,(plan,filename)
+                    assert hashlib.sha256((ROOT/'.compat'/filename).read_bytes()).hexdigest()==expected,(plan,filename)
                     source_checks+=1
     (ROOT/'docs/operations/package-resume-source-check-2026-10-14.json').write_text(json.dumps(dict(
         prepared_plan_count=len(plans),source_hash_checks=source_checks,pass_check=True,
@@ -49,7 +49,7 @@ def main():
     with tempfile.TemporaryDirectory() as directory:
         runtime=Path(directory);(runtime/'mh').mkdir();(runtime/'knowledge').mkdir()
         for filename in names:
-            shutil.copyfile(ROOT/'mh'/filename,runtime/'mh'/filename)
+            shutil.copyfile(ROOT/'.compat/mh'/filename,runtime/'mh'/filename)
         shutil.copyfile(ROOT/'knowledge/meta.json',runtime/'knowledge/meta.json')
         assert {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (runtime/'mh').glob('*.py')}==record['legacy_source_manifest']
         code=("import importlib; from pathlib import Path; "

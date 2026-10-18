@@ -14,8 +14,8 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--seed',type=int,choices=(42,43),action='append')
     parser.add_argument('--output',default='startup.json');args=parser.parse_args();seeds=args.seed or [42,43]
     api=wandb.Api(timeout=25);entity=api.default_entity;rows=[]
-    names={p.name for p in (ROOT/'mh').glob('*.py')}
-    fixture=hashlib.sha256((ROOT/'papers/pilot/fixture/manifest.json').read_bytes()).hexdigest()
+    names={p.name for p in (ROOT/'.compat/mh').glob('*.py')}
+    fixture=hashlib.sha256((ROOT/'.compat/papers/pilot/fixture/manifest.json').read_bytes()).hexdigest()
     for run in api.runs(f'{entity}/mobihet-cross-client-rank-utility',per_page=50):
         cfg=dict(run.config);arm=cfg.get('arm');seed=cfg.get('seed')
         if seed not in seeds or not str(arm).startswith('cr_'):continue

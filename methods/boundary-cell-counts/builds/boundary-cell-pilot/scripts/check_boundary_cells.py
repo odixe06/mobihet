@@ -10,7 +10,7 @@ import numpy as np
 import torch
 
 ROOT = next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-PROJ = ROOT/'papers/boundary-cells/proj'
+PROJ = ROOT/'.compat/papers/boundary-cells/proj'
 sys.path.insert(0,str(PROJ))
 sys.path.insert(0,str(ROOT))
 from cells import packet, decode
@@ -32,7 +32,7 @@ def main():
             refusal += 1
         else:
             raise AssertionError('invalid packet accepted')
-    out = ROOT/'papers/boundary-cells/smoke'/args.tag
+    out = ROOT/'.compat/papers/boundary-cells/smoke'/args.tag
     env=dict(os.environ,PYTHONPATH=str(ROOT),OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1')
     arms=['bc_single','bc_direct2_fl','bc_direct4_fl','bc_teacher2_fl','bc_teacher4_fl']
     for arm in arms:
@@ -46,12 +46,12 @@ def main():
         model=build_model(dict(CFG,n_features=66,num_classes=16),latent=True).eval()
         model.load_state_dict(weights['private'][0],strict=True)
         assert sum(p.numel() for p in model.parameters())==395024
-        x=np.load(ROOT/'papers/pilot/fixture/group_X.npy',mmap_mode='r')[:32].astype('float32')
+        x=np.load(ROOT/'.compat/papers/pilot/fixture/group_X.npy',mmap_mode='r')[:32].astype('float32')
         with torch.no_grad():
             assert torch.isfinite(model(torch.from_numpy(x))[0]).all()
     # Full-vs-resume uses the real driver and its completed-round state.
     arm='bc_teacher4_fl'
-    split=ROOT/'papers/boundary-cells/smoke'/f'{args.tag}-resume'
+    split=ROOT/'.compat/papers/boundary-cells/smoke'/f'{args.tag}-resume'
     base=[sys.executable,str(PROJ/'boundary_driver.py'),'--arm',arm,'--smoke','--out',str(split)]
     subprocess.run(base+['--stop_after','1'],cwd=ROOT,env=env,check=True)
     subprocess.run(base+['--resume'],cwd=ROOT,env=env,check=True)
@@ -70,7 +70,7 @@ def main():
                 packet_refusals=refusal,exact_resume=checks+['predictions'],
                 utility_claim=False,T4_cost_claim=False,
                 source_sha={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in PROJ.glob('*.py')})
-    (ROOT/'papers/boundary-cells'/f'local-proof-{args.tag}.json').write_text(json.dumps(report,indent=2)+'\n')
+    (ROOT/'.compat/papers/boundary-cells'/f'local-proof-{args.tag}.json').write_text(json.dumps(report,indent=2)+'\n')
     print('BoundaryCells smoke/rebuild/exact-resume PASS',flush=True)
 
 

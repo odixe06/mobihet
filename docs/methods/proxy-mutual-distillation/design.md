@@ -15,8 +15,8 @@ Raw record/record perturb không rời xe. Thống kê được gộp; book tố
 - [de-xuat-huong-moi.md](../../archive/research/de-xuat-huong-moi.md)
 - [pilot-p1.md](../../archive/research/probes/pilot-p1.md)
 - [pilot-p2.md](../../archive/research/probes/pilot-p2.md)
-- [pilot.py](../../../mh/pilot.py)
-- [p2.py](../../../mh/p2.py)
+- [pilot.py](../../../core/pilot_runtime.py)
+- [p2.py](../../../archive/methods/contact-fragmentation/builds/fragmented-snapshots/source/mh/fragmented_snapshot_driver.py)
 - [report.md](../../archive/methods/shared-baselines/builds/pilot-baselines/results/report.md)
 - [report.md](../../archive/methods/contact-fragmentation/builds/fragmented-snapshots/results/report.md)
 

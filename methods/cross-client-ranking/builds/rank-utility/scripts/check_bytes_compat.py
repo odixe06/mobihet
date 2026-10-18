@@ -36,7 +36,7 @@ def main():
         fixture=json.loads((parent/f'runs/cr_local_s{seed}/config.json').read_text())['fixture']
         with torch.serialization.safe_globals([bytes]):
             for arm in ('cr_local','cr_fl'):
-                audit=verify(parent/f'runs/{arm}_s{seed}',manifest,fixture,ROOT/'papers/pilot/fixture')
+                audit=verify(parent/f'runs/{arm}_s{seed}',manifest,fixture,ROOT/'.compat/papers/pilot/fixture')
                 assert audit['logical_rounds']==3 and audit['committed_rounds']==1;audits.append(audit)
     proof=dict(pass_check=True,empty_bytes_refusal_reproduced=True,scoped_allowlist=True,
         subprocess_launcher=True,audits=audits,source_unchanged=True,

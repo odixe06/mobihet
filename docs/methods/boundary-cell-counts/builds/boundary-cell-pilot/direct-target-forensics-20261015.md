@@ -2,7 +2,7 @@
 
 P2 direct r20 FAIL cả hai seed: group/private/gp0,504056/0,509389, kém Gaussian0,126833/0,131181.
 Δown0,009266/0,011509; seed42 trượt own gate. Không nối adaptation P2 hoặc đổi headline để cứu.
-[Terminal audit và round đầy đủ](../../../../operations/continuation-2026-10-15.md).
+[Terminal audit và round đầy đủ](../../../../archive/operations/continuation-2026-10-15.md).
 
 Đọc target packet từ actual audited P2-FL r20 và P4-FL r2/r12; CRC/dictionary identity/payload SHA/source
 và group fixture SHA đều kiểm. Group probe balanced128/class=2.048record, seed1729; không SGD/official test/HP search.

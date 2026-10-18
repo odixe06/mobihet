@@ -25,7 +25,7 @@ ResponseRisk/EMA source riêng, cổng utility trước pilot; H1/H2 cont02 dùn
   fullH1/H2 continuation và report watcher; giữ mọi `.part`, không ghi đè source đã chạy.
 - Snapshot latest-version50kernel:43COMPLETE/6ERRORcũ/1RUNNING;
   full2cont01 cònRUNNING, full1/3/4cont01 terminal. Đây là status, chưa artifact proof.
-  [Snapshot](../../operations/kernel-status-current.json).
+  [Snapshot](kernel-status-current.json).
 - BoundaryCells source vẫn exactSHA với [smokeinitial2](../../../methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/local-proof-initial2.json).
   5arm×3round/20client×256row,4packetrefusal, strictrebuild và full-vs-resume
   weights/state/predictions PASS local. Không T4cost/F1utility proof.
@@ -69,7 +69,7 @@ Cost≤2×single-DAGS; FAIL giữoutput/dừng adaptation, không sửaHP để 
 R20utility còn chưa đo: mỗiP/mode/seed phải hơn own/shuffle≥0,010,
 hơn strongest(local/classmean/Gaussianfull)≥0,015; benign giảm≤0,005.
 [Contract nguồn](../../methods/boundary-cell-counts/builds/boundary-cell-pilot/results/contract.md),
-[dự báo lợi hiệu năng](../../research/performance-feasibility-2026-10-13.md).
+[dự báo lợi hiệu năng](../research/performance-feasibility-2026-10-13.md).
 
 ## Tiếp theo
 

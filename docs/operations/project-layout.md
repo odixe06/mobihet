@@ -26,13 +26,18 @@ docs/
   operations/                      hiện trạng, lỗi, map/quota/checks
   research/                        protocol và căn cứ còn áp dụng
   file-index.md                    index khu làm việc, dẫn sang index archive
+  research/methods/                mỗi phương pháp một file (owner 17/10); ghi chú theo ngày ở docs/archive/research
 scripts/                           công cụ dùng chung đang dùng
-logs/operations/                   log công cụ chung đang dùng
 knowledge/                         dữ liệu/model/runtime nền
-.compat/                           các alias/import lịch sử, không có artifact copy
-mh/ -> .compat/mh/                 facade 40 source names frozen
-papers/ -> .compat/papers/         runtime source paths cũ
+.compat/                           gốc layout cũ (ẩn, không Git): mh/ (40 hardlink tới core), papers/, knowledge, logs aliases
 ```
+
+**17/10 (owner):** bỏ symlink gốc `mh/`, `papers/`; `logs/` và `wandb/` gốc chuyển `archive/logs/`. Python local tìm `mh`
+qua file `/home/odixe/miniforge3/envs/nckh/lib/python3.12/site-packages/mobihet-compat.pth` (một dòng: đường dẫn
+`.compat`). `.compat/mh/*.py` là **hardlink** tới `core/` nên `mh.pilot.ROOT = .compat` và `P.ROOT/'papers/...'`,
+`P.ROOT/'knowledge/...'` vẫn tới alias; byte/SHA không đổi. Script local dùng `ROOT/'.compat/papers/...'`,
+`ROOT/'.compat/mh'`; chuỗi đường dẫn Kaggle (`WORK/'papers/...'`) giữ nguyên. Build đã archive không sửa: chạy lại cần
+tạm `ln -s .compat/papers papers` (hoặc sửa đường dẫn trong bản sao).
 
 Khu làm việc giữ Gaussian, DML, Hybrid, BoundaryCells, ResponseRisk, EMA và đối chứng full chung.
 Pilot/probe hoàn tất chuyển archive; bài học vẫn ở LESSONS/root hoặc docs/lessons. Không coi archive là phủ định
@@ -52,8 +57,9 @@ Các alias nằm trong `.compat/` và được loại khỏi DVC/Git scan. Artif
 Migration trước giữ HEAD/staged; phiên tiếp chủ dự án yêu cầu commit/push Git. Kiểm DVC và lệnh pull tại [chỉ mục canonical](artifact-index.md); không DVC add workspace partial.
 Remote-only history vẫn có .dvc và index; local partial restore không được add thành manifest mới.
 
-Fresh checkout: `python3 scripts/restore_compat_aliases.py`. Helper dựng symlink/private folder rỗng từ
-[map](compatibility-aliases.json), không ghi đè source hoặc pull data. CLI cũ trỏ `scripts/check_vN...py` đã rời
+Fresh checkout: `python3 scripts/restore_compat_aliases.py` (symlink + hardlink `.compat/mh`, private folder rỗng từ
+[map](compatibility-aliases.json), không ghi đè source hoặc pull data), rồi tạo lại file `.pth` ở trên trong env `nckh`.
+Di chuyển tài liệu: `python scripts/move_docs.py moves.json` (mv + sửa mọi link Markdown tương đối). CLI cũ trỏ `scripts/check_vN...py` đã rời
 khu làm việc; dùng canonical script trong build hoặc archive. Import helper cũ vẫn có compatibility lookup.
 
 ## Cập nhật tiếp

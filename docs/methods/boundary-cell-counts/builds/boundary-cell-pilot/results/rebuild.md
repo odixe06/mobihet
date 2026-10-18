@@ -1,7 +1,7 @@
 # BoundaryCells — ledger tái dựng/kiểm nghiệm
 
 Đề xuất: [theo phương pháp](../../../README.md).
-Scientfic protocol: [contract](contract.md); [dự báo utility](../../../../../research/performance-feasibility-2026-10-13.md).
+Scientfic protocol: [contract](contract.md); [dự báo utility](../../../../../archive/research/performance-feasibility-2026-10-13.md).
 
 ## Trước train
 

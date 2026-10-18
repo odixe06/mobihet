@@ -11,12 +11,12 @@ ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_fi
 
 
 def main():
-    base=(ROOT/'papers/hybrid-full').resolve()
+    base=(ROOT/'.compat/papers/hybrid-full').resolve()
     key=netrc.netrc().authenticators('api.wandb.ai')[2];assert key
     for index in (1,3):
         parent=base/'notebook'/f'hybf{index}-s42-20261014-cont01-v1'
         metadata=json.loads((parent/'kernel-metadata.json').read_text())
-        bridge=json.loads((ROOT/f'docs/operations/hybrid-checkpoint{index}-2026-10-14.json').read_text())
+        bridge=json.loads((ROOT/f'docs/archive/operations/hybrid-checkpoint{index}-2026-10-14.json').read_text())
         assert bridge['uploaded'] and bridge['verified_full_parent']
         rid=f'hybf{index}-s42-20261014-dsresume-v1'
         public=base/'notebook'/rid;private=base/'private_push'/rid

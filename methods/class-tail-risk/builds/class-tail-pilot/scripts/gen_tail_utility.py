@@ -69,7 +69,7 @@ def main():
     for name,digest in manifest.items():
         original=source/'source'/name;assert sha(original)==digest
         os.link(original,package/name);files['package/'+name]=dict(sha256=digest,size=original.stat().st_size)
-    for p in (ROOT/'papers/pilot/fixture').iterdir():
+    for p in (ROOT/'.compat/papers/pilot/fixture').iterdir():
         if p.is_file():
             os.link(p.resolve(),package/p.name)
             files['package/'+p.name]=dict(sha256=sha(p),size=p.stat().st_size)

@@ -95,18 +95,18 @@ def main():
     public, private = BASE/'notebooks'/rid, BASE/'private_push'/rid
     assert not stage.exists() and not public.exists() and not private.exists()
     stage.mkdir(parents=True)
-    files = list((ROOT/'mh').glob('*.py'))+list((BASE/'source/proj').glob('*.py'))+[ROOT/'knowledge/meta.json']
+    files = list((ROOT/'.compat/mh').glob('*.py'))+list((BASE/'source/proj').glob('*.py'))+[ROOT/'knowledge/meta.json']
     manifest = {}
     for p in files:
         shutil.copyfile(p,stage/p.name)
         manifest[p.name] = hashlib.sha256(p.read_bytes()).hexdigest()
-    for p in (ROOT/'papers/pilot/fixture').iterdir():
+    for p in (ROOT/'.compat/papers/pilot/fixture').iterdir():
         if p.is_file():shutil.copyfile(p,stage/p.name)
     (stage/'source_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     dataset=f'{owner}/mobihet-{rid}-src'
     (stage/'dataset-metadata.json').write_text(json.dumps(dict(id=dataset,title=f'mobihet-{rid}-src',licenses=[{'name':'CC0-1.0'}]),indent=2)+'\n')
     logging=(ROOT/'methods/boundary-cell-counts/builds/boundary-cell-pilot/scripts/boundary_logging.py').read_text()
-    setup=f'MH={[p.name for p in (ROOT/"mh").glob("*.py")]!r}\nPROJ={[p.name for p in (BASE/"source/proj").glob("*.py")]!r}\n'+SETUP
+    setup=f'MH={[p.name for p in (ROOT/".compat/mh").glob("*.py")]!r}\nPROJ={[p.name for p in (BASE/"source/proj").glob("*.py")]!r}\n'+SETUP
     # W&B adapter also applies to the emitted driver without changing model/source identity.
     setup+=f'\n(WORK/"boundary_logging.py").write_text({logging!r})\n'
     run=RUN.replace("[sys.executable,str(WORK/'papers/class-tail/proj/tail_driver.py'),", "[sys.executable,str(WORK/'boundary_logging.py'),str(WORK/'papers/class-tail/proj/tail_driver.py'),")

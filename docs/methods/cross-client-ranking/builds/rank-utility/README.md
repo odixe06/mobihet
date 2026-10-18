@@ -7,11 +7,11 @@ không nối reference). Group gp r20: pooled 0,466075; −CE local **+0,001735*
 seed43 recovery v2 (PUSHED10:49Z, CPU mounted r3 audit PASS, cost r3 1,2459/1,1991×CE) tiếp tục chỉ để mô tả.
 Collector đã sửa miễn `metrics.csv` ghi lại khi resume (checker bug, không đổi dữ liệu). Không nối hay đổi λ/gp.
 
-Kết phiên15/10: owner yêu cầu dừng poll; [checklist/lệnh phiên sau](../../../../operations/continuation-2026-10-15-afternoon.md#việc-còn-thiếu--phiên-sau).
+Kết phiên15/10: owner yêu cầu dừng poll; [checklist/lệnh phiên sau](../../../../archive/operations/continuation-2026-10-15-afternoon.md#việc-còn-thiếu--phiên-sau).
 Không poll/launch thêm trong phiên bàn giao.
 
 Owner chốt15/10 sau [probe/diagnostic đã audit](../rank-probe/results/report.md).
-[Contract đã duyệt](../rank-probe/utility-proposal.md) · [Nguồn/objective](../../../../research/new-directions-2026-10-15-afternoon.md).
+[Contract đã duyệt](../rank-probe/utility-proposal.md) · [Nguồn/objective](../../../../archive/research/new-directions-2026-10-15-afternoon.md).
 
 GPU version1 đã push09:00UTC15/10:
 [seed42](https://www.kaggle.com/code/minhtriethihi/mobihet-cr-u-s42-20261015-v1),

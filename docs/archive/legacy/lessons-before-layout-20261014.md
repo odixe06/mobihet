@@ -11,7 +11,7 @@ Chi tiết và số gốc: [kiến thức kế thừa](kien-thuc-ke-thua.md). B�
 
 - **2026-10-13, chủ dự án:** dự báo khả năng **cải thiện hiệu năng** từ bằng chứng đã có trước khi mở hướng/pilot;
   không dùng codec/đạo hàm/khả thi chạy code thay dự báo utility. Tách hơn local, hơn đối chứng mạnh và lợi kiểm dài.
-  [Dự báo trước kiểm](../../research/performance-feasibility-2026-10-13.md).
+  [Dự báo trước kiểm](../research/performance-feasibility-2026-10-13.md).
 - **2026-10-13, chốt cải tiến/hướng mới:** BoundaryCells kiểm direct soft-target và teacher DAGSNet trung gian;
   receiver stress được swap đồng bộ 9 noise/profile feature cùng lớp/cùng client/khác receiver, chỉ local,
   phải qua fidelity gate. Fresh EMA backbone + BN local + head fit riêng kiểm 2×2 và own controls;
@@ -317,7 +317,7 @@ Chi tiết và số gốc: [kiến thức kế thừa](kien-thuc-ke-thua.md). B�
 - **2026-10-14, crash giữa collect:** cả4 marker Hybrid full đã ghi trước crash;
   kiểm marker/process rồi tiếp report/inference, không tải hoặc train lại phần đã đủ.
   376file/0thiếu sau pull exit0; lưu log/hash/source trước chuyển sang bước kế.
-  [Phiên/việc còn thiếu](../../operations/collection-2026-10-14.md).
+  [Phiên/việc còn thiếu](../operations/collection-2026-10-14.md).
 
 - **2026-10-13, nối sau reboot:** kiểm process thực trước khởi động lại collector, giữ `.part`/source/PUSHEDmarkers.
   BoundaryCells notebook chuẩn bị chưapush thiếu `nb.metadata.kaggle`; bổ sungGPU/Internet trongnotebookdocument

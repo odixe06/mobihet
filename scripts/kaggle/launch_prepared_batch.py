@@ -21,7 +21,7 @@ def main():
     for build,tag,hours in [('full-validation','20261014-cont02',[3.1,5.,5.,3.1]),
                             ('hybrid-full','20261014-cont01',[5.,5.,4.8,4.8]),
                             ('boundary-cells','20261014-stage01',[2.2,2.5])]:
-        folders=sorted((ROOT/'papers'/build/'notebook').glob(f'*{tag}*'))
+        folders=sorted((ROOT/'.compat/papers'/build/'notebook').glob(f'*{tag}*'))
         assert len(folders)==len(hours)
         for folder,h in zip(folders,hours):
             meta=json.loads((folder/'kernel-metadata.json').read_text())

@@ -12,7 +12,7 @@ import numpy as np
 import torch
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[2])
-BASE=ROOT/'papers/boundary-cells'
+BASE=ROOT/'.compat/papers/boundary-cells'
 HELPER=ROOT/'.agents/skills/kaggle-training-notebook/scripts'
 sys.path.insert(0,str(ROOT))
 from mh.metrics import METRIC_KEYS,metrics_from_confusion,per_class_from_confusion
@@ -124,7 +124,7 @@ def collect(folder, utility=False):
         target_arms=ast.literal_eval(node.value)
     summary=json.loads(path.read_text());assert len(summary)==(len(target_arms) if utility else 5)
     audits=[]
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         for name,item in summary.items():
             if utility:

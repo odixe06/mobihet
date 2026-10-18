@@ -98,9 +98,9 @@ def collect(seed):
     manifest=json.loads((folder/'source_manifest.json').read_text())
     assert manifest==json.loads((dest/'source/source_manifest.json').read_text())
     for name,digest in manifest.items():assert sha(dest/'source'/name)==digest
-    assert sha(dest/'source/fixture_manifest.json')==sha(ROOT/'papers/pilot/fixture/manifest.json')
+    assert sha(dest/'source/fixture_manifest.json')==sha(ROOT/'.compat/papers/pilot/fixture/manifest.json')
     audits=[]
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         for run in sorted((dest/'runs').glob(f'*_s{seed}')):
             if not list((run/'complete').glob('round_*.json')):continue

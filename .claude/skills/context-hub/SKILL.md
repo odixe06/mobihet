@@ -1,6 +1,6 @@
 ---
 name: context-hub
-description: Lay out a project's documentation as a navigation hub plus a docs/ tier, so a session that starts cold is oriented by one file and reaches the rest by pointer. Use when creating or reorganizing a CONTEXT.md, handoff or onboarding doc; when such a file has grown into tables of numbers; when deciding where a measurement, decision or account roster belongs; or when a shared skill has started accumulating one project's specifics.
+description: Lay out and maintain a project's documentation as a navigation hub (CONTEXT.md) plus docs/ and knowledge/ tiers, so a session that starts cold is oriented by one file and reaches the rest by pointer. Use when creating or reorganizing CONTEXT.md, a handoff or onboarding doc; when the hub has grown into tables of numbers; when deciding where a measurement, decision or account roster belongs; or when a shared skill has started accumulating one project's specifics (e.g. "tổ chức lại tài liệu", "CONTEXT quá dài", "đặt thông tin này ở đâu").
 ---
 
 # Context hub

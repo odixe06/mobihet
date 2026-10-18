@@ -1,8 +1,9 @@
 # Rebuilding a federated method on VeReMi / DAGSNet — the procedure that already works
 
 Read this before opening a sibling project for "how did the last rebuild do it". Everything
-below was measured on 2×T4 or verified by a test in one of the rebuilds under `~/nckh/veremi`;
-the paths name the copy to take. It covers **any** FL method whose clients train DAGSNet on the
+below was measured on 2×T4 or verified by a test in one of the rebuilds kept in the GitHub repo
+`odixe06/fl_dagsnet_veremi` (clone it; the local sibling folders no longer exist); the paths name the copy to take.
+Speed work (workers, compile, equivalence tests): the `federated-training-speed` skill. It covers **any** FL method whose clients train DAGSNet on the
 α = 0.5 partitions and are scored on the fixed 10,761,343-row test.
 
 ## 1. Start from a template, not from scratch
@@ -12,8 +13,8 @@ and test suite. Copy the one closer to the method and change only the method mod
 
 | method shape | template | what it already handles |
 |---|---|---|
-| **global model** (FedAvg-like, one θ^t broadcast per round, one eval per round) | `~/nckh/veremi/lwfednids/papers/lwfednids-bouayad-2024/proj/` | eval of one model sharded across the two GPUs; a model whose architecture is derived from cfg (pruning plan in `prune.py`, rebuilt without the pruning library); `n_params` from cfg instead of a constant |
-| **per-client models** (personalized θ_m, partial participation, N + 1 evals) | `~/nckh/veremi/perfedskd/papers/perfedskd-singh-2025/proj/` | resident per-client weight table on both workers, selection state in the checkpoint, per-client eval pinned to worker c % W |
+| **global model** (FedAvg-like, one θ^t broadcast per round, one eval per round) | GitHub `odixe06/fl_dagsnet_veremi`: `lwfednids/papers/lwfednids-bouayad-2024/proj/` | eval of one model sharded across the two GPUs; a model whose architecture is derived from cfg (pruning plan in `prune.py`, rebuilt without the pruning library); `n_params` from cfg instead of a constant |
+| **per-client models** (personalized θ_m, partial participation, N + 1 evals) | same repo: `perfedskd/papers/perfedskd-singh-2025/proj/` | resident per-client weight table on both workers, selection state in the checkpoint, per-client eval pinned to worker c % W |
 
 | file | reuse | what changes per method |
 |---|---|---|

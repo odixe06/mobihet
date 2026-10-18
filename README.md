@@ -2,7 +2,7 @@
 
 [Mục lục tổng quan](docs/README.md) · [Tất cả đề xuất và trạng thái](docs/proposals.md) · [Index từng file](docs/file-index.md).
 
-Mở phiên: [CONTEXT](CONTEXT.md) → [LESSONS](LESSONS.md) → [bàn giao hiện tại](docs/operations/reorganization-2026-10-14.md).
+Mở phiên: [CONTEXT](CONTEXT.md) → [LESSONS](LESSONS.md) → [bàn giao hiện tại](docs/archive/operations/reorganization-2026-10-14.md).
 
 | cần tìm | mở |
 |---|---|
@@ -13,7 +13,7 @@ Mở phiên: [CONTEXT](CONTEXT.md) → [LESSONS](LESSONS.md) → [bàn giao hi�
 | Bài học khiến train chưa tốt | [LESSONS](LESSONS.md), lessons riêng phương pháp |
 | Scripts dùng chung / scripts riêng | [scripts/](scripts/README.md) / `methods/<method>/builds/<build>/scripts/` |
 | Package chung / module riêng build | [core/](core/README.md) / [phân loại và đường dẫn](docs/operations/package-ownership.md) |
-| Logs | `methods/<method>/builds/<build>/logs/`; log chung tại [logs/operations/](logs/operations/README.md) |
+| Logs | `methods/<method>/builds/<build>/logs/`; log công cụ cũ tại [archive/logs](archive/logs/README.md) |
 | Git/DVC, alias, restore | [Cấu trúc](docs/operations/project-layout.md), [backup/restore](docs/operations/backup.md) |
 | Lặp lại quy trình bằng skill | [Codex](.agents/skills/federated-experiment-workflow/SKILL.md), [Claude Code](.claude/skills/federated-experiment-workflow/SKILL.md) |
 

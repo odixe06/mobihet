@@ -6,7 +6,7 @@ import sys
 import nbformat
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-BASE=ROOT/'papers/boundary-cells'
+BASE=ROOT/'.compat/papers/boundary-cells'
 
 
 def controller(code,seed,case):

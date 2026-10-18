@@ -1,6 +1,6 @@
 ---
 name: repo-backup
-description: Back up Git history and DVC artifacts, restore selected data, and reclaim local disk space. Use when the owner requests repository backup, artifact push, restore, or cleanup.
+description: Back up Git history and DVC artifacts to the configured remotes, restore selected artifacts, and reclaim local disk after a verified backup. Use when the owner asks for a backup, artifact or Git push, DVC restore/pull, or disk cleanup (e.g. "backup", "đẩy DVC", "push git", "khôi phục dữ liệu", "dọn ổ đĩa"). A backup request never authorizes deletion.
 ---
 
 # Repository backup

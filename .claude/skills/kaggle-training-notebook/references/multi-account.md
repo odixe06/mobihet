@@ -72,6 +72,14 @@ configured account and server-confirmed identity separately; use snapshot OAuth 
 for an explicit username. Until alignment is established, use the selected CLI for account-scoped
 operations and do not use stale MCP quota to budget a launch.
 
+## Concurrent account-scoped commands
+
+Prefer `scripts/kaggle_as.py <owner> -- <command>` for status, pulls, dataset operations and
+pushes when saved OAuth credentials exist. It authenticates the selected snapshot in a child
+process without changing the global login or MCP connection. Verify the notebook owner and
+input access as that owner. A global `use`/`ensure` switch is needed only for tools that cannot
+scope credentials per process; concurrent pulls must never switch the global account.
+
 ## Select an account within the user's authorization
 
 `use <user>` is an explicit switch. `ensure --gpu-hours N` keeps the active

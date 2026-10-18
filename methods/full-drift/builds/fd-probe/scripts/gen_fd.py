@@ -21,6 +21,8 @@ TAG = '20261015'
 RUNTIME = json.loads((ROOT / 'knowledge/runtime.json').read_text())
 # (owner, seed, session, per-GPU queues, hours). Owner 15/10: one shared seed screens methods; seeds come later.
 # Queue item 'arm' runs epochs 1-6; 'arm:15' runs epochs 1-15 into <arm>_s42_e15 (round 2 horizon).
+# Owner 17/10: fastest code on 2xT4 without changing results -> queues may be {'workers': W, 'arms': [...]}: arms one after
+# another, each spread over both GPUs by fd.py --workers W (bit-exact with the per-GPU layout, test_fd_local.py --part par).
 PLANS = {'r1': [('annhannh331', 42, 'a', [['fd_dml'], ['fd_dml_sub4']], 7.0),
                 ('annhannh331', 42, 'b', [['fd_dml_prox'], ['fd_gaussian', 'fd_gaussian_swappos']], 8.5),
                 ('anhtruong1909', 42, 'c', [['fd_fedavg', 'fd_fedavg_sub4'], ['fd_dml_avgm']], 7.5)],
@@ -40,7 +42,86 @@ PLANS = {'r1': [('annhannh331', 42, 'a', [['fd_dml'], ['fd_dml_sub4']], 7.0),
          'r6': [('anhtruong1909', 43, 'k', [['fd_dml'], ['fd_dml_m4b']], 4.2),
                 ('anhtruong1909', 43, 'l', [['fd_dml_sub4_q4'], ['fd_dml_m4b_sub4_q4']], 4.2)],
          # round 7 (owner 16/10 ~17:25Z): seed 43 for swappos and Gaussian m4b; annhannh331 5.29h live
-         'r7': [('annhannh331', 43, 'm', [['fd_dml_swappos'], ['fd_gaussian_m4b']], 4.2)]}
+         'r7': [('annhannh331', 43, 'm', [['fd_dml_swappos'], ['fd_gaussian_m4b']], 4.2)],
+         # round 8 (owner 17/10, algorithm-improvement-plan): accanniez 10.47h / annhtnt 8.96h / takids1909 8.70h live before the
+         # 00:00Z reset (owner-supplied); DML ep6 205-217 min, Gaussian ep6 150 min (fd_gaussian s43 needs ~4.85h), cons = 2 views
+         'r8': [('accanniez', 42, 'n', [['fd_dml_m4b_kdcap'], ['fd_dml_m4b_kdcap_frz']], 5.0),
+                ('accanniez', 42, 'o', [['fd_dml_m4b_kdcap_wu'], ['fd_dml_m4b_dyn']], 5.0),
+                ('annhtnt', 42, 'p', [['fd_dml_m4b_own'], ['fd_gaussian_m4b_own']], 4.6),
+                ('annhtnt', 42, 'q', [['fd_dml_swappos_cons'], ['fd_dml_swappos_cons0']], 8.5),
+                ('takids1909', 43, 'r', [['fd_gaussian'], ['fd_gaussian_swappos']], 5.4)],
+         # round 9 (same plan): SCAFFOLD-proxy at three SGD LRs (paired with the c=0 control) + Hybrid private-only + seed-43
+         # m4b horizon; small accounts pushed only when hours-to-reset x sessions < GPU left (owner: no mid-run quota stop)
+         'r9': [('takids1909', 42, 's', [['fd_dml_m4b_sgd3'], ['fd_dml_m4b_scaf3']], 5.0),
+                ('khanhmay0304', 42, 'u', [['fd_dml_m4b_sgd1'], ['fd_dml_m4b_scaf1']], 5.0),
+                ('minhtriethihi', 42, 'v', [['fd_dml_m4b_sgd10'], ['fd_dml_m4b_scaf10']], 5.0),
+                ('trietbackup', 42, 't', [['fd_dml_m4b_gpool'], ['fd_dml_m4b_gown']], 5.4),
+                # fd_dml_m4b rerun: KD weight/gradient logs of the uncapped baseline (plan §3.2) + cross-source replication
+                ('trietbackup', 42, 'x', [['fd_dml_m4b_replay'], ['fd_dml_m4b']], 5.4),
+                ('annhannh331', 43, 'w', [['fd_dml_m4b:15'], ['fd_dml:15']], 10.0)],
+         # round 10 (owner 16/10 ~22:10Z: push every account that still fits before the 00:00Z reset); bytes = r9.
+         # 'y' replaces trietbackup 'x' (never pushed); seed 43 replicates paired with the audited round-6/7 s43 controls
+         'r10': [('anhtruong1909', 42, 'y', [['fd_dml_m4b_replay'], ['fd_dml_m4b']], 5.4),
+                 ('nguyenminhtran060113', 43, 'z', [['fd_dml_m4b_own'], ['fd_gaussian_m4b_own']], 5.0),
+                 ('catbaochau', 43, 'ka', [['fd_dml_m4b_kdcap'], ['fd_dml_m4b_kdcap_wu']], 5.0),
+                 ('dinhan25', 43, 'kb', [['fd_dml_m4b_kdcap_frz'], ['fd_dml_m4b_q4']], 5.0),
+                 ('minhtran0601', 43, 'ga', [['fd_dml_m4b_gpool'], ['fd_dml_m4b_gown']], 5.4),
+                 ('odixe0502', 43, 'gb', [['fd_dml_m4b_replay'], ['fd_dml_m4b_dyn']], 5.4)],
+         # round 11 (owner 17/10 ~05:10Z: improve headline m4b+gpool before 50 rounds). New week: 30h each (all accounts
+         # queried, owner ~05:30Z); gpool ep6 measured 241 min, ep15 ~10 h
+         'r11': [('accanniez', 42, 'la', [['fd_dml_m4b_gpool_kd2'], ['fd_dml_m4b_gpool_kdpx']], 5.4),
+                 ('takids1909', 42, 'lc', [['fd_dml_m4b_gpool:15'], ['fd_dml_m4b_gpool_gw2']], 11.0)],
+         # round 12 (owner 17/10 ~14Z: limited communication budget): headline over the real int4 QPacket. Source adds the
+         # sync-free loop and --workers (bit-exact: test_fd_local --part r12/par); one arm over both GPUs, one worker each
+         'r12': [('odixe0502', 42, 'qa', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_q4']}, 4.0)],
+         # round 13 (owner 17/10 ~16Z: run A, B, C + the owner's proposals, each from scratch ep1-6; 30h live on every account)
+         'r13': [(owner, 42, session, {'workers': 2, 'arms': [f'fd_dml_m4b_gpool_{arm}']}, 5.0) for owner, session, arm in
+                 [('annhannh331', 'ma', 'fill'), ('anhtruong1909', 'mb', 'rej'), ('catbaochau', 'mc', 'p1'),
+                  ('dinhan25', 'md', 'p1self'), ('khanhmay0304', 'me', 'p1cm'), ('minhtran0601', 'mf', 'q2')]],
+         # round 14 (design §Vòng 14): repeat the round-13 PASS arms -- horizon ep15 + seed 43; source bytes = r13
+         'r14': [('trietbackup', 42, 'na', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_rej:15']}, 7.0),
+                 ('minhtriethihi', 43, 'nb', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_rej']}, 5.0),
+                 ('accanniez', 42, 'nc', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_q2:15']}, 7.0)],
+         # round 15 (design §Vòng 15): frozen aggregated snapshot as the private's teacher (frz), Gaussian KL to it (gkd); ep1-15
+         'r15': [('thuyanh316', 42, 'oa', {'workers': 2, 'arms': ['fd_dml_m4b_frz:15']}, 7.0),
+                 ('annhtnt', 42, 'ob', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz:15']}, 7.0),
+                 ('khanhmay0304', 42, 'oc', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz_gkd:15']}, 7.0)],
+         # round 16 (design §Vòng 16): seed-43 horizon of the round-15 PASS arms + seed-43 gpool control; gkd over the q2 wire
+         'r16': [('anhtruong1909', 43, 'pa', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz_gkd:15']}, 7.0),
+                 ('dinhan25', 43, 'pb', {'workers': 2, 'arms': ['fd_dml_m4b_gpool:15']}, 7.0),
+                 ('catbaochau', 42, 'pc', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_q2_frz_gkd:15']}, 7.0),
+                 ('minhtran0601', 43, 'pd', {'workers': 2, 'arms': ['fd_dml_m4b_frz:15']}, 7.0)],
+         # round 17 (owner 18/10 ~06Z, design §Vòng 17): small improvements of the round-15 headline (ep1-15 from scratch) and the
+         # headline itself continued ep16-50 from the audited round-15 epoch-15 checkpoint (exact resume, --parent); gkd ~18 min/epoch
+         'r17': [('odixe0502', 42, 'ra', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz_gkd_la:15']}, 7.0),
+                 ('annhannh331', 42, 'rb', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz_gkd_kdpx:15']}, 7.0),
+                 ('minhtriethihi', 42, 'rc', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz_gkd_la_kdpx:15']}, 7.0),
+                 ('trietbackup', 42, 'rd', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_frz_gkd:50'],
+                                            'parent': dict(dataset='trietbackup/mobihet-fd-parent-gkd-s42-e15', session='fd-s42oc-20261015-r15-v1',
+                                                           run='fd_dml_m4b_gpool_frz_gkd_s42_e15', round=15)}, 11.75)],
+         # round 18 (owner 18/10 ~07Z: try every improvement with evidence; design §Vòng 18): one change each on the gkd headline,
+         # ep1-15 from scratch; g512 has 2x synthetic rows per step (more compute)
+         'r18': [(owner, 42, session, {'workers': 2, 'arms': [f'{arm}:15']}, hours) for owner, session, arm, hours in
+                 [('accanniez', 'sa', 'fd_dml_m4b_gpool_frz_gkd_cop', 7.0), ('takids1909', 'sb', 'fd_dml_m4b_gpool_frz_gkd_pce', 7.0),
+                  ('khanhmay0304', 'sc', 'fd_dml_m4b_gpool_frz_gkd_t2', 7.0),
+                  ('nguyenminhtran060113', 'sd', 'fd_dml_m4b_gpool_frz_gkd_g512', 8.5),
+                  ('annhtnt', 'se', 'fd_dml_m4b_gpool_frz_gkd_gk2', 7.0), ('thuyanh316', 'sf', 'fd_dml_m4b_gpool_q4_frz_gkd', 7.0)]],
+         # round 19 (owner 18/10 ~09:15Z: --fast only for new builds, compared only with --fast controls; design §Vòng 19): gkd controls
+         # re-run in the new code (s42, s43), the round-17 best la_kdpx (s42 replicate + s43), la_kdpx over the int4 wire (R1)
+         'r19': [(owner, seed, session, {'workers': 2, 'arms': [f'{arm}:15'], 'fast': True}, 7.0) for owner, seed, session, arm in
+                 [('minhtran0601', 42, 'ta', 'fd_dml_m4b_gpool_frz_gkd'), ('dinhan25', 42, 'tb', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx'),
+                  ('annhannh331', 42, 'tc', 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx'), ('anhtruong1909', 43, 'td', 'fd_dml_m4b_gpool_frz_gkd'),
+                  ('odixe0502', 43, 'te', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx')]]
+                + # round 19 continuations ep16->50 (--fast, same tag/source; each from the audited ep15 of its own --fast run): la_kdpx and
+                  # its gkd control, seeds 42/43 (design §Vòng 19); generated per batch with --sessions once the parent is audited
+                  [(owner, seed, session, {'workers': 2, 'arms': [f'{arm}:50'], 'fast': True,
+                                           'parent': dict(dataset=f'{owner}/mobihet-fd-parent-{slug}-fast-s{seed}-e15', session=parent,
+                                                          run=f'{arm}_s{seed}_e15', round=15)}, 11.75)
+                   for owner, seed, session, arm, slug, parent in
+                   [('dinhan25', 42, 'ua', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'lakdpx', 'fd-s42tb-20261015-r19-v1'),
+                    ('anhtruong1909', 43, 'ub', 'fd_dml_m4b_gpool_frz_gkd', 'gkd', 'fd-s43td-20261015-r19-v1'),
+                    ('minhtran0601', 42, 'uc', 'fd_dml_m4b_gpool_frz_gkd', 'gkd', 'fd-s42ta-20261015-r19-v1'),
+                    ('odixe0502', 43, 'ud', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'lakdpx', 'fd-s43te-20261015-r19-v1')]]}
 
 WANDB = r'''import time
 SESSION_T0=time.monotonic()
@@ -121,17 +202,68 @@ print('FullDrift session; gates only after collector audit',json.dumps(summary),
 '''
 
 
+RUN_POOL = r'''
+summary={};PARENT_DIR=None
+if PARENT:   # committed epoch of an audited run (flat dataset files, SHA-checked here and by fd.py): exact resume
+    PARENT_DIR=Path('/kaggle/temp/parent')/PARENT['run']
+    for rel,digest in PARENT['files'].items():
+        hits=[p for p in Path('/kaggle/input').rglob(Path(rel).name) if hashlib.sha256(p.read_bytes()).hexdigest()==digest]
+        assert hits,('parent file',rel);(PARENT_DIR/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(hits[0],PARENT_DIR/rel)
+    print('parent',PARENT['run'],'round',PARENT['round'],flush=True)
+for item in ARMS:
+    remaining=SESSION_HOURS-(time.monotonic()-SESSION_T0)/3600
+    if remaining<1.0:break
+    arm,_,ep=item.partition(':');ep=int(ep or 6)
+    folder=OUT/(f'{arm}_s{SEED}'+('' if ep==6 else f'_e{ep}'));folder.mkdir(parents=True,exist_ok=True)
+    env=dict(os.environ,PYTHONPATH=f'{PROJ}:{WORK}',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1')
+    env.pop('CUDA_VISIBLE_DEVICES',None)
+    command=[sys.executable,str(PROJ/'fd.py'),'--arm',arm,'--seed',str(SEED),'--backend','compiled','--wandb_online',
+             '--wandb_project','mobihet-fulldrift','--max_hours',str(round(remaining-.3,3)),'--out',str(OUT),'--stop_after',str(ep),
+             '--workers',str(WORKERS)]+(['--parent',str(PARENT_DIR),'--parent_round',str(PARENT['round'])] if PARENT else [])+(['--fast'] if FAST else [])
+    t=time.monotonic();log=open(folder/'log.txt','a')
+    proc=subprocess.Popen(command,cwd=WORK,env=env,stdout=log,stderr=subprocess.STDOUT)
+    print('start',item,SEED,'workers',WORKERS,'remaining_h',round(remaining,2),flush=True)
+    while proc.poll() is None:
+        if (time.monotonic()-SESSION_T0)/3600>=SESSION_HOURS-.05:proc.terminate()
+        time.sleep(5)
+    log.close();rp=folder/'result.json'
+    result=json.loads(rp.read_text()) if rp.exists() else dict(history=[])
+    summary[item]=dict(rc=proc.returncode,epochs=len(result['history']),complete=result.get('complete',False),
+                       minutes=round((time.monotonic()-t)/60,1))
+    (OUT/'fd_summary.json').write_text(json.dumps(summary,indent=2))
+    print('finish',item,summary[item],flush=True)
+    if proc.returncode:
+        print(open(folder/'log.txt').read()[-3000:],flush=True)
+        for f in sorted(folder.glob('worker*.log')):print(f.name,f.read_text()[-2000:],flush=True)
+(OUT/'fd_summary.json').write_text(json.dumps(summary,indent=2))
+print('FullDrift session; gates only after collector audit',json.dumps(summary),flush=True)
+'''
+
+
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def parent_files(parent):
+    """Round 17 --parent: the audited session's config, epoch marker and weights for the notebook (relative path -> SHA)."""
+    if not parent: return None
+    run = BASE / 'artifacts/kaggle' / parent['session'] / 'runs' / parent['run']; r = parent['round']
+    assert (BASE / 'artifacts/kaggle' / parent['session'] / 'AUDITED.json').exists()
+    rels = ['config.json', f'complete/round_{r:03d}.json', f'weights/round_{r:03d}.pt']
+    files = {rel: sha(run / rel) for rel in rels}
+    assert json.loads((run / rels[1]).read_text())['weights_sha'] == files[rels[2]]
+    return dict(run=parent['run'], round=r, files=files)
+
+
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--round', choices=sorted(PLANS), default='r2')
-    parser.add_argument('--suffix', default='v1'); args = parser.parse_args()
+    parser.add_argument('--suffix', default='v1')
+    parser.add_argument('--sessions', help='comma list: generate only these sessions of the plan (later batches of one source tag)')
+    args = parser.parse_args()
     tag = TAG if args.round == 'r1' else f'{TAG}-{args.round}'   # round 1 stage/dataset kept as pushed
     stage = BASE / 'artifacts/input' / f'fd-src-{tag}'
-    mh = sorted(p.name for p in (ROOT / 'mh').glob('*.py')); assert len(mh) == 40
-    files = {**{n: ROOT / 'mh' / n for n in mh}, **{n: FULL / n for n in ('full_run.py', 'full_method.py', 'full_driver.py')},
+    mh = sorted(p.name for p in (ROOT / '.compat/mh').glob('*.py')); assert len(mh) == 40
+    files = {**{n: ROOT / '.compat/mh' / n for n in mh}, **{n: FULL / n for n in ('full_run.py', 'full_method.py', 'full_driver.py')},
              'fd.py': BASE / 'source/proj/fd.py', 'fd_prepare.py': BASE / 'source/proj/fd_prepare.py',
              'meta.json': ROOT / 'knowledge/meta.json', 'scaler.json': ROOT / 'knowledge/scaler.json'}
     if stage.exists():   # reuse the uploaded dataset; its manifest must still match the sources
@@ -144,13 +276,18 @@ def main():
         (stage / 'input_manifest.json').write_text(json.dumps(inputs, indent=1) + '\n')
     secret = netrc.netrc().authenticators('api.wandb.ai')[2]
     for owner, seed, session, queues, hours in PLANS[args.round]:
+        if args.sessions and session not in args.sessions.split(','): continue
         dataset = f'{owner}/mobihet-fulldrift-src-{tag}'   # same bytes uploaded under each running account
         rid = f'fd-s{seed}{session}-{tag}-{args.suffix}'
         public, private = BASE / 'notebooks' / rid, BASE / 'private_push' / rid
         assert not public.exists() and not private.exists()
         public.mkdir(parents=True); private.mkdir(parents=True, mode=0o700)
         head = f'MH={mh!r}\nINPUTS={inputs!r}\n'
-        run = f'SEED={seed}\nSESSION_HOURS={hours}\nQUEUES={queues!r}\n' + RUN
+        if isinstance(queues, dict):
+            run = (f'SEED={seed}\nSESSION_HOURS={hours}\nWORKERS={queues["workers"]}\nARMS={queues["arms"]!r}\nFAST={queues.get("fast", False)!r}\n'
+                   f'PARENT={parent_files(queues.get("parent"))!r}\n' + RUN_POOL)
+        else:
+            run = f'SEED={seed}\nSESSION_HOURS={hours}\nQUEUES={queues!r}\n' + RUN
         cells = [nbformat.v4.new_markdown_cell(
                      f'# FullDrift probe seed{seed} session {session}\n'
                      'Full 100% train80% minus internal holdout (temporal2% + receiver-group5%), epochs 1-6 (or 1-15) of cosine T50. '
@@ -165,10 +302,11 @@ def main():
         for c in nb.cells:
             if c.cell_type == 'code': compile(c.source, rid, 'exec')
         nbformat.validate(nb)
+        parents = [queues['parent']['dataset']] if isinstance(queues, dict) and queues.get('parent') else []
         meta = dict(id=f'{owner}/mobihet-{rid}', title=f'mobihet-{rid}', code_file=f'{rid}.ipynb', language='python',
                     kernel_type='notebook', is_private=True, enable_gpu=True, enable_internet=True,
                     machine_shape=RUNTIME['machine_shape'], docker_image=RUNTIME['docker_image'],
-                    dataset_sources=[dataset, 'trietbackup/veremi-fl-20client', 'trietbackup/veremi-nextgen2026-test'],
+                    dataset_sources=[dataset, 'trietbackup/veremi-fl-20client', 'trietbackup/veremi-nextgen2026-test', *parents],
                     kernel_sources=[], competition_sources=[])
         assert len(meta['title']) <= 50
         nbformat.write(nb, public / meta['code_file'])

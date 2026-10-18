@@ -43,6 +43,7 @@ Account active CLI lúc đó là `thuyanh316` (owner đăng nhập), không ản
 Phân việc: annhannh331 + anhtruong1909 → FullDrift seed42; thuyanh316 → dự trữ full continuation.
 `odixeuit`/`minhtrit06` bị 403 khi **tạo** dataset (đọc/push kernel vẫn được) — dùng dataset share từ owner gốc.
 
-16/10/2026 ~04:00Z: **không dùng `kaggle_account.py quota`** (quét mọi account, kể cả annhtnt/takids1909/accanniez bị cấm query).
+17/10/2026 ~05:30Z owner: **được query quota mọi account, kể cả annhtnt/takids1909/accanniez**, và dùng hết.
+(Cũ, 16/10 ~04:00Z: không dùng `kaggle_account.py quota`; ba account trên từng bị cấm query.)
 Đọc từng account bằng `kaggle_account.account_quota(user)`. Quota live và reset (17/10 00:00Z) ghi ở
-[bàn giao](continuation-2026-10-15-evening.md) mục "Dừng phiên 16/10 ~04:30Z".
+[bàn giao](../archive/operations/continuation-2026-10-15-evening.md) mục "Dừng phiên 16/10 ~04:30Z".

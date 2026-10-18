@@ -26,7 +26,7 @@ class Session:
 
 
 def main():
-    base=ROOT/'papers/full-validation/smoke/pull-range-20261013'
+    base=ROOT/'.compat/papers/full-validation/smoke/pull-range-20261013'
     assert not base.exists();base.mkdir(parents=True)
     for name,response,initial,expected in (
         ('new',Response(200,b'abcdef'),None,6),

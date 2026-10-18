@@ -130,9 +130,9 @@ def main():
     warm=parent/f'runs/ct_local_s{seed}/weights/round_002.pt'
     committed=json.loads((parent/f'runs/ct_local_s{seed}/complete/round_002.json').read_text());assert sha(warm)==committed['weights_sha']
     stage.mkdir(parents=True);manifest={}
-    sources=list((ROOT/'mh').glob('*.py'))+list((BASE/'source/proj').glob('*.py'))+[ROOT/'knowledge/meta.json']
+    sources=list((ROOT/'.compat/mh').glob('*.py'))+list((BASE/'source/proj').glob('*.py'))+[ROOT/'knowledge/meta.json']
     for source in sources:shutil.copyfile(source,stage/source.name);manifest[source.name]=sha(source)
-    fx=ROOT/'papers/pilot/fixture';fixture=json.loads((fx/'manifest.json').read_text())
+    fx=ROOT/'.compat/papers/pilot/fixture';fixture=json.loads((fx/'manifest.json').read_text())
     assert not any(name.startswith('test') for name in fixture['files'])
     for name in list(fixture['files'])+['manifest.json']:
         if name in fixture['files']:assert sha(fx/name)==fixture['files'][name]
@@ -144,7 +144,7 @@ def main():
         (stage/name).write_text(json.dumps(value,indent=2)+'\n')
     inputs={p.name:sha(p) for p in stage.iterdir() if p.is_file()};(stage/'input_manifest.json').write_text(json.dumps(inputs,indent=2)+'\n')
     dataset=f'{owner}/mobihet-{rid}-src';(stage/'dataset-metadata.json').write_text(json.dumps(dict(id=dataset,title=f'mobihet-{rid}-src',licenses=[{'name':'CC0-1.0'}]),indent=2)+'\n')
-    setup=f'MH={[p.name for p in (ROOT/"mh").glob("*.py")]!r}\nPROJ={[p.name for p in (BASE/"source/proj").glob("*.py")]!r}\nMANIFEST={manifest!r}\nINPUTS={inputs!r}\n'+SETUP
+    setup=f'MH={[p.name for p in (ROOT/".compat/mh").glob("*.py")]!r}\nPROJ={[p.name for p in (BASE/"source/proj").glob("*.py")]!r}\nMANIFEST={manifest!r}\nINPUTS={inputs!r}\n'+SETUP
     auth='import time\nSESSION_T0=time.monotonic()\n'+AUTH
     auth=auth.replace("_wandb_key=UserSecretsClient().get_secret('wandb_key')","_wandb_key=_INLINE_WANDB_KEY or UserSecretsClient().get_secret('wandb_key')")
     nb=nbf.v4.new_notebook(cells=[nbf.v4.new_markdown_cell('# CrossClientRank locked paired utility\nSix audited CE-r2 forks and fresh Gaussian/DML; fixed true-class gp. Full-T r3 cost gate before r20. Private inline W&B key persists in private version history.'),

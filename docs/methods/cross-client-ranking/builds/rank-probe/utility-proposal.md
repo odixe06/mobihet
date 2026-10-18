@@ -42,7 +42,7 @@ T4 engineering/cost preflight trước utility; FAIL kỹ thuật thì sửa ngu
 Không chọn round/HP từ group hoặc official test; không kéo dài sau utilityFAIL.
 
 Hai session2,5h, đồng thời cùng owner minhtriethihi:5h+15%=5,75h.
-[Quota owner cũ](../../../../operations/quota-rank-utility-proposal-2026-10-15.json):6,4676h, reserved0 lúc08:24UTC.
+[Quota owner cũ](../../../../archive/operations/quota-rank-utility-proposal-2026-10-15.json):6,4676h, reserved0 lúc08:24UTC.
 Không dùng thêm envelope89,7/90h của ba owner mới, không query quota ba owner đó.
 Nếu session thiếu horizon: audit committed rounds, không tự gọi utilityPASS hoặc thay LR horizon.
 

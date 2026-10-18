@@ -10,8 +10,8 @@ Cơ chế, cấu hình và cổng cụ thể nằm trong các thiết kế gốc
 
 ## Thiết kế gốc, code và bằng chứng
 
-- [Cơ chế và controls](../../research/new-fl-primary-sources-2026-10-13.md).
-- [Dự báo](../../research/performance-feasibility-2026-10-13.md).
+- [Cơ chế và controls](../../archive/research/new-fl-primary-sources-2026-10-13.md).
+- [Dự báo](../../archive/research/performance-feasibility-2026-10-13.md).
 
 Không raw/perturbed record rời xe. Mọi learned model hiện DAGSNet; R2 khác kiến trúc chỉ ở thiết kế. Pilot StageU không chứng minh contact hữu hạn, secure aggregation hoặc DP.
 

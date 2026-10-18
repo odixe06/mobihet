@@ -219,5 +219,18 @@
     "continuation_verified": true,
     "valid_budget_boundary": true,
     "worst_round_seconds": 3456.7483949661255
+  },
+  {
+    "kernel": "thuyanh316/mobihet-fulld-s42-20261017-q5-v1",
+    "arm": "h_dml",
+    "rc": 0,
+    "complete": true,
+    "rounds": 50,
+    "previous_round": 41,
+    "new_rounds": 9,
+    "target_rounds": 50,
+    "continuation_verified": true,
+    "valid_budget_boundary": true,
+    "worst_round_seconds": 3465.1837985515594
   }
 ]

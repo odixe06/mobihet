@@ -12,7 +12,7 @@ residual inflation được phân tích, chưa utility. [Kết quả và giới 
 Pooled rank loss là trung bình squared positive/negative score gaps của joint collection private models;
 local block surrogate dùng cohort means stop-gradient. Cả positive và negative side nhận gradient.
 Own thay cohort counts/means/N bằng local; cùng support mask khi so gradients.
-[Phương trình, nguồn primary, hạn chế](../../../../research/new-directions-2026-10-15-afternoon.md).
+[Phương trình, nguồn primary, hạn chế](../../../../archive/research/new-directions-2026-10-15-afternoon.md).
 
 Probe chỉ forward trên weights CE-r2 đã audit từ ClassTail calibration local arm; không optimizer.
 Không đọc group/old/official test. Dữ liệu input gồm toàn bộ T của pilot; đây không phải full43M-record run.
@@ -55,7 +55,7 @@ gradient inference ở local, không gọi đây là independent full-gradient r
 
 [Source và notebooks](../../../../../methods/cross-client-ranking/builds/rank-probe) ·
 [Local algebra proof](../../../../../methods/cross-client-ranking/builds/rank-probe/probes/local-preflight.json) ·
-[Continuation và quyết định owner](../../../../operations/continuation-2026-10-15-afternoon.md).
+[Continuation và quyết định owner](../../../../archive/operations/continuation-2026-10-15-afternoon.md).
 
 Private inline W&B key chỉ ignored0600; private Kaggle version history vẫn giữ key. Artifact mới chưa DVC backup.
 

@@ -40,7 +40,7 @@ Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 2. Tracked artifacts
 
-[Chỉ mục toàn manifest/lệnh pull](artifact-index.md). [Inventory/proof/alias/cleanup](backup-delta-2026-10-14.json).
+[Chỉ mục toàn manifest/lệnh pull](artifact-index.md). [Inventory/proof/alias/cleanup](../archive/operations/backup-delta-2026-10-14.json).
 Entry remote-only giữ nguyên; local override cùng relpath. Không add partial trực tiếp.
 
 | Manifest | MD5 | Files | Logical bytes | Local |
@@ -83,7 +83,7 @@ Manifest khác giữ snapshot trước; proof cũ: `backup-delta-2026-10-12.json
 
 ## 3. Checks that passed
 
-- Layout mới: [65 manifest/object checks](dvc-relocation-verification-2026-10-14.json), [native pull thử](dvc-restore-smoke-2026-10-14.json). Hash/size/nfiles snapshot giữ nguyên; chỉ outs.path đổi sang artifacts.
+- Layout mới: [65 manifest/object checks](../archive/operations/dvc-relocation-verification-2026-10-14.json), [native pull thử](../archive/operations/dvc-restore-smoke-2026-10-14.json). Hash/size/nfiles snapshot giữ nguyên; chỉ outs.path đổi sang artifacts.
 - Lệnh pull hiện tại trong [chỉ mục canonical](artifact-index.md); alias dùng [map mới](artifact-aliases.json), không dùng path papers trong inventory lịch sử.
 - Git layout được push trong phiên này; kiểm HEAD cuối bằng ls-remote. Không DVC add/push/cleanup đợt mới.
 

@@ -6,7 +6,7 @@ from pathlib import Path
 import torch
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'papers/full-validation/proj'))
+sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'.compat/papers/full-validation/proj'))
 import scripts  # register compatibility imports before loading the frozen verifier
 from scripts.kaggle.full_resume import import_run
 from full_verify import verify
@@ -15,14 +15,14 @@ from scripts.check_v3_driver import equal
 
 def main():
     torch.set_num_threads(1)
-    source=ROOT/'papers/full-validation/smoke/initial1-20261012/h_gaussian_s42'
+    source=ROOT/'.compat/papers/full-validation/smoke/initial1-20261012/h_gaussian_s42'
     if not source.exists():
-        candidates=list((ROOT/'papers/full-validation/smoke').glob('*/h_gaussian_s42'))
+        candidates=list((ROOT/'.compat/papers/full-validation/smoke').glob('*/h_gaussian_s42'))
         assert len(candidates)==1,candidates
         source=candidates[0]
     identity=json.loads((source/'config.json').read_text())
     expected=dict(fingerprint=identity['fingerprint'],source=identity['source'],fixture=identity['fixture'],last_round=3)
-    work=ROOT/'papers/full-validation/smoke/import-20261013'
+    work=ROOT/'.compat/papers/full-validation/smoke/import-20261013'
     mount=work/'mount';previous=mount/source.name
     assert not work.exists(),'new import check tag required'
     shutil.copytree(source,previous)

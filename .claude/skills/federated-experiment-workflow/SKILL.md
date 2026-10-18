@@ -1,6 +1,6 @@
 ---
 name: federated-experiment-workflow
-description: Resume federated-learning research sessions, audit completed Kaggle builds, maintain method/build evidence and documentation, and prepare authorized checkpoint continuations. Use for research handoffs or experiment-project organization; it does not authorize training, backup, deletion, Git or DVC pushes.
+description: Resume federated-learning research sessions and run the experiment loop around Kaggle builds: read the project hub, lessons and current handoff, inventory running and finished sessions, collect and audit completed runs against locked gates, record problem evidence -> mechanism -> falsifiable sign before proposing a method, and update per-method design/results/lessons and the handoff. Use at session start or after a summary/compaction, when collecting or auditing results, locking gates, proposing or comparing methods, or updating research docs (e.g. "đọc CONTEXT", "bàn giao", "collect/audit kết quả", "đề xuất phương pháp", "cập nhật results/design"). Does not authorize training launches, backup, deletion, Git or DVC pushes.
 ---
 
 # Federated experiment workflow

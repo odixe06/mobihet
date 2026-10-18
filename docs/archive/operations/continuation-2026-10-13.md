@@ -10,7 +10,7 @@ khôngGit/DVCpush/backup/cleanup. Stable thìngừnghealthpoll.
 ## Chốt mới
 
 - Chủ dự án yêu cầu dự báo **lợi hiệu năng** trước thử phương pháp; bảng dự báo/điều kiện/bác bỏ tại
-  [performance-feasibility](../../research/performance-feasibility-2026-10-13.md).
+  [performance-feasibility](../research/performance-feasibility-2026-10-13.md).
 - Đợt cải tiến mới: BoundaryCells cả direct và teacher DAGSNet; receiver noise/profile swap chỉ local,
   cùng lớp/cùng client/khác receiver và qua fidelity gate; EMA fresh 2×2 + own controls.
   gp hiệu dụng/P2-P4/B4/edges−1/0/1/alpha1/lambda0,5 đã chốt.
@@ -103,7 +103,7 @@ BoundaryCells calibration cả hai seed đã audit/cost PASS. Trạng thái mớ
 [nối phiên sau reboot](resume-after-reboot-2026-10-13.md),
 [10 metrics cuối H1/H2](../../methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md).
 
-Đợt mới ngoài continuation: [dự báo và thứ tự kiểm](../../research/performance-feasibility-2026-10-13.md).
+Đợt mới ngoài continuation: [dự báo và thứ tự kiểm](../research/performance-feasibility-2026-10-13.md).
 BoundaryCells bounded probe xong, cảP hơnown/shuffle; P4target mềm/F1thấp nên chưa dự báo cao.
 ResponseRisk toyextractor+40.960row swap probe PASS cho closure/policy; chưa physicalcausal/utilityproof.
 Chưa notebook huấn luyện mới cho hai hướng hoặc EMA; cần khóa cổng trước preflight/push.

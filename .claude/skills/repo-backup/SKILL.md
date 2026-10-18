@@ -1,6 +1,6 @@
 ---
 name: repo-backup
-description: Back up Git history and DVC artifacts, restore selected data, and reclaim local disk space. Use when the owner requests repository backup, artifact push, restore, or cleanup.
+description: Back up Git history and DVC artifacts to the configured remotes, restore selected artifacts, and reclaim local disk after a verified backup. Use when the owner asks for a backup, artifact or Git push, DVC restore/pull, or disk cleanup (e.g. "backup", "đẩy DVC", "push git", "khôi phục dữ liệu", "dọn ổ đĩa"). A backup request never authorizes deletion.
 ---
 
 # Repository backup
@@ -14,7 +14,7 @@ Use authorization already given in the session. Backup, Git push, and deletion m
 **Delete local data only when the owner explicitly requests cleanup.** A backup request alone never authorizes deletion; after backing up, report what could be reclaimed and stop.
 
 - Commit only intended files; inspect staged changes and exclude credentials, API keys, and unrelated work.
-- Preserve the repository's attribution convention. Do not add Claude attribution.
+- Preserve the repository's attribution convention. Do not add AI-assistant attribution (co-author lines, "generated with" footers).
 - Work on the existing approved branch. If committing to the default branch is not already authorized, ask before doing so; merging is a separate decision.
 - Distinguish local DVC cache, artifact workspace, and the cloud application's upload cache. Cleanup of the first two does not authorize cleanup of the third.
 

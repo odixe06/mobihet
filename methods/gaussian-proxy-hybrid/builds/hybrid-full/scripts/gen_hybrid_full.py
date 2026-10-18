@@ -82,10 +82,10 @@ assert all(v['rc']==0 and v['calibration_complete'] for v in summary.values()),'
 
 
 def main():
-    base=ROOT/'papers/hybrid-full';runtime=json.loads((ROOT/'knowledge/runtime.json').read_text())
+    base=ROOT/'.compat/papers/hybrid-full';runtime=json.loads((ROOT/'knowledge/runtime.json').read_text())
     key=netrc.netrc().authenticators('api.wandb.ai')[2]
     assert key and '**/private_push/' in (ROOT/'.gitignore').read_text().splitlines()
-    mh=sorted((ROOT/'mh').glob('*.py'));project=sorted((base/'proj').glob('*.py'))
+    mh=sorted((ROOT/'.compat/mh').glob('*.py'));project=sorted((base/'proj').glob('*.py'))
     files=mh+project+[ROOT/'knowledge/meta.json',ROOT/'knowledge/scaler.json',ROOT/current_path('docs/research/full-hybrid.md')]
     manifest={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     assert len(manifest)==len(files)

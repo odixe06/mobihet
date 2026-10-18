@@ -4,18 +4,25 @@ Contract: docs/methods/full-drift/design.md. `fd_dml`/`fd_gaussian` are the froz
 on the holdout fixture; technique arms only switch one hook. Decisions use the `group` holdout; official test is
 evaluated once after the last epoch, descriptive only.
 
-    python fd.py --arm fd_dml_sub4 --seed 42 --wandb_online
+    python fd.py --arm fd_dml_m4b_gpool --seed 42 --wandb_online
 """
 import argparse
 import copy
 import csv
 import hashlib
-import io
 import json
 import os
+import pickle
+import re
+import secrets
+import struct
+import subprocess
 import sys
 import time
+import zlib
+from multiprocessing.connection import Client, Listener
 from pathlib import Path
+from types import SimpleNamespace
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -24,21 +31,62 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mh import pilot as P
 from mh.new_fl import digest, save
 from mh.v2_methods import calibrate, finite
+from mh.v2_math import SecureSum, pack_vector, unpack
 from mh.metrics import METRIC_KEYS, metrics_from_confusion, per_class_from_confusion
 from mh.model_packet import Codec
+from mh.v7_nystrom import Method as Gaussian
 from full_method import Method as FullMethod
 from full_run import Run as FullRun
 
-ARMS = ['fd_dml', 'fd_dml_sub4', 'fd_dml_prox', 'fd_dml_avgm', 'fd_fedavg', 'fd_fedavg_sub4', 'fd_gaussian', 'fd_gaussian_swappos',
-        # round 2 (owner 15/10 ~22Z): QProxy q4 with frequent aggregation, sub16, sub4 + FedProx
-        'fd_dml_sub4_q4', 'fd_fedavg_sub4_q4', 'fd_dml_sub16_q4', 'fd_fedavg_sub16_q4', 'fd_dml_sub4_prox', 'fd_fedavg_sub4_prox',
-        # round 3 (owner 16/10: target = client private gp; zero extra bytes/contacts, architecture-agnostic)
+# Owner 17/10 ~10:10Z: one aggregation after every full local epoch only (FL_NIDS_10client protocol)
+ARMS = ['fd_dml', 'fd_dml_prox', 'fd_dml_avgm', 'fd_fedavg', 'fd_gaussian', 'fd_gaussian_swappos',
+        # round 3 (owner 16/10: target = client private gp; zero extra bytes, architecture-agnostic)
         'fd_dml_m4b', 'fd_dml_swappos', 'fd_dml_ntd', 'fd_dml_q4',
         # round 4 (client): hidden-state KD; Gaussian with receiver/position features zeroed (AntiMem m4b)
         'fd_dml_hkd', 'fd_gaussian_m4b',
-        # round 5 (owner 16/10 ~08:20Z): m4b with QProxy q4 (R1) and with sub4 + q4; m4b:15 horizon reuses fd_dml_m4b
-        'fd_dml_m4b_q4', 'fd_dml_m4b_sub4_q4']
-PARTS, MU, SWAP_P, EMA_BETA, CAL_ROWS, SERVER_BETA = 4, 0.01, 0.5, 0.5 ** 0.5, 65536, 0.9
+        # round 5 (owner 16/10 ~08:20Z): m4b with QProxy q4 (R1); m4b:15 horizon reuses fd_dml_m4b
+        'fd_dml_m4b_q4',
+        # round 8 (owner 17/10, docs/research/algorithm-improvement-plan-2026-10-17.md): how the private absorbs the teacher,
+        # FL-vs-local controls, FedDyn on the proxy, two-view receiver consistency
+        'fd_dml_m4b_kdcap', 'fd_dml_m4b_kdcap_wu', 'fd_dml_m4b_kdcap_frz', 'fd_dml_m4b_own', 'fd_gaussian_m4b_own',
+        'fd_dml_m4b_dyn', 'fd_dml_swappos_cons', 'fd_dml_swappos_cons0',
+        # round 9 (same plan): SCAFFOLD-proxy with a plain-SGD proxy (lr 0.01/0.03/0.1 x cosine; sgd = c=0 control) and
+        # Hybrid private-only synthetic: pooled / own Gaussian, or class-balanced local replay, CE for the private only
+        'fd_dml_m4b_sgd1', 'fd_dml_m4b_sgd3', 'fd_dml_m4b_sgd10', 'fd_dml_m4b_scaf1', 'fd_dml_m4b_scaf3', 'fd_dml_m4b_scaf10',
+        'fd_dml_m4b_gpool', 'fd_dml_m4b_gown', 'fd_dml_m4b_replay',
+        # round 11 (owner 17/10 ~05Z: headline m4b+gpool; improve it before 50 rounds): private-side KD x2 (kd2),
+        # proxy-side KD weight capped only (kdpx), private-only Gaussian CE weight x2 (gw2)
+        'fd_dml_m4b_gpool_kd2', 'fd_dml_m4b_gpool_kdpx', 'fd_dml_m4b_gpool_gw2',
+        # round 12 (owner 17/10 ~14Z: limited communication budget): headline with the real int4 QPacket proxy exchange
+        'fd_dml_m4b_gpool_q4',
+        # round 13 (owner 17/10 ~16Z: try A, B, C + the owner's proposals): Gaussian labels water-filled toward locally rare
+        # classes (fill); Gaussian rows the received global proxy rejects are dropped (rej); KL to a snapshot teacher on the
+        # Gaussian rows -- global proxy (p1), own private (p1self), class-mean target (p1cm); ternary 2-bit proxy codec (q2)
+        'fd_dml_m4b_gpool_fill', 'fd_dml_m4b_gpool_rej', 'fd_dml_m4b_gpool_p1', 'fd_dml_m4b_gpool_p1self',
+        'fd_dml_m4b_gpool_p1cm', 'fd_dml_m4b_gpool_q2',
+        # round 15 (owner 17/10 ~20Z, probes 14-17: the private decision layer drifts to the local data while its DML teacher, the
+        # proxy copy, adapts locally): private KD from the aggregated snapshot frozen for the epoch, uncapped (frz); Gaussian rows
+        # learn that snapshot by KL instead of hard CE (gkd)
+        'fd_dml_m4b_frz', 'fd_dml_m4b_gpool_frz', 'fd_dml_m4b_gpool_frz_gkd',
+        # round 16 (design §Vòng 16): the round-15 headline over the ternary 2-bit proxy exchange (R1)
+        'fd_dml_m4b_gpool_q2_frz_gkd',
+        # round 17 (owner 18/10 ~06Z: small improvements of the round-15 headline, then 50 rounds): local CE on the logits shifted
+        # by log pi_k - log pi_g, so the local term trains the same global-prior posterior the frozen teacher gives (la, FedLC);
+        # proxy <- private KL weight capped (kdpx: a better aggregated snapshot is a better private teacher); both
+        'fd_dml_m4b_gpool_frz_gkd_la', 'fd_dml_m4b_gpool_frz_gkd_kdpx', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx',
+        # round 18 (owner 18/10 ~07Z: try every improvement with evidence): class-conditional Gaussian copula rows instead of the class
+        # Gaussian (cop: pooled per-class marginal histograms + normal-score correlation, both SecureSum-additive); proxy CE only
+        # (pce, FedAvg proxy = the private's teacher); KD temperature 2 (t2); 512 synthetic rows (g512); Gaussian KL weight x2 (gk2);
+        # the headline over the int4 wire (q4, R1)
+        'fd_dml_m4b_gpool_frz_gkd_cop', 'fd_dml_m4b_gpool_frz_gkd_pce', 'fd_dml_m4b_gpool_frz_gkd_t2', 'fd_dml_m4b_gpool_frz_gkd_g512',
+        'fd_dml_m4b_gpool_frz_gkd_gk2', 'fd_dml_m4b_gpool_q4_frz_gkd',
+        # round 19 (--fast): the round-17 best (la_kdpx) over the int4 wire that passed round 18 (R1 combination)
+        'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx']
+MU, SWAP_P, EMA_BETA, CAL_ROWS, SERVER_BETA = 0.01, 0.5, 0.5 ** 0.5, 65536, 0.9
+KD_CAP, DYN_ALPHA, CONS_LAMBDA, PROBE_ROWS = 1.0, 0.01, 1.0, 512   # plan §4.2 / §5.1 / §4.5 screening values
+KD_UP, GW2 = 2.0, 2.0   # round 11 kd2: private-side KD weight multiplier; gw2: weight of the private-only Gaussian CE
+KD_T, GK2, COP_BINS, COP_LIM = 2.0, 2.0, 256, 8.0   # round 18: t2 temperature, gk2 weight, copula bins over asinh(z) in [-8, 8]
+P1_LAMBDA, P1_T, P1_CLASSES = 0.25, 1.0, (0, 4)   # round 13 P1: KL weight, temperature, classes (benign, dataReplay)
 BLOCK = ['f_rcv_pos_noise_x', 'f_rcv_pos_noise_y', 'f_rcv_spd_noise', 'f_rcv_acl_noise', 'f_rcv_hed_noise',
          'f_rcv_noise_mag', 'f_rcv_profile_normal', 'f_rcv_profile_cautious', 'f_rcv_profile_aggressive']
 POSITION = ['f_rcv_x_rel', 'f_rcv_y_rel', 'f_snd_x_rel', 'f_snd_y_rel']
@@ -65,9 +113,88 @@ def quantize(t, bits, generator=None):
     return (q * scale).reshape(t.shape), q.to(torch.int8), scale.half(), nbytes
 
 
+QHEADER = struct.Struct('<4sBBHIII16sI')   # model_packet.HEADER layout, magic MHQ4 (MHQ2 for 2-bit)
+
+
+class QPacket:
+    """QProxy wire format (int4, or 2-bit ternary): per state_dict entry in order -- integer counters int64; BN buffers fp16;
+    parameters: per-row fp16 scales, then the codes q+2^(bits-1) (int4: 1..15, 2-bit: 1..3) packed 8/bits per byte, lowest
+    bits first. decode() returns the tensors quantize() produced (q * scale; a -0.0 code reads back as +0.0), so training is
+    unchanged and len(packet) is the real byte count. Header: magic, schema, bits, base/version, body length, context, CRC32."""
+    def __init__(self, model, context, bits=4):
+        assert bits in (2, 4)
+        self.bits, self.magic = bits, b'MHQ%d' % bits
+        self.context = hashlib.sha256(context.encode()).digest()[:16]
+        self.fields = [(name, tuple(v.shape), v.dtype) for name, v in model.state_dict().items()]
+
+    def encode(self, entries, base, version):
+        """entries[name]: (q int8, scale fp16) for a parameter, a float tensor (sent fp16) for a BN buffer, an int tensor."""
+        chunks, per = [], 8 // self.bits
+        for name, shape, dtype in self.fields:
+            entry = entries[name]
+            if isinstance(entry, tuple):
+                q, scale = entry
+                codes = (q.reshape(-1).cpu().numpy().astype(np.int16) + 2 ** (self.bits - 1)).astype(np.uint8)
+                assert codes.min() >= 1 and codes.max() <= 2 ** self.bits - 1, 'code range'
+                if len(codes) % per: codes = np.append(codes, np.zeros(per - len(codes) % per, np.uint8))
+                packed = codes[0::per]
+                for i in range(1, per): packed = packed | (codes[i::per] << (self.bits * i))
+                chunks += [scale.reshape(-1).cpu().numpy().astype('<f2').tobytes(), packed.tobytes()]
+            elif dtype.is_floating_point:
+                chunks.append(entry.detach().cpu().numpy().astype('<f2').tobytes())
+            else:
+                chunks.append(entry.detach().cpu().numpy().astype('<i8').tobytes())
+        body = b''.join(chunks)
+        return QHEADER.pack(self.magic, 1, self.bits, 0, base, version, len(body), self.context, zlib.crc32(body)) + body
+
+    def decode(self, packet, device, expected_base):
+        magic, schema, bits, reserved, base, version, length, context, crc = QHEADER.unpack_from(packet)
+        body = packet[QHEADER.size:]; per = 8 // self.bits
+        assert (magic, schema, bits, reserved) == (self.magic, 1, self.bits, 0) and context == self.context, 'QProxy header'
+        assert length == len(body) and zlib.crc32(body) == crc and base == expected_base and version == base + 1, 'QProxy packet'
+        out, offset = {}, 0
+        for name, shape, dtype in self.fields:
+            n = int(np.prod(shape))
+            if not dtype.is_floating_point:
+                out[name] = torch.from_numpy(np.frombuffer(body, '<i8', n, offset).copy()).reshape(shape).to(device); offset += 8 * n
+            elif is_buffer(name):
+                out[name] = torch.from_numpy(np.frombuffer(body, '<f2', n, offset).astype(np.float32)).reshape(shape).to(device)
+                offset += 2 * n
+            else:
+                rows = shape[0] if len(shape) > 1 else 1
+                scale = torch.from_numpy(np.frombuffer(body, '<f2', rows, offset).astype(np.float32)).reshape(rows, 1).to(device)
+                offset += 2 * rows; size = (n + per - 1) // per; packed = np.frombuffer(body, np.uint8, size, offset); offset += size
+                codes = np.empty(per * size, np.uint8)
+                for i in range(per): codes[i::per] = (packed >> (self.bits * i)) & (2 ** self.bits - 1)
+                q = torch.from_numpy(codes[:n].astype(np.float32) - 2 ** (self.bits - 1)).reshape(rows, -1).to(device)
+                out[name] = (q * scale).reshape(shape)
+        assert offset == length
+        return out
+
+
 def not_true(z, y):
     """FedNTD: log-softmax over the not-true classes (true-class logit pushed to -1e4, so it carries no mass)."""
     return F.log_softmax(z.masked_fill(F.one_hot(y, z.shape[1]).bool(), -1e4), 1)
+
+
+def js(za, zb):
+    """Jensen-Shannon divergence between the softmax of two logit batches, mean over rows (both sides get gradients)."""
+    la, lb = F.log_softmax(za, 1), F.log_softmax(zb, 1)
+    lm = torch.logsumexp(torch.stack([la, lb]), 0) - np.log(2.)
+    return 0.5 * ((la.exp() * (la - lm)).sum(1) + (lb.exp() * (lb - lm)).sum(1)).mean()
+
+
+def sgd_lr(tokens):
+    """'sgd3'/'scaf3' -> 0.03: base LR of the plain-SGD proxy (same cosine shape as the AdamW schedule)."""
+    hit = [re.fullmatch(r'(sgd|scaf)(\d+)', t) for t in tokens]
+    return next((int(h.group(2)) / 100 for h in hit if h), None)
+
+
+class Mixed:
+    """AdamW private (+ local projector) and plain-SGD proxy behind one GradScaler unscale/inf-skip decision."""
+    def __init__(self, *optimizers): self.optimizers = optimizers; self.param_groups = [g for o in optimizers for g in o.param_groups]
+    def step(self): [o.step() for o in self.optimizers]
+    def zero_grad(self, set_to_none=True): [o.zero_grad(set_to_none=set_to_none) for o in self.optimizers]
 
 
 def check_full_manifest(manifest, n, test_rows):
@@ -79,13 +206,58 @@ def check_full_manifest(manifest, n, test_rows):
     assert manifest['test_scaler'].startswith('scaler.json')
 
 
+def fill_labels(pi, n):
+    """Round 13 fill: Gaussian label shares q = max(0, L - pi) with sum 1 (water-filling: real + Gaussian label mass as even
+    as the n rows allow), rounded to n labels by largest remainder (ties: lower class), sorted by class."""
+    pi = pi.double().cpu(); s, _ = torch.sort(pi)
+    for j in range(1, len(pi) + 1):
+        level = (1 + s[:j].sum()) / j
+        if j == len(pi) or level <= s[j]: break
+    q = (level - pi).clamp_min(0); q = q / q.sum()
+    count = torch.floor(n * q).long(); rest = n * q - count
+    count[torch.argsort(-rest, stable=True)[:n - int(count.sum())]] += 1
+    return torch.repeat_interleave(torch.arange(len(pi)), count)
+
+
+def assign(sizes, workers):
+    """--workers: clients per process, longest-first onto the least-loaded process (ties: lowest rank); one process -> all."""
+    load, own = [0] * workers, [[] for _ in range(workers)]
+    for k in sorted(range(len(sizes)), key=lambda k: (-sizes[k], k)):
+        rank = min(range(workers), key=lambda w: (load[w], w)); load[rank] += sizes[k]; own[rank].append(k)
+    return [sorted(o) for o in own]
+
+
+class Clients(list):
+    """Per-client train rows: this process's clients stay on the GPU; any other client is read from the fixture on access
+    (setup only: Gaussian moments, compile probe, EMA calibration on rank 0)."""
+    def __init__(self, items, load): super().__init__(items); self.load = load
+    def __getitem__(self, k):
+        value = super().__getitem__(k)
+        return self.load(k) if value is None else value
+    def __iter__(self): return (self[k] for k in range(len(self)))
+
+
 class Method(FullMethod):
     def __init__(self, run, initialize=True):
         super().__init__(run, initialize)
         self.ema_private = None
         self.fedavg = 'fedavg' in self.arm
         self.momentum = self.arm.endswith('_avgm'); self.velocity = {}
-        self.bits = 4 if 'q4' in self.arm.split('_') else None; self.exact = None
+        self.bits = 4 if 'q4' in self.arm.split('_') else 2 if 'q2' in self.arm.split('_') else None; self.exact = None
+        self.dyn = 'dyn' in self.arm.split('_'); self.dyn_a, self.dyn_h = {}, {}   # FedDyn: client a_i (never sent), server h
+        tokens = self.arm.split('_')
+        self.scaf = any(t.startswith('scaf') for t in tokens); self.scaf_c, self.scaf_ci, self.scaf_dsum = None, {}, None
+        # Hybrid private-only: Gaussian class moments (pooled 'gpool' / client-own 'gown') drawn for the private model only
+        self.paux = 'gpool' in tokens or 'gown' in tokens; self.gmode = 'own' if 'gown' in tokens else 'fl'
+        self.draw_bad = torch.zeros((), dtype=torch.bool, device=run.dev)   # deferred v7 draw check, asserted per epoch
+        self.cop = 'cop' in tokens; assert not self.cop or (self.paux and self.gmode == 'fl')
+        if self.cop and initialize: self.make_copula()
+        elif self.paux:
+            self.gaussian = Gaussian(SimpleNamespace(init=run.init, dev=run.dev, a=SimpleNamespace(arm='n_full', seed=run.a.seed)),
+                                     initialize=False)
+            if initialize:
+                self.gaussian.R = run; self.gaussian.mode = self.gmode
+                self.gaussian.make_tables(); self.gaussian_state = self.gaussian.state()
         if self.fedavg:   # one shared model trained with CE only: the full DML proxy machinery without private/KD
             self.kd = True
             torch.manual_seed(run.a.seed + 1000); initial = P.make('dagsnet').to(run.dev)
@@ -95,8 +267,10 @@ class Method(FullMethod):
 
     def prior(self):
         super().prior()
+        if self.R.la: self.R.la_shift = self.R.log_pi - self.R.log_pg   # round 18: the SecureSum aggregate prior (r17: in-process)
         if self.bits:
             self.exact = {k: v.detach().clone() for k, v in self.global_state.items()}
+            self.qpacket = QPacket(self.proxy[0], f'q{self.bits}:{self.arm}:{self.R.a.seed}', self.bits)
 
     def start_round(self):
         super().start_round()
@@ -107,50 +281,148 @@ class Method(FullMethod):
         """QProxy (antimem): up = per-row int-b delta vs the replica, stochastic; BN buffers fp16; integers raw."""
         if not self.bits:
             return super().proxy_epoch(k, r)
-        g = self.R.gen(r, k, 77); nbytes = 32
-        for name, value in self.proxy[k].state_dict().items():
-            if not value.is_floating_point():
-                wire, nbytes = value.clone(), nbytes + 8 * value.numel()
-                self.qsum[name] = wire if name not in self.qsum else torch.maximum(self.qsum[name], wire)
-                continue
-            if is_buffer(name):
-                wire = value.detach().half().float(); nbytes += 2 * value.numel()
-            else:
-                wire, _, _, n = quantize(value.detach().float() - self.global_state[name].float(), self.bits, g)
-                nbytes += n
-            self.qsum[name] = wire.double() if name not in self.qsum else self.qsum[name] + wire.double()
-        assert k not in self.qseen; self.qseen.add(k)
-        self.R.bytes.append((r, k, 'up', 'proxy_quantized', nbytes))
+        self.accumulate_quantized(k, r, self.quantized_wire(k, r))
         return None, self.logs[k]
+
+    def quantized_wire(self, k, r):
+        """Client side of QProxy: the packet client k puts on the wire."""
+        g = self.R.gen(r, k, 77); entries = {}
+        for name, value in self.proxy[k].state_dict().items():
+            if not value.is_floating_point(): entries[name] = value.clone()
+            elif is_buffer(name): entries[name] = value.detach()
+            else:
+                _, q, scale, _ = quantize(value.detach().float() - self.global_state[name].float(), self.bits, g)
+                entries[name] = (q, scale)
+        return self.qpacket.encode(entries, r - 1, r)
+
+    def accumulate_quantized(self, k, r, packet):
+        """Server side of QProxy: decode client k's packet, running sum over clients in client order."""
+        wires = self.qpacket.decode(packet, self.R.dev, r - 1)
+        for name, wire in wires.items():
+            if not wire.is_floating_point():
+                self.qsum[name] = wire if name not in self.qsum else torch.maximum(self.qsum[name], wire)
+            else:
+                self.qsum[name] = wire.double() if name not in self.qsum else self.qsum[name] + wire.double()
+        assert k not in self.qseen; self.qseen.add(k)
+        self.R.bytes.append((r, k, 'up', 'proxy_quantized', len(packet)))
 
     def aggregate_quantized(self, r):
         """Server keeps the exact model (error feedback); down = int-b nearest of exact − replica."""
         assert self.qseen == set(range(self.R.K))
-        payload, nbytes, num, den = io.BytesIO(), 32, 0., 0.
+        entries = {}
         for name, total in self.qsum.items():
             if not total.is_floating_point():
-                self.exact[name] = total.clone(); new = total.clone(); nbytes += 8 * total.numel()
+                self.exact[name] = total.clone(); entries[name] = total
             elif is_buffer(name):
-                self.exact[name] = (total / self.R.K).float(); new = self.exact[name].half().float()
-                nbytes += 2 * total.numel()
+                self.exact[name] = (total / self.R.K).float(); entries[name] = self.exact[name]
             else:
                 self.exact[name] = self.exact[name] + (total / self.R.K).float()
-                decoded, q, scale, n = quantize(self.exact[name] - self.global_state[name], self.bits)
-                new = self.global_state[name] + decoded; nbytes += n
-                payload.write(q.cpu().numpy().tobytes()); payload.write(scale.cpu().numpy().tobytes())
+                _, q, scale, _ = quantize(self.exact[name] - self.global_state[name], self.bits); entries[name] = (q, scale)
+        packet = self.qpacket.encode(entries, r - 1, r); decoded = self.qpacket.decode(packet, self.R.dev, r - 1)
+        num = den = 0.
+        for name, total in self.qsum.items():   # what every client rebuilds from the downlink bytes
+            if not total.is_floating_point() or is_buffer(name): new = decoded[name]
+            else:
+                new = self.global_state[name] + decoded[name]
                 num += float((self.exact[name] - new).double().pow(2).sum()); den += float(self.exact[name].double().pow(2).sum())
             assert torch.isfinite(new.float()).all(), ('quantized proxy nonfinite', name)
             self.global_state[name] = new.to(self.global_state[name].dtype)
         for k in range(self.R.K):
-            self.R.bytes.append((r, k, 'down', 'proxy_quantized', nbytes))
+            self.R.bytes.append((r, k, 'down', 'proxy_quantized', len(packet)))
             self.proxy[k].load_state_dict(self.global_state, strict=True)
-        self.global_vector = self.layout.flatten(self.proxy[0]).clone(); self.latest_packet = payload.getvalue()
-        self.diag['q_residual_rel'] = (num / max(den, 1e-30)) ** 0.5; self.diag['q_bytes_down'] = nbytes
+        self.global_vector = self.layout.flatten(self.proxy[0]).clone(); self.latest_packet = packet
+        self.diag['q_residual_rel'] = (num / max(den, 1e-30)) ** 0.5; self.diag['q_bytes_down'] = len(packet)
         self.version = r
 
+    def make_copula(self, chunk=262144):
+        """Round 18 cop, one-shot bootstrap in two SecureSum phases (every message additive, no record leaves a client):
+        A) each client: per class x visible feature, counts in COP_BINS fixed public bins of asinh(z) -> pooled marginal CDFs;
+        B) each client maps its rows through the pooled CDFs to normal scores s = Phi^-1(F(x)) and sends per class sum s, sum s s^T
+           -> pooled normal-score correlation (Gaussian copula). Masked (m4b) features are never counted, drawn as 0."""
+        R = self.R; C = P.C; keep = torch.nonzero(~R.zero_cols).squeeze(1); d = len(keep); B = COP_BINS
+        edges = torch.linspace(-COP_LIM, COP_LIM, B + 1, device=R.dev); width = float(edges[1] - edges[0])
+        feature = torch.arange(d, device=R.dev)
+        def bins(x): return torch.bucketize(torch.asinh(x).clamp(-COP_LIM, COP_LIM - 1e-6), edges[1:-1])
+        def rows(k):
+            X, Y = R.X[k], R.Y[k]
+            for i in range(0, len(Y), chunk): yield X[i:i + chunk][:, keep].float(), Y[i:i + chunk]
+        hist = SecureSum('counts', 0, C * d * B, R.dev)
+        for k in range(R.K):   # phase A
+            h = torch.zeros(C * d * B, dtype=torch.long, device=R.dev)
+            for x, y in rows(k): h += torch.bincount(((y[:, None] * d + feature) * B + bins(x)).flatten(), minlength=C * d * B)
+            packet = pack_vector('counts', h.double(), count=R.n[k]); self.record(packet, 0, k, 'up', 'copula_hist'); hist.add(k, packet)
+        total, _ = hist.finish(); packet = pack_vector('counts', total)
+        for k in range(R.K): self.record(packet, 0, k, 'down', 'copula_hist')
+        counts = unpack(packet, R.dev)['values'].double().view(C, d, B); n = counts[:, 0].sum(1)
+        assert (n > 0).all() and torch.equal(counts.sum(2), n[:, None].expand(C, d))
+        cum = torch.cat([torch.zeros(C, d, 1, device=R.dev, dtype=torch.float64), counts.cumsum(2)], 2) / n[:, None, None]
+        flat = cum.float().flatten()
+        tri = torch.triu_indices(d, d, device=R.dev); size = C * (d + tri.shape[1])
+        scores = SecureSum('moments', 0, size, R.dev)
+        for k in range(R.K):   # phase B
+            t1 = torch.zeros(C, d, dtype=torch.float64, device=R.dev); t2 = torch.zeros(C, d, d, dtype=torch.float64, device=R.dev)
+            for x, y in rows(k):
+                b = bins(x); at = ((y[:, None] * d + feature) * (B + 1) + b)
+                lo, hi = flat[at], flat[at + 1]
+                frac = (torch.asinh(x).clamp(-COP_LIM, COP_LIM - 1e-6) - edges[b]) / width
+                s = torch.special.ndtri((lo + frac * (hi - lo)).clamp(1e-6, 1 - 1e-6)).double()
+                for c in torch.unique(y).tolist():
+                    sc = s[y == c]; t1[c] += sc.sum(0); t2[c] += sc.T @ sc
+            packet = pack_vector('moments', torch.cat([t1, t2[:, tri[0], tri[1]]], 1).flatten(), count=R.n[k])
+            self.record(packet, 0, k, 'up', 'copula_scores'); scores.add(k, packet)
+        total, _ = scores.finish(); total = total.double().view(C, -1)
+        mean = total[:, :d] / n[:, None]; second = torch.zeros(C, d, d, dtype=torch.float64, device=R.dev)
+        second[:, tri[0], tri[1]] = total[:, d:]; second = second + second.triu(1).transpose(1, 2)
+        cov = (second / n[:, None, None] - mean[:, :, None] * mean[:, None, :]).cpu()   # CPU float64: deterministic eigh
+        var = cov.diagonal(dim1=1, dim2=2); live = var > 1e-8   # a feature constant within a class (atom 100 %) has no dependence
+        sd = var.clamp_min(1e-8).sqrt(); corr = cov / (sd[:, :, None] * sd[:, None, :])
+        corr = torch.where(live[:, :, None] & live[:, None, :], corr, torch.zeros_like(corr))
+        corr.diagonal(dim1=1, dim2=2).fill_(1.)
+        value, vector = torch.linalg.eigh(corr)   # nearest-PD by eigenvalue floor, then back to unit diagonal
+        corr = vector @ torch.diag_embed(value.clamp_min(1e-4)) @ vector.transpose(1, 2)
+        unit = corr.diagonal(dim1=1, dim2=2).sqrt(); corr = corr / (unit[:, :, None] * unit[:, None, :])
+        factor = torch.linalg.cholesky(corr).float().to(R.dev)
+        packet = pack_vector('moments', factor[:, tri[1], tri[0]].flatten())   # lower triangle of each class Cholesky factor
+        for k in range(R.K): self.record(packet, 0, k, 'down', 'copula_corr')
+        low = torch.zeros(C, d, d, device=R.dev); low[:, tri[1], tri[0]] = unpack(packet, R.dev)['values'].view(C, -1)
+        self.copula = dict(cum=cum.float(), factor=low, keep=keep, edges=edges, width=width)
+
+    def draw_copula(self, labels, g):
+        t = self.copula; d = len(t['keep'])
+        z = torch.randn(len(labels), d, device=self.R.dev, generator=g)
+        u = torch.special.ndtr((t['factor'][labels] @ z[:, :, None]).squeeze(-1)).clamp(1e-6, 1 - 1e-6)
+        seq = t['cum'][labels]
+        b = (torch.searchsorted(seq, u[:, :, None]).squeeze(-1) - 1).clamp(0, COP_BINS - 1)
+        lo, hi = seq.gather(2, b[:, :, None]).squeeze(-1), seq.gather(2, (b + 1)[:, :, None]).squeeze(-1)
+        frac = ((u - lo) / (hi - lo).clamp_min(1e-12)).clamp(0, 1)
+        x = torch.zeros(len(labels), P.D, device=self.R.dev)
+        x[:, t['keep']] = torch.sinh(t['edges'][b] + frac * t['width'])
+        self.draw_bad |= ~(torch.isfinite(x).all() & torch.isfinite(x.half()).all())
+        return x
+
+    def draw(self, labels, g, k):
+        """v7_nystrom.Method.draw ('full' form: same ops, same generator stream) for aux (Gaussian) and paux (gpool/gown);
+        its finite/fp16-overflow assert is deferred to the end of the client epoch, so drawing needs no host sync."""
+        if self.cop: return self.draw_copula(labels, g)
+        assert self.gaussian.form == 'full'
+        tables = self.gaussian_state['tables']; t = tables[k] if (self.gmode == 'own' if self.paux else self.own) else tables[0]
+        z = torch.randn(len(labels), P.D, device=self.R.dev, generator=g)
+        x = t['mu'][labels]
+        x = x + (t['factor'][labels] @ z[:, :, None]).squeeze(-1)
+        self.draw_bad |= ~(torch.isfinite(x).all() & torch.isfinite(x.half()).all())
+        return x
+
     def aggregate(self, r):
+        if self.scaf:   # SCAFFOLD server control: c <- c + (1/N) sum_i delta c_i (full participation, cohort sum only)
+            self.scaf_c = [c + d / self.R.K for c, d in zip(self.scaf_c, self.scaf_dsum)]; self.scaf_dsum = None
+            nbytes = 4 * sum(c.numel() for c in self.scaf_c)
+            for k in range(self.R.K): self.R.bytes.append((r, k, 'down', 'control', nbytes))
+            self.diag['scaf_c_norm'] = sum(float(c.square().sum()) for c in self.scaf_c) ** 0.5
+            self.diag['scaf_ci_norm'] = float(np.mean([sum(float(v.square().sum()) for v in c) ** 0.5 for c in self.scaf_ci.values()]))
         if self.bits:
             return self.aggregate_quantized(r)
+        if self.dyn:
+            return self.aggregate_dyn(r)
         if not self.momentum:
             return super().aggregate(r)
         # FedAvgM: server velocity on the averaged parameter delta; BN buffers/counters are averaged as usual.
@@ -162,6 +434,24 @@ class Method(FullMethod):
             state[name] = (self.global_state[name].float() + self.velocity[name]).to(value.dtype)
             norm += float(self.velocity[name].square().sum())
         self.diag['server_velocity_norm'] = norm ** 0.5
+        packet = self.codec.encode(state, r - 1, r)
+        self.global_state, _, _ = self.codec.decode(packet, self.R.dev, r - 1)
+        for k in range(self.R.K):
+            self.record(packet, r, k, 'down', 'proxy_state')
+            self.proxy[k].load_state_dict(self.global_state, strict=True)
+        self.global_vector = self.layout.flatten(self.proxy[0]).clone(); self.latest_packet = packet
+        self.version = r
+
+    def aggregate_dyn(self, r):
+        """FedDyn server (Acar et al. 2021, Alg. 1, full participation): h <- h - alpha * mean_i(w_i - w), w <- mean_i(w_i) - h/alpha.
+        Trainable proxy parameters only, from the cohort sum (no per-client view); BN buffers/counters averaged as usual."""
+        state = self.aggregate_sum.finish(self.R.K); h_norm = 0.
+        for name, _ in self.proxy[0].named_parameters():
+            mean = state[name].float(); delta = mean - self.global_state[name].float()
+            self.dyn_h[name] = self.dyn_h.get(name, torch.zeros_like(delta)) - DYN_ALPHA * delta
+            state[name] = (mean - self.dyn_h[name] / DYN_ALPHA).to(state[name].dtype); h_norm += float(self.dyn_h[name].square().sum())
+        self.diag['dyn_h_norm'] = h_norm ** 0.5
+        self.diag['dyn_a_norm'] = float(np.mean([sum(float(v.square().sum()) for v in a) ** 0.5 for a in self.dyn_a.values()]))
         packet = self.codec.encode(state, r - 1, r)
         self.global_state, _, _ = self.codec.decode(packet, self.R.dev, r - 1)
         for k in range(self.R.K):
@@ -185,24 +475,43 @@ class Run(FullRun):
     def __init__(self, args):
         self.a, self.dev, self.K, self.bytes = args, torch.device('cuda'), 20, []
         tokens = args.arm.split('_')
-        self.parts = 16 if 'sub16' in tokens else PARTS if 'sub4' in tokens else 1
+        self.aux_w = GW2 if 'gw2' in tokens else args.aux_weight
+        self.kdup, self.kdpx = 'kd2' in tokens, 'kdpx' in tokens   # round 11 KD weights (private x2 / proxy side capped)
         self.mu = MU if 'prox' in tokens else 0.
         self.swap = 'swappos' in tokens; self.fedavg = 'fedavg' in args.arm; self.ntd = 'ntd' in tokens
+        # round 8: capped KD weight; private KD off until the first aggregated snapshot (wu) or from a frozen snapshot (frz);
+        # FedDyn proxy; two receiver views + JS (cons, lambda 1) or the same two views without JS (cons0)
+        self.kdcap = 'kdcap' in tokens; self.frz = 'frz' in tokens; self.warm = self.frz or 'wu' in tokens
+        self.dyn = 'dyn' in tokens; self.cons = 'cons' in tokens or 'cons0' in tokens
+        self.lam = CONS_LAMBDA if 'cons' in tokens else 0.
+        # round 9: plain-SGD proxy (sgd*/scaf*), SCAFFOLD correction (scaf*), private-only extra rows (gpool/gown/replay)
+        self.sgd_lr = sgd_lr(tokens); self.scaf = any(t.startswith('scaf') for t in tokens); self.replay = 'replay' in tokens
+        self.paux = 'gpool' in tokens or 'gown' in tokens or self.replay
+        # round 13: water-filled Gaussian labels (fill); a snapshot teacher scores the Gaussian rows (rej / p1 / p1self / p1cm)
+        self.fill, self.rej = 'fill' in tokens, 'rej' in tokens
+        self.p1 = next((t for t in tokens if t in ('p1', 'p1self', 'p1cm')), None)
+        self.gkd = 'gkd' in tokens; assert not self.gkd or self.paux   # round 15: KL to the received snapshot on the Gaussian rows
+        self.la = 'la' in tokens; assert not self.la or self.frz   # round 17: logit-adjusted local CE (teacher = global snapshot)
+        # round 18: proxy CE only (pce), private KD at temperature KD_T (t2), Gaussian KL weight x GK2 (gk2); g512 is set in main()
+        self.pce, self.t2, self.gk2 = 'pce' in tokens, 't2' in tokens, 'gk2' in tokens
+        assert not (self.t2 or self.gk2) or self.gkd
+        assert ('g512' in tokens) == (args.aux_batch == (128 if args.smoke else 512)), 'g512 <=> doubled aux_batch (set in main)'
         hidden = BLOCK + POSITION if 'm4b' in tokens else POSITION if self.swap else []
         fixture = P.ROOT / 'papers/pilot/fixture'; manifest = json.loads((fixture / 'manifest.json').read_text())
         names = manifest['features']
         self.block = torch.tensor([names.index(n) for n in BLOCK], device=self.dev)
         self.zero = torch.tensor([names.index(n) for n in hidden], device=self.dev, dtype=torch.long)
-        self.X, self.Y, self.G = [], [], []
-        for k in range(self.K):
-            x = np.load(fixture / f'train_{k}_X.npy', mmap_mode='r'); y = np.load(fixture / f'train_{k}_y.npy', mmap_mode='r')
-            g = np.load(fixture / f'train_{k}_g.npy', mmap_mode='r')
-            if args.smoke:
-                indices = np.random.default_rng(k).choice(len(y), 1024, replace=False); x, y, g = x[indices], y[indices], g[indices]
-            self.X.append(torch.from_numpy(np.array(x, copy=True)).to(self.dev))
-            self.Y.append(torch.from_numpy(np.array(y, dtype='int64', copy=True)).to(self.dev))
-            if self.swap:
-                self.G.append(torch.from_numpy(np.array(g, dtype='int64', copy=True)).to(self.dev))
+        self.zero_cols = torch.zeros(len(names), dtype=torch.bool, device=self.dev); self.zero_cols[self.zero] = True
+        def rows(k, name, dtype=None):
+            v = np.load(fixture / f'train_{k}_{name}.npy', mmap_mode='r')
+            if args.smoke: v = v[np.random.default_rng(k).choice(len(v), 1024, replace=False)]
+            return torch.from_numpy(np.array(v, dtype=dtype, copy=True)).to(self.dev)
+        sizes = [len(np.load(fixture / f'train_{k}_y.npy', mmap_mode='r')) for k in range(self.K)]
+        self.own = assign(sizes, getattr(args, 'workers', 1))[getattr(args, 'rank', 0)]   # clients this process trains
+        self.fused = getattr(args, 'fast', False) or None   # --fast: fused AdamW; None keeps the default (foreach) bit-exact
+        self.X = Clients([rows(k, 'X') if k in self.own else None for k in range(self.K)], lambda k: rows(k, 'X'))
+        self.Y = [rows(k, 'y', 'int64') for k in range(self.K)]
+        self.G = [rows(k, 'g', 'int64') if k in self.own else None for k in range(self.K)] if self.swap else []
         self.H = {}
         for hold in ('group', 'old', 'test'):
             name = 'old' if args.smoke and hold == 'test' else hold
@@ -215,27 +524,109 @@ class Run(FullRun):
         self.counts = torch.stack([torch.bincount(y, minlength=16) for y in self.Y]).double()
         self.log_pi = ((self.counts + 1) / (self.counts + 1).sum(1, keepdim=True)).log().float()
         self.log_pg = ((self.counts.sum(0) + 1) / (self.counts.sum() + 16)).log().float()
+        self.la_shift = None   # la: CE(z + log pi_k - log pi_g), set from the SecureSum prior in Method.prior() (round 18 fix)
+        # private-only Gaussian labels per client: the class cycle, or (fill) the integer water-fill of the local prior
+        cycle = torch.arange(args.aux_batch, device=self.dev) % 16
+        self.aux_labels = [fill_labels(self.log_pi[k].exp(), args.aux_batch).to(self.dev) if self.fill else cycle
+                           for k in range(self.K)]
+        # gpe rule (round 13, C): the prior the private's two CE terms train toward, (pi_k + w q_k) / (1 + w); w = aux weight
+        self.log_pe = None
+        if self.paux and not self.replay:
+            q = torch.stack([torch.bincount(l, minlength=16).float() / len(l) for l in self.aux_labels])
+            self.log_pe = ((self.log_pi.exp() + self.aux_w * q) / (1 + self.aux_w)).log().float()
+        self.rules = ('head', 'gp', 'gpe') if self.log_pe is not None else ('head', 'gp')
         torch.manual_seed(args.seed); self.init = P.make('dagsnet').to(self.dev)
         self.priv = [copy.deepcopy(self.init) for _ in range(self.K)]
         self.work_private = copy.deepcopy(self.init); self.work_proxy = copy.deepcopy(self.init)
         self.eval_template = copy.deepcopy(self.init).eval()
+        self.work_teacher = copy.deepcopy(self.init).eval() if self.frz else None
+        self.syn_teacher = copy.deepcopy(self.init).eval() if self.rej or self.p1 or self.gkd else None
         self.compiled = {}; self.compile_gates = []
         if args.backend == 'compiled':
             arm = args.arm; args.arm = arm + '_dml' if self.fedavg else arm   # frozen preflight compiles the proxy only for 'dml'
-            self.compile_preflight(); args.arm = arm
-        self.optim_state, self.swap_stats = {}, [0, 0]
+            batch = args.batch; args.batch = 2 * batch if self.cons else batch   # cons: both views in one forward
+            self.compile_preflight(); args.arm = arm; args.batch = batch
+            if self.frz: self.compile_extra(self.work_teacher, 'teacher', args.batch)
+            if self.paux: self.compile_extra(self.work_private, 'private', args.batch + args.aux_batch)   # proxy stays at batch
+            if self.syn_teacher is not None: self.compile_extra(self.syn_teacher, 'teacher', args.aux_batch)
+        self.swap_stats = [0, 0]
         # hkd (FedKD hidden-state loss): client-local projector private h -> proxy h, never uploaded (R1), any private width (R2)
         self.hkd = 'hkd' in tokens; self.proj = []
         for _ in range(self.K if self.hkd else 0):
             width = P.latent_dim(self.init)   # private width -> proxy width (both DAGSNet here)
             self.proj.append(torch.nn.Linear(width, width, bias=False).to(self.dev)); torch.nn.init.eye_(self.proj[-1].weight)
+        self.by_class = []
+        for y in (self.Y if self.replay else []):
+            count = torch.bincount(y, minlength=16); order = torch.argsort(y, stable=True)
+            self.by_class.append((order, torch.cumsum(count, 0) - count, count, torch.nonzero(count).squeeze(1)))
         cal = np.random.default_rng(4242)
         self.cal = [torch.from_numpy(np.sort(cal.choice(n, min(n, CAL_ROWS), replace=False))).to(self.dev) for n in self.n]
 
+    def compile_preflight(self):
+        """full_run.compile_preflight on this process's own client rows (round 18; it read client 0): state and RNG restored."""
+        rows = self.X; self.X = [rows[self.own[0]]]
+        try: super().compile_preflight()
+        finally: self.X = rows
+
+    def compile_extra(self, model, role, batch):
+        """One more compiled forward (frozen teacher in eval mode, or the private at batch + private-only rows), same gate as
+        full_run.compile_preflight: dropout off on both copies, BN state and CUDA RNG restored."""
+        training = role != 'teacher'; model.train(training)
+        x = self.X[self.own[0]][:batch].float()   # round 18: this process's own client rows (was client 0)
+        if len(x) < batch: x = x.repeat((batch + len(x) - 1) // len(x), 1)[:batch]
+        saved = {k: v.clone() for k, v in model.state_dict().items()}; rng = torch.cuda.get_rng_state()
+        dropout = [(m, m.p) for m in model.modules() if isinstance(m, torch.nn.Dropout)]
+        for m, _ in dropout: m.p = 0.
+        reference = copy.deepcopy(model); compiled = torch.compile(model, mode='reduce-overhead', dynamic=False)
+        with torch.no_grad(), torch.autocast('cuda', dtype=torch.float16):
+            torch.compiler.cudagraph_mark_step_begin(); expected = reference(x)[0].float()
+            actual = compiled(x)[0].float().clone()
+        error = float((actual - expected).abs().max()); decisive = expected.topk(2, dim=1).values.diff(dim=1).abs().squeeze(1) > .02
+        assert error <= .005 and torch.equal(actual.argmax(1)[decisive], expected.argmax(1)[decisive]), ('compile gate', role, error)
+        model.load_state_dict(saved, strict=True); torch.cuda.set_rng_state(rng)
+        for m, p in dropout: m.p = p
+        self.compiled[id(model)] = (compiled, batch)
+        self.compile_gates.append(dict(role=role, rows=batch, max_error=error, decisive=int(decisive.sum())))
+        print('COMPILE EXTRA PASS', self.compile_gates[-1], flush=True)
+
+    def replay_rows(self, k, n, gen):
+        """Class-balanced local replay: labels cycle over the classes this client holds, rows drawn uniformly within class."""
+        order, start, count, present = self.by_class[k]
+        labels = present[torch.arange(n, device=self.dev) % len(present)]
+        pick = (torch.rand(n, device=self.dev, generator=gen) * count[labels]).long().clamp_max(count[labels] - 1)
+        return self.mask(self.X[k][order[start[labels] + pick]].float()), labels
+
+    def two_views(self, x, index, k, gen):
+        """cons: view a keeps the receiver block, view b takes the whole 9-feature block of another receiver of the same client;
+        both zero the 4 positions (swappos mask). Rows without a different-receiver donor keep their block (logged)."""
+        n, G = len(index), self.G[k]
+        donor = torch.randint(0, len(G), (n,), device=self.dev, generator=gen)
+        for _ in range(3):
+            same = G[donor] == G[index]
+            donor = torch.where(same, torch.randint(0, len(G), (n,), device=self.dev, generator=gen), donor)
+        ok = G[donor] != G[index]; rows = torch.nonzero(ok).squeeze(1)
+        b = x.clone(); b[rows[:, None], self.block[None, :]] = self.X[k][donor[rows]][:, self.block].float()
+        self.swap_stats[0] += int(ok.sum()); self.swap_stats[1] += n
+        return self.mask(x), self.mask(b)
+
+    def kd_probe(self, k, private, proxy, teacher, cap, scale=1.):
+        """Fixed train probe batch (first PROBE_ROWS calibration rows), eval mode, fp32 eager, after the epoch: gradient norm
+        of the private CE vs the private KD term toward the teacher it learned from; no state, RNG or optimizer is touched."""
+        x, y = self.mask(self.X[k][self.cal[k][:PROBE_ROWS]].float()), self.Y[k][self.cal[k][:PROBE_ROWS]]
+        modes = [(m, m.training) for m in (private, proxy, teacher)]
+        for m, _ in modes: m.eval()
+        params = list(private.parameters()); zs = private(x)[0].float()
+        with torch.no_grad(): zr, zt = proxy(x)[0].float(), teacher(x)[0].float()
+        ce = F.cross_entropy(zs, y); kl = F.kl_div(F.log_softmax(zs, 1), F.log_softmax(zt, 1), log_target=True, reduction='batchmean')
+        norm = lambda gs: float(torch.sqrt(sum(g.double().square().sum() for g in gs)))
+        g_ce = norm(torch.autograd.grad(ce, params, retain_graph=True)); g_kl = norm(torch.autograd.grad(kl, params))
+        raw = 1 / max(float(ce) + float(F.cross_entropy(zr, y)), 1e-6); used = scale * min(raw, cap)
+        for m, mode in modes: m.train(mode)
+        return dict(probe_ce=float(ce), probe_kl=float(kl), probe_weight_raw=raw, probe_weight=used,
+                    probe_grad_ce=g_ce, probe_grad_kl=g_kl, probe_ratio=used * g_kl / max(g_ce, 1e-30))
+
     def mask(self, x):
-        if len(self.zero):
-            x = x.clone(); x[:, self.zero] = 0
-        return x
+        return x.masked_fill(self.zero_cols, 0) if len(self.zero) else x   # == clone + x[:, zero] = 0, without a host sync
 
     def transform(self, x, index, k, gen):
         n, G = len(index), self.G[k]
@@ -255,11 +646,11 @@ class Run(FullRun):
     def logits(self, model, x):
         return super().logits(model, x) if not len(self.zero) else super().logits(model, _Masked(x, self))
 
-    def private_epoch(self, method, k, r, part=0):
-        """full_run.Run.private_epoch + hooks: batch-aligned part of the epoch (sub4, optimizer kept within the epoch),
-        FedProx on the proxy (prox), receiver swap + position mask (swappos), receiver+position features zeroed (m4b),
+    def private_epoch(self, method, k, r):
+        """full_run.Run.private_epoch + hooks: FedProx on the proxy (prox), receiver swap + position mask (swappos), receiver+position features zeroed (m4b),
         private learns the proxy only on not-true classes (ntd, FedNTD), private hidden layer matches the proxy's through a
-        client-local projector (hkd, FedKD). Identity for fd_dml/fd_gaussian."""
+        client-local projector (hkd, FedKD); round 8-9 hooks: kdcap/wu/frz, dyn, cons, sgd/scaf, gpool/gown/replay.
+        Identity for fd_dml/fd_gaussian."""
         started = time.time()
         original = self.priv[k]; self.work_private.load_state_dict(original.state_dict(), strict=True)
         private = self.work_private; private.train()
@@ -267,74 +658,175 @@ class Run(FullRun):
         if method.kd:
             proxy = self.work_proxy; proxy.load_state_dict(method.proxy[k].state_dict(), strict=True); proxy.train(); models.append(proxy)
         local = list(self.proj[k].parameters()) if self.hkd else []
-        optimizer = torch.optim.AdamW([p for m in models for p in m.parameters()] + local, lr=self.lr(r), weight_decay=0.)
+        if self.sgd_lr:   # proxy on plain SGD (SCAFFOLD Option II assumes SGD), private keeps AdamW
+            eta = self.sgd_lr * self.lr(r) / self.a.lr
+            optimizer = Mixed(torch.optim.AdamW(list(private.parameters()) + local, lr=self.lr(r), weight_decay=0., fused=self.fused),
+                              torch.optim.SGD(proxy.parameters(), lr=eta, momentum=0., weight_decay=0.))
+        else:
+            optimizer = torch.optim.AdamW([p for m in models for p in m.parameters()] + local, lr=self.lr(r), weight_decay=0.,
+                                          fused=self.fused)
         scaler = torch.amp.GradScaler(); g = self.gen(r, k, 0)
-        if part:
-            optimizer.load_state_dict(self.optim_state[k][0]); scaler.load_state_dict(self.optim_state[k][1])
-        torch.manual_seed(int(np.random.SeedSequence([self.a.seed, r, k, 7] + ([part] if part else [])).generate_state(1)[0]))
+        torch.manual_seed(int(np.random.SeedSequence([self.a.seed, r, k, 7]).generate_state(1)[0]))
         order = torch.randperm(self.n[k], device=self.dev, generator=g)
+        gd = g   # private-only rows (gpool/gown/replay) share the epoch generator
         batches = (self.n[k] + self.a.batch - 1) // self.a.batch
-        first, last = part * batches // self.parts, (part + 1) * batches // self.parts
-        swap_gen = self.gen(r, k, 55, part) if self.swap else None
+        swap_gen = self.gen(r, k, 55, 0) if self.swap else None   # trailing 0 keeps the audited swap streams bit-exact
         anchor = None
-        if self.mu:
+        if self.mu or self.dyn or self.scaf:
             anchor = [method.global_state[name].detach().float() for name, _ in proxy.named_parameters()]
-        total = torch.zeros(5, device=self.dev); applied = skipped = 0
-        for start in range(first * self.a.batch, min(last * self.a.batch, len(order)), self.a.batch):
+        a_dyn = method.dyn_a.get(k) or [torch.zeros_like(w) for w in anchor] if self.dyn else None
+        corr = None
+        if self.scaf:   # SCAFFOLD correction c - c_i on the proxy gradient (both start at 0)
+            c_i = method.scaf_ci.get(k) or [torch.zeros_like(w) for w in anchor]
+            c = method.scaf_c or [torch.zeros_like(w) for w in anchor]; method.scaf_c = c
+            corr = torch._foreach_sub(c, c_i)
+        teach = not (self.warm and method.version == 0)   # wu/frz: no private KD before the first aggregated snapshot
+        teacher = None
+        if self.frz:
+            teacher = self.work_teacher; teacher.load_state_dict(method.global_state, strict=True); teacher.eval()
+        wbuf = torch.zeros(batches, device=self.dev); kdstat = torch.zeros(4, device=self.dev)
+        total = torch.zeros(5, device=self.dev); skips = torch.zeros((), dtype=torch.long, device=self.dev)
+        nonfinite = torch.zeros((), dtype=torch.bool, device=self.dev); aux_labels = self.aux_labels[k]
+        syn = None   # round 13: snapshot teacher on the Gaussian rows (eval mode, no grad), off before the first aggregated snapshot
+        if self.syn_teacher is not None and method.version > 0:
+            syn = self.syn_teacher; syn.load_state_dict((original if self.p1 == 'p1self' else method.proxy[k]).state_dict(), strict=True)
+            syn.eval()
+        drawn = torch.bincount(aux_labels, minlength=16).float(); p1_classes = torch.zeros(16, device=self.dev)
+        p1_classes[list(P1_CLASSES)] = 1
+        synstat = torch.zeros(3, 16, device=self.dev); synkl = torch.zeros(2, device=self.dev)   # accepted/drawn/gated; KL sum, gated
+        for start in range(0, len(order), self.a.batch):
             torch.compiler.cudagraph_mark_step_begin()
             index = order[start:start + self.a.batch]; x, y = self.X[k][index].float(), self.Y[k][index]
-            if self.swap: x = self.transform(x, index, k, swap_gen)
+            if self.cons: x = torch.cat(self.two_views(x, index, k, swap_gen)); y = torch.cat([y, y])
+            elif self.swap: x = self.transform(x, index, k, swap_gen)
             elif len(self.zero): x = self.mask(x)
-            labels = torch.arange(self.a.aux_batch, device=self.dev) % 16
+            real = len(y)
+            labels = aux_labels
             if method.aux: x = torch.cat([x, self.mask(method.draw(labels, g, k))])
+            xp = x   # private input: + private-only Gaussian draws (gpool/gown) or class-balanced local replay (replay)
+            if method.paux: xp = torch.cat([x, self.mask(method.draw(labels, gd, k))])
+            elif self.replay:
+                rows, labels = self.replay_rows(k, self.a.aux_batch, gd); xp = torch.cat([x, rows])
             with torch.autocast('cuda', dtype=torch.float16):
                 if self.fedavg:
                     proxy_ce = F.cross_entropy(self.forward(proxy, x)[0].float(), y)
                     ce = extra = proxy_extra = proxy_ce.detach() * 0; loss = proxy_ce
                 else:
                     if self.hkd: zs, hs = (v.float() for v in self.forward(private, x))
-                    else: zs = self.forward(private, x)[0].float()
-                    ce = F.cross_entropy(zs[:len(index)], y); extra = ce.detach() * 0
+                    else: zs = self.forward(private, xp)[0].float()
+                    aux_ce = F.cross_entropy(zs[real:], labels) if self.paux else None
+                    syn_kd = None
+                    if syn is not None:
+                        with torch.no_grad(): zt = self.forward(syn, xp[real:])[0].float()
+                        accept = (zt.argmax(1) == labels).float()
+                        kept = torch.zeros(16, device=self.dev).index_add_(0, labels, accept)
+                        if self.rej:   # drop rejected rows; accepted rows of a class carry that class's Gaussian mass
+                            w = accept * drawn[labels] / (len(labels) * kept[labels].clamp_min(1))
+                            aux_ce = (w * F.cross_entropy(zs[real:], labels, reduction='none')).sum()
+                        gate = accept * p1_classes[labels]
+                        if self.p1:   # KL(teacher || private) on gated rows, mean over all m Gaussian rows; hard CE kept
+                            lt, ls_syn = F.log_softmax(zt / P1_T, 1), F.log_softmax(zs[real:] / P1_T, 1)
+                            if self.p1 == 'p1cm':   # x-independent control: per-class mean of the gated teacher probabilities
+                                mass = torch.zeros(16, device=self.dev).index_add_(0, labels, gate).clamp_min(1)
+                                mean = torch.zeros(16, 16, device=self.dev).index_add_(0, labels, lt.exp() * gate[:, None]) / mass[:, None]
+                                kl = F.kl_div(ls_syn, mean[labels], reduction='none').sum(1)
+                            else:
+                                kl = F.kl_div(ls_syn, lt, log_target=True, reduction='none').sum(1)
+                            syn_kd = P1_LAMBDA * P1_T ** 2 * (gate * kl).sum() / len(labels)
+                            synkl += torch.stack([(gate * kl).sum().detach(), gate.sum()])
+                        if self.gkd:   # KL(snapshot || private) on every Gaussian row replaces the hard CE (weighted like the KD below)
+                            aux_ce = None
+                            T = KD_T if self.t2 else 1.
+                            syn_kd = F.kl_div(F.log_softmax(zs[real:] / T, 1), F.log_softmax(zt / T, 1), log_target=True, reduction='batchmean') * T * T
+                        synstat += torch.stack([kept, drawn, torch.zeros(16, device=self.dev).index_add_(0, labels, gate)])
+                    if self.paux: zs = zs[:real]   # KD and JS on real rows only
+                    ce = F.cross_entropy(zs[:real] + self.la_shift[k] if self.la else zs[:real], y); extra = ce.detach() * 0
                     proxy_ce = proxy_extra = ce.detach() * 0
-                    if method.aux: extra = F.cross_entropy(zs[len(index):], labels)
+                    if method.aux: extra = F.cross_entropy(zs[real:], labels)
                     if proxy is not None:
                         if self.hkd: zr, hr = (v.float() for v in self.forward(proxy, x))
                         else: zr = self.forward(proxy, x)[0].float()
                         proxy_ce = F.cross_entropy(zr, y)
                         ls, lr = F.log_softmax(zs, 1), F.log_softmax(zr, 1)
-                        weight = 1 / (ce + proxy_ce).detach().clamp_min(1e-6)
+                        raw = 1 / (ce + proxy_ce).detach().clamp_min(1e-6)
+                        weight = raw.clamp_max(KD_CAP) if self.kdcap else raw
+                        wpriv = KD_UP * weight if self.kdup else weight   # private <- proxy
+                        wproxy = raw.clamp_max(KD_CAP) if self.kdpx else weight   # proxy <- private
+                        if self.pce: wproxy = raw * 0   # round 18: the proxy learns CE only (FedAvg proxy)
                         if self.ntd:
-                            extra = weight * F.kl_div(not_true(zs, y), not_true(zr, y).detach(), log_target=True, reduction='batchmean')
+                            kd = F.kl_div(not_true(zs, y), not_true(zr, y).detach(), log_target=True, reduction='batchmean')
                         else:
-                            extra = weight * F.kl_div(ls, lr.detach(), log_target=True, reduction='batchmean')
+                            target = lr.detach()
+                            if self.frz and teach:
+                                with torch.no_grad(): zt_real = self.forward(teacher, x)[0].float()
+                                target = F.log_softmax(zt_real / (KD_T if self.t2 else 1.), 1)
+                            if self.t2 and self.frz and teach:   # round 18: KL(teacher || private) at temperature KD_T, x T^2
+                                kd = F.kl_div(F.log_softmax(zs / KD_T, 1), target, log_target=True, reduction='batchmean') * KD_T * KD_T
+                            else:
+                                kd = F.kl_div(ls, target, log_target=True, reduction='batchmean')
+                        extra = wpriv * kd if teach else ce.detach() * 0
                         if self.hkd:   # scale-free MSE to the proxy's 256-d hidden layer, same adaptive weight as the KL
                             target = hr.detach()
                             extra = extra + weight * (self.proj[k](hs).float() - target).square().mean() / target.square().mean().clamp_min(1e-6)
-                        proxy_extra = weight * F.kl_div(lr, ls.detach(), log_target=True, reduction='batchmean')
+                        kl_proxy = F.kl_div(lr, ls.detach(), log_target=True, reduction='batchmean')
+                        proxy_extra = wproxy * kl_proxy
+                        if self.lam: extra = extra + self.lam * js(zs[:len(index)], zs[len(index):real])
+                        if aux_ce is not None: extra = extra + self.aux_w * aux_ce
+                        if syn_kd is not None: extra = extra + ((GK2 if self.gk2 else 1.) * wpriv * syn_kd if self.gkd else syn_kd)
+                        wbuf[start // self.a.batch] = raw
+                        step_stat = torch.stack([raw, (raw > KD_CAP).float(), kd.detach(), kl_proxy.detach()])
                     loss = ce + extra + proxy_ce + proxy_extra
             prox = ce.detach() * 0
-            if anchor is not None:
+            if anchor is not None and self.mu:
                 prox = 0.5 * MU * sum((p.float() - a).square().sum() for p, a in zip(proxy.parameters(), anchor))
                 loss = loss + prox
-            assert torch.isfinite(loss), ('full loss', k, r)
+            nonfinite |= ~torch.isfinite(loss)   # asserted after the epoch: no per-step host sync
             scaler.scale(loss).backward(); scaler.unscale_(optimizer)
+            if self.dyn:   # FedDyn local objective F_i(w) - <a_i, w> + alpha/2 ||w - w_t||^2: its gradient added before clipping
+                params = list(proxy.parameters())
+                reg = torch._foreach_sub([p.detach() for p in params], anchor); torch._foreach_mul_(reg, DYN_ALPHA)
+                torch._foreach_sub_(reg, a_dyn); torch._foreach_add_([p.grad for p in params], reg)
             for model in models:
                 norm = torch.nn.utils.clip_grad_norm_(model.parameters(), self.a.clip)
-                assert torch.isfinite(norm) or scaler.is_enabled()
+                assert scaler.is_enabled() or torch.isfinite(norm)
             if local: torch.nn.utils.clip_grad_norm_(local, self.a.clip)
-            before = scaler.get_scale(); scaler.step(optimizer); scaler.update(); optimizer.zero_grad(set_to_none=True)
-            if scaler.get_scale() < before: skipped += 1
-            else: applied += 1; total += torch.stack([ce.detach(), extra.detach(), proxy_ce.detach(), proxy_extra.detach(), prox.detach()])
+            if corr is not None: torch._foreach_add_([p.grad for p in proxy.parameters()], corr)   # after clipping g_i
+            before = scaler._get_scale_async().clone(); scaler.step(optimizer); scaler.update(); optimizer.zero_grad(set_to_none=True)
+            skip = scaler._get_scale_async() < before; skips += skip   # the scale backs off only on a skipped (inf/NaN) step
+            total += torch.where(skip, 0., torch.stack([ce.detach(), extra.detach(), proxy_ce.detach(), proxy_extra.detach(), prox.detach()]))
+            if proxy is not None and not self.fedavg: kdstat += torch.where(skip, 0., step_stat)
             if self.a.wandb_online and (start // self.a.batch + 1) % 1024 == 0:
                 import wandb
-                wandb.run.log({'progress/round_in_flight': r, 'progress/part': part, 'progress/client': k,
+                skipped = int(skips); applied = start // self.a.batch + 1 - skipped
+                wandb.run.log({'progress/round_in_flight': r, 'progress/client': k,
                                'progress/client_steps': start // self.a.batch + 1, 'progress/applied': applied,
                                'progress/skipped': skipped, 'progress/seconds': time.time() - started,
                                'progress/loss': float(loss.detach()), 'progress/grad_norm': float(norm)})
-        assert applied > 0 and skipped <= 16, (k, r, part, applied, skipped)
+        assert not nonfinite, ('full loss', k, r)
+        assert not method.draw_bad, 'V7 synthetic fp16 input overflow'
+        skipped = int(skips); applied = batches - skipped
+        assert applied > 0 and skipped <= 16, (k, r, applied, skipped)
         for model in models: finite(model)
-        if self.parts > 1:
-            self.optim_state[k] = (copy.deepcopy(optimizer.state_dict()), copy.deepcopy(scaler.state_dict()))
+        kd = {}
+        if proxy is not None and not self.fedavg:   # KD weight/coefficient diagnostics (plan §4.2), no effect on training
+            w = wbuf.cpu(); s = (kdstat / applied).tolist()
+            kd = dict(w_median=float(w.median()), w_p95=float(torch.quantile(w, .95)), w_max=float(w.max()), cap_hit=s[1],
+                      kl_private=s[2], kl_proxy=s[3])
+            kd.update(self.kd_probe(k, private, proxy, teacher if self.frz else proxy,
+                                    (KD_CAP if self.kdcap else float('inf')) if teach else 0., KD_UP if self.kdup else 1.))
+        if syn is not None:   # teacher acceptance of the Gaussian rows (overall, per class) and the P1 gate/KL
+            kept, total_drawn, gated = synstat
+            kd.update(syn_accept=float(kept.sum() / total_drawn.sum()), synacc=(kept / total_drawn.clamp_min(1)).tolist(),
+                      syn_gate=float(gated.sum() / total_drawn.sum()))
+            if self.p1: kd['syn_kl'] = float(synkl[0] / synkl[1].clamp_min(1))
+        if self.dyn:
+            method.dyn_a[k] = [a - DYN_ALPHA * (p.detach().float() - w) for a, p, w in zip(a_dyn, proxy.parameters(), anchor)]
+        if self.scaf:   # Option II: c_i+ = c_i - c + (w_base - w_i) / (K eta), K = applied SGD steps; up = delta c_i
+            new = [ci - cc + (w - p.detach().float()) / (applied * eta) for ci, cc, w, p in zip(c_i, c, anchor, proxy.parameters())]
+            delta = torch._foreach_sub(new, c_i); method.scaf_ci[k] = new
+            method.scaf_dsum = delta if method.scaf_dsum is None else torch._foreach_add(method.scaf_dsum, delta)
+            self.bytes.append((r, k, 'up', 'control', 4 * sum(d.numel() for d in delta)))
+            kd['scaf_corr_norm'] = sum(float(v.square().sum()) for v in corr) ** 0.5
         if not self.fedavg: original.load_state_dict(private.state_dict(), strict=True)
         drift = None
         if proxy is not None:
@@ -343,23 +835,66 @@ class Run(FullRun):
             den = sum(float(method.global_state[n].float().square().sum()) for n, _ in proxy.named_parameters())
             drift = (num / max(den, 1e-30)) ** 0.5
         ce, extra, proxy_ce, proxy_extra, prox = (total / applied).tolist()
-        common = dict(client=k, rows=self.n[k], applied=applied, skipped=skipped, part=part)
+        common = dict(client=k, rows=self.n[k], applied=applied, skipped=skipped)
         method.logs[k] = dict(common, loss=proxy_ce + proxy_extra, positive_ce=proxy_ce, negative_ce=proxy_extra,
                               prox=prox, drift=drift)
-        return dict(common, loss=ce + extra, real_ce=ce, auxiliary=extra, seconds=time.time() - started)
+        return dict(common, loss=ce + extra, real_ce=ce, auxiliary=extra, seconds=time.time() - started, **kd)
+
+    def client_round(self, method, k, r):
+        """Client k's local epoch and upload, detached from the server so any process can run it; install() applies it."""
+        if method.kd: method.prepare(k, r)
+        start, swap = len(self.bytes), list(self.swap_stats)
+        log = self.private_epoch(method, k, r); up = None
+        if method.kd:
+            if method.bits: up = ('q', method.quantized_wire(k, r))
+            else:
+                up = ('p', method.proxy_epoch(k, r)[0])
+        rows = self.bytes[start:]; del self.bytes[start:]
+        delta = [a - b for a, b in zip(self.swap_stats, swap)]; self.swap_stats = swap
+        cpu = lambda model: {n: v.detach().cpu() for n, v in model.state_dict().items()}
+        return dict(k=k, log=log, logs=method.logs[k], rows=rows, swap=delta, up=up, private=None if self.fedavg else cpu(self.priv[k]),
+                    proxy=cpu(method.proxy[k]) if method.kd and method.own else None)
+
+    def install(self, method, res, r, private_logs, proxy_logs):
+        """Server side of client_round(), called in client order: the same state and byte log as the serial loop in main()."""
+        k = res['k']
+        if res['private'] is not None: self.priv[k].load_state_dict(res['private'], strict=True)
+        method.logs[k] = res['logs']; private_logs.append(res['log'])
+        self.bytes.extend(res['rows']); self.swap_stats = [a + b for a, b in zip(self.swap_stats, res['swap'])]
+        if method.kd:
+            kind, up = res['up']
+            if kind == 'q': method.accumulate_quantized(k, r, up)
+            elif up is not None: method.aggregate_sum.add(k, up)
+            if res['proxy'] is not None: method.proxy[k].load_state_dict(res['proxy'], strict=True)
+            proxy_logs.append(method.logs[k])
 
     @torch.no_grad()
-    def evaluate(self, m, out, r, holds):
-        """Ten metrics per client; the shared DML proxy is one model after aggregation, so it is scored once."""
+    def score(self, model, k, hold, rules):
+        """One model on one holdout: per rule, the 16x16 confusion and the uint8 predictions."""
+        X, y = self.H[hold]; z = self.logits(model, X); assert torch.isfinite(z).all(); out = {}
+        for rule in rules:
+            bias = self.log_pg - self.log_pi[k] if rule == 'gp' else self.log_pg - self.log_pe[k] if rule == 'gpe' else 0.
+            pred = (z + bias).argmax(1)
+            out[rule] = (torch.bincount(y * P.C + pred, minlength=P.C ** 2).view(P.C, P.C).cpu().numpy(), pred.cpu().numpy().astype('uint8'))
+        return out
+
+    def score_clients(self, holds):
+        """Private models of this process's clients (head and gp) on each holdout, for rank 0's evaluate()."""
+        return {(k, hold): self.score(self.priv[k], k, hold, self.rules) for k in self.own for hold in holds}
+
+    @torch.no_grad()
+    def evaluate(self, m, out, r, holds, scores=None):
+        """Ten metrics per client; the shared DML proxy is one model after aggregation, so it is scored once. scores: private
+        (k, hold) results already computed by the worker processes (--workers)."""
         arrays, evaluated = {}, {}
-        roles = {} if self.fedavg else {'private': (self.priv, ('head', 'gp'))}
+        roles = {} if self.fedavg else {'private': (self.priv, self.rules)}
         if m.ema_private is not None:
             models = []
             for k in range(self.K):
                 model = copy.deepcopy(self.priv[k]); model.load_state_dict(m.ema_private[k], strict=True)
                 calibrate(model, self.mask(self.X[k][self.cal[k]].float())); models.append(model)
             roles['private_ema'] = (models, ('head', 'gp'))
-        if m.kd:
+        if m.kd and not m.own:   # own: 20 local proxies, never a shared model; the client target is the private model
             for k in range(self.K): m.prepare(k, r)
             for k in range(1, self.K):
                 assert all(torch.equal(a, b) for a, b in zip(m.proxy[0].state_dict().values(), m.proxy[k].state_dict().values()))
@@ -367,16 +902,13 @@ class Run(FullRun):
         for role, (models, rules) in roles.items():
             results = {}
             for hold in holds:
-                X, y = self.H[hold]
+                y = self.H[hold][1]
                 arrays[hold + '_y'] = y.cpu().numpy().astype('uint8'); result = {}
                 cms = {rule: [] for rule in rules}; preds = {rule: [] for rule in rules}
                 for k, model in enumerate(models):
-                    z = self.logits(model, X); assert torch.isfinite(z).all()
+                    scored = scores[(k, hold)] if role == 'private' and scores is not None else self.score(model, k, hold, rules)
                     for rule in rules:
-                        bias = self.log_pg - self.log_pi[k] if rule == 'gp' else 0.
-                        pred = (z + bias).argmax(1)
-                        cms[rule].append(torch.bincount(y * P.C + pred, minlength=P.C ** 2).view(P.C, P.C).cpu().numpy())
-                        preds[rule].append(pred.cpu().numpy().astype('uint8'))
+                        cms[rule].append(scored[rule][0]); preds[rule].append(scored[rule][1])
                 for rule, cc in cms.items():
                     cc = cc * self.K if len(cc) == 1 else cc     # shared proxy: identical confusion for every client
                     mm = [metrics_from_confusion(c) for c in cc]
@@ -401,6 +933,112 @@ class _Masked:
     def __getitem__(self, s): return self.run.mask(self.x[s].float())
 
 
+def deterministic(fast=False):
+    os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
+    torch.set_num_threads(1); torch.backends.cuda.matmul.allow_tf32 = False
+    torch.use_deterministic_algorithms(True)
+    torch.utils.deterministic.fill_uninitialized_memory = False   # speed only: no code reads uninitialized memory
+    torch.backends.cudnn.benchmark = False; torch.backends.cudnn.deterministic = True
+    if fast:   # --fast (owner 2026-10-18, tolerance class): cuDNN autotune + nondeterministic kernels; not bit-reproducible
+        torch.use_deterministic_algorithms(False); torch.backends.cudnn.benchmark = True; torch.backends.cudnn.deterministic = False
+
+
+def put(conn, value):   # plain pickle: torch's ForkingPickler would share tensors back to the sender (wrong authkey)
+    conn.send_bytes(pickle.dumps(value, protocol=pickle.HIGHEST_PROTOCOL))
+
+
+def get(conn):
+    return pickle.loads(conn.recv_bytes())
+
+
+class Pool:
+    """Rank 0 side of --workers N: N-1 worker processes (same command line + --rank/--address), GPUs round-robin by rank.
+    Each round every process trains its own clients from the broadcast server state; rank 0 installs all clients in index
+    order, so state, bytes and logs equal the serial loop (client epochs do not depend on process or order)."""
+    def __init__(self, a, out):
+        key = secrets.token_bytes(16); listener = Listener(('127.0.0.1', 0), authkey=key)
+        visible = os.environ.get('CUDA_VISIBLE_DEVICES') or ','.join(map(str, range(torch.cuda.device_count())))
+        gpus = [g for g in visible.split(',') if g]; self.procs, self.conns, self.logs = [], {}, []
+        for rank in range(1, a.workers):
+            env = dict(os.environ, CUDA_VISIBLE_DEVICES=gpus[rank % len(gpus)], FD_AUTHKEY=key.hex())
+            self.logs.append(open(out / f'worker{rank}.log', 'w'))
+            command = [sys.executable, str(Path(__file__).resolve()), *sys.argv[1:], '--rank', str(rank), '--address', f'127.0.0.1:{listener.address[1]}']
+            self.procs.append(subprocess.Popen(command, env=env, stdout=self.logs[-1], stderr=subprocess.STDOUT))
+        for _ in range(a.workers - 1):
+            conn = listener.accept(); self.conns[get(conn)] = conn
+        listener.close(); print('workers', a.workers, 'gpus', [gpus[w % len(gpus)] for w in range(a.workers)], flush=True)
+
+    def round(self, m, R, r):
+        state = {n: v.detach().cpu() for n, v in m.global_state.items()} if m.kd else None
+        for conn in self.conns.values(): put(conn, ('round', r, state, m.version))
+        results = {res['k']: res for res in (R.client_round(m, k, r) for k in R.own)}
+        for conn in self.conns.values(): results.update({res['k']: res for res in get(conn)})
+        private_logs, proxy_logs = [], []
+        for k in range(R.K): R.install(m, results[k], r, private_logs, proxy_logs)
+        return private_logs, proxy_logs
+
+    def scores(self, R, holds):
+        for conn in self.conns.values(): put(conn, ('eval', holds))
+        merged = R.score_clients(holds)
+        for conn in self.conns.values(): merged.update(get(conn))
+        return merged
+
+    def close(self):
+        for conn in self.conns.values():
+            try: put(conn, ('stop',))
+            except OSError: pass
+        for proc in self.procs:
+            try: proc.wait(timeout=120)
+            except subprocess.TimeoutExpired: proc.kill()
+        for log in self.logs: log.close()
+
+
+def serve(a):
+    """Worker rank: the same deterministic Run/Method construction as rank 0, then train its clients per command."""
+    host, port = a.address.split(':'); conn = Client((host, int(port)), authkey=bytes.fromhex(os.environ['FD_AUTHKEY']))
+    put(conn, a.rank); a.wandb_online = False
+    deterministic(a.fast); R = Run(a); m = Method(R); m.prior()
+    if a.parent: load_parent(a, R, m)
+    print('worker', a.rank, 'clients', R.own, 'rows', sum(R.n[k] for k in R.own), flush=True)
+    while True:
+        command = get(conn)
+        if command[0] == 'round':
+            _, r, state, version = command
+            if state is not None: m.global_state = {n: v.to(R.dev) for n, v in state.items()}
+            m.version = version; m.start_round()
+            put(conn, [R.client_round(m, k, r) for k in R.own])
+        elif command[0] == 'eval':
+            put(conn, R.score_clients(command[1]))
+        else:
+            return
+
+
+def parent_marker(a):
+    """The parent run's config and its committed marker of --parent_round, whose weights file must match the marker SHA."""
+    parent = Path(a.parent); cfg = json.loads((parent / 'config.json').read_text())
+    row = json.loads((parent / 'complete' / f'round_{a.parent_round:03d}.json').read_text())
+    assert row['round'] == a.parent_round and row['fingerprint'] == cfg['fingerprint'], 'parent marker'
+    assert digest(parent / 'weights' / f'round_{a.parent_round:03d}.pt') == row['weights_sha'], 'parent weights sha'
+    return cfg, row
+
+
+def load_parent(a, R, m):
+    """State after the parent's committed epoch: privates, their EMA (evaluated as private_ema) and the aggregated proxy. Exact
+    only for arms whose cross-epoch state is just these weights (dense wire, no momentum/FedDyn/SCAFFOLD); generators and the
+    optimizer restart every epoch."""
+    assert m.kd and not m.own and not (m.bits or m.momentum or m.dyn or m.scaf), 'state beyond weights'
+    cfg, row = parent_marker(a)
+    w = torch.load(Path(a.parent) / 'weights' / f'round_{a.parent_round:03d}.pt', map_location=R.dev, weights_only=True)
+    assert w['round'] == a.parent_round and w['fingerprint'] == cfg['fingerprint'] and len(w['proxy']) == 1
+    for model, state in zip(R.priv, w['private'], strict=True): model.load_state_dict(state, strict=True)
+    m.ema_private = [{n: v.clone() for n, v in s.items()} for s in w['ema_private']] or None
+    m.global_state = {n: v.clone() for n, v in w['proxy'][0].items()}
+    for proxy in m.proxy: proxy.load_state_dict(m.global_state, strict=True)
+    m.global_vector = m.layout.flatten(m.proxy[0]).clone(); m.version = a.parent_round
+    R.bytes.clear()   # the bootstrap was paid (and logged) by the parent run
+    return row['weights_sha']
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--arm', choices=ARMS, required=True); p.add_argument('--seed', type=int, choices=(42, 43), required=True)
@@ -412,13 +1050,36 @@ def main():
     p.add_argument('--out', default=str(P.ROOT / 'papers/full-drift/runs')); p.add_argument('--smoke', action='store_true')
     p.add_argument('--wandb_project', default='mobihet-fulldrift'); p.add_argument('--wandb_online', action='store_true')
     p.add_argument('--max_hours', type=float, default=7.)
+    # speed only (results bit-exact with --workers 1): processes that train disjoint clients, GPUs round-robin by rank
+    p.add_argument('--workers', type=int, default=1); p.add_argument('--rank', type=int, default=0); p.add_argument('--address')
+    # round 17: continue from a committed epoch of an audited run of the same arm/seed/config (exact resume across sessions)
+    p.add_argument('--parent'); p.add_argument('--parent_round', type=int)
+    # owner 2026-10-18: tolerance-class speed (fused AdamW, nondeterministic cuDNN) for runs built from round 19 on; such arms are
+    # compared only with controls also run with --fast (config key 'fast' -> different fingerprint, refuses a non-fast parent)
+    p.add_argument('--fast', action='store_true')
     a = p.parse_args()
-    if a.smoke: a.stop_after = 2; a.aux_batch = 64
-    else: assert a.rounds == 50 and a.stop_after in (6, 15) and a.wandb_online
+    if 'g512' in a.arm.split('_'): a.aux_batch *= 2   # round 18: 512 synthetic rows per batch (smoke: 128)
+    if a.smoke: a.stop_after = 2; a.aux_batch = 128 if 'g512' in a.arm.split('_') else 64
+    else: assert a.rounds == 50 and a.stop_after in (6, 15, 50) and a.wandb_online
+    assert (a.parent is None) == (a.parent_round is None) and (a.parent is None or 0 < a.parent_round < a.stop_after)
+    tokens = a.arm.split('_')
+    assert a.workers == 1 or not ({'dyn', 'cons', 'cons0'} & set(tokens) or any(t.startswith('scaf') for t in tokens)), \
+        'FedDyn/SCAFFOLD keep cross-client sums inside private_epoch: serial only'
+    if a.rank: return serve(a)
     out = Path(a.out) / (f'{a.arm}_s{a.seed}' + ('' if a.smoke or a.stop_after == 6 else f'_e{a.stop_after}')); out.mkdir(parents=True, exist_ok=True)
     assert not (out / 'config.json').exists(), 'single-session probe: no resume'
-    config = {k: v for k, v in vars(a).items() if k not in ('out', 'wandb_online', 'wandb_project', 'max_hours')}
-    config.update(parts=PARTS, mu=MU, swap_p=SWAP_P, ema_beta=EMA_BETA, cal_rows=CAL_ROWS)
+    config = {k: v for k, v in vars(a).items() if k not in ('out', 'wandb_online', 'wandb_project', 'max_hours', 'workers', 'rank', 'address',
+                                                            'parent', 'parent_round', 'fast')}
+    if a.fast: config['fast'] = True   # absent when off: configs (and parent checks) of earlier runs unchanged
+    config.update(mu=MU, swap_p=SWAP_P, ema_beta=EMA_BETA, cal_rows=CAL_ROWS,
+                  kd_cap=KD_CAP, dyn_alpha=DYN_ALPHA, cons_lambda=CONS_LAMBDA, probe_rows=PROBE_ROWS, kd_up=KD_UP, gw2=GW2,
+                  p1_lambda=P1_LAMBDA, p1_t=P1_T, p1_classes=list(P1_CLASSES))
+    if a.parent:   # same scientific config as the parent run (only the stop epoch differs); its committed weights SHA-checked
+        cfg, row = parent_marker(a)
+        same = lambda c: {k: v for k, v in c.items() if k not in ('stop_after', 'parent')}
+        assert same(cfg['config']) == same(config), ('parent config differs', cfg['config'], config)
+        config['parent'] = dict(round=a.parent_round, weights_sha=row['weights_sha'], fingerprint=cfg['fingerprint'],
+                                fd=cfg['source']['proj/fd.py'], parent=cfg['config'].get('parent'))
     source = {f'mh/{f.name}': digest(f) for f in sorted((P.ROOT / 'mh').glob('*.py'))}
     source.update({f'proj/{f.name}': digest(f) for f in sorted(Path(__file__).parent.glob('*.py'))})
     fx = P.ROOT / 'papers/pilot/fixture'; manifest = json.loads((fx / 'manifest.json').read_text())
@@ -431,35 +1092,47 @@ def main():
         import wandb
         key = os.environ.get('WANDB_API_KEY'); assert key, 'W&B key required'
         assert wandb.login(key=key, anonymous='never', relogin=True, verify=True)
-        wb = wandb.init(project=a.wandb_project, id=out.name + '-' + fingerprint[:8], resume='allow', name=out.name,
+        wb = wandb.init(project=a.wandb_project, id=out.name + '-' + fingerprint[:8], resume='allow', name=out.name + ('-fast' if a.fast else ''),
                         config=dict(config, fingerprint=fingerprint), mode='online', dir=str(out),
                         settings=wandb.Settings(save_code=False, disable_code=True))
         assert not wb.settings._offline
         wb.log({'preflight/online': 1}); print('WANDB', wb.url, flush=True)
-    os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
-    torch.set_num_threads(1); torch.backends.cuda.matmul.allow_tf32 = False
-    torch.use_deterministic_algorithms(True)
-    torch.backends.cudnn.benchmark = False; torch.backends.cudnn.deterministic = True
-    t0 = time.time(); R = Run(a); m = Method(R); m.prior()
-    print('setup', a.arm, 'rows', sum(R.n), 'parts', R.parts, 'mu', R.mu, 'swap', R.swap, 'sec', round(time.time() - t0, 1), flush=True)
-    hist, previous, step = [], None, 0
-    for r in range(1, a.stop_after + 1):
+    deterministic(a.fast)
+    t0 = time.time(); pool = Pool(a, out) if a.workers > 1 else None
+    try:
+        train(a, out, fingerprint, wb, t0, pool)
+    finally:
+        if pool: pool.close()
+
+
+def train(a, out, fingerprint, wb, t0, pool):
+    R = Run(a); m = Method(R); m.prior()
+    start, previous = 0, None
+    if a.parent: start, previous = a.parent_round, load_parent(a, R, m)
+    print('setup', a.arm, 'rows', sum(R.n), 'mu', R.mu, 'swap', R.swap, 'kdcap', R.kdcap, 'warm', R.warm,
+          'frz', R.frz, 'dyn', R.dyn, 'cons', R.cons, R.lam, 'own', m.own, 'kd2', R.kdup, 'kdpx', R.kdpx, 'fill', R.fill, 'rej', R.rej, 'p1', R.p1, 'gkd', R.gkd, 'bits', m.bits,
+          'rules', R.rules, 'la', R.la, 'parent', a.parent_round, 'sec', round(time.time() - t0, 1), flush=True)
+    hist = []
+    for r in range(start + 1, a.stop_after + 1):
         if time.time() - t0 + 1.15 * max([v['sec'] for v in hist] or [0]) + 60 > a.max_hours * 3600:
             print('budget stop before epoch', r, flush=True); break
         t1 = time.time(); private_logs, proxy_logs = [], []
-        for part in range(R.parts):
-            step += 1; m.start_round()
+        m.start_round()
+        if pool: private_logs, proxy_logs = pool.round(m, R, r)
+        else:
             for k in range(R.K):
-                if m.kd: m.prepare(k, step)
-                private_logs.append(R.private_epoch(m, k, r, part))
+                if m.kd: m.prepare(k, r)
+                private_logs.append(R.private_epoch(m, k, r))
                 if m.kd:
-                    packet, log = m.proxy_epoch(k, step); proxy_logs.append(log)
+                    packet, log = m.proxy_epoch(k, r); proxy_logs.append(log)
                     if packet is not None: m.aggregate_sum.add(k, packet)
-            m.aggregate(step)
+        m.aggregate(r)
         m.update_ema()
         algorithm_seconds = time.time() - t1
-        diagnostics = dict(swap_fraction=R.swap_stats[0] / max(R.swap_stats[1], 1), aggregations=step,
+        diagnostics = dict(swap_fraction=R.swap_stats[0] / max(R.swap_stats[1], 1),
                            **{k: v for k, v in m.diag.items() if isinstance(v, (int, float))})
+        kd_keys = [key for key in private_logs[0] if key.startswith(('w_', 'cap_hit', 'kl_', 'probe_', 'scaf_', 'syn_'))] if private_logs else []
+        diagnostics.update({'kd_' + key: float(np.mean([v[key] for v in private_logs])) for key in kd_keys})
         if proxy_logs:
             diagnostics.update(drift_mean=float(np.mean([v['drift'] for v in proxy_logs])),
                                prox_mean=float(np.mean([v['prox'] for v in proxy_logs])))
@@ -467,16 +1140,18 @@ def main():
                    version=m.version, fingerprint=fingerprint, prev_sha=previous, diagnostics=diagnostics,
                    loss=float(np.mean([v['loss'] for v in (proxy_logs if m.fedavg else private_logs)])))
         final = r == a.stop_after
-        row['eval'] = R.evaluate(m, out, r, ('group', 'old', 'test') if final else ('group', 'old'))
+        holds = ('group', 'old', 'test') if final else ('group', 'old')
+        row['eval'] = R.evaluate(m, out, r, holds, scores=pool.scores(R, holds) if pool and not m.fedavg else None)
         row['predictions_sha'] = digest(out / 'predictions' / f'round_{r:03d}.npz')
         weights = dict(private=[] if m.fedavg else [{k: v.detach().cpu() for k, v in model.state_dict().items()} for model in R.priv],
-                       proxy=[{k: v.detach().cpu() for k, v in m.proxy[0].state_dict().items()}] if m.kd else [],
+                       proxy=[{k: v.detach().cpu() for k, v in s.items()} for s in
+                              [p.state_dict() for p in (m.proxy if m.own else m.proxy[:1])]] if m.kd else [],
                        ema_private=[{k: v.detach().cpu() for k, v in s.items()} for s in (m.ema_private or [])],
                        architecture=dict(P.CFG, n_features=P.D, num_classes=P.C), round=r, fingerprint=fingerprint)
         wp = out / 'weights' / f'round_{r:03d}.pt'; save(wp, weights); row['weights_sha'] = digest(wp)
         row['sec'] = time.time() - t1; previous = row['weights_sha']
         save(out / 'complete' / f'round_{r:03d}.json', row); hist.append(row)   # atomic commit LAST
-        role, rule = ('proxy', 'head') if m.kd else ('private', 'gp')
+        role, rule = ('proxy', 'head') if m.kd and not m.own else ('private', 'gp')
         print(f'r{r} {a.arm} s{a.seed} {role} group {rule} {row["eval"][role]["group"][rule]["f1_macro"]:.4f} '
               f'loss {row["loss"]:.4f} {row["sec"]:.0f}s', flush=True)
         if wb:
@@ -488,7 +1163,7 @@ def main():
                         metrics.update({f'{model_role}/{hold}/{rule_name}/{key}': v for key, v in ev['mean_metrics'].items()})
             wb.log(metrics)
     result = dict(config=vars(a), fingerprint=fingerprint, history=hist, bytes=R.bytes, train_rows=R.n,
-                  complete=len(hist) == a.stop_after, minutes=(time.time() - t0) / 60)
+                  complete=len(hist) == a.stop_after - start, minutes=(time.time() - t0) / 60)
     save(out / 'result.json', result)
     with (out / 'metrics.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['round', 'role', 'holdout', 'rule', *METRIC_KEYS]); w.writeheader()

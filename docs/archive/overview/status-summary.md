@@ -5,7 +5,7 @@
 **26 nhóm phương pháp** hiện được đề xuất:24nhóm lịch sử dưới đây +BoundaryCells/ResponseRisk mới.
 Hai hướng mới chưa có utilityDAGSNet; bounded probe không tăng số phương pháp pilot đã xác nhận.
 EMA là cải tiến recipe, InputSensitivity/ErrorCosts còn backlog; không cộng thêm vào26.
-[Dự báo trước kiểm](../../research/performance-feasibility-2026-10-13.md),
+[Dự báo trước kiểm](../research/performance-feasibility-2026-10-13.md),
 [hai hướng mới](../../proposals.md#hướng-mới-2026-10-13).
 Không đếm toàn bộ archive hay tênpaper chỉ được tham khảo.
 Gộp seed42/43, small/medium, FO512/1024, IPC1/4, EF/noEF, own/shuffle và phiên bản theo cùng cơ chế.

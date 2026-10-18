@@ -74,6 +74,6 @@ Chỉ áp coherent snapshot; private không align weights/latent. DAGSNet-only c
 ## Đường dẫn triển khai kế thừa
 
 - [Thiết kế và cổng](design.md).
-- [Dự báo trước kiểm](../../research/performance-feasibility-2026-10-13.md).
-- [Nguồn primary](../../research/new-fl-primary-sources-2026-10-13.md).
+- [Dự báo trước kiểm](../../archive/research/performance-feasibility-2026-10-13.md).
+- [Nguồn primary](../../archive/research/new-fl-primary-sources-2026-10-13.md).
 - [Probe đã đo](../../../methods/boundary-cell-counts/builds/boundary-cell-pilot/probes/bounded-probe.json); [source](../../../methods/boundary-cell-counts/builds/boundary-cell-pilot/source/proj/probe.py).

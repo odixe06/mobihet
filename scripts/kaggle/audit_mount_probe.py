@@ -10,7 +10,7 @@ meta = json.loads((folder/'kernel-metadata.json').read_text())
 owner = meta['id'].split('/')[0]
 probe = (folder.parent.parent/'probes/mount-probe'/folder.name)
 if not probe.exists():
-    probe = ROOT/'papers'/sys.argv[2]/'mount-probe'/folder.name
+    probe = ROOT/'.compat/papers'/sys.argv[2]/'mount-probe'/folder.name
 cpu = json.loads((probe/'kernel-metadata.json').read_text())['id']
 helper = ROOT/'.agents/skills/kaggle-training-notebook/scripts'
 prefix = [sys.executable,str(helper/'kaggle_as.py'),owner,'--']

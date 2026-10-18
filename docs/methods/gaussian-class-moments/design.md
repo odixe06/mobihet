@@ -16,7 +16,7 @@ Raw record/record perturb không rời xe. Thống kê được gộp; book tố
 - [h2-input-stats.md](../../archive/research/probes/h2-input-stats.md)
 - [pilot-p1.md](../../archive/research/probes/pilot-p1.md)
 - [pilot-p2.md](../../archive/research/probes/pilot-p2.md)
-- [pilot.py](../../../mh/pilot.py)
+- [pilot.py](../../../core/pilot_runtime.py)
 - [report.md](../../archive/methods/shared-baselines/builds/pilot-baselines/results/report.md)
 - [report.md](../../archive/methods/contact-fragmentation/builds/fragmented-snapshots/results/report.md)
 

@@ -110,9 +110,9 @@ def main():
         model_training=False,holdout_read=False,client_pooling='equal valid clients per true class')
     stage.mkdir(parents=True)
     manifest={}
-    for p in list((ROOT/'mh').glob('*.py'))+list((BASE/'source/proj').glob('*.py'))+[ROOT/'knowledge/meta.json']:
+    for p in list((ROOT/'.compat/mh').glob('*.py'))+list((BASE/'source/proj').glob('*.py'))+[ROOT/'knowledge/meta.json']:
         shutil.copyfile(p,stage/p.name);manifest[p.name]=sha(p)
-    fx=ROOT/'papers/pilot/fixture'
+    fx=ROOT/'.compat/papers/pilot/fixture'
     for p in list(fx.glob('train_*_X.npy'))+list(fx.glob('train_*_y.npy'))+[fx/'manifest.json']:
         shutil.copyfile(p,stage/p.name)
     shutil.copyfile(warm,stage/'warm_weights.pt')
@@ -124,7 +124,7 @@ def main():
     (stage/'input_manifest.json').write_text(json.dumps(inputs,indent=2)+'\n')
     dataset=f'{owner}/mobihet-{rid}-src'
     (stage/'dataset-metadata.json').write_text(json.dumps(dict(id=dataset,title=f'mobihet-{rid}-src',licenses=[{'name':'CC0-1.0'}]),indent=2)+'\n')
-    setup=f'MH={[p.name for p in (ROOT/"mh").glob("*.py")]!r}\nPROJ={[p.name for p in (BASE/"source/proj").glob("*.py")]!r}\nINPUTS={inputs!r}\nMANIFEST={manifest!r}\nPROTOCOL_SHA={sha(stage/"protocol.json")!r}\n'+SETUP
+    setup=f'MH={[p.name for p in (ROOT/".compat/mh").glob("*.py")]!r}\nPROJ={[p.name for p in (BASE/"source/proj").glob("*.py")]!r}\nINPUTS={inputs!r}\nMANIFEST={manifest!r}\nPROTOCOL_SHA={sha(stage/"protocol.json")!r}\n'+SETUP
     auth='import time\nSESSION_T0=time.monotonic()\n'+AUTH
     auth=auth.replace("_wandb_key=UserSecretsClient().get_secret('wandb_key')","_wandb_key=_INLINE_WANDB_KEY or UserSecretsClient().get_secret('wandb_key')")
     nb=nbf.v4.new_notebook(cells=[nbf.v4.new_markdown_cell('# CrossClientRank — locked train-only probe\nReuses audited CE-r2 private weights. No new SGD, group/old/test input, per-record score/gradient output or utility claim. Private inline W&B key persists in private version history.'),

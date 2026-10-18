@@ -20,7 +20,7 @@ def sha(path):
 
 
 def prepare(row):
-    base = (ROOT / 'papers' / row['build']).resolve()
+    base = (ROOT / '.compat/papers' / row['build']).resolve()
     owner, rid = row['owner'], row['rid']
     public, private = base / 'notebook' / rid, base / 'private_push' / rid
     assert not public.exists() and not private.exists(), 'immutable tag already exists'
@@ -78,7 +78,7 @@ def prepare(row):
         id=dataset, title=f'mobihet-{rid}-ckpt', licenses=[{'name': 'CC0-1.0'}]), indent=2) + '\n')
     setup = reference.cells[2].source
     body = setup[setup.index('import hashlib'):]
-    setup = f'CODE={[n for n in manifest if (ROOT / "mh" / n).exists()]!r}\n' + \
+    setup = f'CODE={[n for n in manifest if (ROOT / ".compat/mh" / n).exists()]!r}\n' + \
             f'PROJ={[p.name for p in (base / "proj").glob("*.py")]!r}\nEXPECTED={expected!r}\n' + body
     run = f'METHODS={list(expected)!r}\nSESSION_HOURS={row["hours"]!r}\n' + \
           f'PROJECT_PATH={"papers/" + row["build"] + "/proj"!r}\n' + \

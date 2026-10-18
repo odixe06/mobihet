@@ -1,6 +1,6 @@
 ---
 name: kaggle-training-notebook
-description: Build, validate, resume, and operate PyTorch training notebooks on Kaggle; retrieve artifacts and report all 10 classification metrics. Use for paper reproduction or Kaggle training/evaluation, not ordinary local data exploration.
+description: Build, push, resume and collect PyTorch training notebooks on Kaggle (2x T4) -- generate notebooks and kernel metadata, stage source/checkpoint datasets, read quota and pick accounts, push per account with kaggle_as.py, continue across sessions, pull outputs, verify artifacts and report all 10 classification metrics. Use whenever work touches Kaggle kernels, quota, push/pull, session resume or Kaggle run artifacts (e.g. "push kernel", "chạy trên Kaggle", "kiểm quota", "kéo/collect kết quả", "nối tiếp session", "chạy 50 round"). Not for local-only data exploration; for training speed use federated-training-speed.
 ---
 
 ## Paths
@@ -49,15 +49,14 @@ and distinct run IDs. Check the project context for selected seeds and account o
    optimizer settings or adaptive rules and attribute them to the paper. Resolve scientific
    choices with the user before implementing dependent training code when requested.
 3. For any FL method on VeReMi/DAGSNet read [fl-veremi-dagsnet.md](references/fl-veremi-dagsnet.md)
-   FIRST: it names the template to copy (`~/nckh/veremi/lwfednids` for a global-model method,
-   `~/nckh/veremi/perfedskd` for per-client models), the measured T4 numbers, the CUDA-graph
+   FIRST: it names the template to copy (GitHub `odixe06/fl_dagsnet_veremi`: `lwfednids/` for a
+   global-model method, `perfedskd/` for per-client models), the measured T4 numbers, the CUDA-graph
    traps of multi-module steps, the sharded / cached eval, and the push/pull command sequence,
    so no sibling project has to be re-read.
-   For FL read [federated-contract.md](references/federated-contract.md) before using any DDP template,
-   and [perf-federated.md](references/perf-federated.md) before optimizing its speed: measure
-   whether the loop is launch-bound before applying centralized AMP/DataLoader advice, and keep
-   each speed change within justified numerical tolerances against an eager reference.
-   Record tolerances and preserve the approved algorithm; AMP/compile need not be bit-identical.
+   For FL read [federated-contract.md](references/federated-contract.md) before using any DDP template.
+   **Before optimizing speed (workers, compile, fused kernels, host syncs) use the
+   `federated-training-speed` skill**: it measures whether the loop is launch-bound, names the
+   acceptance class (bit-exact or tolerance) and the equivalence tests, and holds the T4 playbooks.
    Audit actual data using [dataset-audit.md](references/dataset-audit.md) and
    [veremi-dataset-layout.md](references/veremi-dataset-layout.md). Distinguish full scans,
    samples and historical sidecar counts. Freeze feature order, class mapping and train-fitted
@@ -68,9 +67,7 @@ and distinct run IDs. Check the project context for selected seeds and account o
    library stack on the worker is not the one you developed against, and Kaggle reports none of
    the differences as an error.
    Build using [notebook-template.md](references/notebook-template.md),
-   [metrics.md](references/metrics.md), [perf-2xT4.md](references/perf-2xT4.md),
-   [perf-federated.md](references/perf-federated.md) for federated loops,
-   [local-gpu-probe.md](references/local-gpu-probe.md),
+   [metrics.md](references/metrics.md), the `federated-training-speed` skill for performance,
    [long-run-stability.md](references/long-run-stability.md), and
    [observability.md](references/observability.md) as relevant.
    Historical speedups are not measurements of the new model. W&B is optional unless requested;
@@ -102,8 +99,10 @@ and distinct run IDs. Check the project context for selected seeds and account o
    alignment; use selected CLI OAuth while MCP identity remains uncertain. An account with quota
    is not an account with GPUs -- zero-GPU allocation has been account-scoped here before, and
    only a run proves it. Script creation does not itself authorize launching runs.
-7. Pull outputs with `scripts/pull_kernel_output.py` (parallel, resumable, non-zero exit on gaps; ~5× the CLI; one
-   process per kernel via `kaggle_as.py <owner>`, ~32 connections total). For operation/recovery read [pull-outputs.md](references/pull-outputs.md),
+7. Pull bulk output with `scripts/pull_kernel_output.py` through `scripts/kaggle_as.py <owner>`
+   (parallel, resumable, non-zero exit on gaps, ~5x the CLI; one process per kernel, ~32 connections
+   in total); account credentials stay process-scoped. Require exit 0 before artifact verification.
+   For operation/recovery read [pull-outputs.md](references/pull-outputs.md),
    [stop-session.md](references/stop-session.md), and only if needed
    [multi-account.md](references/multi-account.md). Distinguish latest batch-version status,
    active session and fresh heartbeat. A replacement push does not prove cancellation.

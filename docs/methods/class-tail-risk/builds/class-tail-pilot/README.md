@@ -51,4 +51,4 @@ ERROR vẫn pull/audit committed rounds; không retry r1. Cost báo algorithm v�
 source/import/budget trả phí riêng. Class-mass CE ngang pooled trong≤0,005 cả hai seed: chưa quy lợi cho hard-example mechanism.
 
 [Source/scripts/notebooks](../../../../../methods/class-tail-risk/builds/class-tail-pilot/README.md) ·
-[Bàn giao phiên](../../../../operations/continuation-2026-10-15.md).
+[Bàn giao phiên](../../../../archive/operations/continuation-2026-10-15.md).

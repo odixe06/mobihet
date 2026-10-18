@@ -76,3 +76,16 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 **Đọc [CONTEXT.md](CONTEXT.md) (trạng thái, quyết định) rồi [LESSONS.md](LESSONS.md) (bài học bắt buộc) trước khi làm bất cứ việc gì.**
 Khi rút ra bài học mới hoặc một bài học bị bác bỏ, sửa LESSONS.md ngay trong phiên đó.
+
+## 7. Skill bắt buộc theo loại việc (`.claude/skills/`)
+
+Trước khi làm, gọi skill khớp với việc; nhiều việc khớp nhiều skill thì gọi đủ.
+
+| việc | skill |
+|---|---|
+| bắt đầu phiên / sau tóm tắt, collect + audit kết quả, khóa cổng, đề xuất phương pháp, cập nhật design/results/bàn giao | `federated-experiment-workflow` |
+| sinh notebook, upload dataset nguồn/checkpoint, quota, push kernel, nối tiếp session, pull output | `kaggle-training-notebook` |
+| theo dõi run đang chạy, health, tiến độ W&B | `wandb-training-monitor` |
+| tối ưu tốc độ code train (workers, compile, host sync, benchmark), test tương đương | `federated-training-speed` |
+| sắp xếp CONTEXT/docs/knowledge, quyết định đặt thông tin ở đâu | `context-hub` |
+| backup Git/DVC, restore, dọn ổ (chỉ khi owner yêu cầu) | `repo-backup` |

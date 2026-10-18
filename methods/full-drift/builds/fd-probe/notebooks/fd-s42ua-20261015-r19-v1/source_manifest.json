@@ -1,0 +1,19 @@
+{
+  "inputs": "29743b9a83fe17ea11b8dd75f59308aab0bbebf192841a6fead08506ab5a3c61",
+  "fd": "3edf1c0cd81d5f9a8f3ccab558fe22953d8c27f4a5fd6956268a1abe0a27039d",
+  "queues": {
+    "workers": 2,
+    "arms": [
+      "fd_dml_m4b_gpool_frz_gkd_la_kdpx:50"
+    ],
+    "fast": true,
+    "parent": {
+      "dataset": "dinhan25/mobihet-fd-parent-lakdpx-fast-s42-e15",
+      "session": "fd-s42tb-20261015-r19-v1",
+      "run": "fd_dml_m4b_gpool_frz_gkd_la_kdpx_s42_e15",
+      "round": 15
+    }
+  },
+  "session_hours": 11.75,
+  "seed": 42
+}

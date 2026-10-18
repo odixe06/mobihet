@@ -11,7 +11,7 @@ from types import SimpleNamespace
 import torch
 
 ROOT=next((p for p in Path(__file__).resolve().parents if (p/'CONTEXT.md').is_file()), Path(__file__).resolve().parents[1])
-PROJ=ROOT/'papers/boundary-cells/proj'
+PROJ=ROOT/'.compat/papers/boundary-cells/proj'
 sys.path.insert(0,str(ROOT));sys.path.insert(0,str(PROJ))
 from mh import pilot as P
 from boundary_method import ARMS,Method,private_epoch
@@ -41,10 +41,10 @@ def main():
     output=dict(stage='LOCAL_BOUNDED_BRANCH_SMOKE',branches=results,cohort_clients=20,
         trained_clients_per_branch=1,rounds=1,rows_per_client=1024,utility_claim=False,T4_cost_claim=False,
         source_sha={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in PROJ.glob('*.py')})
-    (ROOT/'papers/boundary-cells/branch-proof-initial2.json').write_text(json.dumps(output,indent=2)+'\n')
+    (ROOT/'.compat/papers/boundary-cells/branch-proof-initial2.json').write_text(json.dumps(output,indent=2)+'\n')
 
 
 if __name__=='__main__':
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         main()

@@ -28,8 +28,8 @@ from mh.dagsnet import build_model, CFG
 from mh.metrics import metrics_from_confusion
 
 HELPER = ROOT / '.agents/skills/kaggle-training-notebook/scripts'
-PATTERN = (r'^(source/|runs/fd_summary\.json|runs/[^/]+/(complete/|config\.json|result\.json|metrics\.csv|log\.txt|'
-           r'predictions/|weights/round_0(06|15)\.pt))')   # last epoch of 6- and 15-epoch arms
+PATTERN = (r'^(source/|runs/fd_summary\.json|runs/[^/]+/(complete/|config\.json|result\.json|metrics\.csv|log\.txt|worker[0-9]+\.log|'
+           r'predictions/|weights/round_0(06|15|50)\.pt))')   # last epoch of 6-, 15- and 50-epoch arms
 
 
 def sha(p):
@@ -39,9 +39,15 @@ def sha(p):
 def audit_arm(run):
     cfg = json.loads((run / 'config.json').read_text())
     rows = [json.loads(m.read_text()) for m in sorted((run / 'complete').glob('round_*.json'))]
-    previous, checks, kept = None, 0, []
+    parent = cfg['config'].get('parent'); start = parent['round'] if parent else 0   # round 17 --parent: continues an audited run
+    if parent:
+        marker = next(json.loads((c.parent / 'complete' / f'round_{start:03d}.json').read_text())
+                      for c in sorted((BASE / 'artifacts/kaggle').glob('*/runs/*/config.json'))
+                      if json.loads(c.read_text())['fingerprint'] == parent['fingerprint'] and (c.parents[2] / 'AUDITED.json').exists())
+        assert marker['weights_sha'] == parent['weights_sha'], ('parent weights', run.name)
+    previous, checks, kept = parent['weights_sha'] if parent else None, 0, []
     for i, row in enumerate(rows):
-        assert row['round'] == i + 1 and row['prev_sha'] == previous and row['fingerprint'] == cfg['fingerprint']
+        assert row['round'] == start + i + 1 and row['prev_sha'] == previous and row['fingerprint'] == cfg['fingerprint']
         previous = row['weights_sha']
         wp = run / 'weights' / f'round_{row["round"]:03d}.pt'
         if wp.exists():
@@ -67,14 +73,16 @@ def audit_arm(run):
                     for key, value in ev['mean_metrics'].items():
                         assert abs(float(np.mean([m[key] for m in mm])) - value) < 1e-12, (run.name, role, hold, rule, key)
                     checks += 1
-    target = 15 if run.name.endswith('_e15') else 6
-    return dict(run=run.name, epochs=len(rows), complete=len(rows) == target, kept_weight_rounds=kept, metric_checks=checks,
+    target = (50 if run.name.endswith('_e50') else 15 if run.name.endswith('_e15') else 6) - start
+    return dict(run=run.name, epochs=len(rows), complete=len(rows) == target, kept_weight_rounds=kept, metric_checks=checks, parent=parent,
                 level='marker chain, epoch-6 weights strict/finite, predictions->confusion->10 metrics')
 
 
 # pull connections: skill pull-outputs.md — throughput scales with open connections, ~32 total saturates the link
 JOBS = '16'
 
+
+PUSH_VERSION = {'fd-s42ma-20261015-r13-v1': 2}
 
 def collect(rid, stage_tag='20261015'):
     folder = BASE / 'notebooks' / rid; dest = BASE / 'artifacts/kaggle' / rid; marker = dest / 'AUDITED.json'
@@ -91,7 +99,8 @@ def collect(rid, stage_tag='20261015'):
     subprocess.run(prefix + [sys.executable, str(HELPER / 'pull_kernel_output.py'), meta['id'], '-p', str(dest), '-j', JOBS,
                              '--pattern', PATTERN], check=True)
     private = BASE / 'private_push' / rid; executed = private / 'executed.ipynb'
-    subprocess.run(prefix + [sys.executable, str(HELPER / 'download_executed_notebook.py'), meta['id'], '--version', '1',
+    version = str(PUSH_VERSION.get(rid, 1))   # ma: v1 cancelled while queued (never ran), same notebook re-pushed as v2
+    subprocess.run(prefix + [sys.executable, str(HELPER / 'download_executed_notebook.py'), meta['id'], '--version', version,
                              '--output', str(executed)], check=True, umask=0o077)
     executed.chmod(0o600)
     pushed = nbformat.read(private / meta['code_file'], as_version=4)
@@ -115,7 +124,7 @@ def collect(rid, stage_tag='20261015'):
     logs = ''.join(v.get('data', '') for v in json.loads((dest / f'mobihet-{rid}.log').read_text()))
     assert key not in logs
     # pulls may run in parallel; the audit holds ~4GB (ep6 test predictions), so audits take one shared lock
-    with (ROOT / 'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT / '.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         audits = [audit_arm(run) for run in sorted((dest / 'runs').glob('fd_*_s4[23]*'))
                   if (run / 'complete').exists() and list((run / 'complete').glob('round_*.json'))]
@@ -142,5 +151,18 @@ if __name__ == '__main__':
     sessions += [('fd-s42i-20261015-r4-v1', '20261015-r4'), ('fd-s42j-20261015-r5-v1', '20261015-r5')]
     sessions += [(f'fd-s43{s}-20261015-r6-v1', '20261015-r6') for s in 'kl']
     sessions += [('fd-s43m-20261015-r7-v1', '20261015-r7')]
+    sessions += [(f'fd-s42{s}-20261015-r8-v1', '20261015-r8') for s in 'nopq'] + [('fd-s43r-20261015-r8-v1', '20261015-r8')]
+    sessions += [(f'fd-s42{s}-20261015-r9-v1', '20261015-r9') for s in 'stuvx'] + [('fd-s43w-20261015-r9-v1', '20261015-r9')]
+    sessions += [('fd-s42y-20261015-r10-v1', '20261015-r10')] + [(f'fd-s43{s}-20261015-r10-v1', '20261015-r10') for s in ('z', 'ka', 'kb', 'ga', 'gb')]
+    sessions += [(f'fd-s42{s}-20261015-r11-v1', '20261015-r11') for s in ('la', 'lc')]
+    sessions += [('fd-s42qa-20261015-r12-v1', '20261015-r12')]
+    sessions += [(f'fd-s42{s}-20261015-r13-v1', '20261015-r13') for s in ('ma', 'mb', 'mc', 'md', 'me', 'mf')]
+    sessions += [('fd-s42na-20261015-r14-v1', '20261015-r14'), ('fd-s43nb-20261015-r14-v1', '20261015-r14'), ('fd-s42nc-20261015-r14-v1', '20261015-r14')]
+    sessions += [(f'fd-s42{s}-20261015-r15-v1', '20261015-r15') for s in ('oa', 'ob', 'oc')]
+    sessions += [(f'fd-s{seed}{s}-20261015-r16-v1', '20261015-r16') for seed, s in ((43, 'pa'), (43, 'pb'), (42, 'pc'), (43, 'pd'))]
+    sessions += [(f'fd-s42{s}-20261015-r17-v1', '20261015-r17') for s in ('ra', 'rb', 'rc', 'rd')]
+    sessions += [(f'fd-s42{s}-20261015-r18-v1', '20261015-r18') for s in ('sa', 'sb', 'sc', 'sd', 'se', 'sf')]
+    sessions += [(f'fd-s{seed}{s}-20261015-r19-v1', '20261015-r19') for seed, s in ((42, 'ta'), (42, 'tb'), (42, 'tc'), (43, 'td'), (43, 'te'),
+                                                                                   (42, 'ua'), (43, 'ub'), (42, 'uc'), (43, 'ud'))]
     for rid, tag in sessions:
         if fnmatch.fnmatch(rid, args.only): collect(rid, tag)

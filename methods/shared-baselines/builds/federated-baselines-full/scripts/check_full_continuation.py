@@ -62,5 +62,5 @@ def check(folder,case):
 
 
 if __name__=='__main__':
-    for folder in sorted((ROOT/'papers/full-validation/notebook').glob('*cont01*')):
+    for folder in sorted((ROOT/'.compat/papers/full-validation/notebook').glob('*cont01*')):
         for case in ('normal','no-progress','exhausted'):check(folder,case)

@@ -79,7 +79,7 @@ def check(folder, case):
 def main():
     rows=[]
     for build,tag in [('full-validation','20261014-cont02'),('hybrid-full','20261014-cont01')]:
-        for folder in sorted((ROOT/'papers'/build/'notebook').glob(f'*{tag}*')):
+        for folder in sorted((ROOT/'.compat/papers'/build/'notebook').glob(f'*{tag}*')):
             rows.extend(check(folder,case) for case in ('normal','boundary','exhausted','worker-fail'))
     assert len(rows)==32
     (ROOT/'docs/operations/resume-batch-preflight-2026-10-14.json').write_text(json.dumps(rows,indent=2)+'\n')

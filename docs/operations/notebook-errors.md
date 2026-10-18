@@ -5,7 +5,7 @@ Trạng thái ERROR không quyết định rerun. Pull/verify round đã commit,
 
 | kernel / build | lỗi đã biết và bằng chứng | ngăn lặp khi tạo notebook mới | quyết định |
 |---|---|---|---|
-| H1 full1 q1 accanniez15/10 | Host maintenance/Docker daemon sau16299,7s; API0artifact/executed404; W&B summary25/22 nhưng không weights | Status ERROR không là numericalFAIL; xác minh output và restore checkpoint trước. W&B không là checkpoint. Dùng audited parent16/14 nếu output mất; logging project mới tách nhánh recovery | Giữ kernel lỗi; q2 nối16/14, không r1; [proof](full1-unavailable-2026-10-15-afternoon.json) |
+| H1 full1 q1 accanniez15/10 | Host maintenance/Docker daemon sau16299,7s; API0artifact/executed404; W&B summary25/22 nhưng không weights | Status ERROR không là numericalFAIL; xác minh output và restore checkpoint trước. W&B không là checkpoint. Dùng audited parent16/14 nếu output mất; logging project mới tách nhánh recovery | Giữ kernel lỗi; q2 nối16/14, không r1; [proof](../archive/operations/full1-unavailable-2026-10-15-afternoon.json) |
 | V2-A seed42 minhtran0601; seed43 dinhan25 | EF sketch khuếch đại residual, loss/parameter tăng, BN calibration nonfinite; [chẩn đoán](../../archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/probes/sketch-diagnostics.json) | Guard finite update/state/BN, đo residual contraction/norm ở đúng epoch/batch; preflight codec không đủ. Không dùng lại adaptation numerical FAIL | Không rerun y nguyên; các arm hoàn tất vẫn có giá trị |
 | V2-B seed42 minhtran0601; seed43 dinhan25 | K512/own512 proxy loss không hữu hạn r1, trước commit; K1024 hoàn tất nhưng teacher gate FAIL | Preflight đúng batch/epoch production; smoke4step/batch32 không thay batch512/full epoch. Gating độc lập từngK, không mở KD/ZO khi teacher FAIL | Không rerun512; không dùng1024 che lỗi512 |
 | V6-A seed42 minhtran0601; seed43 dinhan25 | G59 bearing=dx/dist bùng nổ trên synthetic gần dist0, 12arm lỗi; control/G61 vẫn hoàn tất | Toy missing/coincident + sampled synthetic support/norm/nonfinite gate trước SGD; không gọi interval rộng là faithful reconstruction | G59 numerical FAIL, G61 quality/byte FAIL; không rerun y nguyên |
@@ -13,7 +13,7 @@ Trạng thái ERROR không quyết định rerun. Pull/verify round đã commit,
 | Hybrid cont01 minhtrit06 14/10 | Push trả `not valid kernel sources` cho parent ERROR dù owner-scoped output listing đọc được; notebook vẫn được push | Push parser phải phát hiện refused input; require-resume trước data decode. ERROR output cần dataset private checkpoint +hash gate khi không attach được; listing không thay mount proof | Giữ notebook đã PUSHED, tạo tag mới dùng bridge; trietbackup dùng bridge trước push |
 
 Exact IDs của tám ERROR lịch sử tại [status snapshot](../archive/operations/kernel-status-2026-10-12.json) và
-[status hiện có](kernel-status-current.json); status có thời điểm, không thay audit. Các bảng/report từng build tại
+[status hiện có](../archive/operations/kernel-status-current.json); status có thời điểm, không thay audit. Các bảng/report từng build tại
 [đề xuất](../proposals.md), [Hybrid full audit](../methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md).
 
 ## Những lỗi preflight/runtime đã gặp
@@ -43,8 +43,8 @@ Exact IDs của tám ERROR lịch sử tại [status snapshot](../archive/operat
 Guard runtime phát hiện lỗi; không biến adaptation FAIL thành PASS. Nếu thấy training đang active có nonfinite/OOM/worker kill,
 báo chủ dự án và yêu cầu dừng; không tự đổi HP hoặc bỏ client. Stable thì ngừng health polling, vẫn collect terminal.
 
-[CONTEXT](../../CONTEXT.md) · [Notebook preflight batch](resume-batch-preflight-2026-10-14.json) ·
-[BoundaryCells helper/controller preflight](boundary-utility-preflight-2026-10-14.json).
+[CONTEXT](../../CONTEXT.md) · [Notebook preflight batch](../archive/operations/resume-batch-preflight-2026-10-14.json) ·
+[BoundaryCells helper/controller preflight](../archive/operations/boundary-utility-preflight-2026-10-14.json).
 
 15/10 CrossClientRank utility local emitted-controller fixture: `if not active and pending: break`
 đã dừng queue ngay khi pair vừa hoàn tất dù còn budget. Sửa trước GPU push: chỉ break khi còn thời gian

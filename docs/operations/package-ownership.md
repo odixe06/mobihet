@@ -70,6 +70,6 @@ trong `.compat/scripts`; code helper mới dùng `scripts.project_paths.current_
 
 [Layout/ownership hiện tại](workspace-layout.json) · [Manifest nguồn trước chuyển](package-layout-2026-10-14.json) ·
 [Kiểm import/hash/runtime](package-verification-2026-10-14.json) · [Source parent](package-resume-source-check-2026-10-14.json) ·
-[Git/DVC/link/key](layout-verification-2026-10-14.json).
+[Git/DVC/link/key](../archive/operations/layout-verification-2026-10-14.json).
 
 Kiểm: `conda run -n nckh python scripts/check_package_layout.py` rồi `python scripts/check_project_layout.py`.

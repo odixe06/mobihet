@@ -86,7 +86,7 @@ def main():
     public,private=BASE/'notebooks'/rid,BASE/'private_push'/rid
     assert not public.exists() and not private.exists()
     embed={p.name:p.read_text() for p in (BASE/'source/proj').glob('*.py')}
-    manifest={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'mh').glob('*.py')}
+    manifest={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'.compat/mh').glob('*.py')}
     manifest.update({name:hashlib.sha256(body.encode()).hexdigest() for name,body in embed.items()})
     manifest['meta.json']=hashlib.sha256((ROOT/'knowledge/meta.json').read_bytes()).hexdigest()
     setup=f'MANIFEST={manifest!r}\nEMBED={embed!r}\n'+SETUP

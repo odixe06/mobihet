@@ -18,7 +18,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--build',choices=('full-validation','hybrid-full'),default='full-validation')
     build=parser.parse_args().build
-    base=ROOT/'papers'/build
+    base=ROOT/'.compat/papers'/build
     meta=json.loads((ROOT/'knowledge/meta.json').read_text())
     scaler=json.loads((ROOT/'knowledge/scaler.json').read_text())
     columns=meta['feature_cols'];raw=ROOT.parent/'dataset/centralized/test/part-00000.parquet'
@@ -29,7 +29,7 @@ def main():
     x=((x-mean)/sd).astype('float16');labels=batch.column('label').to_numpy().astype('uint8')
     assert np.isfinite(x).all()
     audits=[];torch.set_num_threads(1)
-    with (ROOT/'papers/.artifact-verification.lock').open('a') as lock:
+    with (ROOT/'.compat/papers/.artifact-verification.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         model=build_model(dict(CFG,n_features=66,num_classes=16),latent=True).cuda().eval()
         assert sum(p.numel() for p in model.parameters())==395024

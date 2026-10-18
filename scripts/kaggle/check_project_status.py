@@ -13,7 +13,7 @@ AS = ROOT / '.agents/skills/kaggle-training-notebook/scripts/kaggle_as.py'
 
 def main():
     notebooks = []
-    paths=list((ROOT/'papers').glob('*/notebook/*/kernel-metadata.json'))
+    paths=list((ROOT/'.compat/papers').glob('*/notebook/*/kernel-metadata.json'))
     paths+=list((ROOT/'methods').glob('*/builds/*/notebooks/*/kernel-metadata.json'))
     seen=set()
     for path in sorted(paths):
