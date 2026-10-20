@@ -512,3 +512,8 @@ Script tạm (scratchpad, mất khi đổi phiên): `poll.sh` (mẫu ở mục 1
 **Sau vòng 23:** chốt kênh (q2_rs nếu PASS cả s43, nếu không q3) ⇒ đề xuất owner run cuối cùng điều kiện: kịch bản 20 client chắc chắn; hỏi owner
 có chạy cả 50/100 client như repo kia không (dữ liệu có sẵn `minhtriethihi/veremi-fl-50client`, `khanhmay0304/veremi-fl-100client`; fd.py chưa
 kiểm với K ≠ 20). Kèm đề xuất bootstrap bằng seed.
+
+**Kiểm cuối 20/10 03:51Z (trước khi dừng phiên):** Kaggle ya, yb `RUNNING` từ 03:14Z nhưng **W&B chưa có run** (tên `…q3_…_s43_e15-fast`,
+`…q2_rs_…_s42_e15-fast`); các vòng trước run W&B xuất hiện 2–15 phút sau khi chạy. `kaggle kernels logs` rỗng. Chưa rõ nguyên nhân (chờ setup hay treo
+trước `wandb.init`). Phiên sau: kiểm W&B + status; nếu xong thì collect (lệnh ở trên); nếu ERROR thì `kaggle kernels output` lấy log rồi xem
+[notebook-errors](notebook-errors.md). Backup 20/10: Git `c121973` + bundle, DVC fd-probe `kaggle`/`input` ([backup.md](backup.md)).
