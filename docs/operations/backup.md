@@ -1,7 +1,16 @@
 # Git / DVC backup record
 
-Updated: 2026-10-19 — đợt 19/10: 4 manifest gộp + cleanup fd-probe/federated-baselines-full. Đợt 17/10, 15/10 giữ bên dưới.
+Updated: 2026-10-20 — đợt 20/10: gộp fd-probe `kaggle`/`input` (vòng 19 cuối–22), Git `704af7d`. Đợt 19/10, 17/10, 15/10 giữ bên dưới.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
+
+## 0c. Đợt 2026-10-20 (owner: push Git + DVC trước khi dừng phiên; không xóa local)
+
+- `scripts/dvc_merge_push.py`: fd-probe `kaggle` `62a89154…dir` → `23c83f48205f6e6d8ed26b59e122b738.dir` (7033 entry, local 6125, đẩy 3,78GB:
+  rd, ta, tc, te, va–wc, xa, xb, xd); `input` `108ae44e…dir` → `485fc49d46bfe6a0df37819163a1f4b7.dir` (1494 entry; stage r20, r22, r23).
+  `dvc status -c` 2 manifest: new/missing = 0, 3099 `deleted` (chỉ thiếu cache local).
+- Git `704af7d` push `main` (local = remote); bundle thay mới sau commit hồ sơ này.
+- **Không xóa local.** Vòng 23 (ya, yb) chưa collect ⇒ lần sau collect xong chạy lại `dvc_merge_push.py` cho `kaggle.dvc`.
+- Repo anh em `../fl_dagsnet_veremi` (clone 20/10, đọc báo cáo): không thuộc backup này.
 
 ## 0b. Đợt 2026-10-19 (owner: push Git + DVC, xóa local trừ file cần cho round tiếp)
 
