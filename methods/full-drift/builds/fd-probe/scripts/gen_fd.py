@@ -121,7 +121,29 @@ PLANS = {'r1': [('annhannh331', 42, 'a', [['fd_dml'], ['fd_dml_sub4']], 7.0),
                    [('dinhan25', 42, 'ua', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'lakdpx', 'fd-s42tb-20261015-r19-v1'),
                     ('anhtruong1909', 43, 'ub', 'fd_dml_m4b_gpool_frz_gkd', 'gkd', 'fd-s43td-20261015-r19-v1'),
                     ('minhtran0601', 42, 'uc', 'fd_dml_m4b_gpool_frz_gkd', 'gkd', 'fd-s42ta-20261015-r19-v1'),
-                    ('odixe0502', 43, 'ud', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'lakdpx', 'fd-s43te-20261015-r19-v1')]]}
+                    ('odixe0502', 43, 'ud', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'lakdpx', 'fd-s43te-20261015-r19-v1')]],
+         # round 20 (owner 19/10: exhaust the la/kdpx direction at probe scale before any final 50-epoch run; design §Vòng 20): one
+         # change each on la_kdpx, s42 ep1-15 --fast, compared with tb (la_kdpx --fast s42)
+         'r20': [(owner, 42, session, {'workers': 2, 'arms': [f'{arm}:15'], 'fast': True}, 7.0) for owner, session, arm in
+                 [('minhtriethihi', 'va', 'fd_dml_m4b_gpool_frz_gkd_la15_kdpx'), ('catbaochau', 'vb', 'fd_dml_m4b_gpool_frz_gkd_la05_kdpx'),
+                  ('thuyanh316', 'vc', 'fd_dml_m4b_gpool_frz_gkd_lau_kdpx'), ('annhtnt', 'vd', 'fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx'),
+                  ('khanhmay0304', 've', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2')]]
+                + # round 21 (owner 19/10: smallest communication budget without losing performance; same source tag, parallel)
+                  [(owner, 42, session, {'workers': 2, 'arms': [f'{arm}:15'], 'fast': True}, 7.0) for owner, session, arm in
+                   [('dinhan25', 'wa', 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl'), ('minhtran0601', 'wb', 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl'),
+                    ('anhtruong1909', 'wc', 'fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl')]],
+         # round 22 (design §Vòng 22: q2 collapsed through its downlink; q4_zl chosen): 3-bit both ways, 2-bit uplink only with client
+         # error feedback (int4 or 3-bit downlink), and the q4_zl replicate on seed 43 (vs te)
+         'r22': [(owner, seed, session, {'workers': 2, 'arms': [f'{arm}:15'], 'fast': True}, 7.0) for owner, seed, session, arm in
+                 [('annhannh331', 42, 'xa', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl'),
+                  ('odixe0502', 42, 'xb', 'fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl'),
+                  ('minhtriethihi', 42, 'xc', 'fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl'),
+                  ('catbaochau', 43, 'xd', 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl')]],
+         # round 23 (design §Vòng 23: q3 PASS, 2-bit failed through the row-max step): q3 replicate on seed 43 (vs te); the 2-bit wire
+         # with the RMS (Lloyd-Max) step both ways (vs tb)
+         'r23': [(owner, seed, session, {'workers': 2, 'arms': [f'{arm}:15'], 'fast': True}, 7.0) for owner, seed, session, arm in
+                 [('minhtran0601', 43, 'ya', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl'),
+                  ('dinhan25', 42, 'yb', 'fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl')]]}
 
 WANDB = r'''import time
 SESSION_T0=time.monotonic()
@@ -164,9 +186,9 @@ shutil.copyfile(SRC/'input_manifest.json',SOURCE/'input_manifest.json')
 sys.path.insert(0,str(WORK));sys.path.insert(0,str(PROJ))
 t=time.monotonic()
 from fd_prepare import prepare_fd
-data=prepare_fd(WORK)
+data=prepare_fd(WORK,final=FINAL)   # FINAL (owner 19/10): every train80% row trains, test20% every round
 (SOURCE/'data_manifest.json').write_text(json.dumps(data,indent=2))
-print('verified source; prepared full holdout fixture',data['source_rows'],{k:sum(v) for k,v in data['counts'].items()},
+print('verified source; prepared','final' if FINAL else 'full holdout','fixture',data['source_rows'],{k:sum(v) for k,v in data['counts'].items()},
       'test',data['test_rows'],'sec',round(time.monotonic()-t),flush=True)
 '''
 
@@ -207,7 +229,8 @@ summary={};PARENT_DIR=None
 if PARENT:   # committed epoch of an audited run (flat dataset files, SHA-checked here and by fd.py): exact resume
     PARENT_DIR=Path('/kaggle/temp/parent')/PARENT['run']
     for rel,digest in PARENT['files'].items():
-        hits=[p for p in Path('/kaggle/input').rglob(Path(rel).name) if hashlib.sha256(p.read_bytes()).hexdigest()==digest]
+        flat=('resume_' if rel.startswith('resume/') else '')+Path(rel).name   # upload_parent.py flat names
+        hits=[p for p in Path('/kaggle/input').rglob(flat) if hashlib.sha256(p.read_bytes()).hexdigest()==digest]
         assert hits,('parent file',rel);(PARENT_DIR/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(hits[0],PARENT_DIR/rel)
     print('parent',PARENT['run'],'round',PARENT['round'],flush=True)
 for item in ARMS:
@@ -219,7 +242,7 @@ for item in ARMS:
     env.pop('CUDA_VISIBLE_DEVICES',None)
     command=[sys.executable,str(PROJ/'fd.py'),'--arm',arm,'--seed',str(SEED),'--backend','compiled','--wandb_online',
              '--wandb_project','mobihet-fulldrift','--max_hours',str(round(remaining-.3,3)),'--out',str(OUT),'--stop_after',str(ep),
-             '--workers',str(WORKERS)]+(['--parent',str(PARENT_DIR),'--parent_round',str(PARENT['round'])] if PARENT else [])+(['--fast'] if FAST else [])
+             '--workers',str(WORKERS)]+(['--parent',str(PARENT_DIR),'--parent_round',str(PARENT['round'])] if PARENT else [])+(['--fast'] if FAST else [])+(['--final'] if FINAL else [])
     t=time.monotonic();log=open(folder/'log.txt','a')
     proc=subprocess.Popen(command,cwd=WORK,env=env,stdout=log,stderr=subprocess.STDOUT)
     print('start',item,SEED,'workers',WORKERS,'remaining_h',round(remaining,2),flush=True)
@@ -250,6 +273,7 @@ def parent_files(parent):
     run = BASE / 'artifacts/kaggle' / parent['session'] / 'runs' / parent['run']; r = parent['round']
     assert (BASE / 'artifacts/kaggle' / parent['session'] / 'AUDITED.json').exists()
     rels = ['config.json', f'complete/round_{r:03d}.json', f'weights/round_{r:03d}.pt']
+    if (run / f'resume/round_{r:03d}.pt').exists(): rels.append(f'resume/round_{r:03d}.pt')   # round 21: codec state (q4/q2, ef)
     files = {rel: sha(run / rel) for rel in rels}
     assert json.loads((run / rels[1]).read_text())['weights_sha'] == files[rels[2]]
     return dict(run=parent['run'], round=r, files=files)
@@ -282,7 +306,7 @@ def main():
         public, private = BASE / 'notebooks' / rid, BASE / 'private_push' / rid
         assert not public.exists() and not private.exists()
         public.mkdir(parents=True); private.mkdir(parents=True, mode=0o700)
-        head = f'MH={mh!r}\nINPUTS={inputs!r}\n'
+        head = f'MH={mh!r}\nINPUTS={inputs!r}\nFINAL={isinstance(queues, dict) and queues.get("final", False)!r}\n'
         if isinstance(queues, dict):
             run = (f'SEED={seed}\nSESSION_HOURS={hours}\nWORKERS={queues["workers"]}\nARMS={queues["arms"]!r}\nFAST={queues.get("fast", False)!r}\n'
                    f'PARENT={parent_files(queues.get("parent"))!r}\n' + RUN_POOL)

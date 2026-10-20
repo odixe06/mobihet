@@ -12,6 +12,7 @@ kg = lambda *a: subprocess.run([sys.executable, H, owner, '--', 'kaggle', *a], c
 if work.exists(): shutil.rmtree(work)
 work.mkdir(parents=True)
 files = {'config.json': run / 'config.json', f'round_{r:03d}.json': run / f'complete/round_{r:03d}.json', f'round_{r:03d}.pt': run / f'weights/round_{r:03d}.pt'}
+if (run / f'resume/round_{r:03d}.pt').exists(): files[f'resume_round_{r:03d}.pt'] = run / f'resume/round_{r:03d}.pt'   # round 21: codec state
 for name, src in files.items(): shutil.copyfile(src, work / name)
 (work / 'dataset-metadata.json').write_text(json.dumps(dict(title=slug, id=dataset, licenses=[dict(name='CC0-1.0')])))
 status = kg('datasets', 'status', dataset)

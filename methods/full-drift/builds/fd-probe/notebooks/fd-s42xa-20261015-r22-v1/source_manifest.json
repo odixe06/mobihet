@@ -1,0 +1,13 @@
+{
+  "inputs": "becc31e343cf02b8446cf0bfb9e5fe3d1567c8c3eabf98763381bcc5596e0c09",
+  "fd": "3b95ae910e0b633317f5c506c5c8641813980471c9cf0fb39e99514ed15ea48d",
+  "queues": {
+    "workers": 2,
+    "arms": [
+      "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl:15"
+    ],
+    "fast": true
+  },
+  "session_hours": 7.0,
+  "seed": 42
+}

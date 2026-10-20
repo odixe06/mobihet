@@ -109,7 +109,7 @@ def main():
     p = argparse.ArgumentParser(); p.add_argument('--work', required=True)
     p.add_argument('--manifest', help='data_manifest.json pulled from a Kaggle setup: exercises the production gate')
     # Owner RAM limit: run 'checks' and 'smoke' as separate invocations so only one CUDA process is alive at a time.
-    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'fast', 'parent', 'par'), required=True)
+    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'r20', 'r21', 'r22', 'r23', 'final', 'resume', 'fast', 'parent', 'par'), required=True)
     p.add_argument('--arms', help='smoke only these comma-separated arms')
     a = p.parse_args()
     work = Path(a.work); proj = work / 'proj'
@@ -145,6 +145,18 @@ def main():
         return round17(fd, work)
     if a.part == 'r18':
         return round18(fd, work)
+    if a.part == 'r20':
+        return round20(fd, work)
+    if a.part == 'r21':
+        return round21(fd, work)
+    if a.part == 'r22':
+        return round22(fd, work)
+    if a.part == 'r23':
+        return round23(fd, work)
+    if a.part == 'resume':
+        return resume(proj, work)
+    if a.part == 'final':
+        return final(fd, proj, work)
     if a.part == 'fast':
         return fast(fd, proj, work)
     if a.manifest:
@@ -399,6 +411,194 @@ def round18(fd, work):
     print(f'copula draws: masked features 0, sampled marginal CDF within {worst:.4f} of the pooled histogram CDF', flush=True)
 
 
+def round20(fd, work):
+    """Round 20 (la15/la05/lau/lap/kd2 on la_kdpx): r19 arms bit-exact over 2 epochs; la_shift = tau x (log pi_k - target); epoch-1
+    identities (lap: privates == la_kdpx, proxy differs; kd2: whole state == la_kdpx; tau/lau: privates differ); 2 finite epochs."""
+    import importlib.util
+    import math
+    import torch
+    spec = importlib.util.spec_from_file_location('fd_r19', BASE / 'artifacts/input/fd-src-20261015-r19/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    base = 'fd_dml_m4b_gpool_frz_gkd_la_kdpx'
+    for arm in ('fd_dml_m4b_gpool_frz_gkd', base, 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx', 'fd_dml_m4b_gpool_frz', 'fd_dml_m4b'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r19 fd.py, 2 epochs:', arm, flush=True)
+    shifts = {}
+    def grab(arm):
+        def hook(R):
+            inner = R.private_epoch
+            def wrapped(m, k, r): shifts[arm] = R.la_shift.clone(); return inner(m, k, r)
+            R.private_epoch = wrapped
+        return hook
+    private = 20 * len(fd.P.make('dagsnet').state_dict())
+    b1, b2 = (one_epoch(fd, base, False, batch=128, epochs=e, hook=grab(base)) for e in (1, 2))
+    for arm, same1, same_private1 in (('fd_dml_m4b_gpool_frz_gkd_la15_kdpx', False, False), ('fd_dml_m4b_gpool_frz_gkd_la05_kdpx', False, False),
+                                      ('fd_dml_m4b_gpool_frz_gkd_lau_kdpx', False, False), ('fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx', False, True),
+                                      ('fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2', True, True)):
+        a1, a2 = (one_epoch(fd, arm, False, batch=128, epochs=e, hook=grab(arm)) for e in (1, 2))
+        assert eq(a1, b1) == same1 and eq(a1[:private], b1[:private]) == same_private1 and not eq(a2, b2) and finite(a2), arm
+        print(f'{arm}: epoch 1 == la_kdpx {same1}, epoch-1 privates == la_kdpx {same_private1}; epoch 2 differs, finite', flush=True)
+    la = shifts[base]
+    assert torch.allclose(shifts['fd_dml_m4b_gpool_frz_gkd_la15_kdpx'], 1.5 * la) and torch.allclose(shifts['fd_dml_m4b_gpool_frz_gkd_la05_kdpx'], .5 * la)
+    lau = shifts['fd_dml_m4b_gpool_frz_gkd_lau_kdpx']
+    assert torch.allclose(lau - la, (lau - la)[:1].expand_as(la)) and torch.allclose(torch.logsumexp(lau - math.log(16), 1), torch.zeros(20, device=la.device), atol=1e-5)
+    print('la_shift: la15 = 1.5 la, la05 = 0.5 la, lau = log pi_k + log 16 (rows of exp(lau)/16 sum to 1)', flush=True)
+
+
+def round21(fd, work):
+    """Round 21 (zl lossless body, ef client uplink error feedback): zl == q4 la_kdpx state over 2 epochs with fewer wire bytes (up and
+    down); ef epoch 1 == q4 la_kdpx (zero residual), epoch 2 differs and finite; q2 ef zl finite."""
+    import torch
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    runs = {}
+    def keep(arm):
+        def hook(R): runs[arm] = R
+        return hook
+    q4 = 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx'
+    base = one_epoch(fd, q4, False, batch=128, epochs=2, hook=keep(q4))
+    zl = one_epoch(fd, q4 + '_zl', False, batch=128, epochs=2, hook=keep('zl'))
+    wire = lambda R, way: sum(n for _, _, w, kind, n in R.bytes if w == way and kind == 'proxy_quantized')
+    up, down = (wire(runs[q4], w) for w in ('up', 'down')); upz, downz = (wire(runs['zl'], w) for w in ('up', 'down'))
+    assert eq(zl, base) and upz < up and downz < down, (up, upz, down, downz)
+    print(f'zl == q4 la_kdpx state over 2 epochs; wire bytes up {up} -> {upz} ({upz / up:.3f}), down {down} -> {downz} ({downz / down:.3f})', flush=True)
+    e1, e2 = (one_epoch(fd, q4 + '_ef_zl', False, batch=128, epochs=e) for e in (1, 2))
+    assert eq(e1, one_epoch(fd, q4, False, batch=128, epochs=1)) and not eq(e2, base) and finite(e2)
+    print('ef: epoch 1 == q4 la_kdpx (zero residual), epoch 2 differs, finite', flush=True)
+    q2 = one_epoch(fd, 'fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl', False, batch=128, epochs=2); assert finite(q2)
+    print('q2 ef zl: 2 finite epochs', flush=True)
+
+
+def round22(fd, work):
+    """Round 22 (q3: 3-bit both ways; u2: 2-bit uplink, downlink keeps its bits): the 3-bit packet decodes to exactly what quantize()
+    produced (raw and zl); u2 uplink packets are smaller than the int4 ones with the same downlink; every arm 2 finite epochs."""
+    import torch
+    torch.manual_seed(0); model = torch.nn.Sequential(torch.nn.Linear(37, 64), torch.nn.BatchNorm1d(64), torch.nn.Linear(64, 16))
+    g = torch.Generator().manual_seed(1)
+    for lossless in (False, True):
+        packet = fd.QPacket(model, 'q3-test', 3, lossless=lossless); entries, sent = {}, {}
+        for name, value in model.state_dict().items():
+            if not value.is_floating_point() or fd.is_buffer(name): entries[name] = value
+            else: sent[name], q, scale, _ = fd.quantize(torch.randn(value.shape) * 1e-3, 3, g); entries[name] = (q, scale)
+        out = packet.decode(packet.encode(entries, 0, 1), 'cpu', 0)
+        assert all(torch.equal(out[n], v.reshape(out[n].shape)) for n, v in sent.items()) and int(max(e[0].abs().max() for e in entries.values() if isinstance(e, tuple))) <= 3
+    print('q3 packet: decode == quantize() output (raw and zl), codes within +-3', flush=True)
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    runs = {}
+    def keep(arm):
+        def hook(R): runs[arm] = R
+        return hook
+    wire = lambda R, way: sum(n for _, _, w, kind, n in R.bytes if w == way and kind == 'proxy_quantized')
+    p = 'fd_dml_m4b_gpool_'
+    for arm in ('q4_frz_gkd_la_kdpx_zl', 'q4_frz_gkd_la_kdpx_ef_zl', 'q3_frz_gkd_la_kdpx_zl', 'q4_u2_frz_gkd_la_kdpx_ef_zl', 'q3_u2_frz_gkd_la_kdpx_ef_zl'):
+        assert finite(one_epoch(fd, p + arm, False, batch=128, epochs=2, hook=keep(arm))), arm
+        print(f'{arm}: 2 finite epochs, wire bytes up {wire(runs[arm], "up")} down {wire(runs[arm], "down")}', flush=True)
+    b = {arm: (wire(R, 'up'), wire(R, 'down')) for arm, R in runs.items()}
+    assert b['q3_frz_gkd_la_kdpx_zl'][0] < b['q4_frz_gkd_la_kdpx_zl'][0] and b['q3_frz_gkd_la_kdpx_zl'][1] < b['q4_frz_gkd_la_kdpx_zl'][1]
+    assert b['q4_u2_frz_gkd_la_kdpx_ef_zl'][0] < b['q4_frz_gkd_la_kdpx_ef_zl'][0] and b['q3_u2_frz_gkd_la_kdpx_ef_zl'][0] < b['q3_frz_gkd_la_kdpx_zl'][0]
+    print('q3 smaller than q4 both ways; u2 uplink smaller than its full-bit uplink', flush=True)
+
+
+def round23(fd, work):
+    """Round 23 (rs: RMS Lloyd-Max step; old arms stay bit-exact: --part final): with rs the 2-bit step is 1.224 * row RMS (fp16),
+    codes within +-1, the packet decodes to exactly what quantize() produced; q2 rs zl 2 finite epochs, fewer wire bytes than q3 zl."""
+    import torch
+    g = torch.Generator().manual_seed(1); t = torch.randn(64, 37) * 1e-3
+    _, q, scale, _ = fd.quantize(t, 2, None, True)
+    assert torch.equal(scale.float(), (1.224 * t.pow(2).mean(1, keepdim=True).sqrt()).half().float()) and int(q.abs().max()) <= 1
+    torch.manual_seed(0); model = torch.nn.Sequential(torch.nn.Linear(37, 64), torch.nn.BatchNorm1d(64), torch.nn.Linear(64, 16))
+    packet = fd.QPacket(model, 'rs-test', 2, lossless=True); entries, sent = {}, {}
+    for name, value in model.state_dict().items():
+        if not value.is_floating_point() or fd.is_buffer(name): entries[name] = value
+        else: sent[name], q, scale, _ = fd.quantize(torch.randn(value.shape) * 1e-3, 2, g, True); entries[name] = (q, scale)
+    out = packet.decode(packet.encode(entries, 0, 1), 'cpu', 0)
+    assert all(torch.equal(out[n], v.reshape(out[n].shape)) for n, v in sent.items())
+    print('rs: step 1.224 * RMS, codes within +-1, packet decode == quantize() output', flush=True)
+    runs = {}
+    def keep(arm):
+        def hook(R): runs[arm] = R
+        return hook
+    wire = lambda R: sum(n for _, _, w, kind, n in R.bytes if kind == 'proxy_quantized')
+    p = 'fd_dml_m4b_gpool_'
+    for arm in ('q3_frz_gkd_la_kdpx_zl', 'q2_rs_frz_gkd_la_kdpx_zl'):
+        assert all(torch.isfinite(v.float()).all() for v in one_epoch(fd, p + arm, False, batch=128, epochs=2, hook=keep(arm))), arm
+        print(f'{arm}: 2 finite epochs, wire bytes {wire(runs[arm])}', flush=True)
+    assert wire(runs['q2_rs_frz_gkd_la_kdpx_zl']) < wire(runs['q3_frz_gkd_la_kdpx_zl'])
+
+
+def resume(proj, work):
+    """Codec resume (round 21): a quantized-wire run with client error feedback continued from its committed epoch 1 (resume bundle:
+    server exact model + every client's residual) == the uninterrupted run at epoch 2 (weights, predictions, eval, round-2 bytes),
+    serial and --workers 2."""
+    import json
+    import os
+    import numpy as np
+    import torch
+    arm = 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl'
+    env = {**os.environ, 'PYTHONPATH': f'{proj}:{ROOT}'}
+    def run(out, *extra):
+        if (out / f'{arm}_s42').exists(): shutil.rmtree(out / f'{arm}_s42')
+        cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--backend', 'eager', '--batch', '128', '--out', str(out), *extra]
+        r = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
+        assert r.returncode == 0, (r.stdout[-2000:], r.stderr[-3000:], [(f.name, f.read_text()[-1500:]) for f in (out / f'{arm}_s42').glob('worker*.log')])
+        return out / f'{arm}_s42'
+    a = run(work / 'resume_a')
+    ra = json.loads((a / 'complete/round_001.json').read_text()); assert 'resume_sha' in ra and (a / 'resume/round_001.pt').exists()
+    for workers in (1, 2):
+        b = run(work / f'resume_b{workers}', '--parent', str(a), '--parent_round', '1', '--workers', str(workers))
+        wa, wb = (torch.load(d / 'weights/round_002.pt') for d in (a, b))
+        assert all(torch.equal(x, y) for s, t in zip(wa['private'] + wa['proxy'], wb['private'] + wb['proxy'], strict=True)
+                   for x, y in zip(s.values(), t.values(), strict=True))
+        x, y = (np.load(d / 'predictions/round_002.npz') for d in (a, b))
+        assert x.files == y.files and all(np.array_equal(x[k], y[k]) for k in x.files)
+        ea, eb = (json.loads((d / 'complete/round_002.json').read_text()) for d in (a, b))
+        assert ea['eval'] == eb['eval']
+        za, zb = (torch.load(d / 'resume/round_002.pt') for d in (a, b))   # fingerprints differ (the continuation's config names its parent)
+        assert za['exact'].keys() == zb['exact'].keys() and all(torch.equal(za['exact'][n], zb['exact'][n]) for n in za['exact'])
+        assert za['ef'].keys() == zb['ef'].keys() and len(za['ef']) and all(torch.equal(za['ef'][n], zb['ef'][n]) for n in za['ef'])
+        byte_a = [row for row in json.loads((a / 'result.json').read_text())['bytes'] if row[0] == 2]
+        assert byte_a == json.loads((b / 'result.json').read_text())['bytes']
+        print(f'RESUME q4 ef zl r1 -> r2 (workers {workers}) == uninterrupted: weights, predictions, eval, resume bundle, round-2 bytes', flush=True)
+
+
+def final(fd, proj, work):
+    """--final (owner 19/10, protocol §3): without the flag every path is bit-exact with r20 fd.py over 2 epochs; with it main() scores only
+    the official test set after EVERY round (compiled, --fast, --workers 2), config final=True; a --final run continues only a --final
+    parent and the chain completes."""
+    import importlib.util
+    import json
+    import os
+    import torch
+    spec = importlib.util.spec_from_file_location('fd_r20', BASE / 'artifacts/input/fd-src-20261015-r20/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    for arm in ('fd_dml_m4b_gpool_frz_gkd', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT without --final vs r20 fd.py, 2 epochs:', arm, flush=True)
+    arm = 'fd_dml_m4b_gpool_frz_gkd_la_kdpx'
+    env = {**os.environ, 'PYTHONPATH': f'{proj}:{ROOT}', 'TORCHINDUCTOR_COMPILE_THREADS': '1'}
+    def run(out, *extra, ok=True):
+        if (out / f'{arm}_s42').exists(): shutil.rmtree(out / f'{arm}_s42')
+        cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--batch', '128', '--out', str(out), *extra]
+        r = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
+        assert (r.returncode == 0) == ok, (r.stdout[-2000:], r.stderr[-3000:])
+        return out / f'{arm}_s42', r
+    a, _ = run(work / 'final_a', '--final', '--fast', '--backend', 'compiled', '--workers', '2')
+    cfg, res = (json.loads((a / f).read_text()) for f in ('config.json', 'result.json'))
+    assert cfg['config']['final'] is True and res['complete'] and len(res['history']) == 2
+    for row in res['history']:
+        assert {'private', 'proxy'} <= set(row['eval']) and all(sorted(h) == ['test'] for h in row['eval'].values()), row['eval'].keys()
+    assert {line.split(',')[2] for line in (a / 'metrics.csv').read_text().splitlines()[1:]} == {'test'}
+    print('--final main(): test scored after every round (rounds 1-2), no group/old, config final=True', flush=True)
+    b, _ = run(work / 'final_b', '--final', '--fast', '--backend', 'compiled', '--parent', str(a), '--parent_round', '1')
+    rb = json.loads((b / 'result.json').read_text()); assert rb['complete'] and len(rb['history']) == 1 and 'test' in rb['history'][0]['eval']['private']
+    _, r = run(work / 'final_c', '--fast', '--backend', 'compiled', '--parent', str(a), '--parent_round', '1', ok=False)
+    assert 'parent config differs' in r.stderr
+    print('--final parent chain: final -> final continuation completes; non-final continuation of a final parent refused', flush=True)
+
+
 def fast(fd, proj, work):
     """Round 19 --fast (owner 2026-10-18, tolerance class: fused AdamW + nondeterministic cuDNN). Without the flag every path is
     bit-exact with r18 fd.py over 2 epochs; with it one step per client from the same state changes private logits at rounding level
@@ -592,7 +792,7 @@ def parallel(proj, work, only=None):
     import os
     import numpy as np
     import torch
-    skip = {'sec', 'seconds', 'algorithm_seconds', 'predictions_sha', 'weights_sha', 'prev_sha'}
+    skip = {'sec', 'seconds', 'algorithm_seconds', 'predictions_sha', 'weights_sha', 'prev_sha', 'resume_sha'}   # resume: contents below
     strip = lambda v: ({k: strip(x) for k, x in v.items() if k not in skip} if isinstance(v, dict) else
                        [strip(x) for x in v] if isinstance(v, list) else v)
     def same(x, y):
@@ -605,10 +805,11 @@ def parallel(proj, work, only=None):
                          ('fd_dml_m4b_gpool_p1self', 'eager'), ('fd_dml_m4b_gpool_rej', 'eager'), ('fd_dml_m4b_gpool_fill', 'eager'),
                          ('fd_dml_m4b_gpool_frz_gkd', 'compiled'), ('fd_dml_m4b_frz', 'eager'),
                          ('fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'compiled'), ('fd_dml_m4b_gpool_frz_gkd_cop', 'compiled'),
-                         ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx', 'compiled')):
+                         ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx', 'compiled'), ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl', 'compiled'),
+                         ('fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl', 'compiled'), ('fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl', 'compiled')):
         if only and arm not in only: continue
         runs = {}
-        for workers in ((1, 2) if {'cop', 'q4'} & set(arm.split('_')) else (1, 3)):   # local RAM: cop (copula per rank), q4+la_kdpx compiled
+        for workers in ((1, 2) if {'cop', 'q4', 'q3', 'q2'} & set(arm.split('_')) else (1, 3)):   # local RAM: cop (copula per rank), q4+la_kdpx compiled
             base = work / f'par{workers}'; out = base / f'{arm}_s42'
             if out.exists(): shutil.rmtree(out)
             cmd = [sys.executable, str(proj / 'fd.py'), '--arm', arm, '--seed', '42', '--smoke', '--backend', backend, '--batch', '128',
@@ -621,6 +822,8 @@ def parallel(proj, work, only=None):
         a, b = runs[1], runs[max(runs)]
         for f in sorted((a / 'weights').glob('*.pt')):
             assert same(torch.load(f), torch.load(b / 'weights' / f.name)), (arm, f.name)
+        for f in sorted((a / 'resume').glob('*.pt')):
+            assert same(torch.load(f), torch.load(b / 'resume' / f.name)), (arm, f.name)
         for f in sorted((a / 'predictions').glob('*.npz')):
             x, y = np.load(f), np.load(b / 'predictions' / f.name)
             assert x.files == y.files and all(np.array_equal(x[k], y[k]) for k in x.files), (arm, f.name)

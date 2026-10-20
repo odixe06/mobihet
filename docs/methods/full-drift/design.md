@@ -503,3 +503,118 @@ g512 đang chạy (W&B ep12 +0,002 — nếu PASS thì vào vòng sau).
 
 Cổng trong `report_fd.py` (khóa `@fast`). Sau vòng: arm thắng nối tiếp ep16→50 bằng `--parent` từ ep15 `--fast` của chính nó, kèm gkd `--fast` ep50
 làm đối chứng 50 round. Giới hạn: `load_parent` chặn arm q4 (trạng thái codec chưa lưu) ⇒ tc chỉ đến ep15 cho tới khi thêm resume codec.
+
+## Vòng 20 — vét hướng la/kdpx (owner 19/10 ~07:40Z; khóa ~08:30Z trước push)
+
+Owner: 50 epoch chỉ cho phương pháp đã tối ưu xong và thử hết khả năng của hướng đó, chạy theo protocol cuối (train toàn bộ 80%, test20%
+mỗi round). Vòng 19 PASS: la_kdpx +0,021 / +0,014 (s42/s43), `--fast` tương đương. Source tag `20261015-r20` = r19 + token `la15`/`la05`/`lau`/`lap`
+(`kd2` có từ vòng 11). Mọi session `--fast`, s42 ep1→15 từ đầu, `--workers 2`; đối chứng = tb (`la_kdpx` `--fast` s42, head 0,8269).
+
+| session | arm | bằng chứng → cơ chế | dấu hiệu sai |
+|---|---|---|---|
+| va | `la15_kdpx` | sau la còn rò prior (độ dốc +0,032, gkd +0,133); τ là siêu tham số chính của logit adjustment ⇒ τ=1,5 khử nốt | head < tb + 0,010, hoặc benign giảm |
+| vb | `la05_kdpx` | cận dưới của τ (la có thể sửa quá tay ở client lệch mạnh) | như trên |
+| vc | `lau_kdpx` | dịch về prior đều thay vì prior gộp: F1 macro thưởng recall lớp hiếm | head < tb + 0,010 |
+| vd | `la_lap_kdpx` | snapshot gộp (teacher) là trung bình proxy học trên dữ liệu lệch local; la trên CE proxy (kiểu FedLC) ⇒ teacher bớt lệch | head hoặc proxy không tăng |
+| ve | `la_kdpx_kd2` | rd: teacher 0,885 vs private 0,815 ở ep50 ⇒ private chưa bám đủ teacher; KD ×2 (thật + Gaussian) | head < tb + 0,010 hoặc tệ nhất giảm |
+
+Cổng gain+worst vs tb (khóa `@fast`). Arm PASS ⇒ tổ hợp + lặp s43; khi hướng hết arm thắng ⇒ đề xuất run cuối 50 epoch (protocol cuối, cần
+thêm chế độ `--final`: train toàn bộ 80%, test20% mọi round).
+
+**Kết quả (19/10 ~12:30Z): FAIL cả 5** (Δ −0,006…+0,001) ⇒ la τ=1 trên prior gộp + kdpx là điểm tối ưu của hướng; [results §Vòng 20–21](results.md).
+
+## Vòng 21 — communication budget nhỏ nhất không giảm performance (owner 19/10 ~08:45Z; khóa trước push, song song vòng 20)
+
+Cùng source tag `20261015-r20` (token mới `zl`, `ef`). Bằng chứng: q4 (int4, delta vs replica, làm tròn ngẫu nhiên, EF chỉ phía server/chiều xuống)
+giữ la_kdpx (tc −0,004, byte proxy ÷7,6); q2 không EF hỏng với frz (−0,226: snapshot nhiễu). Đối chứng performance = tb (la_kdpx dense `--fast` s42, 0,8269).
+
+| session | arm | cơ chế | dấu hiệu sai / cổng |
+|---|---|---|---|
+| wa | `q4_…_la_kdpx_zl` | thân gói (mã int4 + scale fp16 + BN fp16) nén LZMA2 không mất mát: delta dồn quanh 0 ⇒ entropy < 4 bit/tham số; train trùng bit với q4 | byte không giảm; noninferior vs tb |
+| wb | `q4_…_la_kdpx_ef_zl` | + error feedback phía client chiều lên (gửi Q(delta + e_k), giữ e_k = phần dư): lỗi lượng tử không tích lũy ⇒ snapshot gần dense hơn | proxy/private không tốt hơn wa; noninferior vs tb |
+| wc | `q2_…_la_kdpx_ef_zl` | 2-bit với EF hai chiều (server EF có sẵn): EF khử phần nhiễu đã làm q2 hỏng | noninferior vs tb (Δ ≥ −0,010, tệ nhất ≥ −0,010) |
+
+Báo byte wire up/down (`R.bytes`) và tỉ lệ trước/sau LZMA (`q_zl_ratio_down`, `q_raw_up_mean`). Arm thắng = byte nhỏ nhất trong các arm
+noninferior. Chưa làm: scale chung (SecAgg, ghi FL §7 d), lưu trạng thái codec để nối tiếp (bắt buộc trước run cuối dùng kênh nén).
+
+**Kết quả (19/10 ~12:30Z):** wa PASS (−0,003, byte proxy 99,5 MB = 0,80 × q4), wb PASS (−0,005, byte bằng wa ⇒ `ef` bỏ), wc **sụp** (−0,514;
+`q_residual_rel` 0,27 → 0,71: downlink 2-bit không theo kịp). Chọn `q4_zl`. Lưu trạng thái codec đã cài (resume bundle).
+
+## Vòng 22 — kênh nén dưới int4 (khóa ~12:50Z 19/10 trước push; push 12:57Z; source tag `20261015-r22`)
+
+Bằng chứng vòng 21: q4_zl giữ performance (−0,003); q2 hai chiều sụp **qua chiều xuống**: server lượng tử hóa (exact − replica) làm tròn gần nhất,
+scale theo max hàng ⇒ ở 3 mức {−1,0,1}·max mọi phần tử < max/2 về 0, replica tụt lại (phần dư 0,27 → 0,71). Chiều lên làm tròn ngẫu nhiên (không lệch),
+trung bình 20 client chia phương sai cho 20, + EF client ⇒ chịu được ít bit hơn. Token mới: `q3` (7 mức, mã 1..7 gói 2/byte, LZMA2 khử phần thừa),
+`u2` (chiều lên 2-bit, chiều xuống giữ số bit của `qN`). Thử local 2 epoch smoke, byte proxy up+down so q4_zl: q3 −31 %, q4_u2 −32 %, q3_u2 −48 %.
+
+| session | arm | cơ chế | dấu hiệu sai / cổng |
+|---|---|---|---|
+| xa (s42) | `q3_…_la_kdpx_zl` | 7 mức: ngưỡng về 0 là max/6 (q2: max/2) ⇒ downlink theo kịp; q4 có phần dư 0,008 | `q_residual_rel` tăng dần như q2; noninferior vs tb |
+| xb (s42) | `q4_u2_…_la_kdpx_ef_zl` | chiều lên 2-bit không lệch + EF client; chiều xuống int4 như wa | private < tb − 0,010; noninferior vs tb |
+| xc (s42) | `q3_u2_…_la_kdpx_ef_zl` | tổ hợp hai cái trên | **hoãn** (owner 19/10 ~12:50Z: tổ hợp chờ kết quả từng thành phần; chỉ push nếu xa và xb cùng PASS) |
+| xd (s43) | `q4_…_la_kdpx_zl` | lặp seed của cấu hình đã chọn trước run cuối | noninferior vs te (la_kdpx `--fast` s43, 0,8128) |
+
+Arm thắng = byte nhỏ nhất trong các arm noninferior. Bootstrap (state proxy ban đầu, 31,9 MB = 23 % tổng q4_zl) là init từ seed
+(`torch.manual_seed(seed + 1000)`, codec dense không mất mát) ⇒ client tự dựng được, chỉ cần gửi seed: đổi kế toán byte, trùng bit, không cần
+run; làm cùng run cuối nếu owner đồng ý.
+
+**Kết quả (20/10 ~03Z):** xa `q3` PASS (−0,002, byte proxy 66,8 MB = −33 % so q4_zl), xb `q4_u2` **FAIL** (−0,080, proxy sụp; giả thuyết chiều lên
+chịu 2-bit bị bác), xd q4_zl s43 PASS (+0,005). xc không push. [Results §Vòng 22](results.md).
+
+## Vòng 23 — 2-bit với bước RMS (khóa ~03:05Z 20/10, push 03:14Z; source tag `20261015-r23`)
+
+Bằng chứng: q2 hỏng ở cả hai chiều (wc downlink, xb uplink) còn q3 PASS. Chung một nguyên nhân là **scale theo max hàng**. Đo trên update proxy
+thật (tb, ep6→ep15, `scratchpad an/levels.py`): crest max/RMS trung vị 3,2 (p90 5,2) ⇒ **93 %** phần tử < max/2. Sai số tương đối:
+
+| bộ lượng tử | gần nhất (downlink) | ngẫu nhiên (uplink) |
+|---|---:|---:|
+| q2 scale max (FAIL) | 0,834 | 1,447 |
+| **q2 bước RMS Lloyd-Max (1,224σ, cắt ±1)** | **0,501** | **0,593** |
+| q3 scale max (PASS) | 0,399 | 0,578 |
+| q4 scale max (PASS) | 0,179 | 0,254 |
+
+Cơ chế: bước 1,224·RMS là lượng tử tối ưu MSE 3 mức cho nguồn Gauss (hằng số lý thuyết, không tune). Phần bị cắt nằm lại trong EF server (xuống);
+chiều lên làm tròn ngẫu nhiên, nhiễu ≈ q3 đã PASS mà không cần EF client. Token `rs` (cả hai chiều; arm khác bit-exact, test `final`).
+Byte dự kiến (smoke 2 epoch): −32 % so q3.
+
+| session | arm | căn cứ | dấu hiệu sai / cổng |
+|---|---|---|---|
+| ya (s43) | `q3_…_la_kdpx_zl` | q3 PASS s42 (xa) ⇒ lặp seed trước khi chọn | noninferior vs te |
+| yb (s42) | `q2_rs_…_la_kdpx_zl` | sai số uplink ≈ q3 (0,593 so 0,578); downlink 0,50 so 0,40 nhưng có EF server | `q_residual_rel` không giảm dần như q3, proxy sụp; noninferior vs tb |
+
+Giới hạn bằng chứng: delta đo qua 9 round gộp (local chỉ giữ weights ep6/ep15), update một round có thể đuôi dày hơn.
+Còn lại sau vòng này: bootstrap bằng seed (trùng bit, không cần run), entropy coder tốt hơn LZMA2 (không mất mát; chỉ đổi byte).
+
+## Run cuối 50 epoch — chế độ `--final` (owner 19/10; cài ~09:30Z, chưa chạy)
+
+Protocol §3: train **mọi dòng train80%** (fixture `papers/final/fixture`, `fd_prepare.prepare_fd(final=True)` = `mh.prepare(holdout=False)`, như
+build baseline q5), chấm **test20% (10.761.343 dòng) sau mọi round** cho private (head + gp), private_ema, proxy; headline round 50, không chọn
+checkpoint. `--final` ghi `config.final` (fingerprint riêng, report khóa `@final`), chỉ nối tiếp parent `--final`; `gen_fd.py` plan dict
+`'final': True` (cell setup chuẩn bị fixture final). Test `--part final` PASS.
+
+Cập nhật 19/10 ~12:50Z: resume codec đã cài (`resume/round_NNN.pt` = server `exact` + `ef` mọi client; test `resume` PASS) ⇒ run cuối dùng
+được kênh nén.
+
+Ước lượng: train `--fast` ~12 phút/epoch + eval 21 model trên test20 (~40 s/model/GPU) ~7 phút ⇒ ~16h ⇒ **2 session nối `--parent`** (dense
+nối tiếp chính xác). Kênh nén (q4/ef) **chưa nối tiếp được**: cần lưu `exact` (server) + `ef_state` (client, ở worker) vào bundle resume trước khi
+dùng q4 cho run cuối. Predictions mỗi round ~nhiều trăm MB nén ⇒ ước 5GB/run (như q5).
+Chỉ build run cuối khi vòng 20/21 đã chọn xong cấu hình và owner đồng ý hướng đã vét hết.
+
+**Owner 20/10 ~03:30Z:** run cuối chạy **20, 50 và 100 client** như `fl_dagsnet_veremi` (batch 512 / 512 / 256; dữ liệu `trietbackup/veremi-fl-20client`,
+`minhtriethihi/veremi-fl-50client`, `khanhmay0304/veremi-fl-100client`), chỉ sau khi vét hết. Cần trước khi build: kiểm `fd.py` với K = 50 / 100
+(fixture, partition, moment Gaussian theo client, eval N model mỗi round) bằng test local; ước giờ (100c: gấp đôi số bước vì batch 256, eval 100 model).
+Chỗ code còn cố định 20 client: `fd.py` `Run.__init__` (`self.K = 20`), `fd_prepare.py` (`clients=range(20)`, dataset `veremi-fl-20client`).
+Eval là nút thắt ở 100c: hiện chấm private + private_ema + proxy = 2K + 1 model × 10,76M dòng mỗi round (ước ~40 s/model/GPU ⇒ 100c ~67 phút/round,
+NILM-FL/PerFed-SKD đo 1.360–1.425 s/round cho 101 model).
+
+**Owner 20/10 ~03:40Z:** giữ chấm private_ema (đánh giá hiệu quả module). Đề xuất của owner — **tách train và chấm**, đánh giá khả thi:
+train chỉ train + commit `weights/round_NNN.pt` (đã chứa private, private_ema, proxy, kiến trúc, fingerprint, chuỗi sha) + resume + prior nhãn
+client (luật gp); notebook chấm `fd_eval.py --rounds a-b` dựng lại 2K + 1 model (strict, kiểm sha theo marker), chấm test20 deterministic, ghi
+`eval/round_NNN.json` + predictions; collector gộp. Lịch: account A train s1 (r1..x) → A chấm r1..x (kernel_sources của chính nó) song song account B
+train s2 (`--parent`, `upload_parent.py`); chấm tách theo khoảng round chạy song song nhiều account. Weights/round 65 / 161 / 320 MB (20c / 50c / 100c),
+50 round 3,3 / 8 / 16 GB (output session ≤ ~20 GB ⇒ 100c ~25 round/session). Kiểm trước: chấm từ weights == chấm trong vòng (trùng bit, deterministic,
+smoke 20c và K ≠ 20, 1 vs 2 worker). Protocol giữ nguyên (test mọi round, không hồi tiếp vào train).
+**Owner 20/10: run cuối phải có state dict đầy đủ để dựng lại model từng round.** `fd.py` đã ghi `weights/round_NNN.pt` mọi round (private ×K,
+private_ema ×K, proxy, BN, kiến trúc, fingerprint); chỗ thiếu là **pull**: `collect_fd.py` chỉ lấy weights round 6/15/50 (regex dòng 32). Run cuối:
+collector lấy weights (+ `resume` nếu kênh nén) **mọi round**; audit mỗi round: sha == marker, chuỗi `prev_sha`, `load_state_dict(strict=True)`
+từ `weights_only=True`, đếm tham số, hữu hạn; notebook chấm từ chối round thiếu/sai sha. Lưu trữ local ~27 GB cả 3 kịch bản (DVC khi owner yêu cầu).

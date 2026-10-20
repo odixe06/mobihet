@@ -318,7 +318,7 @@ trả lời đủ** — xem "Tối ưu code" dưới.
 | 18 | sb takids1909 | gkd_pce:15 | **AUDITED ~14:25Z: FAIL** +0,0047, benign −0,053; proxy 0,8917 (+0,059) |
 | 18 | sd nguyenminhtran060113 | gkd_g512:15 | **AUDITED ~15:40Z: FAIL** +0,0014 |
 | 17 | ra odixe0502 / rb annhannh331 / rc minhtriethihi | gkd_la / gkd_kdpx / gkd_la_kdpx :15 | RUNNING (rc khởi động chậm, không kẹt); W&B ~09:05Z la ep7 +0,010, kdpx ep8 +0,007 (proxy +0,017) |
-| 17 | rd trietbackup | gkd:50 nối tiếp ep15 oc | **push 09:39Z** (code r17, 11,75h) |
+| 17 | rd trietbackup | gkd:50 nối tiếp ep15 oc | **AUDITED ~21:20Z**: ep50 private 0,8153 (test 0,8063), proxy 0,8850 (test 0,8488) |
 | 18 | sa accanniez … sf thuyanh316 | cop / pce / t2 / g512 / gk2 / q4_frz_gkd :15 | push 08:03Z, RUNNING 08:05–08:28Z; pce/g512/q4 chưa thấy run W&B lúc 09:05Z (kiểm lại); cop ep2 +0,009 |
 
 Collect từng session (một tiến trình mỗi lần, RAM): `for s in 43pd 43pa 43pb 42pc; do ... collect_fd.py --only "fd-s$s-20261015-r16-v1"; done`,
@@ -359,11 +359,11 @@ Test: `--part fast` PASS, smoke + `par` (compiled, 1 == 2 worker) arm mới `q4_
 
 | kernel (7h) | seed | arm ep1→15 `--fast` | cổng (report key `@fast`) |
 |---|---|---|---|
-| minhtran0601/mobihet-fd-s42ta-20261015-r19-v1 | 42 | `fd_dml_m4b_gpool_frz_gkd` | equiv vs gkd@e15 cũ (≤ 0,010) |
+| minhtran0601/mobihet-fd-s42ta-20261015-r19-v1 | 42 | `fd_dml_m4b_gpool_frz_gkd` | equiv — **AUDITED: PASS** +0,0028 |
 | dinhan25/mobihet-fd-s42tb-20261015-r19-v1 | 42 | `fd_dml_m4b_gpool_frz_gkd_la_kdpx` | gain+worst vs ta — **AUDITED ~18:35Z** 0,8269, 18,75 ms/bước (−25,6 %) |
-| annhannh331/mobihet-fd-s42tc-20261015-r19-v1 | 42 | `fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx` | noninferior vs tb |
+| annhannh331/mobihet-fd-s42tc-20261015-r19-v1 | 42 | `fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx` | noninferior — **AUDITED: PASS** −0,0037 |
 | anhtruong1909/mobihet-fd-s43td-20261015-r19-v1 | 43 | `fd_dml_m4b_gpool_frz_gkd` | equiv vs gkd@e15@s43 cũ — **AUDITED ~18:40Z: PASS** Δ +0,0031, 19,34 ms/bước |
-| odixe0502/mobihet-fd-s43te-20261015-r19-v1 | 43 | `fd_dml_m4b_gpool_frz_gkd_la_kdpx` | gain+worst vs td |
+| odixe0502/mobihet-fd-s43te-20261015-r19-v1 | 43 | `fd_dml_m4b_gpool_frz_gkd_la_kdpx` | gain+worst — **AUDITED: PASS** +0,0144 |
 
 ```bash
 for s in 42ta 42tb 42tc 43td 43te; do conda run -n nckh python scripts/run_local_guarded.py python $B/collect_fd.py --only "fd-s$s-20261015-r19-v1" --jobs 16; done
@@ -372,6 +372,9 @@ conda run -n nckh python scripts/run_local_guarded.py python $B/report_fd.py
 Sau vòng: arm thắng nối tiếp ep16→50 (`--parent`, `upload_parent.py`) kèm gkd `--fast` ep50; q4 chưa nối tiếp được (`load_parent` chặn codec).
 
 ### Nối tiếp ep16→50 `--fast` (chuẩn bị ~19:30Z 18/10, CHƯA push — chờ cổng ta/te)
+
+**HỦY 19/10 ~07:40Z (owner):** 50 epoch phải là protocol cuối (train toàn bộ 80%, test20% mọi round), không nối tiếp run probe; và chỉ
+chạy khi hướng đã vét hết. Notebook ua/ub và dataset parent giữ làm tham khảo, không push.
 
 `gen_fd.py --round r19 --sessions <list>` (cùng tag r19, nguồn sẵn trên account). Test `--part parent` PASS (gồm: fast→fast nối tiếp chạy hết,
 non-fast nối tiếp parent fast bị từ chối).
@@ -385,3 +388,127 @@ non-fast nối tiếp parent fast bị từ chối).
 
 Push khi tb (vs ta) và te (vs td) PASS gain+worst: `kaggle_as.py <owner> -- kaggle kernels push -p methods/full-drift/builds/fd-probe/private_push/fd-<s>-20261015-r19-v1`.
 Parent uc/ud: `upload_parent.py <owner>/mobihet-fd-parent-<gkd|lakdpx>-fast-s<seed>-e15 <run dir> 15 <scratch>`.
+
+### Vòng 20 + 21 push ~08:31Z 19/10 (`--fast`, source tag `20261015-r20`, dataset `<acct>/mobihet-fulldrift-src-20261015-r20` 48 file VERIFIED)
+
+Test `--part r20`, `r21`, `par` (q4 ef zl compiled 1 == 2 worker) PASS. Owner 19/10: 50 epoch chỉ protocol cuối sau khi vét hướng (vòng 20),
+communication budget nhỏ nhất không giảm performance, chạy song song (vòng 21). [Design §Vòng 20, §Vòng 21](../methods/full-drift/design.md).
+
+| kernel (7h, s42 ep1→15) | arm | cổng vs tb (la_kdpx `--fast` 0,8269) |
+|---|---|---|
+| minhtriethihi/mobihet-fd-s42va-20261015-r20-v1 | `la15_kdpx` | gain+worst |
+| catbaochau/mobihet-fd-s42vb-20261015-r20-v1 | `la05_kdpx` | gain+worst |
+| thuyanh316/mobihet-fd-s42vc-20261015-r20-v1 | `lau_kdpx` | gain+worst |
+| annhtnt/mobihet-fd-s42vd-20261015-r20-v1 | `la_lap_kdpx` | gain+worst |
+| khanhmay0304/mobihet-fd-s42ve-20261015-r20-v1 | `la_kdpx_kd2` | gain+worst |
+| dinhan25/mobihet-fd-s42wa-20261015-r20-v1 | `q4_…_la_kdpx_zl` | noninferior + byte |
+| minhtran0601/mobihet-fd-s42wb-20261015-r20-v1 | `q4_…_la_kdpx_ef_zl` | noninferior + byte |
+| anhtruong1909/mobihet-fd-s42wc-20261015-r20-v1 | `q2_…_la_kdpx_ef_zl` | noninferior + byte |
+
+```bash
+for s in va vb vc vd ve wa wb wc; do conda run -n nckh python scripts/run_local_guarded.py python $B/collect_fd.py --only "fd-s42$s-20261015-r20-v1" --jobs 16; done
+conda run -n nckh python scripts/run_local_guarded.py python $B/report_fd.py
+```
+
+### Chế độ `--final` (cài ~09:30Z 19/10, chưa push)
+
+fd.py `--final` + `fd_prepare(final=True)` + `gen_fd` `'final': True` + report `@final`; test `--part final` PASS. Còn: resume codec cho q4/ef
+(nếu vòng 21 chọn kênh nén). Source sau r20 đã đổi ⇒ run cuối cần tag mới. [Design §Run cuối](../methods/full-drift/design.md).
+
+## Trạng thái gộp 19/10 ~09Z (để compact) — đọc mục này trước
+
+**Quyết định owner 19/10:** (1) 50 epoch chỉ theo protocol cuối (train toàn bộ 80%, test20% mỗi round), không nối tiếp run probe (ua–ud hủy);
+(2) chỉ chạy 50 epoch khi hướng đã tối ưu xong, thử hết khả năng; (3) communication budget nhỏ nhất không giảm performance, vòng nén song song.
+Backup 19/10: Git `37be3db`, DVC 4 manifest, cleanup local ([backup.md](backup.md)).
+
+**Kết quả đã audit đến 19/10 ~08Z** ([results](../methods/full-drift/results.md)): vòng 16–19 xong hết. Tốt nhất: `la_kdpx` `--fast` s42 0,8269 / s43 0,8128;
+`--fast` tương đương code cũ (+0,003 cả 2 seed), nhanh 21–26 % trên T4; q4 noninferior; rd gkd ep50 0,8153.
+
+**Đang chạy** (push ~08:30Z, RUNNING 08:34Z, 7h/session, s42 ep1→15 `--fast`, tag `20261015-r20`):
+
+| session | kernel | arm |
+|---|---|---|
+| va / vb / vc / vd / ve | minhtriethihi / catbaochau / thuyanh316 / annhtnt / khanhmay0304 `…/mobihet-fd-s42v?-20261015-r20-v1` | la15 / la05 / lau / la_lap / la_kdpx_kd2 (+ `_kdpx`) |
+| wa / wb / wc | dinhan25 / minhtran0601 / anhtruong1909 `…/mobihet-fd-s42w?-20261015-r20-v1` | q4 la_kdpx zl / q4 ef zl / q2 ef zl |
+
+```bash
+B=methods/full-drift/builds/fd-probe/scripts
+for s in va vb vc vd ve wa wb wc; do conda run -n nckh python scripts/run_local_guarded.py python $B/collect_fd.py --only "fd-s42$s-20261015-r20-v1" --jobs 16; done
+conda run -n nckh python scripts/run_local_guarded.py python $B/report_fd.py   # gates '…@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15'
+```
+Vòng 21: đọc thêm byte `R.bytes` (proxy_quantized up/down) và diagnostics `q_zl_ratio_down`, `q_raw_up_mean` trong `complete/round_*.json`.
+
+**Poll** (scratchpad mất khi khởi động lại): `poll.sh` = vòng lặp `kaggle_as.py <owner> -- kaggle kernels status <kernel>` mỗi 120 s, in khi
+trạng thái đổi, state ở `poll.state`; chạy bằng Monitor 30 phút rồi bật lại.
+
+**Code sau r20 (chưa push, cần tag mới khi dùng):** `--final` (fixture `papers/final/fixture`, test20% mỗi round, `@final`), resume codec cho q4/q2/ef
+(`resume/round_NNN.pt` = server `exact` + `ef` mọi client; `upload_parent.py` và notebook mang theo `resume_round_NNN.pt`). Test PASS: `--part final`,
+`resume` (q4 ef zl nối tiếp == chạy liền, 1 và 2 worker), `r20`, `r21`, `fast`, `parent`, `par`. Hồi quy trên source cuối (09:20Z) PASS hết:
+`final`, `parent`, `par` (q4 ef zl: chỉ `resume_sha` khác vì `torch.save` không byte-ổn định ⇒ test so nội dung `resume/*.pt`, bỏ sha).
+
+**Lưu ý vận hành:** push tay ⇒ tự ghi `notebooks/<rid>/PUSHED` (collector bỏ qua session thiếu marker); session mới ⇒ thêm vào danh sách
+`collect_fd.py`; local RAM ~9 GB ⇒ test song song dùng 2 worker cho arm nặng.
+
+**Việc tiếp:** collect vòng 20+21 → tổ hợp/lặp s43 → khi hướng vét hết, đề xuất owner run cuối 50 epoch (`--final`, 2 session nối `--parent`,
+s42 + s43, đối chứng gkd `--final`, ~16h/run ước). Chưa làm: scale chung q4 (SecAgg), entropy coder tốt hơn LZMA nếu vòng 21 cho thấy đáng.
+
+## 19/10 ~13Z — vòng 20+21 audited, vòng 22 chạy
+
+**Owner ~12:50Z:** giai đoạn này chỉ test vét cải tiến phương pháp hiện tại; mọi cải tiến phải có căn cứ/phân tích từ kết quả trước, không thử mò;
+tổ hợp chờ kết quả từng thành phần.
+
+**Vòng 20+21 (8 kernel, COMPLETE 12:12–12:25Z, collect + audit PASS, `report_fd` chạy):** [results §Vòng 20–21](../methods/full-drift/results.md).
+la/kdpx 5 biến thể FAIL ⇒ hướng vét xong; `q4_zl` PASS (−0,003, byte proxy 99,5 MB), `ef` vô ích, q2 ef zl sụp (downlink).
+Test `par` đã sửa: so nội dung `resume/*.pt` thay vì `resume_sha` (`torch.save` không ổn định byte giữa 1 và 2 worker).
+
+**Vòng 22 (tag `20261015-r22`, token `q3`, `u2`; push 12:57Z, `--fast` s42/s43 ep1→15, 7h):** [design §Vòng 22](../methods/full-drift/design.md).
+
+| session | kernel | arm | cổng |
+|---|---|---|---|
+| xa | annhannh331/mobihet-fd-s42xa-20261015-r22-v1 | `q3_frz_gkd_la_kdpx_zl` | noninferior vs tb |
+| xb | odixe0502/mobihet-fd-s42xb-20261015-r22-v1 | `q4_u2_frz_gkd_la_kdpx_ef_zl` | noninferior vs tb |
+| xd | catbaochau/mobihet-fd-s43xd-20261015-r22-v1 | `q4_frz_gkd_la_kdpx_zl` (s43) | noninferior vs te |
+| xc | minhtriethihi/…-s42xc-… (đã sinh, **chưa push**) | `q3_u2_frz_gkd_la_kdpx_ef_zl` | push chỉ khi xa và xb cùng PASS |
+
+Dataset nguồn `<owner>/mobihet-fulldrift-src-20261015-r22` đã upload + kiểm 48 file (tên/kích thước) cho 4 account. PUSHED marker đã ghi.
+Test local PASS: `r22` (q3 decode == quantize, byte q3 < q4, u2 up < q4 up), `final` (arm cũ bit-exact vs r20), `par` q3_u2.
+```bash
+B=methods/full-drift/builds/fd-probe/scripts
+for s in 42xa 42xb 43xd; do conda run -n nckh python scripts/run_local_guarded.py python $B/collect_fd.py --only "fd-s$s-20261015-r22-v1" --jobs 16; done
+conda run -n nckh python scripts/run_local_guarded.py python $B/report_fd.py
+```
+Đọc thêm `q_residual_rel` theo epoch (xa: không được tăng dần như q2) và byte up/down từ `result.json` `bytes`.
+Upload nguồn tạm: scratchpad `upl/upload_src.sh <owner>` (copy stage phẳng + `dataset-metadata.json`, `datasets create -t`, chờ ready, so file).
+
+**Sau vòng 22:** chốt kênh ⇒ đề xuất owner run cuối 50 epoch (`--final`, tag mới, 2 session nối `--parent`, la_kdpx + kênh chốt s42/s43 + đối chứng
+gkd `--final`); bootstrap 31,9 MB có thể thay bằng seed (client tự dựng init, trùng bit) — hỏi owner cùng lúc. Quota 19/10 ~12:40Z: 14,3–30h/account.
+
+## 20/10 ~03Z — vòng 22 audited, vòng 23 chạy, file so sánh
+
+**Owner 20/10:** (1) pull output rồi tiếp tục; (2) thêm file so sánh với `fl_dagsnet_veremi` theo truyền tin, tính toán, 10 metric — xong:
+[comparison-fl-dagsnet-veremi.md](../research/comparison-fl-dagsnet-veremi.md) (clone `../fl_dagsnet_veremi`, commit `f9014e1`, không cần chạy lại);
+(3) phương pháp hiện tại **chưa chạy cùng điều kiện** (80/20, test mọi round) ⇒ vét xong thì chạy các kịch bản đó không holdout (`--final`);
+(4) RAM thoải mái, nhưng `final` + `par` song song vẫn chạm guard (~9 GB WSL) ⇒ chạy tuần tự các test nặng.
+
+**Vòng 22 (audited ~03Z):** xa `q3` PASS (−0,002, byte proxy 66,8 MB), xb `q4_u2` FAIL (−0,080), xd q4_zl s43 PASS (+0,005); xc không push.
+[results §Vòng 22](../methods/full-drift/results.md).
+
+**Vòng 23 (tag `20261015-r23`, token `rs`; push 03:14Z):** [design §Vòng 23](../methods/full-drift/design.md).
+
+| session | kernel | arm | cổng |
+|---|---|---|---|
+| ya | minhtran0601/mobihet-fd-s43ya-20261015-r23-v1 | `q3_frz_gkd_la_kdpx_zl` (s43) | noninferior vs te |
+| yb | dinhan25/mobihet-fd-s42yb-20261015-r23-v1 | `q2_rs_frz_gkd_la_kdpx_zl` | noninferior vs tb |
+
+Nguồn upload + kiểm 48 file cả 2 account; test `r23`, `final` (bit-exact arm cũ), `par` q2_rs PASS.
+```bash
+B=methods/full-drift/builds/fd-probe/scripts
+for s in 43ya 42yb; do conda run -n nckh python scripts/run_local_guarded.py python $B/collect_fd.py --only "fd-s$s-20261015-r23-v1" --jobs 16; done
+conda run -n nckh python scripts/run_local_guarded.py python $B/report_fd.py
+```
+Script tạm (scratchpad, mất khi đổi phiên): `poll.sh` (mẫu ở mục 19/10 ~09Z, K = 2 kernel trên), `upl/upload_src.sh <owner> <tag>`,
+`an/levels.py` (sai số bộ lượng tử trên delta proxy ep6→ep15).
+
+**Sau vòng 23:** chốt kênh (q2_rs nếu PASS cả s43, nếu không q3) ⇒ đề xuất owner run cuối cùng điều kiện: kịch bản 20 client chắc chắn; hỏi owner
+có chạy cả 50/100 client như repo kia không (dữ liệu có sẵn `minhtriethihi/veremi-fl-50client`, `khanhmay0304/veremi-fl-100client`; fd.py chưa
+kiểm với K ≠ 20). Kèm đề xuất bootstrap bằng seed.

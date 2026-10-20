@@ -164,5 +164,8 @@ if __name__ == '__main__':
     sessions += [(f'fd-s42{s}-20261015-r18-v1', '20261015-r18') for s in ('sa', 'sb', 'sc', 'sd', 'se', 'sf')]
     sessions += [(f'fd-s{seed}{s}-20261015-r19-v1', '20261015-r19') for seed, s in ((42, 'ta'), (42, 'tb'), (42, 'tc'), (43, 'td'), (43, 'te'),
                                                                                    (42, 'ua'), (43, 'ub'), (42, 'uc'), (43, 'ud'))]
+    sessions += [(f'fd-s42{s}-20261015-r20-v1', '20261015-r20') for s in ('va', 'vb', 'vc', 'vd', 've', 'wa', 'wb', 'wc')]
+    sessions += [(f'fd-s{seed}{s}-20261015-r22-v1', '20261015-r22') for seed, s in ((42, 'xa'), (42, 'xb'), (42, 'xc'), (43, 'xd'))]
+    sessions += [(f'fd-s{seed}{s}-20261015-r23-v1', '20261015-r23') for seed, s in ((43, 'ya'), (42, 'yb'))]
     for rid, tag in sessions:
         if fnmatch.fnmatch(rid, args.only): collect(rid, tag)

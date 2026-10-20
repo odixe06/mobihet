@@ -14,13 +14,25 @@ Official test chỉ báo cáo, không chọn HP/best round/continuation; group/o
 
 ## Quyết định còn hiệu lực
 
-- **Trạng thái 18/10 ~09:00Z — đọc [bàn giao §Trạng thái gộp 18/10 ~09:00Z](docs/operations/continuation-2026-10-17.md) trước mọi việc**
-  (bảng kernel vòng 16–18, lệnh collect, việc kế tiếp, câu hỏi chờ owner).
-- **Headline ứng viên `fd_dml_m4b_gpool_frz_gkd`** (teacher = snapshot gộp cố định cả epoch + mẫu Gaussian gộp học KL từ snapshot): vòng 15 s42
-  ep15 private **head 0,8030** (+0,069 vs gpool gp; test 0,8046; client tệ nhất +0,128). Nguyên nhân chững cũ (probe 14–19): tầng quyết định private
-  trôi về local trong epoch dài vì teacher DML cũng trôi; phần còn lại là thiếu input phủ client khác. [Results](docs/methods/full-drift/results.md).
+- **Trạng thái 20/10 ~03:20Z — đọc [bàn giao](docs/operations/continuation-2026-10-17.md) §Trạng thái gộp 19/10 ~09Z, §19/10 ~13Z,
+  §20/10 ~03Z trước mọi việc** (vòng 22 audited; 2 kernel vòng 23 đang chạy, lệnh collect, việc kế tiếp).
+- **Headline ứng viên `fd_dml_m4b_gpool_frz_gkd_la_kdpx`** = gkd (teacher = snapshot gộp cố định cả epoch + mẫu Gaussian gộp học KL) + `la`
+  (CE local cộng log π_k − log π_g: bỏ rò prior local khỏi head) + `kdpx` (chặn trọng số KL private→proxy). Probe ep15 head, `--fast`:
+  s42 **0,8269** (+0,021 vs gkd), s43 **0,8128** (+0,014); code cũ 0,8225. **Hướng la/kdpx vét xong** (vòng 20: τ 0,5/1,5, prior đều, la trên proxy,
+  KD×2 đều FAIL). Kênh: `q4_zl` PASS cả 2 seed (byte proxy 99,5 MB, ÷9,6); **`q3_zl` PASS s42** (66,8 MB); 2-bit (scale max) hỏng cả hai chiều.
+  gkd 50 round (rd, code cũ): private 0,8153 / test 0,8063, proxy 0,885. [Results](docs/methods/full-drift/results.md).
+- **Owner 19/10 ~08:45Z:** communication budget **nhỏ nhất có thể nhưng không giảm performance** ⇒ vòng 21 (nén) chạy song song vòng 20.
+- **Owner 20/10 ~03Z:** phương pháp hiện tại **chưa chạy cùng điều kiện** với `fl_dagsnet_veremi` (80 % train, 20 % test mỗi round); số
+  probe chỉ để chọn cấu hình. Vét xong mọi khả năng ⇒ chạy các kịch bản đó **không holdout** (`--final`) cho **20, 50 và 100 client**
+  (owner 20/10 ~03:30Z) — chỉ là bước cuối cùng, không chạy 50/100 client trước khi vét xong. Bảng so sánh:
+  [so sánh fl_dagsnet_veremi](docs/research/comparison-fl-dagsnet-veremi.md).
+- **Owner 19/10 ~12:50Z:** giai đoạn hiện tại chỉ là test vét cải tiến phương pháp hiện tại; **mọi cải tiến (kể cả probe, tổ hợp) phải có căn cứ,
+  phân tích, suy luận từ kết quả trước** — không thử mò; tổ hợp chờ kết quả từng thành phần (xc vòng 22 hoãn).
 - **Owner 17/10 ~20Z (còn hiệu lực):** giữ nguyên dataset Kaggle đã xử lý (đối chiếu [fl_dagsnet_veremi](https://github.com/odixe06/fl_dagsnet_veremi));
   mọi client DAGSNet; **không đề xuất đổi mô hình**; mọi đề xuất giữ R1 (byte ít, ngắn hạn) và R2 (client khác kiến trúc — bảo đảm thiết kế).
+- **Owner 19/10 ~07:40Z:** run **50 epoch = protocol cuối** ([protocol §3](docs/research/protocol.md)): train **toàn bộ train80%** (không holdout
+  nội bộ), chấm **test20% mọi round**, headline round 50 — không nối tiếp từ run probe (ua/ub/uc/ud **hủy**). Chỉ phương pháp **đã tối ưu xong và
+  đã thử hết khả năng của hướng đó** mới được chạy 50 epoch ⇒ trước đó vét hướng la/kdpx bằng probe ep15 (`--fast`, holdout nội bộ).
 - **Owner 18/10:** (1) **luật chính = luật chính xác hơn** ⇒ họ frz đọc **head**, DML cũ giữ gp ([design §Luật](docs/methods/full-drift/design.md));
   (2) gkd ổn ⇒ **thử mọi cải tiến có bằng chứng (quota thoải mái), chắc chắn tốt nhất thì chạy 50 round** — vòng 17 (`la`, `kdpx`, `la_kdpx`;
   `gkd:50` nối tiếp ep15 chờ pa s43 PASS) + vòng 18 (`cop` Gaussian copula, `pce`, `t2`, `g512`, `gk2`, `q4_frz_gkd`);
@@ -90,20 +102,14 @@ Official test chỉ báo cáo, không chọn HP/best round/continuation; group/o
 
 ## Phiên sau
 
-Chi tiết + lệnh: [bàn giao §Trạng thái gộp 18/10 ~09:00Z](docs/operations/continuation-2026-10-17.md). Theo thứ tự:
-1. Bật lại Monitor `poll.sh` (scratchpad) nếu đã tắt; poll nền chết khi phiên đóng ⇒ kiểm status Kaggle tay.
-2. Collect + audit từng session xong (một tiến trình mỗi lần): pd (**frz s43 PASS +0,037**), pb (gpool s43 control), **pa (gkd s43 PASS
-   +0,059 vs gpool, +0,069 vs m4b)** đã audit ~09:40Z; pc (q2_frz_gkd) **FAIL −0,226** (snapshot q2 hỏng teacher frz);
-   vòng 17: **ra la PASS +0,016** (0,8189), rb kdpx FAIL +0,006 (proxy +0,016), **rc la_kdpx PASS +0,0195 (0,8225)**; vòng 18 sa cop FAIL +0,003, sc t2 FAIL, se gk2 FAIL,
-   **sf q4_frz_gkd PASS noninferior (byte proxy ÷7,6)**; sb pce FAIL (proxy +0,059), sd g512 FAIL +0,001;
-   vòng 16–18 xong, còn rd;
-   `report_fd.py`; ghi results/LESSONS/CONTEXT.
-3. **rd đã push 09:39Z** (`trietbackup/mobihet-fd-s42rd-20261015-r17-v1`, gkd ep16→50, code r17, ~11,75h) ⇒ collect khi xong.
-4. **Vòng 19 push 14:45Z** (`--fast`: ta/td gkd đối chứng s42/s43, tb/te la_kdpx s42/s43, tc q4+la_kdpx) ⇒ collect, cổng `@fast`;
-   arm thắng nối tiếp ep16→50 + gkd `--fast` ep50; g512 (sd) còn chạy. [Bàn giao §Vòng 19](docs/operations/continuation-2026-10-17.md).
-5. Vòng 19 (tag mới) build với `'fast': True` trong plan `gen_fd.py`: kèm đối chứng gkd s42 ep15 `--fast` (+ đối chứng khác cổng cần);
-   cổng ghi khóa `@fast`. ms/bước T4 của `--fast` đo từ run đối chứng đó (`ms_per_step.py`).
-6. Quota tuần (reset 24/10 00:00Z): còn ~21–30h/account (query 06:00Z 18/10); không commit Git/DVC khi chưa được yêu cầu.
+Chi tiết + lệnh: [bàn giao §Trạng thái gộp 19/10 ~09Z](docs/operations/continuation-2026-10-17.md). Theo thứ tự:
+1. Scratchpad bị xóa khi máy/phiên khởi động lại ⇒ tạo lại `poll.sh` (mẫu trong bàn giao) và bật Monitor; kiểm status Kaggle tay trước.
+2. Collect + audit 2 kernel vòng 23 (`fd-s43ya`, `fd-s42yb` `-20261015-r23-v1`, push 03:14Z 20/10) ⇒ `report_fd.py` + byte + `q_residual_rel`.
+   [Bàn giao §20/10 ~03Z](docs/operations/continuation-2026-10-17.md), [design §Vòng 23](docs/methods/full-drift/design.md).
+3. Chốt kênh = byte nhỏ nhất trong arm noninferior cả 2 seed (q3 đã PASS s42; q2_rs đang thử). Vòng 22: q3 PASS, 2-bit chiều lên FAIL.
+4. Khi hướng đã vét hết: **đề xuất owner** cấu hình run cuối 50 epoch (`--final`, tag mới, 2 session nối `--parent`, s42 + s43, kèm đối chứng
+   gkd `--final`). `--final` + resume codec đã cài và test PASS; source sau r20 đã đổi ⇒ tag mới.
+5. Quota tuần (reset 24/10 00:00Z): ~14–30h/account (query 19/10 ~08Z). Git/DVC chỉ khi owner yêu cầu (đợt 19/10 đã push, xem backup.md).
 
 ## Muốn biết → mở
 
@@ -111,10 +117,12 @@ Chi tiết + lệnh: [bàn giao §Trạng thái gộp 18/10 ~09:00Z](docs/operat
 |---|---|
 | Kernel, checkpoint, budget, việc chưa làm, lệnh tiếp tục | [Bàn giao 17/10](docs/operations/continuation-2026-10-17.md); cũ: [15–16/10](docs/archive/operations/continuation-2026-10-15-evening.md) |
 | Toàn bộ phương pháp, PASS/FAIL/chưa kiểm, research mới | [Theo tên](docs/research/methods/README.md), [danh mục](docs/proposals.md), [hồ sơ](docs/methods/README.md) |
-| Mọi con số/full metrics đã audit | [H1/H2](docs/methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md), [Hybrid](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md) |
+| FullDrift: thiết kế/cổng từng vòng, kết quả audit | [design](docs/methods/full-drift/design.md), [results](docs/methods/full-drift/results.md) |
+| Mọi con số/full metrics đã audit (baseline) | [H1/H2](docs/methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md), [Hybrid](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md) |
 | Lỗi runtime/recovery và nguyên tắc không lặp | [Sổ lỗi](docs/operations/notebook-errors.md), [LESSONS](LESSONS.md) |
 | Dữ liệu, kiến trúc, protocol | [Knowledge](knowledge/README.md), [protocol](docs/research/protocol.md) |
 | Chi phí tính toán (Big-O client/server, đo) so `fl_dagsnet_veremi` | [Computational cost](docs/research/computational-cost.md) |
+| MobiHet so 7 phương pháp `fl_dagsnet_veremi`: truyền tin, tính toán, 10 metric | [So sánh](docs/research/comparison-fl-dagsnet-veremi.md) |
 | Có đúng FL không: cái gì rời client, SecAgg giả lập, scaler, holdout gộp | [Luồng thông tin](docs/research/federated-information-flow.md) |
 | Script, layout, alias, restore/backup | [Scripts](scripts/README.md), [layout](docs/operations/project-layout.md), [backup](docs/operations/backup.md) |
 

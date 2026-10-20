@@ -85,6 +85,19 @@ R16 += [('fd_dml_m4b_gpool_frz_gkd@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd@
         ('fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd@e15@fast', 'head', 'gain'),
         ('fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd@e15@s43@fast', 'head', 'gain'),
         ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'noninferior')]
+# round 20 (design §Vòng 20, locked ~08:30Z 19/10): each la/kdpx variant vs la_kdpx --fast s42 (tb), head, epoch 15, gain + worst
+R16 += [(f'fd_dml_m4b_gpool_frz_gkd_{t}@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'gain')
+        for t in ('la15_kdpx', 'la05_kdpx', 'lau_kdpx', 'la_lap_kdpx', 'la_kdpx_kd2')]
+# round 21 (design §Vòng 21): compressed wires vs dense la_kdpx --fast s42 (tb): noninferior (performance kept), bytes reported
+R16 += [(f'fd_dml_m4b_gpool_{t}@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'noninferior')
+        for t in ('q4_frz_gkd_la_kdpx_zl', 'q4_frz_gkd_la_kdpx_ef_zl', 'q2_frz_gkd_la_kdpx_ef_zl')]
+# round 22 (design §Vòng 22): 3-bit / 2-bit-uplink wires vs tb (noninferior); q4_zl on seed 43 vs la_kdpx --fast s43 (te)
+R16 += [(f'fd_dml_m4b_gpool_{t}@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'noninferior')
+        for t in ('q3_frz_gkd_la_kdpx_zl', 'q4_u2_frz_gkd_la_kdpx_ef_zl', 'q3_u2_frz_gkd_la_kdpx_ef_zl')]
+R16 += [('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast', 'head', 'noninferior')]
+# round 23 (design §Vòng 23): q3 on seed 43 vs te; 2-bit with the RMS step vs tb (noninferior)
+R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@s43@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast', 'head', 'noninferior'),
+        ('fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'noninferior')]
 R8_SEEN = [('fd_dml_m4b_kdcap_frz', 'fd_dml_m4b_kdcap'), ('fd_dml_m4b_kdcap_frz', 'fd_dml_m4b'), ('fd_dml_m4b_kdcap_wu', 'fd_dml_m4b_kdcap'),
            ('fd_dml_swappos_cons', 'fd_dml_m4b'), ('fd_dml_m4b@r10', 'fd_dml_m4b'),
            ('fd_dml_m4b_kdcap_frz@s43', 'fd_dml_m4b_kdcap@s43'), ('fd_dml_m4b_kdcap_wu@s43', 'fd_dml_m4b_kdcap@s43'),
@@ -103,6 +116,7 @@ def runs():
             if {'sub4', 'sub16'} & set(arm.split('_')): continue   # one aggregation per full local epoch only (owner 17/10)
             key = arm + (f'@{epochs}' if epochs else '') + ('@s43' if seed == '43' else '')   # seed 42 keys unchanged
             if json.loads((run / 'config.json').read_text())['config'].get('fast'): key += '@fast'   # owner 18/10: --fast vs --fast only
+            if json.loads((run / 'config.json').read_text())['config'].get('final'): key += '@final'   # owner 19/10: final protocol
             if key in found: key += '@' + marker.parent.name.split('-')[3]   # rerun of an audited arm: '<arm>@<round tag>' (y: '@r10')
             assert key not in found, ('duplicate arm across sessions', key)
             if rows: found[key], manifests[key] = rows, marker.parent / 'source/data_manifest.json'

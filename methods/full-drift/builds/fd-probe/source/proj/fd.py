@@ -11,6 +11,8 @@ import copy
 import csv
 import hashlib
 import json
+import lzma
+import math
 import os
 import pickle
 import re
@@ -81,7 +83,19 @@ ARMS = ['fd_dml', 'fd_dml_prox', 'fd_dml_avgm', 'fd_fedavg', 'fd_gaussian', 'fd_
         'fd_dml_m4b_gpool_frz_gkd_cop', 'fd_dml_m4b_gpool_frz_gkd_pce', 'fd_dml_m4b_gpool_frz_gkd_t2', 'fd_dml_m4b_gpool_frz_gkd_g512',
         'fd_dml_m4b_gpool_frz_gkd_gk2', 'fd_dml_m4b_gpool_q4_frz_gkd',
         # round 19 (--fast): the round-17 best (la_kdpx) over the int4 wire that passed round 18 (R1 combination)
-        'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx']
+        'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx',
+        # round 20 (owner 19/10: exhaust the la/kdpx direction before any 50-epoch run): la strength tau 1.5 / 0.5, shift to the uniform
+        # prior (lau), la also on the proxy CE (lap: less locally biased aggregated teacher), private <- teacher KD x2 (kd2)
+        'fd_dml_m4b_gpool_frz_gkd_la15_kdpx', 'fd_dml_m4b_gpool_frz_gkd_la05_kdpx', 'fd_dml_m4b_gpool_frz_gkd_lau_kdpx',
+        'fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2',
+        # round 21 (owner 19/10: smallest communication budget with no loss of performance; parallel to round 20): la_kdpx over the
+        # int4 wire with a lossless LZMA2 body (zl), + client-side uplink error feedback (ef), and the 2-bit wire with ef + zl
+        'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl', 'fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl', 'fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl',
+        # round 22 (communication, after q2 collapsed through its downlink): the 3-bit wire both ways (q3); the 2-bit uplink only (u2)
+        # with client error feedback, downlink int4 or 3-bit
+        'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 'fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl', 'fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl',
+        # round 23: the 2-bit wire both ways with the RMS (Lloyd-Max for a Gaussian) step instead of the row max (rs)
+        'fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl']
 MU, SWAP_P, EMA_BETA, CAL_ROWS, SERVER_BETA = 0.01, 0.5, 0.5 ** 0.5, 65536, 0.9
 KD_CAP, DYN_ALPHA, CONS_LAMBDA, PROBE_ROWS = 1.0, 0.01, 1.0, 512   # plan §4.2 / §5.1 / §4.5 screening values
 KD_UP, GW2 = 2.0, 2.0   # round 11 kd2: private-side KD weight multiplier; gw2: weight of the private-only Gaussian CE
@@ -97,11 +111,16 @@ def is_buffer(name):
     return 'running_' in name or 'num_batches_tracked' in name
 
 
-def quantize(t, bits, generator=None):
-    """antimem.quantize: symmetric per-row (dim0) scale, fp16 scales; stochastic rounding when a generator is given."""
+RS_STEP = {1: 1.224, 3: 0.586, 7: 0.335}   # round 23 rs: Lloyd-Max uniform step / sigma of a Gaussian source, 3 / 7 / 15 levels
+
+
+def quantize(t, bits, generator=None, rms=False):
+    """antimem.quantize: symmetric per-row (dim0) scale, fp16 scales; stochastic rounding when a generator is given.
+    rms (round 23): step = RS_STEP * row RMS instead of row max / levels; values beyond the outer level are clipped (error feedback
+    keeps the clipped part)."""
     levels = 2 ** (bits - 1) - 1
     rows = t.reshape(t.shape[0], -1) if t.dim() > 1 else t.reshape(1, -1)
-    scale = (rows.abs().amax(1, keepdim=True) / levels).half().float()
+    scale = ((RS_STEP[levels] * rows.pow(2).mean(1, keepdim=True).sqrt()) if rms else rows.abs().amax(1, keepdim=True) / levels).half().float()
     safe = torch.where(scale > 0, scale, torch.ones_like(scale))
     v = rows / safe
     if generator is None:
@@ -113,17 +132,19 @@ def quantize(t, bits, generator=None):
     return (q * scale).reshape(t.shape), q.to(torch.int8), scale.half(), nbytes
 
 
-QHEADER = struct.Struct('<4sBBHIII16sI')   # model_packet.HEADER layout, magic MHQ4 (MHQ2 for 2-bit)
+QHEADER = struct.Struct('<4sBBHIII16sI')   # model_packet.HEADER layout, magic MHQ4 (MHQ2 for 2-bit; MHZ4/MHZ2 lossless-coded body)
+LZMA = [dict(id=lzma.FILTER_LZMA2, preset=9 | lzma.PRESET_EXTREME)]   # round 21 zl: raw LZMA2 stream of the packet body
 
 
 class QPacket:
-    """QProxy wire format (int4, or 2-bit ternary): per state_dict entry in order -- integer counters int64; BN buffers fp16;
-    parameters: per-row fp16 scales, then the codes q+2^(bits-1) (int4: 1..15, 2-bit: 1..3) packed 8/bits per byte, lowest
+    """QProxy wire format (int4, 3-bit or 2-bit ternary): per state_dict entry in order -- integer counters int64; BN buffers fp16;
+    parameters: per-row fp16 scales, then the codes q+2^(bits-1) (int4: 1..15, 3-bit: 1..7, 2-bit: 1..3) packed 8//bits per byte, lowest
     bits first. decode() returns the tensors quantize() produced (q * scale; a -0.0 code reads back as +0.0), so training is
     unchanged and len(packet) is the real byte count. Header: magic, schema, bits, base/version, body length, context, CRC32."""
-    def __init__(self, model, context, bits=4):
-        assert bits in (2, 4)
-        self.bits, self.magic = bits, b'MHQ%d' % bits
+    def __init__(self, model, context, bits=4, lossless=False):
+        assert bits in (2, 3, 4)
+        self.bits, self.magic, self.lossless = bits, (b'MHZ%d' if lossless else b'MHQ%d') % bits, lossless
+        self.raw_len = None   # zl: body bytes before the lossless stage (last encode/decode)
         self.context = hashlib.sha256(context.encode()).digest()[:16]
         self.fields = [(name, tuple(v.shape), v.dtype) for name, v in model.state_dict().items()]
 
@@ -144,7 +165,8 @@ class QPacket:
                 chunks.append(entry.detach().cpu().numpy().astype('<f2').tobytes())
             else:
                 chunks.append(entry.detach().cpu().numpy().astype('<i8').tobytes())
-        body = b''.join(chunks)
+        body = b''.join(chunks); self.raw_len = len(body)
+        if self.lossless: body = lzma.compress(body, format=lzma.FORMAT_RAW, filters=LZMA)   # round 21: same codes, fewer bytes
         return QHEADER.pack(self.magic, 1, self.bits, 0, base, version, len(body), self.context, zlib.crc32(body)) + body
 
     def decode(self, packet, device, expected_base):
@@ -152,7 +174,8 @@ class QPacket:
         body = packet[QHEADER.size:]; per = 8 // self.bits
         assert (magic, schema, bits, reserved) == (self.magic, 1, self.bits, 0) and context == self.context, 'QProxy header'
         assert length == len(body) and zlib.crc32(body) == crc and base == expected_base and version == base + 1, 'QProxy packet'
-        out, offset = {}, 0
+        if self.lossless: body = lzma.decompress(body, format=lzma.FORMAT_RAW, filters=LZMA)
+        out, offset = {}, 0; self.raw_len = len(body)
         for name, shape, dtype in self.fields:
             n = int(np.prod(shape))
             if not dtype.is_floating_point:
@@ -168,7 +191,7 @@ class QPacket:
                 for i in range(per): codes[i::per] = (packed >> (self.bits * i)) & (2 ** self.bits - 1)
                 q = torch.from_numpy(codes[:n].astype(np.float32) - 2 ** (self.bits - 1)).reshape(rows, -1).to(device)
                 out[name] = (q * scale).reshape(shape)
-        assert offset == length
+        assert offset == len(body)
         return out
 
 
@@ -204,6 +227,13 @@ def check_full_manifest(manifest, n, test_rows):
     assert n == [sum(manifest['counts'][f'train_{k}']) for k in range(len(n))]
     assert manifest['source_rows'] == 43045415 and test_rows == TEST_ROWS, 'full holdout coverage gate'
     assert manifest['test_scaler'].startswith('scaler.json')
+
+
+def check_final_manifest(manifest, n, test_rows):
+    """Final protocol gate (owner 19/10, protocol §3): every train80% row trains, no internal holdout; official test20% every round."""
+    assert manifest['protocol'].startswith('final: every train80%') and manifest['train_cap'] is None
+    assert n == [sum(manifest['counts'][f'train_{k}']) for k in range(len(n))] and sum(n) == manifest['source_rows'] == 43045415
+    assert test_rows == TEST_ROWS and manifest['test_scaler'].startswith('scaler.json'), 'final coverage gate'
 
 
 def fill_labels(pi, n):
@@ -243,7 +273,13 @@ class Method(FullMethod):
         self.ema_private = None
         self.fedavg = 'fedavg' in self.arm
         self.momentum = self.arm.endswith('_avgm'); self.velocity = {}
-        self.bits = 4 if 'q4' in self.arm.split('_') else 2 if 'q2' in self.arm.split('_') else None; self.exact = None
+        self.bits = next((b for b in (4, 3, 2) if f'q{b}' in self.arm.split('_')), None); self.exact = None
+        self.ubits = 2 if 'u2' in self.arm.split('_') else self.bits   # round 22: uplink bits (u2: 2-bit up, downlink keeps self.bits)
+        self.rs = 'rs' in self.arm.split('_')   # round 23: RMS (Lloyd-Max) step instead of the row max, both directions
+        # round 21 (communication): lossless LZMA2 of the packet body (zl); client-side uplink error feedback (ef): each client adds
+        # its previous quantization residual to the next delta (state stays on the client, in the process that trains it)
+        self.zl, self.ef = 'zl' in self.arm.split('_'), 'ef' in self.arm.split('_'); self.ef_state, self.qraw_up = {}, 0
+        assert not (self.zl or self.ef or self.rs) or self.bits
         self.dyn = 'dyn' in self.arm.split('_'); self.dyn_a, self.dyn_h = {}, {}   # FedDyn: client a_i (never sent), server h
         tokens = self.arm.split('_')
         self.scaf = any(t.startswith('scaf') for t in tokens); self.scaf_c, self.scaf_ci, self.scaf_dsum = None, {}, None
@@ -267,10 +303,15 @@ class Method(FullMethod):
 
     def prior(self):
         super().prior()
-        if self.R.la: self.R.la_shift = self.R.log_pi - self.R.log_pg   # round 18: the SecureSum aggregate prior (r17: in-process)
+        if self.R.la:   # round 18: the SecureSum aggregate prior (r17: in-process); round 20: tau and the uniform target (lau)
+            self.R.la_shift = self.R.log_pi - (-math.log(16) if self.R.la == 'lau' else self.R.log_pg)
+            tau = {'la05': .5, 'la15': 1.5}.get(self.R.la)
+            if tau: self.R.la_shift = tau * self.R.la_shift
         if self.bits:
             self.exact = {k: v.detach().clone() for k, v in self.global_state.items()}
-            self.qpacket = QPacket(self.proxy[0], f'q{self.bits}:{self.arm}:{self.R.a.seed}', self.bits)
+            self.qpacket = QPacket(self.proxy[0], f'q{self.bits}:{self.arm}:{self.R.a.seed}', self.bits, lossless=self.zl)
+            self.qpacket_up = self.qpacket if self.ubits == self.bits else \
+                QPacket(self.proxy[0], f'q{self.ubits}up:{self.arm}:{self.R.a.seed}', self.ubits, lossless=self.zl)
 
     def start_round(self):
         super().start_round()
@@ -290,20 +331,25 @@ class Method(FullMethod):
         for name, value in self.proxy[k].state_dict().items():
             if not value.is_floating_point(): entries[name] = value.clone()
             elif is_buffer(name): entries[name] = value.detach()
-            else:
-                _, q, scale, _ = quantize(value.detach().float() - self.global_state[name].float(), self.bits, g)
+            elif self.ef:   # round 21: v = delta + e_k; send Q(v); e_k <- v - Q(v)
+                v = value.detach().float() - self.global_state[name].float() + self.ef_state.get((k, name), 0.)
+                sent, q, scale, _ = quantize(v, self.ubits, g, self.rs); self.ef_state[(k, name)] = v - sent
                 entries[name] = (q, scale)
-        return self.qpacket.encode(entries, r - 1, r)
+            else:
+                _, q, scale, _ = quantize(value.detach().float() - self.global_state[name].float(), self.ubits, g, self.rs)
+                entries[name] = (q, scale)
+        return self.qpacket_up.encode(entries, r - 1, r)
 
     def accumulate_quantized(self, k, r, packet):
         """Server side of QProxy: decode client k's packet, running sum over clients in client order."""
-        wires = self.qpacket.decode(packet, self.R.dev, r - 1)
+        wires = self.qpacket_up.decode(packet, self.R.dev, r - 1)
         for name, wire in wires.items():
             if not wire.is_floating_point():
                 self.qsum[name] = wire if name not in self.qsum else torch.maximum(self.qsum[name], wire)
             else:
                 self.qsum[name] = wire.double() if name not in self.qsum else self.qsum[name] + wire.double()
         assert k not in self.qseen; self.qseen.add(k)
+        if self.zl: self.qraw_up += self.qpacket_up.raw_len   # diagnostics only: body size before the lossless stage
         self.R.bytes.append((r, k, 'up', 'proxy_quantized', len(packet)))
 
     def aggregate_quantized(self, r):
@@ -317,7 +363,7 @@ class Method(FullMethod):
                 self.exact[name] = (total / self.R.K).float(); entries[name] = self.exact[name]
             else:
                 self.exact[name] = self.exact[name] + (total / self.R.K).float()
-                _, q, scale, _ = quantize(self.exact[name] - self.global_state[name], self.bits); entries[name] = (q, scale)
+                _, q, scale, _ = quantize(self.exact[name] - self.global_state[name], self.bits, rms=self.rs); entries[name] = (q, scale)
         packet = self.qpacket.encode(entries, r - 1, r); decoded = self.qpacket.decode(packet, self.R.dev, r - 1)
         num = den = 0.
         for name, total in self.qsum.items():   # what every client rebuilds from the downlink bytes
@@ -332,6 +378,9 @@ class Method(FullMethod):
             self.proxy[k].load_state_dict(self.global_state, strict=True)
         self.global_vector = self.layout.flatten(self.proxy[0]).clone(); self.latest_packet = packet
         self.diag['q_residual_rel'] = (num / max(den, 1e-30)) ** 0.5; self.diag['q_bytes_down'] = len(packet)
+        if self.zl:   # round 21: wire bytes / bytes before the lossless stage (up: mean over clients)
+            self.diag['q_zl_ratio_down'] = len(packet) / (QHEADER.size + self.qpacket.raw_len)
+            self.diag['q_raw_up_mean'] = self.qraw_up / self.R.K; self.qraw_up = 0
         self.version = r
 
     def make_copula(self, chunk=262144):
@@ -491,13 +540,18 @@ class Run(FullRun):
         self.fill, self.rej = 'fill' in tokens, 'rej' in tokens
         self.p1 = next((t for t in tokens if t in ('p1', 'p1self', 'p1cm')), None)
         self.gkd = 'gkd' in tokens; assert not self.gkd or self.paux   # round 15: KL to the received snapshot on the Gaussian rows
-        self.la = 'la' in tokens; assert not self.la or self.frz   # round 17: logit-adjusted local CE (teacher = global snapshot)
+        self.la = next((t for t in tokens if t in ('la', 'la05', 'la15', 'lau')), None)   # round 17: logit-adjusted local CE
+        assert not self.la or self.frz   # (teacher = global snapshot); round 20: tau 0.5/1.5 (la05/la15), uniform target prior (lau)
+        self.lap = 'lap' in tokens; assert not self.lap or self.la   # round 20: the same shift on the proxy CE
         # round 18: proxy CE only (pce), private KD at temperature KD_T (t2), Gaussian KL weight x GK2 (gk2); g512 is set in main()
         self.pce, self.t2, self.gk2 = 'pce' in tokens, 't2' in tokens, 'gk2' in tokens
         assert not (self.t2 or self.gk2) or self.gkd
         assert ('g512' in tokens) == (args.aux_batch == (128 if args.smoke else 512)), 'g512 <=> doubled aux_batch (set in main)'
         hidden = BLOCK + POSITION if 'm4b' in tokens else POSITION if self.swap else []
-        fixture = P.ROOT / 'papers/pilot/fixture'; manifest = json.loads((fixture / 'manifest.json').read_text())
+        # --final (owner 19/10): the final-protocol fixture (every train80% row, no group/old); smoke reuses the pilot fixture
+        self.final = getattr(args, 'final', False)
+        fixture = P.ROOT / ('papers/final/fixture' if self.final and not args.smoke else 'papers/pilot/fixture')
+        manifest = json.loads((fixture / 'manifest.json').read_text())
         names = manifest['features']
         self.block = torch.tensor([names.index(n) for n in BLOCK], device=self.dev)
         self.zero = torch.tensor([names.index(n) for n in hidden], device=self.dev, dtype=torch.long)
@@ -513,14 +567,14 @@ class Run(FullRun):
         self.Y = [rows(k, 'y', 'int64') for k in range(self.K)]
         self.G = [rows(k, 'g', 'int64') if k in self.own else None for k in range(self.K)] if self.swap else []
         self.H = {}
-        for hold in ('group', 'old', 'test'):
+        for hold in ('test',) if self.final else ('group', 'old', 'test'):
             name = 'old' if args.smoke and hold == 'test' else hold
             x = np.load(fixture / f'{name}_X.npy', mmap_mode='r'); y = np.load(fixture / f'{name}_y.npy', mmap_mode='r')
             if args.smoke: x, y = x[:256], y[:256]
             self.H[hold] = (torch.from_numpy(np.array(x, copy=True)).to(self.dev),
                             torch.from_numpy(np.array(y, dtype='int64', copy=True)).to(self.dev))
         self.n = [len(y) for y in self.Y]
-        if not args.smoke: check_full_manifest(manifest, self.n, len(self.H['test'][1]))
+        if not args.smoke: (check_final_manifest if self.final else check_full_manifest)(manifest, self.n, len(self.H['test'][1]))
         self.counts = torch.stack([torch.bincount(y, minlength=16) for y in self.Y]).double()
         self.log_pi = ((self.counts + 1) / (self.counts + 1).sum(1, keepdim=True)).log().float()
         self.log_pg = ((self.counts.sum(0) + 1) / (self.counts.sum() + 16)).log().float()
@@ -746,7 +800,7 @@ class Run(FullRun):
                     if proxy is not None:
                         if self.hkd: zr, hr = (v.float() for v in self.forward(proxy, x))
                         else: zr = self.forward(proxy, x)[0].float()
-                        proxy_ce = F.cross_entropy(zr, y)
+                        proxy_ce = F.cross_entropy(zr + self.la_shift[k] if self.lap else zr, y)
                         ls, lr = F.log_softmax(zs, 1), F.log_softmax(zr, 1)
                         raw = 1 / (ce + proxy_ce).detach().clamp_min(1e-6)
                         weight = raw.clamp_max(KD_CAP) if self.kdcap else raw
@@ -852,8 +906,9 @@ class Run(FullRun):
         rows = self.bytes[start:]; del self.bytes[start:]
         delta = [a - b for a, b in zip(self.swap_stats, swap)]; self.swap_stats = swap
         cpu = lambda model: {n: v.detach().cpu() for n, v in model.state_dict().items()}
+        ef = {n: v.cpu() for (c, n), v in method.ef_state.items() if c == k} if getattr(method, 'ef', False) else None
         return dict(k=k, log=log, logs=method.logs[k], rows=rows, swap=delta, up=up, private=None if self.fedavg else cpu(self.priv[k]),
-                    proxy=cpu(method.proxy[k]) if method.kd and method.own else None)
+                    proxy=cpu(method.proxy[k]) if method.kd and method.own else None, ef=ef)
 
     def install(self, method, res, r, private_logs, proxy_logs):
         """Server side of client_round(), called in client order: the same state and byte log as the serial loop in main()."""
@@ -867,6 +922,8 @@ class Run(FullRun):
             elif up is not None: method.aggregate_sum.add(k, up)
             if res['proxy'] is not None: method.proxy[k].load_state_dict(res['proxy'], strict=True)
             proxy_logs.append(method.logs[k])
+        if res.get('ef'):   # copy of the client's residual for rank 0's resume bundle (the owning process keeps computing with its own)
+            method.ef_state.update({(k, n): v.to(self.dev) for n, v in res['ef'].items()})
 
     @torch.no_grad()
     def score(self, model, k, hold, rules):
@@ -1019,14 +1076,16 @@ def parent_marker(a):
     row = json.loads((parent / 'complete' / f'round_{a.parent_round:03d}.json').read_text())
     assert row['round'] == a.parent_round and row['fingerprint'] == cfg['fingerprint'], 'parent marker'
     assert digest(parent / 'weights' / f'round_{a.parent_round:03d}.pt') == row['weights_sha'], 'parent weights sha'
+    if 'resume_sha' in row: assert digest(parent / 'resume' / f'round_{a.parent_round:03d}.pt') == row['resume_sha'], 'parent resume sha'
     return cfg, row
 
 
 def load_parent(a, R, m):
     """State after the parent's committed epoch: privates, their EMA (evaluated as private_ema) and the aggregated proxy. Exact
     only for arms whose cross-epoch state is just these weights (dense wire, no momentum/FedDyn/SCAFFOLD); generators and the
-    optimizer restart every epoch."""
-    assert m.kd and not m.own and not (m.bits or m.momentum or m.dyn or m.scaf), 'state beyond weights'
+    optimizer restart every epoch. Quantized wires (q4/q2, ef) also restore the server's exact model and the client residuals from the
+    resume bundle (round 21)."""
+    assert m.kd and not m.own and not (m.momentum or m.dyn or m.scaf), 'state beyond weights'
     cfg, row = parent_marker(a)
     w = torch.load(Path(a.parent) / 'weights' / f'round_{a.parent_round:03d}.pt', map_location=R.dev, weights_only=True)
     assert w['round'] == a.parent_round and w['fingerprint'] == cfg['fingerprint'] and len(w['proxy']) == 1
@@ -1035,6 +1094,12 @@ def load_parent(a, R, m):
     m.global_state = {n: v.clone() for n, v in w['proxy'][0].items()}
     for proxy in m.proxy: proxy.load_state_dict(m.global_state, strict=True)
     m.global_vector = m.layout.flatten(m.proxy[0]).clone(); m.version = a.parent_round
+    if m.bits:
+        z = torch.load(Path(a.parent) / 'resume' / f'round_{a.parent_round:03d}.pt', map_location=R.dev, weights_only=True)
+        assert z['round'] == a.parent_round and z['fingerprint'] == cfg['fingerprint'] and set(z['exact']) == set(m.exact)
+        m.exact = {n: v.clone() for n, v in z['exact'].items()}
+        m.ef_state = {(int(key.split('/', 1)[0]), key.split('/', 1)[1]): v.clone() for key, v in z['ef'].items()}
+        assert not m.ef or {k for k, _ in m.ef_state} == set(range(R.K)), 'ef residuals of every client'
     R.bytes.clear()   # the bootstrap was paid (and logged) by the parent run
     return row['weights_sha']
 
@@ -1057,7 +1122,10 @@ def main():
     # owner 2026-10-18: tolerance-class speed (fused AdamW, nondeterministic cuDNN) for runs built from round 19 on; such arms are
     # compared only with controls also run with --fast (config key 'fast' -> different fingerprint, refuses a non-fast parent)
     p.add_argument('--fast', action='store_true')
+    # owner 19/10 (protocol §3): final 50-epoch run -- train every train80% row, official test20% after every round, headline r50
+    p.add_argument('--final', action='store_true')
     a = p.parse_args()
+    assert not a.final or a.smoke or a.stop_after == 50, 'final runs end at round 50 (sessions chain with --parent)'
     if 'g512' in a.arm.split('_'): a.aux_batch *= 2   # round 18: 512 synthetic rows per batch (smoke: 128)
     if a.smoke: a.stop_after = 2; a.aux_batch = 128 if 'g512' in a.arm.split('_') else 64
     else: assert a.rounds == 50 and a.stop_after in (6, 15, 50) and a.wandb_online
@@ -1069,8 +1137,9 @@ def main():
     out = Path(a.out) / (f'{a.arm}_s{a.seed}' + ('' if a.smoke or a.stop_after == 6 else f'_e{a.stop_after}')); out.mkdir(parents=True, exist_ok=True)
     assert not (out / 'config.json').exists(), 'single-session probe: no resume'
     config = {k: v for k, v in vars(a).items() if k not in ('out', 'wandb_online', 'wandb_project', 'max_hours', 'workers', 'rank', 'address',
-                                                            'parent', 'parent_round', 'fast')}
+                                                            'parent', 'parent_round', 'fast', 'final')}
     if a.fast: config['fast'] = True   # absent when off: configs (and parent checks) of earlier runs unchanged
+    if a.final: config['final'] = True
     config.update(mu=MU, swap_p=SWAP_P, ema_beta=EMA_BETA, cal_rows=CAL_ROWS,
                   kd_cap=KD_CAP, dyn_alpha=DYN_ALPHA, cons_lambda=CONS_LAMBDA, probe_rows=PROBE_ROWS, kd_up=KD_UP, gw2=GW2,
                   p1_lambda=P1_LAMBDA, p1_t=P1_T, p1_classes=list(P1_CLASSES))
@@ -1139,8 +1208,8 @@ def train(a, out, fingerprint, wb, t0, pool):
         row = dict(algorithm_seconds=algorithm_seconds, round=r, lr=R.lr(r), clients=private_logs, proxy_clients=proxy_logs,
                    version=m.version, fingerprint=fingerprint, prev_sha=previous, diagnostics=diagnostics,
                    loss=float(np.mean([v['loss'] for v in (proxy_logs if m.fedavg else private_logs)])))
-        final = r == a.stop_after
-        holds = ('group', 'old', 'test') if final else ('group', 'old')
+        last = r == a.stop_after
+        holds = ('test',) if a.final else ('group', 'old', 'test') if last else ('group', 'old')   # --final: test20% every round
         row['eval'] = R.evaluate(m, out, r, holds, scores=pool.scores(R, holds) if pool and not m.fedavg else None)
         row['predictions_sha'] = digest(out / 'predictions' / f'round_{r:03d}.npz')
         weights = dict(private=[] if m.fedavg else [{k: v.detach().cpu() for k, v in model.state_dict().items()} for model in R.priv],
@@ -1149,10 +1218,16 @@ def train(a, out, fingerprint, wb, t0, pool):
                        ema_private=[{k: v.detach().cpu() for k, v in s.items()} for s in (m.ema_private or [])],
                        architecture=dict(P.CFG, n_features=P.D, num_classes=P.C), round=r, fingerprint=fingerprint)
         wp = out / 'weights' / f'round_{r:03d}.pt'; save(wp, weights); row['weights_sha'] = digest(wp)
+        if m.bits:   # codec state beyond the weights (server exact model, client uplink residuals): resume bundle before the marker
+            rp = out / 'resume' / f'round_{r:03d}.pt'
+            save(rp, dict(round=r, fingerprint=fingerprint, exact={n: v.detach().cpu() for n, v in m.exact.items()},
+                          ef={f'{k}/{n}': v.detach().cpu() for (k, n), v in m.ef_state.items()}))
+            row['resume_sha'] = digest(rp)
         row['sec'] = time.time() - t1; previous = row['weights_sha']
         save(out / 'complete' / f'round_{r:03d}.json', row); hist.append(row)   # atomic commit LAST
         role, rule = ('proxy', 'head') if m.kd and not m.own else ('private', 'gp')
-        print(f'r{r} {a.arm} s{a.seed} {role} group {rule} {row["eval"][role]["group"][rule]["f1_macro"]:.4f} '
+        shown = 'test' if a.final else 'group'
+        print(f'r{r} {a.arm} s{a.seed} {role} {shown} {rule} {row["eval"][role][shown][rule]["f1_macro"]:.4f} '
               f'loss {row["loss"]:.4f} {row["sec"]:.0f}s', flush=True)
         if wb:
             metrics = dict(round=r, loss=row['loss'], lr=row['lr'], seconds=row['sec'], algorithm_seconds=algorithm_seconds,

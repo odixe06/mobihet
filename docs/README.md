@@ -42,7 +42,7 @@ Các adaptation FAIL khác đều có thiết kế/report/source qua [danh mục
 
 ## 4. Protocol và kiến thức nền
 
-- [Protocol](research/protocol.md), [chi phí tính toán so fl_dagsnet_veremi](research/computational-cost.md), [dataset](../knowledge/dataset.md), [architecture](../knowledge/architecture.md), [knowledge hub](../knowledge/README.md).
+- [Protocol](research/protocol.md), [chi phí tính toán so fl_dagsnet_veremi](research/computational-cost.md), [so sánh 3 tiêu chí với fl_dagsnet_veremi](research/comparison-fl-dagsnet-veremi.md), [dataset](../knowledge/dataset.md), [architecture](../knowledge/architecture.md), [knowledge hub](../knowledge/README.md).
 - [Kiến thức kế thừa](archive/legacy/kien-thuc-ke-thua.md), [LESSONS trước tổ chức](archive/legacy/lessons-before-layout-20261014.md).
 - Source/codec/resume PASS không thay utility/R1/R2/DP proof; mọi kết quả headline cần terminal artifact audit.
 

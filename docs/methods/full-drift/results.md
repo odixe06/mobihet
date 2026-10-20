@@ -488,6 +488,7 @@ m4b +0,74 → frz +0,18 → gkd +0,13; gp trên frz/gkd −0,41…−0,47 (sửa
 |---|---|---|---|---|---|
 | `gkd_la` | ra (audited 18/10 ~11:25Z) | 0,7952 / **0,8189** / 0,8190 | **+0,0160** (benign **+0,070**, tệ nhất **+0,037**) | 0,8294 / 0,8206 (−0,004) | **PASS** gain+worst |
 | `gkd_kdpx` | rb (audited 18/10 ~11:10Z) | 0,7871 / **0,8087** / 0,8088 | +0,0058 (benign +0,010, tệ nhất +0,003) | 0,8486 / 0,8308 (**+0,016**) | **FAIL** gain (< +0,010) |
+| `gkd:50` (rd, code cũ, nối tiếp ep15 oc) | rd (audited 19/10 ~21:20Z) | ep15 0,8030 → ep30 0,8100 → **ep50 0,8153** / test 0,8063 | +0,012 group / +0,002 test so ep15 | **0,8850** / 0,8488 (+0,052) | mô tả (50 round) |
 | `gkd_la_kdpx` | rc (audited 18/10 ~12:55Z) | 0,7983 / **0,8225** / 0,8220 | **+0,0195** (benign **+0,075**, tệ nhất **+0,039**) | 0,8434 / 0,8305 (**+0,0105**) | **PASS** gain+worst |
 | `gkd_cop` | sa (audited 18/10 ~13:00Z) | 0,7912 / **0,8060** / 0,8073 | +0,0031 (benign +0,004, tệ nhất −0,003) | 0,8296 / 0,8218 (−0,003) | **FAIL** gain |
 | `gkd_pce` | sb (audited 18/10 ~14:25Z) | 0,7976 / **0,8077** / 0,7984 | +0,0047 (benign **−0,053**, tệ nhất −0,013) | **0,8917** / 0,8377 (**+0,059**) | **FAIL** gain |
@@ -510,6 +511,8 @@ m4b +0,74 → frz +0,18 → gkd +0,13; gp trên frz/gkd −0,41…−0,47 (sửa
 - g512 (512 dòng tổng hợp/bước) +0,001, cop (mẫu thật hơn) +0,003, gk2 (trọng số ×2) 0,000 ⇒ phần mẫu Gaussian của gkd đã bão hòa; probe 15
   dự báo cov_gauss +0,022/epoch không thành hiện thực khi tăng lượng/độ thật. Lợi còn lại đến từ khử rò prior (`la`).
 - t2 (KD T=2) hại benign −0,036; gk2 (KL tổng hợp ×2) không đổi ⇒ trọng số/nhiệt độ KD không phải nút thắt.
+- **gkd 50 round (rd)**: private tăng chậm (group +0,012, test +0,002 từ ep15), proxy tăng mạnh 0,833 → 0,885 (test 0,849; tham chiếu
+  `fl_dagsnet_veremi` centralized 0,853, NILM-FL proxy 0,823, AFPHA private 0,775). la_kdpx ep15 (0,8225) đã hơn gkd ep50.
 - kdpx: hướng dương mọi góc nhưng dưới ngưỡng; chênh seed gkd s42/s43 = 0,008 ⇒ +0,006 chưa tách được khỏi nhiễu seed. Proxy +0,016 (bằng
   dấu hiệu thiết kế). Không nới cổng; tổ hợp `la_kdpx` (rc) đọc riêng.
 
@@ -517,8 +520,54 @@ m4b +0,74 → frz +0,18 → gkd +0,13; gp trên frz/gkd −0,41…−0,47 (sửa
 
 | arm | session | private ep6 / **ep15** / test | proxy ep15 / test | ms/bước T4 | cổng |
 |---|---|---|---|---:|---|
+| `gkd` s42 `--fast` (đối chứng) | ta (audited 19/10 ~07:45Z) | 0,7819 / **0,8058** / 0,8066 | 0,8348 / 0,8223 | — | **PASS** equiv vs gkd@e15 cũ: Δ +0,0028 |
 | `gkd` s43 `--fast` (đối chứng) | td (audited 18/10 ~18:40Z) | 0,7745 / **0,7984** / 0,8013 | 0,8244 / 0,8175 | 19,34 (cũ 24,54) | **PASS** equiv vs gkd@e15@s43 cũ: Δ +0,0031 |
-| `gkd_la_kdpx` s42 `--fast` | tb (audited 18/10 ~18:35Z) | 0,7995 / **0,8269** / 0,8229 | 0,8526 / 0,8327 | 18,75 (cũ 25,19) | chờ ta (gkd `--fast`) |
+| `gkd_la_kdpx` s42 `--fast` | tb (audited 18/10 ~18:35Z) | 0,7995 / **0,8269** / 0,8229 | 0,8526 / 0,8327 | 18,75 (cũ 25,19) | **PASS** gain+worst vs ta: **+0,0212** (benign +0,064, tệ nhất +0,042) |
+| `gkd_la_kdpx` s43 `--fast` | te (audited 19/10 ~07:45Z) | 0,7874 / **0,8128** / 0,8145 | 0,8326 / 0,8200 | — | **PASS** gain+worst vs td: **+0,0144** (benign +0,067, tệ nhất +0,030) |
+| `q4_frz_gkd_la_kdpx` s42 `--fast` | tc (audited 19/10 ~07:45Z) | 0,8003 / **0,8232** / 0,8207 | 0,8410 / 0,8278 | — | **PASS** noninferior vs tb: −0,0037 (tệ nhất −0,001) |
 
+- **Vòng 19 PASS cả 5 cổng**: `--fast` tương đương cả 2 seed (+0,003); la_kdpx lặp 2 seed (+0,021 / +0,014, benign +0,06–0,07);
+  q4 giữ la_kdpx (−0,004, byte proxy ÷7,6). Owner 19/10: 50 epoch chỉ theo protocol cuối, sau khi vét hết hướng ⇒ vòng 20 vét la/kdpx.
 - **Tương đương end-to-end đầu tiên**: gkd s43 `--fast` vs code cũ +0,0031 (benign +0,011, tệ nhất −0,001) ⇒ `--fast` không đổi kết quả ngoài chênh seed.
 - Cùng arm code cũ (rc) 0,8225 / test 0,8220 ⇒ `--fast` lệch +0,004 (≤ chênh seed 0,008); tốc độ −25,6 % đúng benchmark.
+
+## Vòng 20–21 — vét la/kdpx + kênh nén (s42 ep15 `--fast`, head; đối chứng tb la_kdpx 0,8269; audited 19/10 ~12:30Z)
+
+| arm | session | private ep6 / **ep15** / test | Δ ep15 (tệ nhất; benign) | proxy ep15 / test | byte proxy 15 ep (up+down) | cổng |
+|---|---|---|---|---|---:|---|
+| `la15_kdpx` | va | 0,7969 / **0,8223** / 0,8208 | −0,0046 (+0,003; +0,003) | 0,8442 / 0,8286 | 956 MB | **FAIL** gain |
+| `la05_kdpx` | vb | 0,7997 / **0,8208** / 0,8198 | −0,0062 (−0,009; −0,009) | 0,8472 / 0,8300 | 956 MB | **FAIL** gain |
+| `lau_kdpx` | vc | 0,8062 / **0,8278** / 0,8240 | +0,0009 (**−0,042**; **−0,042**) | **0,8584** / 0,8380 | 956 MB | **FAIL** gain+worst |
+| `la_lap_kdpx` | vd | 0,7975 / **0,8220** / 0,8218 | −0,0050 (+0,011; +0,011) | 0,8407 / 0,8285 | 956 MB | **FAIL** gain |
+| `la_kdpx_kd2` | ve | 0,7919 / **0,8209** / 0,8201 | −0,0061 (+0,006; +0,006) | 0,8451 / 0,8281 | 956 MB | **FAIL** gain |
+| `q4_…_la_kdpx_zl` | wa | 0,7976 / **0,8241** / 0,8226 | −0,0029 (+0,002; +0,002) | 0,8465 / 0,8295 | **99,5** (50,6 + 48,9) | **PASS** noninferior |
+| `q4_…_la_kdpx_ef_zl` | wb | 0,7994 / **0,8216** / 0,8212 | −0,0054 (+0,006; +0,006) | 0,8475 / 0,8316 | 99,8 (50,8 + 49,0) | **PASS** noninferior |
+| `q2_…_la_kdpx_ef_zl` | wc | 0,6821 / **0,3130** / 0,3222 | **−0,514** | 0,0578 / 0,0606 | 35,4 (21,4 + 14,1) | **FAIL** (sụp) |
+| (tham chiếu) `q4_…_la_kdpx` | tc | 0,8003 / 0,8232 / 0,8207 | −0,0037 | 0,8410 / 0,8278 | 125,0 | PASS (vòng 19) |
+
+- **Hướng la/kdpx vét xong, τ=1 với prior gộp là tối ưu**: 5 biến thể nằm trong 0,8208–0,8278 (dải chênh `--fast`/seed ~0,008), không biến thể nào
+  qua +0,010. `lau` (đích prior đều) đẩy proxy cao nhất vòng 20 (0,858; pce 0,892 vẫn cao nhất) nhưng benign −0,042 ⇒ dịch về prior đều làm head bỏ lớp benign phổ biến.
+  `la_lap` (la trên CE proxy) tốt cho client tệ nhất (+0,011) nhưng trung bình −0,005. τ 0,5 / 1,5 đều thua τ=1 ⇒ không có xu hướng đơn điệu cần thử tiếp.
+- **Kênh nén chọn `q4_zl`**: LZMA2 không mất mát giảm thân gói còn **0,80** (xuống) ⇒ byte proxy 125 → **99,5 MB** (÷9,6 so dense), private −0,003.
+  `ef` chiều lên không thêm gì (byte bằng, Δ −0,005 vs −0,003 trong nhiễu) mà thêm trạng thái client ⇒ bỏ.
+- **q2 sụp kể cả có EF hai chiều**: `q_residual_rel` (phần dư server/|exact|) 0,27 ở ep1 → 0,71 ở ep15 (q4: 0,008) ⇒ downlink 2-bit (3 mức, làm tròn gần nhất)
+  không theo kịp, replica client xa dần model thật, frz khuếch đại (bài học vòng 16). Bước giữa chưa thử: 3-bit, hoặc q2 chỉ chiều lên.
+- Tổng byte run (kể bootstrap) dense 992 → q4 161 → **q4_zl 136 MB**. `proxy_bootstrap` (state proxy ban đầu gửi mỗi client, 31,9 MB) giờ là
+  **23 %** tổng ⇒ đích tiếp theo.
+- Thời gian session 212–227 phút cho 15 epoch (`--fast`, 2×T4).
+
+## Vòng 22 — kênh dưới int4 (`--fast`, head; audited 20/10 ~03Z)
+
+| arm | session | private ep6 / **ep15** / test | Δ ep15 (tệ nhất) | proxy ep15 / test | byte proxy 15 ep (up + down) | `q_residual_rel` ep1 → ep15 | cổng |
+|---|---|---|---|---|---:|---|---|
+| `q3_…_la_kdpx_zl` s42 | xa | 0,7976 / **0,8246** / 0,8216 | −0,0024 (−0,004) vs tb | 0,8413 / 0,8280 | **66,8** (34,0 + 32,8) | 0,097 → 0,021 | **PASS** noninferior |
+| `q4_u2_…_la_kdpx_ef_zl` s42 | xb | 0,7747 / **0,7474** / 0,7544 | **−0,0795** (−0,042) vs tb | **0,4544** / 0,4512 | 73,6 (21,6 + 52,0) | 0,049 → 0,068 (không giảm) | **FAIL** |
+| `q4_…_la_kdpx_zl` s43 | xd | 0,7837 / **0,8177** / 0,8178 | +0,0050 (−0,003) vs te | 0,8427 / 0,8249 | 99,3 (50,7 + 48,6) | 0,040 → 0,009 | **PASS** noninferior |
+| (tham chiếu) `q4_…_zl` s42 | wa | 0,7976 / 0,8241 / 0,8226 | −0,0029 | 0,8465 / 0,8295 | 99,5 | 0,042 → 0,008 | PASS (vòng 21) |
+
+- **q3 giữ performance, byte proxy −33 % so q4_zl** (99,5 → 66,8 MB; tổng run 136 → 103 MB): phần dư server khởi đầu cao hơn q4 (0,097 so 0,042)
+  nhưng giảm dần như q4 (0,021 ở ep15) ⇒ downlink 7 mức theo kịp, đúng dự báo (ngưỡng về 0 là max/6). LZMA2 nén mã 3-bit còn 0,54 (q4: 0,80).
+- **Chiều lên 2-bit hỏng dù có EF và trung bình 20 client**: proxy sụp (0,454), phần dư server không giảm (0,068 suốt). Giả thuyết "chiều lên chịu ít bit
+  vì làm tròn ngẫu nhiên không lệch" **bị bác**: không lệch nhưng phương sai theo scale max hàng quá lớn so với delta mỗi round. xc (`q3_u2`) không push.
+- **q4_zl lặp s43 PASS** (+0,005 vs te) ⇒ kênh nén không giảm performance ở cả hai seed.
+- Bootstrap (31,9 MB) giờ là **31 %** tổng byte của q3 (103 MB).

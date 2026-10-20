@@ -238,6 +238,21 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_frz_gkd@e15 | 13 | 0.8258 | 0.7919 | 0.6710 | 0.6286 | 0.8107 | 0.2347 |  |
 | fd_dml_m4b_gpool_frz_gkd@e15 | 14 | 0.8290 | 0.7908 | 0.6753 | 0.6388 | 0.8145 | 0.2231 |  |
 | fd_dml_m4b_gpool_frz_gkd@e15 | 15 | 0.8329 | 0.7907 | 0.6772 | 0.6458 | 0.8192 | 0.2131 | 0.8207 |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 1 | 0.3335 | 0.5261 | 0.6515 | 0.6591 | 0.3498 | 0.6727 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 2 | 0.7312 | 0.7548 | 0.2365 | 0.6737 | 0.7267 | 0.5581 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 3 | 0.7733 | 0.7764 | 0.2785 | 0.5595 | 0.7659 | 0.4982 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 4 | 0.7912 | 0.7846 | 0.3582 | 0.4515 | 0.7825 | 0.4421 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 5 | 0.7992 | 0.7882 | 0.4485 | 0.4180 | 0.7892 | 0.3986 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 6 | 0.8016 | 0.7907 | 0.5295 | 0.4365 | 0.7960 | 0.3642 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 7 | 0.8069 | 0.7922 | 0.5775 | 0.4734 | 0.8017 | 0.3363 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 8 | 0.8113 | 0.7909 | 0.6093 | 0.5153 | 0.8042 | 0.3128 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 9 | 0.8172 | 0.7911 | 0.6315 | 0.5498 | 0.8078 | 0.2930 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 10 | 0.8234 | 0.7903 | 0.6461 | 0.5766 | 0.8125 | 0.2752 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 11 | 0.8245 | 0.7915 | 0.6586 | 0.5975 | 0.8134 | 0.2602 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 12 | 0.8311 | 0.7930 | 0.6683 | 0.6131 | 0.8171 | 0.2467 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 13 | 0.8319 | 0.7925 | 0.6738 | 0.6245 | 0.8191 | 0.2345 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 14 | 0.8325 | 0.7932 | 0.6769 | 0.6350 | 0.8203 | 0.2232 |  |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | 0.8348 | 0.7931 | 0.6808 | 0.6435 | 0.8225 | 0.2129 | 0.8223 |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43 | 1 | 0.3784 | 0.5837 | 0.6514 | 0.6422 | 0.3908 | 0.6709 |  |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43 | 2 | 0.7243 | 0.7564 | 0.2344 | 0.6735 | 0.7221 | 0.5591 |  |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43 | 3 | 0.7588 | 0.7750 | 0.2714 | 0.5800 | 0.7572 | 0.5030 |  |
@@ -268,6 +283,41 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast | 13 | 0.8174 | 0.7911 | 0.6653 | 0.6317 | 0.8037 | 0.2354 |  |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast | 14 | 0.8200 | 0.7907 | 0.6696 | 0.6413 | 0.8063 | 0.2237 |  |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast | 15 | 0.8244 | 0.7898 | 0.6715 | 0.6477 | 0.8086 | 0.2131 | 0.8175 |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 16 | 0.8346 | 0.7922 | 0.6787 | 0.6510 | 0.8200 | 0.2032 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 17 | 0.8370 | 0.7910 | 0.6788 | 0.6542 | 0.8245 | 0.1939 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 18 | 0.8389 | 0.7920 | 0.6798 | 0.6569 | 0.8258 | 0.1851 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 19 | 0.8404 | 0.7927 | 0.6808 | 0.6583 | 0.8291 | 0.1767 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 20 | 0.8431 | 0.7904 | 0.6802 | 0.6594 | 0.8324 | 0.1690 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 21 | 0.8433 | 0.7923 | 0.6829 | 0.6607 | 0.8311 | 0.1613 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 22 | 0.8330 | 0.7920 | 0.6848 | 0.6624 | 0.8120 | 0.1538 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 23 | 0.8474 | 0.7931 | 0.6612 | 0.6566 | 0.8274 | 0.1496 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 24 | 0.8482 | 0.7932 | 0.6663 | 0.6539 | 0.8335 | 0.1411 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 25 | 0.8485 | 0.7942 | 0.6699 | 0.6531 | 0.8351 | 0.1340 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 26 | 0.8516 | 0.7950 | 0.6733 | 0.6533 | 0.8388 | 0.1269 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 27 | 0.8510 | 0.7958 | 0.6774 | 0.6549 | 0.8390 | 0.1201 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 28 | 0.8526 | 0.7938 | 0.6781 | 0.6563 | 0.8413 | 0.1137 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 29 | 0.8534 | 0.7948 | 0.6798 | 0.6576 | 0.8418 | 0.1073 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 30 | 0.8542 | 0.7962 | 0.6833 | 0.6596 | 0.8430 | 0.1011 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 31 | 0.8558 | 0.7950 | 0.6850 | 0.6616 | 0.8450 | 0.0950 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 32 | 0.8574 | 0.7966 | 0.6858 | 0.6637 | 0.8454 | 0.0890 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 33 | 0.8574 | 0.7970 | 0.6844 | 0.6641 | 0.8450 | 0.0831 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 34 | 0.8586 | 0.7969 | 0.6850 | 0.6648 | 0.8462 | 0.0774 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 35 | 0.8601 | 0.7976 | 0.6853 | 0.6653 | 0.8472 | 0.0718 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 36 | 0.8609 | 0.7980 | 0.6866 | 0.6655 | 0.8489 | 0.0663 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 37 | 0.8620 | 0.7986 | 0.6863 | 0.6659 | 0.8493 | 0.0610 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 38 | 0.8627 | 0.7994 | 0.6867 | 0.6662 | 0.8504 | 0.0558 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 39 | 0.8637 | 0.7998 | 0.6891 | 0.6670 | 0.8518 | 0.0507 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 40 | 0.8642 | 0.8002 | 0.6897 | 0.6677 | 0.8517 | 0.0458 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 41 | 0.8666 | 0.8005 | 0.6913 | 0.6685 | 0.8539 | 0.0412 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 42 | 0.8681 | 0.8021 | 0.6926 | 0.6695 | 0.8548 | 0.0367 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 43 | 0.8701 | 0.8033 | 0.6942 | 0.6703 | 0.8563 | 0.0324 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 44 | 0.8709 | 0.8043 | 0.6948 | 0.6714 | 0.8568 | 0.0284 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 45 | 0.8733 | 0.8064 | 0.6959 | 0.6723 | 0.8586 | 0.0247 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 46 | 0.8755 | 0.8073 | 0.6977 | 0.6735 | 0.8601 | 0.0214 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 47 | 0.8778 | 0.8092 | 0.7003 | 0.6751 | 0.8625 | 0.0185 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 48 | 0.8791 | 0.8103 | 0.7032 | 0.6771 | 0.8630 | 0.0162 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 49 | 0.8820 | 0.8124 | 0.7055 | 0.6792 | 0.8644 | 0.0146 |  |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | 0.8850 | 0.8133 | 0.7078 | 0.6818 | 0.8671 | 0.0139 | 0.8488 |
 | fd_dml_m4b_gpool_frz_gkd_cop@e15 | 1 | 0.2898 | 0.5124 | 0.7045 | 0.7095 | 0.3052 | 0.6718 |  |
 | fd_dml_m4b_gpool_frz_gkd_cop@e15 | 2 | 0.7395 | 0.7566 | 0.2360 | 0.6578 | 0.7391 | 0.5587 |  |
 | fd_dml_m4b_gpool_frz_gkd_cop@e15 | 3 | 0.7755 | 0.7774 | 0.2851 | 0.5124 | 0.7706 | 0.4965 |  |
@@ -328,6 +378,36 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_frz_gkd_kdpx@e15 | 13 | 0.8425 | 0.7969 | 0.6959 | 0.6644 | 0.8247 | 0.2386 |  |
 | fd_dml_m4b_gpool_frz_gkd_kdpx@e15 | 14 | 0.8438 | 0.7959 | 0.6971 | 0.6715 | 0.8265 | 0.2270 |  |
 | fd_dml_m4b_gpool_frz_gkd_kdpx@e15 | 15 | 0.8486 | 0.7963 | 0.7000 | 0.6761 | 0.8320 | 0.2167 | 0.8308 |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 1 | 0.3714 | 0.5599 | 0.6703 | 0.6669 | 0.3768 | 0.6339 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 2 | 0.7331 | 0.7524 | 0.2195 | 0.6207 | 0.7210 | 0.5535 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 3 | 0.7787 | 0.7782 | 0.2521 | 0.4694 | 0.7712 | 0.5005 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 4 | 0.7958 | 0.7878 | 0.3237 | 0.3710 | 0.7878 | 0.4474 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 5 | 0.8039 | 0.7923 | 0.4269 | 0.3644 | 0.7957 | 0.4050 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 6 | 0.8095 | 0.7960 | 0.5202 | 0.4049 | 0.8018 | 0.3707 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 7 | 0.8148 | 0.7974 | 0.5839 | 0.4571 | 0.8058 | 0.3425 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 8 | 0.8183 | 0.7984 | 0.6224 | 0.5183 | 0.8092 | 0.3184 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 9 | 0.8262 | 0.7995 | 0.6470 | 0.5603 | 0.8151 | 0.2988 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 10 | 0.8320 | 0.7981 | 0.6600 | 0.5887 | 0.8177 | 0.2805 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 11 | 0.8339 | 0.7979 | 0.6662 | 0.6113 | 0.8203 | 0.2654 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 12 | 0.8387 | 0.7961 | 0.6726 | 0.6274 | 0.8261 | 0.2515 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 13 | 0.8420 | 0.7964 | 0.6768 | 0.6388 | 0.8284 | 0.2392 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 14 | 0.8437 | 0.7965 | 0.6786 | 0.6474 | 0.8309 | 0.2276 |  |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | 0.8472 | 0.7966 | 0.6811 | 0.6531 | 0.8353 | 0.2171 | 0.8300 |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 1 | 0.3769 | 0.5908 | 0.6317 | 0.6230 | 0.3880 | 0.6422 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 2 | 0.7374 | 0.7531 | 0.2151 | 0.5422 | 0.7240 | 0.5589 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 3 | 0.7797 | 0.7790 | 0.2567 | 0.4132 | 0.7734 | 0.5046 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 4 | 0.7932 | 0.7873 | 0.3472 | 0.3617 | 0.7874 | 0.4514 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 5 | 0.8005 | 0.7919 | 0.4595 | 0.3745 | 0.7934 | 0.4081 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 6 | 0.8061 | 0.7946 | 0.5485 | 0.4264 | 0.7983 | 0.3731 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 7 | 0.8149 | 0.7956 | 0.5997 | 0.4842 | 0.8049 | 0.3443 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 8 | 0.8198 | 0.7942 | 0.6309 | 0.5376 | 0.8076 | 0.3202 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 9 | 0.8256 | 0.7939 | 0.6482 | 0.5746 | 0.8107 | 0.2997 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 10 | 0.8298 | 0.7914 | 0.6588 | 0.6007 | 0.8139 | 0.2822 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 11 | 0.8337 | 0.7932 | 0.6622 | 0.6181 | 0.8174 | 0.2668 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 12 | 0.8366 | 0.7917 | 0.6696 | 0.6334 | 0.8207 | 0.2528 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 13 | 0.8391 | 0.7912 | 0.6703 | 0.6433 | 0.8240 | 0.2402 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 14 | 0.8402 | 0.7931 | 0.6743 | 0.6502 | 0.8241 | 0.2289 |  |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | 0.8442 | 0.7902 | 0.6750 | 0.6547 | 0.8296 | 0.2185 | 0.8286 |
 | fd_dml_m4b_gpool_frz_gkd_la@e15 | 1 | 0.3583 | 0.5443 | 0.6583 | 0.6512 | 0.3659 | 0.6818 |  |
 | fd_dml_m4b_gpool_frz_gkd_la@e15 | 2 | 0.7329 | 0.7516 | 0.2158 | 0.5839 | 0.7250 | 0.5617 |  |
 | fd_dml_m4b_gpool_frz_gkd_la@e15 | 3 | 0.7771 | 0.7766 | 0.2431 | 0.4350 | 0.7710 | 0.4990 |  |
@@ -373,6 +453,66 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast | 13 | 0.8472 | 0.7934 | 0.6789 | 0.6432 | 0.8349 | 0.2388 |  |
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast | 14 | 0.8493 | 0.7924 | 0.6817 | 0.6529 | 0.8361 | 0.2275 |  |
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast | 15 | 0.8526 | 0.7926 | 0.6829 | 0.6582 | 0.8394 | 0.2171 | 0.8327 |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 1 | 0.4244 | 0.6058 | 0.6554 | 0.6459 | 0.4418 | 0.6347 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 2 | 0.7101 | 0.7477 | 0.2175 | 0.5874 | 0.7073 | 0.5560 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 3 | 0.7615 | 0.7749 | 0.2434 | 0.4549 | 0.7634 | 0.5073 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 4 | 0.7773 | 0.7820 | 0.3199 | 0.3789 | 0.7789 | 0.4537 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 5 | 0.7865 | 0.7862 | 0.4288 | 0.3738 | 0.7866 | 0.4108 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 6 | 0.7924 | 0.7882 | 0.5178 | 0.4128 | 0.7927 | 0.3759 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 7 | 0.8017 | 0.7890 | 0.5716 | 0.4653 | 0.7980 | 0.3469 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 8 | 0.8059 | 0.7906 | 0.6106 | 0.5166 | 0.8011 | 0.3222 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 9 | 0.8108 | 0.7898 | 0.6307 | 0.5549 | 0.8033 | 0.3012 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 10 | 0.8134 | 0.7892 | 0.6454 | 0.5842 | 0.8068 | 0.2829 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 11 | 0.8172 | 0.7896 | 0.6529 | 0.6045 | 0.8088 | 0.2673 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 12 | 0.8224 | 0.7893 | 0.6574 | 0.6189 | 0.8120 | 0.2530 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 13 | 0.8273 | 0.7896 | 0.6665 | 0.6307 | 0.8149 | 0.2404 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 14 | 0.8306 | 0.7872 | 0.6692 | 0.6390 | 0.8175 | 0.2286 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | 0.8326 | 0.7872 | 0.6717 | 0.6454 | 0.8189 | 0.2179 | 0.8200 |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 1 | 0.3886 | 0.5866 | 0.6541 | 0.6485 | 0.4049 | 0.6367 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 2 | 0.7260 | 0.7518 | 0.2037 | 0.5618 | 0.7185 | 0.5512 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 3 | 0.7791 | 0.7801 | 0.2338 | 0.4023 | 0.7738 | 0.4993 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 4 | 0.7919 | 0.7879 | 0.2915 | 0.3226 | 0.7860 | 0.4464 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 5 | 0.7996 | 0.7921 | 0.3834 | 0.3216 | 0.7943 | 0.4038 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 6 | 0.8063 | 0.7953 | 0.4796 | 0.3610 | 0.8015 | 0.3696 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 7 | 0.8143 | 0.7975 | 0.5543 | 0.4176 | 0.8069 | 0.3410 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 8 | 0.8182 | 0.7963 | 0.6003 | 0.4784 | 0.8098 | 0.3172 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 9 | 0.8252 | 0.7977 | 0.6268 | 0.5336 | 0.8148 | 0.2966 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 10 | 0.8312 | 0.7971 | 0.6458 | 0.5707 | 0.8192 | 0.2787 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 11 | 0.8339 | 0.7971 | 0.6561 | 0.5968 | 0.8211 | 0.2632 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 12 | 0.8364 | 0.7965 | 0.6643 | 0.6153 | 0.8233 | 0.2493 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 13 | 0.8399 | 0.7956 | 0.6686 | 0.6297 | 0.8257 | 0.2366 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 14 | 0.8406 | 0.7958 | 0.6703 | 0.6403 | 0.8268 | 0.2248 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | 0.8451 | 0.7946 | 0.6727 | 0.6467 | 0.8309 | 0.2142 | 0.8281 |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 1 | 0.4365 | 0.6180 | 0.6589 | 0.6526 | 0.4475 | 0.6391 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 2 | 0.7344 | 0.7526 | 0.2227 | 0.5806 | 0.7291 | 0.5544 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 3 | 0.7812 | 0.7800 | 0.2612 | 0.4342 | 0.7743 | 0.5024 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 4 | 0.7948 | 0.7885 | 0.3471 | 0.3709 | 0.7875 | 0.4486 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 5 | 0.8021 | 0.7929 | 0.4647 | 0.3800 | 0.7954 | 0.4055 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 6 | 0.8090 | 0.7971 | 0.5711 | 0.4363 | 0.8012 | 0.3708 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 7 | 0.8145 | 0.7994 | 0.6328 | 0.5028 | 0.8048 | 0.3423 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 8 | 0.8182 | 0.8000 | 0.6649 | 0.5632 | 0.8075 | 0.3182 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 9 | 0.8214 | 0.8013 | 0.6808 | 0.6050 | 0.8098 | 0.2978 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 10 | 0.8257 | 0.8013 | 0.6914 | 0.6343 | 0.8149 | 0.2801 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 11 | 0.8276 | 0.8014 | 0.6961 | 0.6544 | 0.8165 | 0.2647 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 12 | 0.8312 | 0.8019 | 0.7000 | 0.6673 | 0.8191 | 0.2509 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 13 | 0.8340 | 0.8015 | 0.7006 | 0.6750 | 0.8209 | 0.2386 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 14 | 0.8362 | 0.8002 | 0.7018 | 0.6801 | 0.8231 | 0.2272 |  |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | 0.8407 | 0.8002 | 0.7037 | 0.6831 | 0.8272 | 0.2167 | 0.8285 |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 1 | 0.4244 | 0.6048 | 0.6246 | 0.6233 | 0.4409 | 0.6492 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 2 | 0.7417 | 0.7622 | 0.2229 | 0.5648 | 0.7343 | 0.5579 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 3 | 0.7865 | 0.7836 | 0.2609 | 0.4310 | 0.7792 | 0.5031 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 4 | 0.8007 | 0.7930 | 0.3460 | 0.3745 | 0.7922 | 0.4499 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 5 | 0.8076 | 0.7957 | 0.4467 | 0.3755 | 0.7993 | 0.4062 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 6 | 0.8137 | 0.7988 | 0.5404 | 0.4111 | 0.8076 | 0.3712 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 7 | 0.8222 | 0.8003 | 0.5966 | 0.4714 | 0.8152 | 0.3425 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 8 | 0.8277 | 0.7997 | 0.6296 | 0.5305 | 0.8178 | 0.3183 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 9 | 0.8366 | 0.7967 | 0.6463 | 0.5732 | 0.8243 | 0.2981 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 10 | 0.8433 | 0.7882 | 0.6576 | 0.6044 | 0.8299 | 0.2807 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 11 | 0.8475 | 0.7912 | 0.6650 | 0.6244 | 0.8320 | 0.2654 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 12 | 0.8507 | 0.7893 | 0.6713 | 0.6390 | 0.8356 | 0.2516 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 13 | 0.8527 | 0.7902 | 0.6737 | 0.6494 | 0.8358 | 0.2387 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 14 | 0.8553 | 0.7889 | 0.6763 | 0.6568 | 0.8382 | 0.2271 |  |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | 0.8584 | 0.7881 | 0.6789 | 0.6613 | 0.8447 | 0.2165 | 0.8380 |
 | fd_dml_m4b_gpool_frz_gkd_pce@e15 | 1 | 0.3438 | 0.5411 | 0.6481 | 0.6550 | 0.3653 | 0.6346 |  |
 | fd_dml_m4b_gpool_frz_gkd_pce@e15 | 2 | 0.7321 | 0.7611 | 0.2547 | 0.6695 | 0.7363 | 0.5774 |  |
 | fd_dml_m4b_gpool_frz_gkd_pce@e15 | 3 | 0.8035 | 0.7646 | 0.6302 | 0.6408 | 0.7936 | 0.5073 |  |
@@ -475,6 +615,36 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_q2_frz_gkd@e15 | 13 | 0.2589 | 0.3334 | 0.3450 | 0.2397 | 0.2571 | 0.2893 |  |
 | fd_dml_m4b_gpool_q2_frz_gkd@e15 | 14 | 0.2716 | 0.2464 | 0.3407 | 0.3008 | 0.2745 | 0.2868 |  |
 | fd_dml_m4b_gpool_q2_frz_gkd@e15 | 15 | 0.4790 | 0.3588 | 0.3744 | 0.3552 | 0.4794 | 0.2634 | 0.4950 |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 1 | 0.1574 | 0.5145 | 0.6558 | 0.6494 | 0.1596 | 0.6364 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 2 | 0.3640 | 0.5469 | 0.0947 | 0.5641 | 0.3660 | 0.5479 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 3 | 0.1956 | 0.0007 | 0.0933 | 0.3265 | 0.2016 | 0.5193 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 4 | 0.2302 | 0.3736 | 0.0889 | 0.1900 | 0.2406 | 0.4998 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 5 | 0.2730 | 0.6241 | 0.0787 | 0.1315 | 0.2646 | 0.4576 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 6 | 0.1059 | 0.0557 | 0.0914 | 0.1127 | 0.1056 | 0.4311 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 7 | 0.1820 | 0.1466 | 0.1005 | 0.1128 | 0.1809 | 0.4073 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 8 | 0.1953 | 0.3757 | 0.0969 | 0.1009 | 0.1927 | 0.3847 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 9 | 0.0981 | 0.0021 | 0.0989 | 0.1040 | 0.1015 | 0.3699 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 10 | 0.1573 | 0.2708 | 0.0987 | 0.1008 | 0.1522 | 0.3585 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 11 | 0.0357 | 0.0001 | 0.1194 | 0.1043 | 0.0321 | 0.3370 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 12 | 0.0290 | 0.0000 | 0.1087 | 0.1097 | 0.0289 | 0.3373 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 13 | 0.1008 | 0.0000 | 0.1736 | 0.1266 | 0.1007 | 0.3158 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 14 | 0.0404 | 0.0686 | 0.1768 | 0.1434 | 0.0444 | 0.3000 |  |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | 0.0578 | 0.0008 | 0.1690 | 0.1453 | 0.0614 | 0.2778 | 0.0606 |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 1 | 0.3370 | 0.5774 | 0.6558 | 0.6481 | 0.3533 | 0.6367 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 2 | 0.6949 | 0.7494 | 0.2078 | 0.5712 | 0.6959 | 0.5546 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 3 | 0.7584 | 0.7677 | 0.2378 | 0.4082 | 0.7522 | 0.5045 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 4 | 0.7861 | 0.7818 | 0.2791 | 0.3300 | 0.7782 | 0.4536 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 5 | 0.8010 | 0.7892 | 0.3564 | 0.3215 | 0.7959 | 0.4108 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 6 | 0.8099 | 0.7936 | 0.4512 | 0.3501 | 0.7994 | 0.3752 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 7 | 0.8296 | 0.7914 | 0.5390 | 0.4054 | 0.8160 | 0.3453 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 8 | 0.8221 | 0.7990 | 0.5942 | 0.4695 | 0.8090 | 0.3204 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 9 | 0.8288 | 0.7915 | 0.6265 | 0.5244 | 0.8192 | 0.3005 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 10 | 0.8388 | 0.7880 | 0.6426 | 0.5623 | 0.8230 | 0.2826 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 11 | 0.8303 | 0.7933 | 0.6601 | 0.5916 | 0.8183 | 0.2669 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 12 | 0.8445 | 0.7882 | 0.6615 | 0.6107 | 0.8322 | 0.2531 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 13 | 0.8465 | 0.7974 | 0.6680 | 0.6254 | 0.8308 | 0.2400 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 14 | 0.8445 | 0.7886 | 0.6698 | 0.6362 | 0.8325 | 0.2278 |  |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | 0.8413 | 0.7980 | 0.6745 | 0.6437 | 0.8306 | 0.2178 | 0.8280 |
 | fd_dml_m4b_gpool_q4 | 1 | 0.4022 | 0.6145 | 0.6654 | 0.6628 | 0.4144 | 0.5766 |  |
 | fd_dml_m4b_gpool_q4 | 2 | 0.7342 | 0.7525 | 0.6845 | 0.6666 | 0.7290 | 0.5326 |  |
 | fd_dml_m4b_gpool_q4 | 3 | 0.7738 | 0.7721 | 0.6931 | 0.6690 | 0.7688 | 0.4723 |  |
@@ -496,6 +666,81 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_q4_frz_gkd@e15 | 13 | 0.8246 | 0.7943 | 0.6693 | 0.6253 | 0.8141 | 0.2341 |  |
 | fd_dml_m4b_gpool_q4_frz_gkd@e15 | 14 | 0.8268 | 0.7955 | 0.6744 | 0.6360 | 0.8176 | 0.2224 |  |
 | fd_dml_m4b_gpool_q4_frz_gkd@e15 | 15 | 0.8258 | 0.7960 | 0.6766 | 0.6433 | 0.8172 | 0.2125 | 0.8203 |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 1 | 0.3913 | 0.5890 | 0.6566 | 0.6526 | 0.4059 | 0.6368 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 2 | 0.7364 | 0.7569 | 0.2180 | 0.5754 | 0.7293 | 0.5547 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 3 | 0.7733 | 0.7759 | 0.2497 | 0.4231 | 0.7672 | 0.5014 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 4 | 0.7997 | 0.7883 | 0.3191 | 0.3562 | 0.7896 | 0.4498 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 5 | 0.8063 | 0.7921 | 0.4291 | 0.3575 | 0.7958 | 0.4066 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 6 | 0.8146 | 0.7936 | 0.5240 | 0.3974 | 0.8014 | 0.3725 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 7 | 0.8231 | 0.7952 | 0.5844 | 0.4546 | 0.8068 | 0.3439 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 8 | 0.8245 | 0.7945 | 0.6215 | 0.5143 | 0.8077 | 0.3201 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 9 | 0.8323 | 0.7955 | 0.6436 | 0.5566 | 0.8150 | 0.3000 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 10 | 0.8337 | 0.7946 | 0.6570 | 0.5872 | 0.8144 | 0.2819 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 11 | 0.8339 | 0.7977 | 0.6655 | 0.6091 | 0.8150 | 0.2666 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 12 | 0.8362 | 0.7974 | 0.6711 | 0.6282 | 0.8200 | 0.2527 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 13 | 0.8406 | 0.7959 | 0.6755 | 0.6409 | 0.8224 | 0.2399 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 14 | 0.8419 | 0.7964 | 0.6757 | 0.6485 | 0.8244 | 0.2283 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | 0.8410 | 0.7992 | 0.6785 | 0.6531 | 0.8254 | 0.2178 | 0.8278 |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 1 | 0.4058 | 0.6082 | 0.6574 | 0.6546 | 0.4181 | 0.6368 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 2 | 0.7279 | 0.7538 | 0.2169 | 0.5832 | 0.7182 | 0.5538 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 3 | 0.7733 | 0.7751 | 0.2447 | 0.4264 | 0.7673 | 0.5012 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 4 | 0.7903 | 0.7857 | 0.3188 | 0.3540 | 0.7812 | 0.4501 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 5 | 0.8047 | 0.7921 | 0.4333 | 0.3561 | 0.7965 | 0.4074 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 6 | 0.8121 | 0.7968 | 0.5190 | 0.4031 | 0.8045 | 0.3727 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 7 | 0.8163 | 0.7985 | 0.5821 | 0.4608 | 0.8066 | 0.3440 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 8 | 0.8156 | 0.7969 | 0.6170 | 0.5141 | 0.8069 | 0.3201 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 9 | 0.8258 | 0.7975 | 0.6386 | 0.5540 | 0.8148 | 0.3001 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 10 | 0.8354 | 0.7943 | 0.6554 | 0.5847 | 0.8207 | 0.2817 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 11 | 0.8328 | 0.7978 | 0.6649 | 0.6080 | 0.8202 | 0.2660 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 12 | 0.8399 | 0.7971 | 0.6715 | 0.6267 | 0.8252 | 0.2522 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 13 | 0.8397 | 0.7979 | 0.6753 | 0.6402 | 0.8280 | 0.2394 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 14 | 0.8401 | 0.7986 | 0.6766 | 0.6485 | 0.8276 | 0.2278 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | 0.8475 | 0.7986 | 0.6809 | 0.6547 | 0.8353 | 0.2174 | 0.8316 |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 1 | 0.4081 | 0.5940 | 0.6541 | 0.6527 | 0.4154 | 0.6370 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 2 | 0.7295 | 0.7514 | 0.2151 | 0.5846 | 0.7227 | 0.5545 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 3 | 0.7757 | 0.7782 | 0.2491 | 0.4295 | 0.7710 | 0.5024 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 4 | 0.7917 | 0.7875 | 0.3237 | 0.3537 | 0.7869 | 0.4502 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 5 | 0.8016 | 0.7918 | 0.4357 | 0.3543 | 0.7957 | 0.4077 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 6 | 0.8048 | 0.7955 | 0.5212 | 0.3998 | 0.7973 | 0.3732 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 7 | 0.8168 | 0.8005 | 0.5783 | 0.4577 | 0.8066 | 0.3447 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 8 | 0.8177 | 0.7992 | 0.6191 | 0.5146 | 0.8081 | 0.3205 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 9 | 0.8301 | 0.7986 | 0.6408 | 0.5561 | 0.8148 | 0.3002 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 10 | 0.8334 | 0.7983 | 0.6544 | 0.5857 | 0.8171 | 0.2821 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 11 | 0.8333 | 0.7991 | 0.6631 | 0.6082 | 0.8184 | 0.2667 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 12 | 0.8367 | 0.8009 | 0.6697 | 0.6260 | 0.8233 | 0.2525 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 13 | 0.8456 | 0.7969 | 0.6723 | 0.6383 | 0.8304 | 0.2398 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 14 | 0.8454 | 0.7973 | 0.6721 | 0.6458 | 0.8310 | 0.2282 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | 0.8465 | 0.7989 | 0.6762 | 0.6509 | 0.8322 | 0.2176 | 0.8295 |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 1 | 0.4435 | 0.6100 | 0.6622 | 0.6524 | 0.4541 | 0.6347 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 2 | 0.7022 | 0.7476 | 0.2195 | 0.5928 | 0.6958 | 0.5547 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 3 | 0.7645 | 0.7751 | 0.2398 | 0.4570 | 0.7648 | 0.5084 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 4 | 0.7827 | 0.7826 | 0.3141 | 0.3790 | 0.7775 | 0.4554 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 5 | 0.7824 | 0.7847 | 0.4216 | 0.3719 | 0.7835 | 0.4127 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 6 | 0.7954 | 0.7894 | 0.5151 | 0.4086 | 0.7917 | 0.3779 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 7 | 0.8013 | 0.7890 | 0.5705 | 0.4632 | 0.7944 | 0.3486 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 8 | 0.8112 | 0.7910 | 0.6046 | 0.5147 | 0.8024 | 0.3236 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 9 | 0.8124 | 0.7898 | 0.6347 | 0.5584 | 0.8025 | 0.3025 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 10 | 0.8243 | 0.7845 | 0.6467 | 0.5862 | 0.8125 | 0.2844 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 11 | 0.8246 | 0.7908 | 0.6585 | 0.6062 | 0.8122 | 0.2683 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 12 | 0.8306 | 0.7888 | 0.6625 | 0.6212 | 0.8164 | 0.2536 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 13 | 0.8341 | 0.7875 | 0.6684 | 0.6342 | 0.8198 | 0.2409 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 14 | 0.8391 | 0.7841 | 0.6703 | 0.6428 | 0.8235 | 0.2289 |  |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | 0.8427 | 0.7830 | 0.6730 | 0.6491 | 0.8261 | 0.2179 | 0.8249 |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 1 | 0.4097 | 0.6159 | 0.6545 | 0.6518 | 0.4132 | 0.6368 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 2 | 0.6108 | 0.7301 | 0.2081 | 0.5791 | 0.6017 | 0.5478 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 3 | 0.5985 | 0.7462 | 0.1921 | 0.4060 | 0.5851 | 0.5027 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 4 | 0.7126 | 0.7020 | 0.1861 | 0.3086 | 0.7249 | 0.4608 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 5 | 0.7484 | 0.7572 | 0.2101 | 0.2596 | 0.7485 | 0.4262 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 6 | 0.6700 | 0.5158 | 0.2108 | 0.2331 | 0.6708 | 0.3937 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 7 | 0.7253 | 0.7794 | 0.2415 | 0.2331 | 0.7228 | 0.3709 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 8 | 0.7174 | 0.7423 | 0.2503 | 0.2348 | 0.7101 | 0.3489 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 9 | 0.7272 | 0.6881 | 0.2704 | 0.2380 | 0.7198 | 0.3295 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 10 | 0.7256 | 0.6873 | 0.3080 | 0.2555 | 0.7192 | 0.3139 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 11 | 0.7334 | 0.7241 | 0.3462 | 0.2814 | 0.7309 | 0.2962 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 12 | 0.5888 | 0.6637 | 0.3719 | 0.3094 | 0.5800 | 0.2831 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 13 | 0.6123 | 0.6199 | 0.2960 | 0.3187 | 0.6180 | 0.2809 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 14 | 0.6635 | 0.7042 | 0.3218 | 0.3208 | 0.6549 | 0.2655 |  |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | 0.4544 | 0.6102 | 0.2948 | 0.3029 | 0.4392 | 0.2549 | 0.4512 |
 | fd_dml_m4b_gpool_rej | 1 | 0.3906 | 0.5994 | 0.6654 | 0.6628 | 0.4076 | 0.5766 |  |
 | fd_dml_m4b_gpool_rej | 2 | 0.7306 | 0.7520 | 0.6789 | 0.6707 | 0.7316 | 0.5365 |  |
 | fd_dml_m4b_gpool_rej | 3 | 0.7669 | 0.7721 | 0.7068 | 0.6832 | 0.7616 | 0.4729 |  |
@@ -811,11 +1056,23 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_q4_frz_gkd@e15:private_ema | -0.0789 | -0.0412 | False |
 | fd_dml_m4b_gown:private_ema | +0.0079 | +0.0240 | False |
 | fd_dml_m4b_gpool:private_ema | -0.0408 | -0.0350 | False |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast:private_ema | -0.0930 | -0.0515 | False |
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast:private_ema | -0.1251 | -0.0571 | False |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast:private_ema | -0.1267 | -0.0654 | False |
 | fd_dml_m4b_scaf1:private_ema | +0.0246 | +0.0448 | True |
 | fd_dml_m4b_sgd1:private_ema | -0.0031 | +0.0228 | False |
 | fd_dml_m4b_scaf10:private_ema | -0.0026 | +0.0306 | False |
 | fd_dml_m4b_sgd10:private_ema | -0.0238 | -0.0070 | False |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast:private_ema | -0.1221 | -0.0697 | False |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast:private_ema | -0.1153 | -0.0550 | False |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast:private_ema | -0.1293 | -0.0851 | False |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast:private_ema | -0.1348 | -0.0548 | False |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast:private_ema | -0.1187 | -0.0566 | False |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast:private_ema | -0.1214 | -0.0359 | False |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast:private_ema | -0.1159 | -0.0476 | False |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_ema | +0.0213 | +0.0087 | True |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast:private_ema | -0.1011 | -0.0588 | False |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_ema | +0.0223 | -0.0051 | False |
 | fd_dml_m4b_replay:private_ema | -0.0057 | -0.0087 | False |
 | fd_dml_m4b@r10:private_ema | -0.0299 | -0.0300 | False |
 | fd_dml_m4b_gown@s43:private_ema | +0.0041 | +0.0231 | False |
@@ -837,8 +1094,10 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_gaussian@s43:private_ema | +0.0263 | +0.0117 | True |
 | fd_gaussian_swappos@s43:private_ema | +0.0308 | +0.0081 | True |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast:private_ema | -0.0670 | -0.0405 | False |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast:private_ema | -0.1050 | -0.0494 | False |
 | fd_dml_m4b@e15@s43:private_ema | -0.0270 | -0.0272 | False |
 | fd_dml@e15@s43:private_ema | -0.0469 | -0.0231 | False |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast:private_ema | -0.1066 | -0.0524 | False |
 | fd_dml_m4b_own@s43:private_ema | -0.0136 | -0.0116 | False |
 | fd_gaussian_m4b_own@s43:private_ema | +0.0240 | +0.0200 | True |
 | fd_dml_m4b:private_gp | +0.0355 | +0.1134 | True |
@@ -910,11 +1169,25 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_frz_gkd_g512@e15:private_gpe_vs_gp | +0.2343 | +0.4929 | True |
 | fd_dml_m4b_gpool_frz_gkd_gk2@e15:private_gpe_vs_gp | +0.2318 | +0.4811 | True |
 | fd_dml_m4b_gpool_q4_frz_gkd@e15:private_gpe_vs_gp | +0.2424 | +0.4892 | True |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast:private_gpe_vs_gp | +0.2325 | +0.4763 | True |
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast:private_gpe_vs_gp | +0.2370 | +0.4901 | True |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast:private_gpe_vs_gp | +0.2414 | +0.4802 | True |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast:private_gpe_vs_gp | +0.2167 | +0.4763 | True |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast:private_gpe_vs_gp | +0.2436 | +0.4838 | True |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast:private_gpe_vs_gp | +0.2462 | +0.5441 | True |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast:private_gpe_vs_gp | +0.1996 | +0.4924 | True |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast:private_gpe_vs_gp | +0.2765 | +0.5011 | True |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast:private_gpe_vs_gp | +0.2444 | +0.4807 | True |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast:private_gpe_vs_gp | +0.2472 | +0.4807 | True |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_gpe_vs_gp | +0.1841 | +0.3831 | True |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast:private_gpe_vs_gp | +0.3016 | +0.5079 | True |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_gpe_vs_gp | +0.4258 | +0.5625 | True |
 | fd_dml_m4b_gpool_rej@s43:private_gpe_vs_gp | -0.0894 | -0.0392 | False |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43:private_gpe_vs_gp | +0.2293 | +0.4415 | True |
 | fd_dml_m4b_gpool@e15@s43:private_gpe_vs_gp | -0.0952 | -0.0367 | False |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast:private_gpe_vs_gp | +0.2276 | +0.4583 | True |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast:private_gpe_vs_gp | +0.2249 | +0.4791 | True |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast:private_gpe_vs_gp | +0.2251 | +0.4645 | True |
 | fd_dml_m4b_frz@e15:private_head_vs_fd_dml_m4b@e15_gp@ep15 | +0.0367 | +0.1659 | True |
 | fd_dml_m4b_frz@e15:private_head_vs_fd_dml_m4b@e15_gp@ep6 | +0.0455 | +0.1629 | None |
 | fd_dml_m4b_gpool_frz@e15:private_head_vs_fd_dml_m4b_gpool@e15_gp@ep15 | +0.0376 | +0.1788 | True |
@@ -936,11 +1209,23 @@ Primary: DML/FedAvg proxy head, Gaussian private gp. Test chỉ epoch 6, mô t�
 | fd_dml_m4b_gpool_frz_gkd_g512@e15:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15_head@ep15 | +0.0014 | -0.0073 | False |
 | fd_dml_m4b_gpool_frz_gkd_gk2@e15:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15_head@ep15 | -0.0002 | +0.0028 | False |
 | fd_dml_m4b_gpool_q4_frz_gkd@e15:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15_head@ep15 | +0.0013 | +0.0001 | True |
-| fd_dml_m4b_gpool_frz_gkd@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15_head@ep15 |  |  | None |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15_head@ep15 | +0.0028 | +0.0019 | True |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15@s43_head@ep15 | +0.0031 | +0.0105 | True |
-| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15@fast_head@ep15 |  |  | None |
-| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15@s43@fast_head@ep15 |  |  | None |
-| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 |  |  | None |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15@fast_head@ep15 | +0.0212 | +0.0640 | True |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd@e15@s43@fast_head@ep15 | +0.0144 | +0.0670 | True |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0037 | +0.0041 | True |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0046 | +0.0025 | False |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0062 | -0.0089 | False |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | +0.0009 | -0.0421 | False |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0050 | +0.0109 | False |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0061 | +0.0055 | False |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0029 | +0.0018 | True |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0054 | +0.0059 | True |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.5140 | -0.5085 | False |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0024 | -0.0038 | True |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 | -0.0795 | -0.0417 | False |
+| fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15 |  |  | None |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast_head@ep15 | +0.0050 | -0.0026 | True |
 | fd_dml_m4b_kdcap_frz:private_gp_vs_fd_dml_m4b_kdcap | -0.0864 | -0.1270 | mô tả |
 | fd_dml_m4b_kdcap_frz:private_gp_vs_fd_dml_m4b | -0.1139 | -0.1544 | mô tả |
 | fd_dml_m4b_kdcap_wu:private_gp_vs_fd_dml_m4b_kdcap | +0.0001 | -0.0037 | mô tả |
@@ -1088,6 +1373,12 @@ local = confusion đánh trọng số lại theo prior nhãn train của từng 
 | fd_dml_m4b_gpool_frz_gkd@e15 | 15 | private_ema/head | global_f1 0.7949 (min 0.7480) | local_f1 0.7677 (min 0.6940) | local_acc 0.9039 (min 0.8280) |
 | fd_dml_m4b_gpool_frz_gkd@e15 | 15 | private_ema/gp | global_f1 0.6458 (min 0.4784) | local_f1 0.5180 (min 0.3671) | local_acc 0.4551 (min 0.1133) |
 | fd_dml_m4b_gpool_frz_gkd@e15 | 15 | proxy/head | global_f1 0.8329 (min 0.8329) | local_f1 0.7473 (min 0.6561) | local_acc 0.8604 (min 0.6748) |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | private/head | global_f1 0.8058 (min 0.7583) | local_f1 0.7767 (min 0.7047) | local_acc 0.9080 (min 0.8388) |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | private/gp | global_f1 0.6808 (min 0.5629) | local_f1 0.5460 (min 0.3862) | local_acc 0.5081 (min 0.1594) |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | private/gpe | global_f1 0.7886 (min 0.7632) | local_f1 0.7151 (min 0.6137) | local_acc 0.8310 (min 0.5886) |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | private_ema/head | global_f1 0.7971 (min 0.7541) | local_f1 0.7651 (min 0.6850) | local_acc 0.9053 (min 0.8274) |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | private_ema/gp | global_f1 0.6435 (min 0.4936) | local_f1 0.5161 (min 0.3730) | local_acc 0.4585 (min 0.1169) |
+| fd_dml_m4b_gpool_frz_gkd@e15@fast | 15 | proxy/head | global_f1 0.8348 (min 0.8348) | local_f1 0.7477 (min 0.6506) | local_acc 0.8619 (min 0.6739) |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43 | 15 | private/head | global_f1 0.7953 (min 0.7569) | local_f1 0.7635 (min 0.6979) | local_acc 0.9014 (min 0.8417) |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43 | 15 | private/gp | global_f1 0.6753 (min 0.5426) | local_f1 0.5415 (min 0.3838) | local_acc 0.5049 (min 0.1350) |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43 | 15 | private/gpe | global_f1 0.7808 (min 0.7570) | local_f1 0.7021 (min 0.6062) | local_acc 0.8262 (min 0.5888) |
@@ -1100,6 +1391,12 @@ local = confusion đánh trọng số lại theo prior nhãn train của từng 
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast | 15 | private_ema/head | global_f1 0.7927 (min 0.7391) | local_f1 0.7677 (min 0.6998) | local_acc 0.9025 (min 0.8397) |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast | 15 | private_ema/gp | global_f1 0.6477 (min 0.4717) | local_f1 0.5200 (min 0.3489) | local_acc 0.4670 (min 0.1137) |
 | fd_dml_m4b_gpool_frz_gkd@e15@s43@fast | 15 | proxy/head | global_f1 0.8244 (min 0.8244) | local_f1 0.7388 (min 0.6503) | local_acc 0.8568 (min 0.6728) |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | private/head | global_f1 0.8153 (min 0.7787) | local_f1 0.7978 (min 0.7180) | local_acc 0.9221 (min 0.8657) |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | private/gp | global_f1 0.7078 (min 0.5825) | local_f1 0.5661 (min 0.4080) | local_acc 0.5524 (min 0.1546) |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | private/gpe | global_f1 0.8033 (min 0.7757) | local_f1 0.7266 (min 0.6335) | local_acc 0.8399 (min 0.5965) |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | private_ema/head | global_f1 0.8022 (min 0.7529) | local_f1 0.7810 (min 0.7223) | local_acc 0.9086 (min 0.7974) |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | private_ema/gp | global_f1 0.6818 (min 0.5526) | local_f1 0.5441 (min 0.4232) | local_acc 0.5092 (min 0.1383) |
+| fd_dml_m4b_gpool_frz_gkd@e50 | 50 | proxy/head | global_f1 0.8850 (min 0.8850) | local_f1 0.7937 (min 0.6635) | local_acc 0.8873 (min 0.7597) |
 | fd_dml_m4b_gpool_frz_gkd_cop@e15 | 15 | private/head | global_f1 0.8060 (min 0.7578) | local_f1 0.7711 (min 0.6976) | local_acc 0.9071 (min 0.8415) |
 | fd_dml_m4b_gpool_frz_gkd_cop@e15 | 15 | private/gp | global_f1 0.6754 (min 0.5482) | local_f1 0.5396 (min 0.3947) | local_acc 0.4927 (min 0.1117) |
 | fd_dml_m4b_gpool_frz_gkd_cop@e15 | 15 | private/gpe | global_f1 0.7906 (min 0.7615) | local_f1 0.7118 (min 0.6181) | local_acc 0.8275 (min 0.5896) |
@@ -1124,6 +1421,18 @@ local = confusion đánh trọng số lại theo prior nhãn train của từng 
 | fd_dml_m4b_gpool_frz_gkd_kdpx@e15 | 15 | private_ema/head | global_f1 0.8008 (min 0.7547) | local_f1 0.7686 (min 0.6984) | local_acc 0.9058 (min 0.8410) |
 | fd_dml_m4b_gpool_frz_gkd_kdpx@e15 | 15 | private_ema/gp | global_f1 0.6761 (min 0.5635) | local_f1 0.5416 (min 0.4004) | local_acc 0.4950 (min 0.1554) |
 | fd_dml_m4b_gpool_frz_gkd_kdpx@e15 | 15 | proxy/head | global_f1 0.8486 (min 0.8486) | local_f1 0.7595 (min 0.6555) | local_acc 0.8684 (min 0.7015) |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | private/head | global_f1 0.8208 (min 0.7930) | local_f1 0.7551 (min 0.6764) | local_acc 0.8844 (min 0.7735) |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | private/gp | global_f1 0.6811 (min 0.5669) | local_f1 0.5400 (min 0.3890) | local_acc 0.5054 (min 0.1448) |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | private/gpe | global_f1 0.7952 (min 0.7643) | local_f1 0.6942 (min 0.6081) | local_acc 0.8050 (min 0.5886) |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | private_ema/head | global_f1 0.8113 (min 0.7812) | local_f1 0.7384 (min 0.6519) | local_acc 0.8754 (min 0.6509) |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | private_ema/gp | global_f1 0.6531 (min 0.5366) | local_f1 0.5173 (min 0.3932) | local_acc 0.4652 (min 0.1179) |
+| fd_dml_m4b_gpool_frz_gkd_la05_kdpx@e15@fast | 15 | proxy/head | global_f1 0.8472 (min 0.8472) | local_f1 0.7593 (min 0.6468) | local_acc 0.8678 (min 0.6936) |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | private/head | global_f1 0.8223 (min 0.7983) | local_f1 0.7396 (min 0.6467) | local_acc 0.8659 (min 0.6808) |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | private/gp | global_f1 0.6750 (min 0.5787) | local_f1 0.5311 (min 0.3917) | local_acc 0.5038 (min 0.1537) |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | private/gpe | global_f1 0.7897 (min 0.7605) | local_f1 0.6840 (min 0.6042) | local_acc 0.7800 (min 0.5848) |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | private_ema/head | global_f1 0.8132 (min 0.7950) | local_f1 0.7252 (min 0.6290) | local_acc 0.8603 (min 0.6337) |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | private_ema/gp | global_f1 0.6547 (min 0.5678) | local_f1 0.5157 (min 0.3763) | local_acc 0.4712 (min 0.1400) |
+| fd_dml_m4b_gpool_frz_gkd_la15_kdpx@e15@fast | 15 | proxy/head | global_f1 0.8442 (min 0.8442) | local_f1 0.7557 (min 0.6481) | local_acc 0.8646 (min 0.7171) |
 | fd_dml_m4b_gpool_frz_gkd_la@e15 | 15 | private/head | global_f1 0.8189 (min 0.7976) | local_f1 0.7382 (min 0.6526) | local_acc 0.8670 (min 0.6626) |
 | fd_dml_m4b_gpool_frz_gkd_la@e15 | 15 | private/gp | global_f1 0.6600 (min 0.5451) | local_f1 0.5211 (min 0.3774) | local_acc 0.4752 (min 0.1304) |
 | fd_dml_m4b_gpool_frz_gkd_la@e15 | 15 | private/gpe | global_f1 0.7888 (min 0.7562) | local_f1 0.6831 (min 0.5970) | local_acc 0.7934 (min 0.5810) |
@@ -1142,6 +1451,30 @@ local = confusion đánh trọng số lại theo prior nhãn train của từng 
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast | 15 | private_ema/head | global_f1 0.8158 (min 0.7953) | local_f1 0.7336 (min 0.6498) | local_acc 0.8692 (min 0.6334) |
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast | 15 | private_ema/gp | global_f1 0.6582 (min 0.5440) | local_f1 0.5189 (min 0.3801) | local_acc 0.4736 (min 0.1299) |
 | fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast | 15 | proxy/head | global_f1 0.8526 (min 0.8526) | local_f1 0.7648 (min 0.6530) | local_acc 0.8694 (min 0.7303) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | private/head | global_f1 0.8128 (min 0.7861) | local_f1 0.7362 (min 0.6542) | local_acc 0.8652 (min 0.6915) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | private/gp | global_f1 0.6717 (min 0.5627) | local_f1 0.5274 (min 0.3784) | local_acc 0.5001 (min 0.1454) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | private/gpe | global_f1 0.7839 (min 0.7554) | local_f1 0.6811 (min 0.5986) | local_acc 0.7897 (min 0.5844) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | private_ema/head | global_f1 0.8067 (min 0.7852) | local_f1 0.7245 (min 0.6336) | local_acc 0.8602 (min 0.6414) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | private_ema/gp | global_f1 0.6454 (min 0.5292) | local_f1 0.5064 (min 0.3693) | local_acc 0.4610 (min 0.1166) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast | 15 | proxy/head | global_f1 0.8326 (min 0.8326) | local_f1 0.7432 (min 0.6558) | local_acc 0.8592 (min 0.7116) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | private/head | global_f1 0.8209 (min 0.7982) | local_f1 0.7411 (min 0.6559) | local_acc 0.8684 (min 0.6844) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | private/gp | global_f1 0.6727 (min 0.5703) | local_f1 0.5300 (min 0.3741) | local_acc 0.4942 (min 0.1581) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | private/gpe | global_f1 0.7900 (min 0.7623) | local_f1 0.6826 (min 0.6081) | local_acc 0.7852 (min 0.5868) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | private_ema/head | global_f1 0.8093 (min 0.7951) | local_f1 0.7282 (min 0.6466) | local_acc 0.8621 (min 0.6121) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | private_ema/gp | global_f1 0.6467 (min 0.5234) | local_f1 0.5090 (min 0.3666) | local_acc 0.4607 (min 0.1270) |
+| fd_dml_m4b_gpool_frz_gkd_la_kdpx_kd2@e15@fast | 15 | proxy/head | global_f1 0.8451 (min 0.8451) | local_f1 0.7538 (min 0.6486) | local_acc 0.8663 (min 0.6934) |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | private/head | global_f1 0.8220 (min 0.8073) | local_f1 0.7430 (min 0.6706) | local_acc 0.8668 (min 0.6396) |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | private/gp | global_f1 0.7037 (min 0.5946) | local_f1 0.5639 (min 0.4344) | local_acc 0.5430 (min 0.1760) |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | private/gpe | global_f1 0.7996 (min 0.7729) | local_f1 0.7000 (min 0.6117) | local_acc 0.8098 (min 0.5876) |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | private_ema/head | global_f1 0.8129 (min 0.7998) | local_f1 0.7328 (min 0.6555) | local_acc 0.8633 (min 0.6156) |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | private_ema/gp | global_f1 0.6831 (min 0.5718) | local_f1 0.5471 (min 0.4244) | local_acc 0.5134 (min 0.1658) |
+| fd_dml_m4b_gpool_frz_gkd_la_lap_kdpx@e15@fast | 15 | proxy/head | global_f1 0.8407 (min 0.8407) | local_f1 0.7558 (min 0.6560) | local_acc 0.8637 (min 0.6605) |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | private/head | global_f1 0.8278 (min 0.7971) | local_f1 0.7567 (min 0.6636) | local_acc 0.8790 (min 0.7706) |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | private/gp | global_f1 0.6789 (min 0.5811) | local_f1 0.5362 (min 0.3835) | local_acc 0.4980 (min 0.1617) |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | private/gpe | global_f1 0.8049 (min 0.7730) | local_f1 0.6939 (min 0.5952) | local_acc 0.7834 (min 0.5924) |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | private_ema/head | global_f1 0.8198 (min 0.7872) | local_f1 0.7417 (min 0.6403) | local_acc 0.8742 (min 0.7377) |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | private_ema/gp | global_f1 0.6613 (min 0.5611) | local_f1 0.5221 (min 0.3687) | local_acc 0.4718 (min 0.1407) |
+| fd_dml_m4b_gpool_frz_gkd_lau_kdpx@e15@fast | 15 | proxy/head | global_f1 0.8584 (min 0.8584) | local_f1 0.7653 (min 0.6498) | local_acc 0.8704 (min 0.7512) |
 | fd_dml_m4b_gpool_frz_gkd_pce@e15 | 15 | private/head | global_f1 0.8077 (min 0.7476) | local_f1 0.7737 (min 0.6784) | local_acc 0.8817 (min 0.8181) |
 | fd_dml_m4b_gpool_frz_gkd_pce@e15 | 15 | private/gp | global_f1 0.7865 (min 0.7083) | local_f1 0.6448 (min 0.4684) | local_acc 0.6974 (min 0.3539) |
 | fd_dml_m4b_gpool_frz_gkd_pce@e15 | 15 | private/gpe | global_f1 0.8219 (min 0.7756) | local_f1 0.7437 (min 0.6417) | local_acc 0.8408 (min 0.6770) |
@@ -1205,6 +1538,18 @@ local = confusion đánh trọng số lại theo prior nhãn train của từng 
 | fd_dml_m4b_gpool_q2_frz_gkd@e15 | 15 | private_ema/head | global_f1 0.6650 (min 0.5177) | local_f1 0.7307 (min 0.6229) | local_acc 0.8908 (min 0.8044) |
 | fd_dml_m4b_gpool_q2_frz_gkd@e15 | 15 | private_ema/gp | global_f1 0.3552 (min 0.1247) | local_f1 0.2789 (min 0.0859) | local_acc 0.1491 (min 0.0056) |
 | fd_dml_m4b_gpool_q2_frz_gkd@e15 | 15 | proxy/head | global_f1 0.4790 (min 0.4790) | local_f1 0.4400 (min 0.3008) | local_acc 0.4716 (min 0.2677) |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/head | global_f1 0.3130 (min 0.0607) | local_f1 0.3176 (min 0.0580) | local_acc 0.3466 (min 0.0505) |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/gp | global_f1 0.1690 (min 0.0050) | local_f1 0.1355 (min 0.0000) | local_acc 0.0599 (min 0.0001) |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/gpe | global_f1 0.2603 (min 0.0606) | local_f1 0.2334 (min 0.0453) | local_acc 0.2649 (min 0.0427) |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private_ema/head | global_f1 0.5724 (min 0.3455) | local_f1 0.5898 (min 0.3540) | local_acc 0.6962 (min 0.2628) |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private_ema/gp | global_f1 0.1453 (min 0.0050) | local_f1 0.1097 (min 0.0000) | local_acc 0.0228 (min 0.0000) |
+| fd_dml_m4b_gpool_q2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | proxy/head | global_f1 0.0578 (min 0.0578) | local_f1 0.0464 (min 0.0194) | local_acc 0.0865 (min 0.0201) |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | private/head | global_f1 0.8246 (min 0.8019) | local_f1 0.7493 (min 0.6740) | local_acc 0.8717 (min 0.7180) |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | private/gp | global_f1 0.6745 (min 0.5665) | local_f1 0.5296 (min 0.3983) | local_acc 0.5002 (min 0.1345) |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | private/gpe | global_f1 0.7916 (min 0.7599) | local_f1 0.6844 (min 0.5960) | local_acc 0.7818 (min 0.5875) |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | private_ema/head | global_f1 0.8157 (min 0.7977) | local_f1 0.7355 (min 0.6473) | local_acc 0.8677 (min 0.6395) |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | private_ema/gp | global_f1 0.6437 (min 0.5409) | local_f1 0.5033 (min 0.3804) | local_acc 0.4565 (min 0.1149) |
+| fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast | 15 | proxy/head | global_f1 0.8413 (min 0.8413) | local_f1 0.7505 (min 0.6391) | local_acc 0.8656 (min 0.6699) |
 | fd_dml_m4b_gpool_q4 | 6 | private/head | global_f1 0.6015 (min 0.4317) | local_f1 0.6828 (min 0.5396) | local_acc 0.8841 (min 0.7723) |
 | fd_dml_m4b_gpool_q4 | 6 | private/gp | global_f1 0.7173 (min 0.6186) | local_f1 0.6849 (min 0.5822) | local_acc 0.8528 (min 0.7296) |
 | fd_dml_m4b_gpool_q4 | 6 | private_ema/head | global_f1 0.5664 (min 0.3945) | local_f1 0.6464 (min 0.4907) | local_acc 0.8742 (min 0.7615) |
@@ -1216,6 +1561,36 @@ local = confusion đánh trọng số lại theo prior nhãn train của từng 
 | fd_dml_m4b_gpool_q4_frz_gkd@e15 | 15 | private_ema/head | global_f1 0.7957 (min 0.7546) | local_f1 0.7658 (min 0.6876) | local_acc 0.9033 (min 0.8260) |
 | fd_dml_m4b_gpool_q4_frz_gkd@e15 | 15 | private_ema/gp | global_f1 0.6433 (min 0.4791) | local_f1 0.5158 (min 0.3611) | local_acc 0.4519 (min 0.1158) |
 | fd_dml_m4b_gpool_q4_frz_gkd@e15 | 15 | proxy/head | global_f1 0.8258 (min 0.8258) | local_f1 0.7430 (min 0.6476) | local_acc 0.8600 (min 0.6295) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | private/head | global_f1 0.8232 (min 0.7993) | local_f1 0.7508 (min 0.6741) | local_acc 0.8724 (min 0.6702) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | private/gp | global_f1 0.6785 (min 0.5687) | local_f1 0.5354 (min 0.3830) | local_acc 0.5040 (min 0.1529) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | private/gpe | global_f1 0.7945 (min 0.7643) | local_f1 0.6905 (min 0.6080) | local_acc 0.7903 (min 0.5875) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | private_ema/head | global_f1 0.8140 (min 0.7976) | local_f1 0.7356 (min 0.6583) | local_acc 0.8668 (min 0.6109) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | private_ema/gp | global_f1 0.6531 (min 0.5414) | local_f1 0.5154 (min 0.3657) | local_acc 0.4691 (min 0.1310) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx@e15@fast | 15 | proxy/head | global_f1 0.8410 (min 0.8410) | local_f1 0.7513 (min 0.6353) | local_acc 0.8661 (min 0.6703) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/head | global_f1 0.8216 (min 0.7989) | local_f1 0.7470 (min 0.6654) | local_acc 0.8709 (min 0.6630) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/gp | global_f1 0.6809 (min 0.5777) | local_f1 0.5355 (min 0.3783) | local_acc 0.5064 (min 0.1587) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/gpe | global_f1 0.7944 (min 0.7658) | local_f1 0.6899 (min 0.6088) | local_acc 0.7961 (min 0.5865) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private_ema/head | global_f1 0.8129 (min 0.7930) | local_f1 0.7285 (min 0.6223) | local_acc 0.8655 (min 0.6224) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private_ema/gp | global_f1 0.6547 (min 0.5518) | local_f1 0.5151 (min 0.3608) | local_acc 0.4703 (min 0.1391) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | proxy/head | global_f1 0.8475 (min 0.8475) | local_f1 0.7560 (min 0.6460) | local_acc 0.8684 (min 0.6994) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | private/head | global_f1 0.8241 (min 0.8031) | local_f1 0.7479 (min 0.6513) | local_acc 0.8727 (min 0.6808) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | private/gp | global_f1 0.6762 (min 0.5736) | local_f1 0.5321 (min 0.3914) | local_acc 0.5013 (min 0.1565) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | private/gpe | global_f1 0.7934 (min 0.7640) | local_f1 0.6879 (min 0.6135) | local_acc 0.7858 (min 0.5867) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | private_ema/head | global_f1 0.8120 (min 0.7834) | local_f1 0.7266 (min 0.5660) | local_acc 0.8638 (min 0.6260) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | private_ema/gp | global_f1 0.6509 (min 0.5452) | local_f1 0.5121 (min 0.3430) | local_acc 0.4664 (min 0.1326) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@fast | 15 | proxy/head | global_f1 0.8465 (min 0.8465) | local_f1 0.7581 (min 0.6455) | local_acc 0.8677 (min 0.6886) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | private/head | global_f1 0.8177 (min 0.7926) | local_f1 0.7410 (min 0.6420) | local_acc 0.8676 (min 0.7161) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | private/gp | global_f1 0.6730 (min 0.5727) | local_f1 0.5290 (min 0.3872) | local_acc 0.4953 (min 0.1532) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | private/gpe | global_f1 0.7882 (min 0.7586) | local_f1 0.6842 (min 0.5966) | local_acc 0.7874 (min 0.5850) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | private_ema/head | global_f1 0.8110 (min 0.7885) | local_f1 0.7289 (min 0.6319) | local_acc 0.8634 (min 0.6379) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | private_ema/gp | global_f1 0.6491 (min 0.5324) | local_f1 0.5094 (min 0.3657) | local_acc 0.4643 (min 0.1150) |
+| fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast | 15 | proxy/head | global_f1 0.8427 (min 0.8427) | local_f1 0.7496 (min 0.6554) | local_acc 0.8627 (min 0.7293) |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/head | global_f1 0.7474 (min 0.6949) | local_f1 0.6852 (min 0.5807) | local_acc 0.8255 (min 0.5964) |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/gp | global_f1 0.2948 (min 0.0926) | local_f1 0.2141 (min 0.0326) | local_acc 0.1036 (min 0.0003) |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private/gpe | global_f1 0.6170 (min 0.4587) | local_f1 0.5278 (min 0.3068) | local_acc 0.6266 (min 0.2975) |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private_ema/head | global_f1 0.7834 (min 0.7270) | local_f1 0.7263 (min 0.6271) | local_acc 0.8515 (min 0.5974) |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | private_ema/gp | global_f1 0.3029 (min 0.0928) | local_f1 0.2227 (min 0.0252) | local_acc 0.1016 (min 0.0001) |
+| fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl@e15@fast | 15 | proxy/head | global_f1 0.4544 (min 0.4544) | local_f1 0.3841 (min 0.2943) | local_acc 0.5870 (min 0.3759) |
 | fd_dml_m4b_gpool_rej | 6 | private/head | global_f1 0.6168 (min 0.4426) | local_f1 0.6947 (min 0.5531) | local_acc 0.8831 (min 0.7631) |
 | fd_dml_m4b_gpool_rej | 6 | private/gp | global_f1 0.7282 (min 0.6260) | local_f1 0.6887 (min 0.5781) | local_acc 0.8505 (min 0.7330) |
 | fd_dml_m4b_gpool_rej | 6 | private/gpe | global_f1 0.6409 (min 0.4937) | local_f1 0.6968 (min 0.5560) | local_acc 0.8802 (min 0.7682) |

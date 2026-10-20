@@ -6,6 +6,7 @@
 - [Communication budget](communication-budget.md): R1 — byte thật từng phương án, thời gian contact, cổng R1 (tách từ
   đề xuất owner 17/10; các phương pháp của đề xuất đó đã thành file riêng trong methods, file gốc đã xóa).
 - [Computational cost](computational-cost.md): Big-O client/server, đo, so `fl_dagsnet_veremi`.
+- [So sánh fl_dagsnet_veremi](comparison-fl-dagsnet-veremi.md): truyền tin, tính toán, 10 metric (20 client) với 7 phương pháp.
 - [Luồng thông tin FL](federated-information-flow.md): cái gì rời client, SecAgg giả lập, scaler tập trung, holdout gộp (18/10).
 
 Ghi chú nghiên cứu theo ngày đã chuyển [archive/research](../archive/research/) (nguồn gốc của các file phương pháp):

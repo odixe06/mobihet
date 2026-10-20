@@ -130,6 +130,16 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   q2_frz_gkd private head 0,675 (ep6) → 0,577 (ep15), proxy 0,479 (−0,354 vs gkd dense). Dùng frz thì snapshot phải gần dense;
   kênh nén phải kiểm riêng với frz: **q4 (int4) qua** (Δ +0,001, byte proxy ÷7,6), q2 không.
   [Kết quả vòng 16–18](docs/methods/full-drift/results.md).
+- **Lượng tử chiều xuống làm tròn gần nhất với scale theo max hàng là nút thắt của kênh ít bit, EF không cứu được.** q2 có EF cả hai
+  chiều vẫn sụp (vòng 21 wc: private 0,313; phần dư server/|exact| 0,27 ep1 → 0,71 ep15, q4 chỉ 0,008): 3 mức {−1,0,1}·max đưa mọi phần
+  tử < max/2 về 0, replica client tụt lại mãi. Chiều lên làm tròn ngẫu nhiên (không lệch, trung bình K client) chịu nhiễu tốt hơn. Theo dõi
+  `q_residual_rel` từ ep1–2: tăng dần = kênh không theo kịp. Nén không mất mát (LZMA2) cho int4 lấy lại ~20 % byte miễn phí (trùng bit).
+  **Sửa 20/10 (vòng 22):** chiều lên 2-bit (làm tròn ngẫu nhiên + EF client, xuống int4) cũng hỏng (proxy 0,45) ⇒ "chiều lên chịu ít bit hơn"
+  sai. Nguyên nhân chung là **scale theo max hàng**: update proxy thật có crest max/RMS ~3,2 ⇒ 93 % phần tử < max/2; sai số tương đối q2 max
+  0,83 (gần nhất) / 1,45 (ngẫu nhiên), q3 0,40 / 0,58 (PASS). 3-bit hai chiều PASS và rẻ hơn int4 33 %. Trước khi chọn số bit, đo sai số tương đối
+  của bộ lượng tử trên update thật và so với mức đã PASS. [Kết quả vòng 20–22](docs/methods/full-drift/results.md).
+- **Logit adjustment cho client lệch nhãn: τ=1 với prior gộp là đủ.** τ 0,5/1,5, đích prior đều, la trên CE proxy, KD×2 đều nằm trong dải
+  nhiễu quanh τ=1 (vòng 20). Đích prior đều tăng proxy nhưng làm head bỏ lớp benign phổ biến (−0,042) ⇒ đích phải là prior thật của tập đánh giá.
 
 - Sketch-space error feedback không mặc định co: collision có thể khuếch đại residual và parameter rồi BN overflow.
   Đo decoded/residual norm, tính co và full-epoch stability; không suy toàn họ FetchSGD/EF bị bác bỏ từ adaptation này.
