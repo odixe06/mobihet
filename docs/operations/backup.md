@@ -18,9 +18,13 @@ Lịch sử từng đợt 14–20/10 (đã đẩy gì, đã xóa gì): [backup-h
   `kaggle.dvc` `381c1e32…dir` (10.777 entry, đẩy mới 71,56 GB), `input.dvc` `6ea020e5…dir` (2.644, 0 GB mới — trùng weights),
   `fixture-cache.dvc` `eb9eacad…dir` (23). `dvc status -c` 3 manifest: new/missing = 0, `deleted` 4.990 = chỉ thiếu cache local.
   Không đưa vào đợt này: hai output chấm pull dở/chưa audit (`fd-e03-12-s42zk02-…-f2` còn `.part`, `fd-e18-26-s42zi-…-f1`).
-- Git + bundle: commit cùng đợt này (xem `git log`), local = remote kiểm bằng `git ls-remote`.
+- Git `bcccbe5` (manifest + code/docs) rồi commit ghi dọn; local = remote (`git ls-remote`); bundle `--all` verify rồi thay trên Drive.
+- **Dọn local 21/10 ~17:37Z** (owner yêu cầu; từng file kiểm MD5 có trên remote cùng size, weights kiểm sha256 = hợp đồng chấm đã audit):
+  xóa 40 stage `artifacts/input/fd-e*` + `*-parent`, 190 predictions `.npz` của chấm đã audit, 178 weights train của round đã chấm audit;
+  WSL dùng 221 → 112 GB. Giữ: weights round chưa chấm, eval JSON/metrics/AUDITED, `fd-src-*`, manifest. Ổ C: (VHDX) chưa trả lại — owner
+  tự `sudo fstrim -v /` + `wsl --shutdown` + compact VHDX.
 - `docs/methods/full-drift/results/per-class-f1.csv` 14 MB > 10 MiB vẫn ở Git như các commit trước; chuyển DVC nếu cần đúng quy tắc.
-- **Còn lại sau đợt này:** output chấm COMPLETE chưa pull (ze r9–28, ze r49–50, zk r3–12, zk r13–22, zi r1–8), zi r18–26 (pull đủ, chưa audit),
+- **Còn lại sau đợt này:** output chấm COMPLETE chưa pull (za r45–50, ze r9–28, ze r49–50, zk r3–12, zk r13–22, zi r1–8), zi r18–26 (pull đủ, chưa audit),
   train S2 zi03/zk04 và chấm sau đó ⇒ đợt sau merge-push `kaggle.dvc` + `input.dvc`.
 
 ## Đẩy

@@ -9,19 +9,19 @@ Xe học IDS cộng tác qua RSU với giao tiếp hữu hạn; private model đ
 Giữ 66 feature, dataset/partition/scaler gốc; mọi model đang chạy là DAGSNet. Không raw/perturbed record,
 per-record activation/gradient rời client. Heterogeneous R2 thực nghiệm và contact/deadline R1 chưa chứng minh.
 
-## Trạng thái và quyết định hiện hành — 21/10/2026 ~13Z (phiên dừng)
+## Trạng thái và quyết định hiện hành — 21/10/2026 ~17:40Z (phiên dừng)
 
 - Phương pháp chốt: `gkd + la + kdpx`, proxy q3_zl (PASS seed42/43). [Kết quả/cổng](docs/methods/full-drift/results.md), [thiết kế](docs/methods/full-drift/design.md).
 - **Run cuối seed42** (q3_zl la_kdpx + đối chứng gkd × 20/50/100 client, 50 round × 1 epoch toàn train80%, chấm toàn test20% mỗi round,
   headline r50, không chọn HP/round bằng test): **za, zc, zg train xong r50**; ze r1–48, zi r1–26, zk r1–33 đã audit, S2 đang chạy.
   Chấm bằng bộ nhanh `fd_eval_fast.py` (lớp tolerance owner duyệt, khớp 99,96 %); owner chọn **song song thêm**, giữ EMA mọi round.
   Tag chấm **r29** từ ~10:40Z (gate tương đối ≤ 2 % max|logit|; gate tuyệt đối r27 vỡ ở round muộn, model không sai). Đã audit chấm:
-  za r1–44, zc r1–27, ze r1–8 + r29–33, zg/zk r1–2; ze train đủ r1–50. Vòng 25 `cv` đã cài + test local PASS, chưa push — chờ owner xác nhận byte ([continue](docs/operations/continue.md)).
+  za r1–44, zc r1–27, ze r1–8 + r29–33, zg/zk r1–2; ze train đủ r1–50. Sau 17:40Z: zc chấm đủ r1–50, zg r1–34, ze r1–8 + r29–48; còn COMPLETE chưa pull (owner: ổ chật, upload trước) — danh sách ở [continue](docs/operations/continue.md). Backup Git `bcccbe5` + DVC 21/10 ~17:30Z, local đã dọn phần đã backup.
   Exact kernel/round/account: [continue](docs/operations/continue.md); timing/contract: [pipeline](docs/operations/final-pipeline.md).
 - **Vòng 24 (owner 21/10: sinh mẫu có chủ đích): FAIL.** Probe 20: Gaussian gkd bất đồng sai chỗ; arm `xo` (lai ghép dòng own theo cặp
   bất đồng, 0 byte) đúng chỗ nhưng s42 ep15 Δ +0,0076 < +0,010 ⇒ dừng hướng ([results §Vòng 24](docs/methods/full-drift/results.md));
   xou (đối chứng) chỉ còn mô tả. Run cuối giữ phương pháp chốt. Phân tích sau FAIL (probe 21/22): 77 % lỗi private là lỗi teacher cũng sai
-  ⇒ đề xuất vòng 25 `cv` hiệu chỉnh teacher bằng đặc trưng ảo theo lớp ([hồ sơ](docs/research/methods/teacher-virtual-feature-calibration.md)), chờ owner.
+  ⇒ vòng 25 `cv` hiệu chỉnh teacher bằng đặc trưng ảo theo lớp ([hồ sơ](docs/research/methods/teacher-virtual-feature-calibration.md)): owner đặt ngân sách ≤ 1,5× byte ⇒ chỉ **cvl** (×1,45 ở 15 epoch; cvf ×6,8 loại), cổng khóa, push r30 khanhmay0304 ~16:20Z. Proxy vẫn trao đổi; R2 giữ theo thiết kế.
 - Owner còn dùng Kaggle cho dự án khác: quota hụt bất thường là do dự án đó ([kaggle](docs/operations/kaggle.md)); đọc quota live trước mỗi push.
 - odixeuit dùng chung với dự án khác của owner: không xếp chấm/train final lên đó. minhtrit06 là luồng chấm K50 chính (cache K50 sẵn sàng 10:55Z).
 - `QUEUED` = chờ GPU. `RUNNING`/`COMPLETE`/W&B finished không chứng minh kết quả; cần collect + audit artifact. `kaggle datasets create` có thể báo

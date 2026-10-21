@@ -1,4 +1,4 @@
-# Continue — run cuối seed42 + vòng 25, 21/10/2026 ~13Z (phiên dừng, owner tắt máy)
+# Continue — run cuối seed42 + vòng 25, 21/10/2026 ~17:40Z (phiên dừng; owner dọn ổ trước task mới)
 
 Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → trang này.
 [Pipeline/contract/timing](final-pipeline.md) · [Results đã audit](../methods/full-drift/results.md) ·
@@ -25,7 +25,7 @@ Round S1 ổn định: 20c ~788 s, 50c ~815 s, 100c ~1.270–1.440 s. Seed43 ch�
 
 | chuỗi | AUDITED | đang chạy (tag) | chưa xếp |
 |---|---|---|---|
-| za 20c | r1–44 (r28–44 `--partial`) | r45–50 odixe0502 `-f2` (push 16:04Z; `-f1` minhtran0601 không khởi động, ERROR log rỗng) | — |
+| za 20c | r1–44 (r28–44 `--partial`) | r45–50 odixe0502 `-f2` **COMPLETE 17:36Z chưa pull** (`-f1` minhtran0601 không khởi động) | — |
 | zc 20c | **r1–50 xong** (r28–50 `-f2` audited 21/10 ~16:30Z) | — | — |
 | ze 50c | r1–8, r29–48 | r9–28 minhtrit06 `-f2` **COMPLETE chưa pull**; r49–50 dinhan25 (push 16:06Z) | — |
 | zg 50c | r1–34 | r35–50 minhtrit06 (push ~16:30Z) | — |
@@ -63,13 +63,18 @@ và đọc cổng. PASS ⇒ bản 16-bit (×1,34 ở 50 round) + kiểm offline 
 
 ## Làm tiếp theo thứ tự
 
-1. Notebook chấm COMPLETE ⇒ `collect_eval.py <rid> --jobs 16`. ERROR ⇒ pull log; vỡ gate r27 ⇒ `--partial` + chấm phần thiếu
-   bằng r29; ERROR log `[]` không output ⇒ push lại nguyên trạng `launch_eval.sh … <suffix f2>`.
-2. Slot dinhan25 trống (ze r34–48 hoặc zg r23–34 xong) ⇒ `launch_eval.sh fd-s42ze04-20261015-r25-v1 49-50 dinhan25`.
-3. Slot minhtrit06 trống ⇒ zg r35–50.
-4. Owner chọn có thử `cv` (vòng 25) không ⇒ nếu có: cài arm trên source tag mới, test local, khóa cổng, push trên account ngoài run cuối.
-5. zk04/zi03 COMPLETE (zi03 ~20Z, zk04 ~19–20Z) ⇒ collect ⇒ chấm zk r34–50, zi r27–50 trên account K100 còn quota (anhtruong1909/takids1909 sau khi train xong).
-6. Đủ eval r1–50 cả 6 chuỗi ⇒ `report_final.py` (đã sửa đọc proof nhiều round). Không Git/DVC push khi owner chưa yêu cầu.
+0. **Ổ local:** owner 21/10 ~17Z: upload trước, pull sau (C: còn ~15 GB, VHDX WSL). Đã backup Git `bcccbe5` + DVC (đợt ~17:30Z,
+   [backup](backup.md)) rồi xóa local: stage chấm/parent `artifacts/input/fd-e*`/`*-parent`, predictions các đợt chấm đã audit, weights train
+   các round đã chấm audit. Cần lại ⇒ `dvc pull` theo manifest; push lại chấm round đã audit phải pull weights trước (gen_eval đọc weights local).
+   Weights round **chưa** chấm (za r45–50, ze r9–28/r49–50, zg r35–50, zk r3–22, zi r1–8/r18–26) vẫn ở local.
+1. Kernel COMPLETE chưa pull (pull từng cái, merge-push DVC rồi mới pull tiếp nếu ổ chật): za r45–50 `odixe0502/…-e45-50-s42za02…-f2`, ze r9–28 `minhtrit06/…-e09-28-s42ze…-f2`,
+   ze r49–50 `dinhan25/…-e49-50-s42ze04…-f1`, zk r13–22 `trietbackup/…-e13-22-s42zk02…-f1`, zi r1–8 `trietbackup/…-e01-08-s42zi…-f1`,
+   zk r3–12 `accanniez/…-e03-12-s42zk02…-f2` (đang có `.part`, collect tự nối Range). zi r18–26: đã pull đủ, chỉ chạy `collect_eval.py` để audit.
+2. Đang chạy lúc dừng: train zi03 (anhtruong1909, ~20Z), zk04 (takids1909, ~19–20Z); chấm zg r35–50 minhtrit06;
+   screening cvl khanhmay0304 (~22Z). Poll/watchdog local đã dừng cùng phiên: dựng lại từ marker `PUSHED` chưa có `AUDITED.json`.
+3. zk04/zi03 COMPLETE ⇒ collect ⇒ chấm zk r34–50, zi r27–50 trên account K100 ≠ account train còn quota (đọc quota live).
+4. cvl COMPLETE ⇒ `collect_fd.py --only fd-s42cl-20261015-r30-v1`, `report_fd.py`, đọc cổng [design §Vòng 25](../methods/full-drift/design.md).
+5. Đủ eval r1–50 cả 6 chuỗi ⇒ `report_final.py` (đã sửa đọc proof nhiều round). Git/DVC chỉ khi owner yêu cầu.
 
 ```bash
 B=methods/full-drift/builds/fd-probe/scripts
