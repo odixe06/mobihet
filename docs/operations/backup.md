@@ -13,10 +13,14 @@ Lịch sử từng đợt 14–20/10 (đã đẩy gì, đã xóa gì): [backup-h
 
 ## Lần gần nhất và phần còn lệch
 
-- **20/10:** Git `7862c7d` trên `main` (local = remote lúc đó), bundle verify. DVC fd-probe `kaggle.dvc` `23c83f48…dir` (7033 file),
-  `input.dvc` `485fc49d…dir` (1494 file); `dvc status -c`: new/missing = 0.
-- **Chưa backup từ sau đó:** thay đổi docs/source chưa commit (run cuối r24/r25, gọn tài liệu 20/10), output fd-probe thu từ vòng 23 trở đi
-  ⇒ đợt sau: `dvc_merge_push.py` cho fd-probe `kaggle.dvc` + `input.dvc`, commit, push, thay bundle.
+- **21/10 ~03Z:** Git `b269ab0` trên `main` (local = remote) + commit ghi bản này; bundle `--all` verify sau commit ghi.
+  DVC fd-probe: `kaggle.dvc` `4058a31d…dir` (7980 entry), `input.dvc` `3437a3a0…dir` (1723), **mới** `fixture-cache.dvc`
+  `ca5cfb3e…dir` (13: marker cache fixture theo account + `pull/`). `dvc status -c` 3 manifest: new/missing = 0; `deleted` 3370 = chỉ thiếu
+  cache local (merge-push ghi thẳng remote).
+- `docs/methods/full-drift/results/per-class-f1.csv` 13,4 MB > 10 MiB vẫn ở Git như các commit trước (12,9 MB từ 20/10); nếu cần đúng quy tắc
+  thì chuyển sang DVC ở đợt sau.
+- **Chưa backup:** output chấm nhanh `-f1` (đang chạy 21/10), S1 r25 (tự dừng ~07–09Z) ⇒ đợt sau `dvc_merge_push.py` `kaggle.dvc`
+  + `input.dvc` + `fixture-cache.dvc`, commit, push, thay bundle.
 
 ## Đẩy
 
