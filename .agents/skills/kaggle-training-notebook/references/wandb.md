@@ -67,6 +67,22 @@ Order of preference:
 
    Then assert both that the old form raises and that `wandb.login(key=...)` returns True
    and `wandb.Api().default_entity` resolves.
+
+   **Quiet variant (re-checked 2026-10, wandb 0.28.0 and 0.29.0, clean HOME, no netrc):**
+   the key argument prints `If you're specifying your api key in code...`, `anonymous=` prints
+   `has no effect and will be removed`, and the login writes a fresh netrc. Setting
+   `WANDB_API_KEY` **before** `wandb.login(verify=True)` — no `key=`, no `anonymous=`, **no
+   `relogin=True`** — logs `Loaded credentials ... from WANDB_API_KEY`, prints none of those and
+   writes no netrc. Only the `relogin=True` + env combination fails; re-run the clean-HOME
+   reproduction above whenever the wandb version or this call changes.
+
+   **Pin a wandb whose dependencies the Kaggle image already satisfies.** `pip install` of a
+   client that needs a newer shared library upgrades it in the image and prints
+   `ERROR: pip's dependency resolver ...` conflict lines on every kernel (2026-10: wandb 0.29.0
+   requires `opentelemetry-api>=1.43`; the image ships 1.38, pinned by preinstalled
+   `google-adk`/`opentelemetry-sdk`; 0.28.0 has no opentelemetry dependency). The run is not
+   harmed, but the noise hides real errors. Check the candidate's `requires_dist` on PyPI against
+   the image before pinning, and pass `--progress-bar off` with `--quiet`.
 3. **Private credential dataset** — a separate fallback, also requires authorization.
 
 **The trap that costs a launch:** a Kaggle **CLI/API push cannot attach an editor-selected

@@ -1,4 +1,8 @@
-# FullDrift — kết quả seed42 epoch1–6 (audited 15/10 ~21:30Z, sàng lọc một seed)
+# FullDrift — kết quả đã audit
+
+**Chốt20/10:** q3_zl PASS cả seed42/43, chọn cho final; 2-bit FAIL. Bảng dưới giữ lịch sử theo vòng.
+Final r24 crash trước round1, không có metric final; tiến trình r25 tại [handoff](../../operations/continue.md),
+không trộn kết quả probe vào final.
 
 Contract khóa trước push: [design](design.md). Full 100% train80% trừ holdout nội bộ (train 40,0M dòng),
 group/old 65.536 dòng; test chỉ epoch 6, mô tả. Sessions `annhannh331/mobihet-fd-s42{a,b}-20261015-v2`,
@@ -571,3 +575,19 @@ m4b +0,74 → frz +0,18 → gkd +0,13; gp trên frz/gkd −0,41…−0,47 (sửa
   vì làm tròn ngẫu nhiên không lệch" **bị bác**: không lệch nhưng phương sai theo scale max hàng quá lớn so với delta mỗi round. xc (`q3_u2`) không push.
 - **q4_zl lặp s43 PASS** (+0,005 vs te) ⇒ kênh nén không giảm performance ở cả hai seed.
 - Bootstrap (31,9 MB) giờ là **31 %** tổng byte của q3 (103 MB).
+
+## Vòng 23 — 2-bit bước RMS + lặp q3 s43 (`--fast`, head; yb audited 20/10 ~08Z, ya-v2 audited 20/10 ~15Z)
+
+| arm | session | private ep6 / **ep15** / test | Δ ep15 (tệ nhất) | proxy ep15 / test | byte proxy 15 ep (up + down) | `q_residual_rel` ep1 → ep15 | cổng |
+|---|---|---|---|---|---:|---|---|
+| `q2_rs_…_la_kdpx_zl` s42 | yb | 0,7785 / **0,8136** / 0,8137 | **−0,0133** (−0,001) vs tb | 0,8284 / 0,8166 (−0,024) | 52,0 (26,8 + 25,2) | 0,094 → 0,078 (gần phẳng) | **FAIL** noninferior |
+| `q3_…_la_kdpx_zl` s43 | ya-v2 | 0,7865 / **0,8160** / 0,8166 | **+0,0032** (+0,0054) vs te | 0,8434 / 0,8250 | **66,7** | 0,095 → 0,022 | **PASS** noninferior |
+| (tham chiếu) `q3_…_zl` s42 | xa | 0,7976 / 0,8246 / 0,8216 | −0,0024 | 0,8413 / 0,8280 | 66,8 | 0,097 → 0,021 | PASS (vòng 22) |
+
+- **Bước RMS chữa được sụp đổ của 2-bit nhưng không giữ performance.** q2 scale max (wc) phân kỳ (residual 0,27 → 0,71, proxy sụp); q2_rs ổn định
+  (proxy 0,828, client tệ nhất ≈ tb) nhưng private −0,013, proxy −0,024. Dấu hiệu sai đã khóa trúng một nửa: **residual không giảm như q3**
+  (0,078 ở ep15 so 0,021) ⇒ phần bị cắt (> 1,5 bước) dồn lại trong EF server mỗi round, downlink 3 mức không xả kịp; proxy không sụp.
+- **Lợi byte nhỏ hơn dự kiến:** −22 % so q3 (66,8 → 52,0 MB), dự kiến −32 %; LZMA2 nén mã 2-bit kém (tỷ lệ downlink 0,74, q3 0,54).
+  Đổi −0,011 F1 lấy 14,8 MB không đáng ⇒ **2-bit loại**; kênh = q3_zl nếu ya-v2 (s43) PASS, nếu không q4_zl (PASS cả 2 seed).
+
+- **Vòng 23 đã audit đủ:** ya-v2 15/15 round, 87 file pull không thiếu, executed source khớp, 186 lượt kiểm predictions → confusion → 10 metric; weights ep6/15 strict và hữu hạn. q3_zl PASS cả s42/s43 ⇒ **chốt q3_zl**, không chạy tiếp nhánh 2-bit hay tổ hợp q3_u2 đã mất điều kiện.

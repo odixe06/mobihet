@@ -20,7 +20,7 @@ credential files or token values; report only filenames, account names and verif
 ## Project account roster
 
 For this MobiHet checkout, read repository-root
-[docs/operations/kaggle-accounts.md](../../../../docs/operations/kaggle-accounts.md)
+[docs/operations/kaggle.md](../../../../docs/operations/kaggle.md)
 when selecting or verifying accounts added on 2026-10-15 (`annhtnt`, `takids1909`,
 `accanniez`, `nguyenminhtran060113`). It records usernames, owner-provided emails and credential filenames;
 secret values remain in `~/.kaggle/accounts/`. Discover current files with `list`;

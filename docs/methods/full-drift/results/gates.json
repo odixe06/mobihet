@@ -521,6 +521,12 @@
     "benign_delta": -0.02997875731812999,
     "promising": false
   },
+  "fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl@e15@fast:private_ema": {
+    "control": "private/gp",
+    "delta": -0.03860870662587085,
+    "benign_delta": 0.0034598612918169958,
+    "promising": false
+  },
   "fd_dml_m4b_gown@s43:private_ema": {
     "control": "private/gp",
     "delta": 0.004100208905635561,
@@ -657,6 +663,12 @@
     "control": "private/gp",
     "delta": -0.10656816764818777,
     "benign_delta": -0.052401151705796845,
+    "promising": false
+  },
+  "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@s43@fast:private_ema": {
+    "control": "private/gp",
+    "delta": -0.1060134039361304,
+    "benign_delta": -0.0813657481663097,
     "promising": false
   },
   "fd_dml_m4b_own@s43:private_ema": {
@@ -1470,6 +1482,15 @@
     "worst_delta": 0.41729297090258766,
     "promising": true
   },
+  "fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl@e15@fast:private_gpe_vs_gp": {
+    "control": "private/gp",
+    "epoch": 6,
+    "rule": "gain+worst",
+    "delta": 0.42882171608581376,
+    "benign_delta": 0.6098283395373885,
+    "worst_delta": 0.5037148904577743,
+    "promising": true
+  },
   "fd_dml_m4b_gpool_rej@s43:private_gpe_vs_gp": {
     "control": "private/gp",
     "epoch": 6,
@@ -1522,6 +1543,15 @@
     "delta": 0.22506565304799564,
     "benign_delta": 0.4645403708201597,
     "worst_delta": 0.39987541989360054,
+    "promising": true
+  },
+  "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@s43@fast:private_gpe_vs_gp": {
+    "control": "private/gp",
+    "epoch": 6,
+    "rule": "gain+worst",
+    "delta": 0.25556738753038666,
+    "benign_delta": 0.4862930659066283,
+    "worst_delta": 0.4042772581084888,
     "promising": true
   },
   "fd_dml_m4b_frz@e15:private_head_vs_fd_dml_m4b@e15_gp@ep15": {
@@ -1941,6 +1971,28 @@
     "worst_delta": 0.006546626307947223,
     "proxy_delta": 0.01004241689547225,
     "promising": true
+  },
+  "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@s43@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast_head@ep15": {
+    "control": "fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast private/head",
+    "epoch": 15,
+    "rule": "noninferior",
+    "primary": "private/head",
+    "delta": 0.003234078361268544,
+    "benign_delta": -0.00429760752353503,
+    "worst_delta": 0.005365693301527696,
+    "proxy_delta": 0.01079652784459173,
+    "promising": true
+  },
+  "fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl@e15@fast:private_head_vs_fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast_head@ep15": {
+    "control": "fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast private/head",
+    "epoch": 15,
+    "rule": "noninferior",
+    "primary": "private/head",
+    "delta": -0.013332407646085342,
+    "benign_delta": 0.00815215764351196,
+    "worst_delta": -0.0005128982202349253,
+    "proxy_delta": -0.024126304225851825,
+    "promising": false
   },
   "fd_dml_m4b_kdcap_frz:private_gp_vs_fd_dml_m4b_kdcap": {
     "descriptive": true,

@@ -20,4 +20,4 @@ Byte Python giữ nguyên. Driver cũ vẫn import namespace `mh` qua facade `mh
 notebook copy đủ 40 tên source cũ để fingerprint/checkpoint không đổi. Không sửa import hoặc thêm tên file vào
 snapshot đã chạy. Factory lịch sử không thay quyết định learned model hiện DAGSNet-only.
 
-[Ownership và tên cũ/mới](../docs/operations/package-ownership.md) · [Cấu trúc](../docs/operations/project-layout.md).
+[Ownership và tên cũ/mới](../docs/operations/project-layout.md) · [Cấu trúc](../docs/operations/project-layout.md).

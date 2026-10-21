@@ -10,4 +10,4 @@ Pilot r20 hai seed PUSHED 15/10 12:00Z trên `nguyenminhtran060113` (14 arm/seed
 
 Preflight local: `am_<base>` bit-exact v8 `h_<base>` (smoke r1/r3); exact full-vs-resume r3 PASS cho q4 và swap;
 emitted controller với worker giả PASS (queue, cô lập worker lỗi, prune giữ r10/r20); dataset 110 names/sizes PASS.
-W&B project `mobihet-antimem`. Source/notebook/artifact: [build](../../../methods/anti-memorization/builds/antimem-pilot/).
+W&B project `mobihet-antimem`. Source/notebook/artifact: [build](../../../methods/anti-memorization/builds/antimem-pilot).

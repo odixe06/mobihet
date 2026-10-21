@@ -37,7 +37,7 @@ def main():
     snapshot = dict(observed_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
                     evidence='owner-scoped latest batch version status, not artifact verification or session heartbeat',
                     kernels=rows)
-    (ROOT / 'docs/operations/kernel-status-current.json').write_text(json.dumps(snapshot, indent=2))
+    (ROOT / 'docs/operations/registry/kernel-status-current.json').write_text(json.dumps(snapshot, indent=2))
     counts = {state: sum(row['status'] == state for row in rows) for state in sorted({v['status'] for v in rows})}
     print('Project kernels:', len(rows), counts, flush=True)
     for row in rows:

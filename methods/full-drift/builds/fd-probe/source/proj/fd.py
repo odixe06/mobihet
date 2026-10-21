@@ -36,7 +36,7 @@ from mh.v2_methods import calibrate, finite
 from mh.v2_math import SecureSum, pack_vector, unpack
 from mh.metrics import METRIC_KEYS, metrics_from_confusion, per_class_from_confusion
 from mh.model_packet import Codec
-from mh.v7_nystrom import Method as Gaussian
+from mh import v7_nystrom as G
 from full_method import Method as FullMethod
 from full_run import Run as FullRun
 
@@ -105,6 +105,27 @@ BLOCK = ['f_rcv_pos_noise_x', 'f_rcv_pos_noise_y', 'f_rcv_spd_noise', 'f_rcv_acl
          'f_rcv_noise_mag', 'f_rcv_profile_normal', 'f_rcv_profile_cautious', 'f_rcv_profile_aggressive']
 POSITION = ['f_rcv_x_rel', 'f_rcv_y_rel', 'f_snd_x_rel', 'f_snd_y_rel']
 TRAIN_ROWS, TEST_ROWS = None, 10761343   # train rows are read from the holdout manifest
+
+
+def fixture_path(args):
+    return P.ROOT / ('papers/final/fixture' if getattr(args, 'final', False) and not args.smoke else 'papers/pilot/fixture')
+
+
+class Gaussian(G.Method):
+    """Legacy Gaussian constructor with the active fixture in its packet context."""
+    def __init__(self, run, initialize=True):
+        self.R, self.arm = run, run.a.arm
+        self.role, self.proxy, self.version, self.diag = 'private', [], 0, {}
+        self.layout = G.Layout(run.init)
+        self.global_vector = self.layout.flatten(run.init).clone()
+        self.form = self.arm.split('_')[1]
+        self.rank = int(self.form[-1]) if self.form.startswith(('nys', 'lr')) else 0
+        self.mode = self.arm.split('_')[-1] if self.form.startswith('nys') else 'fl'
+        fixture = digest(fixture_path(run.a) / 'manifest.json')
+        self.context = hashlib.sha256(json.dumps(dict(arm=self.arm, seed=run.a.seed,
+            fixture=fixture, omega=G.OMEGA_SHA, epsilon=G.EPS, schema=1), sort_keys=True).encode()).digest()[:16]
+        self.packets, self.tables = {}, []
+        if initialize: self.make_tables()
 
 
 def is_buffer(name):
@@ -289,7 +310,8 @@ class Method(FullMethod):
         self.cop = 'cop' in tokens; assert not self.cop or (self.paux and self.gmode == 'fl')
         if self.cop and initialize: self.make_copula()
         elif self.paux:
-            self.gaussian = Gaussian(SimpleNamespace(init=run.init, dev=run.dev, a=SimpleNamespace(arm='n_full', seed=run.a.seed)),
+            self.gaussian = Gaussian(SimpleNamespace(init=run.init, dev=run.dev, a=SimpleNamespace(arm='n_full', seed=run.a.seed,
+                                      final=getattr(run.a, 'final', False), smoke=run.a.smoke)),
                                      initialize=False)
             if initialize:
                 self.gaussian.R = run; self.gaussian.mode = self.gmode
@@ -315,13 +337,17 @@ class Method(FullMethod):
 
     def start_round(self):
         super().start_round()
+        for key in ('codec_up_encode_seconds', 'codec_up_decode_seconds', 'codec_down_encode_seconds', 'codec_down_decode_seconds'):
+            self.diag[key] = 0.
         if self.bits:
             self.qsum, self.qseen = {}, set()
 
     def proxy_epoch(self, k, r):
         """QProxy (antimem): up = per-row int-b delta vs the replica, stochastic; BN buffers fp16; integers raw."""
         if not self.bits:
-            return super().proxy_epoch(k, r)
+            started = time.perf_counter(); result = super().proxy_epoch(k, r)
+            self.diag['codec_up_encode_seconds'] += time.perf_counter() - started
+            return result
         self.accumulate_quantized(k, r, self.quantized_wire(k, r))
         return None, self.logs[k]
 
@@ -338,11 +364,14 @@ class Method(FullMethod):
             else:
                 _, q, scale, _ = quantize(value.detach().float() - self.global_state[name].float(), self.ubits, g, self.rs)
                 entries[name] = (q, scale)
-        return self.qpacket_up.encode(entries, r - 1, r)
+        started = time.perf_counter(); packet = self.qpacket_up.encode(entries, r - 1, r)
+        self.diag['codec_up_encode_seconds'] += time.perf_counter() - started
+        return packet
 
     def accumulate_quantized(self, k, r, packet):
         """Server side of QProxy: decode client k's packet, running sum over clients in client order."""
-        wires = self.qpacket_up.decode(packet, self.R.dev, r - 1)
+        started = time.perf_counter(); wires = self.qpacket_up.decode(packet, self.R.dev, r - 1)
+        self.diag['codec_up_decode_seconds'] += time.perf_counter() - started
         for name, wire in wires.items():
             if not wire.is_floating_point():
                 self.qsum[name] = wire if name not in self.qsum else torch.maximum(self.qsum[name], wire)
@@ -364,7 +393,10 @@ class Method(FullMethod):
             else:
                 self.exact[name] = self.exact[name] + (total / self.R.K).float()
                 _, q, scale, _ = quantize(self.exact[name] - self.global_state[name], self.bits, rms=self.rs); entries[name] = (q, scale)
-        packet = self.qpacket.encode(entries, r - 1, r); decoded = self.qpacket.decode(packet, self.R.dev, r - 1)
+        started = time.perf_counter(); packet = self.qpacket.encode(entries, r - 1, r)
+        self.diag['codec_down_encode_seconds'] += time.perf_counter() - started
+        started = time.perf_counter(); decoded = self.qpacket.decode(packet, self.R.dev, r - 1)
+        self.diag['codec_down_decode_seconds'] += time.perf_counter() - started
         num = den = 0.
         for name, total in self.qsum.items():   # what every client rebuilds from the downlink bytes
             if not total.is_floating_point() or is_buffer(name): new = decoded[name]
@@ -522,7 +554,7 @@ class Method(FullMethod):
 
 class Run(FullRun):
     def __init__(self, args):
-        self.a, self.dev, self.K, self.bytes = args, torch.device('cuda'), 20, []
+        self.a, self.dev, self.K, self.bytes = args, torch.device('cuda'), getattr(args, 'clients', 20), []
         tokens = args.arm.split('_')
         self.aux_w = GW2 if 'gw2' in tokens else args.aux_weight
         self.kdup, self.kdpx = 'kd2' in tokens, 'kdpx' in tokens   # round 11 KD weights (private x2 / proxy side capped)
@@ -550,7 +582,7 @@ class Run(FullRun):
         hidden = BLOCK + POSITION if 'm4b' in tokens else POSITION if self.swap else []
         # --final (owner 19/10): the final-protocol fixture (every train80% row, no group/old); smoke reuses the pilot fixture
         self.final = getattr(args, 'final', False)
-        fixture = P.ROOT / ('papers/final/fixture' if self.final and not args.smoke else 'papers/pilot/fixture')
+        fixture = fixture_path(args)
         manifest = json.loads((fixture / 'manifest.json').read_text())
         names = manifest['features']
         self.block = torch.tensor([names.index(n) for n in BLOCK], device=self.dev)
@@ -596,7 +628,9 @@ class Run(FullRun):
         self.work_teacher = copy.deepcopy(self.init).eval() if self.frz else None
         self.syn_teacher = copy.deepcopy(self.init).eval() if self.rej or self.p1 or self.gkd else None
         self.compiled = {}; self.compile_gates = []
-        if args.backend == 'compiled':
+        if args.backend == 'compiled' and getattr(args, 'evaluate_only', False):
+            self.compile_extra(self.eval_template, 'teacher', 16384)
+        elif args.backend == 'compiled':
             arm = args.arm; args.arm = arm + '_dml' if self.fedavg else arm   # frozen preflight compiles the proxy only for 'dml'
             batch = args.batch; args.batch = 2 * batch if self.cons else batch   # cons: both views in one forward
             self.compile_preflight(); args.arm = arm; args.batch = batch
@@ -898,6 +932,7 @@ class Run(FullRun):
         """Client k's local epoch and upload, detached from the server so any process can run it; install() applies it."""
         if method.kd: method.prepare(k, r)
         start, swap = len(self.bytes), list(self.swap_stats)
+        encoding_before = method.diag['codec_up_encode_seconds']
         log = self.private_epoch(method, k, r); up = None
         if method.kd:
             if method.bits: up = ('q', method.quantized_wire(k, r))
@@ -907,19 +942,24 @@ class Run(FullRun):
         delta = [a - b for a, b in zip(self.swap_stats, swap)]; self.swap_stats = swap
         cpu = lambda model: {n: v.detach().cpu() for n, v in model.state_dict().items()}
         ef = {n: v.cpu() for (c, n), v in method.ef_state.items() if c == k} if getattr(method, 'ef', False) else None
-        return dict(k=k, log=log, logs=method.logs[k], rows=rows, swap=delta, up=up, private=None if self.fedavg else cpu(self.priv[k]),
+        return dict(k=k, log=log, logs=method.logs[k], rows=rows, swap=delta, up=up,
+                    codec_up_encode_seconds=method.diag['codec_up_encode_seconds'] - encoding_before,
+                    private=None if self.fedavg else cpu(self.priv[k]),
                     proxy=cpu(method.proxy[k]) if method.kd and method.own else None, ef=ef)
 
     def install(self, method, res, r, private_logs, proxy_logs):
         """Server side of client_round(), called in client order: the same state and byte log as the serial loop in main()."""
         k = res['k']
+        if k not in self.own: method.diag['codec_up_encode_seconds'] += res['codec_up_encode_seconds']
         if res['private'] is not None: self.priv[k].load_state_dict(res['private'], strict=True)
         method.logs[k] = res['logs']; private_logs.append(res['log'])
         self.bytes.extend(res['rows']); self.swap_stats = [a + b for a, b in zip(self.swap_stats, res['swap'])]
         if method.kd:
             kind, up = res['up']
             if kind == 'q': method.accumulate_quantized(k, r, up)
-            elif up is not None: method.aggregate_sum.add(k, up)
+            elif up is not None:
+                started = time.perf_counter(); method.aggregate_sum.add(k, up)
+                method.diag['codec_up_decode_seconds'] += time.perf_counter() - started
             if res['proxy'] is not None: method.proxy[k].load_state_dict(res['proxy'], strict=True)
             proxy_logs.append(method.logs[k])
         if res.get('ef'):   # copy of the client's residual for rank 0's resume bundle (the owning process keeps computing with its own)
@@ -1124,7 +1164,13 @@ def main():
     p.add_argument('--fast', action='store_true')
     # owner 19/10 (protocol §3): final 50-epoch run -- train every train80% row, official test20% after every round, headline r50
     p.add_argument('--final', action='store_true')
+    p.add_argument('--clients', type=int, choices=(20, 50, 100), default=20)
+    p.add_argument('--defer_eval', action='store_true', help='commit training; evaluate every round in separate notebooks')
+    p.add_argument('--session_rounds', type=int, help='operational cap; total cosine schedule remains --rounds 50')
     a = p.parse_args()
+    assert a.final or a.clients == 20
+    assert not a.defer_eval or a.final
+    assert a.session_rounds is None or a.session_rounds > 0
     assert not a.final or a.smoke or a.stop_after == 50, 'final runs end at round 50 (sessions chain with --parent)'
     if 'g512' in a.arm.split('_'): a.aux_batch *= 2   # round 18: 512 synthetic rows per batch (smoke: 128)
     if a.smoke: a.stop_after = 2; a.aux_batch = 128 if 'g512' in a.arm.split('_') else 64
@@ -1137,9 +1183,11 @@ def main():
     out = Path(a.out) / (f'{a.arm}_s{a.seed}' + ('' if a.smoke or a.stop_after == 6 else f'_e{a.stop_after}')); out.mkdir(parents=True, exist_ok=True)
     assert not (out / 'config.json').exists(), 'single-session probe: no resume'
     config = {k: v for k, v in vars(a).items() if k not in ('out', 'wandb_online', 'wandb_project', 'max_hours', 'workers', 'rank', 'address',
-                                                            'parent', 'parent_round', 'fast', 'final')}
+                                                            'parent', 'parent_round', 'fast', 'final', 'clients', 'defer_eval', 'session_rounds')}
     if a.fast: config['fast'] = True   # absent when off: configs (and parent checks) of earlier runs unchanged
     if a.final: config['final'] = True
+    if a.clients != 20: config['clients'] = a.clients
+    if a.defer_eval: config['defer_eval'] = True
     config.update(mu=MU, swap_p=SWAP_P, ema_beta=EMA_BETA, cal_rows=CAL_ROWS,
                   kd_cap=KD_CAP, dyn_alpha=DYN_ALPHA, cons_lambda=CONS_LAMBDA, probe_rows=PROBE_ROWS, kd_up=KD_UP, gw2=GW2,
                   p1_lambda=P1_LAMBDA, p1_t=P1_T, p1_classes=list(P1_CLASSES))
@@ -1151,7 +1199,8 @@ def main():
                                 fd=cfg['source']['proj/fd.py'], parent=cfg['config'].get('parent'))
     source = {f'mh/{f.name}': digest(f) for f in sorted((P.ROOT / 'mh').glob('*.py'))}
     source.update({f'proj/{f.name}': digest(f) for f in sorted(Path(__file__).parent.glob('*.py'))})
-    fx = P.ROOT / 'papers/pilot/fixture'; manifest = json.loads((fx / 'manifest.json').read_text())
+    fx = fixture_path(a)
+    manifest = json.loads((fx / 'manifest.json').read_text())
     for name, sha in manifest['files'].items(): assert digest(fx / name) == sha, ('fixture mismatch', name)
     identity = dict(config=config, source=source, fixture=digest(fx / 'manifest.json'))
     fingerprint = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
@@ -1160,7 +1209,7 @@ def main():
     if a.wandb_online:
         import wandb
         key = os.environ.get('WANDB_API_KEY'); assert key, 'W&B key required'
-        assert wandb.login(key=key, anonymous='never', relogin=True, verify=True)
+        assert wandb.login(verify=True)
         wb = wandb.init(project=a.wandb_project, id=out.name + '-' + fingerprint[:8], resume='allow', name=out.name + ('-fast' if a.fast else ''),
                         config=dict(config, fingerprint=fingerprint), mode='online', dir=str(out),
                         settings=wandb.Settings(save_code=False, disable_code=True))
@@ -1176,13 +1225,19 @@ def main():
 
 def train(a, out, fingerprint, wb, t0, pool):
     R = Run(a); m = Method(R); m.prior()
+    save(out / 'runtime.json', dict(torch=torch.__version__, workers=a.workers,
+                                    devices=[dict(name=torch.cuda.get_device_name(i), capability=list(torch.cuda.get_device_capability(i)))
+                                             for i in range(torch.cuda.device_count())],
+                                    setup_seconds=time.time() - t0, compile_gates=R.compile_gates,
+                                    flops_scope='model conv/linear operator estimate; excludes BN, KL, optimizer, calibration and probes'))
     start, previous = 0, None
     if a.parent: start, previous = a.parent_round, load_parent(a, R, m)
     print('setup', a.arm, 'rows', sum(R.n), 'mu', R.mu, 'swap', R.swap, 'kdcap', R.kdcap, 'warm', R.warm,
           'frz', R.frz, 'dyn', R.dyn, 'cons', R.cons, R.lam, 'own', m.own, 'kd2', R.kdup, 'kdpx', R.kdpx, 'fill', R.fill, 'rej', R.rej, 'p1', R.p1, 'gkd', R.gkd, 'bits', m.bits,
           'rules', R.rules, 'la', R.la, 'parent', a.parent_round, 'sec', round(time.time() - t0, 1), flush=True)
     hist = []
-    for r in range(start + 1, a.stop_after + 1):
+    session_end = min(a.stop_after, start + a.session_rounds) if a.session_rounds else a.stop_after
+    for r in range(start + 1, session_end + 1):
         if time.time() - t0 + 1.15 * max([v['sec'] for v in hist] or [0]) + 60 > a.max_hours * 3600:
             print('budget stop before epoch', r, flush=True); break
         t1 = time.time(); private_logs, proxy_logs = [], []
@@ -1195,7 +1250,8 @@ def train(a, out, fingerprint, wb, t0, pool):
                 if m.kd:
                     packet, log = m.proxy_epoch(k, r); proxy_logs.append(log)
                     if packet is not None: m.aggregate_sum.add(k, packet)
-        m.aggregate(r)
+        aggregation_started = time.perf_counter(); m.aggregate(r)
+        aggregation_seconds = time.perf_counter() - aggregation_started
         m.update_ema()
         algorithm_seconds = time.time() - t1
         diagnostics = dict(swap_fraction=R.swap_stats[0] / max(R.swap_stats[1], 1),
@@ -1208,10 +1264,27 @@ def train(a, out, fingerprint, wb, t0, pool):
         row = dict(algorithm_seconds=algorithm_seconds, round=r, lr=R.lr(r), clients=private_logs, proxy_clients=proxy_logs,
                    version=m.version, fingerprint=fingerprint, prev_sha=previous, diagnostics=diagnostics,
                    loss=float(np.mean([v['loss'] for v in (proxy_logs if m.fedavg else private_logs)])))
+        traffic = [v for v in R.bytes if v[0] == r]
+        up_bytes = sum(v[4] for v in traffic if v[2] == 'up')
+        down_bytes = sum(v[4] for v in traffic if v[2] == 'down')
+        steps = sum(v['applied'] + v['skipped'] for v in private_logs)
+        row['cost'] = dict(up_bytes=up_bytes, down_bytes=down_bytes, total_bytes=up_bytes + down_bytes,
+                           payload_bytes_per_algorithm_second=(up_bytes + down_bytes) / algorithm_seconds,
+                           local_steps=steps, applied_steps=sum(v['applied'] for v in private_logs),
+                           skipped_steps=sum(v['skipped'] for v in private_logs),
+                           gpu_peak_allocated_bytes=torch.cuda.max_memory_allocated(),
+                           server_aggregation_seconds=aggregation_seconds,
+                           sum_client_epoch_wall_seconds=sum(v['seconds'] for v in private_logs),
+                           **{key: value for key, value in m.diag.items() if key.startswith('codec_')})
+        if R.gkd:   # operator-count estimate, measured by scripts/count_dagsnet_flops.py; excludes KL/BN/optimizer/probes/codec
+            real, synthetic = sum(R.n), a.aux_batch * steps
+            row['cost']['model_flops_estimate'] = (2 * real + synthetic) * 13280256 + ((real + synthetic) * 4443648 if r > 1 else 0)
+            row['cost']['gaussian_matvec_flops_estimate'] = synthetic * 2 * P.D * P.D
         last = r == a.stop_after
         holds = ('test',) if a.final else ('group', 'old', 'test') if last else ('group', 'old')   # --final: test20% every round
-        row['eval'] = R.evaluate(m, out, r, holds, scores=pool.scores(R, holds) if pool and not m.fedavg else None)
-        row['predictions_sha'] = digest(out / 'predictions' / f'round_{r:03d}.npz')
+        row['eval'] = {} if a.defer_eval else R.evaluate(m, out, r, holds, scores=pool.scores(R, holds) if pool and not m.fedavg else None)
+        if a.defer_eval: row['evaluation_pending'] = True
+        else: row['predictions_sha'] = digest(out / 'predictions' / f'round_{r:03d}.npz')
         weights = dict(private=[] if m.fedavg else [{k: v.detach().cpu() for k, v in model.state_dict().items()} for model in R.priv],
                        proxy=[{k: v.detach().cpu() for k, v in s.items()} for s in
                               [p.state_dict() for p in (m.proxy if m.own else m.proxy[:1])]] if m.kd else [],
@@ -1227,7 +1300,8 @@ def train(a, out, fingerprint, wb, t0, pool):
         save(out / 'complete' / f'round_{r:03d}.json', row); hist.append(row)   # atomic commit LAST
         role, rule = ('proxy', 'head') if m.kd and not m.own else ('private', 'gp')
         shown = 'test' if a.final else 'group'
-        print(f'r{r} {a.arm} s{a.seed} {role} {shown} {rule} {row["eval"][role][shown][rule]["f1_macro"]:.4f} '
+        display = 'pending' if a.defer_eval else f'{row["eval"][role][shown][rule]["f1_macro"]:.4f}'
+        print(f'r{r} {a.arm} s{a.seed} {role} {shown} {rule} {display} '
               f'loss {row["loss"]:.4f} {row["sec"]:.0f}s', flush=True)
         if wb:
             metrics = dict(round=r, loss=row['loss'], lr=row['lr'], seconds=row['sec'], algorithm_seconds=algorithm_seconds,
@@ -1238,7 +1312,8 @@ def train(a, out, fingerprint, wb, t0, pool):
                         metrics.update({f'{model_role}/{hold}/{rule_name}/{key}': v for key, v in ev['mean_metrics'].items()})
             wb.log(metrics)
     result = dict(config=vars(a), fingerprint=fingerprint, history=hist, bytes=R.bytes, train_rows=R.n,
-                  complete=len(hist) == a.stop_after - start, minutes=(time.time() - t0) / 60)
+                  complete=len(hist) == a.stop_after - start, session_complete=len(hist) == session_end - start,
+                  evaluation_pending=a.defer_eval, minutes=(time.time() - t0) / 60)
     save(out / 'result.json', result)
     with (out / 'metrics.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=['round', 'role', 'holdout', 'rule', *METRIC_KEYS]); w.writeheader()

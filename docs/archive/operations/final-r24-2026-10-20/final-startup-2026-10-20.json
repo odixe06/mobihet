@@ -1,0 +1,21 @@
+{
+  "observed_at_utc": "2026-10-20T15:40:15.616627+00:00",
+  "method": "account-scoped Kaggle CLI kernels logs <kernel> --follow; bounded 35s SSE read",
+  "reader_exit": 124,
+  "reader_exit_meaning": "timeout ends local reader only; not a kernel error",
+  "kernels": [
+    {
+      "kernel": "annhtnt/mobihet-fd-s42zc-20261015-r24-v1",
+      "wandb_authenticated": true,
+      "prepared_train_rows": 43045415,
+      "old_cut": 0,
+      "scope": "Prepared real pilot line observed; final data preparation/test scaling not yet complete in this read"
+    },
+    {
+      "kernel": "thuyanh316/mobihet-fd-s42ze-20261015-r24-v1",
+      "wandb_authenticated": true,
+      "scope": "W&B authenticated online observed; data preparation not yet logged"
+    }
+  ],
+  "limit": "Live operational evidence. Not a terminal output audit or proof of training completion."
+}

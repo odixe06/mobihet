@@ -82,7 +82,7 @@ def main():
         for folder in sorted((ROOT/'.compat/papers'/build/'notebook').glob(f'*{tag}*')):
             rows.extend(check(folder,case) for case in ('normal','boundary','exhausted','worker-fail'))
     assert len(rows)==32
-    (ROOT/'docs/operations/resume-batch-preflight-2026-10-14.json').write_text(json.dumps(rows,indent=2)+'\n')
+    (ROOT/'docs/operations/registry/resume-batch-preflight-2026-10-14.json').write_text(json.dumps(rows,indent=2)+'\n')
     print('Generated resume batch PASS:',len(rows),'controller cases; remote T4/import still checked at startup')
 
 

@@ -1,0 +1,36 @@
+{
+  "observed_at_utc": "2026-10-20T16:31:44.433760+00:00",
+  "owner_confirmed_stop": [
+    "za",
+    "ze",
+    "zg",
+    "zk"
+  ],
+  "runs": [
+    {
+      "kernel": "minhtriethihi/mobihet-fd-s42za-20261015-r24-v1",
+      "status": "minhtriethihi/mobihet-fd-s42za-20261015-r24-v1 has status \"KernelWorkerStatus.CANCEL_ACKNOWLEDGED\""
+    },
+    {
+      "kernel": "annhtnt/mobihet-fd-s42zc-20261015-r24-v1",
+      "status": "annhtnt/mobihet-fd-s42zc-20261015-r24-v1 has status \"KernelWorkerStatus.COMPLETE\""
+    },
+    {
+      "kernel": "thuyanh316/mobihet-fd-s42ze-20261015-r24-v1",
+      "status": "thuyanh316/mobihet-fd-s42ze-20261015-r24-v1 has status \"KernelWorkerStatus.CANCEL_ACKNOWLEDGED\""
+    },
+    {
+      "kernel": "annhannh331/mobihet-fd-s42zg-20261015-r24-v1",
+      "status": "annhannh331/mobihet-fd-s42zg-20261015-r24-v1 has status \"KernelWorkerStatus.CANCEL_ACKNOWLEDGED\""
+    },
+    {
+      "kernel": "odixe0502/mobihet-fd-s42zi-20261015-r24-v1",
+      "status": "odixe0502/mobihet-fd-s42zi-20261015-r24-v1 has status \"KernelWorkerStatus.COMPLETE\""
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-fd-s42zk-20261015-r24-v1",
+      "status": "khanhmay0304/mobihet-fd-s42zk-20261015-r24-v1 has status \"KernelWorkerStatus.CANCEL_ACKNOWLEDGED\""
+    }
+  ],
+  "zk_rechecked_at_utc": "2026-10-20T16:34:20.515633+00:00"
+}

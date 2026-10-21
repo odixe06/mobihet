@@ -1,119 +1,98 @@
-# Chỉ mục artifact / pull lại
+# Chỉ mục artifact DVC
 
-Môi trường `nckh`; remote `gdrive` trên G:. [Backup](backup.md). Chạy từ root repo.
-Dùng manifest canonical bên dưới; `papers/` chỉ facade runtime, bị `.dvcignore` loại khỏi scan.
-Không `dvc add` workspace partial; giữ entry remote-only. Kiểm dung lượng trước pull.
-Đổi layout chỉ đổi vị trí manifest và `outs.path`; MD5/size/nfiles và relpath bên trong payload giữ nguyên.
-[Kiểm đồng nhất](../archive/operations/dvc-relocation-verification-2026-10-14.json).
+Sinh bởi `python3 scripts/update_artifact_index.py` từ 90 manifest `*.dvc` đang track; chạy lại sau mỗi collect/backup.
+Khôi phục: `dvc pull <manifest>` (môi trường `nckh`, chạy từ gốc repo) — quy tắc và alias ở [backup](backup.md).
+"Local" = số file đang có trong thư mục output; lệch với "Files" nghĩa là cần gộp/đẩy (`dvc_merge_push.py`) hoặc mới pull một phần.
 
-| Manifest | Output tương đối từ manifest | Files | GiB logical | Local | Khôi phục |
-|---|---|---:|---:|---|---|
-| `archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc` | `artifacts/input` | 222 | 0.298 | remote-only | `dvc pull archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc` |
-| `archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc` | `artifacts/kaggle` | 2798 | 34.855 | remote-only | `dvc pull archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc` |
-| `archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc` | `artifacts/resume_reference` | 153 | 1.811 | remote-only | `dvc pull archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc` |
-| `archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc` | `artifacts/smoke` | 684 | 7.825 | remote-only | `dvc pull archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc` |
-| `archive/methods/contact-fragmentation/builds/fragmented-snapshots/kaggle.dvc` | `artifacts/kaggle` | 52 | 0.001 | remote-only | `dvc pull archive/methods/contact-fragmentation/builds/fragmented-snapshots/kaggle.dvc` |
-| `archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc` | `artifacts/runs` | 44 | 0.001 | remote-only | `dvc pull archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc` |
-| `archive/methods/contact-fragmentation/builds/fragmented-snapshots/source_audit.dvc` | `artifacts/source_audit` | 32 | 0.000 | remote-only | `dvc pull archive/methods/contact-fragmentation/builds/fragmented-snapshots/source_audit.dvc` |
-| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc` | `artifacts/input` | 204 | 0.298 | remote-only | `dvc pull archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc` |
-| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc` | `artifacts/kaggle` | 1618 | 13.132 | remote-only | `dvc pull archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc` |
-| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc` | `artifacts/resume_reference` | 60 | 0.394 | remote-only | `dvc pull archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc` |
-| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc` | `artifacts/smoke` | 150 | 0.981 | remote-only | `dvc pull archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc` |
-| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc` | `artifacts/input` | 222 | 0.298 | remote-only | `dvc pull archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc` |
-| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc` | `artifacts/kaggle` | 568 | 4.213 | remote-only | `dvc pull archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc` |
-| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc` | `artifacts/resume_reference` | 102 | 1.195 | remote-only | `dvc pull archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc` |
-| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc` | `artifacts/smoke` | 246 | 2.787 | remote-only | `dvc pull archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc` |
-| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc` | `artifacts/input` | 210 | 0.298 | remote-only | `dvc pull archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc` |
-| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc` | `artifacts/kaggle` | 1242 | 19.010 | remote-only | `dvc pull archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc` |
-| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc` | `artifacts/resume_reference` | 51 | 0.618 | remote-only | `dvc pull archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc` |
-| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc` | `artifacts/smoke` | 111 | 1.422 | remote-only | `dvc pull archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc` |
-| `archive/methods/gaussian-sampling/builds/support-mala/input.dvc` | `artifacts/input` | 376 | 0.595 | remote-only | `dvc pull archive/methods/gaussian-sampling/builds/support-mala/input.dvc` |
-| `archive/methods/gaussian-sampling/builds/support-mala/kaggle.dvc` | `artifacts/kaggle` | 1784 | 18.371 | remote-only | `dvc pull archive/methods/gaussian-sampling/builds/support-mala/kaggle.dvc` |
-| `archive/methods/gaussian-sampling/builds/support-mala/resume_reference.dvc` | `artifacts/resume_reference` | 89 | 0.845 | remote-only | `dvc pull archive/methods/gaussian-sampling/builds/support-mala/resume_reference.dvc` |
-| `archive/methods/gaussian-sampling/builds/support-mala/runs.dvc` | `artifacts/runs` | 0 | 0.000 | remote-only | `dvc pull archive/methods/gaussian-sampling/builds/support-mala/runs.dvc` |
-| `archive/methods/gaussian-sampling/builds/support-mala/smoke.dvc` | `artifacts/smoke` | 243 | 2.241 | remote-only | `dvc pull archive/methods/gaussian-sampling/builds/support-mala/smoke.dvc` |
-| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/input.dvc` | `artifacts/input` | 396 | 0.595 | remote-only | `dvc pull archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/input.dvc` |
-| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc` | `artifacts/kaggle` | 1666 | 13.091 | remote-only | `dvc pull archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc` |
-| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/resume_reference.dvc` | `artifacts/resume_reference` | 60 | 0.408 | remote-only | `dvc pull archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/resume_reference.dvc` |
-| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/smoke.dvc` | `artifacts/smoke` | 240 | 1.629 | remote-only | `dvc pull archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/smoke.dvc` |
-| `archive/methods/proxy-compression/builds/proxy-carriers/input.dvc` | `artifacts/input` | 534 | 0.892 | remote-only | `dvc pull archive/methods/proxy-compression/builds/proxy-carriers/input.dvc` |
-| `archive/methods/proxy-compression/builds/proxy-carriers/kaggle.dvc` | `artifacts/kaggle` | 4556 | 125.595 | remote-only | `dvc pull archive/methods/proxy-compression/builds/proxy-carriers/kaggle.dvc` |
-| `archive/methods/proxy-compression/builds/proxy-carriers/resume_reference.dvc` | `artifacts/resume_reference` | 216 | 4.434 | remote-only | `dvc pull archive/methods/proxy-compression/builds/proxy-carriers/resume_reference.dvc` |
-| `archive/methods/proxy-compression/builds/proxy-carriers/runs.dvc` | `artifacts/runs` | 0 | 0.000 | remote-only | `dvc pull archive/methods/proxy-compression/builds/proxy-carriers/runs.dvc` |
-| `archive/methods/proxy-compression/builds/proxy-carriers/smoke.dvc` | `artifacts/smoke` | 888 | 20.426 | remote-only | `dvc pull archive/methods/proxy-compression/builds/proxy-carriers/smoke.dvc` |
-| `archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc` | `artifacts/fixture` | 67 | 0.149 | remote-only | `dvc pull archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc` |
-| `archive/methods/shared-baselines/builds/pilot-baselines/runs.dvc` | `artifacts/runs` | 32 | 0.002 | remote-only | `dvc pull archive/methods/shared-baselines/builds/pilot-baselines/runs.dvc` |
-| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/input.dvc` | `artifacts/input` | 170 | 0.297 | remote-only | `dvc pull archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/input.dvc` |
-| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc` | `artifacts/kaggle` | 2422 | 29.499 | remote-only | `dvc pull archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc` |
-| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/resume_reference.dvc` | `artifacts/resume_reference` | 108 | 1.150 | remote-only | `dvc pull archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/resume_reference.dvc` |
-| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/runs.dvc` | `artifacts/runs` | 0 | 0.000 | partial; không add | `dvc pull archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/runs.dvc` |
-| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/smoke.dvc` | `artifacts/smoke` | 612 | 6.392 | remote-only | `dvc pull archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/smoke.dvc` |
-| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/input.dvc` | `artifacts/input` | 162 | 0.297 | remote-only | `dvc pull archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/input.dvc` |
-| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/kaggle.dvc` | `artifacts/kaggle` | 622 | 7.450 | remote-only | `dvc pull archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/kaggle.dvc` |
-| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/resume_reference.dvc` | `artifacts/resume_reference` | 13 | 0.093 | remote-only | `dvc pull archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/resume_reference.dvc` |
-| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/runs.dvc` | `artifacts/runs` | 0 | 0.000 | remote-only | `dvc pull archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/runs.dvc` |
-| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/smoke.dvc` | `artifacts/smoke` | 79 | 0.558 | remote-only | `dvc pull archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/smoke.dvc` |
-| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/input.dvc` | `artifacts/input` | 291 | 0.446 | remote-only | `dvc pull archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/input.dvc` |
-| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/kaggle.dvc` | `artifacts/kaggle` | 3802 | 41.338 | remote-only | `dvc pull archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/kaggle.dvc` |
-| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/resume_reference.dvc` | `artifacts/resume_reference` | 135 | 1.253 | remote-only | `dvc pull archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/resume_reference.dvc` |
-| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/runs.dvc` | `artifacts/runs` | 0 | 0.000 | remote-only | `dvc pull archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/runs.dvc` |
-| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/smoke.dvc` | `artifacts/smoke` | 711 | 6.368 | remote-only | `dvc pull archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/smoke.dvc` |
-| `knowledge/ckpt_round_005.pt.dvc` | `ckpt_round_005.pt` | 1 | 0.005 | remote-only | `dvc pull knowledge/ckpt_round_005.pt.dvc` |
-| `methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc` | `artifacts/controller-fixture` | 76 | 0.000 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc` |
-| `methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc` | `artifacts/input` | 230 | 0.298 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc` |
-| `methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` | `artifacts/kaggle` | 4621 | 50.902 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` |
-| `methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc` | `artifacts/smoke` | 210 | 2.040 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` | `artifacts/diagnostics` | 20 | 0.001 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` | `artifacts/input` | 212 | 0.001 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` | `artifacts/kaggle` | 2668 | 46.660 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc` | `artifacts/resume_reference` | 81 | 1.012 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc` | `artifacts/smoke` | 111 | 1.420 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/input.dvc` | `artifacts/input` | 200 | 0.001 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/input.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` | `artifacts/kaggle` | 3234 | 52.583 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc` | `artifacts/mount-output` | 18 | 0.000 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc` | `artifacts/resume_reference` | 63 | 0.613 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/smoke.dvc` | `artifacts/smoke` | 221 | 1.224 | remote-only | `dvc pull methods/shared-baselines/builds/federated-baselines-full/smoke.dvc` |
-| `methods/anti-memorization/builds/antimem-pilot/input.dvc` | `artifacts/input` | 111 | 0.149 | remote-only | `dvc pull methods/anti-memorization/builds/antimem-pilot/input.dvc` |
-| `methods/anti-memorization/builds/antimem-pilot/kaggle.dvc` | `artifacts/kaggle` | 1397 | 5.351 | remote-only | `dvc pull methods/anti-memorization/builds/antimem-pilot/kaggle.dvc` |
-| `methods/boundary-cell-counts/builds/boundary-cell-pilot/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 366 | 1.704 | remote-only | `dvc pull methods/boundary-cell-counts/builds/boundary-cell-pilot/checkpoint-staging.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 422 | 1.631 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/input.dvc` | `artifacts/input` | 228 | 0.298 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/input.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc` | `artifacts/kaggle` | 1986 | 14.683 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/smoke-reference-timing-state-fixed.dvc` | `artifacts/smoke-reference-timing-state-fixed` | 67 | 0.586 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-reference-timing-state-fixed.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/smoke-reference.dvc` | `artifacts/smoke-reference` | 17 | 0.093 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-reference.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed-timing-state-fixed.dvc` | `artifacts/smoke-resumed-timing-state-fixed` | 67 | 0.586 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed-timing-state-fixed.dvc` |
-| `methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed.dvc` | `artifacts/smoke-resumed` | 17 | 0.093 | remote-only | `dvc pull methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed.dvc` |
-| `methods/cross-client-ranking/builds/rank-probe/input.dvc` | `artifacts/input` | 180 | 0.310 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-probe/input.dvc` |
-| `methods/cross-client-ranking/builds/rank-probe/kaggle.dvc` | `artifacts/kaggle` | 348 | 0.002 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-probe/kaggle.dvc` |
-| `methods/cross-client-ranking/builds/rank-utility/input.dvc` | `artifacts/input` | 274 | 0.488 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-utility/input.dvc` |
-| `methods/cross-client-ranking/builds/rank-utility/kaggle.dvc` | `artifacts/kaggle` | 923 | 6.085 | remote-only | `dvc pull methods/cross-client-ranking/builds/rank-utility/kaggle.dvc` |
-| `methods/full-drift/builds/fd-probe/input.dvc` | `artifacts/input` | 384 | 0.003 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/full-drift/builds/fd-probe/input.dvc` |
-| `methods/full-drift/builds/fd-probe/kaggle.dvc` | `artifacts/kaggle` | 1074 | 3.564 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/full-drift/builds/fd-probe/kaggle.dvc` |
-| `methods/gaussian-proxy-hybrid/builds/hybrid-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 1560 | 30.959 | remote-only | `dvc pull methods/gaussian-proxy-hybrid/builds/hybrid-full/checkpoint-staging.dvc` |
-| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-resumed.dvc` | `artifacts/final-resumed` | 18 | 0.190 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-resumed.dvc` |
-| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-smoke.dvc` | `artifacts/final-smoke` | 18 | 0.190 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-smoke.dvc` |
-| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/kaggle.dvc` | `artifacts/kaggle` | 1427 | 16.438 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/kaggle.dvc` |
-| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/smoke.dvc` | `artifacts/smoke` | 18 | 0.190 | remote-only | `dvc pull methods/proxy-countsketch-repair/builds/contractive-ef-pilot/smoke.dvc` |
-| `methods/proxy-fusion/builds/fuse-probe/input.dvc` | `artifacts/input` | 38 | 0.149 | remote-only | `dvc pull methods/proxy-fusion/builds/fuse-probe/input.dvc` |
-| `methods/proxy-fusion/builds/fuse-probe/kaggle.dvc` | `artifacts/kaggle` | 11 | 0.005 | remote-only | `dvc pull methods/proxy-fusion/builds/fuse-probe/kaggle.dvc` |
-| `methods/shared-baselines/builds/federated-baselines-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | 1608 | 32.658 | local (gộp 17/10; collect mới chưa gộp) | `dvc pull methods/shared-baselines/builds/federated-baselines-full/checkpoint-staging.dvc` |
-
-Fresh checkout: `python3 scripts/restore_compat_aliases.py`; tạo facade source, không pull artifact.
-Sau `dvc pull` target cần thiết, khôi phục alias run canonical từ [map](artifact-aliases.json):
-
-```bash
-python3 - <<'PYALIAS'
-from pathlib import Path
-import json, os
-for a in json.loads(Path('docs/operations/artifact-aliases.json').read_text())['aliases']:
-    p, target = Path(a['path']), Path(a['target'])
-    if target.exists() and not p.exists() and not p.is_symlink():
-        p.parent.mkdir(parents=True, exist_ok=True)
-        p.symlink_to(os.path.relpath(target, p.parent), target_is_directory=True)
-PYALIAS
-```
-
-Map cũ trong backup-delta giữ nguyên làm bằng chứng lịch sử; không dùng trực tiếp với layout mới.
-Một số `runs.dvc` snapshot rỗng lịch sử: cần pull `kaggle.dvc` cùng build rồi tạo run alias, không dùng snapshot rỗng thay output Kaggle.
-Metadata chọn lọc: `python scripts/restore_dvc_metadata.py <canonical.dvc> --proof <proof.json>`;
-sau restore vẫn partial, không gọi `dvc add`. Private_push/runtimecache không backup.
+| manifest | output | md5 | Files | GiB | Local |
+|---|---|---|---:|---:|---|
+| `knowledge/ckpt_round_005.pt.dvc` | `ckpt_round_005.pt` | `c1466d52…` | 1 | 0.005 | remote-only |
+| `methods/anti-memorization/builds/antimem-pilot/input.dvc` | `artifacts/input` | `736817aa…` | 111 | 0.149 | remote-only |
+| `methods/anti-memorization/builds/antimem-pilot/kaggle.dvc` | `artifacts/kaggle` | `b67265f0…` | 1397 | 5.351 | remote-only |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | `d5ab2e44…` | 366 | 1.704 | remote-only |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/controller-fixture.dvc` | `artifacts/controller-fixture` | `195b422d…` | 76 | 0.000 | remote-only |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/input.dvc` | `artifacts/input` | `5d398f36…` | 230 | 0.298 | remote-only |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/kaggle.dvc` | `artifacts/kaggle` | `f89714c5…` | 4621 | 50.902 | remote-only |
+| `methods/boundary-cell-counts/builds/boundary-cell-pilot/smoke.dvc` | `artifacts/smoke` | `bd1f76e8…` | 210 | 2.040 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | `952d191a…` | 422 | 1.631 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/input.dvc` | `artifacts/input` | `c8a26cf3…` | 228 | 0.298 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc` | `artifacts/kaggle` | `2fa22616…` | 1986 | 14.683 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-reference-timing-state-fixed.dvc` | `artifacts/smoke-reference-timing-state-fixed` | `460253eb…` | 67 | 0.586 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-reference.dvc` | `artifacts/smoke-reference` | `9b30925d…` | 17 | 0.093 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed-timing-state-fixed.dvc` | `artifacts/smoke-resumed-timing-state-fixed` | `0dbfdb3c…` | 67 | 0.586 | remote-only |
+| `methods/class-tail-risk/builds/class-tail-pilot/smoke-resumed.dvc` | `artifacts/smoke-resumed` | `867fef6e…` | 17 | 0.093 | remote-only |
+| `methods/cross-client-ranking/builds/rank-probe/input.dvc` | `artifacts/input` | `5498d86d…` | 180 | 0.310 | remote-only |
+| `methods/cross-client-ranking/builds/rank-probe/kaggle.dvc` | `artifacts/kaggle` | `26e324b2…` | 348 | 0.002 | remote-only |
+| `methods/cross-client-ranking/builds/rank-utility/input.dvc` | `artifacts/input` | `dc776c9c…` | 274 | 0.488 | remote-only |
+| `methods/cross-client-ranking/builds/rank-utility/kaggle.dvc` | `artifacts/kaggle` | `73813342…` | 923 | 6.085 | remote-only |
+| `methods/full-drift/builds/fd-probe/fixture-cache.dvc` | `artifacts/fixture-cache` | `ca5cfb3e…` | 13 | 0.000 | 13 |
+| `methods/full-drift/builds/fd-probe/input.dvc` | `artifacts/input` | `3437a3a0…` | 1723 | 2.348 | 570 |
+| `methods/full-drift/builds/fd-probe/kaggle.dvc` | `artifacts/kaggle` | `4058a31d…` | 7980 | 24.900 | 7072 |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | `a89e7f1b…` | 1560 | 30.959 | remote-only |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` | `artifacts/diagnostics` | `b4c3578d…` | 20 | 0.001 | remote-only |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` | `artifacts/input` | `637a09a8…` | 212 | 0.001 | remote-only |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/kaggle.dvc` | `artifacts/kaggle` | `9961f7a3…` | 2668 | 46.660 | remote-only |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/resume_reference.dvc` | `artifacts/resume_reference` | `b2ddeb62…` | 81 | 1.012 | remote-only |
+| `methods/gaussian-proxy-hybrid/builds/hybrid-full/smoke.dvc` | `artifacts/smoke` | `4dd92ca5…` | 111 | 1.420 | remote-only |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-resumed.dvc` | `artifacts/final-resumed` | `051bc4be…` | 18 | 0.190 | remote-only |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/final-smoke.dvc` | `artifacts/final-smoke` | `0557b94a…` | 18 | 0.190 | remote-only |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/kaggle.dvc` | `artifacts/kaggle` | `04a5107f…` | 1427 | 16.438 | remote-only |
+| `methods/proxy-countsketch-repair/builds/contractive-ef-pilot/smoke.dvc` | `artifacts/smoke` | `dc182432…` | 18 | 0.190 | remote-only |
+| `methods/proxy-fusion/builds/fuse-probe/input.dvc` | `artifacts/input` | `262f28ac…` | 38 | 0.149 | remote-only |
+| `methods/proxy-fusion/builds/fuse-probe/kaggle.dvc` | `artifacts/kaggle` | `336cdbf6…` | 11 | 0.005 | remote-only |
+| `methods/shared-baselines/builds/federated-baselines-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | `c1111670…` | 1608 | 12.208 | remote-only |
+| `methods/shared-baselines/builds/federated-baselines-full/input.dvc` | `artifacts/input` | `b50f3b58…` | 200 | 0.001 | remote-only |
+| `methods/shared-baselines/builds/federated-baselines-full/kaggle.dvc` | `artifacts/kaggle` | `01378fe8…` | 3544 | 20.385 | remote-only |
+| `methods/shared-baselines/builds/federated-baselines-full/mount-output.dvc` | `artifacts/mount-output` | `f98af0c0…` | 18 | 0.000 | remote-only |
+| `methods/shared-baselines/builds/federated-baselines-full/resume_reference.dvc` | `artifacts/resume_reference` | `a7c07171…` | 63 | 0.613 | remote-only |
+| `methods/shared-baselines/builds/federated-baselines-full/smoke.dvc` | `artifacts/smoke` | `da8ab933…` | 221 | 1.224 | remote-only |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/input.dvc` | `artifacts/input` | `347e0af9…` | 222 | 0.298 | remote-only |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/kaggle.dvc` | `artifacts/kaggle` | `b9220ec4…` | 2798 | 34.855 | 4 |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/resume_reference.dvc` | `artifacts/resume_reference` | `9c657c34…` | 153 | 1.811 | remote-only |
+| `archive/methods/anchor-function-residual/builds/anchor-residual/smoke.dvc` | `artifacts/smoke` | `f3ea6700…` | 684 | 7.825 | remote-only |
+| `archive/methods/contact-fragmentation/builds/fragmented-snapshots/kaggle.dvc` | `artifacts/kaggle` | `05d670af…` | 52 | 0.001 | remote-only |
+| `archive/methods/contact-fragmentation/builds/fragmented-snapshots/runs.dvc` | `artifacts/runs` | `bbba5ff2…` | 44 | 0.001 | remote-only |
+| `archive/methods/contact-fragmentation/builds/fragmented-snapshots/source_audit.dvc` | `artifacts/source_audit` | `36f834ab…` | 32 | 0.000 | remote-only |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/input.dvc` | `artifacts/input` | `fe759ba8…` | 204 | 0.298 | remote-only |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/kaggle.dvc` | `artifacts/kaggle` | `6f1ac7fd…` | 1618 | 13.132 | remote-only |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/resume_reference.dvc` | `artifacts/resume_reference` | `5a5d85b0…` | 60 | 0.394 | remote-only |
+| `archive/methods/covariance-nystrom/builds/nystrom-rank4-rank8/smoke.dvc` | `artifacts/smoke` | `94c9e76f…` | 150 | 0.981 | remote-only |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/input.dvc` | `artifacts/input` | `743718b1…` | 222 | 0.298 | remote-only |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/kaggle.dvc` | `artifacts/kaggle` | `8cde4b9a…` | 568 | 4.213 | remote-only |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/resume_reference.dvc` | `artifacts/resume_reference` | `456967a8…` | 102 | 1.195 | remote-only |
+| `archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/smoke.dvc` | `artifacts/smoke` | `752fdb98…` | 246 | 2.787 | remote-only |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/input.dvc` | `artifacts/input` | `1f1c3423…` | 210 | 0.298 | remote-only |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/kaggle.dvc` | `artifacts/kaggle` | `5e8f82e4…` | 1242 | 19.010 | remote-only |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/resume_reference.dvc` | `artifacts/resume_reference` | `ee5d508c…` | 51 | 0.618 | remote-only |
+| `archive/methods/gaussian-proxy-hybrid/builds/hybrid-pilot/smoke.dvc` | `artifacts/smoke` | `b0da1af1…` | 111 | 1.422 | remote-only |
+| `archive/methods/gaussian-sampling/builds/support-mala/input.dvc` | `artifacts/input` | `1651b7aa…` | 376 | 0.595 | remote-only |
+| `archive/methods/gaussian-sampling/builds/support-mala/kaggle.dvc` | `artifacts/kaggle` | `f216e372…` | 1784 | 18.371 | remote-only |
+| `archive/methods/gaussian-sampling/builds/support-mala/resume_reference.dvc` | `artifacts/resume_reference` | `cac2264d…` | 89 | 0.845 | remote-only |
+| `archive/methods/gaussian-sampling/builds/support-mala/runs.dvc` | `artifacts/runs` | `d7517139…` | 0 | 0.000 | remote-only |
+| `archive/methods/gaussian-sampling/builds/support-mala/smoke.dvc` | `artifacts/smoke` | `3d13b231…` | 243 | 2.241 | remote-only |
+| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/input.dvc` | `artifacts/input` | `04561c8e…` | 396 | 0.595 | remote-only |
+| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/kaggle.dvc` | `artifacts/kaggle` | `ec521a9f…` | 1666 | 13.091 | remote-only |
+| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/resume_reference.dvc` | `artifacts/resume_reference` | `0c303ed9…` | 60 | 0.408 | remote-only |
+| `archive/methods/geometry-primitive-moments/builds/geometry-g59-g61/smoke.dvc` | `artifacts/smoke` | `f43239f0…` | 240 | 1.629 | remote-only |
+| `archive/methods/proxy-compression/builds/proxy-carriers/input.dvc` | `artifacts/input` | `806adf39…` | 534 | 0.892 | remote-only |
+| `archive/methods/proxy-compression/builds/proxy-carriers/kaggle.dvc` | `artifacts/kaggle` | `6c988e51…` | 4556 | 125.595 | remote-only |
+| `archive/methods/proxy-compression/builds/proxy-carriers/resume_reference.dvc` | `artifacts/resume_reference` | `aa3ae580…` | 216 | 4.434 | remote-only |
+| `archive/methods/proxy-compression/builds/proxy-carriers/runs.dvc` | `artifacts/runs` | `d7517139…` | 0 | 0.000 | remote-only |
+| `archive/methods/proxy-compression/builds/proxy-carriers/smoke.dvc` | `artifacts/smoke` | `57f87a06…` | 888 | 20.426 | remote-only |
+| `archive/methods/shared-baselines/builds/pilot-baselines/fixture.dvc` | `artifacts/fixture` | `cb782c46…` | 67 | 0.149 | 67 |
+| `archive/methods/shared-baselines/builds/pilot-baselines/runs.dvc` | `artifacts/runs` | `ca871556…` | 32 | 0.002 | remote-only |
+| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/input.dvc` | `artifacts/input` | `e1ca6a39…` | 170 | 0.297 | remote-only |
+| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/kaggle.dvc` | `artifacts/kaggle` | `3c49c7ec…` | 2422 | 29.499 | remote-only |
+| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/resume_reference.dvc` | `artifacts/resume_reference` | `f2d71818…` | 108 | 1.150 | remote-only |
+| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/runs.dvc` | `artifacts/runs` | `d7517139…` | 0 | 0.000 | remote-only |
+| `archive/methods/shared-comparisons/builds/countsketch-subspace-ratio/smoke.dvc` | `artifacts/smoke` | `f0da440b…` | 612 | 6.392 | remote-only |
+| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/input.dvc` | `artifacts/input` | `d35c8fbd…` | 162 | 0.297 | remote-only |
+| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/kaggle.dvc` | `artifacts/kaggle` | `2a40c2e2…` | 622 | 7.450 | remote-only |
+| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/resume_reference.dvc` | `artifacts/resume_reference` | `0291d66b…` | 13 | 0.093 | remote-only |
+| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/runs.dvc` | `artifacts/runs` | `d7517139…` | 0 | 0.000 | remote-only |
+| `archive/methods/synthetic-distribution-matching/builds/static-synthetic-books/smoke.dvc` | `artifacts/smoke` | `0a67a58b…` | 79 | 0.558 | remote-only |
+| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/input.dvc` | `artifacts/input` | `9903334e…` | 291 | 0.446 | remote-only |
+| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/kaggle.dvc` | `artifacts/kaggle` | `d55a7167…` | 3802 | 41.338 | remote-only |
+| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/resume_reference.dvc` | `artifacts/resume_reference` | `4b00c9e1…` | 135 | 1.253 | remote-only |
+| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/runs.dvc` | `artifacts/runs` | `d7517139…` | 0 | 0.000 | remote-only |
+| `archive/methods/synthetic-knowledge/builds/anchor-synthetic-books/smoke.dvc` | `artifacts/smoke` | `e48def33…` | 711 | 6.368 | remote-only |

@@ -9,7 +9,7 @@
 - [So sánh fl_dagsnet_veremi](comparison-fl-dagsnet-veremi.md): truyền tin, tính toán, 10 metric (20 client) với 7 phương pháp.
 - [Luồng thông tin FL](federated-information-flow.md): cái gì rời client, SecAgg giả lập, scaler tập trung, holdout gộp (18/10).
 
-Ghi chú nghiên cứu theo ngày đã chuyển [archive/research](../archive/research/) (nguồn gốc của các file phương pháp):
+Ghi chú nghiên cứu theo ngày đã chuyển [archive/research](../archive/research) (nguồn gốc của các file phương pháp):
 [kế hoạch cải tiến 17/10](../archive/research/algorithm-improvement-plan-2026-10-17.md) (giai đoạn A/B, cổng §7, thứ tự §8),
 [hướng client 16/10](../archive/research/client-model-directions-2026-10-16.md),
 [chẩn đoán chững 15/10](../archive/research/plateau-diagnosis-2026-10-15.md),

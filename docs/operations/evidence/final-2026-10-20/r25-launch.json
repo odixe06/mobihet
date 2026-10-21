@@ -1,0 +1,121 @@
+{
+  "source_tag": "20261015-r25",
+  "source_files": 49,
+  "active_login_unchanged": true,
+  "runs": [
+    {
+      "kernel": "annhtnt/mobihet-fd-s42zc-20261015-r25-v1",
+      "folder": "methods/full-drift/builds/fd-probe/notebooks/fd-s42zc-20261015-r25-v1",
+      "clients": 20,
+      "seed": 42,
+      "arm": "fd_dml_m4b_gpool_frz_gkd:50",
+      "session_rounds": 4,
+      "session_hours": 2.0,
+      "quota_before": {
+        "user": "annhtnt",
+        "gpu_left": 16.248660531111113,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-24T00:00:00"
+      },
+      "pushed": "annhtnt/mobihet-fd-s42zc-20261015-r25-v1 v1 pushed 2026-10-20T16:39Z"
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-fd-s42za-20261015-r25-v1",
+      "folder": "methods/full-drift/builds/fd-probe/notebooks/fd-s42za-20261015-r25-v1",
+      "clients": 20,
+      "seed": 42,
+      "arm": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl:50",
+      "session_rounds": 4,
+      "session_hours": 2.0,
+      "quota_before": {
+        "user": "minhtriethihi",
+        "gpu_left": 19.1177877125,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-24T00:00:00"
+      },
+      "pushed": "minhtriethihi/mobihet-fd-s42za-20261015-r25-v1 v1 pushed 2026-10-20T16:39Z"
+    },
+    {
+      "kernel": "thuyanh316/mobihet-fd-s42ze-20261015-r25-v1",
+      "folder": "methods/full-drift/builds/fd-probe/notebooks/fd-s42ze-20261015-r25-v1",
+      "clients": 50,
+      "seed": 42,
+      "arm": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl:50",
+      "session_rounds": 2,
+      "session_hours": 2.0,
+      "quota_before": {
+        "user": "thuyanh316",
+        "gpu_left": 16.39794810638889,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-24T00:00:00"
+      },
+      "pushed": "thuyanh316/mobihet-fd-s42ze-20261015-r25-v1 v1 pushed 2026-10-20T16:40Z"
+    },
+    {
+      "kernel": "annhannh331/mobihet-fd-s42zg-20261015-r25-v1",
+      "folder": "methods/full-drift/builds/fd-probe/notebooks/fd-s42zg-20261015-r25-v1",
+      "clients": 50,
+      "seed": 42,
+      "arm": "fd_dml_m4b_gpool_frz_gkd:50",
+      "session_rounds": 2,
+      "session_hours": 2.0,
+      "quota_before": {
+        "user": "annhannh331",
+        "gpu_left": 15.727595311111111,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-24T00:00:00"
+      },
+      "pushed": "annhannh331/mobihet-fd-s42zg-20261015-r25-v1 v1 pushed 2026-10-20T16:40Z"
+    },
+    {
+      "kernel": "odixe0502/mobihet-fd-s42zi-20261015-r25-v1",
+      "folder": "methods/full-drift/builds/fd-probe/notebooks/fd-s42zi-20261015-r25-v1",
+      "clients": 100,
+      "seed": 42,
+      "arm": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl:50",
+      "session_rounds": 2,
+      "session_hours": 3.0,
+      "quota_before": {
+        "user": "odixe0502",
+        "gpu_left": 14.762840277777777,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-24T00:00:00"
+      },
+      "pushed": "odixe0502/mobihet-fd-s42zi-20261015-r25-v1 v1 pushed 2026-10-20T16:44Z"
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-fd-s42zk-20261015-r25-v1",
+      "folder": "methods/full-drift/builds/fd-probe/notebooks/fd-s42zk-20261015-r25-v1",
+      "clients": 100,
+      "seed": 42,
+      "arm": "fd_dml_m4b_gpool_frz_gkd:50",
+      "session_rounds": 2,
+      "session_hours": 3.0,
+      "quota_before": {
+        "user": "khanhmay0304",
+        "gpu_left": 14.35605495777778,
+        "gpu_total": 30.0,
+        "gpu_reserved": 0.0,
+        "tpu_left": 20.0,
+        "tpu_total": 20.0,
+        "refresh_at": "2026-10-24T00:00:00"
+      },
+      "pushed": "khanhmay0304/mobihet-fd-s42zk-20261015-r25-v1 v1 pushed 2026-10-20T16:44Z"
+    }
+  ]
+}

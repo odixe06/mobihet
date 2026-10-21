@@ -585,6 +585,8 @@ Byte dự kiến (smoke 2 epoch): −32 % so q3.
 Giới hạn bằng chứng: delta đo qua 9 round gộp (local chỉ giữ weights ep6/ep15), update một round có thể đuôi dày hơn.
 Còn lại sau vòng này: bootstrap bằng seed (trùng bit, không cần run), entropy coder tốt hơn LZMA2 (không mất mát; chỉ đổi byte).
 
+**Kết quả (yb audited 20/10 ~08Z):** q2_rs **FAIL** (−0,013 vs tb, tệ nhất −0,001, proxy −0,024); residual 0,094 → 0,078 không giảm như q3 (dấu hiệu sai trúng), proxy không sụp; byte −22 % so q3 (dự kiến −32 %). 2-bit loại. ya-v1 dừng (máy chậm); ya-v2 đã audit đủ ep15, q3_zl s43 PASS (+0,0032, tệ nhất +0,0054), byte 66,7 MB. Chốt q3_zl cả hai seed. [results §Vòng 23](results.md).
+
 ## Run cuối 50 epoch — chế độ `--final` (owner 19/10; cài ~09:30Z, chưa chạy)
 
 Protocol §3: train **mọi dòng train80%** (fixture `papers/final/fixture`, `fd_prepare.prepare_fd(final=True)` = `mh.prepare(holdout=False)`, như
@@ -596,8 +598,7 @@ Cập nhật 19/10 ~12:50Z: resume codec đã cài (`resume/round_NNN.pt` = serv
 được kênh nén.
 
 Ước lượng: train `--fast` ~12 phút/epoch + eval 21 model trên test20 (~40 s/model/GPU) ~7 phút ⇒ ~16h ⇒ **2 session nối `--parent`** (dense
-nối tiếp chính xác). Kênh nén (q4/ef) **chưa nối tiếp được**: cần lưu `exact` (server) + `ef_state` (client, ở worker) vào bundle resume trước khi
-dùng q4 cho run cuối. Predictions mỗi round ~nhiều trăm MB nén ⇒ ước 5GB/run (như q5).
+nối tiếp chính xác). Kênh nén đã lưu `exact` (server) + `ef_state` (client) trong resume bundle; fixture q4/q3 đã kiểm nối tiếp. Predictions mỗi round ~nhiều trăm MB nén ⇒ ước 5GB/run (như q5).
 Chỉ build run cuối khi vòng 20/21 đã chọn xong cấu hình và owner đồng ý hướng đã vét hết.
 
 **Owner 20/10 ~03:30Z:** run cuối chạy **20, 50 và 100 client** như `fl_dagsnet_veremi` (batch 512 / 512 / 256; dữ liệu `trietbackup/veremi-fl-20client`,
@@ -618,3 +619,5 @@ smoke 20c và K ≠ 20, 1 vs 2 worker). Protocol giữ nguyên (test mọi round
 private_ema ×K, proxy, BN, kiến trúc, fingerprint); chỗ thiếu là **pull**: `collect_fd.py` chỉ lấy weights round 6/15/50 (regex dòng 32). Run cuối:
 collector lấy weights (+ `resume` nếu kênh nén) **mọi round**; audit mỗi round: sha == marker, chuỗi `prev_sha`, `load_state_dict(strict=True)`
 từ `weights_only=True`, đếm tham số, hữu hạn; notebook chấm từ chối round thiếu/sai sha. Lưu trữ local ~27 GB cả 3 kịch bản (DVC khi owner yêu cầu).
+
+**Owner 20/10 ~15Z (phiên hiện tại):** session đầu **4 epoch**, pull và audit weights, rồi **mỗi round một notebook chấm** trên account khác, mỗi notebook chia client/EMA cho 2 GPU. Kernel chấm khởi chạy ổn thì được train tiếp song song, không cần chờ chấm xong. Đo communication cost trong harness hiện tại (không thêm contact). Triển khai và budget: [final pipeline](../../operations/final-pipeline.md).

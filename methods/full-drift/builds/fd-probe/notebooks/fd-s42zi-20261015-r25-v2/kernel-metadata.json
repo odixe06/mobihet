@@ -1,0 +1,21 @@
+{
+  "id": "accanniez/mobihet-fd-s42zi-20261015-r25-v2",
+  "title": "mobihet-fd-s42zi-20261015-r25-v2",
+  "code_file": "fd-s42zi-20261015-r25-v2.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "accanniez/mobihet-fulldrift-src-20261015-r25",
+    "khanhmay0304/veremi-fl-100client",
+    "trietbackup/veremi-nextgen2026-test"
+  ],
+  "kernel_sources": [
+    "accanniez/mobihet-fd-fixture-k100-20261015-r25"
+  ],
+  "competition_sources": []
+}

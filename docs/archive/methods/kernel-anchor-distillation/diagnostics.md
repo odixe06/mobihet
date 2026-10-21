@@ -27,7 +27,7 @@ Manifest `papers/v5/kaggle.dvc`:
 Chỉ restore4 file FLsmall/medium×seed42/43, tổng **7.013.072B =6,688MiB**;
 small1.615.380B/file, medium1.891.156B/file. Không checkout toànkernel, không đổi manifest/cache,
 không Git/DVCadd/push/cleanup. Atomiccopy từ remoteobject vào đúng path, từngfile MD5 PASS.
-[DVC/restoration policy](../../../operations/backup.md#6-khôi-phục-phục-vụ-nghiên-cứu2026-10-12).
+[DVC/restoration policy](../../operations/backup-history-2026-10-14-to-20.md).
 
 Probe kiểm thêm:
 

@@ -1,0 +1,29 @@
+{
+  "observed_at_utc": "2026-10-20T16:46:08.512169+00:00",
+  "runs": [
+    {
+      "kernel": "annhtnt/mobihet-fd-s42zc-20261015-r25-v1",
+      "kaggle_status": "annhtnt/mobihet-fd-s42zc-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\""
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-fd-s42za-20261015-r25-v1",
+      "kaggle_status": "minhtriethihi/mobihet-fd-s42za-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\""
+    },
+    {
+      "kernel": "thuyanh316/mobihet-fd-s42ze-20261015-r25-v1",
+      "kaggle_status": "thuyanh316/mobihet-fd-s42ze-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\""
+    },
+    {
+      "kernel": "annhannh331/mobihet-fd-s42zg-20261015-r25-v1",
+      "kaggle_status": "annhannh331/mobihet-fd-s42zg-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\""
+    },
+    {
+      "kernel": "odixe0502/mobihet-fd-s42zi-20261015-r25-v1",
+      "kaggle_status": "odixe0502/mobihet-fd-s42zi-20261015-r25-v1 has status \"KernelWorkerStatus.RUNNING\""
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-fd-s42zk-20261015-r25-v1",
+      "kaggle_status": "khanhmay0304/mobihet-fd-s42zk-20261015-r25-v1 has status \"KernelWorkerStatus.RUNNING\""
+    }
+  ]
+}

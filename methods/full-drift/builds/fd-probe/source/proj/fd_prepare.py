@@ -5,9 +5,10 @@ import sys
 from pathlib import Path
 
 
-def prepare_fd(work, final=False):
+def prepare_fd(work, final=False, clients=20):
     """final (owner 19/10, protocol §3): every train80% row trains, no internal holdout, test20% scored every round."""
     work = Path(work); sys.path.insert(0, str(work))
+    assert clients in (20, 50, 100) and (final or clients == 20)
     from mh.prepare import prepare, prepare_test
     meta = json.loads((work / 'knowledge/meta.json').read_text())
     scaler = json.loads((work / 'knowledge/scaler.json').read_text())
@@ -18,12 +19,13 @@ def prepare_fd(work, final=False):
     assert len(train) == len(test) == 1, ('ambiguous full mounts', train, test)
     features = meta['feature_cols']; classes = meta['class_names']
     manifest = prepare(train[0], out, features, classes, train_cap=None, eval_cap=65536,
-                       clients=tuple(range(20)), holdout=not final)
+                       clients=tuple(range(clients)), holdout=not final)
     assert manifest['source_rows'] == 43045415 and (final or manifest['group_overlap'] == 0)
     official = prepare_test(test[0], out, features, scaler, rows=None, sub=0)
     assert official['test_rows'] == 10761343
     manifest.update(official); manifest['files'].update(official['test_files'])
-    manifest['dataset_sources'] = ['trietbackup/veremi-fl-20client', 'trietbackup/veremi-nextgen2026-test']
+    owner = {20: 'trietbackup', 50: 'minhtriethihi', 100: 'khanhmay0304'}[clients]
+    manifest['dataset_sources'] = [f'{owner}/veremi-fl-{clients}client', 'trietbackup/veremi-nextgen2026-test']
     manifest['evaluation'] = ('final: official test20% after every round, headline round 50' if final else
                               'decisions on internal group holdout; official test20% once after the last epoch, descriptive')
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')

@@ -143,13 +143,33 @@ PLANS = {'r1': [('annhannh331', 42, 'a', [['fd_dml'], ['fd_dml_sub4']], 7.0),
          # with the RMS (Lloyd-Max) step both ways (vs tb)
          'r23': [(owner, seed, session, {'workers': 2, 'arms': [f'{arm}:15'], 'fast': True}, 7.0) for owner, seed, session, arm in
                  [('minhtran0601', 43, 'ya', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl'),
-                  ('dinhan25', 42, 'yb', 'fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl')]]}
+                  ('dinhan25', 42, 'yb', 'fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl')]],
+         # Owner 20/10: first session 4/2/2 epochs (20/50/100c), one evaluation notebook per round; seed42 goes first.
+         'r24': [(owner, seed, session, dict(workers=2, arms=[arm + ':50'], fast=True, final=True,
+                                            clients=clients, defer_eval=True, session_rounds=4 if clients == 20 else 2), hours)
+                 for clients, seed, session, owner, arm, hours in
+                 [(20, 42, 'za', 'minhtriethihi', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 2.0),
+                  (20, 43, 'zb', 'nguyenminhtran060113', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 2.0),
+                  (20, 42, 'zc', 'annhtnt', 'fd_dml_m4b_gpool_frz_gkd', 2.0),
+                  (20, 43, 'zd', 'accanniez', 'fd_dml_m4b_gpool_frz_gkd', 2.0),
+                  (50, 42, 'ze', 'thuyanh316', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 2.0),
+                  (50, 43, 'zf', 'takids1909', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 2.0),
+                  (50, 42, 'zg', 'annhannh331', 'fd_dml_m4b_gpool_frz_gkd', 2.0),
+                  (50, 43, 'zh', 'anhtruong1909', 'fd_dml_m4b_gpool_frz_gkd', 2.0),
+                  (100, 42, 'zi', 'odixe0502', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 3.0),
+                  (100, 43, 'zj', 'catbaochau', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 3.0),
+                  (100, 42, 'zk', 'khanhmay0304', 'fd_dml_m4b_gpool_frz_gkd', 3.0),
+                  (100, 43, 'zl', 'trietbackup', 'fd_dml_m4b_gpool_frz_gkd', 3.0)]]}
+
+# r24 failed before round 1: final-only Gaussian fixture context and subprocess failure propagation.
+PLANS['r25'] = [row for row in PLANS['r24'] if row[1] == 42]
 
 WANDB = r'''import time
 SESSION_T0=time.monotonic()
 
 import os, subprocess, sys
-subprocess.run([sys.executable,'-m','pip','install','--quiet','wandb==0.29.0'],check=True)
+# 0.28.0: 0.29 needs opentelemetry-api>=1.43 and upgrades the image's 1.38 (pip conflict lines, google-adk/otel-sdk pinned)
+subprocess.run([sys.executable,'-m','pip','install','--quiet','--progress-bar','off','wandb==0.28.0'],check=True)
 import wandb
 _INLINE_WANDB_KEY = ""
 try:
@@ -158,9 +178,9 @@ try:
 except Exception:
     _wandb_key=_INLINE_WANDB_KEY
 assert _wandb_key, 'W&B key required before training'
-assert wandb.login(key=_wandb_key,anonymous='never',relogin=True,verify=True)
-os.environ['WANDB_API_KEY']=_wandb_key
+os.environ['WANDB_API_KEY']=_wandb_key   # env login: no key-in-code / anonymous / netrc warnings
 del _wandb_key
+assert wandb.login(verify=True)
 assert wandb.Api(timeout=30).default_entity, 'W&B online authentication failed'
 print('W&B authenticated online',flush=True)
 '''
@@ -184,9 +204,32 @@ for name,digest in INPUTS.items():
     shutil.copyfile(SRC/name,target);shutil.copyfile(SRC/name,SOURCE/name)
 shutil.copyfile(SRC/'input_manifest.json',SOURCE/'input_manifest.json')
 sys.path.insert(0,str(WORK));sys.path.insert(0,str(PROJ))
+PARENT_DIR=None
+if PARENT:   # validate/import before expensive fixture decode
+    PARENT_DIR=Path('/kaggle/temp/parent')/PARENT['run']
+    for rel,digest in PARENT['files'].items():
+        flat=('resume_' if rel.startswith('resume/') else '')+Path(rel).name
+        hits=[p for p in Path('/kaggle/input').rglob(flat) if hashlib.sha256(p.read_bytes()).hexdigest()==digest]
+        assert len(hits)==1,('parent file',rel)
+        target=PARENT_DIR/rel;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(hits[0],target)
+    print('parent',PARENT['run'],'round',PARENT['round'],flush=True)
 t=time.monotonic()
-from fd_prepare import prepare_fd
-data=prepare_fd(WORK,final=FINAL)   # FINAL (owner 19/10): every train80% row trains, test20% every round
+cached=[p.parent for p in Path('/kaggle/input').rglob('manifest.json') if FIXTURE and p.parent.name=='fixture' and json.loads(p.read_text())==FIXTURE]
+if cached:   # owner 20/10: CPU-built fixture cache (gen_fixture.py); every file SHA-checked, symlinked; manifest bytes as written by prepare_fd
+    assert len(cached)==1,('ambiguous fixture caches',cached)
+    fixture=WORK/'papers/final/fixture';fixture.mkdir(parents=True,exist_ok=True)
+    for name,digest in FIXTURE['files'].items():
+        h=hashlib.sha256()
+        with open(cached[0]/name,'rb') as f:
+            for block in iter(lambda:f.read(1<<24),b''):h.update(block)
+        assert h.hexdigest()==digest,('fixture cache',name)
+        (fixture/name).symlink_to(cached[0]/name)
+    shutil.copyfile(cached[0]/'manifest.json',fixture/'manifest.json');data=FIXTURE
+    print('fixture cache',cached[0],len(FIXTURE['files']),'files SHA-checked',flush=True)
+else:
+    if FIXTURE:print('fixture cache not attached; preparing in session',flush=True)
+    from fd_prepare import prepare_fd
+    data=prepare_fd(WORK,final=FINAL,clients=CLIENTS)   # FINAL: every train80% row; separate evaluation covers every round
 (SOURCE/'data_manifest.json').write_text(json.dumps(data,indent=2))
 print('verified source; prepared','final' if FINAL else 'full holdout','fixture',data['source_rows'],{k:sum(v) for k,v in data['counts'].items()},
       'test',data['test_rows'],'sec',round(time.monotonic()-t),flush=True)
@@ -221,18 +264,12 @@ while active or any(pending.values()):
     time.sleep(5)
 (OUT/'fd_summary.json').write_text(json.dumps(summary,indent=2))
 print('FullDrift session; gates only after collector audit',json.dumps(summary),flush=True)
+assert summary and all(v['rc'] == 0 for v in summary.values()), 'training subprocess failed; inspect fd_summary.json and worker logs'
 '''
 
 
 RUN_POOL = r'''
-summary={};PARENT_DIR=None
-if PARENT:   # committed epoch of an audited run (flat dataset files, SHA-checked here and by fd.py): exact resume
-    PARENT_DIR=Path('/kaggle/temp/parent')/PARENT['run']
-    for rel,digest in PARENT['files'].items():
-        flat=('resume_' if rel.startswith('resume/') else '')+Path(rel).name   # upload_parent.py flat names
-        hits=[p for p in Path('/kaggle/input').rglob(flat) if hashlib.sha256(p.read_bytes()).hexdigest()==digest]
-        assert hits,('parent file',rel);(PARENT_DIR/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(hits[0],PARENT_DIR/rel)
-    print('parent',PARENT['run'],'round',PARENT['round'],flush=True)
+summary={}
 for item in ARMS:
     remaining=SESSION_HOURS-(time.monotonic()-SESSION_T0)/3600
     if remaining<1.0:break
@@ -242,7 +279,7 @@ for item in ARMS:
     env.pop('CUDA_VISIBLE_DEVICES',None)
     command=[sys.executable,str(PROJ/'fd.py'),'--arm',arm,'--seed',str(SEED),'--backend','compiled','--wandb_online',
              '--wandb_project','mobihet-fulldrift','--max_hours',str(round(remaining-.3,3)),'--out',str(OUT),'--stop_after',str(ep),
-             '--workers',str(WORKERS)]+(['--parent',str(PARENT_DIR),'--parent_round',str(PARENT['round'])] if PARENT else [])+(['--fast'] if FAST else [])+(['--final'] if FINAL else [])
+             '--workers',str(WORKERS),'--clients',str(CLIENTS),'--batch',str(256 if CLIENTS==100 else 512)]+(['--parent',str(PARENT_DIR),'--parent_round',str(PARENT['round'])] if PARENT else [])+(['--fast'] if FAST else [])+(['--final'] if FINAL else [])+(['--defer_eval'] if DEFER_EVAL else [])+(['--session_rounds',str(SESSION_ROUNDS)] if SESSION_ROUNDS else [])
     t=time.monotonic();log=open(folder/'log.txt','a')
     proc=subprocess.Popen(command,cwd=WORK,env=env,stdout=log,stderr=subprocess.STDOUT)
     print('start',item,SEED,'workers',WORKERS,'remaining_h',round(remaining,2),flush=True)
@@ -252,6 +289,7 @@ for item in ARMS:
     log.close();rp=folder/'result.json'
     result=json.loads(rp.read_text()) if rp.exists() else dict(history=[])
     summary[item]=dict(rc=proc.returncode,epochs=len(result['history']),complete=result.get('complete',False),
+                       session_complete=result.get('session_complete',False),evaluation_pending=result.get('evaluation_pending',False),
                        minutes=round((time.monotonic()-t)/60,1))
     (OUT/'fd_summary.json').write_text(json.dumps(summary,indent=2))
     print('finish',item,summary[item],flush=True)
@@ -260,11 +298,26 @@ for item in ARMS:
         for f in sorted(folder.glob('worker*.log')):print(f.name,f.read_text()[-2000:],flush=True)
 (OUT/'fd_summary.json').write_text(json.dumps(summary,indent=2))
 print('FullDrift session; gates only after collector audit',json.dumps(summary),flush=True)
+assert summary and all(v['rc'] == 0 for v in summary.values()), 'training subprocess failed; inspect fd_summary.json and worker logs'
 '''
 
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+# Audited r25 final fixture per client count; identical bytes on every host (za=zc, zg=ze, zk=zi: manifest + all file SHA).
+FIXTURE_SESSIONS = {20: 'fd-s42za-20261015-r25-v1', 50: 'fd-s42zg-20261015-r25-v1', 100: 'fd-s42zk-20261015-r25-v1'}
+
+
+def fixture_manifest(clients):
+    return json.loads((BASE / 'artifacts/kaggle' / FIXTURE_SESSIONS[clients] / 'source/data_manifest.json').read_text())
+
+
+def fixture_kernel(owner, clients):
+    """The owner's fixture-cache kernel if it finished (marker written by gen_fixture.py --check); kernel outputs never cross accounts."""
+    marker = BASE / 'artifacts/fixture-cache' / f'{owner}-k{clients}.json'
+    return [json.loads(marker.read_text())['kernel']] if marker.exists() else []
 
 
 def parent_files(parent):
@@ -283,12 +336,17 @@ def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--round', choices=sorted(PLANS), default='r2')
     parser.add_argument('--suffix', default='v1')
     parser.add_argument('--sessions', help='comma list: generate only these sessions of the plan (later batches of one source tag)')
+    parser.add_argument('--hours', type=float, help='override session hours (owner 20/10 ~19:40Z: final sessions ~11.5h)')
+    parser.add_argument('--uncapped', action='store_true', help='drop session_rounds: fd.py stops on its time budget')
+    parser.add_argument('--owner', help='run the single selected session on this account instead (quota allocation)')
     args = parser.parse_args()
+    assert not args.owner or (args.sessions and ',' not in args.sessions), '--owner needs exactly one --sessions code'
     tag = TAG if args.round == 'r1' else f'{TAG}-{args.round}'   # round 1 stage/dataset kept as pushed
     stage = BASE / 'artifacts/input' / f'fd-src-{tag}'
     mh = sorted(p.name for p in (ROOT / '.compat/mh').glob('*.py')); assert len(mh) == 40
     files = {**{n: ROOT / '.compat/mh' / n for n in mh}, **{n: FULL / n for n in ('full_run.py', 'full_method.py', 'full_driver.py')},
              'fd.py': BASE / 'source/proj/fd.py', 'fd_prepare.py': BASE / 'source/proj/fd_prepare.py',
+             'fd_eval.py': BASE / 'source/proj/fd_eval.py',
              'meta.json': ROOT / 'knowledge/meta.json', 'scaler.json': ROOT / 'knowledge/scaler.json'}
     if stage.exists():   # reuse the uploaded dataset; its manifest must still match the sources
         inputs = json.loads((stage / 'input_manifest.json').read_text())
@@ -301,15 +359,22 @@ def main():
     secret = netrc.netrc().authenticators('api.wandb.ai')[2]
     for owner, seed, session, queues, hours in PLANS[args.round]:
         if args.sessions and session not in args.sessions.split(','): continue
+        if args.owner: owner = args.owner
+        if args.hours: hours = args.hours
+        if args.uncapped: queues = {k: v for k, v in queues.items() if k != 'session_rounds'}
         dataset = f'{owner}/mobihet-fulldrift-src-{tag}'   # same bytes uploaded under each running account
         rid = f'fd-s{seed}{session}-{tag}-{args.suffix}'
         public, private = BASE / 'notebooks' / rid, BASE / 'private_push' / rid
         assert not public.exists() and not private.exists()
         public.mkdir(parents=True); private.mkdir(parents=True, mode=0o700)
-        head = f'MH={mh!r}\nINPUTS={inputs!r}\nFINAL={isinstance(queues, dict) and queues.get("final", False)!r}\n'
+        clients = queues.get('clients', 20) if isinstance(queues, dict) else 20
+        parent = parent_files(queues.get('parent')) if isinstance(queues, dict) else None
+        final = isinstance(queues, dict) and queues.get('final', False)
+        head = (f'MH={mh!r}\nINPUTS={inputs!r}\nFINAL={final!r}\nCLIENTS={clients}\nPARENT={parent!r}\n'
+                f'FIXTURE={fixture_manifest(clients) if final else None!r}\n')
         if isinstance(queues, dict):
             run = (f'SEED={seed}\nSESSION_HOURS={hours}\nWORKERS={queues["workers"]}\nARMS={queues["arms"]!r}\nFAST={queues.get("fast", False)!r}\n'
-                   f'PARENT={parent_files(queues.get("parent"))!r}\n' + RUN_POOL)
+                   f'DEFER_EVAL={queues.get("defer_eval", False)!r}\nSESSION_ROUNDS={queues.get("session_rounds")!r}\n' + RUN_POOL)
         else:
             run = f'SEED={seed}\nSESSION_HOURS={hours}\nQUEUES={queues!r}\n' + RUN
         cells = [nbformat.v4.new_markdown_cell(
@@ -319,6 +384,11 @@ def main():
                      'Contract: docs/methods/full-drift/design.md'),
                  nbformat.v4.new_code_cell(WANDB), nbformat.v4.new_code_cell(head + SETUP), nbformat.v4.new_code_cell(run)]
         nb = nbformat.v4.new_notebook(cells=cells)
+        if isinstance(queues, dict) and queues.get('final'):
+            nb.cells[0].source = (f'# FullDrift final {clients} clients, seed {seed}\n'
+                                 f'Every train80% row; cosine T50. Session cap {queues.get("session_rounds") or "time budget"} epochs. '
+                                 'All round weights retained; official test20% evaluated in separate notebooks. '
+                                 'Headline round 50; no test-based selection.')
         nb.metadata = dict(kaggle=dict(accelerator='nvidiaTeslaT4', isGpuEnabled=True, isInternetEnabled=True,
                                        language='python', sourceType='notebook'),
                            kernelspec=dict(display_name='Python 3', language='python', name='python3'),
@@ -330,9 +400,10 @@ def main():
         meta = dict(id=f'{owner}/mobihet-{rid}', title=f'mobihet-{rid}', code_file=f'{rid}.ipynb', language='python',
                     kernel_type='notebook', is_private=True, enable_gpu=True, enable_internet=True,
                     machine_shape=RUNTIME['machine_shape'], docker_image=RUNTIME['docker_image'],
-                    dataset_sources=[dataset, 'trietbackup/veremi-fl-20client', 'trietbackup/veremi-nextgen2026-test', *parents],
-                    kernel_sources=[], competition_sources=[])
+                    dataset_sources=[dataset, f'{ {20: "trietbackup", 50: "minhtriethihi", 100: "khanhmay0304"}[clients]}/veremi-fl-{clients}client', 'trietbackup/veremi-nextgen2026-test', *parents],
+                    kernel_sources=fixture_kernel(owner, clients) if final else [], competition_sources=[])
         assert len(meta['title']) <= 50
+        assert meta['is_private'] is True
         nbformat.write(nb, public / meta['code_file'])
         (public / 'kernel-metadata.json').write_text(json.dumps(meta, indent=2) + '\n')
         (public / 'source_manifest.json').write_text(json.dumps(dict(inputs=sha(stage / 'input_manifest.json'), fd=inputs['fd.py'],

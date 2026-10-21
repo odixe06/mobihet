@@ -1,5 +1,9 @@
 # QProxy q4 — lượng tử int4 theo hàng cho update proxy
 
+**Chốt 20/10/2026 (headline frz/gkd/la/kdpx): q3 + LZMA2 (`q3_zl`) PASS cả hai seed**, ep15 private head Δ −0,0024/+0,0032 so dense;
+byte proxy 66,8/66,7 MB cho 20 client × 15 round. Q4_zl giữ làm phương án dự phòng; 2-bit scale max, uplink-only và RMS đều FAIL trên headline mới.
+Q2 PASS phía dưới chỉ thuộc gpool cũ, không chuyển sang frozen teacher. [Vòng 20–23](../../methods/full-drift/results.md).
+
 **Trạng thái (17/10 ~14:00Z):** Utility noninferior PASS (m4b_q4 s42, s43 −0,003); **codec wire thật `QPacket`** (fd.py, source sau r11):
 byte = `len(packet)` = 208.268 B/chiều, train bit-exact với q4 đã audit (test `--part r11`, `checks`).
 

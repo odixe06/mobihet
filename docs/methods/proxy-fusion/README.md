@@ -4,4 +4,4 @@ Probe hậu kiểm 15/10 **FAIL**: trộn log-prob private-gp với proxy DML k�
 Hệ quả: proxy head là model triển khai/headline của DML/Hybrid (owner chốt15/10). Dừng hướng fusion.
 
 [Thiết kế và cổng khóa](design.md) · [Kết quả](results.md) ·
-[Source/notebook/artifact](../../../methods/proxy-fusion/builds/fuse-probe/) · [Danh mục](../../proposals.md)
+[Source/notebook/artifact](../../../methods/proxy-fusion/builds/fuse-probe) · [Danh mục](../../proposals.md)

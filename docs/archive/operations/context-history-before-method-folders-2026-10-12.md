@@ -13,7 +13,7 @@ IDS V2X cộng tác qua RSU. Bốn yêu cầu bắt buộc:
 
 **2026-10-12 backup/cleanup theo yêu cầu chủ dự án:** Git snapshot nghiên cứu và hồ sơ đãpush;
 31/31 target DVC đủ trênG:,8.847 object verify thiếu0; workspace đãxóa, thu hồi155.99GiB local.
-Không chờcloudsync. [Hồ sơ/phục hồi](../../operations/backup.md).
+Không chờcloudsync. [Hồ sơ/phục hồi](backup-history-2026-10-14-to-20.md).
 Không collector local đang chạy; muốn collect/resume phải pull target cần thiết trước.
 Quyền Git/DVC/delete chỉ cho đợt backup này, không tự mở run nghiên cứu mới.
 
@@ -71,7 +71,7 @@ R2 vẫn ở thiết kế. Train nặng chỉ Kaggle, W&B online bắt buộc; G
 - **Archive 3 đã đóng và xóa local** (2026-10-11).
   - Repo `odixe06/mobihet-archive-b9-b21`, tag `archive-3`, bundle `mobihet-archive-b9-b21.bundle`; mọi artifact trên DVC, đã kiểm thiếu 0.
   - B21 cuối: d3z PASS, Z66 và liều replay FAIL.
-  - `~/.cache/mobihet` (39 GB scratch archive) đã xóa theo lệnh chủ dự án. Lấy lại: [backup.md](../../operations/backup.md) §5.
+  - `~/.cache/mobihet` (39 GB scratch archive) đã xóa theo lệnh chủ dự án. Lấy lại: [backup.md](backup-history-2026-10-14-to-20.md) §5.
 - **Probe H2-T0-lite** (MLP, 2026-10-10): Gaussian full gộp +0,10 so với replay cân bằng. [Kết quả](../research/probes/h2-input-stats.md).
 - **Pilot P1 XONG** (2026-10-11, local, 16 arm × 2 seed; [kết quả + phân tích](../research/probes/pilot-p1.md)).
   - Thiết lập: DAGSNet 20c, 2,5% dữ liệu mỗi client, 20 round, holdout `group`, quy tắc gp, không giới hạn kênh.
@@ -166,4 +166,4 @@ Các mục H1+H2/full-scale dưới đây vẫn được đề xuất/đã đồ
 | Đề xuất, ngân sách byte | [de-xuat-huong-moi.md](../research/de-xuat-huong-moi.md) |
 | Protocol so sánh | [protocol.md](../../research/protocol.md) |
 | Dữ liệu / DAGSNet / máy local / Kaggle | [knowledge/](../../../knowledge/README.md) |
-| Backup, kéo dữ liệu archive | [backup.md](../../operations/backup.md) |
+| Backup, kéo dữ liệu archive | [backup.md](backup-history-2026-10-14-to-20.md) |

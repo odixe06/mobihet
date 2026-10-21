@@ -143,3 +143,9 @@ Chưa đo trên T4; chưa thử capture cả bước. Lớp tolerance cần owne
 **Owner duyệt 18/10 ~09:15Z** cho kernel build từ vòng 19: cờ `fd.py --fast` (fused + nondet); kernel cũ giữ bit-exact và đối chứng cũ, arm `--fast` chỉ so đối chứng `--fast` ([design §Code nhanh](../methods/full-drift/design.md)). Test `test_fd_local --part fast` PASS: không cờ = bit-exact r18 (5 arm, 2 epoch); 1 bước từ cùng trạng thái, logit private lệch fused 2,8–3,2e-5, fused+nondet 4,1–6,0e-3 của max|logit|, 0 argmax đổi trên dòng phân định rõ, cùng số bước applied/skipped; sai khác tương đối theo tensor tới 0,5–0,7 chỉ ở bias BN gradient ≈ 0 (Adam bước đầu ±lr theo dấu nhiễu) — không phải tiêu chí. ms/bước T4 đo từ run đối chứng `--fast` đầu tiên (`ms_per_step.py`).
 
 **Đo T4 production (18/10 ~18:30Z, `ms_per_step.py`, cùng arm la_kdpx s42 ep1→15, `--workers 2`):** code cũ (rc) 25,19 ms/bước → `--fast` (tb) **18,75 ms/bước (−25,6 %)**, cùng 1.172.460 bước; khớp benchmark local −25 %. Private head 0,8225 → 0,8269 (+0,004, trong chênh seed). gkd s43: 24,54 → 19,34 ms/bước (−21 %), head 0,7953 → 0,7984 (cổng equiv PASS).
+
+## 7. Run cuối train/chấm tách (20/10)
+
+Owner ưu tiên seed42; session 20c đầu 4 round, 50/100c 2 round. Mỗi round chấm bằng một notebook hai GPU trên account khác, đồng thời train continuation sau khi evaluator có heartbeat. [Pipeline và ước lượng](../operations/final-pipeline.md).
+
+Đếm lại local bằng FlopCounterMode: forward **4443648 FLOPs/mẫu**, forward+backward **13280256**, 395024 tham số. `round.cost` ghi operator estimate riêng với walltime, bước SGD và VRAM; ước lượng không bao gồm BN/KL/optimizer/calibration/probes, không gọi là toàn bộ chi phí runtime. `runtime.json` ghi setup/compile/hardware. Communication tính byte gói serialize, bootstrap và up/down riêng, host time encode/decode; byte/algorithm-second là tốc độ tạo payload, không phải bandwidth link vật lý.

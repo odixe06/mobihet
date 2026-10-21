@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=ROOT);args=parser.parse_args()
-    root=args.root.resolve();record=json.loads((ROOT/'docs/operations/compatibility-aliases.json').read_text())
+    root=args.root.resolve();record=json.loads((ROOT/'docs/operations/registry/compatibility-aliases.json').read_text())
     created=0
     for row in record['aliases']:
         alias=root/row['alias'];target=root/row['target']

@@ -1,0 +1,17 @@
+{
+  "session": "fd-s42zk-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_frz_gkd_s42_e50",
+  "rounds": [
+    1,
+    2
+  ],
+  "fingerprint": "e374efd50cf62d4d6be815c4efd6ff17ef0ac4bddf8dd2c1b930f219eff0b9b8",
+  "weights_sha": {
+    "1": "65d7c408d9460ee3ce952fe0ad304bf176c43c2995a23d5f080d1cf52f599c45",
+    "2": "4315dbe3742d6cac96b2aea90cab05d7f71427e292808056074b431b2da4d8b0"
+  },
+  "source_tag": "20261015-r26",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "trietbackup/mh-fd-e01-02-s42zk-20261015-r25-v1-f1"
+}

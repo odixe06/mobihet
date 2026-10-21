@@ -5,7 +5,7 @@ CountSketch sửa là adaptation của họ cũ, không đếm mới. 11 hồ s�
 Gaussian, DML và Hybrid có pilot tích cực; chưa có proof đủ r50/R1/R2. Owner15/10: proxy head là headline DML/Hybrid.
 **Owner16/10: mục tiêu = dự đoán của client** (private gp primary, giữ R1/R2): [tổng hợp hướng client](archive/research/client-model-directions-2026-10-16.md). [Chẩn đoán chững sớm](archive/research/plateau-diagnosis-2026-10-15.md).
 
-**Mỗi phương pháp một file theo tên: [research/methods](research/methods/README.md)** (owner 17/10). V2–V10 là nhãn đợt thí nghiệm, [không phải các version thay thế nhau](operations/experiment-names.md).
+**Mỗi phương pháp một file theo tên: [research/methods](research/methods/README.md)** (owner 17/10). V2–V10 là nhãn đợt thí nghiệm, [không phải các version thay thế nhau](operations/project-layout.md).
 
 ## Trạng thái hồ sơ trong methods/
 
@@ -28,7 +28,7 @@ Gaussian, DML và Hybrid có pilot tích cực; chưa có proof đủ r50/R1/R2.
 | FullDrift vòng 5–6 — m4b horizon ep15, m4b+q4; seed 43 | Vòng 5 audited: **m4b@e15 PASS** (private +0,036, proxy +0,086, benign không sụp), m4b_q4 noninferior | [Thiết kế §Vòng 5–6](methods/full-drift/design.md), [kết quả](methods/full-drift/results.md) |
 | FullDrift vòng 6–7 seed 43 | **PASS hết**: m4b private +0,031/proxy +0,039, swappos +0,034; EMA hại Gaussian-m4b hai seed ⇒ headline DML = m4b | [Kết quả](methods/full-drift/results.md) |
 | FullDrift vòng 8–10 (17/10) — kdcap/frozen teacher, FedDyn, SCAFFOLD (3 LR), Hybrid private-only, cons/JS, own controls, s43 lặp, horizon s43 | Audited ~04:40Z: **`gpool` (Hybrid private-only) PASS 3 cổng × 2 seed** (+0,016/+0,024 so m4b); own controls PASS (lợi FL +0,04/+0,05); m4b_q4 s43 noninferior; kdcap, frz, FedDyn, SCAFFOLD, JS **FAIL**. Horizon m4b ep15 s43 **PASS** (private +0,025, proxy +0,063) | [Thiết kế §Vòng 8–10](methods/full-drift/design.md), [kết quả](methods/full-drift/results.md), [theo tên](research/methods/README.md) |
-| FullDrift vòng 11 (17/10) — cải tiến m4b+gpool (kd2, kdpx, gw2, gpool ep15) | Test local PASS; **RUNNING** từ ~09:55Z (la, lc) | [Thiết kế §Vòng 11](methods/full-drift/design.md), [bàn giao](operations/continuation-2026-10-17.md) |
+| FullDrift vòng 11–23 — cải tiến private và nén | Vòng 11 kd2/kdpx/gw2 FAIL; gpool horizon không giữ lợi. Frz/gkd rồi la_kdpx PASS hai seed; vét la/kdpx xong. **q3_zl noninferior cả hai seed**, 2-bit FAIL. Chuyển run cuối seed42 20/50/100c, train/chấm tách | [Kết quả](methods/full-drift/results.md), [pipeline cuối](operations/final-pipeline.md) |
 
 ## Đã kết thúc — giữ bài học, source và báo cáo trong archive
 

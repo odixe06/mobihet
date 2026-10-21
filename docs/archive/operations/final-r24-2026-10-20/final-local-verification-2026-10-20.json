@@ -1,0 +1,52 @@
+{
+  "frozen_files": 433,
+  "legacy_modules": 40,
+  "public_files_key_scan": 36,
+  "head": "7862c7dc8a5f34cdce56b3cfd1ac79baa60b1fee",
+  "scientific_source_tag": "20261015-r24",
+  "input_files_with_manifest": 49,
+  "fd_sha": "71fb2e5709fe0e3b52eae3b93a5c8ba6743748d1dab51241c2db34740481dacb",
+  "eval_sha": "1b125609c57a680d39209deca488c94ffa03beca2fa18be55cf06937b09b3ed0",
+  "tests": [
+    {
+      "clients": 20,
+      "backend": "eager",
+      "pass": true
+    },
+    {
+      "clients": 50,
+      "backend": "eager",
+      "pass": true
+    },
+    {
+      "clients": 100,
+      "backend": "eager",
+      "pass": true
+    },
+    {
+      "clients": 20,
+      "backend": "compiled",
+      "pass": true
+    }
+  ],
+  "assertions": [
+    "private/proxy/EMA weights bit-exact vs inline and committed resume",
+    "detached predictions and all ten metrics identical with one/two workers",
+    "q3 server exact state and EF resume match",
+    "tampered weight SHA rejected",
+    "20c compiled weights match frozen r23 source",
+    "final fingerprint selects final fixture",
+    "evaluation notebook generator private/hash/metadata/command fixture PASS",
+    "final collector on compiled fixture checks both rounds weights/resume SHA, strict models and 12 metric groups",
+    "final report fixture joins exact fingerprint/round/SHA; partial round 2 stays incomplete; 10 metrics and per-client byte range exported",
+    "serialized wire byte ledger identical to frozen r23 source: 180 messages on compiled fixture",
+    "continuation helper fixture preserves committed last round, T50, codec bundle and 4/2 cap"
+  ],
+  "limits": "Local RTX3050, two workers share one GPU; remote 2xT4 verification pending startup. K50/100 fixtures check algorithm; no full-data local training. Historical layout verifier fails on changed DVC identities since 14-Oct; current DVC files untouched and frozen bytes/index verified separately.",
+  "wandb_env_auth": "wandb 0.28.0 verify=True PASS with netrc fallback forced to fail; key from process env only",
+  "edited_document_links_checked": 2589,
+  "missing_links": 0,
+  "git_index_bytes_unchanged": false,
+  "git_staged_content_unchanged": true,
+  "index_note": "Index file bytes changed during session; staged content and HEAD remain unchanged. No Git/DVC mutation requested or performed."
+}

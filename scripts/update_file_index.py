@@ -24,7 +24,7 @@ def main():
         'Tự sinh: `python3 scripts/update_file_index.py`. Artifact remote-only có route DVC, không coi thiếu local là chưa từng chạy.','',
         '## Artifact và các build','',
         '| build / vị trí | thiết kế, kết quả và metadata |','|---|---|']
-    registry=ROOT/'docs/operations/workspace-layout.json'
+    registry=ROOT/'docs/operations/registry/workspace-layout.json'
     for old,b in json.loads(registry.read_text())['builds'].items():
         if b['archived']:continue
         doc=f'methods/{b["family"]}/builds/{b["build"]}/README.md'

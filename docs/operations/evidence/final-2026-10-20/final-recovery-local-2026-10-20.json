@@ -1,0 +1,55 @@
+{
+  "source_tag": "20261015-r25",
+  "changed_source_files": [
+    "fd.py"
+  ],
+  "legacy_modules_unchanged": 40,
+  "fd_sha": "aeb34234e0f14f6ece0d9070ace0afb7b6acd8167f9ba9b1bbb9011fd57e72b3",
+  "compiled_pipeline_pass": true,
+  "final_only_non_smoke_pass": true,
+  "non_smoke_scenarios": 6,
+  "ranks_per_scenario": 2,
+  "fixture_rows_per_client": 1023,
+  "test_rows": 256,
+  "coverage_gate_fixture_substituted": true,
+  "physical_two_gpu_verification": false,
+  "quota_before": {
+    "user": "annhtnt",
+    "gpu_left": 16.248660531111113,
+    "gpu_total": 30.0,
+    "gpu_reserved": 0.0,
+    "tpu_left": 20.0,
+    "tpu_total": 20.0,
+    "refresh_at": "2026-10-24T00:00:00"
+  },
+  "active_user": "thuyanh316",
+  "tests": {
+    "compiled_pipeline": "PASS 20 compiled inline == detached 1/2 workers; private/EMA/proxy predictions, 10 metrics; codec resume; SHA rejection",
+    "final_only_startup": "PASS final-only Gaussian; frozen constructor reproduces crash; pilot context exact; child rc7 fails notebook, rc0 succeeds",
+    "non_smoke_final_only": {
+      "clients": [
+        20,
+        50,
+        100
+      ],
+      "arms": [
+        "fd_dml_m4b_gpool_frz_gkd",
+        "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl"
+      ],
+      "ranks": [
+        0,
+        1
+      ],
+      "batch": {
+        "20": 512,
+        "50": 512,
+        "100": 256
+      },
+      "rows_per_client": 1023,
+      "tail_batch": true,
+      "applied_private_proxy_steps": true,
+      "production_coverage_gate_replaced_only_in_test": true
+    }
+  },
+  "source_upload_api_response": "odixe0502/khanhmay0304 create returned rc1 JSON parse error but datasets ready; verified 49 files without recreating"
+}

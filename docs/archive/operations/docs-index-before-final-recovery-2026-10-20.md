@@ -1,0 +1,55 @@
+# Mục lục tổng quan dự án
+
+Đây là điểm đọc chính: [CONTEXT](../../../CONTEXT.md) giữ trạng thái/lưu ý vận hành; [LESSONS](../../../LESSONS.md) giữ bài học chung.
+[Index đang làm](../../file-index.md) · [Index lịch sử](../file-index.md) · [Cấu trúc và alias](../../operations/project-layout.md).
+
+## 1. Toàn bộ phương án
+
+- [Phương pháp theo tên](../../research/methods/README.md): mỗi phương pháp một file (cơ chế, trao đổi, bằng chứng, trạng thái).
+- [Một danh mục đề xuất](../../proposals.md): 28 nhóm +recipe EMA; đã kiểm/chưa kiểm, PASS/FAIL có phạm vi, link thiết kế/build/kết quả.
+- [Hồ sơ phương pháp](../../methods/README.md): README ngắn → căn cứ/cơ chế → các build/source/artifact.
+- [Bài học dùng tiếp](../../lessons/README.md); [hồ sơ lịch sử](../README.md) giữ báo cáo và nguồn gốc số đo.
+- [Dự báo performance](../research/performance-feasibility-2026-10-13.md): căn cứ trước mở pilot.
+- [Chẩn đoán chững sớm 15/10](../research/plateau-diagnosis-2026-10-15.md): học thuộc receiver, proxy≫private, khối lớp nhầm lẫn.
+
+## 2. Hồ sơ làm việc và trạng thái
+
+| phương pháp | trạng thái chốt15/10 | thiết kế / build / kết quả |
+|---|---|---|
+| Gaussian class moments | Full q2 cùng controls; diag/lr4 riêng tạm hoãn | [Hồ sơ](../../methods/gaussian-class-moments/README.md), [full H1/H2](../../methods/shared-baselines/builds/federated-baselines-full/README.md) |
+| DAGSNet mutual distillation | Full q2 đang chạy, chưa r50 | [Hồ sơ](../../methods/proxy-mutual-distillation/README.md), [10metrics cuối](../../methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md) |
+| Gaussian + proxy Hybrid | Full q2 đang chạy; own pair chưa fresh heartbeat | [Hồ sơ](../../methods/gaussian-proxy-hybrid/README.md), [full build](../../methods/gaussian-proxy-hybrid/builds/hybrid-full/README.md) |
+| BoundaryCells counts | Bốn adaptation hai seed FAIL; dừng | [Hồ sơ](../../methods/boundary-cell-counts/README.md), [fixed-r20 report](../../methods/boundary-cell-counts/builds/boundary-cell-pilot/results/utility-report.md) |
+| ClassTail risk | Pairedr20 FAIL; dừng | [Hồ sơ](../../methods/class-tail-risk/README.md), [gates/forensics](../../methods/class-tail-risk/builds/class-tail-pilot/results/report.md) |
+| CountSketch EF sửa overshoot | Smallr20 FAIL; medium partial kém own; dừng adaptation | [Hồ sơ](../../methods/proxy-countsketch-repair/README.md), [trial](../../methods/proxy-countsketch-repair/builds/contractive-ef-pilot/results/report.md) |
+| CrossClientRank | Seed42 utility r20 FAIL (audited); seed43 recovery v2 đang chạy | [Nguồn/cơ chế](../../methods/cross-client-ranking/README.md), [utility/recovery](../../methods/cross-client-ranking/builds/rank-utility/README.md) |
+| ProxyFuse | Probe hậu kiểm FAIL; proxy head thành headline DML/Hybrid | [Hồ sơ](../../methods/proxy-fusion/README.md) |
+| AntiMem + QProxy | Pilot r20 hai seed đang chạy (nguyenminhtran060113) | [Hồ sơ](../../methods/anti-memorization/README.md) |
+| ResponseRisk augmentation | Fidelity probe PASS; chưa train augmentation | [Thiết kế](../../methods/receiver-response-consistency/design.md), [build](../../methods/receiver-response-consistency/builds/receiver-augmentation/README.md) |
+| EMA deployment recipe | Thiết kế đã chốt; chưa source/pilot utility | [Thiết kế/cổng](../../methods/ema-deployment-recipe/design.md) |
+
+Các adaptation FAIL khác đều có thiết kế/report/source qua [danh mục đề xuất](../../proposals.md); không rerun y nguyên.
+
+## 3. Vận hành, lỗi và khả năng tái lập
+
+- [Bàn giao hiện tại và checklist phiên sau](continuation-2026-10-17.md): exact kernel/version, checkpoint, budget, lệnh one-shot. Owner đã dừng poll khi kết phiên.
+- [Run cuối seed42: train/chấm tách](../../operations/final-pipeline.md): 20c cap 4 round; 50/100c cap 2; một round/notebook chấm; communication/computational cost.
+- [Sổ lỗi kernel](../../operations/notebook-errors.md): nguyên nhân, output dùng được, preflight ngăn lặp.
+- [Launch plan/budget](continuation-plan-2026-10-15-q2.json); [global snapshot09:01UTC](kernel-status-current.json) cũ hơn CCR error/recovery, không trạng thái live.
+- [Layout hiện tại](../../operations/registry/workspace-layout.json), [tên các đợt](../../operations/project-layout.md), [manifest gốc](layout-migration-2026-10-14.json), [Git/DVC verification](layout-verification-2026-10-14.json).
+- [Backup/restore](backup-history-2026-10-14-to-20.md), [lịch sử collect trước đợt này](collection-2026-10-14.md).
+- [Scripts dùng chung](../../../scripts/README.md); logs đúng build, không trộn với kết quả khoa học.
+- [Package chung và module riêng build](../../operations/project-layout.md): ownership, source canonical, alias và fingerprint.
+
+## 4. Protocol và kiến thức nền
+
+- [Protocol](../../research/protocol.md), [chi phí tính toán so fl_dagsnet_veremi](../../research/computational-cost.md), [so sánh 3 tiêu chí với fl_dagsnet_veremi](../../research/comparison-fl-dagsnet-veremi.md), [dataset](../../../knowledge/dataset.md), [architecture](../../../knowledge/architecture.md), [knowledge hub](../../../knowledge/README.md).
+- [Kiến thức kế thừa](../legacy/kien-thuc-ke-thua.md), [LESSONS trước tổ chức](../legacy/lessons-before-layout-20261014.md).
+- Source/codec/resume PASS không thay utility/R1/R2/DP proof; mọi kết quả headline cần terminal artifact audit.
+
+## 5. Quy trình cho các phiên sau
+
+- [Skill Codex](../../../.agents/skills/federated-experiment-workflow/SKILL.md).
+- [Skill Claude Code](../../../.claude/skills/federated-experiment-workflow/SKILL.md).
+- [Thông tin chuẩn skill đã đối chiếu](../../../.claude/skills/federated-experiment-workflow/SKILL.md).
+- [Index toàn dự án](../../file-index.md): code, docs, notebooks, helper, skill; artifact bị ignore có route/DVC.

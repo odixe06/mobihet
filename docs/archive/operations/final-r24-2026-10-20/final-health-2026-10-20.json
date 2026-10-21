@@ -1,0 +1,43 @@
+{
+  "observed_at_utc": "2026-10-20T16:27:12.326293+00:00",
+  "runs": [
+    {
+      "kernel": "minhtriethihi/mobihet-fd-s42za-20261015-r24-v1",
+      "kaggle_status": "minhtriethihi/mobihet-fd-s42za-20261015-r24-v1 has status \"KernelWorkerStatus.RUNNING\""
+    },
+    {
+      "kernel": "annhtnt/mobihet-fd-s42zc-20261015-r24-v1",
+      "kaggle_status": "annhtnt/mobihet-fd-s42zc-20261015-r24-v1 has status \"KernelWorkerStatus.COMPLETE\"",
+      "wandb_id": "fd_dml_m4b_gpool_frz_gkd_s42_e50-78d00345",
+      "wandb_path": "21522798-uit/mobihet-fulldrift/fd_dml_m4b_gpool_frz_gkd_s42_e50-78d00345",
+      "wandb_url": "https://wandb.ai/21522798-uit/mobihet-fulldrift/runs/fd_dml_m4b_gpool_frz_gkd_s42_e50-78d00345",
+      "wandb_state": "finished",
+      "latest": {
+        "_timestamp": 1792511434.7425318
+      }
+    },
+    {
+      "kernel": "thuyanh316/mobihet-fd-s42ze-20261015-r24-v1",
+      "kaggle_status": "thuyanh316/mobihet-fd-s42ze-20261015-r24-v1 has status \"KernelWorkerStatus.RUNNING\""
+    },
+    {
+      "kernel": "annhannh331/mobihet-fd-s42zg-20261015-r24-v1",
+      "kaggle_status": "annhannh331/mobihet-fd-s42zg-20261015-r24-v1 has status \"KernelWorkerStatus.QUEUED\""
+    },
+    {
+      "kernel": "odixe0502/mobihet-fd-s42zi-20261015-r24-v1",
+      "kaggle_status": "odixe0502/mobihet-fd-s42zi-20261015-r24-v1 has status \"KernelWorkerStatus.COMPLETE\"",
+      "wandb_id": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50-50d2d5e4",
+      "wandb_path": "21522798-uit/mobihet-fulldrift/fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50-50d2d5e4",
+      "wandb_url": "https://wandb.ai/21522798-uit/mobihet-fulldrift/runs/fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50-50d2d5e4",
+      "wandb_state": "finished",
+      "latest": {
+        "_timestamp": 1792512959.4214568
+      }
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-fd-s42zk-20261015-r24-v1",
+      "kaggle_status": "khanhmay0304/mobihet-fd-s42zk-20261015-r24-v1 has status \"KernelWorkerStatus.QUEUED\""
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "session": "fd-s42za-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "fingerprint": "029da77eae724260e269149811148359071a1fe0e450e71528bfcada0f96f84c",
+  "weights_sha": {
+    "1": "6dd31be52711af47fa5dc933d060c52fdca0575bd200148b98078a885d4e374a",
+    "2": "e3f70c1af656e9ea1a692241216c3454d537392ee7c57327161ee2c4874e2a08",
+    "3": "fe5eee3bbcbe1ad6fce1cab3834e0fd8273efed853b17ddd5aef4040715a8aa3",
+    "4": "a6aa68dca8cf51ebe7b24913ac425a04f14d9563d3d51492754b63f9f6395842"
+  },
+  "source_tag": "20261015-r25",
+  "checkpoint_dataset": "odixe0502/mh-fd-e01-04-s42za-20261015-r25-v1-v1"
+}

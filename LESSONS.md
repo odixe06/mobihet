@@ -116,6 +116,13 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 
 ## Những cơ chế làm train kém hoặc gây kết luận sai
 
+- **20/10 final startup crash:** test `--smoke --final` vẫn đọc pilot fixture, không chứng minh đường production final-only.
+  Gaussian legacy còn hash cứng pilot manifest ⇒ r24 zc/zi crash trước round1. Test bắt buộc: không tồn tại pilot,
+  Gaussian đọc final manifest; đối chiếu context pilot với legacy. Notebook phải lan truyền exit code subprocess,
+  không biến `rc=1, epochs=0` thành Kaggle COMPLETE. Source đã push giữ nguyên; sửa ở tag mới.
+- **20/10 upload source:** `datasets create` có thể exit1/JSON parse error dù server đã tạo dataset ready.
+  Đọc status, verify manifest names/sizes trước retry; không upload/push trùng từ exit code đơn lẻ.
+
 - **Full ≠ pilot về động học.** Full mỗi round = 1 epoch ≈4.200 bước/client; Gaussian/local đạt đỉnh test ở r1 rồi giảm
   (học thuộc receiver), proxy bão hòa từ r3–r5 khi LR còn ~1e-3 (FullDrift vòng 5: cũng do học thuộc receiver, m4b bỏ được). Pilot2,5% (~100 bước) không tái hiện; kết luận về
   drift/hội tụ từ pilot (vd FedAvg > DML proxy +0,027) có thể đảo ở full (repo anh em NILM proxy 0,823 > AFPHA 0,775).
@@ -138,6 +145,7 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   sai. Nguyên nhân chung là **scale theo max hàng**: update proxy thật có crest max/RMS ~3,2 ⇒ 93 % phần tử < max/2; sai số tương đối q2 max
   0,83 (gần nhất) / 1,45 (ngẫu nhiên), q3 0,40 / 0,58 (PASS). 3-bit hai chiều PASS và rẻ hơn int4 33 %. Trước khi chọn số bit, đo sai số tương đối
   của bộ lượng tử trên update thật và so với mức đã PASS. [Kết quả vòng 20–22](docs/methods/full-drift/results.md).
+- **q3_zl đã lặp đủ hai seed:** residual ep15 ~0,021–0,022, private head noninferior (s42 −0,0024; s43 +0,0032), byte proxy ~66,7–66,8 MB/15 epoch. 2-bit RMS ổn định nhưng mất F1 −0,0133 ⇒ giữ q3, không nới cổng. [Vòng 23](docs/methods/full-drift/results.md).
 - **Logit adjustment cho client lệch nhãn: τ=1 với prior gộp là đủ.** τ 0,5/1,5, đích prior đều, la trên CE proxy, KD×2 đều nằm trong dải
   nhiễu quanh τ=1 (vòng 20). Đích prior đều tăng proxy nhưng làm head bỏ lớp benign phổ biến (−0,042) ⇒ đích phải là prior thật của tập đánh giá.
 
@@ -177,10 +185,23 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   thêm epoch không tự tăng performance. [Hybrid full](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md).
 - Máy local ngủ (WSL) làm poll nền dừng, Kaggle vẫn chạy. Sau khi thức đừng để watcher mở collector cho mọi session cùng
   lúc (mỗi audit đỉnh ~4 GB): chia nhóm session rời nhau cho 2–4 tiến trình `collect_fd.py --only`, pull ~20 s/session.
+- **Sửa 20/10: CLI hiện tại đọc được log live bằng `kaggle kernels logs <owner/slug> --follow` (SSE).** Đã đọc W&B auth và
+  `Prepared real pilot … old cut: 0` khi r24 vẫn RUNNING; lệnh không `--follow` có thể vẫn rỗng. Dùng account-scoped, đọc có timeout;
+  exit 124 do hết thời gian đọc không phải kernel ERROR. Các ghi chú cũ "chỉ có W&B khi đang chạy" không còn đúng ở môi trường này.
+  [Bằng chứng startup](docs/archive/operations/final-r24-2026-10-20/final-startup-2026-10-20.json). Log/status chưa thay terminal artifact audit.
+- Collector có thể thoát 0 mà chưa pull nếu thiếu `PUSHED`. Kiểm `AUDITED.json` và completion cụ thể; chỉ dựng lại marker sau khi
+  xác nhận đúng kernel từ status account-scoped, rồi vẫn đối chiếu executed source trước audit (ya-v2, 20/10).
+- SHA của `.git/index` khác chưa có nghĩa nội dung staged đổi. Kiểm staged tree và HEAD riêng; ghi cả byte identity và content identity,
+  không khôi phục index chỉ để ép SHA trùng snapshot cũ (20/10).
 - **Harness Kaggle bị giới hạn bởi CPU, không phải GPU** (T4 ~12 ms compute vs 26–27 ms/bước gpool, 4 vCPU cho 2 arm).
   Mỗi `.item()`/`get_scale()`/`assert torch.isfinite(t)`/index-put bằng tensor là một lần đồng bộ host; deterministic mode
   mặc định lấp NaN mọi `empty` (~500 kernel/bước). Gỡ chúng: −20 %/bước, bit-exact. Mọi tối ưu harness phải kiểm bit-exact
   với source trước (test local) để đối chứng đã audit còn dùng được.
+- **Chấm DAGSNet bị giới hạn bởi kernel conv1d, không phải FLOP** (21/10): 4,4 MFLOP/dòng, conv L=11 kênh hẹp ⇒ T4 chỉ ~1,5 TFLOPs,
+  30–34 s/lượt 10,76M dòng. cuDNN autotune/batch lớn chỉ −5…−24 %; viết lại forward thành GEMM trên (dòng, vị trí, kênh), fold BN eval,
+  conv k = một GEMM ra k×out rồi cộng dịch vị trí ⇒ 18–19 s (1,7×), khớp fp32 tới 4e-7, fp16 lệch 0,02 % dòng sát nút (lớp tolerance,
+  owner duyệt). Đo trên T4 thật trước khi chọn: im2col nhanh như bản cộng dịch trên RTX 3050 nhưng chậm hơn 25 % trên T4.
+  [fd_eval_fast.py](methods/full-drift/builds/fd-probe/source/proj/fd_eval_fast.py).
 - Tiến trình khởi động độc lập không dùng `Connection.send` cho tensor: ForkingPickler của torch chia sẻ tensor qua
   resource_sharer với authkey của tiến trình gốc ⇒ AuthenticationError; dùng `pickle.dumps` + `send_bytes`.
   Đừng chạy job nặng khác cùng lúc với test nhiều tiến trình (guard RAM dừng test, không phải lỗi code).
@@ -188,6 +209,8 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   Không dùng dummy-inflated denominator để gọi phương pháp rẻ; chưa profiling thì không chốt nguyên nhân duy nhất.
 
 ## Đánh giá để rút đúng bài học
+
+- Fixture được fingerprint phải chính là fixture driver đọc. `--final` trước 20/10 chọn dữ liệu final ở Run nhưng main hash pilot; chưa có run final production. Dùng chung `fixture_path`, và evaluator từ chối manifest khác training. Smoke dùng pilot không phát hiện được sai đường dẫn production.
 
 - Train/partition đã z-score, test raw áp scaler đúng một lần. Dữ liệu sắp theo lớp: sample ngẫu nhiên seeded,
   không prefix tùy tiện. Không chia lại partition hoặc dùng official test chọn HP/round.

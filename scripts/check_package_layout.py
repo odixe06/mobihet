@@ -16,7 +16,7 @@ from project_paths import current_path
 
 
 def main():
-    record = json.loads((ROOT / 'docs/operations/package-layout-2026-10-14.json').read_text())
+    record = json.loads((ROOT / 'docs/operations/registry/package-layout-2026-10-14.json').read_text())
     names = {p.name for p in (ROOT / '.compat/mh').glob('*.py')}
     assert names == set(record['legacy_source_manifest']), 'old source-file set changed'
     sys.path.insert(0, str(ROOT))
@@ -42,7 +42,7 @@ def main():
                 if filename.startswith('mh/'):
                     assert hashlib.sha256((ROOT/'.compat'/filename).read_bytes()).hexdigest()==expected,(plan,filename)
                     source_checks+=1
-    (ROOT/'docs/operations/package-resume-source-check-2026-10-14.json').write_text(json.dumps(dict(
+    (ROOT/'docs/operations/registry/package-resume-source-check-2026-10-14.json').write_text(json.dumps(dict(
         prepared_plan_count=len(plans),source_hash_checks=source_checks,pass_check=True,
         limit='Prepared parent source matches legacy paths; actual remote mounts/checkpoints audited separately.'),indent=2)+'\n')
     # Notebook generators copy bytes from legacy paths; verify that layout without repository symlinks.
@@ -63,7 +63,7 @@ def main():
     result = dict(modules=checked,shared=record['shared_modules'],build_owned=record['build_owned_modules'],
         complete_legacy_fingerprint_preserved=True,pilot_root_unchanged=True,copied_runtime_imports_pass=True,
         limits='CPU import/syntax/hash checks; no local training, no GPU or remote bitwise claim.')
-    (ROOT/'docs/operations/package-verification-2026-10-14.json').write_text(json.dumps(result,indent=2)+'\n')
+    (ROOT/'docs/operations/registry/package-verification-2026-10-14.json').write_text(json.dumps(result,indent=2)+'\n')
     print('Package check:',len(checked),'imports/SHA/copy-runtime PASS;',result['shared'],'shared;',result['build_owned'],
           'build-owned;',len(plans),'parent plans;',source_checks,'SHA matches; ROOT unchanged')
 

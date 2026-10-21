@@ -1,0 +1,12 @@
+{
+  "docs/operations/continuation-2026-10-17.md": "docs/archive/operations/continuation-2026-10-17.md",
+  "docs/operations/final-recovery-2026-10-20.md": "docs/archive/operations/final-recovery-2026-10-20.md",
+  "docs/operations/final-launch-2026-10-20.json": "docs/archive/operations/final-r24-2026-10-20/final-launch-2026-10-20.json",
+  "docs/operations/final-health-2026-10-20.json": "docs/archive/operations/final-r24-2026-10-20/final-health-2026-10-20.json",
+  "docs/operations/final-local-verification-2026-10-20.json": "docs/archive/operations/final-r24-2026-10-20/final-local-verification-2026-10-20.json",
+  "docs/operations/final-startup-2026-10-20.json": "docs/archive/operations/final-r24-2026-10-20/final-startup-2026-10-20.json",
+  "docs/operations/final-recovery-2026-10-20.json": "docs/operations/evidence/final-2026-10-20/final-recovery-2026-10-20.json",
+  "docs/operations/final-recovery-local-2026-10-20.json": "docs/operations/evidence/final-2026-10-20/final-recovery-local-2026-10-20.json",
+  "CONTEXT.md": "docs/archive/operations/context-before-final-recovery-2026-10-20.md",
+  "docs/README.md": "docs/archive/operations/docs-index-before-final-recovery-2026-10-20.md"
+}

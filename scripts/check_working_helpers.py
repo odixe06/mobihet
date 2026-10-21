@@ -22,7 +22,7 @@ def main():
     for path in paths:assert (ROOT/current_path(path)).is_file(),path
     proof=dict(imports=names,pass_check=True,
         limits='Parent helper imports/path reads only; no train, new notebook/tag or remote push.')
-    (ROOT/'docs/operations/workspace-helper-imports-2026-10-14.json').write_text(json.dumps(proof,indent=2)+'\n')
+    (ROOT/'docs/operations/registry/workspace-helper-imports-2026-10-14.json').write_text(json.dumps(proof,indent=2)+'\n')
     print('Current helper imports/path reads PASS:',len(names),'modules')
 
 

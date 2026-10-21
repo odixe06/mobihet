@@ -12,7 +12,7 @@ Mở phiên: [CONTEXT](CONTEXT.md) → [LESSONS](LESSONS.md) → [bàn giao hi�
 | Lỗi kernel và quy tắc trước tạo notebook | [Sổ lỗi](docs/operations/notebook-errors.md), [CONTEXT](CONTEXT.md) |
 | Bài học khiến train chưa tốt | [LESSONS](LESSONS.md), lessons riêng phương pháp |
 | Scripts dùng chung / scripts riêng | [scripts/](scripts/README.md) / `methods/<method>/builds/<build>/scripts/` |
-| Package chung / module riêng build | [core/](core/README.md) / [phân loại và đường dẫn](docs/operations/package-ownership.md) |
+| Package chung / module riêng build | [core/](core/README.md) / [phân loại và đường dẫn](docs/operations/project-layout.md) |
 | Logs | `methods/<method>/builds/<build>/logs/`; log công cụ cũ tại [archive/logs](archive/logs/README.md) |
 | Git/DVC, alias, restore | [Cấu trúc](docs/operations/project-layout.md), [backup/restore](docs/operations/backup.md) |
 | Lặp lại quy trình bằng skill | [Codex](.agents/skills/federated-experiment-workflow/SKILL.md), [Claude Code](.claude/skills/federated-experiment-workflow/SKILL.md) |

@@ -1,0 +1,7 @@
+{
+  "dataset": "minhtriethihi/mobihet-fulldrift-src-20261015-r25",
+  "files": 49,
+  "bytes": 417480,
+  "all_pages": true,
+  "evidence": "owner-scoped names/sizes; runtime verifies all source/fixture SHA before training"
+}

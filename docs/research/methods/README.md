@@ -1,7 +1,7 @@
 # Phương pháp theo tên
 
 Mỗi file = một phương pháp: cơ chế, trao đổi (R1/R2), bằng chứng đã audit, trạng thái, nguồn. Owner 17/10.
-Ghi chú nghiên cứu theo ngày (nguồn của các file này) ở [archive/research](../../archive/research/).
+Ghi chú nghiên cứu theo ngày (nguồn của các file này) ở [archive/research](../../archive/research).
 Kết quả/thiết kế từng build ở [docs/methods](../../methods/README.md); protocol ở [protocol](../protocol.md).
 
 ## Vòng 13 — A/B/C + đề xuất owner 17/10 (đang chạy / chẩn đoán)
@@ -43,7 +43,7 @@ personalization (phá R2), temporal feature mới, đổi dataset, slim model, t
 
 - [Hybrid private-only — Gaussian dạy riêng private trên nền DML-m4b](hybrid-private-only-synthetic.md) — **PASS 3 cổng × 2 seed** (+0,016/+0,024 so m4b); **headline client** (owner 17/10)
 - [swappos — tráo khối receiver + đặt 0 vị trí](receiver-swap-swappos.md) — PASS s42 + s43 (DML); Gaussian full +0,052
-- [QProxy q4 — lượng tử int4 theo hàng cho update proxy](qproxy-quantization.md) — Utility noninferior PASS; byte wire chưa chứng minh end-to-end
+- [QProxy — lượng tử update proxy](qproxy-quantization.md) — **q3_zl chốt 20/10**, noninferior hai seed trên la_kdpx; byte gói thật, contact chưa kiểm
 
 ## Giai đoạn B / R2
 

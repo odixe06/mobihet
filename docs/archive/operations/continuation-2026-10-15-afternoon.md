@@ -130,8 +130,8 @@ khi xuất hiện lỗi/bằng chứng mới cần UI. Không có collector loop
 - [ ] **Chỉ sau kết quả utility mới:** đánh giá CCR theo locked own/shuffle/CE/benign/strong-reference/cost gates;
   FAIL không đổi gp/gate/λ để cứu. ResponseRisk/EMA/SAM còn là đề xuất, không tự launch.
 - [ ] **Kết phiên sau:** cập nhật CONTEXT/LESSONS/build docs/handoff, index/link/hash/ignore.
-  Artifact đến 15/10 tối đã DVC backup ([backup](../../operations/backup.md)); artifact collect sau đó chưa. Account mới `nguyenminhtran060113`
-  ([roster](../../operations/kaggle-accounts.md)) chưa xác nhận quota. Không Git/DVC push/cleanup nếu chưa có yêu cầu mới.
+  Artifact đến 15/10 tối đã DVC backup ([backup](backup-history-2026-10-14-to-20.md)); artifact collect sau đó chưa. Account mới `nguyenminhtran060113`
+  ([roster](kaggle-accounts-history-2026-10-15-to-17.md)) chưa xác nhận quota. Không Git/DVC push/cleanup nếu chưa có yêu cầu mới.
 
 ### Lệnh sẵn có — không chạy trong phiên bàn giao này
 

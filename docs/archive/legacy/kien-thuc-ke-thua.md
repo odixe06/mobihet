@@ -16,7 +16,7 @@ rời khỏi xe. Như vậy nó vi phạm nguyên tắc nền của federated le
 | `odixe06/mobihet-archive-b9-b21` (archive 3, trước đây là `odixe06/mobihet`) | Build9–21, toàn bộ hồ sơ kết quả mọi build, LESSONS, CONTEXT cuối | local đã xóa 2026-10-11; tag `archive-3`, bundle `mobihet-archive-b9-b21.bundle` |
 
 Trong tài liệu này, `archive3:<path>` là đường dẫn trong repo archive 3 (nhánh `session-20261004-leakage-probes`). Dữ liệu nặng nằm ở DVC remote
-chung `gdrive` và lấy lại bằng `dvc pull <target>.dvc` ([cách làm](../../operations/backup.md)).
+chung `gdrive` và lấy lại bằng `dvc pull <target>.dvc` ([cách làm](../operations/backup-history-2026-10-14-to-20.md)).
 
 **Không mang sang hướng mới:** mọi thành phần chỉ có nghĩa khi có record cache, gồm pool/cache RSU, replay peer, multi-contact để tải thêm record,
 nén record (fp8, Huffman Z/Z66), ACK ledger, thứ tự transfer, liều replay, chọn mẫu gửi theo utility. Các phát hiện về kênh truyền vẫn giữ ở §6.

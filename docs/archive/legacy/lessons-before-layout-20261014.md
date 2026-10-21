@@ -408,7 +408,7 @@ Chi tiết và số gốc: [kiến thức kế thừa](kien-thuc-ke-thua.md). B�
   không phải bằng chứng artifact nguồn hỏng. G: đủ object+manifest là gate cleanup, không chờ cloud sync.
   Push tổng lỗi vẫn được cleanup từng target đãpush exit0/status in-sync/verify độc lập; giữ workspace/cache của target thiếu.
   DVC local backend hiện tại ép copy `batch_size=1` dù `-j`; wrapper4worker chỉ dùng tạm cho đợt này.31 target/8.847 object đãverify đủ rồicleanup, không còn target thiếu.
-  [Hồ sơ](../../operations/backup.md).
+  [Hồ sơ](../operations/backup-history-2026-10-14-to-20.md).
 
 - **K5 algebra bounded train probe:**40.960rows/259MiB,17identity khôngvi phạm interval
   sauFP16ULP/scalerpropagation;6rows denominatorinterval chứa0, missingheading/coincidence

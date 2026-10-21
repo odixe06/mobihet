@@ -1,0 +1,17 @@
+{
+  "inputs": "3728ba61108e117f172e75f371cacf4b7b4889f75e3d7d5f8de39f4e2130abec",
+  "fd": "71fb2e5709fe0e3b52eae3b93a5c8ba6743748d1dab51241c2db34740481dacb",
+  "queues": {
+    "workers": 2,
+    "arms": [
+      "fd_dml_m4b_gpool_frz_gkd:50"
+    ],
+    "fast": true,
+    "final": true,
+    "clients": 50,
+    "defer_eval": true,
+    "session_rounds": 2
+  },
+  "session_hours": 2.0,
+  "seed": 42
+}

@@ -1,0 +1,57 @@
+{
+  "observed_at_utc": "2026-10-20T16:46:39.480968+00:00",
+  "runs": [
+    {
+      "kernel": "annhtnt/mobihet-fd-s42zc-20261015-r25-v1",
+      "kaggle_status": "annhtnt/mobihet-fd-s42zc-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\"",
+      "log_lines": 0,
+      "sse_reader_rc": 124,
+      "signals": [],
+      "traceback_observed": false
+    },
+    {
+      "kernel": "minhtriethihi/mobihet-fd-s42za-20261015-r25-v1",
+      "kaggle_status": "minhtriethihi/mobihet-fd-s42za-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\"",
+      "log_lines": 0,
+      "sse_reader_rc": 124,
+      "signals": [],
+      "traceback_observed": false
+    },
+    {
+      "kernel": "thuyanh316/mobihet-fd-s42ze-20261015-r25-v1",
+      "kaggle_status": "thuyanh316/mobihet-fd-s42ze-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\"",
+      "log_lines": 0,
+      "sse_reader_rc": 124,
+      "signals": [],
+      "traceback_observed": false
+    },
+    {
+      "kernel": "annhannh331/mobihet-fd-s42zg-20261015-r25-v1",
+      "kaggle_status": "annhannh331/mobihet-fd-s42zg-20261015-r25-v1 has status \"KernelWorkerStatus.QUEUED\"",
+      "log_lines": 0,
+      "sse_reader_rc": 124,
+      "signals": [],
+      "traceback_observed": false
+    },
+    {
+      "kernel": "odixe0502/mobihet-fd-s42zi-20261015-r25-v1",
+      "kaggle_status": "odixe0502/mobihet-fd-s42zi-20261015-r25-v1 has status \"KernelWorkerStatus.RUNNING\"",
+      "log_lines": 15,
+      "sse_reader_rc": 124,
+      "signals": [
+        "W&B authenticated online"
+      ],
+      "traceback_observed": false
+    },
+    {
+      "kernel": "khanhmay0304/mobihet-fd-s42zk-20261015-r25-v1",
+      "kaggle_status": "khanhmay0304/mobihet-fd-s42zk-20261015-r25-v1 has status \"KernelWorkerStatus.RUNNING\"",
+      "log_lines": 15,
+      "sse_reader_rc": 124,
+      "signals": [
+        "W&B authenticated online"
+      ],
+      "traceback_observed": false
+    }
+  ]
+}

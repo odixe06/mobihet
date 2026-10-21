@@ -9,6 +9,6 @@ Mỗi file giữ nguyên byte source đã chốt; import qua alias `mh/<module>.
 | [v4_run.py](support_mala_driver.py) | `v2_methods`, `v2_run`, `v4_mala`, `v4_support` |
 | [v4_support.py](support_conditioned_gaussian.py) | `pilot`, `v2_math`, `v2_methods`, `v4_schema` |
 
-[Căn cứ/cơ chế](../../../../../../../docs/archive/methods/gaussian-sampling/design.md) · [Build/kết quả/artifact](../../../../../../../docs/archive/methods/gaussian-sampling/builds/support-mala/README.md) · [Package dùng chung và compatibility](../../../../../../../docs/operations/package-ownership.md).
+[Căn cứ/cơ chế](../../../../../../../docs/archive/methods/gaussian-sampling/design.md) · [Build/kết quả/artifact](../../../../../../../docs/archive/methods/gaussian-sampling/builds/support-mala/README.md) · [Package dùng chung và compatibility](../../../../../../../docs/operations/project-layout.md).
 
 Không sửa file này để nối checkpoint cũ; thay thuật toán cần source/tag mới và preflight.

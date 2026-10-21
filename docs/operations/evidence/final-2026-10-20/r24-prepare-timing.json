@@ -1,0 +1,12 @@
+[
+  {
+    "session": "fd-s42zc-20261015-r24-v1",
+    "clients": 20,
+    "fixture_prepare_seconds": 1797
+  },
+  {
+    "session": "fd-s42zi-20261015-r24-v1",
+    "clients": 100,
+    "fixture_prepare_seconds": 2712
+  }
+]

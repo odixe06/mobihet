@@ -40,7 +40,7 @@ def main():
             remote_prefixes.append((metadata.parent/after['path']).resolve())
             dvc.append(dict(metadata=str(metadata.relative_to(ROOT)),object=after['md5'],identity_preserved=True,remote_manifest_verified=True))
     for old,digest in migration['protected_sha256'].items():assert sha(ROOT/current_path(old))==digest, ('frozen bytes drift',old)
-    packages=json.loads((ROOT/'docs/operations/package-layout-2026-10-14.json').read_text())
+    packages=json.loads((ROOT/'docs/operations/registry/package-layout-2026-10-14.json').read_text())
     assert {p.name:sha(p) for p in (ROOT/'.compat/mh').glob('*.py')}==packages['legacy_source_manifest']
     for row in packages['modules']:
         canonical=current_path(row['path'])

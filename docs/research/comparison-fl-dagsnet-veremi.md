@@ -66,7 +66,7 @@ cộng cả bootstrap và moment Gaussian một lần. Số MobiHet ghi "ước"
 
 - Phần một lần của MobiHet: bootstrap proxy 31,9 MB (state ban đầu gửi mỗi client) + moment Gaussian 4,4 MB. Bootstrap là init từ seed,
   client tự dựng được ⇒ có thể bỏ, trùng bit ([design §Vòng 22](../methods/full-drift/design.md)); khi đó q3_zl ≈ 227 MB.
-- Vòng 23 đang thử 2-bit với bước RMS (byte proxy dự kiến −32 % so q3). Byte của các kênh nén đã kiểm không giảm performance trên probe.
+- Vòng 23: 2-bit RMS FAIL (private −0,0133), q3_zl s43 PASS (+0,0032) ⇒ chốt q3_zl cả hai seed. Run cuối ưu tiên seed42, train/chấm tách: [pipeline](../operations/final-pipeline.md).
 - TinyProto và PerFed-SKD rẻ hơn MobiHet về byte nhưng F1 macro client thấp hơn 0,20 và 0,17.
 
 ## 3. Computational cost

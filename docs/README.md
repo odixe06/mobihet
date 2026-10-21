@@ -1,54 +1,51 @@
-# Mục lục tổng quan dự án
+# Tài liệu dự án
 
-Đây là điểm đọc chính: [CONTEXT](../CONTEXT.md) giữ trạng thái/lưu ý vận hành; [LESSONS](../LESSONS.md) giữ bài học chung.
-[Index đang làm](file-index.md) · [Index lịch sử](archive/file-index.md) · [Cấu trúc và alias](operations/project-layout.md).
+Bắt đầu [CONTEXT](../CONTEXT.md) → [LESSONS](../LESSONS.md) → [continue](operations/continue.md).
+[Index file](file-index.md) · [Archive](archive/README.md).
 
-## 1. Toàn bộ phương án
+## Đang làm — final seed42, 20/10/2026
 
-- [Phương pháp theo tên](research/methods/README.md): mỗi phương pháp một file (cơ chế, trao đổi, bằng chứng, trạng thái).
-- [Một danh mục đề xuất](proposals.md): 28 nhóm +recipe EMA; đã kiểm/chưa kiểm, PASS/FAIL có phạm vi, link thiết kế/build/kết quả.
-- [Hồ sơ phương pháp](methods/README.md): README ngắn → căn cứ/cơ chế → các build/source/artifact.
-- [Bài học dùng tiếp](lessons/README.md); [hồ sơ lịch sử](archive/README.md) giữ báo cáo và nguồn gốc số đo.
-- [Dự báo performance](archive/research/performance-feasibility-2026-10-13.md): căn cứ trước mở pilot.
-- [Chẩn đoán chững sớm 15/10](archive/research/plateau-diagnosis-2026-10-15.md): học thuộc receiver, proxy≫private, khối lớp nhầm lẫn.
+- [Handoff phiên sau](operations/continue.md): kernel/source/checkpoint, bước tiếp, lệnh và manual action.
+- [Pipeline train/chấm tách](operations/final-pipeline.md): protocol, timing, costs, kiểm chứng.
+- [FullDrift results đã audit](methods/full-drift/results.md): q3_zl PASS hai seed, 2-bit FAIL;
+  [design](methods/full-drift/design.md), [10metric/cổng](methods/full-drift/results/report.md).
+- [Lỗi r24 và recovery](archive/operations/final-recovery-2026-10-20.md): final-only fixture, subprocess exit;
+  [sổ lỗi dùng tiếp](operations/notebook-errors.md).
 
-## 2. Hồ sơ làm việc và trạng thái
+## Phương pháp và bằng chứng
 
-| phương pháp | trạng thái chốt15/10 | thiết kế / build / kết quả |
-|---|---|---|
-| Gaussian class moments | Full q2 cùng controls; diag/lr4 riêng tạm hoãn | [Hồ sơ](methods/gaussian-class-moments/README.md), [full H1/H2](methods/shared-baselines/builds/federated-baselines-full/README.md) |
-| DAGSNet mutual distillation | Full q2 đang chạy, chưa r50 | [Hồ sơ](methods/proxy-mutual-distillation/README.md), [10metrics cuối](methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md) |
-| Gaussian + proxy Hybrid | Full q2 đang chạy; own pair chưa fresh heartbeat | [Hồ sơ](methods/gaussian-proxy-hybrid/README.md), [full build](methods/gaussian-proxy-hybrid/builds/hybrid-full/README.md) |
-| BoundaryCells counts | Bốn adaptation hai seed FAIL; dừng | [Hồ sơ](methods/boundary-cell-counts/README.md), [fixed-r20 report](methods/boundary-cell-counts/builds/boundary-cell-pilot/results/utility-report.md) |
-| ClassTail risk | Pairedr20 FAIL; dừng | [Hồ sơ](methods/class-tail-risk/README.md), [gates/forensics](methods/class-tail-risk/builds/class-tail-pilot/results/report.md) |
-| CountSketch EF sửa overshoot | Smallr20 FAIL; medium partial kém own; dừng adaptation | [Hồ sơ](methods/proxy-countsketch-repair/README.md), [trial](methods/proxy-countsketch-repair/builds/contractive-ef-pilot/results/report.md) |
-| CrossClientRank | Seed42 utility r20 FAIL (audited); seed43 recovery v2 đang chạy | [Nguồn/cơ chế](methods/cross-client-ranking/README.md), [utility/recovery](methods/cross-client-ranking/builds/rank-utility/README.md) |
-| ProxyFuse | Probe hậu kiểm FAIL; proxy head thành headline DML/Hybrid | [Hồ sơ](methods/proxy-fusion/README.md) |
-| AntiMem + QProxy | Pilot r20 hai seed đang chạy (nguyenminhtran060113) | [Hồ sơ](methods/anti-memorization/README.md) |
-| ResponseRisk augmentation | Fidelity probe PASS; chưa train augmentation | [Thiết kế](methods/receiver-response-consistency/design.md), [build](methods/receiver-response-consistency/builds/receiver-augmentation/README.md) |
-| EMA deployment recipe | Thiết kế đã chốt; chưa source/pilot utility | [Thiết kế/cổng](methods/ema-deployment-recipe/design.md) |
+- [Danh mục đề xuất](proposals.md): trạng thái/căn cứ/cổng; [mỗi phương pháp theo tên](research/methods/README.md).
+- [Hồ sơ method/build/source](methods/README.md); [bài học dùng tiếp](lessons/README.md).
+- [Baseline H1/H2](methods/shared-baselines/builds/federated-baselines-full/results/latest-rounds.md),
+  [Hybrid full](methods/gaussian-proxy-hybrid/builds/hybrid-full/results/latest-rounds.md),
+  [AntiMem/QProxy](methods/anti-memorization/results.md).
+- Adaptation FAIL không rerun y nguyên; source/codec PASS không thay utility/R1/R2 proof.
 
-Các adaptation FAIL khác đều có thiết kế/report/source qua [danh mục đề xuất](proposals.md); không rerun y nguyên.
+## Protocol và kiến thức nền
 
-## 3. Vận hành, lỗi và khả năng tái lập
+- [Protocol](research/protocol.md), [luồng thông tin FL](research/federated-information-flow.md).
+- [So sánh fl_dagsnet_veremi](research/comparison-fl-dagsnet-veremi.md), [computational cost](research/computational-cost.md).
+- [Dataset/architecture/runtime](../knowledge/README.md); dữ kiện cố định không trộn với hyperparameter của method.
 
-- [Bàn giao hiện tại và checklist phiên sau](operations/continuation-2026-10-17.md): exact kernel/version, checkpoint, budget, lệnh one-shot. Owner đã dừng poll khi kết phiên.
-- [Sổ lỗi kernel](operations/notebook-errors.md): nguyên nhân, output dùng được, preflight ngăn lặp.
-- [Launch plan/budget](archive/operations/continuation-plan-2026-10-15-q2.json); [global snapshot09:01UTC](archive/operations/kernel-status-current.json) cũ hơn CCR error/recovery, không trạng thái live.
-- [Layout hiện tại](operations/workspace-layout.json), [tên các đợt](operations/experiment-names.md), [manifest gốc](archive/operations/layout-migration-2026-10-14.json), [Git/DVC verification](archive/operations/layout-verification-2026-10-14.json).
-- [Backup/restore](operations/backup.md), [lịch sử collect trước đợt này](archive/operations/collection-2026-10-14.md).
-- [Scripts dùng chung](../scripts/README.md); logs đúng build, không trộn với kết quả khoa học.
-- [Package chung và module riêng build](operations/package-ownership.md): ownership, source canonical, alias và fingerprint.
+## Vận hành (`operations/`) — mỗi file một chủ đề
 
-## 4. Protocol và kiến thức nền
+| câu hỏi | file |
+|---|---|
+| Kernel nào đang chạy, bước tiếp theo, lệnh, việc tay? | [continue](operations/continue.md) |
+| Run cuối: contract train/chấm tách, timing, source, test, cost? | [final-pipeline](operations/final-pipeline.md) |
+| Account Kaggle, quota, quy tắc push/W&B/stop? | [kaggle](operations/kaggle.md) |
+| Lỗi kernel đã gặp và cách tránh (đọc trước khi sinh notebook)? | [notebook-errors](operations/notebook-errors.md) |
+| File/code nằm đâu, tên cũ `mh/*`, nhãn V2–V10, `.compat`? | [project-layout](operations/project-layout.md) |
+| Git/DVC: đích, lần backup gần nhất, cách đẩy/khôi phục/dọn? | [backup](operations/backup.md) |
+| Mỗi manifest DVC: md5, số file remote/local (sinh tự động)? | [artifact-index](operations/artifact-index.md) |
 
-- [Protocol](research/protocol.md), [chi phí tính toán so fl_dagsnet_veremi](research/computational-cost.md), [so sánh 3 tiêu chí với fl_dagsnet_veremi](research/comparison-fl-dagsnet-veremi.md), [dataset](../knowledge/dataset.md), [architecture](../knowledge/architecture.md), [knowledge hub](../knowledge/README.md).
-- [Kiến thức kế thừa](archive/legacy/kien-thuc-ke-thua.md), [LESSONS trước tổ chức](archive/legacy/lessons-before-layout-20261014.md).
-- Source/codec/resume PASS không thay utility/R1/R2/DP proof; mọi kết quả headline cần terminal artifact audit.
+Máy đọc: [registry/](operations/registry/) (map layout/alias, kiểm package 14/10 — script dùng, không sửa tay);
+bằng chứng run cuối: [evidence/](operations/evidence/). Script: [scripts](../scripts/README.md). Skill (bản chính `.claude`):
+[workflow](../.claude/skills/federated-experiment-workflow/SKILL.md), [Kaggle](../.claude/skills/kaggle-training-notebook/SKILL.md),
+[speed](../.claude/skills/federated-training-speed/SKILL.md), [W&B](../.claude/skills/wandb-training-monitor/SKILL.md).
 
-## 5. Quy trình cho các phiên sau
+## Lịch sử
 
-- [Skill Codex](../.agents/skills/federated-experiment-workflow/SKILL.md).
-- [Skill Claude Code](../.claude/skills/federated-experiment-workflow/SKILL.md).
-- [Thông tin chuẩn skill đã đối chiếu](operations/workflow-skill.md).
-- [Index toàn dự án](file-index.md): code, docs, notebooks, helper, skill; artifact bị ignore có route/DVC.
+[Bàn giao17–20/10](archive/operations/continuation-2026-10-17.md),
+[mục lục trước gọn tài liệu](archive/operations/docs-index-before-final-recovery-2026-10-20.md),
+[index archive](archive/file-index.md). Snapshot cũ không thay live health/handoff hiện tại.

@@ -230,7 +230,7 @@ conda run -n nckh python methods/full-drift/builds/fd-probe/scripts/collect_fd.p
 wait; conda run -n nckh python methods/full-drift/builds/fd-probe/scripts/report_fd.py   # gate keys '<arm>@s43'
 ```
 
-- **q5** ([plan](../../operations/continuation-plan-2026-10-17-q5.json)): `thuyanh316/mobihet-fulld-s42-20261017-q5-v1` (`h_dml` từ r41, 9,8h);
+- **q5** ([plan](continuation-plan-2026-10-17-q5.json)): `thuyanh316/mobihet-fulld-s42-20261017-q5-v1` (`h_dml` từ r41, 9,8h);
   ckpt `thuyanh316/mobihet-fulld-s42-20261017-q5-v1-ckpt` 256 file names/sizes PASS; **CPU exact import/state/SHA gate PASS** (~17:37Z). W&B vòng 7 m có run 17:37Z.
   GPU push **chỉ sau 00:00Z 17/10** (thuyanh316 còn 1,68h trước reset):
 ```bash

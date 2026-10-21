@@ -5,7 +5,7 @@
 `core/`:19 module chung với tên nhiệm vụ. `methods/`:6 hồ sơ đang làm/đã chốt và đối chứng full chung.
 Build đã kết thúc ở `archive/methods/`; thiết kế/report/handoff cũ ở `docs/archive/`; 21 nhóm đóng còn bài học
 tại `docs/lessons/`. V2–V10 là ID đợt kiểm nghiệm, không phải version thay thế nhau.
-[Đổi tên](../../operations/experiment-names.md), [layout/map](../../operations/workspace-layout.json), [quy tắc](../../operations/project-layout.md).
+[Đổi tên](../../operations/project-layout.md), [layout/map](../../operations/registry/workspace-layout.json), [quy tắc](../../operations/project-layout.md).
 
 `mh/` và `papers/` là facade mỏng tới `.compat/`. Helpers cũ không còn trong scripts đang làm; import namespace
 scripts tìm chúng qua `.compat/scripts`, path reads dùng current_path. Frozen Python/notebooks và DVC identities
@@ -86,7 +86,7 @@ Hybrid dự toán314,7h trước đợt này là điều kiện/worst/fixedpair,
 Chủ dự án sau đó yêu cầu bỏ thư mục cũ nếu đủ nội dung: đã bỏ alias `proposals/`; tài liệu thật vẫn ở docs.
 `papers/` chỉ alias cho dependency lịch sử. Sau yêu cầu tách package:21 module riêng chuyển vào10 build/source/mh,
 19 module chung nay giữ vật lý trong `core/`. Alias module giữ import và fingerprint đủ40 file, không đổi byte nguồn.
-[Ownership](../../operations/package-ownership.md), [manifest](../../operations/package-layout-2026-10-14.json), [kiểm](../../operations/package-verification-2026-10-14.json).
+[Ownership](../../operations/project-layout.md), [manifest](../../operations/registry/package-layout-2026-10-14.json), [kiểm](../../operations/registry/package-verification-2026-10-14.json).
 Import 40 module tại repo và trong runtime copy không symlink đều PASS. 12 plan/1.120 SHA source parent khớp;
 32 continuation-controller cases PASS. Không train local hoặc thay source các run đang chạy.
 Git HEAD và nội dung staged giữ nguyên; workspace move còn unstaged/untracked. Không Git/DVC add/commit/push hoặc cleanup.
