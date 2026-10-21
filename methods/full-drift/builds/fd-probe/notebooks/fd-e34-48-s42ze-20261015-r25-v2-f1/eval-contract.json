@@ -1,0 +1,43 @@
+{
+  "session": "fd-s42ze-20261015-r25-v2",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48
+  ],
+  "fingerprint": "3a0b42aa0259049ca34cb889370c3fbdb2f43327a118d9e09833ad8fa23af9fa",
+  "weights_sha": {
+    "34": "b69d0ee7ef31737fb42b3d4a1e1503b787d265bfe13a74847c0e22192cb309a2",
+    "35": "3d228cc6f6006976e2f4c047ca59f745243d2937466d591e2796c1b082e4a964",
+    "36": "7f75e4e7091df3739bbf8457afbb2ab845baf16f2eb6768e9fa01ce0dc2020e6",
+    "37": "756fa4cf3ffbd978dd4314379e2b5809e024c054a21afe424e82018da931bdbe",
+    "38": "9a3217272757f6afe1f276de533a94eff7cf24f829c81678106d43ed90d41437",
+    "39": "a707306e0ddc5a11601b7f24d13d14772883c6f871c0f490b71b855578235efd",
+    "40": "bc9749a047747e781578b965b992d519be4ea0f4cee7e0c59b4cdb1be0fb9ae4",
+    "41": "089904d3107ad6c19c6293b472cec35d4e85b6bef9b8ae4e02307304fd7b01f5",
+    "42": "5a8d46d6b4e13b57870786a8441086f5cdb2bef6d2ead916733e2113036fd7d1",
+    "43": "f024cf0a23750e9a376262474e0d81ccedb7366d9e70c84470db8ebcbe9021f4",
+    "44": "e11f44ada1faccd658aceeb36592306e8c526c55861c403f59d2e3fcf4811a3f",
+    "45": "9998ddb0f32ed5624a71fc3fdb0a1ef1375caba10f1bef7fb17669f660eac969",
+    "46": "08ceacc4a3cb4bbd36ff2aec1eff9c939965cbe45eb17b20ce6ca5d05e157121",
+    "47": "d42a2f58be3ab5af9824e0d958bf6df30bc73a96c74258f0bd3080072927b097",
+    "48": "8e32124739f34a80eb0233ea899385fac80d2aa2d06ef8d8abcae0185064d643"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "dinhan25/mh-fd-e34-48-s42ze-20261015-r25-v2-f1"
+}

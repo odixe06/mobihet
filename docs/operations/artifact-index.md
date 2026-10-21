@@ -25,9 +25,9 @@ Khôi phục: `dvc pull <manifest>` (môi trường `nckh`, chạy từ gốc re
 | `methods/cross-client-ranking/builds/rank-probe/kaggle.dvc` | `artifacts/kaggle` | `26e324b2…` | 348 | 0.002 | remote-only |
 | `methods/cross-client-ranking/builds/rank-utility/input.dvc` | `artifacts/input` | `dc776c9c…` | 274 | 0.488 | remote-only |
 | `methods/cross-client-ranking/builds/rank-utility/kaggle.dvc` | `artifacts/kaggle` | `73813342…` | 923 | 6.085 | remote-only |
-| `methods/full-drift/builds/fd-probe/fixture-cache.dvc` | `artifacts/fixture-cache` | `ca5cfb3e…` | 13 | 0.000 | 13 |
-| `methods/full-drift/builds/fd-probe/input.dvc` | `artifacts/input` | `3437a3a0…` | 1723 | 2.348 | 570 |
-| `methods/full-drift/builds/fd-probe/kaggle.dvc` | `artifacts/kaggle` | `4058a31d…` | 7980 | 24.900 | 7072 |
+| `methods/full-drift/builds/fd-probe/fixture-cache.dvc` | `artifacts/fixture-cache` | `eb9eacad…` | 23 | 0.000 | 23 |
+| `methods/full-drift/builds/fd-probe/input.dvc` | `artifacts/input` | `6ea020e5…` | 2644 | 41.024 | 1491 |
+| `methods/full-drift/builds/fd-probe/kaggle.dvc` | `artifacts/kaggle` | `381c1e32…` | 10777 | 94.525 | 10059 |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/checkpoint-staging.dvc` | `artifacts/checkpoint-staging` | `a89e7f1b…` | 1560 | 30.959 | remote-only |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/diagnostics.dvc` | `artifacts/diagnostics` | `b4c3578d…` | 20 | 0.001 | remote-only |
 | `methods/gaussian-proxy-hybrid/builds/hybrid-full/input.dvc` | `artifacts/input` | `637a09a8…` | 212 | 0.001 | remote-only |

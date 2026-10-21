@@ -1,0 +1,29 @@
+{
+  "session": "fd-s42zi-20261015-r25-v2",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "fingerprint": "35d043f7ddfe4036a0dd6eea1f8cb921f8428c6702ad197eff511c79f20fd298",
+  "weights_sha": {
+    "1": "6af7fd15613e728a5ec8f92c0c29a4d346d61ff2d81646e1511551b8a40e78ce",
+    "2": "5210a6cfe6f126e57215e459fb7a8d8c9e4d7adb3e2512edeef545005affe6fb",
+    "3": "853583d59d2c5af5e1f5c5f7f86e3c0f13d6537c69764dbba95e0e3279a2556f",
+    "4": "cc0296f1721ce8eb98379f98ce21c4be7f484301bbaa71eba7e803ad66783043",
+    "5": "0effa8490b052ccf7004e8a37db97741ebc55c9a806299cbd8298088d1c82ce4",
+    "6": "d2b8e4e93512e2f8b01cd8462cf5c1fa61b564958e44cf4c107204f15b28d63a",
+    "7": "93b268af5d01fc70fac5b6317e6c12f53bc2725790a3e1528703e3bc86aec97e",
+    "8": "2c5970b17a62f83caa9338eca4dd1b15dc8ec979cf3e826df313580df32375f1"
+  },
+  "source_tag": "20261015-r27",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "trietbackup/mh-fd-e01-08-s42zi-20261015-r25-v2-f1"
+}

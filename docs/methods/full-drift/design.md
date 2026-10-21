@@ -587,6 +587,71 @@ Còn lại sau vòng này: bootstrap bằng seed (trùng bit, không cần run),
 
 **Kết quả (yb audited 20/10 ~08Z):** q2_rs **FAIL** (−0,013 vs tb, tệ nhất −0,001, proxy −0,024); residual 0,094 → 0,078 không giảm như q3 (dấu hiệu sai trúng), proxy không sụp; byte −22 % so q3 (dự kiến −32 %). 2-bit loại. ya-v1 dừng (máy chậm); ya-v2 đã audit đủ ep15, q3_zl s43 PASS (+0,0032, tệ nhất +0,0054), byte 66,7 MB. Chốt q3_zl cả hai seed. [results §Vòng 23](results.md).
 
+## Vòng 24 — sinh mẫu có chủ đích: lai ghép dòng own theo cặp lớp bất đồng (owner 21/10; khóa ~06:30Z trước push)
+
+Owner 21/10: ngoài Gaussian, đặt **ưu tiên** để sinh dữ liệu có chủ đích hơn; kiểm build cũ, chưa có thì đề xuất và thử.
+**Đã thử trước đây** (đều ở chế độ gpool nhãn cứng hoặc chỉ đổi lượng/độ thật): ưu tiên lớp hiếm local `fill` FAIL; lọc theo teacher `rej`
++0,011 s42 / +0,008 s43 (bị gkd thay); gate P1 FAIL; hỗn hợp mode P2 không tín hiệu; tinh chỉnh theo proxy (probe 17) chỉ offline +0,012…+0,021;
+trên gkd: `cop` +0,003, `g512` +0,001, `gk2` 0,000. **Chưa build nào ưu tiên theo chỗ private bất đồng teacher.**
+
+**Bằng chứng (probe 20, không train, weights xa ep15 s42, fixture pilot local; [results §Probe 20](results.md)):** private bất đồng snapshot 5,1 %
+dòng group, 41 % số lỗi "teacher đúng, private sai" là benign↔timeDelay, phần lớn còn lại benign↔positionMirroring/dataReplay/suddenStop. Dòng own
+của chính client cho **cùng cặp** (cos gộp 0,94) ⇒ xe biết được chỗ cần dạy mà không cần byte. Mẫu Gaussian gkd bất đồng 12,7 % nhưng **sai chỗ**
+(constantSpeedOffset→randomSpeedOffset; cos với lỗi thật 0,09); ưu tiên trong Gaussian (top-KL, đối kháng, lớp/cặp từ dòng own) vẫn cos ≤ 0,12;
+nhiễu covariance gộp quanh dòng own cũng về randomSpeedOffset ⇒ giá trị liên tục ở feature tốc độ (thật là atom) làm mẫu lệch. Lai ghép hai dòng
+own theo cặp ưu tiên (Gx3) cos 0,55, "bất đồng đúng chỗ" 0,069 (Gaussian 0,011, dòng thật client khác 0,048); cùng lai ghép cặp đều 0,045.
+
+**Cơ chế:** mỗi bước thêm 256 dòng: dòng own lớp a, mỗi feature lấy từ một dòng own lớp b với xác suất ρ = 0,3; (a, b) rút theo histogram
+(teacher argmax a, private argmax b) trên 65.536 dòng calibration own đầu epoch (90 %) + 10 % đều trên cặp client có cả hai lớp. Dòng lai học
+KL(snapshot ‖ private) như dòng Gaussian gkd (cùng trọng số `wpriv`, T 1); CE nhãn cứng chỉ trên dòng thật. Dòng lai nằm giữa hai lớp mà private
+đang tách khác teacher ⇒ private nhận ranh giới toàn cục đúng ở vùng nó nhầm, vẫn giữ nhãn own trên dòng nguyên. Round 1 (chưa snapshot) không có
+dòng lai ⇒ = control. Token `xo`; `xou` = cùng dòng lai, cặp đều (đối chứng ưu tiên). **R1:** 0 byte. **R2:** chỉ input-space + logit.
+Không record nào rời xe. Chi phí: +256 dòng private fwd/bwd và snapshot fwd mỗi bước từ round 2, chấm 65.536 dòng own × 2 model mỗi epoch.
+
+| session | arm (s42, ep1→15 `--fast`, `--workers 2`, source tag `20261015-r28`) | vai trò |
+|---|---|---|
+| xo | `fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xo` | lai ghép có ưu tiên |
+| xu | `fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xou` | đối chứng: cùng lai ghép, cặp đều |
+
+**Cổng (ep15, private head trên group; đối chứng xa = cùng arm không token, s42 `--fast`, 0,8246):** xo PASS khi Δ ≥ +0,010, benign ≥ −0,005,
+client tệ nhất ≥ −0,010. Ưu tiên có tác dụng khi xo − xou ≥ +0,005 (chỉ đọc nếu xo PASS). **Dấu hiệu sai:** xo < +0,010 ⇒ "bất đồng đúng chỗ"
+của probe không dự báo utility (như cop) ⇒ dừng hướng, không quét ρ/floor; xo ≈ xou ⇒ lợi do lai ghép, không do ưu tiên. Chẩn đoán đọc kèm:
+`xo_disagree` (bất đồng trên dòng lai), `xo_pairs` (cặp ưu tiên phải gồm benign), `xo_disagree_own`. Dự báo không chắc: cop có align 0,034 gấp 3
+Gaussian mà chỉ +0,003. Test local `--part r24` (arm cũ bit-exact với r25 hai epoch, xo/xou epoch 1 = control) và `--part par` (compiled, 1 vs 2 worker).
+Chạy trên odixeuit (ngoài 14 account của run cuối, 30h). Screening một seed; PASS mới lặp s43 + cân nhắc đưa vào run cuối (owner quyết).
+
+**Kết quả 21/10 ~12Z: xo FAIL** gain (Δ +0,0076, benign +0,0063, tệ nhất +0,0113); cơ chế đúng chỗ nhưng lợi trong nhiễu seed ⇒ dừng,
+không s43, không quét ρ/floor. [Results §Vòng 24](results.md).
+
+## Vòng 25 — teacher hiệu chỉnh bằng đặc trưng ảo theo lớp (`cv`; owner 21/10 ~16Z: **chỉ cvl**, ngân sách ≤ 1,5× byte; cổng khóa, push r30)
+
+**Bằng chứng** ([results §Vì sao sinh mẫu không ăn](results.md)): 77 % lỗi private headline là lỗi teacher cũng sai ⇒ mọi mẫu KL từ teacher
+chạm tối đa 23 %; refit head teacher trên dòng thật gộp 0,842 → 0,919; CCVR từ moment lớp (cộng được) 0,893, phần lỗi private teacher đúng
+21 → 47 % (probe 22). **Cơ chế** ([hồ sơ](../../research/methods/teacher-virtual-feature-calibration.md)): đầu mỗi round từ round 2, client gửi
+(n_c, Σh, Σhhᵀ) của h256 snapshot trên 65.536 dòng calibration own; server rút N(μ_c, Σ) theo tỷ lệ lớp gộp, fit lại `head.5` từ trọng số
+snapshot (Adam 3.000 × 4.096, lr 1e-3, jitter 1e-4); head đó thay `head.5` của cả teacher frz (KD dòng thật) và teacher gkd (KL dòng
+Gaussian). Proxy train như cũ (vẫn trao đổi proxy q3 mỗi round; cv thêm một lượt thống kê, không thay). `cvf`: covariance riêng 16 lớp
+(lên 2,12 MB/client/round); `cvl`: một covariance chung (148 kB); xuống 16,4 kB.
+
+**Byte (sửa 21/10 ~16Z, theo `result.json` xa đã audit, mỗi client):** xa = 5,15 MB/15 epoch (bootstrap một lần 1,81 MB + q3 223 kB/round),
+12,95 MB/50 round. cvf ×6,8 (15 ep) / ×9,1 (50) ⇒ **loại** theo ngân sách owner ≤ 1,5×. cvl ×1,45 (15 ep) / ×1,62 (50) / ×1,74 theo round;
+gửi 16-bit sẽ ×1,25 / ×1,34 / ×1,41. Số +48 %/+3,3 % trước đây sai (byte cv một client so với kênh q3 cộng 20 client).
+R1 B2 (231 kB/contact): round xa 223 kB vừa B2, round cvl 387 kB vượt ⇒ thống kê cần contact riêng hoặc bản 16-bit; báo kèm.
+
+| session | arm (s42, ep1→15 `--fast`, `--workers 2`, source tag mới) | vai trò |
+|---|---|---|
+| cl | `fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl` | teacher hiệu chỉnh, covariance chung (khanhmay0304, tag r30, 6,3h) |
+| ~~cf~~ | `…_cvf` | không chạy: ×6,8 byte |
+
+**Cổng (khóa 21/10 ~16:15Z trước push; ep15, private head trên group, đối chứng xa s42 `--fast` 0,8246):** cl PASS khi Δ ≥ +0,010,
+benign ≥ −0,005, client tệ nhất ≥ −0,010, và byte/client ≤ 1,5× xa ở 15 epoch (×1,45). PASS ⇒ trước run dài: bản 16-bit (×1,34 ở 50 round)
+kiểm offline F1 bằng bản fp32, rồi s43; owner quyết đưa vào run cuối.
+Chẩn đoán mỗi round (dòng own, nhãn own; không group/test): `cv_teacher_f1_orig/cal`, `cv_teachable_orig/cal`, `cv_server_seconds`.
+**Dấu hiệu sai:** (a) `cv_teacher_f1_cal − orig` < +0,02 phần lớn round ⇒ moment không đủ khi backbone trôi ⇒ dừng; (b) teacher lên mà
+private < +0,010 ⇒ nút thắt là kênh truyền (mẫu Gaussian lệch đa tạp) ⇒ hướng phụ đảo ngược theo moment, không quét biến thể cv;
+(c) benign < −0,005 như pce. Test local `--part r25` (arm cũ bit-exact với r28 hai epoch; cv epoch 1 = control; tổng client = moment gộp
+trực tiếp; fit tách lớp toy; head chỉ thay `head.5`) và `--part par --arms <cv>` (compiled, 1 vs 2 worker).
+
 ## Run cuối 50 epoch — chế độ `--final` (owner 19/10; cài ~09:30Z, chưa chạy)
 
 Protocol §3: train **mọi dòng train80%** (fixture `papers/final/fixture`, `fd_prepare.prepare_fd(final=True)` = `mh.prepare(holdout=False)`, như

@@ -33,6 +33,11 @@ DAGSNet; sau sàng lọc mới [mixed architectures](mixed-architectures-r2.md);
 Không chọn (đề xuất owner §10): FedGen nguyên bản (cần latent tương thích; teacher yếu cũ chưa giúp backbone), parameter-sharing
 personalization (phá R2), temporal feature mới, đổi dataset, slim model, tăng lần gộp trong epoch.
 
+## Vòng 24 — sinh mẫu có chủ đích (owner 21/10)
+
+- [Hiệu chỉnh teacher bằng đặc trưng ảo theo lớp (`cv`)](teacher-virtual-feature-calibration.md) — đề xuất 21/10: 77 % lỗi private teacher cũng sai; CCVR trên head snapshot 0,842 → 0,893, lỗi private teacher dạy được 21 → 47 % (offline); chờ owner
+- [Lai ghép dòng own theo cặp lớp bất đồng (`xo`)](own-row-crossover-priority.md) — probe 20: Gaussian bất đồng sai chỗ (cos 0,09), lai ghép ưu tiên cos 0,55; **FAIL** s42 ep15 Δ +0,0076 vs xa (cần +0,010)
+
 ## Đang chạy / nền
 
 - [DML — private ↔ proxy chung học tương hỗ](dml-proxy-mutual-learning.md) — Nền; headline DML + m4b; lợi FL +0,04 hai seed

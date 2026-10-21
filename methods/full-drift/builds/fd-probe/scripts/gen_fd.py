@@ -18,6 +18,7 @@ BASE = Path(__file__).resolve().parents[1]
 ROOT = BASE.parents[3]
 FULL = ROOT / 'methods/shared-baselines/builds/federated-baselines-full/source/proj'
 TAG = '20261015'
+FROZEN = False   # set by gen_continue.py: check a reused stage against its own manifest, not the live source
 RUNTIME = json.loads((ROOT / 'knowledge/runtime.json').read_text())
 # (owner, seed, session, per-GPU queues, hours). Owner 15/10: one shared seed screens methods; seeds come later.
 # Queue item 'arm' runs epochs 1-6; 'arm:15' runs epochs 1-15 into <arm>_s42_e15 (round 2 horizon).
@@ -163,6 +164,14 @@ PLANS = {'r1': [('annhannh331', 42, 'a', [['fd_dml'], ['fd_dml_sub4']], 7.0),
 
 # r24 failed before round 1: final-only Gaussian fixture context and subprocess failure propagation.
 PLANS['r25'] = [row for row in PLANS['r24'] if row[1] == 42]
+# round 24 (owner 21/10: purposeful synthesis, design §Vòng 24): own-row crossover rows on the class pairs where the private and the
+# snapshot disagree (xo) vs uniform pairs (xou); s42 ep1-15 --fast vs xa. odixeuit (30h) is outside the final-run roster.
+PLANS['r28'] = [('odixeuit', 42, session, {'workers': 2, 'arms': [f'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_{tok}:15'], 'fast': True}, 7.0)
+                for session, tok in (('xo', 'xo'), ('xu', 'xou'))]
+# round 25 (owner 21/10 ~16Z: cvl only; cvf x6.8 bytes is outside the 1.5x budget): teacher head calibrated from pooled class
+# statistics of the snapshot features (design §Vòng 25); s42 ep1-15 --fast vs xa. khanhmay0304 is outside the final-run roster
+# and the owner's other project (r29 is the evaluation source tag).
+PLANS['r30'] = [('khanhmay0304', 42, 'cl', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl:15'], 'fast': True}, 6.3)]
 
 WANDB = r'''import time
 SESSION_T0=time.monotonic()
@@ -350,7 +359,8 @@ def main():
              'meta.json': ROOT / 'knowledge/meta.json', 'scaler.json': ROOT / 'knowledge/scaler.json'}
     if stage.exists():   # reuse the uploaded dataset; its manifest must still match the sources
         inputs = json.loads((stage / 'input_manifest.json').read_text())
-        assert inputs == {n: sha(p) for n, p in files.items()}, 'source changed after staging: new tag'
+        # continuations of a frozen tag (gen_continue sets FROZEN): the stage bytes are the source, the live tree may have moved on
+        assert inputs == {n: sha(stage / n if FROZEN else p) for n, p in files.items()}, 'source changed after staging: new tag'
     else:
         stage.mkdir(parents=True)
         for name, path in files.items(): shutil.copyfile(path, stage / name)

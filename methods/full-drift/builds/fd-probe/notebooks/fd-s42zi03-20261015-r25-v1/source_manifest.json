@@ -1,0 +1,22 @@
+{
+  "inputs": "99c612d87441178a7b0393ea637c64f00deca34679c6c4cdc34ec00c887fffee",
+  "fd": "aeb34234e0f14f6ece0d9070ace0afb7b6acd8167f9ba9b1bbb9011fd57e72b3",
+  "queues": {
+    "workers": 2,
+    "arms": [
+      "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl:50"
+    ],
+    "fast": true,
+    "final": true,
+    "clients": 100,
+    "defer_eval": true,
+    "parent": {
+      "dataset": "anhtruong1909/mh-parent-fd-s42zi03-20261015-r25-v1",
+      "session": "fd-s42zi-20261015-r25-v2",
+      "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+      "round": 26
+    }
+  },
+  "session_hours": 11.5,
+  "seed": 42
+}

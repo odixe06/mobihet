@@ -3,8 +3,8 @@
 No upload/push: upload the emitted checkpoint stage, verify it, then push private_push/<rid>.
     python gen_eval.py --session fd-s42za-20261015-r24-v1 --round 1 --owner dinhan25
     python gen_eval.py --session fd-s42za-20261015-r25-v1 --rounds 1-4 --owner odixe0502   # owner 20/10: several rounds per notebook
-Owner 21/10 (score as fast as possible): notebooks run fd_eval_fast.py from the evaluation source tag r26 (= r25 + that file;
-training stays on r25). Upload artifacts/input/fd-src-20261015-r26 as <owner>/mobihet-fulldrift-src-20261015-r26 once per account.
+Owner 21/10 (score as fast as possible): notebooks run fd_eval_fast.py from the evaluation source tag EVAL_TAG (= r25 + that file;
+training stays on r25). Upload artifacts/input/fd-src-<EVAL_TAG> as <owner>/mobihet-fulldrift-src-<EVAL_TAG> once per account.
 """
 import argparse
 import hashlib
@@ -18,7 +18,7 @@ import nbformat
 
 from gen_fd import BASE, ROOT, RUNTIME, TAG, WANDB, SETUP, fixture_manifest, fixture_kernel
 
-EVAL_TAG = f'{TAG}-r26'
+EVAL_TAG = f'{TAG}-r29'   # r26 = gate 0.1 (validation re-scoring 21/10); r27 = gate 0.25; r29 = relative gate 2 %, same predictions
 
 
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()

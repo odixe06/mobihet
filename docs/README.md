@@ -46,6 +46,6 @@ bằng chứng run cuối: [evidence/](operations/evidence/). Script: [scripts](
 
 ## Lịch sử
 
-[Bàn giao17–20/10](archive/operations/continuation-2026-10-17.md),
+[Bàn giao17–20/10](archive/operations/continuation-2026-10-17.md), [nhật ký run cuối 20–21/10](archive/operations/continuation-2026-10-20-21.md),
 [mục lục trước gọn tài liệu](archive/operations/docs-index-before-final-recovery-2026-10-20.md),
 [index archive](archive/file-index.md). Snapshot cũ không thay live health/handoff hiện tại.

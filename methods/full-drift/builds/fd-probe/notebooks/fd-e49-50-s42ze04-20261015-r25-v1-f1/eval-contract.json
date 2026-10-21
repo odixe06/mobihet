@@ -1,0 +1,17 @@
+{
+  "session": "fd-s42ze04-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    49,
+    50
+  ],
+  "fingerprint": "26a53316cc393f2dfc49df6819a653053e20b2d54fda8edad6b27055b22c9649",
+  "weights_sha": {
+    "49": "d185613162451ca5d1576edcaf31bd8b85235ee990bee76c3f2cecd84836bd3b",
+    "50": "64c9c54898021461a15c50312433a76d94befa77c697eeff4207d95c904354b5"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "dinhan25/mh-fd-e49-50-s42ze04-20261015-r25-v1-f1"
+}

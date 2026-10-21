@@ -1,6 +1,6 @@
 outs:
-- md5: ca5cfb3e2fc936ffc1c4bdc3657361c7.dir
-  size: 4671
-  nfiles: 13
+- md5: eb9eacad8e467165227780a3fdd24ffe.dir
+  size: 18733
+  nfiles: 23
   hash: md5
   path: artifacts/fixture-cache

@@ -1,0 +1,31 @@
+{
+  "session": "fd-s42zi-20261015-r25-v2",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "fingerprint": "35d043f7ddfe4036a0dd6eea1f8cb921f8428c6702ad197eff511c79f20fd298",
+  "weights_sha": {
+    "9": "6017186b621df729a737984ff3e7dee4d380c039e2f61aa4b6d9fc2424dbcf73",
+    "10": "3ae243e8e6654233b0f74009224aa1f46c47229efde06a7cce6755dade2d60bd",
+    "11": "128cf5890ba06206cb3e881af218785458ecb68632d5dea7c8f8116837a34500",
+    "12": "729ea451d68359d6e712f14f788f35774836429bea0080912cb565f9efec3734",
+    "13": "bd53f0c8f9323789f15eff89ddaef381a7931a10d4aac21b1d478833bac47815",
+    "14": "970645b38e0297c618f6854951918d8af91a17f8bf7476020b46e651783c160c",
+    "15": "afcdb7adbbf228e7720a23c9b760c5c32851d30a24674c08f0d3309439828eb0",
+    "16": "3307db9464dcda6aef3cb29e58f69bbc881e7ac832dac24093f7f5f0cda90e83",
+    "17": "9fe937a92ca3175ba60621ef363a58a4934ac5d2ef3661a21e7cdc1241156df0"
+  },
+  "source_tag": "20261015-r27",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "catbaochau/mh-fd-e09-17-s42zi-20261015-r25-v2-f1"
+}

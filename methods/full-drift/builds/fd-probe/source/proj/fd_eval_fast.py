@@ -30,7 +30,11 @@ from mh.metrics import METRIC_KEYS, metrics_from_confusion, per_class_from_confu
 from mh.new_fl import digest, save
 from mh.v2_methods import calibrate
 
-BATCH, GATE_ROWS, GATE_MAX_ERROR, GATE_MARGIN = 16384, 8192, 0.1, 0.1
+BATCH, GATE_ROWS = 16384, 8192
+# r27: gate 0.1 -> 0.25 (r26 T4 re-scoring: fp16 max logit error up to 0.077 over 8 rounds x 41-101 models; a wrong weight load is O(1))
+# r29: absolute bound -> relative to the reference's max |logit| (ze 50c r34: 0.2508 > 0.25; logits grow ~3x r5 -> r48 and the fp16
+# error with them, relative max 0.2-0.5 % on 255 local models r5-r48, decisive flips 0; a wrong weight load is O(10 %))
+GATE_MAX_REL, GATE_MARGIN = 0.02, 0.25
 
 
 class FastDAGSNet(torch.nn.Module):
@@ -139,10 +143,11 @@ class Scorer:
             torch.compiler.cudagraph_mark_step_begin(); out.append(self.compiled(x)[:n].clone())
         z = torch.cat(out)
         with torch.autocast('cuda', dtype=torch.float16): ref = model(self.R.mask(X[:GATE_ROWS].float()))[0].float()
-        error = float((z[:GATE_ROWS] - ref).abs().max()); top = ref.topk(2, dim=1).values; decisive = (top[:, 0] - top[:, 1]) > GATE_MARGIN
+        error = float((z[:GATE_ROWS] - ref).abs().max()); rel = error / float(ref.abs().max())
+        top = ref.topk(2, dim=1).values; decisive = (top[:, 0] - top[:, 1]) > GATE_MARGIN
         flips = int((z[:GATE_ROWS].argmax(1) != ref.argmax(1)).sum())
-        assert error <= GATE_MAX_ERROR and torch.equal(z[:GATE_ROWS].argmax(1)[decisive], ref.argmax(1)[decisive]), ('fast gate', error)
-        self.gates.append(dict(max_error=error, flips=flips))
+        assert rel <= GATE_MAX_REL and torch.equal(z[:GATE_ROWS].argmax(1)[decisive], ref.argmax(1)[decisive]), ('fast gate', error, rel)
+        self.gates.append(dict(max_error=error, max_rel=rel, flips=flips))
         return z
 
 
@@ -225,7 +230,7 @@ def merge(a, r, cfg, row):
         for role, holds in evaluated.items():
             for rule, v in holds['test'].items():
                 writer.writerow(dict(round=r, role=role, holdout='test', rule=rule, **v['mean_metrics']))
-    gate = dict(max_error=max(g['max_error'] for g in gates.values()), flips=sum(g['flips'] for g in gates.values()), rows=GATE_ROWS, models=len(gates))
+    gate = dict(max_error=max(g['max_error'] for g in gates.values()), max_rel=max(g['max_rel'] for g in gates.values()), flips=sum(g['flips'] for g in gates.values()), rows=GATE_ROWS, models=len(gates))
     save(a.out / 'eval' / f'round_{r:03d}.json',
          dict(round=r, fingerprint=cfg['fingerprint'], weights_sha=row['weights_sha'], predictions_sha=digest(pf), eval=evaluated,
               eval_source_sha=digest(Path(__file__)), evaluator='fast-gemm', fast_gate=gate))

@@ -26,6 +26,7 @@ def one_epoch(fd, arm, use_frozen, batch=512, epochs=1, hook=None):
     m = fd.Method(R); m.prior()
     for r in range(1, epochs + 1):
         m.start_round()
+        if getattr(R, 'cv', None): R.cv_round(m, r)   # round 25: as train()
         for k in range(R.K):
             if m.kd: m.prepare(k, r)
             if use_frozen: FullRun.private_epoch(R, m, k, r)
@@ -109,7 +110,7 @@ def main():
     p = argparse.ArgumentParser(); p.add_argument('--work', required=True)
     p.add_argument('--manifest', help='data_manifest.json pulled from a Kaggle setup: exercises the production gate')
     # Owner RAM limit: run 'checks' and 'smoke' as separate invocations so only one CUDA process is alive at a time.
-    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'r20', 'r21', 'r22', 'r23', 'final', 'resume', 'fast', 'parent', 'par'), required=True)
+    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'r20', 'r21', 'r22', 'r23', 'r24', 'r25', 'final', 'resume', 'fast', 'parent', 'par'), required=True)
     p.add_argument('--arms', help='smoke only these comma-separated arms')
     a = p.parse_args()
     work = Path(a.work); proj = work / 'proj'
@@ -153,6 +154,10 @@ def main():
         return round22(fd, work)
     if a.part == 'r23':
         return round23(fd, work)
+    if a.part == 'r24':
+        return round24(fd, work)
+    if a.part == 'r25':
+        return round25(fd, work)
     if a.part == 'resume':
         return resume(proj, work)
     if a.part == 'final':
@@ -528,6 +533,131 @@ def round23(fd, work):
     assert wire(runs['q2_rs_frz_gkd_la_kdpx_zl']) < wire(runs['q3_frz_gkd_la_kdpx_zl'])
 
 
+def round24(fd, work):
+    """Round 24 (xo / xou crossover rows, design §Vòng 24): earlier paths bit-exact with the pushed r25 fd.py over 2 epochs; xo and
+    xou epoch 1 == the q3_zl control (no snapshot yet, so no crossover rows), epoch 2 differs, finite, xo != xou, logs the pair
+    priority; a crossover row is an own row of class a at rho 0 and of class b at rho 1; pair weights live only on held pairs a != b,
+    xo keeps the uniform floor, xou is uniform. Compiled main() --workers 1 == 2: --part par --arms <xo arms>."""
+    import importlib.util
+    import torch
+    sys.dont_write_bytecode = True   # importing from the stage must not write __pycache__ into it (upload expects a flat stage)
+    spec = importlib.util.spec_from_file_location('fd_r25', BASE / 'artifacts/input/fd-src-20261015-r25/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    p = 'fd_dml_m4b_gpool_'; control = p + 'q3_frz_gkd_la_kdpx_zl'
+    for arm in (control, p + 'frz_gkd', 'fd_dml_m4b_gpool', p + 'rej', 'fd_dml_m4b_replay', p + 'frz_gkd_cop'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r25 fd.py, 2 epochs:', arm, flush=True)
+    c1, c2 = one_epoch(fd, control, False, batch=128), one_epoch(fd, control, False, batch=128, epochs=2)
+    runs, logs = {}, {}
+    def keep(arm):
+        def hook(R):
+            runs[arm] = R; inner = R.private_epoch
+            def logged(m, k, r):
+                log = inner(m, k, r); logs[arm, k, r] = log; return log
+            R.private_epoch = logged
+        return hook
+    out = {}
+    for tok in ('xo', 'xou'):
+        assert eq(one_epoch(fd, f'{control}_{tok}', False, batch=128), c1), tok
+        out[tok] = one_epoch(fd, f'{control}_{tok}', False, batch=128, epochs=2, hook=keep(tok))
+        assert finite(out[tok]) and not eq(out[tok], c2), tok
+        assert 'xo_disagree' not in logs[tok, 0, 1] and 0 <= logs[tok, 0, 2]['xo_disagree'] <= 1 and len(logs[tok, 0, 2]['xo_pairs']) == 3, tok
+        print(f'{tok}: epoch 1 == control, epoch 2 differs and finite; client 0 epoch 2 crossover disagreement',
+              round(logs[tok, 0, 2]['xo_disagree'], 4), 'top pairs', logs[tok, 0, 2]['xo_pairs'], flush=True)
+    assert not eq(out['xo'], out['xou'])
+    R = runs['xo']; order, start, count = R.xo_index[0]; held = torch.nonzero(count).squeeze(1); a, b = int(held[0]), int(held[-1])
+    w = torch.zeros(256, device=R.dev); w[a * 16 + b] = 1; cdf = w.cumsum(0); rho = fd.XO_RHO
+    for value, c in ((0., a), (1., b)):
+        fd.XO_RHO = value; rows = R.crossover(0, cdf, torch.Generator(device=R.dev).manual_seed(5))
+        pool = R.mask(R.X[0][R.Y[0] == c].float())
+        assert len(rows) == R.a.aux_batch and bool((torch.cdist(rows, pool, compute_mode='donot_use_mm_for_euclid_dist').min(1).values == 0).all()), (value, c)
+    fd.XO_RHO = rho
+    pairs = (count > 0).float(); both = (pairs[:, None] * pairs[None, :] * (1 - torch.eye(16, device=R.dev))).flatten()
+    for tok in ('xo', 'xou'):
+        R.xo = tok; cdf, info = R.xo_weights(0, R.priv[0], R.priv[1]); w = torch.diff(cdf, prepend=cdf.new_zeros(1))
+        assert abs(float(cdf[-1]) - 1) < 1e-5 and float(w[both == 0].abs().max()) == 0, (tok, float(cdf[-1]), float(w[both == 0].abs().max()))
+        floor = fd.XO_FLOOR / float(both.sum()) if tok == 'xo' else 1 / float(both.sum())
+        assert float(w[both > 0].min()) >= floor - 1e-6 and (tok == 'xo' or float(w[both > 0].max()) <= floor + 1e-6), tok
+    R.xo = 'xo'
+    print('crossover rows: own class-a rows at rho 0, class-b rows at rho 1; pair weights on held pairs only, xo floor, xou uniform', flush=True)
+
+
+def round25(fd, work):
+    """Round 25 (cvf / cvl calibrated teacher head, design §Vòng 25): earlier paths bit-exact with the pushed r28 fd.py over 2 epochs;
+    cvf and cvl epoch 1 == the q3_zl control (no snapshot yet), epoch 2 differs, finite, cvf != cvl; the client sums give the pooled
+    class means and covariances exactly (vs a direct pooled computation); a head fitted on virtual features of two well separated
+    classes separates them; the calibrated head reaches both teachers (frz and gkd) and nothing else of the snapshot changes;
+    diagnostics and bytes logged. Compiled main() --workers 1 == 2: --part par --arms <cv arms>."""
+    import importlib.util
+    import torch
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location('fd_r28', BASE / 'artifacts/input/fd-src-20261015-r28/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    p = 'fd_dml_m4b_gpool_'; control = p + 'q3_frz_gkd_la_kdpx_zl'
+    for arm in (control, control + '_xo', p + 'frz_gkd', 'fd_dml_m4b_gpool', p + 'rej'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r28 fd.py, 2 epochs:', arm, flush=True)
+    c1, c2 = one_epoch(fd, control, False, batch=128), one_epoch(fd, control, False, batch=128, epochs=2)
+    runs, logs = {}, {}
+    def keep(arm):
+        def hook(R):
+            runs[arm] = R; inner = R.private_epoch
+            def logged(m, k, r):
+                log = inner(m, k, r); logs[arm, k, r] = log; return log
+            R.private_epoch = logged
+        return hook
+    out = {}
+    for tok in ('cvf', 'cvl'):
+        assert eq(one_epoch(fd, f'{control}_{tok}', False, batch=128), c1), tok
+        out[tok] = one_epoch(fd, f'{control}_{tok}', False, batch=128, epochs=2, hook=keep(tok))
+        assert finite(out[tok]) and not eq(out[tok], c2), tok
+        log = logs[tok, 0, 2]; assert 'cv_teach' not in logs[tok, 0, 1] and len(log['cv_cm_cal']) == 16 and log['cv_teach'][0] >= max(log['cv_teach'][1:]), tok
+        rows = [b for b in runs[tok].bytes if b[3] in ('cv_stats', 'cv_head')]
+        up = 4 * (16 + 16 * 256 + (16 if tok == 'cvf' else 1) * 256 * 257 // 2)
+        assert sorted({(b[0], b[2], b[4]) for b in rows}) == [(2, 'down', 4 * (16 * 256 + 16)), (2, 'up', up)] and len(rows) == 2 * runs[tok].K, (tok, rows[:4])
+        print(f'{tok}: epoch 1 == control, epoch 2 differs and finite; up {up} B down {4 * (16 * 256 + 16)} B per client; client 0 own-row teach',
+              log['cv_teach'], flush=True)
+    assert not eq(out['cvf'], out['cvl'])
+    R = runs['cvf']; m = fd.Method(R, initialize=False); state = {n: v.clone() for n, v in R.init.state_dict().items()}
+    stats = [R.cv_stats(state, k) for k in range(R.K)]
+    hs, ys = zip(*(R.cv_features(state, k) for k in range(R.K))); h, y = torch.cat(hs).double(), torch.cat(ys)
+    n = sum(v['n'] for v in stats); mu = sum(v['s'] for v in stats) / n[:, None]
+    for c in range(16):
+        if n[c] < 3: continue
+        hc = h[y == c]; assert torch.allclose(mu[c], hc.mean(0).cpu(), atol=1e-8)
+        cov = (stats[0]['ss'][c] * 0 + sum(v['ss'][c] for v in stats) - n[c] * mu[c][:, None] * mu[c][None, :]) / (n[c] - 1)
+        assert torch.allclose(cov, torch.cov(hc.T).cpu(), atol=1e-6, rtol=1e-6), c
+    print('client sums -> pooled class means and covariances == direct pooled computation', flush=True)
+    g = torch.Generator(device=R.dev).manual_seed(3); toy = []
+    for c in range(16):
+        base = torch.zeros(256, dtype=torch.float64, device=R.dev); base[c] = 6.
+        x = base + torch.randn(64, 256, dtype=torch.float64, device=R.dev, generator=g)
+        toy.append(dict(n=torch.zeros(16, dtype=torch.float64).index_fill_(0, torch.tensor([c]), 64.),
+                        s=torch.zeros(16, 256, dtype=torch.float64).index_copy_(0, torch.tensor([c]), x.sum(0, keepdim=True).cpu()),
+                        ss=torch.zeros(16, 256, 256, dtype=torch.float64).index_copy_(0, torch.tensor([c]), (x.T @ x)[None].cpu())))
+    for tok in ('cvf', 'cvl'):
+        R.cv = tok
+        if tok == 'cvl':
+            for v in toy: v['ss'] = v['ss'].sum(0) if v['ss'].dim() == 3 else v['ss']
+        head = R.cv_calibrate(toy, state, 2)
+        probe = torch.zeros(16, 256, device=R.dev); probe[torch.arange(16), torch.arange(16)] = 6.
+        pred = (probe @ head['head.5.weight'].float().T + head['head.5.bias'].float()).argmax(1)
+        assert torch.equal(pred, torch.arange(16, device=R.dev)), (tok, pred)
+    R.cv = 'cvf'
+    print('virtual-feature head fit separates 16 separated toy classes (cvf, cvl)', flush=True)
+    teacher, syn = R.work_teacher, R.syn_teacher; m.global_state = state; m.cv_head = head; m.version = 1
+    for model in (teacher, syn):
+        model.load_state_dict(state, strict=True); R.cv_install(model, head)
+        for name, v in model.state_dict().items():
+            same = torch.equal(v, head[name]) if name in head else torch.equal(v, state[name])
+            assert same, name
+    print('cv_install: head.5 replaced, every other snapshot tensor unchanged (frz and gkd teachers)', flush=True)
+
+
 def resume(proj, work):
     """Codec resume (round 21): a quantized-wire run with client error feedback continued from its committed epoch 1 (resume bundle:
     server exact model + every client's residual) == the uninterrupted run at epoch 2 (weights, predictions, eval, round-2 bytes),
@@ -793,22 +923,26 @@ def parallel(proj, work, only=None):
     import numpy as np
     import torch
     skip = {'sec', 'seconds', 'algorithm_seconds', 'predictions_sha', 'weights_sha', 'prev_sha', 'resume_sha'}   # resume: contents below
-    strip = lambda v: ({k: strip(x) for k, x in v.items() if k not in skip} if isinstance(v, dict) else
+    skip |= {'gpu_peak_allocated_bytes', 'payload_bytes_per_algorithm_second'}   # round 24: process layout / wall time (cost block)
+    strip = lambda v: ({k: strip(x) for k, x in v.items() if k not in skip and not k.endswith('_seconds')} if isinstance(v, dict) else
                        [strip(x) for x in v] if isinstance(v, list) else v)
     def same(x, y):
         if isinstance(x, torch.Tensor): return torch.equal(x, y)
         if isinstance(x, dict): return x.keys() == y.keys() and all(same(x[k], y[k]) for k in x)
         if isinstance(x, list): return len(x) == len(y) and all(same(a, b) for a, b in zip(x, y))
         return x == y
+    ran = set()
     for arm, backend in (('fd_dml_m4b_gpool', 'compiled'), ('fd_dml_m4b_q4', 'eager'), ('fd_gaussian_m4b', 'eager'),
                          ('fd_fedavg', 'eager'), ('fd_dml_m4b_own', 'eager'), ('fd_dml_swappos', 'eager'), ('fd_dml_m4b_replay', 'eager'),
                          ('fd_dml_m4b_gpool_p1self', 'eager'), ('fd_dml_m4b_gpool_rej', 'eager'), ('fd_dml_m4b_gpool_fill', 'eager'),
                          ('fd_dml_m4b_gpool_frz_gkd', 'compiled'), ('fd_dml_m4b_frz', 'eager'),
                          ('fd_dml_m4b_gpool_frz_gkd_la_kdpx', 'compiled'), ('fd_dml_m4b_gpool_frz_gkd_cop', 'compiled'),
                          ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx', 'compiled'), ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl', 'compiled'),
-                         ('fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl', 'compiled'), ('fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl', 'compiled')):
+                         ('fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl', 'compiled'), ('fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl', 'compiled'),
+                         ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xo', 'compiled'), ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xou', 'compiled'),
+                         ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvf', 'compiled'), ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl', 'compiled')):
         if only and arm not in only: continue
-        runs = {}
+        ran.add(arm); runs = {}
         for workers in ((1, 2) if {'cop', 'q4', 'q3', 'q2'} & set(arm.split('_')) else (1, 3)):   # local RAM: cop (copula per rank), q4+la_kdpx compiled
             base = work / f'par{workers}'; out = base / f'{arm}_s42'
             if out.exists(): shutil.rmtree(out)
@@ -831,6 +965,7 @@ def parallel(proj, work, only=None):
         assert ra['bytes'] == rb['bytes'] and strip(ra['history']) == strip(rb['history']) and ra['complete'] and rb['complete'], arm
         assert (a / 'metrics.csv').read_text() == (b / 'metrics.csv').read_text(), arm
         print('PARALLEL == SERIAL (weights, predictions, bytes, history, metrics):', arm, backend, flush=True)
+    assert not only or set(only) <= ran, ('--arms not in the parallel list (nothing tested)', sorted(set(only) - ran))
 
 
 def smoke(arms, proj, work):

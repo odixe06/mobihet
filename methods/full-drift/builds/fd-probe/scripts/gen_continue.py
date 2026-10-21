@@ -14,7 +14,9 @@ import gen_fd
 
 def main():
     p = argparse.ArgumentParser(); p.add_argument('--parent', required=True); p.add_argument('--owner', required=True)
-    p.add_argument('--session', required=True, help='new immutable session code, e.g. za02'); a = p.parse_args()
+    p.add_argument('--session', required=True, help='new immutable session code, e.g. za02')
+    p.add_argument('--hours', type=float, default=11.5, help='session budget; short tails fit a smaller live quota (x1.15 rule)')
+    a = p.parse_args()
     assert a.session.isalnum() and len(a.session) <= 8
     base = gen_fd.BASE; parent = base / 'artifacts/kaggle' / a.parent
     audit = json.loads((parent / 'AUDITED.json').read_text()); assert len(audit['audits']) == 1
@@ -38,10 +40,10 @@ def main():
         flat = ('resume_' if rel.startswith('resume/') else '') + Path(rel).name
         shutil.copyfile(run / rel, stage / flat)
     (stage / 'dataset-metadata.json').write_text(json.dumps(dict(id=dataset, title=dataset.split('/')[1], licenses=[dict(name='CC0-1.0')])))
-    gen_fd.PLANS[round_tag] = [(a.owner, 42, a.session, queues, 11.5)]
-    sys.argv = ['gen_fd.py', '--round', round_tag, '--sessions', a.session]
+    gen_fd.PLANS[round_tag] = [(a.owner, 42, a.session, queues, a.hours)]
+    gen_fd.FROZEN = True; sys.argv = ['gen_fd.py', '--round', round_tag, '--sessions', a.session]
     gen_fd.main()
-    print('PREPARED continuation from round', last + 1, '(time budget 11.5h) checkpoint stage', stage,
+    print('PREPARED continuation from round', last + 1, f'(time budget {a.hours}h) checkpoint stage', stage,
           'upload/verify the stage as', dataset, 'before push', flush=True)
 
 

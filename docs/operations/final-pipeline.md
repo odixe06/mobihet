@@ -112,22 +112,24 @@ không tạo được dataset ⇒ chỉ dùng được nếu owner share dataset
 ⇒ Train xong trước reset; phần chấm còn lại (~70–90h nếu ước đúng) chạy sau reset 24/10 00:00Z (480h) ⇒ đủ r1–50 cả 6 chuỗi ≈ sáng 24/10.
 Chấm nhanh hơn ước (đo ở bước 1) có thể kéo về trước reset. Seed 43 (×2 toàn bộ) chỉ chạy được từ tuần quota sau.
 
-### Lịch chấm (chốt 20/10 23:30Z từ số đo thật)
+### Lịch chấm (bộ nhanh r27, số đo T4 21/10)
 
-| kịch bản | chấm/round (2 T4) | predictions/round | round/notebook | round còn phải chấm | giờ GPU |
+| kịch bản | chấm/round ổn định (2 T4) | round đầu notebook | round còn phải chấm | giờ GPU | round/notebook (~4–5h) |
 |---|---:|---:|---:|---:|---:|
-| 20c | 792–820 s | 98 MB | 20 (~4,5h) | 92 | ~20h |
-| 50c | 1.866–1.911 s | 313 MB | 8 (~4,2h) | 98 | ~52h |
-| 100c | 3.979–4.064 s | 666 MB | 4 (~4,5h) | 98 | ~109h |
+| 20c | 301–357 s | ~480 s | 92 (za, zc r5–50) | ~8,5h | ≤ 46 (một chuỗi/notebook) |
+| 50c | 843 s | ~1.120 s | 98 (zg r3–50, ze r1–50) | ~23h | ~20 |
+| 100c | 1.449 s | ~2.075 s | 98 (zk r3–50, zi r1–50) | ~40h | ~11–12 |
 
-Tổng ≈ 181h; train còn lại sau S1 ≈ 16h (S2: zk ~15, zi ~23, za/ze ~2 round). Quota dùng được trước reset (account tạo được dataset, sau S1/S2,
-20/10 23:20Z): ≈ 110h — K20 đủ (minhtriethihi, annhtnt, odixe0502, minhtran0601 ≈ 26h); K50 ≈ 19h (annhannh331, thuyanh316, dinhan25)
-và K100 ≈ 65h (khanhmay0304, nguyenminhtran060113, accanniez, takids1909, anhtruong1909, catbaochau, trietbackup) thiếu.
-Thứ tự: chấm r50 (headline) mỗi chuỗi trước, rồi toàn bộ 20c, 50c, 100c theo round tăng dần; phần thiếu (~70h, chủ yếu 100c) chạy sau reset
-24/10 00:00Z (480h) ⇒ đủ r1–50 cả 6 chuỗi ≈ 24/10 ~06Z. Train r50 cả 6 chuỗi ≈ 21/10 ~20Z.
+Tổng ≈ 72h (bộ cũ ≈ 181h) + train S2 ≈ 16h ⇒ vừa quota trước reset 24/10 00:00Z. Thứ tự: r50 (headline) mỗi chuỗi trước, rồi round tăng dần;
+round có ngay khi chuỗi S1/S2 collect + audit xong, account chấm khác account train và có cache K tương ứng (marker `artifacts/fixture-cache/`).
+Bảng cũ (bộ chấm `fd_eval.py`, 20/10 23:30Z): 20c 792–820 s, 50c 1.866–1.911 s, 100c 3.979–4.064 s/round.
+
 Kéo về trước reset chỉ có 2 cách: (a) tăng tốc chấm lớp tolerance (batch lớn/cuDNN autotune, cần owner duyệt và đo trên T4);
 (b) 60h của odixeuit/minhtrit06 — không tạo được dataset, mỗi dataset checkpoint phải được owner share tay ⇒ không thực tế.
+_Sửa 21/10:_ cả hai tạo được dataset lại; owner chọn thêm luồng song song ⇒ minhtrit06 dựng cache K50 làm luồng chấm; odixeuit owner dùng cho dự án khác.
 **21/10 owner chọn (a): "chấm nhanh nhất có thể"** ⇒ §Bộ chấm nhanh.
+
+Công cụ nối tiếp 21/10: `gen_continue.py --hours H` (đuôi ngắn vừa quota theo luật 1,15×; `launch_continue.sh … [giờ]`); `gen_fd.FROZEN` để nối tiếp tag r25 khi source sống đã sang tag mới (stage kiểm theo manifest của chính nó).
 
 ### Bộ chấm nhanh (owner 21/10, lớp tolerance)
 
@@ -151,5 +153,26 @@ dự đoán đã audit):
 | GEMM im2col (16k/64k) | 22,3–24,6 | 2.648 / 1.810 | 0,027 |
 | **GEMM + cộng dịch (16k)** | **19,2 / 17,8** | 2.588 / 1.839 (0,02 %) | 0,043 |
 
-Chấm lại r1–4 za/zc, r1–2 zg/zk bằng bộ nhanh rồi `compare_eval.py` so với bản đã audit ⇒ `EQUIVALENCE.json` mỗi notebook; các round này
-dùng kết quả bộ nhanh để cả chiến dịch cùng một evaluator.
+Chấm lại r1–4 za/zc, r1–2 zg/zk bằng bộ nhanh (tag r26) rồi `compare_eval.py` so với bản đã audit ⇒ `EQUIVALENCE.json` mỗi notebook; các
+round này dùng kết quả bộ nhanh để cả chiến dịch cùng một evaluator. Kết quả T4 (collect + audit PASS, 21/10):
+
+| notebook (`…-f1`) | round đầu (gồm khởi động) | round sau (chạy chồng) | bản cũ | khớp dự đoán | lệch metric lớn nhất | sai số gate lớn nhất |
+|---|---:|---:|---:|---:|---:|---:|
+| za 20c q3 r1–4 (odixe0502) | 471 s | 301–343 s | 772–805 s | 99,973 % | 2,7e-4 | 0,065 |
+| zc 20c gkd r1–4 (minhtran0601) | 485 s | 333–357 s | 792–820 s | 99,972 % | 5,3e-4 | 0,077 |
+| zg 50c gkd r1–2 (dinhan25) | 1.121 s | 843 s | 1.866–1.911 s | 99,964 % | 1,6e-3 | 0,062 |
+| zk 100c gkd r1–2 (trietbackup) | 2.075 s | 1.449 s | 3.979–4.064 s | 99,964 % | 9,2e-5 | 0,047 |
+
+Lệch dự đoán dồn ở EMA/`gp`, dòng sát nút. Lệch metric lớn nhất (zg r2, private `gp` precision_macro) là bước nhảy của precision lớp không được
+dự đoán: client 22 đổi đúng 1 dòng thành lớp 15 (0 → 1 dự đoán đúng) ⇒ precision lớp đó 0 → 1, +1/16 ÷ 50 client. Không phải sai số tích lũy.
+**Tag r27** (chấm đại trà): chỉ đổi ngưỡng gate 0,1 → 0,25 (sai số và margin dòng chắc chắn) vì đo được tới 0,077 trên vài trăm model mà chiến dịch
+có ~20 nghìn lượt model; nạp sai trọng số cho lệch O(1) vẫn bị chặn. Dự đoán giống r26 (cùng code tính).
+
+**Tag r29** (owner duyệt 21/10 ~10:30Z): gate tuyệt đối 0,25 vỡ ở round muộn — `dinhan25/…-e29-48-s42ze…` ERROR r34 50c, sai số 0,2508.
+Logit tăng ~3× r5 → r48 (max|logit| 15–22 → 37–58) nên sai số fp16 tăng theo; đo local 255 model ze r5/r20/r33/r34/r48: sai số tương đối
+max 0,21 → 0,48 %, 0 dòng chắc chắn đổi argmax (T4 r34 ≈ 0,45–0,73 %). Gate mới: `max_error / max|logit gốc| ≤ 2 %` + argmax trùng ở dòng
+margin > 0,25 (giữ); `fast_gate` ghi thêm `max_rel`. Nạp sai trọng số lệch O(10 %) ⇒ vẫn bị chặn. Dự đoán giống r27 (cùng code tính).
+`collect_eval.py` nhận r27 (tuyệt đối ≤ 0,25) và r29 (tương đối ≤ 2 %), `--partial` audit các round đã commit của notebook ERROR
+(`rounds` = round đã audit, `planned_rounds` = kế hoạch). Test: `test_fast_eval.py` (fp32 3,6e-7), `test_final_pipeline.py` 20c (max_rel 0,13 %).
+`report_final.py` sửa cùng ngày: đọc proof nhiều round (`rounds`) — trước đó chỉ nhận proof một round nên bỏ sót mọi kết quả bộ nhanh;
+round chấm cả bộ cũ và bộ nhanh lấy bộ nhanh.

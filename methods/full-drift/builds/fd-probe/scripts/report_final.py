@@ -13,11 +13,16 @@ def main():
     evaluations = {}
     for path in sorted((BASE / 'artifacts/kaggle').glob('*/AUDITED.json')):
         proof = json.loads(path.read_text())
-        if 'weights_sha' in proof and 'round' in proof and proof.get('complete'):
-            key = (proof['fingerprint'], proof['round'], proof['weights_sha'])
-            row = json.loads((path.parent / 'runs' / proof['run'] / 'eval' / f'round_{proof["round"]:03d}.json').read_text())
-            if key in evaluations: assert evaluations[key]['eval'] == row['eval'], 'conflicting evaluation attempts'
-            evaluations[key] = row
+        if 'weights_sha' in proof and ('round' in proof or 'rounds' in proof) and proof.get('complete'):
+            rounds = proof.get('rounds', [proof.get('round')])   # fast-evaluator notebooks score several rounds
+            shas = proof['weights_sha'] if isinstance(proof['weights_sha'], dict) else {str(rounds[0]): proof['weights_sha']}
+            for r in rounds:
+                key = (proof['fingerprint'], r, shas[str(r)])
+                row = json.loads((path.parent / 'runs' / proof['run'] / 'eval' / f'round_{r:03d}.json').read_text())
+                fast = proof.get('evaluator') == 'fd_eval_fast.py'   # owner 21/10: one evaluator for the campaign, fast wins
+                if key in evaluations and evaluations[key][0] == fast:
+                    assert evaluations[key][1]['eval'] == row['eval'], 'conflicting evaluation attempts'
+                if key not in evaluations or fast: evaluations[key] = (fast, row)
     costs, metrics, inventory, scenarios = [], [], [], {}
     for path in sorted((BASE / 'artifacts/kaggle').glob('*/AUDITED.json')):
         proof = json.loads(path.read_text())
@@ -44,7 +49,7 @@ def main():
                             per_client_round_bytes_mean=sum(by_client) / len(by_client))
                 cost['bootstrap_bytes_session'] = sum(v[4] for v in result['bytes'] if v[0] == 0)
                 costs.append(cost)
-                ev = evaluations.get((cfg['fingerprint'], r, row['weights_sha']))
+                ev = evaluations.get((cfg['fingerprint'], r, row['weights_sha']), (None, None))[1]
                 if ev:
                     scored.append(r)
                     scenario['evaluated'].append(r)

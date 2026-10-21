@@ -42,6 +42,18 @@ impossible by construction. Evidence instead:
 4. Keep `1 worker == W workers` bit-exact inside the new code if determinism is kept; if
    nondeterministic kernels are enabled, state that runs are no longer reproducible bit for bit.
 
+5. **Runtime gates that ship with a fast path** (a faster evaluator gated per model against the reference
+   module) must use a bound **relative to the output scale** -- `max|delta| / max|reference logit|` -- not an
+   absolute one: fp16 rounding error grows with logit magnitude, and logits grow through training. Calibrate the
+   bound on the **latest, largest-magnitude checkpoints that will be scored**, not on the first rounds. Measured
+   failure: an absolute 0.25 bound set from rounds 1-4 (max error 0.077) broke at round 34 of 50 (0.2508, logits
+   ~3x larger, relative error still 0.2-0.7 %). A wrong weight load moves logits O(10 %) relative, so a relative
+   bound of a few percent still catches it.
+6. **A gate failure must not throw away the rest of a batch job.** One model over the bound should fall back to
+   the reference path for that model (slower, exact) and be recorded, or at least end the job with every earlier
+   unit committed and a collector that can audit the committed part; never let one model abort a multi-hour
+   notebook with the remaining units unscored.
+
 ## 3. Local discipline
 
 - Run tests through a memory guard, one CUDA job at a time; a guard kill (exit -15/137) is not a

@@ -2,7 +2,7 @@
 
 [Mục lục hiện tại](../README.md) · [Index khu làm việc](../file-index.md) · [Các build đã kết thúc](README.md)
 
-1161 file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.
+1162 file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.
 
 - [archive/README.md](../../archive/README.md)
 - [archive/logs/README.md](../../archive/logs/README.md)
@@ -1052,6 +1052,7 @@
 - [docs/archive/operations/continuation-2026-10-15-evening.md](operations/continuation-2026-10-15-evening.md)
 - [docs/archive/operations/continuation-2026-10-15.md](operations/continuation-2026-10-15.md)
 - [docs/archive/operations/continuation-2026-10-17.md](operations/continuation-2026-10-17.md)
+- [docs/archive/operations/continuation-2026-10-20-21.md](operations/continuation-2026-10-20-21.md)
 - [docs/archive/operations/continuation-plan-2026-10-15-part1.json](operations/continuation-plan-2026-10-15-part1.json)
 - [docs/archive/operations/continuation-plan-2026-10-15-part2.json](operations/continuation-plan-2026-10-15-part2.json)
 - [docs/archive/operations/continuation-plan-2026-10-15-part3.json](operations/continuation-plan-2026-10-15-part3.json)

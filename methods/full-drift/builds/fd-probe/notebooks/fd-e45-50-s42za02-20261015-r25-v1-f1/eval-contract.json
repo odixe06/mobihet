@@ -1,0 +1,25 @@
+{
+  "session": "fd-s42za02-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "fingerprint": "e72c25594d29e777ad9c92c662e27739842ac0f066559448c7bded4c5de2ba10",
+  "weights_sha": {
+    "45": "ab270875e7b13f2b022e30b2c0fc4f56259781966b9861e88cd18a7ff499ddfe",
+    "46": "26e8a61419dd0e7364cbfda7d6b516d8f3f3b4f9f00cf16f2c0293929148eb52",
+    "47": "276d771e2700146e89b9afa1cdf57de9f9bf105f00a9d9f6b060da533cfb2c65",
+    "48": "08c4e3e84809ec44dc2d53d43ff23e29351adf4b8939197d1c213fbeab456000",
+    "49": "c638dcba8af111f221f0dbabfa658d0378c5ebfd7f9280abe89a83bf66d7631a",
+    "50": "79fe63aef5fe2f17bbc40701a2fa6c611a634cf481661494c70e2926ff14f36b"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "minhtran0601/mh-fd-e45-50-s42za02-20261015-r25-v1-f1"
+}

@@ -95,12 +95,23 @@ ARMS = ['fd_dml', 'fd_dml_prox', 'fd_dml_avgm', 'fd_fedavg', 'fd_gaussian', 'fd_
         # with client error feedback, downlink int4 or 3-bit
         'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl', 'fd_dml_m4b_gpool_q4_u2_frz_gkd_la_kdpx_ef_zl', 'fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl',
         # round 23: the 2-bit wire both ways with the RMS (Lloyd-Max for a Gaussian) step instead of the row max (rs)
-        'fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl']
+        'fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl',
+        # round 24 (owner 21/10: purposeful synthesis; probe 20): rows built from two own rows (class a, features of a class-b row
+        # w.p. XO_RHO), learned by KL to the received snapshot; (a, b) drawn where the private and that snapshot disagree on the
+        # client's own rows (xo) or uniformly over the class pairs the client holds (xou, priority control)
+        'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xo', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xou',
+        # round 25 (owner 21/10 after the round-24 analysis: 77 % of the private's errors are errors of its teacher too): the snapshot's
+        # last Linear re-fitted by the server on virtual h256 features drawn from every client's class moments of that snapshot
+        # (SecureSum-additive), one covariance per class (cvf) or one shared within-class covariance (cvl); that head is the private's
+        # teacher (frz KD on real rows and gkd KL on Gaussian rows)
+        'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvf', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl']
 MU, SWAP_P, EMA_BETA, CAL_ROWS, SERVER_BETA = 0.01, 0.5, 0.5 ** 0.5, 65536, 0.9
 KD_CAP, DYN_ALPHA, CONS_LAMBDA, PROBE_ROWS = 1.0, 0.01, 1.0, 512   # plan §4.2 / §5.1 / §4.5 screening values
 KD_UP, GW2 = 2.0, 2.0   # round 11 kd2: private-side KD weight multiplier; gw2: weight of the private-only Gaussian CE
 KD_T, GK2, COP_BINS, COP_LIM = 2.0, 2.0, 256, 8.0   # round 18: t2 temperature, gk2 weight, copula bins over asinh(z) in [-8, 8]
 P1_LAMBDA, P1_T, P1_CLASSES = 0.25, 1.0, (0, 4)   # round 13 P1: KL weight, temperature, classes (benign, dataReplay)
+XO_RHO, XO_FLOOR = 0.3, 0.1   # round 24 xo: donor feature rate; uniform share (over held pairs) mixed into the pair priority
+CV_STEPS, CV_BATCH, CV_LR, CV_JITTER = 3000, 4096, 1e-3, 1e-4   # round 25 cv: server head fit on virtual features (probe 22)
 BLOCK = ['f_rcv_pos_noise_x', 'f_rcv_pos_noise_y', 'f_rcv_spd_noise', 'f_rcv_acl_noise', 'f_rcv_hed_noise',
          'f_rcv_noise_mag', 'f_rcv_profile_normal', 'f_rcv_profile_cautious', 'f_rcv_profile_aggressive']
 POSITION = ['f_rcv_x_rel', 'f_rcv_y_rel', 'f_snd_x_rel', 'f_snd_y_rel']
@@ -291,7 +302,7 @@ class Clients(list):
 class Method(FullMethod):
     def __init__(self, run, initialize=True):
         super().__init__(run, initialize)
-        self.ema_private = None
+        self.ema_private = None; self.cv_head = None   # round 25: calibrated head.5 of the current snapshot (None: not calibrated)
         self.fedavg = 'fedavg' in self.arm
         self.momentum = self.arm.endswith('_avgm'); self.velocity = {}
         self.bits = next((b for b in (4, 3, 2) if f'q{b}' in self.arm.split('_')), None); self.exact = None
@@ -578,6 +589,8 @@ class Run(FullRun):
         # round 18: proxy CE only (pce), private KD at temperature KD_T (t2), Gaussian KL weight x GK2 (gk2); g512 is set in main()
         self.pce, self.t2, self.gk2 = 'pce' in tokens, 't2' in tokens, 'gk2' in tokens
         assert not (self.t2 or self.gk2) or self.gkd
+        self.xo = next((t for t in tokens if t in ('xo', 'xou')), None); assert not self.xo or (self.gkd and not self.t2)   # round 24
+        self.cv = next((t for t in tokens if t in ('cvf', 'cvl')), None); assert not self.cv or (self.gkd and self.frz)   # round 25
         assert ('g512' in tokens) == (args.aux_batch == (128 if args.smoke else 512)), 'g512 <=> doubled aux_batch (set in main)'
         hidden = BLOCK + POSITION if 'm4b' in tokens else POSITION if self.swap else []
         # --final (owner 19/10): the final-protocol fixture (every train80% row, no group/old); smoke reuses the pilot fixture
@@ -627,7 +640,9 @@ class Run(FullRun):
         self.eval_template = copy.deepcopy(self.init).eval()
         self.work_teacher = copy.deepcopy(self.init).eval() if self.frz else None
         self.syn_teacher = copy.deepcopy(self.init).eval() if self.rej or self.p1 or self.gkd else None
-        self.compiled = {}; self.compile_gates = []
+        self.cv_model = copy.deepcopy(self.init).eval() if self.cv else None   # round 25: eager snapshot copy for the class moments
+        self.cv_seconds = 0.
+        self.compiled = {}; self.compile_gates = []; self.compiled_more = {}   # round 24: a second compiled size per model (xo)
         if args.backend == 'compiled' and getattr(args, 'evaluate_only', False):
             self.compile_extra(self.eval_template, 'teacher', 16384)
         elif args.backend == 'compiled':
@@ -636,7 +651,8 @@ class Run(FullRun):
             self.compile_preflight(); args.arm = arm; args.batch = batch
             if self.frz: self.compile_extra(self.work_teacher, 'teacher', args.batch)
             if self.paux: self.compile_extra(self.work_private, 'private', args.batch + args.aux_batch)   # proxy stays at batch
-            if self.syn_teacher is not None: self.compile_extra(self.syn_teacher, 'teacher', args.aux_batch)
+            if self.xo: self.compile_extra(self.work_private, 'private', args.batch + 2 * args.aux_batch)   # + crossover rows
+            if self.syn_teacher is not None: self.compile_extra(self.syn_teacher, 'teacher', args.aux_batch * (2 if self.xo else 1))
         self.swap_stats = [0, 0]
         # hkd (FedKD hidden-state loss): client-local projector private h -> proxy h, never uploaded (R1), any private width (R2)
         self.hkd = 'hkd' in tokens; self.proj = []
@@ -647,6 +663,9 @@ class Run(FullRun):
         for y in (self.Y if self.replay else []):
             count = torch.bincount(y, minlength=16); order = torch.argsort(y, stable=True)
             self.by_class.append((order, torch.cumsum(count, 0) - count, count, torch.nonzero(count).squeeze(1)))
+        self.xo_index = []   # round 24: own rows sorted by class (order, start, count) for the crossover draws
+        for y in (self.Y if self.xo else []):
+            count = torch.bincount(y, minlength=16); self.xo_index.append((torch.argsort(y, stable=True), torch.cumsum(count, 0) - count, count))
         cal = np.random.default_rng(4242)
         self.cal = [torch.from_numpy(np.sort(cal.choice(n, min(n, CAL_ROWS), replace=False))).to(self.dev) for n in self.n]
 
@@ -673,9 +692,104 @@ class Run(FullRun):
         assert error <= .005 and torch.equal(actual.argmax(1)[decisive], expected.argmax(1)[decisive]), ('compile gate', role, error)
         model.load_state_dict(saved, strict=True); torch.cuda.set_rng_state(rng)
         for m, p in dropout: m.p = p
-        self.compiled[id(model)] = (compiled, batch)
+        if id(model) in self.compiled: self.compiled_more[(id(model), batch)] = compiled
+        else: self.compiled[id(model)] = (compiled, batch)
         self.compile_gates.append(dict(role=role, rows=batch, max_error=error, decisive=int(decisive.sum())))
         print('COMPILE EXTRA PASS', self.compile_gates[-1], flush=True)
+
+    def forward(self, model, x):
+        more = self.compiled_more.get((id(model), len(x)))   # round 24 xo: the private at batch + Gaussian + crossover rows
+        return more(x) if more is not None else super().forward(model, x)
+
+    def xo_weights(self, k, private, teacher):
+        """Round 24: class-pair weights (16 x 16 flattened, cumulative) for the crossover draws, over the pairs a != b the client
+        holds both of. xo: (1 - XO_FLOOR) x the (teacher argmax a, private argmax b) histogram on the calibration rows (epoch-start
+        private vs the received snapshot) + XO_FLOOR uniform; xou: uniform. None when the client holds fewer than two classes."""
+        held = (self.xo_index[k][2] > 0).float(); both = (held[:, None] * held[None, :] * (1 - torch.eye(16, device=self.dev))).flatten()
+        if float(both.sum()) == 0: return None, {}
+        w = both / both.sum()
+        if self.xo == 'xo':
+            rows = self.X[k][self.cal[k]]; a, b = self.logits(teacher, rows).argmax(1), self.logits(private, rows).argmax(1)
+            hist = torch.zeros(256, device=self.dev).index_add_(0, a * 16 + b, torch.ones(len(rows), device=self.dev)) * both
+            w = (1 - XO_FLOOR) * hist / hist.sum().clamp_min(1) + XO_FLOOR * w
+        w = w / w.sum(); top = w.topk(3)   # no own-row disagreement: the floor alone, i.e. xou
+        # sequential CPU scan: zero-weight pairs keep an exactly flat cdf (the GPU scan leaves ~1e-7 there)
+        return w.cpu().cumsum(0).to(self.dev), dict(xo_pairs=[[int(i) // 16, int(i) % 16, round(float(v), 4)] for v, i in zip(*top)],
+                                 xo_disagree_own=float((a != b).float().mean()) if self.xo == 'xo' else None)
+
+    @torch.no_grad()
+    def cv_diagnostics(self, method, k, private):
+        """Round 25, own calibration rows and own labels only: confusions of the snapshot with its trained / calibrated head, and
+        the private's (epoch start) wrong rows each head gets right."""
+        h, y = self.cv_features(method.global_state, k)
+        head = lambda w, b: (h @ w.float().T + b.float()).argmax(1)
+        t0 = head(method.global_state['head.5.weight'], method.global_state['head.5.bias'])
+        t1 = head(method.cv_head['head.5.weight'], method.cv_head['head.5.bias'])
+        p = self.logits(private, self.X[k][self.cal[k]]).argmax(1); wrong = p != y
+        cm = lambda pred: torch.bincount(y * 16 + pred, minlength=256).view(16, 16).tolist()
+        return dict(cv_cm_orig=cm(t0), cv_cm_cal=cm(t1), cv_teach=[int(wrong.sum()), int((wrong & (t0 == y)).sum()), int((wrong & (t1 == y)).sum())])
+
+    def crossover(self, k, cdf, gen):
+        """Round 24: aux_batch rows, each an own row of class a whose features come w.p. XO_RHO from an own row of class b,
+        (a, b) drawn from the cumulative pair weights (no host sync); masked like the real rows."""
+        order, start, count = self.xo_index[k]; n = self.a.aux_batch
+        v = torch.searchsorted(cdf, torch.rand(n, device=self.dev, generator=gen) * cdf[-1], right=True).clamp_max(255)
+        def rows(c): return self.X[k][order[start[c] + (torch.rand(n, device=self.dev, generator=gen) * count[c]).long().clamp_max(count[c] - 1)]].float()
+        xa, xb = rows(v // 16), rows(v % 16)
+        return self.mask(torch.where(torch.rand(xa.shape, device=self.dev, generator=gen) < XO_RHO, xb, xa))
+
+    @torch.no_grad()
+    def cv_features(self, state, k):
+        """Round 25: h256 (input of the last Linear) of the snapshot `state` on client k's calibration rows, with their labels."""
+        model = self.cv_model; model.load_state_dict(state, strict=True); model.eval(); x = self.X[k][self.cal[k]]; out = []
+        for s in range(0, len(x), 16384):
+            with torch.autocast('cuda', dtype=torch.float16):
+                out.append(model.head[:4](model.combined(self.mask(x[s:s + 16384].float()))).float())
+        return torch.cat(out), self.Y[k][self.cal[k]]
+
+    def cv_stats(self, state, k):
+        """Round 25 client message (SecureSum-additive sums): class counts, class sums of h, sum of h h^T per class (cvf) or over
+        all rows (cvl: the server derives one shared within-class covariance)."""
+        h, y = self.cv_features(state, k); h = h.double(); onehot = F.one_hot(y, 16).double()
+        ss = torch.stack([h[y == c].T @ h[y == c] for c in range(16)]) if self.cv == 'cvf' else h.T @ h
+        return dict(n=onehot.sum(0).cpu(), s=(onehot.T @ h).cpu(), ss=ss.cpu())
+
+    def cv_calibrate(self, stats, state, r):
+        """Round 25 server: pooled moments -> virtual h ~ N(mu_c, Sigma) at the pooled class shares -> the snapshot's last Linear
+        re-fitted from its own weights (Adam, CV_STEPS x CV_BATCH). Returns the calibrated head.5 tensors (sent to every client)."""
+        n = sum(v['n'] for v in stats).to(self.dev); s = sum(v['s'] for v in stats).to(self.dev); ss = sum(v['ss'] for v in stats).to(self.dev)
+        mu = s / n[:, None].clamp_min(1); outer = n[:, None, None] * mu[:, :, None] * mu[:, None, :]
+        eye = CV_JITTER * torch.eye(mu.shape[1], dtype=torch.float64, device=self.dev)
+        cov = (ss - outer) / (n[:, None, None] - 1).clamp_min(1) + eye if self.cv == 'cvf' else (ss - outer.sum(0)) / (n.sum() - 16) + eye
+        L, mu = torch.linalg.cholesky(cov).float(), mu.float()
+        fc = torch.nn.Linear(mu.shape[1], 16).to(self.dev)
+        with torch.no_grad(): fc.weight.copy_(state['head.5.weight'].float()); fc.bias.copy_(state['head.5.bias'].float())
+        opt = torch.optim.Adam(fc.parameters(), lr=CV_LR); g = self.gen(r, 0, 25); share = (n / n.sum()).float()
+        for _ in range(CV_STEPS):
+            c = torch.multinomial(share, CV_BATCH, replacement=True, generator=g)
+            z = torch.randn(CV_BATCH, mu.shape[1], device=self.dev, generator=g)
+            x = mu[c] + (z @ L.T if L.dim() == 2 else (L[c] @ z[:, :, None]).squeeze(-1))
+            loss = F.cross_entropy(fc(x), c); opt.zero_grad(set_to_none=True); loss.backward(); opt.step()
+        assert torch.isfinite(fc.weight).all() and torch.isfinite(fc.bias).all(), ('cv head', r)
+        return {'head.5.weight': fc.weight.detach().to(state['head.5.weight'].dtype),
+                'head.5.bias': fc.bias.detach().to(state['head.5.bias'].dtype)}
+
+    def cv_round(self, method, r, pool=None):
+        """Round 25, before the local epochs: every client's class moments of the received snapshot, summed in client order,
+        then the server fit; no calibration before the first aggregated snapshot. Bytes at 4 per value (fixed-point SecureSum),
+        upper triangle of the symmetric sums; the calibrated head goes down to every client."""
+        method.cv_head = None
+        if method.version == 0: return
+        started = time.perf_counter()
+        stats = pool.cv_stats(method, self) if pool else {k: self.cv_stats(method.global_state, k) for k in range(self.K)}
+        method.cv_head = self.cv_calibrate([stats[k] for k in range(self.K)], method.global_state, r)
+        self.cv_seconds = time.perf_counter() - started
+        up = 4 * (16 + 16 * 256 + (16 if self.cv == 'cvf' else 1) * 256 * 257 // 2); down = 4 * sum(v.numel() for v in method.cv_head.values())
+        for k in range(self.K): self.bytes += [(r, k, 'up', 'cv_stats', up), (r, k, 'down', 'cv_head', down)]
+
+    @staticmethod
+    def cv_install(model, head):
+        with torch.no_grad(): model.head[5].weight.copy_(head['head.5.weight']); model.head[5].bias.copy_(head['head.5.bias'])
 
     def replay_rows(self, k, n, gen):
         """Class-balanced local replay: labels cycle over the classes this client holds, rows drawn uniformly within class."""
@@ -772,6 +886,7 @@ class Run(FullRun):
         teacher = None
         if self.frz:
             teacher = self.work_teacher; teacher.load_state_dict(method.global_state, strict=True); teacher.eval()
+            if method.cv_head is not None: self.cv_install(teacher, method.cv_head)   # round 25: the calibrated head teaches
         wbuf = torch.zeros(batches, device=self.dev); kdstat = torch.zeros(4, device=self.dev)
         total = torch.zeros(5, device=self.dev); skips = torch.zeros((), dtype=torch.long, device=self.dev)
         nonfinite = torch.zeros((), dtype=torch.bool, device=self.dev); aux_labels = self.aux_labels[k]
@@ -779,6 +894,10 @@ class Run(FullRun):
         if self.syn_teacher is not None and method.version > 0:
             syn = self.syn_teacher; syn.load_state_dict((original if self.p1 == 'p1self' else method.proxy[k]).state_dict(), strict=True)
             syn.eval()
+            if method.cv_head is not None: self.cv_install(syn, method.cv_head)
+        cv_log = self.cv_diagnostics(method, k, original) if method.cv_head is not None else {}
+        xo_cdf, xo_log = (self.xo_weights(k, original, syn) if self.xo and syn is not None else (None, {}))
+        xo_gen = self.gen(r, k, 77) if xo_cdf is not None else None; xostat = torch.zeros(2, device=self.dev)   # disagree, rows
         drawn = torch.bincount(aux_labels, minlength=16).float(); p1_classes = torch.zeros(16, device=self.dev)
         p1_classes[list(P1_CLASSES)] = 1
         synstat = torch.zeros(3, 16, device=self.dev); synkl = torch.zeros(2, device=self.dev)   # accepted/drawn/gated; KL sum, gated
@@ -793,6 +912,7 @@ class Run(FullRun):
             if method.aux: x = torch.cat([x, self.mask(method.draw(labels, g, k))])
             xp = x   # private input: + private-only Gaussian draws (gpool/gown) or class-balanced local replay (replay)
             if method.paux: xp = torch.cat([x, self.mask(method.draw(labels, gd, k))])
+            if xo_cdf is not None: xp = torch.cat([xp, self.crossover(k, xo_cdf, xo_gen)])   # round 24: after the Gaussian rows
             elif self.replay:
                 rows, labels = self.replay_rows(k, self.a.aux_batch, gd); xp = torch.cat([x, rows])
             with torch.autocast('cuda', dtype=torch.float16):
@@ -802,10 +922,11 @@ class Run(FullRun):
                 else:
                     if self.hkd: zs, hs = (v.float() for v in self.forward(private, x))
                     else: zs = self.forward(private, xp)[0].float()
-                    aux_ce = F.cross_entropy(zs[real:], labels) if self.paux else None
+                    aux_ce = F.cross_entropy(zs[real:real + len(labels)], labels) if self.paux else None
                     syn_kd = None
                     if syn is not None:
                         with torch.no_grad(): zt = self.forward(syn, xp[real:])[0].float()
+                        if xo_cdf is not None: zt, zx = zt[:len(labels)], zt[len(labels):]   # Gaussian rows, crossover rows
                         accept = (zt.argmax(1) == labels).float()
                         kept = torch.zeros(16, device=self.dev).index_add_(0, labels, accept)
                         if self.rej:   # drop rejected rows; accepted rows of a class carry that class's Gaussian mass
@@ -825,7 +946,11 @@ class Run(FullRun):
                         if self.gkd:   # KL(snapshot || private) on every Gaussian row replaces the hard CE (weighted like the KD below)
                             aux_ce = None
                             T = KD_T if self.t2 else 1.
-                            syn_kd = F.kl_div(F.log_softmax(zs[real:] / T, 1), F.log_softmax(zt / T, 1), log_target=True, reduction='batchmean') * T * T
+                            syn_kd = F.kl_div(F.log_softmax(zs[real:real + len(labels)] / T, 1), F.log_softmax(zt / T, 1), log_target=True, reduction='batchmean') * T * T
+                            if xo_cdf is not None:   # round 24: crossover rows learn the snapshot by KL, same weight as the Gaussian rows
+                                zxs = zs[real + len(labels):]
+                                syn_kd = syn_kd + F.kl_div(F.log_softmax(zxs, 1), F.log_softmax(zx, 1), log_target=True, reduction='batchmean')
+                                xostat += torch.stack([(zx.argmax(1) != zxs.argmax(1)).float().sum().detach(), zxs.new_tensor(float(len(zxs)))])
                         synstat += torch.stack([kept, drawn, torch.zeros(16, device=self.dev).index_add_(0, labels, gate)])
                     if self.paux: zs = zs[:real]   # KD and JS on real rows only
                     ce = F.cross_entropy(zs[:real] + self.la_shift[k] if self.la else zs[:real], y); extra = ce.detach() * 0
@@ -907,6 +1032,8 @@ class Run(FullRun):
             kd.update(syn_accept=float(kept.sum() / total_drawn.sum()), synacc=(kept / total_drawn.clamp_min(1)).tolist(),
                       syn_gate=float(gated.sum() / total_drawn.sum()))
             if self.p1: kd['syn_kl'] = float(synkl[0] / synkl[1].clamp_min(1))
+        if xo_cdf is not None: kd.update(xo_log, xo_disagree=float(xostat[0] / xostat[1].clamp_min(1)))
+        kd.update(cv_log)
         if self.dyn:
             method.dyn_a[k] = [a - DYN_ALPHA * (p.detach().float() - w) for a, p, w in zip(a_dyn, proxy.parameters(), anchor)]
         if self.scaf:   # Option II: c_i+ = c_i - c + (w_base - w_i) / (K eta), K = applied SGD steps; up = delta c_i
@@ -1067,12 +1194,20 @@ class Pool:
 
     def round(self, m, R, r):
         state = {n: v.detach().cpu() for n, v in m.global_state.items()} if m.kd else None
-        for conn in self.conns.values(): put(conn, ('round', r, state, m.version))
+        head = None if m.cv_head is None else {n: v.detach().cpu() for n, v in m.cv_head.items()}   # round 25
+        for conn in self.conns.values(): put(conn, ('round', r, state, m.version, head))
         results = {res['k']: res for res in (R.client_round(m, k, r) for k in R.own)}
         for conn in self.conns.values(): results.update({res['k']: res for res in get(conn)})
         private_logs, proxy_logs = [], []
         for k in range(R.K): R.install(m, results[k], r, private_logs, proxy_logs)
         return private_logs, proxy_logs
+
+    def cv_stats(self, m, R):   # round 25: class moments of the snapshot from every process's own clients
+        state = {n: v.detach().cpu() for n, v in m.global_state.items()}
+        for conn in self.conns.values(): put(conn, ('cv', state))
+        merged = {k: R.cv_stats(m.global_state, k) for k in R.own}
+        for conn in self.conns.values(): merged.update(get(conn))
+        return merged
 
     def scores(self, R, holds):
         for conn in self.conns.values(): put(conn, ('eval', holds))
@@ -1100,12 +1235,15 @@ def serve(a):
     while True:
         command = get(conn)
         if command[0] == 'round':
-            _, r, state, version = command
+            _, r, state, version, head = command
             if state is not None: m.global_state = {n: v.to(R.dev) for n, v in state.items()}
+            m.cv_head = None if head is None else {n: v.to(R.dev) for n, v in head.items()}
             m.version = version; m.start_round()
             put(conn, [R.client_round(m, k, r) for k in R.own])
         elif command[0] == 'eval':
             put(conn, R.score_clients(command[1]))
+        elif command[0] == 'cv':
+            put(conn, {k: R.cv_stats({n: v.to(R.dev) for n, v in command[1].items()}, k) for k in R.own})
         else:
             return
 
@@ -1191,6 +1329,8 @@ def main():
     config.update(mu=MU, swap_p=SWAP_P, ema_beta=EMA_BETA, cal_rows=CAL_ROWS,
                   kd_cap=KD_CAP, dyn_alpha=DYN_ALPHA, cons_lambda=CONS_LAMBDA, probe_rows=PROBE_ROWS, kd_up=KD_UP, gw2=GW2,
                   p1_lambda=P1_LAMBDA, p1_t=P1_T, p1_classes=list(P1_CLASSES))
+    if {'xo', 'xou'} & set(a.arm.split('_')): config.update(xo_rho=XO_RHO, xo_floor=XO_FLOOR)   # round 24; absent otherwise
+    if {'cvf', 'cvl'} & set(a.arm.split('_')): config.update(cv_steps=CV_STEPS, cv_batch=CV_BATCH, cv_lr=CV_LR, cv_jitter=CV_JITTER)   # round 25
     if a.parent:   # same scientific config as the parent run (only the stop epoch differs); its committed weights SHA-checked
         cfg, row = parent_marker(a)
         same = lambda c: {k: v for k, v in c.items() if k not in ('stop_after', 'parent')}
@@ -1242,6 +1382,7 @@ def train(a, out, fingerprint, wb, t0, pool):
             print('budget stop before epoch', r, flush=True); break
         t1 = time.time(); private_logs, proxy_logs = [], []
         m.start_round()
+        if R.cv: R.cv_round(m, r, pool)   # round 25: calibrated snapshot head before the local epochs
         if pool: private_logs, proxy_logs = pool.round(m, R, r)
         else:
             for k in range(R.K):
@@ -1258,6 +1399,12 @@ def train(a, out, fingerprint, wb, t0, pool):
                            **{k: v for k, v in m.diag.items() if isinstance(v, (int, float))})
         kd_keys = [key for key in private_logs[0] if key.startswith(('w_', 'cap_hit', 'kl_', 'probe_', 'scaf_', 'syn_'))] if private_logs else []
         diagnostics.update({'kd_' + key: float(np.mean([v[key] for v in private_logs])) for key in kd_keys})
+        if private_logs and 'cv_teach' in private_logs[0]:   # round 25: pooled own-row teacher F1 (trained / calibrated head), teachable share
+            for tag in ('orig', 'cal'):
+                c = np.sum([v[f'cv_cm_{tag}'] for v in private_logs], 0); tp = np.diag(c)
+                diagnostics[f'cv_teacher_f1_{tag}'] = float(np.mean(2 * tp / np.maximum(c.sum(0) + c.sum(1), 1)))
+            t = np.sum([v['cv_teach'] for v in private_logs], 0)
+            diagnostics.update(cv_teachable_orig=float(t[1] / max(t[0], 1)), cv_teachable_cal=float(t[2] / max(t[0], 1)), cv_server_seconds=R.cv_seconds)
         if proxy_logs:
             diagnostics.update(drift_mean=float(np.mean([v['drift'] for v in proxy_logs])),
                                prox_mean=float(np.mean([v['prox'] for v in proxy_logs])))
@@ -1278,8 +1425,10 @@ def train(a, out, fingerprint, wb, t0, pool):
                            **{key: value for key, value in m.diag.items() if key.startswith('codec_')})
         if R.gkd:   # operator-count estimate, measured by scripts/count_dagsnet_flops.py; excludes KL/BN/optimizer/probes/codec
             real, synthetic = sum(R.n), a.aux_batch * steps
-            row['cost']['model_flops_estimate'] = (2 * real + synthetic) * 13280256 + ((real + synthetic) * 4443648 if r > 1 else 0)
+            extra = synthetic if R.xo and r > 1 else 0   # round 24: crossover rows (private forward/backward + snapshot forward)
+            row['cost']['model_flops_estimate'] = (2 * real + synthetic + extra) * 13280256 + ((real + synthetic + extra) * 4443648 if r > 1 else 0)
             row['cost']['gaussian_matvec_flops_estimate'] = synthetic * 2 * P.D * P.D
+            if R.cv and r > 1: row['cost']['cv_forward_rows'] = 3 * sum(len(c) for c in R.cal)   # round 25: moments + 2 diagnostic passes
         last = r == a.stop_after
         holds = ('test',) if a.final else ('group', 'old', 'test') if last else ('group', 'old')   # --final: test20% every round
         row['eval'] = {} if a.defer_eval else R.evaluate(m, out, r, holds, scores=pool.scores(R, holds) if pool and not m.fedavg else None)

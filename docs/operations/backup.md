@@ -13,14 +13,15 @@ Lịch sử từng đợt 14–20/10 (đã đẩy gì, đã xóa gì): [backup-h
 
 ## Lần gần nhất và phần còn lệch
 
-- **21/10 ~03Z:** Git `b269ab0` trên `main` (local = remote) + commit ghi bản này; bundle `--all` verify sau commit ghi.
-  DVC fd-probe: `kaggle.dvc` `4058a31d…dir` (7980 entry), `input.dvc` `3437a3a0…dir` (1723), **mới** `fixture-cache.dvc`
-  `ca5cfb3e…dir` (13: marker cache fixture theo account + `pull/`). `dvc status -c` 3 manifest: new/missing = 0; `deleted` 3370 = chỉ thiếu
-  cache local (merge-push ghi thẳng remote).
-- `docs/methods/full-drift/results/per-class-f1.csv` 13,4 MB > 10 MiB vẫn ở Git như các commit trước (12,9 MB từ 20/10); nếu cần đúng quy tắc
-  thì chuyển sang DVC ở đợt sau.
-- **Chưa backup:** output chấm nhanh `-f1` (đang chạy 21/10), S1 r25 (tự dừng ~07–09Z) ⇒ đợt sau `dvc_merge_push.py` `kaggle.dvc`
-  + `input.dvc` + `fixture-cache.dvc`, commit, push, thay bundle.
+- **21/10 ~17:30Z** (owner yêu cầu backup + dọn): DVC fd-probe qua `dvc_merge_push.py` có điều tiết (dừng khi ổ cache Drive D: < 15 GB trống;
+  cache Drive for Desktop = `D:\ggdrive_cached`, `df` của G: phản ánh D:, không phải quota cloud; dvc-storage trên Drive 757 GB):
+  `kaggle.dvc` `381c1e32…dir` (10.777 entry, đẩy mới 71,56 GB), `input.dvc` `6ea020e5…dir` (2.644, 0 GB mới — trùng weights),
+  `fixture-cache.dvc` `eb9eacad…dir` (23). `dvc status -c` 3 manifest: new/missing = 0, `deleted` 4.990 = chỉ thiếu cache local.
+  Không đưa vào đợt này: hai output chấm pull dở/chưa audit (`fd-e03-12-s42zk02-…-f2` còn `.part`, `fd-e18-26-s42zi-…-f1`).
+- Git + bundle: commit cùng đợt này (xem `git log`), local = remote kiểm bằng `git ls-remote`.
+- `docs/methods/full-drift/results/per-class-f1.csv` 14 MB > 10 MiB vẫn ở Git như các commit trước; chuyển DVC nếu cần đúng quy tắc.
+- **Còn lại sau đợt này:** output chấm COMPLETE chưa pull (ze r9–28, ze r49–50, zk r3–12, zk r13–22, zi r1–8), zi r18–26 (pull đủ, chưa audit),
+  train S2 zi03/zk04 và chấm sau đó ⇒ đợt sau merge-push `kaggle.dvc` + `input.dvc`.
 
 ## Đẩy
 

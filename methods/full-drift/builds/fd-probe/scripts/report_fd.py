@@ -98,13 +98,18 @@ R16 += [('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_zl@e15@s43@fast', 'head', 'fd_dml_
 # round 23 (design §Vòng 23): q3 on seed 43 vs te; 2-bit with the RMS step vs tb (noninferior)
 R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@s43@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@s43@fast', 'head', 'noninferior'),
         ('fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl@e15@fast', 'head', 'fd_dml_m4b_gpool_frz_gkd_la_kdpx@e15@fast', 'head', 'noninferior')]
+# round 24 (design §Vòng 24, locked ~06:30Z 21/10): own-row crossover (xo, pair priority) and its uniform-pair control (xou) vs q3_zl
+# --fast s42 (xa), gain + worst; priority mechanism xo - xou >= +0.005 (read only when xo passes)
+R16 += [(f'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_{t}@e15@fast', 'head', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast', 'head', 'gain')
+        for t in ('xo', 'xou')]
+R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xo@e15@fast', 'head', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xou@e15@fast', 'head', 'contrast')]
 R8_SEEN = [('fd_dml_m4b_kdcap_frz', 'fd_dml_m4b_kdcap'), ('fd_dml_m4b_kdcap_frz', 'fd_dml_m4b'), ('fd_dml_m4b_kdcap_wu', 'fd_dml_m4b_kdcap'),
            ('fd_dml_swappos_cons', 'fd_dml_m4b'), ('fd_dml_m4b@r10', 'fd_dml_m4b'),
            ('fd_dml_m4b_kdcap_frz@s43', 'fd_dml_m4b_kdcap@s43'), ('fd_dml_m4b_kdcap_wu@s43', 'fd_dml_m4b_kdcap@s43'),
            *[(f'fd_dml_m4b_{k}{lr}', 'fd_dml_m4b') for k in ('sgd', 'scaf') for lr in (1, 3, 10)]]
 RULES = {'gain': lambda d, b: d >= .010 and b >= -.005, 'noninferior': lambda d, b: d >= -.010 and b >= -.010,
          'benign': lambda d, b: b >= .010 and d >= -.005, 'horizon': lambda d, b: d >= .010,
-         'equiv': lambda d, b: abs(d) <= .010}   # round 19: --fast control vs old-code control within the seed spread (0.008)
+         'equiv': lambda d, b: abs(d) <= .010, 'contrast': lambda d, b: d >= .005}   # round 24: priority xo vs xou   # round 19: --fast control vs old-code control within the seed spread (0.008)
 
 
 def runs():
@@ -116,7 +121,7 @@ def runs():
             if {'sub4', 'sub16'} & set(arm.split('_')): continue   # one aggregation per full local epoch only (owner 17/10)
             key = arm + (f'@{epochs}' if epochs else '') + ('@s43' if seed == '43' else '')   # seed 42 keys unchanged
             if json.loads((run / 'config.json').read_text())['config'].get('fast'): key += '@fast'   # owner 18/10: --fast vs --fast only
-            if json.loads((run / 'config.json').read_text())['config'].get('final'): key += '@final'   # owner 19/10: final protocol
+            if json.loads((run / 'config.json').read_text())['config'].get('final'): continue   # final protocol: report_final.py (S1/S2 share an arm)
             if key in found: key += '@' + marker.parent.name.split('-')[3]   # rerun of an audited arm: '<arm>@<round tag>' (y: '@r10')
             assert key not in found, ('duplicate arm across sessions', key)
             if rows: found[key], manifests[key] = rows, marker.parent / 'source/data_manifest.json'

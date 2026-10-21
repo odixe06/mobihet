@@ -591,3 +591,120 @@ m4b +0,74 → frz +0,18 → gkd +0,13; gp trên frz/gkd −0,41…−0,47 (sửa
   Đổi −0,011 F1 lấy 14,8 MB không đáng ⇒ **2-bit loại**; kênh = q3_zl nếu ya-v2 (s43) PASS, nếu không q4_zl (PASS cả 2 seed).
 
 - **Vòng 23 đã audit đủ:** ya-v2 15/15 round, 87 file pull không thiếu, executed source khớp, 186 lượt kiểm predictions → confusion → 10 metric; weights ep6/15 strict và hữu hạn. q3_zl PASS cả s42/s43 ⇒ **chốt q3_zl**, không chạy tiếp nhánh 2-bit hay tổ hợp q3_u2 đã mất điều kiện.
+
+## Probe 20 — mẫu tổng hợp có đúng chỗ private còn sai không (21/10 ~06Z; local, không train)
+
+`fd_probe20.py` trên weights ep15 của xa (`q3_…_la_kdpx_zl` s42, audited), fixture pilot local (group 65.536 dòng; train mẫu 2,5 %), m4b.
+Teacher = snapshot nhận được (`proxy[0]`, group F1 0,842), private head TB 0,824 (khớp audit 0,8246). "Cặp" = (teacher argmax, private argmax)
+trên dòng hai model khác nhau; cos so với cặp của dòng group mà **private sai, teacher đúng** (3,1 % dòng). align = bất đồng × cos.
+Mẫu tổng hợp 16.384 dòng/nguồn/client. [JSON](results/probe20-xa-s42-e15.json).
+
+| nguồn | bất đồng | cos với lỗi thật | align | cặp bất đồng chính |
+|---|---:|---:|---:|---|
+| group (H) | 5,1 % | — | — | benign↔timeDelay 41 %, positionMirroring→benign 10 %, dataReplay↔benign 13 % |
+| dòng own (O) | 4,2 % | 0,75 (gộp 0,94; client thấp nhất 0,38) | 0,032 | như H |
+| dòng thật client khác (X, oracle) | 5,0 % | 0,96 | 0,048 | như H |
+| Gaussian gkd (G) | 12,7 % | 0,09 | 0,011 | constantSpeedOffset→randomSpeedOffset 11 % |
+| G top-25 % KL của tập 4× (Gk) | 33 % | 0,10 | 0,034 | randomSpeedOffset |
+| G đẩy 5 bước tăng KL (Ga, Mahalanobis 0,94 → 116) | 51 % | 0,07 | 0,035 | randomSpeedOffset |
+| G lớp/cặp theo bất đồng dòng own (Gq / Gp) | 16 / 15 % | 0,11 / 0,12 | 0,018 | randomSpeedOffset |
+| copula vòng 18 (Gc) | 9,6 % | 0,36 | 0,034 | dataReplay↔benign |
+| dòng own + nhiễu covariance gộp 0,5 / 1,0 (Gn) | 12 / 15 % | 0,12 / 0,07 | 0,014 / 0,011 | randomSpeedOffset |
+| dòng own, 30 % feature thay giá trị Gaussian (Gsg) | 10 % | 0,28 | 0,028 | lẫn |
+| dòng own, 30 % feature thay giá trị copula (Gs / lớp ưu tiên Gsp) | 8,0 / 12,3 % | 0,53 / 0,61 | 0,042 / 0,076 | dataReplay↔benign, positionMirroring↔benign |
+| **lai hai dòng own, cặp ưu tiên ρ 0,3 / 0,5 (Gx3 / Gx5)** | 12,7 / 14,4 % | 0,55 / 0,53 | **0,069 / 0,076** | dataReplay→benign, positionMirroring→benign, benign→timeDelay |
+| lai hai dòng own, cặp đều (Gxu) | 12,0 % | 0,38 | 0,045 | lẫn |
+
+- **Lỗi còn lại của private nằm ở khối benign**, đúng lỗi đã chẩn đoán từ probe 14; dòng own của chính client cho biết cặp đó (miễn phí, 0 byte).
+- **Mẫu Gaussian bất đồng nhiều nhưng sai chỗ**: phần KL của gkd rơi vào cặp tốc độ (randomSpeedOffset), không chạm khối benign ⇒ giải thích vì sao
+  tăng lượng (g512), trọng số (gk2) hay độ thật biên (cop) không thêm gì. Ưu tiên **trong** Gaussian (KL, đối kháng, lớp, cặp) không đổi được chỗ đó.
+- Nhiễu liên tục ở feature tốc độ (thật là atom) là thủ phạm: thêm nhiễu covariance gộp vào chính dòng own cũng kéo về randomSpeedOffset; thay 30 %
+  feature bằng giá trị copula (biên thật) thì không.
+- Ưu tiên cặp chỉ có tác dụng khi bộ sinh nằm trên dữ liệu thật: Gx3 0,069 vs Gxu 0,045, Gsp 0,076 vs Gs 0,042; mọi client cos Gx3 > G.
+- Giới hạn: fixture pilot 2,5 %, một bộ weights, chỉ số phân bố — cop từng có align gấp 3 Gaussian mà utility +0,003. Quyết định bằng train (vòng 24).
+
+## Vòng 24 — lai ghép dòng own theo cặp bất đồng (`--fast`, head; xo audited 21/10 ~12Z, xou ~12:20Z)
+
+| arm | session | private ep6 / **ep15** / test | Δ ep15 (benign, tệ nhất) | proxy ep15 / test | cổng |
+|---|---|---|---|---|---|
+| `q3_…_la_kdpx_zl_xo` s42 | xo | 0,8026 / **0,8321** / 0,8279 | **+0,0076** (+0,0063, +0,0113) vs xa | 0,8377 / 0,8272 | **FAIL** gain (cần ≥ +0,010) |
+| `q3_…_la_kdpx_zl_xou` s42 (cặp đều) | xu | 0,8092 / 0,8275 / 0,8253 | +0,0030 (+0,0098, +0,0041) vs xa; xo − xou +0,0046 | 0,8477 / 0,8311 | mô tả (không đọc vì xo FAIL) |
+| (tham chiếu) `q3_…_zl` s42 | xa | 0,7976 / 0,8246 / 0,8216 | — | 0,8413 / 0,8280 | — |
+
+- **Cơ chế chạy đúng như probe dự báo nhưng lợi dưới ngưỡng.** Mọi round 2–15, 20/20 client (trừ 1 client ep5) có cặp ưu tiên chứa benign;
+  cặp nặng nhất ep15 = (teacher timeDelayAttack, private benign), rồi benign→positionMirroring / timeDelay / dataReplay — đúng khối lỗi của probe 20.
+  Bất đồng trên dòng lai ổn định 0,09–0,12 (private không nuốt hết), bất đồng trên dòng own giảm 0,47 → 0,045.
+- Δ +0,0076, benign +0,0063, client tệ nhất +0,0113: dương ở cả ba nhưng nằm trong biên lệch giữa seed (~0,008) ⇒ không phân biệt được với nhiễu
+  một seed. Proxy −0,004. **Dấu hiệu sai đã khóa trúng:** "bất đồng đúng chỗ" của probe (align 0,069, gấp 6 Gaussian) không thành utility
+  tương ứng — như cop (align gấp 3, +0,003). Theo khóa: dừng hướng, không quét ρ/floor; cổng ưu tiên xo − xou không đọc (xou chỉ mô tả).
+- Test chỉ báo cáo, không dùng chọn (private test +0,006).
+
+## Vì sao sinh mẫu có chủ đích không ăn — phân tích 21/10 ~13Z (không train)
+
+Nguồn: dự đoán từng dòng đã audit (ep15 group, 20 private + proxy), [probe 21](results/probe21-xa-s42-e15.json) và
+[probe 22](results/probe22-xa-s42-e15.json) trên weights xa ep15 (`fd_probe21.py`, `fd_probe22.py`; local, fixture pilot, train mẫu 2,5 %;
+teacher head tái hiện 0,842 vs audit 0,8413). "Dạy được" = private sai, teacher đúng; "chung" = cả hai sai; trần = F1 private nếu sửa hết dòng dạy được.
+
+**1 — Phần lỗi teacher dạy được đã cạn; lỗi chung không đổi qua mọi arm.**
+
+| arm ep15 s42 | private | teacher | lỗi private | dạy được | chung | trần |
+|---|---:|---:|---:|---:|---:|---:|
+| gkd (oc) | 0,8030 | 0,8329 | 0,166 | 0,067 | 0,099 | 0,863 |
+| la_kdpx (tb) | 0,8269 | 0,8526 | 0,134 | 0,032 | 0,102 | 0,868 |
+| q4_zl (wa) | 0,8241 | 0,8465 | 0,134 | 0,030 | 0,104 | 0,862 |
+| q3_zl xa | 0,8246 | 0,8413 | 0,136 | 0,031 | **0,105** | 0,860 |
+| xo | 0,8321 | 0,8377 | 0,131 | 0,026 | **0,105** | 0,859 |
+
+la/kdpx (PASS) ăn hết nửa phần dạy được (0,067 → 0,031); không arm nào chạm phần chung (~0,10 = **77 %** lỗi private ở xa). Mọi mẫu tổng hợp
+học KL từ snapshot (Gaussian, cop, g512, gk2, xo) chỉ với tới 23 % còn lại ⇒ trần +0,036, xo lấy +0,0076.
+
+**2 — Bất đồng ≠ lỗi: một nửa ngân sách ưu tiên của xo rơi vào cặp teacher đoán mò.** Cặp (teacher a, private b) trên group, gộp 20 private (xa):
+
+| teacher → private | phần bất đồng | teacher đúng | private đúng |
+|---|---:|---:|---:|
+| benign → timeDelay | 36,6 % | 58 % | 33 % |
+| timeDelay → benign | 13,2 % | 48 % | 50 % |
+| posMirror → benign | 7,2 % | **91 %** | 6 % |
+| dataReplay → benign | 6,6 % | 58 % | 35 % |
+| benign → posMirror | 3,9 % | 21 % | 71 % |
+| congestionSybil → benign / constPosOff → benign | 2,3 / 2,1 % | **86 / 96 %** | 4 / 1 % |
+
+Cặp nặng nhất của xo (timeDelay ↔ benign) là đồng xu: xo sửa 55 và làm hỏng 221 dòng timeDelay mỗi client (ΔF1 −0,004); toàn bộ lợi đến từ
+cặp teacher đáng tin (posMirror +0,081; xou cặp đều +0,036 ⇒ ưu tiên chỉ thêm ở đây). Probe 22 A: trọng số xo cho cặp có teacher đúng trên group
+**0,506**; trọng số theo độ tin cậy đo bằng nhãn own (mass × max(0, 2ρ_own − 1), 0 byte) **0,665**; tương quan ρ own–group 0,43.
+
+**3 — Lớp nút thắt là lớp teacher chưa biết, không phải lớp mẫu chưa phủ.** F1 private head ep15:
+
+| arm | benign | posMirror | timeDelay | dataReplay | macro |
+|---|---:|---:|---:|---:|---:|
+| gkd / cop / g512 / gk2 / t2 | 0,68–0,72 | 0,29–0,34 | **0,18–0,19** | 0,63–0,65 | 0,797–0,806 |
+| la_kdpx / xa / xo | 0,78–0,79 | 0,38–0,46 | **0,20–0,28** | 0,72–0,73 | 0,823–0,832 |
+| teacher xa | 0,798 | 0,476 | 0,277 | 0,754 | 0,841 |
+
+timeDelay của teacher 0,28 ở ep15 (gkd:50 lên 0,46 ở ep50; posMirror 0,37 → 0,60) ⇒ ở ep15 không nguồn KL nào có tri thức timeDelay để truyền.
+
+**4 — Tri thức có trong feature; thiếu ở tầng quyết định của teacher** (probe 21, backbone đóng băng, refit trên dòng thật có nhãn gộp 20 client):
+
+| | head như train | refit Linear cuối | refit cả head |
+|---|---:|---:|---:|
+| teacher (macro / timeDelay / posMirror) | 0,842 / 0,274 / 0,476 | 0,892 / 0,404 / 0,771 | **0,919** / 0,501 / 0,841 |
+| private TB 5 client | 0,827 | 0,855 | 0,889 |
+
+Refit teacher sửa ~50 % lỗi chung của private. (Cột bias oracle của probe 21 fit sai mục tiêu — làm private tệ đi — bỏ qua.)
+
+**5 — Hiệu chỉnh teacher bằng đặc trưng ảo theo lớp (probe 22 B):** tổng Σh, Σhhᵀ theo lớp của h256 snapshot trên dòng own (cộng được dưới
+SecureSum) → server rút đặc trưng ảo N(μ_c, Σ) theo tỷ lệ lớp gộp, fit lại Linear cuối từ trọng số đã train.
+
+| teacher | F1 group | lỗi private teacher đúng | trần private | byte lên/client/round (4 B/giá trị) |
+|---|---:|---:|---:|---:|
+| như train | 0,842 | 21 % | 0,861 | — |
+| LDA (covariance chung) | 0,848 | 38 % | 0,903 | 148 kB |
+| weak6 (covariance riêng 6 lớp teacher yếu nhất trên dòng own) | 0,852 | 44 % | 0,925 | 938 kB |
+| CCVR (covariance riêng 16 lớp) | **0,893** (timeDelay 0,45, posMirror 0,77) | **47 %** | 0,926 | 2,12 MB |
+| diag | 0,816 | 43 % | 0,913 | — |
+
+Khớp probe 17 (CCVR proxy +0,045 / +0,056). Trần là cận trên (chưa trừ dòng teacher mới sai mà private đúng). Byte: tổng bình phương
+trên 65.536 dòng vượt tầm fp16 ⇒ 4 B/giá trị, nửa tam giác (khóa `bytes_per_client_fp16` trong JSON probe 22 là số fp16, không dùng).
+
+**6 — Private chững khi teacher còn lên** (run cuối, test, 20c): zc gkd private 0,806 → 0,810 (r12 → r27), proxy 0,823 → 0,839; za la_kdpx
+0,817 → 0,828, proxy 0,822 → 0,839. gkd:50 pilot: private +0,012, proxy +0,052 (ep15 → 50). Screening ep15 đo ở vùng teacher ≈ private.

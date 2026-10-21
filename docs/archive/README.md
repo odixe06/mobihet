@@ -2,7 +2,7 @@
 
 [Đề xuất đang làm](../proposals.md) · [Bài học dùng tiếp](../lessons/README.md) · [Index toàn archive](file-index.md).
 
-[Handoff hiện tại](../operations/continue.md) · [Bàn giao17–20/10 đã đóng](operations/continuation-2026-10-17.md) · [Recovery r24](operations/final-recovery-2026-10-20.md).
+[Handoff hiện tại](../operations/continue.md) · [Bàn giao17–20/10 đã đóng](operations/continuation-2026-10-17.md) · [Nhật ký run cuối 20–21/10](operations/continuation-2026-10-20-21.md) · [Recovery r24](operations/final-recovery-2026-10-20.md).
 
 Thiết kế/report của build đã kết thúc; không dùng handoff cũ thay CONTEXT hiện tại. V2–V10 là ID đợt kiểm nghiệm.
 

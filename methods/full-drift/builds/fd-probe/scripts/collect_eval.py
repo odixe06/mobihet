@@ -13,7 +13,8 @@ from collect_fd import BASE, HELPER, sha, metrics_from_confusion, METRIC_KEYS
 
 
 def main():
-    p = argparse.ArgumentParser(); p.add_argument('rid'); p.add_argument('--jobs', type=int, default=16); a = p.parse_args()
+    p = argparse.ArgumentParser(); p.add_argument('rid'); p.add_argument('--jobs', type=int, default=16)
+    p.add_argument('--partial', action='store_true', help='ERROR notebook: audit only the rounds it committed'); a = p.parse_args()
     folder = BASE / 'notebooks' / a.rid; dest = BASE / 'artifacts/kaggle' / a.rid
     assert (folder / 'PUSHED').exists(), 'missing PUSHED marker'
     assert not (dest / 'AUDITED.json').exists(), 'already audited'
@@ -48,6 +49,9 @@ def main():
     assert json.loads((dest / 'source/data_manifest.json').read_text()) == json.loads((train / 'source/data_manifest.json').read_text())
     run = dest / 'runs' / contract['run']
     rounds = contract.get('rounds', [contract.get('round')])   # one or several rounds per evaluation notebook
+    if a.partial:
+        assert 'KernelWorkerStatus.ERROR' in status.stdout
+        rounds = [r for r in rounds if (run / 'eval' / f'round_{r:03d}.json').exists()]; assert rounds, 'no committed round'
     shas = contract['weights_sha'] if isinstance(contract['weights_sha'], dict) else {str(rounds[0]): contract['weights_sha']}
     checks = 0
     for r in rounds:
@@ -56,7 +60,8 @@ def main():
         evaluator = contract.get('evaluator', 'fd_eval.py'); assert row['eval_source_sha'] == inputs[evaluator]
         if evaluator == 'fd_eval_fast.py':   # tolerance class: every model passed its gate against the reference module
             K = len(row['eval']['private']['test']['head']['confusion_clients'])
-            assert row['fast_gate']['models'] == 2 * K + 1 and row['fast_gate']['max_error'] <= 0.1, row['fast_gate']
+            gate = row['fast_gate']   # r29: relative bound; r27: absolute 0.25
+            assert gate['models'] == 2 * K + 1 and (gate['max_rel'] <= 0.02 if 'max_rel' in gate else gate['max_error'] <= 0.25), gate
         pf = run / 'predictions' / f'round_{r:03d}.npz'; assert sha(pf) == row['predictions_sha']
         before = checks
         with np.load(pf) as data:
@@ -73,7 +78,9 @@ def main():
                     assert all(abs(float(np.mean([v[key] for v in metrics])) - value) < 1e-12 for key, value in ev['mean_metrics'].items())
                     checks += 1
         assert checks - before == 6, ('private head/gp/gpe, EMA head/gp, proxy head', r, checks - before)
-    record = dict(kernel=meta['id'], version=1, **contract, test_rows=len(y), metric_checks=checks, complete=True)
+    # complete = every round in `rounds` audited; a --partial record keeps the notebook's plan in planned_rounds
+    record = dict(kernel=meta['id'], version=1, **{**contract, 'rounds': rounds}, test_rows=len(y), metric_checks=checks, complete=True,
+                  **({'planned_rounds': contract['rounds']} if a.partial else {}))
     (dest / 'AUDITED.json').write_text(json.dumps(record, indent=2) + '\n')
     print('AUDITED detached evaluation', a.rid, 'rounds', rounds, flush=True)
 

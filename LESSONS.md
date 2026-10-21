@@ -129,6 +129,10 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   Macro F1 còn bị khối {benign, dataReplay, positionMirroring, timeDelay} chặn; lỗi dịch chuyển trong khối.
   [Chẩn đoán](docs/archive/research/plateau-diagnosis-2026-10-15.md).
 
+- **Trước khi đổi lượng/trọng số/độ thật của mẫu tổng hợp, đo nó bất đồng teacher ở cặp lớp nào** (probe 20, 21/10): Gaussian gkd bất đồng 12,7 %
+  nhưng ở cặp tốc độ (cos 0,09 với lỗi thật của private, nằm ở khối benign) ⇒ giải thích g512/gk2/cop bão hòa. Ưu tiên **trong** Gaussian (top-KL,
+  đối kháng, lớp/cặp) không đổi chỗ đó; nhiễu liên tục ở feature atom là thủ phạm. Ưu tiên chỉ có tác dụng với bộ sinh bám dữ liệu thật (lai hai dòng
+  own theo cặp bất đồng: cos 0,55). Chỉ số này là điều kiện cần; utility vẫn phải train (vòng 24). [Probe 20](docs/methods/full-drift/results.md).
 - **Mẫu tổng hợp "thật hơn" chưa chắc giúp client.** Gaussian copula (biên histogram gộp) nâng teacher đồng ý trên mẫu 0,48 → 0,67 suốt
   15 epoch nhưng private chỉ +0,003 (vòng 18 sa); gấp đôi số mẫu/bước (g512) +0,001, KL ×2 0,000. Đo dự báo bằng chính utility
   (F1 client) trên run ngắn, không suy từ độ khớp phân phối hay probe phủ input.
@@ -210,6 +214,22 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 
 ## Đánh giá để rút đúng bài học
 
+- **Mẫu tổng hợp học KL từ teacher chỉ sửa được lỗi teacher đúng.** Trước khi thiết kế bộ sinh, tách lỗi private thành "dạy được"
+  (teacher đúng) và "chung" (teacher cũng sai). Headline ep15: chung 77 %, dạy được 23 % (trần +0,036) và đã bị la/kdpx ăn một nửa ⇒ đổi
+  vị trí/lượng/độ thật/ưu tiên mẫu (g512, gk2, cop, xo) chỉ còn ≤ +0,008. Muốn lợi lớn hơn phải làm nguồn tri thức tốt hơn, không phải bộ sinh.
+- **Ưu tiên theo bất đồng hướng vào chỗ cả hai cùng yếu.** 50 % bất đồng là benign↔timeDelay, teacher đúng ~50 % ⇒ xo sửa 55 / làm hỏng 221
+  dòng timeDelay; lợi chỉ ở cặp teacher đúng ≥ 90 %. Ưu tiên phải có độ tin cậy (nhãn own cho ρ, 0 byte), không chỉ khối lượng bất đồng.
+- **Chỉ số phân bố (cos/align, syn_accept) không dự báo utility** (cop align ×3 → +0,003; xo align ×6 → +0,0076). Probe trước train phải
+  đo trần reachable (refit/oracle trên chính tri thức sẽ truyền), không chỉ "mẫu có đúng chỗ không".
+- **Feature đã đủ, thiếu ở tầng quyết định của teacher:** refit head teacher trên dòng thật có nhãn gộp 0,842 → 0,919 (timeDelay 0,27 → 0,50);
+  thống kê đặc trưng theo lớp cộng được (CCVR) → 0,893, phần lỗi private teacher dạy được 21 → 47 %.
+- **Private chững khi teacher còn tăng** (run cuối r12 → r27; gkd:50): screening ep15 đo ở vùng teacher ≈ private, đánh giá thấp kênh truyền.
+  [Phân tích](docs/methods/full-drift/results.md).
+- **So byte cùng đơn vị: mỗi client, cùng horizon, từ `result.json` đối chứng đã audit.** Hồ sơ cv (21/10) lấy byte một client so với kênh q3
+  cộng 20 client ⇒ ghi cvf +48 % trong khi thật ×6,8 (15 epoch); owner chọn arm theo số sai. Báo tổng/client cả 15 epoch và 50 round, và theo round.
+- Gate tolerance tuyệt đối trên logit vỡ khi logit lớn dần theo round: sai số fp16 tỉ lệ với độ lớn. Đặt ngưỡng tương đối
+  (sai số / max|logit|) và hiệu chỉnh trên round muộn nhất sẽ chấm, không chỉ round đầu (r27 0,25 hiệu chỉnh r1–4, vỡ ze r34).
+  [final-pipeline §Bộ chấm nhanh](docs/operations/final-pipeline.md).
 - Fixture được fingerprint phải chính là fixture driver đọc. `--final` trước 20/10 chọn dữ liệu final ở Run nhưng main hash pilot; chưa có run final production. Dùng chung `fixture_path`, và evaluator từ chối manifest khác training. Smoke dùng pilot không phát hiện được sai đường dẫn production.
 
 - Train/partition đã z-score, test raw áp scaler đúng một lần. Dữ liệu sắp theo lớp: sample ngẫu nhiên seeded,
