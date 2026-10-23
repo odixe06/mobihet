@@ -4,7 +4,10 @@ Mỗi file = một phương pháp: cơ chế, trao đổi (R1/R2), bằng chứn
 Ghi chú nghiên cứu theo ngày (nguồn của các file này) ở [archive/research](../../archive/research).
 Kết quả/thiết kế từng build ở [docs/methods](../../methods/README.md); protocol ở [protocol](../protocol.md).
 
-## Vòng 13 — A/B/C + đề xuất owner 17/10 (đang chạy / chẩn đoán)
+Trạng thái hiện hành22/10: [bàn giao sau đủ report/P29–31](../../archive/operations/continuation-2026-10-22.md).
+Các mục theo vòng dưới giữ quyết định lịch sử; không dùng chữ "chờ/đang chạy" của vòng cũ làm lệnh launch.
+
+## Vòng 13 — A/B/C + đề xuất owner 17/10 (lịch sử)
 
 Owner 17/10 ~16Z: chạy A, B, C và các đề xuất trong file ưu tiên 17/10 (đã tách thành các file dưới, file gốc đã xóa). Thứ tự
 owner: P1 → P2 → P3 → P4 (teacher-only trước) → P5/P6 (chỉ sau teacher feasibility); C1/C2 là điều kiện R1, không tính cải tiến
@@ -33,9 +36,33 @@ DAGSNet; sau sàng lọc mới [mixed architectures](mixed-architectures-r2.md);
 Không chọn (đề xuất owner §10): FedGen nguyên bản (cần latent tương thích; teacher yếu cũ chưa giúp backbone), parameter-sharing
 personalization (phá R2), temporal feature mới, đổi dataset, slim model, tăng lần gộp trong epoch.
 
-## Vòng 24 — sinh mẫu có chủ đích (owner 21/10)
+## Synthetic/CCVR — đã nối nghiên cứu, chốt lại để compact22/10
 
-- [Hiệu chỉnh teacher bằng đặc trưng ảo theo lớp (`cv`)](teacher-virtual-feature-calibration.md) — đề xuất 21/10: 77 % lỗi private teacher cũng sai; CCVR trên head snapshot 0,842 → 0,893, lỗi private teacher dạy được 21 → 47 % (offline); chờ owner
+- [Bàn giao hiện hành](../../operations/continue.md) — final6×50 đủ report; P29–36 xong; vòng 26 online (cvp + cop) FAIL (Δ +0,0003).
+- [P37: synthetic đổi trọng số private/proxy trên full model + tài liệu tham khảo](synthetic-weight-dynamics-2026-10-23.md) — không ứng viên;
+  oracle dòng thật +0,010 = cổng online; BN/head không phải nút thắt.
+- [P36: teacher × support so phương pháp hiện hành, hai seed; GMM lớp tấn công](teacher-support-two-seed-2026-10-22.md) — Project48 + copula PASS;
+  GMM FAIL.
+- [P35: hoán đổi lớp, độ chịu lệch, trần năng lực GMM/MADE](support-capacity-oracle-2026-10-22.md) — lợi cần mẫu thật của lớp tấn công hiếm;
+  bộ sinh học được fit trên pool +0,0044 tối đa, không đủ năng lực.
+- [P34: bộ sinh giữ atom/trạng thái first/định danh extractor, port V4-S/G61](structured-support-generator-2026-10-22.md) — **FAIL** +0,0023;
+  trần là phụ thuộc Gaussian của copula.
+- [P33: client học gì từ support (cặp lỗi, hình học đặc trưng private, own_bal)](client-learning-diagnosis-2026-10-22.md) — lợi support thật =
+  recall posMirror + suddenStop từ biến thể client khác.
+- [P32: copula × Project48, ablation nhóm feature](synthetic-support-realism-2026-10-22.md) — copula FAIL; 4 nhóm cần cùng thật.
+- [P29–31: gradient/support, joint carrier, teacher-nullspace](synthetic-gradient-diagnosis-2026-10-22.md) — P30 utility FAIL;
+  P31 chưa chứng minh mất chiều là nguyên nhân chính. Không tune/launch lại adaptation FAIL.
+- [Nhận diện update, primary sources, conditional input density §7](synthetic-transfer-identifiability-2026-10-22.md) —
+  hướng mới chỉ proposal, chưa code/train; atom/dequantization và contact budget chưa chốt.
+- [Synthetic recovery, Probe23–28](synthetic-learning-recovery-2026-10-22.md) — Project48 teacher PASS hai seed Kaggle,
+  private transfer/inversion FAIL; class-weighted/real-support oracle/gradient checks đã lưu, chưa online FL.
+- [Rà build cũ](synthetic-build-history-audit-2026-10-22.md) — controls, duplicate/veto, scope lịch sử chưa đủ artifact.
+- [Nguồn primary, CCVR nén và client/r50](ccvr-budget-primary-sources-2026-10-22.md) — loss/estimator/codec, giới hạn suy luận.
+
+## Vòng 24–25 — sinh mẫu có chủ đích (owner 21/10)
+
+- [Hiệu chỉnh teacher bằng đặc trưng ảo theo lớp (`cv`)](teacher-virtual-feature-calibration.md) — **cvl FAIL** ep15: private−0,0136,
+  benign−0,0185; full covariance bị ngân sách loại. Dừng adaptation covariance chung, run cuối giữ phương pháp chốt.
 - [Lai ghép dòng own theo cặp lớp bất đồng (`xo`)](own-row-crossover-priority.md) — probe 20: Gaussian bất đồng sai chỗ (cos 0,09), lai ghép ưu tiên cos 0,55; **FAIL** s42 ep15 Δ +0,0076 vs xa (cần +0,010)
 
 ## Đang chạy / nền

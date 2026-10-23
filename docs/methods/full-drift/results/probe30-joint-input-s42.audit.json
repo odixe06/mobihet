@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "gaussian_original": {
+      "mean": 0.828538842101371,
+      "benign": 0.7815290493756871,
+      "worst": 0.7827182471238763
+    },
+    "gaussian_weighted": {
+      "mean": 0.8290479298085731,
+      "benign": 0.7814212627326349,
+      "worst": 0.7798668959656463
+    },
+    "mean_only": {
+      "mean": 0.832315125443372,
+      "benign": 0.7823842994308096,
+      "worst": 0.7921091261791225
+    },
+    "zero_cross": {
+      "mean": 0.832284124114547,
+      "benign": 0.7815310207488654,
+      "worst": 0.791869589045804
+    },
+    "joint": {
+      "mean": 0.8320826892116653,
+      "benign": 0.7818518147285817,
+      "worst": 0.7924330130689196
+    }
+  },
+  "gates": {
+    "mean_only": {
+      "delta": {
+        "mean": -0.00023243623170676742,
+        "benign": -0.0005324847022278867,
+        "worst": 0.0003238868897970093
+      },
+      "pass_gate": false
+    },
+    "zero_cross": {
+      "delta": {
+        "mean": -0.00020143490288171417,
+        "benign": 0.000320793979716294,
+        "worst": 0.0005634240231155996
+      },
+      "pass_gate": false
+    },
+    "gaussian_original": {
+      "delta": {
+        "mean": 0.003543847110294318,
+        "benign": 0.00032276535289454955,
+        "worst": 0.00971476594504328
+      },
+      "pass_gate": false
+    },
+    "gaussian_weighted": {
+      "delta": {
+        "mean": 0.0030347594030921687,
+        "benign": 0.00043055199594677074,
+        "worst": 0.012566117103273267
+      },
+      "pass_gate": false
+    }
+  },
+  "mechanism_ready": false,
+  "prediction_cm_metric_checks": 200,
+  "scope": "local s42 frozen-head screen; not Kaggle/online/contact/R2 proof",
+  "complete": true,
+  "result_sha": "a6fbc1ba3ca053a8bddb2e8092bb925bb5cf78d5b83afa1d68ba6ce4bf911830"
+}

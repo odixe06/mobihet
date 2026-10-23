@@ -2,7 +2,7 @@
 
 [Mục lục hiện tại](../README.md) · [Index khu làm việc](../file-index.md) · [Các build đã kết thúc](README.md)
 
-1162 file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.
+1175 file lịch sử; không dùng số phiên bản để suy phương pháp nào thay thế phương pháp nào.
 
 - [archive/README.md](../../archive/README.md)
 - [archive/logs/README.md](../../archive/logs/README.md)
@@ -1053,6 +1053,8 @@
 - [docs/archive/operations/continuation-2026-10-15.md](operations/continuation-2026-10-15.md)
 - [docs/archive/operations/continuation-2026-10-17.md](operations/continuation-2026-10-17.md)
 - [docs/archive/operations/continuation-2026-10-20-21.md](operations/continuation-2026-10-20-21.md)
+- [docs/archive/operations/continuation-2026-10-22.md](operations/continuation-2026-10-22.md)
+- [docs/archive/operations/continuation-before-final-report-2026-10-22.md](operations/continuation-before-final-report-2026-10-22.md)
 - [docs/archive/operations/continuation-plan-2026-10-15-part1.json](operations/continuation-plan-2026-10-15-part1.json)
 - [docs/archive/operations/continuation-plan-2026-10-15-part2.json](operations/continuation-plan-2026-10-15-part2.json)
 - [docs/archive/operations/continuation-plan-2026-10-15-part3.json](operations/continuation-plan-2026-10-15-part3.json)
@@ -1066,11 +1068,22 @@
 - [docs/archive/operations/continuation-plan-2026-10-15.json](operations/continuation-plan-2026-10-15.json)
 - [docs/archive/operations/continuation-plan-2026-10-16-q4.json](operations/continuation-plan-2026-10-16-q4.json)
 - [docs/archive/operations/continuation-plan-2026-10-17-q5.json](operations/continuation-plan-2026-10-17-q5.json)
+- [docs/archive/operations/continuation-synthetic-2026-10-22.md](operations/continuation-synthetic-2026-10-22.md)
 - [docs/archive/operations/controller-q2-part1-2026-10-15.log](operations/controller-q2-part1-2026-10-15.log)
 - [docs/archive/operations/decisions-2026-10-12.md](operations/decisions-2026-10-12.md)
 - [docs/archive/operations/docs-index-before-final-recovery-2026-10-20.md](operations/docs-index-before-final-recovery-2026-10-20.md)
 - [docs/archive/operations/dvc-relocation-verification-2026-10-14.json](operations/dvc-relocation-verification-2026-10-14.json)
 - [docs/archive/operations/dvc-restore-smoke-2026-10-14.json](operations/dvc-restore-smoke-2026-10-14.json)
+- [docs/archive/operations/evidence/final-2026-10-20/docs-relocations.json](operations/evidence/final-2026-10-20/docs-relocations.json)
+- [docs/archive/operations/evidence/final-2026-10-20/docs-verification.json](operations/evidence/final-2026-10-20/docs-verification.json)
+- [docs/archive/operations/evidence/final-2026-10-20/final-recovery-2026-10-20.json](operations/evidence/final-2026-10-20/final-recovery-2026-10-20.json)
+- [docs/archive/operations/evidence/final-2026-10-20/final-recovery-local-2026-10-20.json](operations/evidence/final-2026-10-20/final-recovery-local-2026-10-20.json)
+- [docs/archive/operations/evidence/final-2026-10-20/r24-prepare-timing.json](operations/evidence/final-2026-10-20/r24-prepare-timing.json)
+- [docs/archive/operations/evidence/final-2026-10-20/r25-boundary-proof.json](operations/evidence/final-2026-10-20/r25-boundary-proof.json)
+- [docs/archive/operations/evidence/final-2026-10-20/r25-health.json](operations/evidence/final-2026-10-20/r25-health.json)
+- [docs/archive/operations/evidence/final-2026-10-20/r25-launch.json](operations/evidence/final-2026-10-20/r25-launch.json)
+- [docs/archive/operations/evidence/final-2026-10-20/r25-remote-source.json](operations/evidence/final-2026-10-20/r25-remote-source.json)
+- [docs/archive/operations/evidence/final-2026-10-20/r25-startup.json](operations/evidence/final-2026-10-20/r25-startup.json)
 - [docs/archive/operations/expansion-2026-10-12.md](operations/expansion-2026-10-12.md)
 - [docs/archive/operations/final-r24-2026-10-20/final-health-2026-10-20.json](operations/final-r24-2026-10-20/final-health-2026-10-20.json)
 - [docs/archive/operations/final-r24-2026-10-20/final-launch-2026-10-20.json](operations/final-r24-2026-10-20/final-launch-2026-10-20.json)

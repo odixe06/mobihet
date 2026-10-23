@@ -1,0 +1,6 @@
+{
+  "prediction_cm_metric_checks": 1120,
+  "scope": "local derivative and fixed-step diagnostic; no method utility acceptance",
+  "complete": true,
+  "result_sha": "f5b896012d1439ce5c26585444ffdd7b43e0d274fb35cb392f639c07ff1cea9e"
+}

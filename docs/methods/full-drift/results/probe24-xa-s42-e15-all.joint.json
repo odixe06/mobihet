@@ -1,0 +1,10 @@
+{
+ "original_gaussian->calibrated_gaussian": {
+  "fixed": 35050,
+  "spoiled": 29685
+ },
+ "calibrated_gaussian->calibrated_inversion": {
+  "fixed": 10697,
+  "spoiled": 9532
+ }
+}

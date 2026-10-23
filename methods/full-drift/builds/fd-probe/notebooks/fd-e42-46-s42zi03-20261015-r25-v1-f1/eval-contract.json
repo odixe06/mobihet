@@ -1,0 +1,23 @@
+{
+  "session": "fd-s42zi03-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "fingerprint": "54412332d20dadfe66a8224d5c2d6cf97e18062e4a36f50fd67eb0a31dde3d60",
+  "weights_sha": {
+    "42": "49035bf12e3b52686cafe4ff5b9241ce96ce530c179a5edaac77119f7fafac0a",
+    "43": "cdd3c39ba712518fc26efabec8af79263469edc98a09746d03ef822885e45843",
+    "44": "18039ffc89a9792c64727453bc96c1972701e946d8959d8105463a5b1257f241",
+    "45": "1f9f405ae60a93513a0c249da848978651794e1b5397a3bc6e1379e4911ac992",
+    "46": "d64674f6c25b38f89b7d902ade524814a929a759376a5cac85044e7e72ec382e"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "trietbackup/mh-fd-e42-46-s42zi03-20261015-r25-v1-f1"
+}

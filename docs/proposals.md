@@ -2,12 +2,18 @@
 
 30 nhóm FL + recipe EMA. ClassTail, CrossClientRank thêm15/10 chiều; ProxyFuse, AntiMem/QProxy, FullDrift thêm15/10 tối.
 CountSketch sửa là adaptation của họ cũ, không đếm mới. 11 hồ sơ còn làm việc; adaptation lịch sử giữ archive.
-Gaussian, DML và Hybrid có pilot tích cực; chưa có proof đủ r50/R1/R2. Owner15/10: proxy head là headline DML/Hybrid.
-**Owner16/10: mục tiêu = dự đoán của client** (private gp primary, giữ R1/R2): [tổng hợp hướng client](archive/research/client-model-directions-2026-10-16.md). [Chẩn đoán chững sớm](archive/research/plateau-diagnosis-2026-10-15.md).
+Gaussian, DML và Hybrid có pilot tích cực; FullDrift final seed42 đã đủ r50, R1/R2 còn chưa proof.
+**Mục tiêu = dự đoán của client**; họ frz/gkd hiện khóa **private head**, gp/gpe chỉ diagnostic. Luật gp trong
+[hồ sơ16/10](archive/research/client-model-directions-2026-10-16.md) thuộc family trước đó.
+[Chẩn đoán chững sớm](archive/research/plateau-diagnosis-2026-10-15.md).
 
 **Mỗi phương pháp một file theo tên: [research/methods](research/methods/README.md)** (owner 17/10). V2–V10 là nhãn đợt thí nghiệm, [không phải các version thay thế nhau](operations/project-layout.md).
 
 ## Trạng thái hồ sơ trong methods/
+
+**23/10 — report final hoàn tất; P37 xong (không ứng viên).** [Bàn giao hiện hành](operations/continue.md).
+P29–36 đã xong; P30 joint, P32 copula, P34 bộ sinh giữ cấu trúc FAIL; P35 GMM/MADE không đủ năng lực; P36 Project48 + copula PASS hai seed frozen-head ⇒ vòng 26 online **FAIL** (Δ +0,0003). 23/10: owner thử một lần cuối ⇒ P37 (full model): không ứng viên; oracle dòng thật chỉ +0,010 = cổng. Phương pháp chốt giữ `gkd + la + kdpx`, proxy `q3_zl`.
+Các dòng pilot lịch sử dưới không thay trạng thái kernel hiện tại trong bàn giao.
 
 | phương pháp | trạng thái | tài liệu |
 |---|---|---|
@@ -30,7 +36,11 @@ Gaussian, DML và Hybrid có pilot tích cực; chưa có proof đủ r50/R1/R2.
 | FullDrift vòng 8–10 (17/10) — kdcap/frozen teacher, FedDyn, SCAFFOLD (3 LR), Hybrid private-only, cons/JS, own controls, s43 lặp, horizon s43 | Audited ~04:40Z: **`gpool` (Hybrid private-only) PASS 3 cổng × 2 seed** (+0,016/+0,024 so m4b); own controls PASS (lợi FL +0,04/+0,05); m4b_q4 s43 noninferior; kdcap, frz, FedDyn, SCAFFOLD, JS **FAIL**. Horizon m4b ep15 s43 **PASS** (private +0,025, proxy +0,063) | [Thiết kế §Vòng 8–10](methods/full-drift/design.md), [kết quả](methods/full-drift/results.md), [theo tên](research/methods/README.md) |
 | FullDrift vòng 11–23 — cải tiến private và nén | Vòng 11 kd2/kdpx/gw2 FAIL; gpool horizon không giữ lợi. Frz/gkd rồi la_kdpx PASS hai seed; vét la/kdpx xong. **q3_zl noninferior cả hai seed**, 2-bit FAIL. Chuyển run cuối seed42 20/50/100c, train/chấm tách | [Kết quả](methods/full-drift/results.md), [pipeline cuối](operations/final-pipeline.md) |
 | FullDrift vòng 24 — sinh mẫu có chủ đích (owner 21/10) | Probe 20: lỗi còn lại ở khối benign, Gaussian gkd bất đồng sai chỗ (cos 0,09); ưu tiên trong Gaussian không sửa được. Arm `xo` (lai ghép dòng own theo cặp bất đồng, 0 byte): **FAIL** gain s42 ep15 Δ +0,0076 (cần +0,010), cơ chế đúng chỗ nhưng lợi trong nhiễu seed ⇒ dừng hướng | [Hồ sơ](research/methods/own-row-crossover-priority.md), [design §Vòng 24](methods/full-drift/design.md), [probe 20](methods/full-drift/results.md) |
-| FullDrift vòng 25 (đề xuất 21/10, chờ owner) — hiệu chỉnh teacher bằng đặc trưng ảo theo lớp `cv` | Phân tích: 77 % lỗi private là lỗi teacher cũng sai ⇒ mẫu KL từ teacher chạm tối đa 23 %. Moment h256 theo lớp (SecureSum) → fit lại head snapshot: teacher 0,842 → 0,893, phần lỗi private teacher dạy được 21 → 47 % (offline). Biến thể byte cvf/cv6/cvl | [Hồ sơ](research/methods/teacher-virtual-feature-calibration.md), [phân tích](methods/full-drift/results.md) |
+| FullDrift vòng 25 — hiệu chỉnh teacher bằng đặc trưng ảo theo lớp `cv` (owner: ngân sách ≤ 1,5× byte ⇒ chỉ cvl) | Phân tích: 77 % lỗi private là lỗi teacher cũng sai. Offline CCVR (covariance riêng) teacher 0,842 → 0,893 nhưng ×6,8 byte; cvl (covariance chung, ×1,45) offline chỉ 0,848. **cvl FAIL** s42 ep15: Δ −0,0136, benign −0,0185; lên đúng lớp mục tiêu (posMirror +0,17, timeDelay +0,11) nhưng mất lớp tốc độ (suddenConstantSpeed −0,21); head refit thua head train từ ep6 ⇒ dừng | [Hồ sơ](research/methods/teacher-virtual-feature-calibration.md), [phân tích](methods/full-drift/results.md) |
+| Synthetic recovery22/10 — compressed CCVR, teacher×support, weighting/oracle/gradient (P23–28) | Project48 teacher PASS hai seed Kaggle; private transfer và inversion **FAIL** cổng, gradient-only local **FAIL**. Oracle real support chỉ chẩn đoán, R3-ineligible; prior-only chưa chạy. Chưa online FL, R1 bootstrap/contact chưa giải quyết; dừng để compact | [Kết quả/cổng](research/methods/synthetic-learning-recovery-2026-10-22.md), [history/veto](research/methods/synthetic-build-history-audit-2026-10-22.md) |
+| Synthetic P29–31 — gradient/target/support, joint carrier, Jacobian | P29 đủ20 client xác nhận mismatch gradient; P30 joint **FAIL** gain và không hơn mean-only/zero-cross; P31 null-space energy nhỏ trên16 điểm, chưa là nguyên nhân chính. Không launch thêm | [Protocol/kết quả](research/methods/synthetic-gradient-diagnosis-2026-10-22.md) |
+| Conditional input density — proposal sau P30 FAIL | Chưa code/train; cần pooled capacity-oracle trước, atom/dequantization chưa chốt; nominal byte không phải R1 PASS | [Cơ chế/control/falsifier §7](research/methods/synthetic-transfer-identifiability-2026-10-22.md) |
+| Synthetic P32–36 — copula × Project48, ablation nhóm feature, cách client học, bộ sinh giữ cấu trúc, trần năng lực, so phương pháp hiện hành | P32 copula **FAIL** (+0,0024, worst +0,022); support thật cần `snd_kin`/`sess`/`geo`/`prof` cùng thật. P33 (không train): lợi support thật = recall posMirror + suddenStop, dòng own cân bằng lớp không thêm gì, Gaussian/copula lệch manifold đặc trưng private. **P34 FAIL** (+0,0023; atom/trạng thái/profile/định danh không đổi utility, V4-S/G61 ≈ Gaussian). P35: lợi cần mẫu thật của lớp tấn công hiếm ở độ chính xác ~0,05 z; GMM/MADE fit trên pool +0,0044/+0,0026 không đủ năng lực. **P36:** so phương pháp hiện hành, Project48 + copula PASS hai seed (+0,0077 / +0,0051); GMM lớp tấn công FAIL. **Vòng 26 online (cvp + cop) FAIL** (Δ +0,0003; teacher hiệu chỉnh ≈ gốc từ ep5, per-class đổi chiều so harness) | [P32](research/methods/synthetic-support-realism-2026-10-22.md), [P33](research/methods/client-learning-diagnosis-2026-10-22.md), [P34](research/methods/structured-support-generator-2026-10-22.md), [P35](research/methods/support-capacity-oracle-2026-10-22.md), [P36](research/methods/teacher-support-two-seed-2026-10-22.md), [vòng 26](methods/full-drift/design.md) |
 
 ## Đã kết thúc — giữ bài học, source và báo cáo trong archive
 

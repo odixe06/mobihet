@@ -1,0 +1,25 @@
+{
+  "session": "fd-s42zi03-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e50",
+  "rounds": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "fingerprint": "54412332d20dadfe66a8224d5c2d6cf97e18062e4a36f50fd67eb0a31dde3d60",
+  "weights_sha": {
+    "36": "1feb5bbd9a218af29952033ccbcab63f86c8c9fc4258c2d1180add73d6c6603b",
+    "37": "78b16191368cdef60205f44dc2f3cb94330d76e5aae881ec47d4465db0585849",
+    "38": "c5c6632a33a040d2ecb0e85833a7f265321dd792809cf8386b09ef2339ae7460",
+    "39": "f676112de7cac0ea10783d99e2457990b32168d769d482c5fd5a0f4865dda867",
+    "40": "9fc701b07b06080fd14599d0864ece9a6fa9bf09425e4122b8959bfcb449d9e5",
+    "41": "4f5fa732cdb82e09d0a5a9ea9d8b1d36806ddfc1aef9b9ce024443e37e5a4855"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "khanhmay0304/mh-fd-e36-41-s42zi03-20261015-r25-v1-f1"
+}

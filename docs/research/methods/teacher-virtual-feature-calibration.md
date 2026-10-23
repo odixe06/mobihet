@@ -1,5 +1,7 @@
 # Hiệu chỉnh teacher bằng đặc trưng ảo theo lớp (`cv`) — sinh mẫu có chủ đích cho nguồn tri thức
 
+**Kết quả 22/10: `cvl` FAIL** (s42 ep15 Δ −0,0136 vs xa, benign −0,0185; byte ×1,451) — [results §Vòng 25](../../methods/full-drift/results.md). Hướng dừng theo dấu hiệu khóa (a)+(c).
+
 **Trạng thái (21/10 ~16Z): owner đặt ngân sách ≤ 1,5× byte phương pháp cũ ⇒ chỉ chạy `cvl` (×1,45 ở 15 epoch); `cvf` ×6,8 loại.
 Test local PASS `--part r25` + `--part par`; cổng khóa ([design §Vòng 25](../../methods/full-drift/design.md)); push tag r30 khanhmay0304.** Rút ra từ [phân tích vì sao sinh mẫu không ăn](../../methods/full-drift/results.md)
 sau vòng 24 (xo FAIL). Bằng chứng offline: [probe 21](../../methods/full-drift/results/probe21-xa-s42-e15.json),

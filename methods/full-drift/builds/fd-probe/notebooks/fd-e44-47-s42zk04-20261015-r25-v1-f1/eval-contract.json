@@ -1,0 +1,21 @@
+{
+  "session": "fd-s42zk04-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_frz_gkd_s42_e50",
+  "rounds": [
+    44,
+    45,
+    46,
+    47
+  ],
+  "fingerprint": "7c8eb886a50a868f8a21724e57cb74a78c3e2c480c71048a6cf020620f06d2ed",
+  "weights_sha": {
+    "44": "fd6de91024322846c5f7f1fbcadb3180d5c56caeb4b32d5cdafa4c44f98cfe8e",
+    "45": "3ed540c6eb9d6efbd3ee5c54bf130ef7775aeb9dce3d678af84834fe9138d581",
+    "46": "4f9dd4bc4116a2c884830eafe229ce35ae9976782a86bb3c69f8c99232dac741",
+    "47": "54d0c6c932bc889209ae2c5c8efb71d6fbac2ea0ac1ff3c16aa4a1fdefcabce1"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "takids1909/mh-fd-e44-47-s42zk04-20261015-r25-v1-f1"
+}

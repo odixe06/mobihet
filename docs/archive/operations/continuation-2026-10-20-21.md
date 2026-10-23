@@ -10,8 +10,8 @@ Chuyển nguyên văn từ [continue.md](../../operations/continue.md) lúc 21/1
   non-smoke final-only hai arm×20/50/100c×2rank +tail PASS.
 - Owner yêu cầu **push đủ6kernel Kaggle seed42**, kiểm kỹ startup. Chỉ Kaggle; không Git/DVC/backup/cleanup.
 - Đã push đủ6r25 lúc16:39–16:44Z; source49file/account verified. Remote source/input pull-back6/6 PASS.
-  [Launch ledger/quota/PUSHED](../../operations/evidence/final-2026-10-20/r25-launch.json); [health](../../operations/evidence/final-2026-10-20/r25-health.json), [startup](../../operations/evidence/final-2026-10-20/r25-startup.json),
-  [remote source proof](../../operations/evidence/final-2026-10-20/r25-remote-source.json).
+  [Launch ledger/quota/PUSHED](evidence/final-2026-10-20/r25-launch.json); [health](evidence/final-2026-10-20/r25-health.json), [startup](evidence/final-2026-10-20/r25-startup.json),
+  [remote source proof](evidence/final-2026-10-20/r25-remote-source.json).
   Không gọi train ổn định từ RUNNING.
 - Manual action hiện không còn sau khi owner Cancel4kernel; phát sinh lỗi quyền/quota cần ghi exact bước.
 
@@ -104,6 +104,6 @@ Mỗi ID: `<account>/mobihet-fd-s42<mã>-20261015-r25-v1`, version1.
 
 Sáu seed43 chưa generate/push. Không repush r24 hoặc notebook có PUSHED. Nguồn stage:
 `methods/full-drift/builds/fd-probe/artifacts/input/fd-src-20261015-r25/`.
-[Local proof](../../operations/evidence/final-2026-10-20/final-recovery-local-2026-10-20.json), source-upload-verification.json từng notebook là names/sizes;
+[Local proof](evidence/final-2026-10-20/final-recovery-local-2026-10-20.json), source-upload-verification.json từng notebook là names/sizes;
 runtime SHA gate chứng minh source mount thực. Private notebookignored0600 mang inline W&B theo quyền đã có.
 

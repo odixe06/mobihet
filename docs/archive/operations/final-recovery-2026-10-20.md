@@ -8,7 +8,7 @@ trước round1, cả rank0/rank1. Collector kéo đủ 54 file/kernel, executed
 `AUDITED.json` có `audits=[]` chỉ xác nhận collection/source, không chứng minh training thành công.
 Notebook vòng ngoài không raise khi subprocess rc1 ⇒ Kaggle COMPLETE, W&B parent finished; không được coi là kết quả train.
 
-Owner xác nhận đã Stop/Cancel bốn kernel za/ze/zg/zk. [Status snapshot](../../operations/evidence/final-2026-10-20/final-recovery-2026-10-20.json).
+Owner xác nhận đã Stop/Cancel bốn kernel za/ze/zg/zk. [Status snapshot](evidence/final-2026-10-20/final-recovery-2026-10-20.json).
 Giữ nguyên source/dataset/notebook đã push r24. Không repush chúng.
 
 ## Sửa và cổng trước push
@@ -25,7 +25,7 @@ Giữ nguyên source/dataset/notebook đã push r24. Không repush chúng.
 - Chạy lại compiled full pipeline: weights parity với r23, q3 resume, detached eval1/2 workers, predictions/10metric và SHA rejection.
 
 Cổng local PASS: compiled20c parity/resume/detached1/2worker và non-smoke final-only đủ6scenario×2rank, có tail batch.
-Bằng chứng: [local recovery](../../operations/evidence/final-2026-10-20/final-recovery-local-2026-10-20.json). Stage r25 chỉ `fd.py` đổi, 40module legacy còn nguyên.
+Bằng chứng: [local recovery](evidence/final-2026-10-20/final-recovery-local-2026-10-20.json). Stage r25 chỉ `fd.py` đổi, 40module legacy còn nguyên.
 Đang upload/verify source riêng annhtnt; chuẩn bị push **một kernel đối chứng20c trước**.
 Chờ remote haiT4 qua setup/Gaussian và heartbeat SGD tiến triển rồi mới mở năm kernel còn lại.
 Local một GPU không chứng minh physical2T4; không gọi run full hoàn thành từ fixture.

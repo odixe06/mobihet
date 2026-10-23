@@ -33,6 +33,11 @@ For two training seeds, create one notebook/session per seed and push both in th
 so they run concurrently. Use available account/session capacity; preserve scientific settings
 and distinct run IDs. Check the project context for selected seeds and account ownership.
 
+**Where a job runs.** Estimate its runtime before starting it. The local machine takes short, light work: code tests,
+one-client smoke runs, feasibility probes of a few minutes. Anything longer than roughly 30-60 minutes, multi-hour diagnostics
+included, goes to Kaggle as its own notebook; so does any job when the local machine is already busy (backup transfers, other
+projects). A long job started locally competes for RAM with everything else and stalls both.
+
 ## Route
 
 1. Read [kaggle-mcp.md](references/kaggle-mcp.md), discover callable tools and verify an

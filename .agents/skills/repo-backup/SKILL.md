@@ -7,6 +7,15 @@ description: Back up Git history and DVC artifacts to the configured remotes, re
 
 Back up code/history to the Git remote and a Git bundle; back up heavy artifacts to the configured DVC remote. Keep this skill reusable: read repository paths, accounts, decisions, and backup history from repository configuration and operations documents.
 
+## This project's backup destination
+
+The owner selected **OneDrive for future MobiHet DVC pushes and Git bundles**. Git pushes still go to GitHub.
+Read [the backup record](../../../docs/operations/backup.md) for concrete paths and any pending migration before pushing.
+Confirm `dvc remote default` is `onedrive` and its URL matches the record; helpers must use that configured default.
+Keep new writes on OneDrive. An old Google Drive destination in historical instructions is a restore/migration source,
+not a fallback upload destination. During migration, check the selected objects on OneDrive before treating them as backed up;
+changing the default remote alone does not prove that old objects have arrived.
+
 ## Authorization and scope
 
 Use authorization already given in the session. Backup, Git push, and deletion must stay within the owner's request; ask only when a necessary choice remains unresolved. Existing approval does not need to be requested again.
@@ -32,7 +41,15 @@ Inspect candidate artifact paths and their sizes. Look for partial downloads, te
 
 Ensure the configured remote is mounted and reachable. Activate the environment containing `dvc`, or set `DVC` to its executable path when using the helper.
 
-For a Drive for Desktop filesystem remote:
+For a OneDrive filesystem remote:
+
+- Check free space on the local sync volume separately from OneDrive cloud quota. Files On-Demand allows archived data
+  to remain online; reading a placeholder can download its content, so hydrate only what verification or restore needs.
+- A successful push to the sync folder establishes a filesystem copy. Record OneDrive cloud upload state separately.
+- Verify selected directory manifests and objects before an authorized cleanup. Keep the OneDrive backup paths and
+  sync/upload cache intact; manage online-only storage through OneDrive rather than deleting synced files to free local space.
+
+For a legacy Google Drive for Desktop source or explicitly selected remote:
 
 - Determine the actual upload-cache location; it may be on a different disk. Check that disk's free space separately from cloud capacity.
 - On Windows, `ContentCachePath` under `HKCU\Software\Google\DriveFS` can identify a configured cache location. If unset, inspect Drive settings rather than assuming a disk.
@@ -46,7 +63,7 @@ For a new repository, initialize DVC and configure its remote:
 
 ```bash
 dvc init
-dvc remote add -d gdrive "/mnt/g/My Drive/<backup-folder>/dvc-storage"
+dvc remote add -d onedrive "/path/to/OneDrive/<backup-folder>/dvc-storage"
 dvc config cache.type hardlink,copy
 ```
 
@@ -95,7 +112,7 @@ Use concrete deletion paths. Check free space before and after, and inspect `git
 
 ## 6. Update the repository's backup record
 
-**Required after every backup and every repository cleanup.** Maintain one repository-owned operations document (for example `docs/operations/backup.md`), linked from the navigation hub, in the fixed format of [record-template.md](record-template.md). Keep project-specific facts there, never in this skill.
+**Required after every backup and every repository cleanup.** Maintain one repository-owned operations document (for example `docs/operations/backup.md`), linked from the navigation hub, in the fixed format of [record-template.md](record-template.md). Keep concrete paths, accounts and per-run facts there; this project's OneDrive destination policy is stated above.
 
 Write it short: current state and what the next push/pull needs, not a narrative. Replace superseded state instead of appending history; keep only facts that change a future action (manifest hashes, reusable checks, deleted paths, pending manual steps). Long raw logs stay outside the record; quote only the decisive output.
 

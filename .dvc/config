@@ -1,7 +1,7 @@
 [core]
-    remote = gdrive
+    remote = onedrive
     autostage = true
 [cache]
     type = "hardlink,copy"
-['remote "gdrive"']
-    url = /mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage
+['remote "onedrive"']
+    url = /mnt/d/OneDrive/NCKH/veremi_build/mobihet/dvc-storage

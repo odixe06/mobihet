@@ -172,6 +172,10 @@ PLANS['r28'] = [('odixeuit', 42, session, {'workers': 2, 'arms': [f'fd_dml_m4b_g
 # statistics of the snapshot features (design §Vòng 25); s42 ep1-15 --fast vs xa. khanhmay0304 is outside the final-run roster
 # and the owner's other project (r29 is the evaluation source tag).
 PLANS['r30'] = [('khanhmay0304', 42, 'cl', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl:15'], 'fast': True}, 6.3)]
+# round 26 (owner 22/10 ~14Z after probes 32-36, "thử nghiệm cả hai phương án"): the snapshot head refit in a 48-d projection (cvp) with the
+# round-18 copula support (cop) — probe 36 frozen-head two-seed PASS vs the deployed method; s42 ep1-15 --fast vs xa (online gate +0.010).
+# minhtrit06 10.5h live at 14:40Z; odixeuit stays free for the owner's other project.
+PLANS['r31'] = [('minhtrit06', 42, 'cp', {'workers': 2, 'arms': ['fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp_cop:15'], 'fast': True}, 6.3)]
 
 WANDB = r'''import time
 SESSION_T0=time.monotonic()

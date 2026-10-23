@@ -1,13 +1,15 @@
-# LESSONS — bài học chung về huấn luyện MobiHet
+# LESSONS — bài học kỹ thuật MobiHet (phương pháp, dữ liệu, train, đánh giá, code)
 
-Đọc sau [CONTEXT](CONTEXT.md). Lỗi/quy tắc vận hành nằm ở CONTEXT và [sổ lỗi kernel](docs/operations/notebook-errors.md).
+Đọc sau [CONTEXT](CONTEXT.md), cùng [bài học vận hành](docs/operations/lessons.md) (Kaggle/notebook, collector, máy local, Git/DVC/cloud).
+Bài học mới: kỹ thuật ghi ở đây, vận hành ghi ở file kia; lỗi kernel cụ thể ở [sổ lỗi kernel](docs/operations/notebook-errors.md).
 Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng chứng chi tiết ở [archive](docs/archive/README.md); mọi con số phải trỏ báo cáo đã audit.
 [Bản đầy đủ trước tổ chức](docs/archive/legacy/lessons-before-layout-20261014.md) giữ lịch sử, không xóa im lặng bài học bị bác bỏ.
 
 ## Tri thức nào cải thiện IDS
 
-- Nút thắt là ranh giới đa receiver: private dễ học thuộc receiver của mình. Head-only/prototype trung bình lớp
-  không chở đủ ranh giới; cần tác động backbone và so đối chứng quần thể/own. [Bằng chứng kế thừa](docs/archive/legacy/kien-thuc-ke-thua.md).
+- Nút thắt là ranh giới đa receiver: private dễ học thuộc receiver của mình. Các adaptation head-only/prototype trung bình lớp
+  trong [bằng chứng kế thừa](docs/archive/legacy/kien-thuc-ke-thua.md) không chở đủ ranh giới; không suy thành bắt buộc đổi backbone.
+  Probe14/16 sau đó refit head trên input thật gộp có lợi khi backbone frozen; luôn so quần thể/own và nguồn input.
 - Gaussian input covariance mang tri thức quần thể: own Gaussian chỉ giải thích phần nhỏ lợi; diag/lr/full giữ cấu trúc
   khác nhau. Input không trôi theo encoder. Mean lớp hoặc biến đổi mean nhiều lần không thay covariance.
   [Gaussian moments](docs/methods/gaussian-class-moments/README.md).
@@ -26,7 +28,8 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 
 - **Biên lớp của Gaussian moment lệch xa dữ liệu thật** (fixture 1M dòng, 53 feature m4b): KS trung vị 0,19, p90 0,49; 33 % cặp lớp×feature
   có atom > 20 %. Gaussian copula (histogram biên gộp + tương quan normal-score, đều SecureSum cộng tính) nâng độ đồng ý của snapshot gkd
-  với nhãn mẫu 0,473 → 0,673 (thật 0,805), benign 0,27 → 0,51. Kênh mẫu tổng hợp nên khớp biên trước khi tinh chỉnh khác (vòng 18 kiểm utility).
+  với nhãn mẫu 0,473 → 0,673 (thật 0,805), benign 0,27 → 0,51. Đây là fidelity, không đủ chốt ưu tiên sinh mẫu:
+  vòng18 sau đó chỉ private+0,003, FAIL utility; xem bài "Mẫu tổng hợp thật hơn" và [results](docs/methods/full-drift/results.md).
 - **Tri thức quần thể nằm trong proxy chung, không trong private** (khi đánh giá trên test toàn cục). DML proxy head hơn private gp
   +0,115/+0,122 group pilot và +0,056 full r20; trộn private vào proxy (ProxyFuse) **kém** proxy −0,032/−0,034,
   private đúng mà proxy sai chỉ ≈2% dòng. Owner15/10: proxy là headline DML/Hybrid. Cải tiến nên nhắm proxy
@@ -116,13 +119,6 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 
 ## Những cơ chế làm train kém hoặc gây kết luận sai
 
-- **20/10 final startup crash:** test `--smoke --final` vẫn đọc pilot fixture, không chứng minh đường production final-only.
-  Gaussian legacy còn hash cứng pilot manifest ⇒ r24 zc/zi crash trước round1. Test bắt buộc: không tồn tại pilot,
-  Gaussian đọc final manifest; đối chiếu context pilot với legacy. Notebook phải lan truyền exit code subprocess,
-  không biến `rc=1, epochs=0` thành Kaggle COMPLETE. Source đã push giữ nguyên; sửa ở tag mới.
-- **20/10 upload source:** `datasets create` có thể exit1/JSON parse error dù server đã tạo dataset ready.
-  Đọc status, verify manifest names/sizes trước retry; không upload/push trùng từ exit code đơn lẻ.
-
 - **Full ≠ pilot về động học.** Full mỗi round = 1 epoch ≈4.200 bước/client; Gaussian/local đạt đỉnh test ở r1 rồi giảm
   (học thuộc receiver), proxy bão hòa từ r3–r5 khi LR còn ~1e-3 (FullDrift vòng 5: cũng do học thuộc receiver, m4b bỏ được). Pilot2,5% (~100 bước) không tái hiện; kết luận về
   drift/hội tụ từ pilot (vd FedAvg > DML proxy +0,027) có thể đảo ở full (repo anh em NILM proxy 0,823 > AFPHA 0,775).
@@ -187,16 +183,9 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 - Hybrid tốt hơn thành phần mạnh nhất nhưng interaction âm; cộng hai cơ chế không có nghĩa synergy.
   Full dữ liệu sớm có tín hiệu tốt, chưa r50. Gaussian đã giảm metric qua một số round dù còn lợi so own;
   thêm epoch không tự tăng performance. [Hybrid full](docs/methods/gaussian-proxy-hybrid/builds/hybrid-full/results/feasibility-20261014.md).
-- Máy local ngủ (WSL) làm poll nền dừng, Kaggle vẫn chạy. Sau khi thức đừng để watcher mở collector cho mọi session cùng
-  lúc (mỗi audit đỉnh ~4 GB): chia nhóm session rời nhau cho 2–4 tiến trình `collect_fd.py --only`, pull ~20 s/session.
-- **Sửa 20/10: CLI hiện tại đọc được log live bằng `kaggle kernels logs <owner/slug> --follow` (SSE).** Đã đọc W&B auth và
-  `Prepared real pilot … old cut: 0` khi r24 vẫn RUNNING; lệnh không `--follow` có thể vẫn rỗng. Dùng account-scoped, đọc có timeout;
-  exit 124 do hết thời gian đọc không phải kernel ERROR. Các ghi chú cũ "chỉ có W&B khi đang chạy" không còn đúng ở môi trường này.
-  [Bằng chứng startup](docs/archive/operations/final-r24-2026-10-20/final-startup-2026-10-20.json). Log/status chưa thay terminal artifact audit.
-- Collector có thể thoát 0 mà chưa pull nếu thiếu `PUSHED`. Kiểm `AUDITED.json` và completion cụ thể; chỉ dựng lại marker sau khi
-  xác nhận đúng kernel từ status account-scoped, rồi vẫn đối chiếu executed source trước audit (ya-v2, 20/10).
-- SHA của `.git/index` khác chưa có nghĩa nội dung staged đổi. Kiểm staged tree và HEAD riêng; ghi cả byte identity và content identity,
-  không khôi phục index chỉ để ép SHA trùng snapshot cũ (20/10).
+
+## Hiệu năng và số học của code (harness, chấm)
+
 - **Harness Kaggle bị giới hạn bởi CPU, không phải GPU** (T4 ~12 ms compute vs 26–27 ms/bước gpool, 4 vCPU cho 2 arm).
   Mỗi `.item()`/`get_scale()`/`assert torch.isfinite(t)`/index-put bằng tensor là một lần đồng bộ host; deterministic mode
   mặc định lấp NaN mọi `empty` (~500 kernel/bước). Gỡ chúng: −20 %/bước, bit-exact. Mọi tối ưu harness phải kiểm bit-exact
@@ -214,6 +203,29 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
 
 ## Đánh giá để rút đúng bài học
 
+- **Khớp teacher/target mass chưa khớp cập nhật private.** P29 s42 ep15: giữ cùng class-mean target trên Gaussian/inversion/real
+  vẫn lệch gradient private; own CE/KD hướng khác balanced-CE. Đây là snapshot/full-bank surrogate, không gradient macro-F1
+  hoặc toàn quỹ đạo Adam. P30 joint true-class×teacher-probability×input giảm fit loss nhưng không hơn mean-only/zero-cross,
+  gain so Gaussian+0,00354 dưới cổng+0,005 ⇒ FAIL, không tune/launch lại.
+  [Protocol, predictions→10metric audits và giới hạn](docs/research/methods/synthetic-gradient-diagnosis-2026-10-22.md).
+- **Không mặc định nén teacher48 là nguyên nhân chính.** P31 strict FP32 trên16 train points×20 private:
+  teacher-nullspace giữ mean0,462% năng lượng Jacobian private (max4,87%). Hướng mù tồn tại nhưng phép đo nhỏ này không
+  xác định phần đóng góp vào F1 hoặc plateau final50. [P31 và kết luận](docs/research/methods/synthetic-gradient-diagnosis-2026-10-22.md).
+- **CCVR teacher tốt hơn chưa đủ chuyển thành private tốt hơn.** Probe23/24 hai seed Kaggle22/10 đã audit:
+  Project48 teacher PASS nhưng same-support transfer FAIL (gain/worst); inversion tăng component agreement mà gain không đạt.
+  Real pooled support oracle local sửa nhiều hơn synthetic nhưng R3-ineligible; hard label có thể tăng macro và hại benign.
+  Phải giữ teacher×support controls, đủ cohort và benign/worst gates. [Kết quả](docs/research/methods/synthetic-learning-recovery-2026-10-22.md).
+- **Gradient chính xác, train CE giảm chưa bảo đảm teacher F1 tăng.** Probe28 shared snapshot + inclusion weights:
+  decoded gradient khớp autograd, safe majorizer step giảm CE nhưng utility FAIL. Không dùng gradient cũ như chính xác ở theta mới;
+  unconditional head-gradient label term chỉ là class means/counts, không đủ chứng cứ mở synthesis mới.
+  [P28 và giới hạn](docs/research/methods/synthetic-learning-recovery-2026-10-22.md#8-giới-hạn-suy-luận-và-việc-chưa-mở-lại).
+- **Không ngoại suy 5 client sang cả cohort.** Probe24 22/10 (frozen backbone/BN, head adaptation): Project48 teacher + Gaussian tăng
+  mean trên5 client, nhưng đủ20 client thì min-client giảm−0,0166; client18 benign→suddenStop từ6 lên1.216 dòng group.
+  Inversion tăng component agreement0,44→0,80 nhưng mean-private chỉ thêm~0,001 với teacher gốc; cần joint fixed/spoiled và
+  per-client/per-class, không nhận generator bằng moment loss/teacher acceptance. [Bằng chứng](docs/research/methods/synthetic-learning-recovery-2026-10-22.md).
+- **Lấy số mẫu calibration bằng nhau mỗi client không giữ phân phối quần thể.** Fixture hiện tại: prior suddenStop trong sample
+  3,385% so population2,023%; phải ghi estimator/client inclusion weights khi gộp moment. Đây là sai khác phân phối đã đo,
+  chưa chứng minh nguyên nhân duy nhất của utility FAIL; cần can thiệp prior-only vs class-weighted. [Phân tích](docs/research/methods/synthetic-learning-recovery-2026-10-22.md).
 - **Mẫu tổng hợp học KL từ teacher chỉ sửa được lỗi teacher đúng.** Trước khi thiết kế bộ sinh, tách lỗi private thành "dạy được"
   (teacher đúng) và "chung" (teacher cũng sai). Headline ep15: chung 77 %, dạy được 23 % (trần +0,036) và đã bị la/kdpx ăn một nửa ⇒ đổi
   vị trí/lượng/độ thật/ưu tiên mẫu (g512, gk2, cop, xo) chỉ còn ≤ +0,008. Muốn lợi lớn hơn phải làm nguồn tri thức tốt hơn, không phải bộ sinh.
@@ -221,16 +233,45 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   dòng timeDelay; lợi chỉ ở cặp teacher đúng ≥ 90 %. Ưu tiên phải có độ tin cậy (nhãn own cho ρ, 0 byte), không chỉ khối lượng bất đồng.
 - **Chỉ số phân bố (cos/align, syn_accept) không dự báo utility** (cop align ×3 → +0,003; xo align ×6 → +0,0076). Probe trước train phải
   đo trần reachable (refit/oracle trên chính tri thức sẽ truyền), không chỉ "mẫu có đúng chỗ không".
+- **Đo support qua backbone của chính private và theo cặp lỗi, không theo lớp hay ở input.** P33: 71 % lợi support thật là recall posMirror +
+  suddenStop vs benign ở receiver lạ; dòng own cân bằng lớp không thêm gì (−0,0015) ⇒ giá trị nằm ở biến thể của client khác. Precision/landing
+  k-NN trong đặc trưng private xếp đúng utility ở mức support (post-hoc ρ 0,90/0,95) nhưng không ở mức lớp (F1 benign do mẫu lớp kề quyết định).
+  Copula nhòe atom trong bin làm suddenStop lệch manifold hơn Gaussian (precision 0,35 vs 0,60). [P33](docs/research/methods/client-learning-diagnosis-2026-10-22.md).
+- **Cấu trúc viết tay trên copula Gaussian không đổi utility; định danh đúng trên primitive sai còn hại.** P34: atom chính xác, trạng thái first,
+  profile categorical, định danh extractor đều nằm trong +0,0020…+0,0025 như copula; tính lại closing/rel_speed/dist từ primitive copula làm posMirror
+  precision 0,34 → 0,22 (phụ thuộc heading × bearing × vận tốc sai lan sang feature dẫn xuất). V4-S/G61 dưới teacher tốt hơn vẫn ≈ Gaussian.
+  Trần là phụ thuộc Gaussian (tương quan normal-score); lợi posMirror cần mô hình phụ thuộc phi tuyến. [P34](docs/research/methods/structured-support-generator-2026-10-22.md).
+- **Độ thật cần ở mẫu lớp tấn công hiếm, ở độ chính xác rất cao; mẫu benign giả không hại.** P35 hoán đổi lớp: copula + posMirror/suddenStop thật lấy
+  lại 74 % lợi hai lớp, real + benign copula giữ 92 % lợi mean. Nhiễu σ 0,05 z trên dòng thật đã mất 44 % lợi. Bộ sinh học được fit trên pool
+  (GMM 8/32 +0,0044, MADE +0,0026, không chép) chưa tới ⇒ trần bộ sinh từ thống kê gộp ở harness frozen-head ~+0,004; trước khi thêm bộ sinh,
+  đo khoảng cách tới mức chính xác này. [P35](docs/research/methods/support-capacity-oracle-2026-10-22.md).
+- **Cổng cô lập một thành phần có thể giấu tổ hợp có lợi; luôn báo thêm Δ so phương pháp hiện hành.** P24–32 khóa cổng so Project48 + gaussian nên
+  teacher (hại worst) và copula (+0,0024) đều FAIL; P36 so phương pháp hiện hành: Project48 + copula +0,0077 / +0,0051 hai seed, worst giữ — lợi là
+  tương tác (teacher gốc + copula ≈ 0). Kế toán byte theo `result.json` (bootstrap + per-round), không ngoại suy tuyến tính tổng 15 round sang 50.
+  [P36](docs/research/methods/teacher-support-two-seed-2026-10-22.md).
+- **Harness frozen-head PASS hai seed không dự báo online.** Vòng 26 (cvp + cop): P36 +0,0077 / +0,0051 → online ep15 +0,0003 (FAIL). Harness train
+  head mới trên backbone ep15 đóng băng với teacher hiệu chỉnh một lần; online backbone và head gốc cùng thích nghi: teacher hiệu chỉnh chỉ hơn gốc
+  ở ep2–4, và per-class đổi chiều (posMirror +0,120 giữ, suddenStop dự báo +0,053 → −0,025, timeDelay −0,078). Cùng kiểu với `cop` vòng 18 và
+  `cvl` vòng 25. Harness frozen-head chỉ là bộ lọc loại; trước khi push, báo per-class dự báo và coi PASS harness là điều kiện cần, không đủ.
+  [Vòng 26](docs/methods/full-drift/results.md).
+- **Trần support thật trên full model ≈ cổng online; kênh BN/head không phải nút thắt.** P37 (code production, full model, 20 client, xa ep6/ep15):
+  thay Gaussian bằng **dòng thật client khác** chỉ +0,0034 / +0,0099 ⇒ cổng +0,010 nằm ở trần oracle; copula +0,0021 / +0,0024. Tách BN cho
+  synthetic hoặc chỉ cho synthetic chạm head đều **thấp hơn** production (−0,001…−0,0025); BN trộn không hại. Lợi support thật cần cả
+  backbone (head-only giữ < 25 %). Gaussian đẩy trọng số lệch hướng support thật (cos 0,40–0,54 < sàn nhiễu 0,56–0,94); proxy không đổi.
+  [P37](docs/research/methods/synthetic-weight-dynamics-2026-10-23.md).
 - **Feature đã đủ, thiếu ở tầng quyết định của teacher:** refit head teacher trên dòng thật có nhãn gộp 0,842 → 0,919 (timeDelay 0,27 → 0,50);
   thống kê đặc trưng theo lớp cộng được (CCVR) → 0,893, phần lỗi private teacher dạy được 21 → 47 %.
 - **Private chững khi teacher còn tăng** (run cuối r12 → r27; gkd:50): screening ep15 đo ở vùng teacher ≈ private, đánh giá thấp kênh truyền.
   [Phân tích](docs/methods/full-drift/results.md).
 - **So byte cùng đơn vị: mỗi client, cùng horizon, từ `result.json` đối chứng đã audit.** Hồ sơ cv (21/10) lấy byte một client so với kênh q3
   cộng 20 client ⇒ ghi cvf +48 % trong khi thật ×6,8 (15 epoch); owner chọn arm theo số sai. Báo tổng/client cả 15 epoch và 50 round, và theo round.
+- **Khi ngân sách loại biến thể mang lợi offline, kiểm lại lợi offline của biến thể còn lại trước khi push.** Probe 22: lợi teacher 0,842 → 0,893 là
+  của CCVR (covariance riêng); cvl (covariance chung) chỉ 0,848 (+0,006, macro che đổi lớp) ⇒ cvl FAIL Δ −0,0136: lên lớp mục tiêu, mất lớp tốc độ.
+  Đọc per-class của biến thể được chạy, không mượn số của biến thể mạnh. Head refit từ moment chỉ thắng head đã train khi snapshot còn non (ep2–4).
+  [results §Vòng 25](docs/methods/full-drift/results.md).
 - Gate tolerance tuyệt đối trên logit vỡ khi logit lớn dần theo round: sai số fp16 tỉ lệ với độ lớn. Đặt ngưỡng tương đối
   (sai số / max|logit|) và hiệu chỉnh trên round muộn nhất sẽ chấm, không chỉ round đầu (r27 0,25 hiệu chỉnh r1–4, vỡ ze r34).
   [final-pipeline §Bộ chấm nhanh](docs/operations/final-pipeline.md).
-- Fixture được fingerprint phải chính là fixture driver đọc. `--final` trước 20/10 chọn dữ liệu final ở Run nhưng main hash pilot; chưa có run final production. Dùng chung `fixture_path`, và evaluator từ chối manifest khác training. Smoke dùng pilot không phát hiện được sai đường dẫn production.
 
 - Train/partition đã z-score, test raw áp scaler đúng một lần. Dữ liệu sắp theo lớp: sample ngẫu nhiên seeded,
   không prefix tùy tiện. Không chia lại partition hoặc dùng official test chọn HP/round.
@@ -256,9 +297,6 @@ Bài học riêng còn dùng ở [docs/lessons](docs/lessons/README.md); bằng 
   nên gate cần chênh ≥0,01 mới nên dựa reference khác build. [Sổ lỗi](docs/operations/notebook-errors.md).
 - Pilot ngắn không dự báo độ bền; full thường giảm lợi hoặc đổi dấu. Không kéo dài adaptation FAIL để tìm điểm thắng.
   Full một seed là xác nhận mô tả theo protocol, không paired confidence interval.
-- Exact-resume fixture phải cover state của cả local/control và FL arm. CrossClientRank pooled replay PASS
-  đã bỏ sót CE empty-byte state, khiến production verifier dừng dù r3 hợp lệ;
-  [repro và recovery](docs/operations/notebook-errors.md) giữ nguyên weights/source, không cần SGD lại.
 - Lợi mutual learning khi chưa nhận snapshot RSU không được gọi là lợi FL. Tính đủ bootstrap/prior/header/ACK/retransmission;
   deadline-cut trả phí nhưng không commit, chỉ activate snapshot coherent. [Contact](docs/archive/methods/contact-fragmentation/README.md).
 - **"FL" phụ thuộc giả định SecAgg khi chia sẻ thống kê lớp.** Bootstrap Gaussian gửi Σx, Σxxᵀ theo lớp; `SecureSum` chỉ giả lập. Có ô client×lớp

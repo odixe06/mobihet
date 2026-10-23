@@ -3,10 +3,10 @@
 Tách từ đề xuất owner 17/10 (§1, §7). Owner 17/10 ~13–14Z: ưu tiên communication budget hạn chế; bỏ hướng giảm độ phức tạp model.
 
 ## Yêu cầu
-- **R1:** contact RSU ngắn, budget hạn chế; có thể nhỉnh hơn mốc cũ nhưng không quá lớn. Mốc đối chiếu B0 ≈ 4.500 B, B2 ≈ 231.000 B;
-  **chưa có cap mới được chốt**. Dự toán mặc định = tổng up + down/client/contact.
+- **R1, owner chốt 22/10:** tổng up + down/client/contact ≤ **231.000 B**, kể cả bootstrap; tổng byte/client ở **cả15 và50 round**
+  ≤1,5× `xa` cùng horizon. B0≈4.500 B giữ mốc stress. [Đợt kiểm hiện tại](methods/synthetic-learning-recovery-2026-10-22.md).
 - **R2:** nhiều kiến trúc private cùng hoạt động; kịch bản kiểm trước mắt mọi client DAGSNet (chưa chứng minh R2 thực nghiệm).
-- Cần owner chốt: cap tổng hai chiều hay từng chiều, deadline, application throughput/contact trace thực tế.
+- Cap đã chốt tổng hai chiều; deadline/application throughput/contact trace thực tế còn cần kiểm riêng.
 
 ## Khoảng trống của baseline
 [QPacket q4](methods/qproxy-quantization.md): 208.268 B/chiều ⇒ 416.536 B up + down/client/round, vượt B2 1,80× trước moment, prior,

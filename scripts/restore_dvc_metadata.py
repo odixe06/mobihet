@@ -26,7 +26,7 @@ def main():
     args = parser.parse_args()
     config = configparser.ConfigParser()
     config.read(ROOT / '.dvc/config')
-    remote = Path(config['\'remote "gdrive"\'']['url']) / 'files/md5'
+    remote = Path(config[f'\'remote "{config["core"]["remote"]}"\'']['url']) / 'files/md5'
     jobs = []
     targets = []
     for name in args.targets:

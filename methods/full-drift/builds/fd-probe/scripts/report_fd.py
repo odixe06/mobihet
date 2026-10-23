@@ -103,6 +103,12 @@ R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@s43@fast', 'head', 'fd_dml_
 R16 += [(f'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_{t}@e15@fast', 'head', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast', 'head', 'gain')
         for t in ('xo', 'xou')]
 R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xo@e15@fast', 'head', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xou@e15@fast', 'head', 'contrast')]
+# round 25 (design §Vòng 25, locked ~16:15Z 21/10): teacher head calibrated from pooled class moments (cvl) vs xa, gain + worst;
+# bytes/client <= 1.5x xa at 15 epochs is read from result.json beside this gate
+R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl@e15@fast', 'head', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast', 'head', 'gain')]
+# round 26 (design §Vòng 26, locked ~14:55Z 22/10): Project48 teacher per round (cvp) + copula support (cop) vs xa, gain + worst;
+# R1 bytes reported from result.json, not a gate of this screen
+R16 += [('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp_cop@e15@fast', 'head', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl@e15@fast', 'head', 'gain')]
 R8_SEEN = [('fd_dml_m4b_kdcap_frz', 'fd_dml_m4b_kdcap'), ('fd_dml_m4b_kdcap_frz', 'fd_dml_m4b'), ('fd_dml_m4b_kdcap_wu', 'fd_dml_m4b_kdcap'),
            ('fd_dml_swappos_cons', 'fd_dml_m4b'), ('fd_dml_m4b@r10', 'fd_dml_m4b'),
            ('fd_dml_m4b_kdcap_frz@s43', 'fd_dml_m4b_kdcap@s43'), ('fd_dml_m4b_kdcap_wu@s43', 'fd_dml_m4b_kdcap@s43'),

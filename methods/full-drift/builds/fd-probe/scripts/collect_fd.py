@@ -194,7 +194,7 @@ if __name__ == '__main__':
     sessions += [(f'fd-s{seed}{s}-20261015-r22-v1', '20261015-r22') for seed, s in ((42, 'xa'), (42, 'xb'), (42, 'xc'), (43, 'xd'))]
     sessions += [(f'fd-s{seed}{s}-20261015-r23-v1', '20261015-r23') for seed, s in ((43, 'ya'), (42, 'yb'))]
     sessions += [('fd-s43ya-20261015-r23-v2', '20261015-r23')]   # ya-v1 stopped by owner (slow host, prepare 9929s)
-    sessions += [(p.name, tag) for tag in ('20261015-r24', '20261015-r25', '20261015-r28')
+    sessions += [(p.name, tag) for tag in ('20261015-r24', '20261015-r25', '20261015-r28', '20261015-r30', '20261015-r31')
                  for p in sorted((BASE / 'notebooks').glob(f'fd-s4[23]*-{tag}-*')) if (p / 'source_manifest.json').exists()]
     if args.only != '*':
         selected = [rid for rid, tag in sessions if fnmatch.fnmatch(rid, args.only)]

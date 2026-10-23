@@ -1,6 +1,6 @@
 # Bài học dùng tiếp
 
-[LESSONS chung](../../LESSONS.md) · [Đề xuất hiện tại](../proposals.md) · [Bằng chứng lưu trữ](../archive/README.md).
+[LESSONS kỹ thuật](../../LESSONS.md) · [bài học vận hành](../operations/lessons.md) · [Đề xuất hiện tại](../proposals.md) · [Bằng chứng lưu trữ](../archive/README.md).
 
 Chỉ chứa bài học. Thiết kế, code, log và số đo chi tiết của build đã kết thúc nằm trong archive.
 

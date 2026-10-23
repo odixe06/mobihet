@@ -110,7 +110,7 @@ def main():
     p = argparse.ArgumentParser(); p.add_argument('--work', required=True)
     p.add_argument('--manifest', help='data_manifest.json pulled from a Kaggle setup: exercises the production gate')
     # Owner RAM limit: run 'checks' and 'smoke' as separate invocations so only one CUDA process is alive at a time.
-    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'r20', 'r21', 'r22', 'r23', 'r24', 'r25', 'final', 'resume', 'fast', 'parent', 'par'), required=True)
+    p.add_argument('--part', choices=('checks', 'smoke', 'r8', 'r9', 'r11', 'r12', 'r13', 'r15', 'r17', 'r18', 'r20', 'r21', 'r22', 'r23', 'r24', 'r25', 'r26', 'final', 'resume', 'fast', 'parent', 'par'), required=True)
     p.add_argument('--arms', help='smoke only these comma-separated arms')
     a = p.parse_args()
     work = Path(a.work); proj = work / 'proj'
@@ -158,6 +158,8 @@ def main():
         return round24(fd, work)
     if a.part == 'r25':
         return round25(fd, work)
+    if a.part == 'r26':
+        return round26(fd, work)
     if a.part == 'resume':
         return resume(proj, work)
     if a.part == 'final':
@@ -658,6 +660,60 @@ def round25(fd, work):
     print('cv_install: head.5 replaced, every other snapshot tensor unchanged (frz and gkd teachers)', flush=True)
 
 
+def round26(fd, work):
+    """Round 26 (cvp: cv refit in a 48-d projection, probe 36; with cop): earlier paths bit-exact with the pushed r30 fd.py over 2 epochs;
+    cvp epoch 1 == the q3_zl control (no snapshot yet), epoch 2 differs and is finite; cvp + cop finite and != cvp; bytes 78,400 B up and
+    the 256-d head down per client per calibrated round; the projected client sums give the pooled projected class means/covariances;
+    the basis is orthonormal, deterministic and holds the snapshot head (a zero-step fit returns the snapshot head); the calibrated head
+    lies in the projection. Compiled main() --workers 1 == 2: --part par --arms <cvp arms>."""
+    import importlib.util
+    import torch
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location('fd_r30', BASE / 'artifacts/input/fd-src-20261015-r30/fd.py')
+    old = importlib.util.module_from_spec(spec); spec.loader.exec_module(old)
+    eq = lambda a, b: len(a) == len(b) and all(torch.equal(x, y) for x, y in zip(a, b))
+    finite = lambda s: all(torch.isfinite(v.float()).all() for v in s)
+    p = 'fd_dml_m4b_gpool_'; control = p + 'q3_frz_gkd_la_kdpx_zl'
+    for arm in (control, control + '_cvl', control + '_cvf', p + 'frz_gkd_cop'):
+        assert eq(one_epoch(fd, arm, False, batch=128, epochs=2), one_epoch(old, arm, False, batch=128, epochs=2)), arm
+        print('BIT-EXACT vs r30 fd.py, 2 epochs:', arm, flush=True)
+    c1, c2 = one_epoch(fd, control, False, batch=128), one_epoch(fd, control, False, batch=128, epochs=2)
+    runs = {}
+    def keep(arm):
+        def hook(R): runs[arm] = R
+        return hook
+    assert eq(one_epoch(fd, control + '_cvp', False, batch=128), c1)
+    cvp = one_epoch(fd, control + '_cvp', False, batch=128, epochs=2, hook=keep('cvp'))
+    assert finite(cvp) and not eq(cvp, c2)
+    both = one_epoch(fd, control + '_cvp_cop', False, batch=128, epochs=2, hook=keep('both'))
+    assert finite(both) and not eq(both, cvp)
+    for tag in ('cvp', 'both'):
+        rows = [b for b in runs[tag].bytes if b[3] in ('cv_stats', 'cv_head')]
+        assert sorted({(b[0], b[2], b[4]) for b in rows}) == [(2, 'down', 4 * (16 * 256 + 16)), (2, 'up', 78400)] and len(rows) == 2 * runs[tag].K, rows[:4]
+    print('cvp: epoch 1 == control, epoch 2 differs and finite; cvp+cop finite and != cvp; up 78400 B down 16448 B per client', flush=True)
+    R = runs['cvp']; state = {n: v.clone() for n, v in R.init.state_dict().items()}
+    basis = R.cv_basis(state); assert torch.equal(basis, R.cv_basis(state)) and basis.shape == (256, fd.CV_PROJ)
+    assert torch.allclose(basis.T @ basis, torch.eye(fd.CV_PROJ, dtype=basis.dtype, device=basis.device), atol=1e-10)
+    w = state['head.5.weight'].double(); assert torch.allclose(w @ basis @ basis.T, w, atol=1e-10)
+    stats = [R.cv_stats(state, k) for k in range(R.K)]
+    hs, ys = zip(*(R.cv_features(state, k) for k in range(R.K))); h, y = (torch.cat(hs).double() @ basis).cpu(), torch.cat(ys).cpu()
+    n = sum(v['n'] for v in stats); mu = sum(v['s'] for v in stats) / n[:, None]
+    for c in range(16):
+        if n[c] < 3: continue
+        hc = h[y == c]; assert torch.allclose(mu[c], hc.mean(0), atol=1e-8)
+        cov = (sum(v['ss'][c] for v in stats) - n[c] * mu[c][:, None] * mu[c][None, :]) / (n[c] - 1)
+        assert torch.allclose(cov, torch.cov(hc.T), atol=1e-6, rtol=1e-6), c
+    print('projected client sums -> pooled projected class means and covariances == direct computation; basis orthonormal, holds the head', flush=True)
+    steps = fd.CV_STEPS; fd.CV_STEPS = 0
+    try: head0 = R.cv_calibrate(stats, state, 2)
+    finally: fd.CV_STEPS = steps
+    assert torch.allclose(head0['head.5.weight'].float(), state['head.5.weight'].float(), atol=1e-5)
+    assert torch.equal(head0['head.5.bias'], state['head.5.bias'])
+    head = R.cv_calibrate(stats, state, 2); hw = head['head.5.weight'].double()
+    assert torch.isfinite(hw).all() and torch.allclose(hw @ basis @ basis.T, hw, atol=1e-5) and not torch.allclose(hw, w, atol=1e-5)
+    print('zero-step cvp fit returns the snapshot head; the fitted head lies in the projection and differs', flush=True)
+
+
 def resume(proj, work):
     """Codec resume (round 21): a quantized-wire run with client error feedback continued from its committed epoch 1 (resume bundle:
     server exact model + every client's residual) == the uninterrupted run at epoch 2 (weights, predictions, eval, round-2 bytes),
@@ -940,7 +996,8 @@ def parallel(proj, work, only=None):
                          ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx', 'compiled'), ('fd_dml_m4b_gpool_q4_frz_gkd_la_kdpx_ef_zl', 'compiled'),
                          ('fd_dml_m4b_gpool_q3_u2_frz_gkd_la_kdpx_ef_zl', 'compiled'), ('fd_dml_m4b_gpool_q2_rs_frz_gkd_la_kdpx_zl', 'compiled'),
                          ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xo', 'compiled'), ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_xou', 'compiled'),
-                         ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvf', 'compiled'), ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl', 'compiled')):
+                         ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvf', 'compiled'), ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl', 'compiled'),
+                         ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp', 'compiled'), ('fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp_cop', 'compiled')):
         if only and arm not in only: continue
         ran.add(arm); runs = {}
         for workers in ((1, 2) if {'cop', 'q4', 'q3', 'q2'} & set(arm.split('_')) else (1, 3)):   # local RAM: cop (copula per rank), q4+la_kdpx compiled

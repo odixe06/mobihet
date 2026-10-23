@@ -623,7 +623,7 @@ Chạy trên odixeuit (ngoài 14 account của run cuối, 30h). Screening một
 **Kết quả 21/10 ~12Z: xo FAIL** gain (Δ +0,0076, benign +0,0063, tệ nhất +0,0113); cơ chế đúng chỗ nhưng lợi trong nhiễu seed ⇒ dừng,
 không s43, không quét ρ/floor. [Results §Vòng 24](results.md).
 
-## Vòng 25 — teacher hiệu chỉnh bằng đặc trưng ảo theo lớp (`cv`; owner 21/10 ~16Z: **chỉ cvl**, ngân sách ≤ 1,5× byte; cổng khóa, push r30)
+## Vòng 25 — teacher hiệu chỉnh bằng đặc trưng ảo theo lớp (`cv`; owner 21/10 ~16Z: **chỉ cvl**, ngân sách ≤ 1,5× byte; cổng khóa, push r30) — **FAIL 22/10** (Δ −0,0136, benign −0,0185; dấu hiệu (a)+(c) ⇒ dừng; [results §Vòng 25](results.md))
 
 **Bằng chứng** ([results §Vì sao sinh mẫu không ăn](results.md)): 77 % lỗi private headline là lỗi teacher cũng sai ⇒ mọi mẫu KL từ teacher
 chạm tối đa 23 %; refit head teacher trên dòng thật gộp 0,842 → 0,919; CCVR từ moment lớp (cộng được) 0,893, phần lỗi private teacher đúng
@@ -651,6 +651,29 @@ Chẩn đoán mỗi round (dòng own, nhãn own; không group/test): `cv_teacher
 private < +0,010 ⇒ nút thắt là kênh truyền (mẫu Gaussian lệch đa tạp) ⇒ hướng phụ đảo ngược theo moment, không quét biến thể cv;
 (c) benign < −0,005 như pce. Test local `--part r25` (arm cũ bit-exact với r28 hai epoch; cv epoch 1 = control; tổng client = moment gộp
 trực tiếp; fit tách lớp toy; head chỉ thay `head.5`) và `--part par --arms <cv>` (compiled, 1 vs 2 worker).
+
+## Vòng 26 — teacher Project48 (`cvp`) + support copula (`cop`) (owner 22/10 ~13:40Z "thử nghiệm cả hai phương án"; cổng khóa ~14:55Z, push r31) — **FAIL 22/10** (Δ +0,0003, benign +0,0053, worst +0,0026; dấu hiệu (a) ⇒ dừng; [results §Vòng 26](results.md))
+
+**Bằng chứng** ([P32–36](../../research/methods/teacher-support-two-seed-2026-10-22.md)): frozen-head hai seed, so phương pháp hiện hành (teacher gốc +
+Gaussian): Project48 + copula **+0,0077 / +0,0051** mean, benign +0,010 / +0,007, worst +0,005 / −0,002 (PASS cả hai); Project48 một mình hại worst
+(−0,017 / −0,025); copula với teacher gốc không thêm gì ⇒ lợi là tương tác teacher tốt hơn × support thật hơn. **Cơ chế:** như `cv` vòng 25 nhưng
+thống kê lớp trên phép chiếu 48 chiều của h256 (16 hướng head snapshot + bù ngẫu nhiên cố định seed 23, QR CPU, mọi bên tự dựng, 0 byte), covariance
+riêng từng lớp ở đó, head fit giới hạn trong phép chiếu (probe 23 Project48); support Gaussian của gkd thay bằng copula one-shot vòng 18 (`cop`).
+
+**Byte (mỗi client, theo xa đã audit 5,16 MB / 15, 12,96 MB / 50):** cvp lên 78.400 + xuống 16.448 B mỗi round có snapshot (14 / 49 lần);
+copula một lần 1,92 MB (fp32, đo P32) ⇒ **×1,63 (15 round), ×1,51 (50 round)** — vượt ngân sách 1,5×; bản copula mã không mất ×1,55 / ×1,47.
+Screen giữ đúng cấu hình đã PASS ở harness; nén là bước R1 bắt buộc trước run dài (không phải cổng của screen này, khác vòng 25).
+
+| session | arm (s42, ep1→15 `--fast`, `--workers 2`, tag r31) | vai trò |
+|---|---|---|
+| cp | `fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp_cop` | minhtrit06, 6,3 h; push 22/10 14:53Z |
+
+**Cổng (khóa trước kết quả; ep15, private head trên group, đối chứng xa s42 `--fast` 0,8246):** cp PASS khi Δ ≥ **+0,010**, benign ≥ −0,005, client
+tệ nhất ≥ −0,010. PASS ⇒ nén R1 (kiểm F1 bản nén offline bằng bản fp32) rồi s43; owner quyết đưa vào run cuối.
+Chẩn đoán mỗi round như vòng 25 (`cv_teacher_f1_orig/cal`, `cv_teachable_orig/cal`, dòng own). **Dấu hiệu sai:** (a) teacher hiệu chỉnh − gốc < +0,02
+phần lớn round ⇒ thống kê chiếu không đủ khi backbone trôi; (b) teacher lên mà private < +0,010 ⇒ frozen-head đánh giá cao kênh truyền online;
+(c) benign < −0,005. Test local `--part r26` (arm cũ bit-exact với r30 hai epoch; cvp epoch 1 = control; byte 78.400 / 16.448; tổng client = moment
+chiếu gộp trực tiếp; cơ sở trực chuẩn, chứa head; fit 0 bước trả head snapshot) và `--part par` (compiled, 1 vs 2 worker) **PASS**.
 
 ## Run cuối 50 epoch — chế độ `--final` (owner 19/10; cài ~09:30Z, chưa chạy)
 

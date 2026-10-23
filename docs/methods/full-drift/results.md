@@ -1,8 +1,13 @@
 # FullDrift — kết quả đã audit
 
 **Chốt20/10:** q3_zl PASS cả seed42/43, chọn cho final; 2-bit FAIL. Bảng dưới giữ lịch sử theo vòng.
-Final r24 crash trước round1, không có metric final; tiến trình r25 tại [handoff](../../operations/continue.md),
-không trộn kết quả probe vào final.
+**Cập nhật22/10:** final seed42 đủ6 chuỗi×50 round train/chấm/audit; [report hoàn chỉnh](results/final/report.md),
+[export VERIFIED](results/final/VERIFIED.json), [kernel/source provenance](results/final/provenance.json).
+Report ghi riêng giới hạn contact R1, heterogeneous R2 và single-seed. Final r24 crash trước round1 là lịch sử startup,
+không phải thiếu kết quả hiện hành. [Bàn giao](../../archive/operations/continuation-2026-10-22.md).
+
+Synthetic sau cvl: [P29–31](../../research/methods/synthetic-gradient-diagnosis-2026-10-22.md): joint carrier P30 FAIL,
+P31 không đủ quy lỗi chính cho mất chiều; proposal density chưa chạy. Probe xa ep15/fixture không trộn vào final50.
 
 Contract khóa trước push: [design](design.md). Full 100% train80% trừ holdout nội bộ (train 40,0M dòng),
 group/old 65.536 dòng; test chỉ epoch 6, mô tả. Sessions `annhannh331/mobihet-fd-s42{a,b}-20261015-v2`,
@@ -708,3 +713,65 @@ trên 65.536 dòng vượt tầm fp16 ⇒ 4 B/giá trị, nửa tam giác (khóa
 
 **6 — Private chững khi teacher còn lên** (run cuối, test, 20c): zc gkd private 0,806 → 0,810 (r12 → r27), proxy 0,823 → 0,839; za la_kdpx
 0,817 → 0,828, proxy 0,822 → 0,839. gkd:50 pilot: private +0,012, proxy +0,052 (ep15 → 50). Screening ep15 đo ở vùng teacher ≈ private.
+
+## Vòng 25 — teacher hiệu chỉnh bằng moment lớp, covariance chung (`cvl`; `--fast`, head; audited 22/10 ~01:10Z)
+
+| arm | session | private ep15 | Δ ep15 vs xa (benign, tệ nhất) | proxy ep15 | byte/client 15 ep | cổng |
+|---|---|---|---|---|---|---|
+| `q3_…_la_kdpx_zl_cvl` s42 | `khanhmay0304/…-s42cl-20261015-r30-v1` | 0,8110 | **−0,0136** (**−0,0185**, −0,0075) | 0,8449 (+0,0036) | 7,48 MB = **×1,451** xa (cv_stats 2,07 + head 0,23 MB) | **FAIL** gain + benign; byte đạt |
+| (tham chiếu) `q3_…_zl` s42 | xa | 0,8246 | — | 0,8413 | 5,15 MB | — |
+
+Quỹ đạo (private head group; chẩn đoán teacher trên dòng own, round ≥ 2):
+
+| ep | teacher gốc → hiệu chỉnh | dạy được gốc → hiệu chỉnh | Δ private vs xa |
+|---|---|---|---|
+| 2 | 0,368 → 0,632 | 0,180 → 0,194 | +0,0150 |
+| 3–4 | 0,697 → 0,735 · 0,736 → 0,768 | 0,175 → 0,230 · 0,165 → 0,148 | −0,017 · −0,015 |
+| 5 | 0,782 → 0,789 | 0,178 → 0,139 | −0,010 |
+| 6–15 | hiệu chỉnh **thấp hơn** gốc 0,002–0,020 | 0,12–0,18 → 0,06–0,11 | −0,008 … −0,019 |
+
+F1 private theo lớp ep15 (cvl − xa): **lớp mục tiêu lên** posMirror +0,166 (0,378 → 0,544), timeDelay +0,106 (0,281 → 0,387),
+suddenStop +0,059; **lớp head train đã tốt xuống** suddenConstantSpeed −0,212, zeroSpeedReport −0,122, constSpeedOff / randomSpeedOff /
+constPosOff / reversedHeading −0,03 … −0,045, benign −0,019.
+
+- **Dấu hiệu sai đã khóa trúng (a) và (c).** (a) teacher hiệu chỉnh − gốc < +0,02 ở 12/14 round; từ ep6 head refit từ moment thua head đã train
+  (đo trên dòng own, head gốc có lợi in-sample nhưng kết quả private trên group xác nhận). (c) benign −0,0185 < −0,005. Theo khóa: **dừng**,
+  không quét biến thể cv; bản 16-bit/s43 không chạy.
+- Cơ chế: một covariance chung (LDA) buộc mọi lớp cùng hình dạng ⇒ head refit dời biên về phía lớp teacher yếu (đúng như probe 22 dự báo cho
+  timeDelay/posMirror) nhưng đánh đổi các lớp tốc độ có phân bố hẹp/khác dạng. Probe 22 đã cho tín hiệu này: LDA chỉ +0,006 macro teacher
+  (lợi 0,893 là của CCVR covariance riêng, bị ngân sách byte loại). Lợi sớm (ep2 +0,015) chỉ có khi head snapshot còn non.
+- Test chỉ báo cáo, không dùng chọn: private test 0,7978 vs xa 0,8216 (−0,024).
+
+## Vòng 26 — teacher Project48 mỗi round (`cvp`) + support copula (`cop`) (`--fast`, head; audited 22/10 ~19:15Z)
+
+| arm | session | private ep15 | Δ ep15 vs xa (benign, tệ nhất) | proxy ep15 | byte/client 15 ep | cổng |
+|---|---|---|---|---|---|---|
+| `q3_…_la_kdpx_zl_cvp_cop` s42 | `minhtrit06/…-s42cp-20261015-r31-v1` | 0,8249 | **+0,0003** (+0,0053, +0,0026) | 0,8536 (+0,0123) | 8,20 MB = **×1,59** xa (cv_stats 1,10 + head 0,23 + copula 1,92 MB) | **FAIL** gain |
+| (tham chiếu) `q3_…_zl` s42 | xa | 0,8246 | — | 0,8413 | 5,15 MB | — |
+
+Audit `collect_fd.py`: 88 file, source/fingerprint, chuỗi marker, weights strict load, predictions → confusion theo client → 10 metric khớp.
+Quỹ đạo private head group (cp / xa): ep1 0,741 / 0,665 · ep2 0,682 / 0,652 · ep6 0,802 / 0,798 · ep10 0,818 / 0,814 · ep13 0,823 / 0,824 ·
+ep15 0,825 / 0,825. Teacher trên dòng own (gốc → hiệu chỉnh): ep2 0,289 → 0,618, ep3 0,689 → 0,746, ep4 0,755 → 0,779, ep5 0,781 → 0,797,
+**ep6–15 chênh −0,008 … +0,015** (ep15 0,842 → 0,844); dạy được 0,07–0,11 → 0,06–0,09. `kd_syn_accept` 0,67 (xa 0,46): copula được gate nhận nhiều hơn.
+
+F1 private theo lớp ep15 (cp − xa): **posMirror +0,120** (cơ chế P33 chở được online), suddenConstantSpeed +0,096; **timeDelay −0,078**,
+accelerationMultiplication −0,046, **suddenStop −0,025** (harness dự báo +0,053), constPosOff −0,023, constSpeedOff −0,015, randomSpeedOff −0,012,
+benign +0,005. Holdout `old` (development, mô tả): private 0,8002 vs 0,8175 (−0,017). Test chỉ báo cáo: private 0,8074 vs 0,8216 (−0,014).
+
+- **Dấu hiệu sai đã khóa trúng (a):** teacher hiệu chỉnh − gốc < +0,02 ở 11/14 round (chỉ ep2–4 ≥ +0,02). Online, head đã train của teacher gốc đuổi
+  kịp từ ep6; lợi teacher của harness frozen-head (snapshot xa ep15, hiệu chỉnh một lần) không tồn tại trong vòng lặp. (b) không áp dụng vì teacher
+  không lên; (c) benign +0,0053 đạt. Theo khóa: **dừng**, không nén R1, không s43, không quét biến thể cvp/cop.
+- Support copula đổi phân bố lỗi: lên posMirror/suddenConstantSpeed, xuống timeDelay/accelMult/suddenStop ⇒ macro ≈ 0. Proxy group +0,012 nhưng
+  proxy old/test thấp hơn xa (0,821 / 0,822 vs 0,831 / 0,828).
+- Harness P36 (cả hai seed PASS) **không dự báo được online**: +0,0077 frozen-head → +0,0003 online. Cùng kiểu với vòng 18 `cop` (+0,0031) và
+  vòng 25 `cvl` (P22 teacher lên → online −0,0136).
+
+## Nghiên cứu synthetic22/10 — Probe23–28, đóng phiên để compact
+
+[Kết quả/cổng đầy đủ](../../research/methods/synthetic-learning-recovery-2026-10-22.md),
+[bàn giao](../../archive/operations/continuation-synthetic-2026-10-22.md),
+[audit build cũ](../../research/methods/synthetic-build-history-audit-2026-10-22.md).
+CCVR Project48 giảm calibration packet, teacher PASS hai seed Kaggle nhưng private transfer/inversion **FAIL**;
+class-weighted local chưa đủ gain, pooled-real support oracle chỉ chẩn đoán R3-ineligible, gradient-only teacher **FAIL**.
+Terminal source/input/predictions đã audit; đây là frozen-head mechanism screen, không online ep15/r50 hoặc R1/R2 proof.
+Owner dừng để compact; chưa launch phương pháp mới, run cuối giữ `gkd + la + kdpx`, proxy `q3_zl`.

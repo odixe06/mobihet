@@ -1,0 +1,5 @@
+outs:
+- md5: fcb45653d94a4ba36cdd8b6b180f218b
+  size: 1707981
+  hash: md5
+  path: probe26-classweight-transfer-s42.pt

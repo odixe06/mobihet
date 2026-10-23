@@ -1,0 +1,22 @@
+{
+  "id": "trietbackup/mobihet-fd-e42-46-s42zi03-20261015-r25-v1-f1",
+  "title": "mobihet-fd-e42-46-s42zi03-20261015-r25-v1-f1",
+  "code_file": "fd-e42-46-s42zi03-20261015-r25-v1-f1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "dataset_sources": [
+    "trietbackup/mobihet-fulldrift-src-20261015-r29",
+    "trietbackup/mh-fd-e42-46-s42zi03-20261015-r25-v1-f1",
+    "khanhmay0304/veremi-fl-100client",
+    "trietbackup/veremi-nextgen2026-test"
+  ],
+  "kernel_sources": [
+    "trietbackup/mobihet-fd-fixture-k100-20261015-r25"
+  ],
+  "competition_sources": []
+}

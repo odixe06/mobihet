@@ -1,107 +1,79 @@
-# Continue — run cuối seed42 + vòng 25, 21/10/2026 ~17:40Z (phiên dừng; owner dọn ổ trước task mới)
+# Continue — bàn giao sống, 23/10/2026 ~07:30Z
 
-Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → trang này.
-[Pipeline/contract/timing](final-pipeline.md) · [Results đã audit](../methods/full-drift/results.md) ·
-[nhật ký 20/10 16Z → 21/10 08Z](../archive/operations/continuation-2026-10-20-21.md) (S1, cache, bộ chấm nhanh, chi tiết từng sự kiện).
+**File duy nhất cho "đang ở đâu, làm gì tiếp".** Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → trang này.
+Mỗi phiên sửa trực tiếp trang này; snapshot cũ chuyển vào [archive/operations](../archive/operations/README.md) kèm ngày, không tạo
+`continuation-*.md` mới cạnh trang này.
 
-## Train run cuối (seed42, source r25, mọi round đã audit = `AUDITED.json` + weights strict/hữu hạn)
+## Đang chạy
 
-| chuỗi | arm | K | đã train + audit | S2 đang chạy (11,5h trừ ze03) |
-|---|---|---:|---|---|
-| za | q3_zl la_kdpx | 20 | **r1–50 xong** (S1 `fd-s42za02-…-r25-v1`) | — |
-| zc | gkd control | 20 | **r1–50 xong** (`fd-s42zc02-…`) | — |
-| ze | q3_zl la_kdpx | 50 | **r1–50 xong** (r49–50 `annhannh331/…-s42ze04-…`, audited ~12:25Z; ze03 thuyanh316 ERROR không khởi động) | — |
-| zg | gkd control | 50 | **r1–50 xong** (`fd-s42zg02-…`) | — |
-| zi | q3_zl la_kdpx | 100 | r1–26 (`fd-s42zi-…-r25-v2`) | `anhtruong1909/mobihet-fd-s42zi03-20261015-r25-v1` r27–50, push 08:48Z |
-| zk | gkd control | 100 | r1–33 (`fd-s42zk02-…`) | `takids1909/mobihet-fd-s42zk04-20261015-r25-v1` r34–50, push 11:35Z (zk03 ERROR không khởi động) |
-
-Round S1 ổn định: 20c ~788 s, 50c ~815 s, 100c ~1.270–1.440 s. Seed43 chưa generate/push.
-
-## Chấm (bộ nhanh; ID `<owner>/mobihet-fd-e<aa>-<bb>-s42<chuỗi>-20261015-r25-v<k>-f<n>`)
-
-**Tag r29 từ 21/10 ~10:40Z** (gate tương đối ≤ 2 % max|logit|; r27 tuyệt đối 0,25 vỡ ở ze r34 —
-[final-pipeline §Bộ chấm nhanh](final-pipeline.md), [sổ lỗi](notebook-errors.md)). Notebook r27 còn chạy để nguyên; vỡ gate ⇒
-`collect_eval.py <rid> --partial` rồi chấm phần còn lại bằng r29. Đã chấm + audit trước 21/10: za/zc r1–4, zg/zk r1–2.
-
-| chuỗi | AUDITED | đang chạy (tag) | chưa xếp |
+| việc | chủ | trạng thái | ghi chú |
 |---|---|---|---|
-| za 20c | r1–44 (r28–44 `--partial`) | r45–50 odixe0502 `-f2` **COMPLETE 17:36Z chưa pull** (`-f1` minhtran0601 không khởi động) | — |
-| zc 20c | **r1–50 xong** (r28–50 `-f2` audited 21/10 ~16:30Z) | — | — |
-| ze 50c | r1–8, r29–48 | r9–28 minhtrit06 `-f2` **COMPLETE chưa pull**; r49–50 dinhan25 (push 16:06Z) | — |
-| zg 50c | r1–34 | r35–50 minhtrit06 (push ~16:30Z) | — |
-| zk 100c | r1–2, r23–33 | r3–12 accanniez `-f2` COMPLETE, pull dở (`.part`, chưa audit); r13–22 trietbackup COMPLETE chưa pull | r34–50 sau zk04 |
-| zi 100c | r9–17 | r1–8 trietbackup COMPLETE chưa pull; r18–26 đã pull đủ, **chưa audit** (collect bị dừng) | r27–50 sau zi03 |
+| Copy dvc-storage Google Drive → OneDrive (`copy-current-dvc.sh`) | phiên Codex của owner | chạy từ ~09:45Z | **không sửa** [backup](backup.md), skill repo-backup, `.dvc/config`, `scripts/dvc_*` khi phiên đó còn chạy |
+| Kaggle | — | không kernel nào chạy | vòng 26 `minhtrit06/mobihet-fd-s42cp-20261015-r31-v1` COMPLETE 19:01Z, collect + audit xong, **FAIL** |
+| Kaggle | — | không kernel nào chạy | P37 `minhtran0601/mobihet-fd-probe37-20261023-v1` COMPLETE, pull + audit 23/10 ~07:30Z |
 
-Account chấm ≠ account train (zg train annhannh331, ze train thuyanh316). Owner 21/10: song song thêm, giữ EMA mọi round,
-không tối ưu kernel tiếp; notebook đã push không cancel.
+## Backup 23/10 — dừng giữa chừng theo owner (owner tự push + cập nhật [backup](backup.md))
 
-## Screening vòng 24 — sinh mẫu có chủ đích ([design §Vòng 24](../methods/full-drift/design.md))
+Remote DVC `onedrive`. **Đã đẩy:** 9 file `.pt` probe P24–36 (`docs/methods/full-drift/results/*.pt.dvc`, mới, đã `git add` do autostage;
+`dvc status -c` in sync); `fixture-cache.dvc` và `input.dvc` merge xong (manifest mới trong working tree). **Chưa:** `kaggle.dvc` (manifest
+cũ giữ nguyên; object mới đẩy được một phần, file `.tmp` dở đã xóa). Lỗi: `ENOMEM` ngắt quãng khi ghi/đọc `/mnt/d` lúc swap WSL đầy;
+`scripts/dvc_merge_push.py` đọc/copy khối lớn — bản thử chunk 256 KB + retry chỉ ở scratchpad, chưa đưa vào repo. Git chưa commit/push.
 
-**xo FAIL** gain (audited ~12Z; Δ +0,0076 vs xa, [results §Vòng 24](../methods/full-drift/results.md)) ⇒ dừng hướng.
-xou audited ~12:20Z (mô tả: +0,0030 vs xa; xo − xou +0,0046). Phân tích nguyên nhân + đề xuất vòng 25 `cv` chờ owner
-([hồ sơ](../research/methods/teacher-virtual-feature-calibration.md)).
-`report_fd.py` 21/10 bỏ qua run `final` (S1/S2 cùng arm gây 'duplicate arm'; run cuối do `report_final.py`).
+## Run cuối seed42 — xong, không chạy lại
 
-## Vòng 25 `cv` (owner 21/10 ~16Z: ngân sách ≤ 1,5× byte phương pháp cũ ⇒ **chỉ cvl**)
-
-Byte sửa theo `result.json` xa (mỗi client): xa 5,15 MB/15 epoch, 12,95 MB/50 round; cvf ×6,8 ⇒ loại; cvl ×1,45 (15 ep) / ×1,62 (50 round)
-([design §Vòng 25](../methods/full-drift/design.md), [hồ sơ](../research/methods/teacher-virtual-feature-calibration.md)); số +48 %/+3,3 % cũ sai.
-Test local PASS (`--part r25`, `--part par`). **Cổng khóa ~16:15Z; push 21/10 ~16:20Z `khanhmay0304/mobihet-fd-s42cl-20261015-r30-v1`**
-(tag r30, 6,3h, `--fast --workers 2`, xo mất 4,46h ⇒ ước ~5h). Collect: `collect_fd.py --only fd-s42cl-20261015-r30-v1`, rồi `report_fd.py`
-và đọc cổng. PASS ⇒ bản 16-bit (×1,34 ở 50 round) + kiểm offline F1 bằng fp32, rồi s43 (owner quyết).
-
-## Account — lưu ý hôm nay ([kaggle](kaggle.md))
-
-- **odixeuit dùng chung với dự án khác của owner** (~11h GPU tới 08Z): không xếp chấm/train final; owner nên dùng ≤ ~8h GPU trước ~12Z
-  để screening không hết quota; slot GPU (2) bận tới khi xo/xou xong; không thu hồi token trước khi pull. Cache K50 odixeuit (CPU) không dùng.
-- minhtrit06 (30h, cache K50 COMPLETE + `--check` 10:55Z) = luồng chấm K50 chính. Quota reset 24/10 00:00Z.
-- Dự án kia (owner 21/10) chạy trên minhtrit06 ×2, anhtruong1909, takids1909 ⇒ chia quota; xếp đợt mới ưu tiên account khác ([kaggle](kaggle.md)).
-- Owner còn dùng Kaggle cho dự án khác: quota hụt bất thường là do dự án đó. `kaggle_account.py quota` đã trừ phần giữ chỗ của
-  session đang chạy (trietbackup 0h lúc 10:20Z khi chạy 2 notebook là bình thường).
-- Quota ~07:45Z: odixeuit 17,2 · anhtruong1909 15,9 · takids1909 15,8 · catbaochau 15,3 · trietbackup 13,2 · dinhan25 11,0 · nguyenminhtran060113 7,6 ·
-  minhtriethihi 7,5 · khanhmay0304 6,8 · minhtran0601 6,7 · accanniez 6,3 · odixe0502 6,3 · annhtnt 4,8 · thuyanh316 4,2 · annhannh331 4,1 (trước các push sau 07:45Z).
-
-## Làm tiếp theo thứ tự
-
-0. **Ổ local:** owner 21/10 ~17Z: upload trước, pull sau (C: còn ~15 GB, VHDX WSL). Đã backup Git `bcccbe5` + DVC (đợt ~17:30Z,
-   [backup](backup.md)) rồi xóa local: stage chấm/parent `artifacts/input/fd-e*`/`*-parent`, predictions các đợt chấm đã audit, weights train
-   các round đã chấm audit. Cần lại ⇒ `dvc pull` theo manifest; push lại chấm round đã audit phải pull weights trước (gen_eval đọc weights local).
-   Weights round **chưa** chấm (za r45–50, ze r9–28/r49–50, zg r35–50, zk r3–22, zi r1–8/r18–26) vẫn ở local.
-1. Kernel COMPLETE chưa pull (pull từng cái, merge-push DVC rồi mới pull tiếp nếu ổ chật): za r45–50 `odixe0502/…-e45-50-s42za02…-f2`, ze r9–28 `minhtrit06/…-e09-28-s42ze…-f2`,
-   ze r49–50 `dinhan25/…-e49-50-s42ze04…-f1`, zk r13–22 `trietbackup/…-e13-22-s42zk02…-f1`, zi r1–8 `trietbackup/…-e01-08-s42zi…-f1`,
-   zk r3–12 `accanniez/…-e03-12-s42zk02…-f2` (đang có `.part`, collect tự nối Range). zi r18–26: đã pull đủ, chỉ chạy `collect_eval.py` để audit.
-2. Đang chạy lúc dừng: train zi03 (anhtruong1909, ~20Z), zk04 (takids1909, ~19–20Z); chấm zg r35–50 minhtrit06;
-   screening cvl khanhmay0304 (~22Z). Poll/watchdog local đã dừng cùng phiên: dựng lại từ marker `PUSHED` chưa có `AUDITED.json`.
-3. zk04/zi03 COMPLETE ⇒ collect ⇒ chấm zk r34–50, zi r27–50 trên account K100 ≠ account train còn quota (đọc quota live).
-4. cvl COMPLETE ⇒ `collect_fd.py --only fd-s42cl-20261015-r30-v1`, `report_fd.py`, đọc cổng [design §Vòng 25](../methods/full-drift/design.md).
-5. Đủ eval r1–50 cả 6 chuỗi ⇒ `report_final.py` (đã sửa đọc proof nhiều round). Git/DVC chỉ khi owner yêu cầu.
+6 chuỗi × 50 round đã train + chấm + audit; [report đầy đủ](../methods/full-drift/results/final/report.md) (10 metric, per-class, mọi round,
+private/private_ema/proxy, cost, so sánh baseline), [VERIFIED](../methods/full-drift/results/final/VERIFIED.json),
+[provenance kernel/version/source](../methods/full-drift/results/final/provenance.json). Phương pháp `gkd + la + kdpx`, proxy `q3_zl`:
+za 20c / ze 50c / zi 100c; đối chứng `gkd` dense: zc / zg / zk. Seed43 final chưa chạy. Không repull/re-audit các kernel final.
+Contract/timing: [final-pipeline](final-pipeline.md). Tái sinh report chỉ khi artifact đổi:
 
 ```bash
 B=methods/full-drift/builds/fd-probe/scripts
-conda run -n nckh python scripts/run_local_guarded.py python $B/collect_fd.py --only <train rid> --jobs 16
-IDS=<poll list> bash $B/launch_eval.sh <train rid> <a-b> <owner> [f2]            # gen_eval + upload nguồn r29/checkpoint + push + PUSHED
-IDS=<poll list> bash $B/launch_continue.sh <owner> <K> <parent rid> <session> [giờ] # gen_continue (--hours) + upload + push
-conda run -n nckh python scripts/run_local_guarded.py python $B/collect_eval.py <eval rid> --jobs 16
-conda run -n nckh python $B/report_final.py
+conda run -n nckh python "$B/report_final.py" && conda run -n nckh python "$B/report_final_md.py" && conda run -n nckh python "$B/check_final_report.py"
 ```
 
-## Bẫy đã gặp hôm nay (chi tiết ở nhật ký và [sổ lỗi](notebook-errors.md))
+## Nghiên cứu synthetic — khoảng private ↔ proxy
 
-- `kaggle datasets create` báo lỗi nhưng dataset vẫn ready (annhtnt, odixeuit), hoặc lỗi thật tạm thời (trietbackup 3,3 GB, thử lại được).
-  `launch_eval.sh` chỉ in dòng cuối nên mất thông điệp: đọc `datasets status`, chạy lại `upload_stage.py` (bỏ create khi ready), push tay.
-  Chạy lại launcher sẽ dừng ở "đã tồn tại" vì generator tạo notebook/stage trước upload.
-- Nối tiếp tag r25 khi source sống đã sang r28: `gen_fd.FROZEN` (gen_continue bật) kiểm stage theo manifest của chính nó.
-- Test import `fd.py` từ thư mục stage tạo `__pycache__` ⇒ upload từ chối ("flat stage"); test r24 đặt `sys.dont_write_bytecode`.
-- Kernel mình push mà RUNNING > 20–30 phút không log live (`kaggle_as.py <owner> -- kaggle kernels logs -f <id>` rỗng) và không lên W&B
-  = chưa có máy/slot (owner dùng một số GPU cho dự án khác); 21/10 năm kernel như vậy ERROR log `[]` sau 2,5–4h ⇒ xếp lại account khác sớm.
-- Poll song song nhiều `kaggle_as.py` (15 tiến trình) đẩy RAM local tụt ⇒ probe bị bộ canh RAM dừng; `status.sh` giới hạn 4 song song.
-- Script poll/W&B ở scratchpad mất khi máy khởi động lại (xảy ra 21/10 ~10Z; dựng lại từ marker `PUSHED` chưa có `AUDITED.json`): poll = vòng `kaggle_as.py <owner> -- kaggle kernels status <id>` mỗi 5 phút đến
-  COMPLETE/ERROR/CANCEL; W&B = `wandb.Api().runs('<entity>/mobihet-fulldrift')` lọc tên arm.
-  Tên run W&B chấm = `evalfast-<run>-r<NNN>` (tên arm, không tên chuỗi): za/ze/zi trùng tên, phân biệt bằng `eval/clients_done` (K) và giờ tạo.
+Khoảng r50 proxy − private: 0,028 / 0,025 / 0,024 (20/50/100c); private chững khi proxy còn lên. Backbone private đủ (refit head trên dữ liệu
+thật gộp ≈ proxy) ⇒ thiếu ở tầng quyết định vì private chỉ thấy input own; tri thức vùng client khác chỉ tới qua mẫu tổng hợp.
 
-## Bàn giao lịch sử và giới hạn
+| mốc | kết quả | hồ sơ |
+|---|---|---|
+| P23–28 | Project48 teacher PASS hai seed; transfer/inversion FAIL; support thật (oracle) + Project48 +0,013 | [recovery](../research/methods/synthetic-learning-recovery-2026-10-22.md) |
+| P29–31 | synthetic không tái tạo hướng cập nhật private; joint carrier P30 FAIL; teacher-nullspace nhỏ | [gradient diagnosis](../research/methods/synthetic-gradient-diagnosis-2026-10-22.md), [identifiability](../research/methods/synthetic-transfer-identifiability-2026-10-22.md) |
+| P32 (22/10 10:40Z) | copula × Project48 +0,0024 mean (**FAIL** cổng +0,005) nhưng worst +0,0218; ablation: lợi support thật cần **4 nhóm feature cùng thật** (`snd_kin`, `sess`, `geo`, `prof`), mỗi nhóm Gaussian hóa mất 42–75 % lợi | [support realism](../research/methods/synthetic-support-realism-2026-10-22.md) |
+| **P33/P33b (22/10 11:20Z)** | chẩn đoán cách client học (không train): 71 % lợi support thật = recall **posMirror + suddenStop** vs benign; dòng own cân bằng lớp **không** thêm gì (own_bal −0,0015) ⇒ cần biến thể ở receiver client khác; trong không gian đặc trưng private, Gaussian/copula nửa số mẫu lệch manifold (precision 0,49/0,45 vs real 0,86), copula nhòe atom làm suddenStop tệ hơn Gaussian | [client learning](../research/methods/client-learning-diagnosis-2026-10-22.md) |
+| **P34 (22/10 11:45Z)** | **FAIL**: `pcop` (atom chính xác + trạng thái first + profile categorical + định danh extractor) +0,0023 mean, không hơn copula; mọi biến thể copula +0,0020…+0,0025; định danh trên primitive copula làm posMirror tệ hơn (precision 0,34 → 0,22); V4-S/G61 dưới Project48 vẫn ≈ Gaussian | [structured support](../research/methods/structured-support-generator-2026-10-22.md) |
+| **P35 (22/10 13:35Z)** | chẩn đoán: lợi PS cần **mẫu thật của chính lớp tấn công** (copula + PS thật lấy lại 74 %, benign giả chỉ mất 10 %); head chịu lệch rất ít (nhiễu σ 0,05 z mất 44 % lợi); bộ sinh học được fit trên pool: GMM 8/32 +0,0044, MADE +0,0026 — **không đủ năng lực** (+0,008) | [capacity oracle](../research/methods/support-capacity-oracle-2026-10-22.md) |
+| **P36 (22/10 14:20Z)** | owner "thử cả hai": (a) **Project48 + copula vs phương pháp hiện hành PASS hai seed** frozen-head (+0,0077 / +0,0051, worst +0,005 / −0,002); (b) GMM diag lớp tấn công **FAIL** (+0,0004 / +0,0008 so p48_cop, 3,3 MB EM) — đóng GMM. R1 stack cvp + cop ×1,63 / ×1,51 (15 / 50 round, copula fp32) ⇒ cần nén trước run dài | [two-seed](../research/methods/teacher-support-two-seed-2026-10-22.md) |
+| **Vòng 26 (online, 22/10 19:15Z)** | **FAIL**: `cvp` + `cop` ep15 0,8249 vs xa 0,8246 (Δ +0,0003, benign +0,0053, worst +0,0026), 8,20 MB/client ×1,59; dấu hiệu (a): teacher hiệu chỉnh ≈ gốc từ ep5; posMirror +0,120 nhưng timeDelay −0,078, suddenStop −0,025 ⇒ harness frozen-head không dự báo online | [results §Vòng 26](../methods/full-drift/results.md) |
+| **P37 (23/10, Kaggle)** | synthetic đổi trọng số private/proxy, full model, code production. **Không ứng viên** (tách BN / head-only < production ở ep6, ep15); oracle dòng thật chỉ +0,0034 / +0,0099 so production ⇒ cổng online +0,010 ở trần oracle; copula +0,002; BN trộn không hại; proxy không đổi. Kèm tài liệu tham khảo | [P37](../research/methods/synthetic-weight-dynamics-2026-10-23.md) |
 
-[17–20/10 trước r25](../archive/operations/continuation-2026-10-17.md),
-[r24 recovery](../archive/operations/final-recovery-2026-10-20.md), [20/10 16Z → 21/10 08Z](../archive/operations/continuation-2026-10-20-21.md).
-`check_project_layout.py` còn mismatch DVC migration14/10; phiên này không đổi DVC. Không sửa DVC để làm check xanh.
-Source/test local không thay remote2T4 proof; run status không thay scientific artifact audit.
+**Bước tiếp:** P37 xong, theo luật khóa không có lần thử online nào đủ điều kiện ⇒ **owner quyết đóng hướng synthetic** (hoặc nêu hướng khác).
+Không mở biến thể BN/head/cop/GMM/cv/xo. Backup Git/DVC: owner tự làm (mục "Backup 23/10" dưới).
+
+Chạy lại P32 (local, ~10 phút, cùng weights/fixture P24–31):
+
+```bash
+cd methods/full-drift/builds/fd-probe/source/proj
+W=../../artifacts/kaggle/fd-s42xa-20261015-r22-v1/runs/fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_s42_e15/weights/round_015.pt
+FX=../../../../../../archive/methods/shared-baselines/builds/pilot-baselines/artifacts/fixture
+conda run -n nckh python ../../../../../../scripts/run_local_guarded.py python fd_probe32.py --weights $W --fixture $FX --out <out.json>
+```
+
+## Ràng buộc giữ nguyên
+
+- **R1:** tổng byte/client ≤ 1,5× xa ở **cả 15 và 50 round**, ≤ 231.000 B/contact kể cả bootstrap; byte nhỏ của một carrier không chứng minh
+  toàn phương pháp đạt (tính upload/downlink/header/ACK/crypto/chờ contact). Copula one-shot hiện ~1,9 MB/client — chưa nén.
+- **R2** mixed architectures chưa kiểm; mọi model hiện là DAGSNet.
+- Test20 chỉ báo cáo; không chọn HP/round/recipe bằng test. old/group là development set đã dùng nhiều lần.
+- Candidate mới: cơ chế đổi → đối chứng → falsifier → cổng dừng, giữ benign ≥ −0,005, worst ≥ −0,010; online ep15 +0,010, s43/horizon riêng.
+- Kaggle: owner dùng cho dự án khác ⇒ đọc quota live trước push; credentials account-scoped, không in key; notebook private 0600.
+- Không Git/DVC push/backup/cleanup khi owner chưa yêu cầu. HEAD `f6ed8ed`; có thay đổi chưa commit của nhiều phiên — giữ nguyên.
+
+## Việc tay
+
+Không có. Lịch sử bàn giao: [22/10 report final + P29–31](../archive/operations/continuation-2026-10-22.md),
+[synthetic trước compact 03Z](../archive/operations/continuation-synthetic-2026-10-22.md),
+[snapshot trước đủ report](../archive/operations/continuation-before-final-report-2026-10-22.md),
+[20–21/10](../archive/operations/continuation-2026-10-20-21.md). Snapshot lịch sử không phải trạng thái hiện tại.

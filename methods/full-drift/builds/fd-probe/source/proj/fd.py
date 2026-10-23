@@ -104,7 +104,11 @@ ARMS = ['fd_dml', 'fd_dml_prox', 'fd_dml_avgm', 'fd_fedavg', 'fd_gaussian', 'fd_
         # last Linear re-fitted by the server on virtual h256 features drawn from every client's class moments of that snapshot
         # (SecureSum-additive), one covariance per class (cvf) or one shared within-class covariance (cvl); that head is the private's
         # teacher (frz KD on real rows and gkd KL on Gaussian rows)
-        'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvf', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl']
+        'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvf', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvl',
+        # round 26 (owner 22/10 after probes 32-36): the cv refit in a 48-d projection of h256 that holds every snapshot head direction
+        # plus a fixed random complement, one covariance per class there (cvp, probe 23 Project48), alone and with the round-18 copula
+        # support (cop): probe 36 frozen-head, both seeds, cvp + cop vs the deployed method +0.0077 / +0.0051
+        'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp', 'fd_dml_m4b_gpool_q3_frz_gkd_la_kdpx_zl_cvp_cop']
 MU, SWAP_P, EMA_BETA, CAL_ROWS, SERVER_BETA = 0.01, 0.5, 0.5 ** 0.5, 65536, 0.9
 KD_CAP, DYN_ALPHA, CONS_LAMBDA, PROBE_ROWS = 1.0, 0.01, 1.0, 512   # plan §4.2 / §5.1 / §4.5 screening values
 KD_UP, GW2 = 2.0, 2.0   # round 11 kd2: private-side KD weight multiplier; gw2: weight of the private-only Gaussian CE
@@ -112,6 +116,7 @@ KD_T, GK2, COP_BINS, COP_LIM = 2.0, 2.0, 256, 8.0   # round 18: t2 temperature, 
 P1_LAMBDA, P1_T, P1_CLASSES = 0.25, 1.0, (0, 4)   # round 13 P1: KL weight, temperature, classes (benign, dataReplay)
 XO_RHO, XO_FLOOR = 0.3, 0.1   # round 24 xo: donor feature rate; uniform share (over held pairs) mixed into the pair priority
 CV_STEPS, CV_BATCH, CV_LR, CV_JITTER = 3000, 4096, 1e-3, 1e-4   # round 25 cv: server head fit on virtual features (probe 22)
+CV_PROJ = 48   # round 26 cvp: projected width (probe 23 Project48)
 BLOCK = ['f_rcv_pos_noise_x', 'f_rcv_pos_noise_y', 'f_rcv_spd_noise', 'f_rcv_acl_noise', 'f_rcv_hed_noise',
          'f_rcv_noise_mag', 'f_rcv_profile_normal', 'f_rcv_profile_cautious', 'f_rcv_profile_aggressive']
 POSITION = ['f_rcv_x_rel', 'f_rcv_y_rel', 'f_snd_x_rel', 'f_snd_y_rel']
@@ -590,7 +595,7 @@ class Run(FullRun):
         self.pce, self.t2, self.gk2 = 'pce' in tokens, 't2' in tokens, 'gk2' in tokens
         assert not (self.t2 or self.gk2) or self.gkd
         self.xo = next((t for t in tokens if t in ('xo', 'xou')), None); assert not self.xo or (self.gkd and not self.t2)   # round 24
-        self.cv = next((t for t in tokens if t in ('cvf', 'cvl')), None); assert not self.cv or (self.gkd and self.frz)   # round 25
+        self.cv = next((t for t in tokens if t in ('cvf', 'cvl', 'cvp')), None); assert not self.cv or (self.gkd and self.frz)   # round 25/26
         assert ('g512' in tokens) == (args.aux_batch == (128 if args.smoke else 512)), 'g512 <=> doubled aux_batch (set in main)'
         hidden = BLOCK + POSITION if 'm4b' in tokens else POSITION if self.swap else []
         # --final (owner 19/10): the final-protocol fixture (every train80% row, no group/old); smoke reuses the pilot fixture
@@ -747,11 +752,19 @@ class Run(FullRun):
                 out.append(model.head[:4](model.combined(self.mask(x[s:s + 16384].float()))).float())
         return torch.cat(out), self.Y[k][self.cal[k]]
 
+    def cv_basis(self, state):
+        """Round 26 cvp: orthonormal CV_PROJ-column basis of h256 whose span holds every row of the snapshot head.5 weight, completed
+        by a fixed random complement (CPU float64 QR, seed 23): every client and the server derive it from the snapshot, no bytes."""
+        g = torch.Generator(device='cpu').manual_seed(23); extra = torch.randn(256, 256, generator=g, dtype=torch.float64)
+        w = state['head.5.weight'].double().cpu()
+        return torch.linalg.qr(torch.cat([w.T, extra], 1), mode='reduced').Q[:, :CV_PROJ].to(self.dev)
+
     def cv_stats(self, state, k):
         """Round 25 client message (SecureSum-additive sums): class counts, class sums of h, sum of h h^T per class (cvf) or over
-        all rows (cvl: the server derives one shared within-class covariance)."""
+        all rows (cvl: the server derives one shared within-class covariance); cvp (round 26): the same per class in the projection."""
         h, y = self.cv_features(state, k); h = h.double(); onehot = F.one_hot(y, 16).double()
-        ss = torch.stack([h[y == c].T @ h[y == c] for c in range(16)]) if self.cv == 'cvf' else h.T @ h
+        if self.cv == 'cvp': h = h @ self.cv_basis(state)
+        ss = torch.stack([h[y == c].T @ h[y == c] for c in range(16)]) if self.cv in ('cvf', 'cvp') else h.T @ h
         return dict(n=onehot.sum(0).cpu(), s=(onehot.T @ h).cpu(), ss=ss.cpu())
 
     def cv_calibrate(self, stats, state, r):
@@ -760,10 +773,13 @@ class Run(FullRun):
         n = sum(v['n'] for v in stats).to(self.dev); s = sum(v['s'] for v in stats).to(self.dev); ss = sum(v['ss'] for v in stats).to(self.dev)
         mu = s / n[:, None].clamp_min(1); outer = n[:, None, None] * mu[:, :, None] * mu[:, None, :]
         eye = CV_JITTER * torch.eye(mu.shape[1], dtype=torch.float64, device=self.dev)
-        cov = (ss - outer) / (n[:, None, None] - 1).clamp_min(1) + eye if self.cv == 'cvf' else (ss - outer.sum(0)) / (n.sum() - 16) + eye
+        cov = (ss - outer) / (n[:, None, None] - 1).clamp_min(1) + eye if self.cv in ('cvf', 'cvp') else (ss - outer.sum(0)) / (n.sum() - 16) + eye
         L, mu = torch.linalg.cholesky(cov).float(), mu.float()
         fc = torch.nn.Linear(mu.shape[1], 16).to(self.dev)
-        with torch.no_grad(): fc.weight.copy_(state['head.5.weight'].float()); fc.bias.copy_(state['head.5.bias'].float())
+        basis = self.cv_basis(state).float() if self.cv == 'cvp' else None   # cvp: fit the head restricted to the projection
+        with torch.no_grad():
+            fc.weight.copy_(state['head.5.weight'].float() @ basis if basis is not None else state['head.5.weight'].float())
+            fc.bias.copy_(state['head.5.bias'].float())
         opt = torch.optim.Adam(fc.parameters(), lr=CV_LR); g = self.gen(r, 0, 25); share = (n / n.sum()).float()
         for _ in range(CV_STEPS):
             c = torch.multinomial(share, CV_BATCH, replacement=True, generator=g)
@@ -771,7 +787,8 @@ class Run(FullRun):
             x = mu[c] + (z @ L.T if L.dim() == 2 else (L[c] @ z[:, :, None]).squeeze(-1))
             loss = F.cross_entropy(fc(x), c); opt.zero_grad(set_to_none=True); loss.backward(); opt.step()
         assert torch.isfinite(fc.weight).all() and torch.isfinite(fc.bias).all(), ('cv head', r)
-        return {'head.5.weight': fc.weight.detach().to(state['head.5.weight'].dtype),
+        weight = fc.weight.detach() @ basis.T if basis is not None else fc.weight.detach()
+        return {'head.5.weight': weight.to(state['head.5.weight'].dtype),
                 'head.5.bias': fc.bias.detach().to(state['head.5.bias'].dtype)}
 
     def cv_round(self, method, r, pool=None):
@@ -784,7 +801,8 @@ class Run(FullRun):
         stats = pool.cv_stats(method, self) if pool else {k: self.cv_stats(method.global_state, k) for k in range(self.K)}
         method.cv_head = self.cv_calibrate([stats[k] for k in range(self.K)], method.global_state, r)
         self.cv_seconds = time.perf_counter() - started
-        up = 4 * (16 + 16 * 256 + (16 if self.cv == 'cvf' else 1) * 256 * 257 // 2); down = 4 * sum(v.numel() for v in method.cv_head.values())
+        width = CV_PROJ if self.cv == 'cvp' else 256
+        up = 4 * (16 + 16 * width + (1 if self.cv == 'cvl' else 16) * width * (width + 1) // 2); down = 4 * sum(v.numel() for v in method.cv_head.values())
         for k in range(self.K): self.bytes += [(r, k, 'up', 'cv_stats', up), (r, k, 'down', 'cv_head', down)]
 
     @staticmethod
@@ -1330,7 +1348,8 @@ def main():
                   kd_cap=KD_CAP, dyn_alpha=DYN_ALPHA, cons_lambda=CONS_LAMBDA, probe_rows=PROBE_ROWS, kd_up=KD_UP, gw2=GW2,
                   p1_lambda=P1_LAMBDA, p1_t=P1_T, p1_classes=list(P1_CLASSES))
     if {'xo', 'xou'} & set(a.arm.split('_')): config.update(xo_rho=XO_RHO, xo_floor=XO_FLOOR)   # round 24; absent otherwise
-    if {'cvf', 'cvl'} & set(a.arm.split('_')): config.update(cv_steps=CV_STEPS, cv_batch=CV_BATCH, cv_lr=CV_LR, cv_jitter=CV_JITTER)   # round 25
+    if {'cvf', 'cvl', 'cvp'} & set(a.arm.split('_')): config.update(cv_steps=CV_STEPS, cv_batch=CV_BATCH, cv_lr=CV_LR, cv_jitter=CV_JITTER)   # round 25
+    if 'cvp' in a.arm.split('_'): config.update(cv_proj=CV_PROJ)   # round 26 (cvf/cvl configs unchanged)
     if a.parent:   # same scientific config as the parent run (only the stop epoch differs); its committed weights SHA-checked
         cfg, row = parent_marker(a)
         same = lambda c: {k: v for k, v in c.items() if k not in ('stop_after', 'parent')}

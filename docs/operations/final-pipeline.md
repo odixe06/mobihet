@@ -18,7 +18,7 @@ Giữ DAGSNet/dataset/scaler/partition, `--fast`; không dùng official test ch�
 Ước lượng từ bốn run probe đã audit: train median736–837s, max810–959s trên~40M dòng; test ep15 cũ949–981s.
 Ngoại suy43,05M train và parallel EMA; **chưa benchmark final50/100c**. Setup5–15phút cũ đã bị bác:
 artifact r24 đo prepare20c1797s (~30phút),100c2712s (~45phút), chưa gồm mọi compile/startup.
-[Timing đã audit](evidence/final-2026-10-20/r24-prepare-timing.json). ETA toàn chiến dịch200–300session-hours cũ chưa tính đúng
+[Timing đã audit](../archive/operations/evidence/final-2026-10-20/r24-prepare-timing.json). ETA toàn chiến dịch200–300session-hours cũ chưa tính đúng
 repeated preparation cho hàng trăm notebook chấm; cần tính lại, không coi đủ quota/đã tối ưu.
 Giữ source r25 đã push; phiên sau ưu tiên đo/giảm repeated decode bằng fixture cache có provenance, kiểm tương đương
 trước tag vận hành mới. Query quota live/reset trước mỗi batch.
@@ -30,7 +30,7 @@ Batch đầu16notebook chấm; tối đa2GPU session/account, ưu tiên round se
 ## Source và kiểm chứng
 
 Source mới `20261015-r25`; giữ nguyên r24 đã push. So r24, chỉ source `fd.py` đổi;40module legacy không đổi.
-[Local proof](evidence/final-2026-10-20/final-recovery-local-2026-10-20.json).
+[Local proof](../archive/operations/evidence/final-2026-10-20/final-recovery-local-2026-10-20.json).
 
 - [fd.py](../../methods/full-drift/builds/fd-probe/source/proj/fd.py): final fixture context, K20/50/100, defer_eval/session cap,
   weights/resume/codec mỗi round, fingerprint; [fd_prepare.py](../../methods/full-drift/builds/fd-probe/source/proj/fd_prepare.py): partition đúngK, toàn train80%.

@@ -4,11 +4,13 @@ same relpath. Objects are copied tmp -> MD5 verify -> rename. The .dvc file is u
 
     python scripts/dvc_merge_push.py <build>/<name>.dvc [...]
 """
-import hashlib, json, os, shutil, sys
+import configparser, hashlib, json, os, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REMOTE = Path('/mnt/g/My Drive/NCKH/veremi_build/mobihet/dvc-storage/files/md5')
+_config = configparser.ConfigParser()
+_config.read(ROOT / '.dvc/config')
+REMOTE = Path(_config[f'\'remote "{_config["core"]["remote"]}"\'']['url']) / 'files/md5'
 CACHE = ROOT / '.dvc/cache/files/md5'
 
 

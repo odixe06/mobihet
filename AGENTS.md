@@ -74,8 +74,10 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## 6. Bắt đầu mỗi phiên
 
-**Đọc [CONTEXT.md](CONTEXT.md) (trạng thái, quyết định) rồi [LESSONS.md](LESSONS.md) (bài học bắt buộc) trước khi làm bất cứ việc gì.**
-Khi rút ra bài học mới hoặc một bài học bị bác bỏ, sửa LESSONS.md ngay trong phiên đó.
+**Đọc [CONTEXT.md](CONTEXT.md) (trạng thái, quyết định) rồi [LESSONS.md](LESSONS.md) (bài học kỹ thuật) và
+[docs/operations/lessons.md](docs/operations/lessons.md) (bài học vận hành) trước khi làm bất cứ việc gì.**
+Khi rút ra bài học mới hoặc một bài học bị bác bỏ, sửa ngay trong phiên đó: phương pháp/dữ liệu/train/đánh giá/code → LESSONS.md;
+Kaggle/notebook/pipeline, collector/máy local, Git/DVC/cloud → docs/operations/lessons.md.
 
 ## 7. Skill bắt buộc theo loại việc (`.agents/skills/`)
 
@@ -88,4 +90,5 @@ Trước khi làm, gọi skill khớp với việc; nhiều việc khớp nhiề
 | theo dõi run đang chạy, health, tiến độ W&B | `wandb-training-monitor` |
 | tối ưu tốc độ code train (workers, compile, host sync, benchmark), test tương đương | `federated-training-speed` |
 | sắp xếp CONTEXT/docs/knowledge, quyết định đặt thông tin ở đâu | `context-hub` |
+| nắm toàn bộ context đầu phiên / sau compact, ghi bàn giao sống, snapshot mốc, dời tài liệu + kiểm link | `project-context` |
 | backup Git/DVC, restore, dọn ổ (chỉ khi owner yêu cầu) | `repo-backup` |

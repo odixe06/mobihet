@@ -1,0 +1,4644 @@
+{
+ "scope": "16 class-stratified train points, local FP32 Jacobians/finite perturbations; not population/F1 or R1/R2 proof",
+ "weights_sha": "e87cf37150ec90bcc08c4331ea91ec3a2882aaa07daf382a42f4c10af52d0518",
+ "fixture_sha": "c67c0b5a0190e7e33c1ddc7f927de5bb0070437ea7821ce3af5c62247f64af8e",
+ "source_sha": "c1956d436b21b28cc22da4d1f1487535e690be06d8d0841c5256a278abf8d1ca",
+ "protocol": {
+  "rank_relative_threshold": 1e-05,
+  "rank_absolute_floor": 1e-08,
+  "epsilons": [
+   0.01,
+   0.001
+  ],
+  "seed": 31,
+  "matmul_tf32": false,
+  "cudnn_tf32": false
+ },
+ "points": [
+  {
+   "true_class": 0,
+   "source_client": 0,
+   "row": 18724,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.00034998023730874916,
+     "teacher_linear_relative_response": 3.3566433336707e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00025091859319056274,
+       "private_normalized_response": 0.011646150571201906
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.988371470042908e-05,
+       "private_normalized_response": 0.012844551218267752
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.0011843228901802848,
+     "teacher_linear_relative_response": 2.571529385795258e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00015230382090451733,
+       "private_normalized_response": 0.02564573761610851
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.157664226391707e-05,
+       "private_normalized_response": 0.02499364271038306
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0002321368021653521,
+     "teacher_linear_relative_response": 2.1689430707283793e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002818454422071998,
+       "private_normalized_response": 0.012846094555573048
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.2871328305443773e-05,
+       "private_normalized_response": 0.012899814138249798
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.00045491657039712274,
+     "teacher_linear_relative_response": 5.012435432646279e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0004058124855399876,
+       "private_normalized_response": 0.014242438526699307
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.85752770492168e-05,
+       "private_normalized_response": 0.014646235762755259
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0010535051529288852,
+     "teacher_linear_relative_response": 3.599858367011352e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000258779774938383,
+       "private_normalized_response": 0.024704226879032114
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.308280947464722e-05,
+       "private_normalized_response": 0.02475002084580765
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.0006223584968559221,
+     "teacher_linear_relative_response": 2.1993901958686994e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002820954705362639,
+       "private_normalized_response": 0.019768487260817084
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.0904760765032163e-05,
+       "private_normalized_response": 0.019787188704432173
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0007667037168648993,
+     "teacher_linear_relative_response": 2.4533312182221833e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002559663006020021,
+       "private_normalized_response": 0.02163655541496892
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.611644631825464e-05,
+       "private_normalized_response": 0.02170893238858733
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.0007094200443287222,
+     "teacher_linear_relative_response": 2.871068338467214e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002676661657921906,
+       "private_normalized_response": 0.018725096066053947
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.295452920665899e-05,
+       "private_normalized_response": 0.01899517138900805
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0008098537341947978,
+     "teacher_linear_relative_response": 2.355141366528319e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002280745333981065,
+       "private_normalized_response": 0.023851401485842416
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.0515378095740717e-05,
+       "private_normalized_response": 0.02388293435624414
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.000875377148403855,
+     "teacher_linear_relative_response": 4.400964750959327e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003705433474477472,
+       "private_normalized_response": 0.018735009284949432
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.2116094411690613e-05,
+       "private_normalized_response": 0.018714719080260615
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.00020825351168149482,
+     "teacher_linear_relative_response": 2.997791411163965e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005661695351533239,
+       "private_normalized_response": 0.010774596821745926
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.0078137980557718e-05,
+       "private_normalized_response": 0.011020871794655853
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.0010050871503183853,
+     "teacher_linear_relative_response": 4.7313513431630444e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00015976777377286428,
+       "private_normalized_response": 0.026041094424224833
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.2155965795831424e-05,
+       "private_normalized_response": 0.026006987486107497
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0012505615872617877,
+     "teacher_linear_relative_response": 3.3215633776768526e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0001569316392984698,
+       "private_normalized_response": 0.024836194711364043
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.6106434888427026e-05,
+       "private_normalized_response": 0.02455448442102293
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0016725907225126912,
+     "teacher_linear_relative_response": 4.0300965760296555e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002689421619542055,
+       "private_normalized_response": 0.03560412513975575
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.3029686972945803e-05,
+       "private_normalized_response": 0.03518373388016072
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0007885460465732354,
+     "teacher_linear_relative_response": 5.173108020210739e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007923865694619825,
+       "private_normalized_response": 0.023727166351645776
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.0351728232060904e-05,
+       "private_normalized_response": 0.023706127570691213
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0007810667695910816,
+     "teacher_linear_relative_response": 2.1253352318780156e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00014830488894385452,
+       "private_normalized_response": 0.01884329111796865
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.5322474419840398e-05,
+       "private_normalized_response": 0.018888066898766393
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0006342233009394131,
+     "teacher_linear_relative_response": 2.321656571386001e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00014639974977270756,
+       "private_normalized_response": 0.018304019855817456
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.5994509919839453e-05,
+       "private_normalized_response": 0.018263287625048846
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.000924919758368896,
+     "teacher_linear_relative_response": 3.584664548199433e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003731857379045965,
+       "private_normalized_response": 0.025331667046760757
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.7100765238053926e-05,
+       "private_normalized_response": 0.025049707597327615
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.001339139206515409,
+     "teacher_linear_relative_response": 3.580179212834025e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00024997706426034647,
+       "private_normalized_response": 0.03083932158303196
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.2527185592974375e-05,
+       "private_normalized_response": 0.030592157089491718
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0005432280647089509,
+     "teacher_linear_relative_response": 4.0734693886326237e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007181876706304845,
+       "private_normalized_response": 0.01958243566943882
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.773381536900158e-05,
+       "private_normalized_response": 0.02015275347004144
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 1,
+   "source_client": 1,
+   "row": 1132,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.0013901259707557075,
+     "teacher_linear_relative_response": 3.2714426432277045e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0010812798647100899,
+       "private_normalized_response": 0.030271333066055665
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007435663885715599,
+       "private_normalized_response": 0.03046236396974173
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.0009030427825989491,
+     "teacher_linear_relative_response": 4.812418761967468e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001062719107873619,
+       "private_normalized_response": 0.021981705454194218
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006357990911650414,
+       "private_normalized_response": 0.02260979188755699
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0005203820805210903,
+     "teacher_linear_relative_response": 3.275467501601744e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001032941940467219,
+       "private_normalized_response": 0.018782316649158904
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007660539284872945,
+       "private_normalized_response": 0.01887498468332132
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.001784157459006854,
+     "teacher_linear_relative_response": 3.357721477557335e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013435674335892983,
+       "private_normalized_response": 0.029272984254615587
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005754487854165283,
+       "private_normalized_response": 0.02929860852913793
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0010622951974555124,
+     "teacher_linear_relative_response": 3.6033978074100015e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008191815982240185,
+       "private_normalized_response": 0.023440329570680915
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000380504331747887,
+       "private_normalized_response": 0.02250412771699535
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.004122045477086832,
+     "teacher_linear_relative_response": 2.357262385968546e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0014414171717327025,
+       "private_normalized_response": 0.05302922226039857
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0010242757361350727,
+       "private_normalized_response": 0.05248387363045397
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0010789608675462817,
+     "teacher_linear_relative_response": 3.2831095908517474e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008580398648753635,
+       "private_normalized_response": 0.024612145555236553
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00040295984327820924,
+       "private_normalized_response": 0.02430466211208563
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.0022880533970374003,
+     "teacher_linear_relative_response": 2.231562732765906e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009110581663809428,
+       "private_normalized_response": 0.035959486577887605
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00023770969291036362,
+       "private_normalized_response": 0.03619170520015056
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.000658344201043217,
+     "teacher_linear_relative_response": 4.98541641211681e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0012850312802997104,
+       "private_normalized_response": 0.018493819766458013
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0008399814681035485,
+       "private_normalized_response": 0.018800969431770044
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0017765587466521628,
+     "teacher_linear_relative_response": 1.962818718561024e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001146101716978379,
+       "private_normalized_response": 0.03440929361306904
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0008664661751646958,
+       "private_normalized_response": 0.033849072510564
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0014650179186290184,
+     "teacher_linear_relative_response": 2.82253366086732e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006762412298765205,
+       "private_normalized_response": 0.032122490301944015
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000323989926560875,
+       "private_normalized_response": 0.03214350272144104
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.0006801005722677509,
+     "teacher_linear_relative_response": 2.7247536286976923e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006733872366568646,
+       "private_normalized_response": 0.020203549936242512
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004274386371524516,
+       "private_normalized_response": 0.01982643702536667
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.002268573245929219,
+     "teacher_linear_relative_response": 1.8361607761491543e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009848676969914157,
+       "private_normalized_response": 0.03456739654080033
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007305895832779586,
+       "private_normalized_response": 0.03479584959220024
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.003090339615732,
+     "teacher_linear_relative_response": 3.2968636707228515e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008200317187898532,
+       "private_normalized_response": 0.042647317368556655
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00026604515153800054,
+       "private_normalized_response": 0.04258276808977648
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.001764403033783259,
+     "teacher_linear_relative_response": 2.972373403024566e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011862449545209815,
+       "private_normalized_response": 0.03335132918524006
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0008543540260558045,
+       "private_normalized_response": 0.033479484983735236
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0004440248902431395,
+     "teacher_linear_relative_response": 5.087618954942644e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017539984931550076,
+       "private_normalized_response": 0.013538701635174625
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0012119190754621687,
+       "private_normalized_response": 0.013425004691682705
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0015901554989847368,
+     "teacher_linear_relative_response": 2.2905727935755182e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001606006989498229,
+       "private_normalized_response": 0.03527218663640503
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0011791743098969651,
+       "private_normalized_response": 0.03514995309917159
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0018162498049944752,
+     "teacher_linear_relative_response": 6.359301943529327e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008882029816941961,
+       "private_normalized_response": 0.02935691995415424
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006559329881776439,
+       "private_normalized_response": 0.030110936660935436
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.002944624625618039,
+     "teacher_linear_relative_response": 2.409752238017883e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00037110388392435777,
+       "private_normalized_response": 0.03526264056607043
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00018415443478440925,
+       "private_normalized_response": 0.03526862875850028
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0007610816943953454,
+     "teacher_linear_relative_response": 3.640891537459569e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006694691784146869,
+       "private_normalized_response": 0.021112351684911924
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00034922176796667797,
+       "private_normalized_response": 0.02108345811645646
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 2,
+   "source_client": 2,
+   "row": 31769,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.00046696283535660514,
+     "teacher_linear_relative_response": 2.8482955602932356e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005223291612912642,
+       "private_normalized_response": 0.015927774793913038
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001420117869487298,
+       "private_normalized_response": 0.01605164270492744
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.00038347907814003675,
+     "teacher_linear_relative_response": 5.986431635495914e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006242448517633981,
+       "private_normalized_response": 0.013193348197418209
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00014575209784765763,
+       "private_normalized_response": 0.013069619273971428
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0002974247017528872,
+     "teacher_linear_relative_response": 2.5771307423214686e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001443572421514151,
+       "private_normalized_response": 0.014047432065314424
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001428052500757491,
+       "private_normalized_response": 0.013539677424566611
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.00019605868624556047,
+     "teacher_linear_relative_response": 3.580394712701044e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011331527761814773,
+       "private_normalized_response": 0.010345614068372267
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.1561564648361392e-05,
+       "private_normalized_response": 0.010357772591177337
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0005011838029310569,
+     "teacher_linear_relative_response": 8.329361327969647e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009328352281477274,
+       "private_normalized_response": 0.017514252034565744
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00010987917879540301,
+       "private_normalized_response": 0.01756454238427098
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.0005753769088182707,
+     "teacher_linear_relative_response": 5.769863813848227e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011058753183085632,
+       "private_normalized_response": 0.015766898307791436
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002496654486078266,
+       "private_normalized_response": 0.016949843980400725
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0007422105199762284,
+     "teacher_linear_relative_response": 3.471496488590013e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001006502614921152,
+       "private_normalized_response": 0.020444500507956587
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00017479388777766772,
+       "private_normalized_response": 0.01871955710211675
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.00034393164918848315,
+     "teacher_linear_relative_response": 3.8880117600717335e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017140143938571746,
+       "private_normalized_response": 0.014048656689484018
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001078054738220747,
+       "private_normalized_response": 0.014003785878619045
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0004977668061001863,
+     "teacher_linear_relative_response": 4.5434218571932577e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008158029363424019,
+       "private_normalized_response": 0.016021698023104877
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.7946913935130226e-05,
+       "private_normalized_response": 0.016012077749553693
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0001036476354207065,
+     "teacher_linear_relative_response": 5.04484707567844e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001410908455303815,
+       "private_normalized_response": 0.0068973766220270976
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.66041039726392e-05,
+       "private_normalized_response": 0.006827826811957335
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0006731438228466345,
+     "teacher_linear_relative_response": 4.145599105224614e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00048239678584777954,
+       "private_normalized_response": 0.021420354852923543
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.32462301503109e-05,
+       "private_normalized_response": 0.021511690637494408
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.00020557375316334746,
+     "teacher_linear_relative_response": 4.9069231869039094e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00044459960121282085,
+       "private_normalized_response": 0.010960089096439085
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.32996673869955e-05,
+       "private_normalized_response": 0.011030233626498317
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0014669495797781705,
+     "teacher_linear_relative_response": 6.384437950220279e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005599064650483163,
+       "private_normalized_response": 0.02372442577293859
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000157837577528173,
+       "private_normalized_response": 0.02456251363892165
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.00011856871507017088,
+     "teacher_linear_relative_response": 7.1797677685457e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005665437737400789,
+       "private_normalized_response": 0.00801381611689154
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.988766972513863e-05,
+       "private_normalized_response": 0.008027642340817454
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.00025246943299580264,
+     "teacher_linear_relative_response": 2.5551790149544034e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007458644929478714,
+       "private_normalized_response": 0.013686778466419023
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00011401201821947525,
+       "private_normalized_response": 0.013536905104592555
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.00047859364118413473,
+     "teacher_linear_relative_response": 4.5984877509972737e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0010510228877895858,
+       "private_normalized_response": 0.015137579159329716
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001809334125396897,
+       "private_normalized_response": 0.01497555701630576
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0004580387668534376,
+     "teacher_linear_relative_response": 3.553959056218975e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006761932421187152,
+       "private_normalized_response": 0.015988671258142944
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.887636458242461e-05,
+       "private_normalized_response": 0.015719747689736187
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0004090525583569508,
+     "teacher_linear_relative_response": 7.641391717654028e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001586770801872965,
+       "private_normalized_response": 0.01296931829148111
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00019465396322907016,
+       "private_normalized_response": 0.012925494046534394
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0004934103316382116,
+     "teacher_linear_relative_response": 2.862954651814286e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001493785764572511,
+       "private_normalized_response": 0.015832532058797612
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00011961443144241699,
+       "private_normalized_response": 0.015631456439208474
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0003900682274688012,
+     "teacher_linear_relative_response": 2.308763102620007e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00047836609460236076,
+       "private_normalized_response": 0.01347533994256166
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00013910815801789438,
+       "private_normalized_response": 0.013670361153285899
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 3,
+   "source_client": 3,
+   "row": 8812,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.004955832185259594,
+     "teacher_linear_relative_response": 5.666699536456957e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001779302277407782,
+       "private_normalized_response": 0.04525006372348905
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00039439976338087373,
+       "private_normalized_response": 0.045810396263850486
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.00388647849807356,
+     "teacher_linear_relative_response": 6.317559773620868e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003626442865299982,
+       "private_normalized_response": 0.051740151027508695
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00025025339578704157,
+       "private_normalized_response": 0.05355203135752044
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0025287093704735464,
+     "teacher_linear_relative_response": 6.734425978287869e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00356571057165407,
+       "private_normalized_response": 0.04020997517617266
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002574974467514231,
+       "private_normalized_response": 0.04024915933446788
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.004715465422876928,
+     "teacher_linear_relative_response": 4.790759277153353e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002398388061831247,
+       "private_normalized_response": 0.05254199028802355
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006887755415683452,
+       "private_normalized_response": 0.05191253725440167
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.002926269390760347,
+     "teacher_linear_relative_response": 6.212705873236865e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002232289976756843,
+       "private_normalized_response": 0.04330670639044769
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005850846730117168,
+       "private_normalized_response": 0.043220383843322496
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.007329953418879929,
+     "teacher_linear_relative_response": 3.868175749987048e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0021228372868089406,
+       "private_normalized_response": 0.055593561517960154
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.224588678212958e-05,
+       "private_normalized_response": 0.05573418293170974
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.004581302410945861,
+     "teacher_linear_relative_response": 6.241658148930047e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0032740965556214267,
+       "private_normalized_response": 0.06516711191362498
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000309994114552865,
+       "private_normalized_response": 0.06456362164432052
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.006290073688312521,
+     "teacher_linear_relative_response": 7.107253707499191e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0015989558177154427,
+       "private_normalized_response": 0.05451032699039789
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006271501757106991,
+       "private_normalized_response": 0.05463445020578268
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.003508394815821099,
+     "teacher_linear_relative_response": 4.716527432010097e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0045714167845986335,
+       "private_normalized_response": 0.04671908621746552
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00020035047808082565,
+       "private_normalized_response": 0.04648656998982582
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.008253387815624513,
+     "teacher_linear_relative_response": 2.990096267855432e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017080929142929359,
+       "private_normalized_response": 0.06789686928090463
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002828202768006986,
+       "private_normalized_response": 0.06806398522526483
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.003573939885426628,
+     "teacher_linear_relative_response": 6.52790531743799e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.004975628297131621,
+       "private_normalized_response": 0.04902042075272107
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00014537213634301078,
+       "private_normalized_response": 0.04937759403378163
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.001855682074074774,
+     "teacher_linear_relative_response": 7.27700715494217e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.004096244783697452,
+       "private_normalized_response": 0.03610633411586392
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003971126482686226,
+       "private_normalized_response": 0.03615241495804827
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.003061185589051724,
+     "teacher_linear_relative_response": 4.2113328824582066e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013742429227923388,
+       "private_normalized_response": 0.04381965943945038
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003503779929484734,
+       "private_normalized_response": 0.043974979853522646
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0016461617116943891,
+     "teacher_linear_relative_response": 6.659109950302929e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013336364754232557,
+       "private_normalized_response": 0.03118606893105244
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00042918469321078634,
+       "private_normalized_response": 0.03219298068065081
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.004063181746352737,
+     "teacher_linear_relative_response": 3.8826307301272256e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0022034879302733176,
+       "private_normalized_response": 0.05505400684493837
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004322262021031982,
+       "private_normalized_response": 0.05615201810437829
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.003106578018905237,
+     "teacher_linear_relative_response": 6.466108423631922e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002197316853758741,
+       "private_normalized_response": 0.043684084528969255
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005765718614362912,
+       "private_normalized_response": 0.04265509313746674
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0064850054621116435,
+     "teacher_linear_relative_response": 3.510846221097346e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009952106104611474,
+       "private_normalized_response": 0.053064912885569186
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00013374211714424302,
+       "private_normalized_response": 0.053003994480863605
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.006450940752917872,
+     "teacher_linear_relative_response": 6.764074924182847e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0021259611789172907,
+       "private_normalized_response": 0.06248995283708072
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005716684911900659,
+       "private_normalized_response": 0.06258069273778852
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.009086191632359061,
+     "teacher_linear_relative_response": 6.253282050358721e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.004196953033787953,
+       "private_normalized_response": 0.08243272117735029
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003113836268765981,
+       "private_normalized_response": 0.08200961485634148
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0027344979537555756,
+     "teacher_linear_relative_response": 4.9439181122784754e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0012361539146256597,
+       "private_normalized_response": 0.03872951113257835
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00014067735347776198,
+       "private_normalized_response": 0.0389610306099735
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 4,
+   "source_client": 4,
+   "row": 20001,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.0006309891851474067,
+     "teacher_linear_relative_response": 1.808719045224682e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000780085050804004,
+       "private_normalized_response": 0.01901620243568853
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.0356365308834185e-05,
+       "private_normalized_response": 0.019010958326482703
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.000533576360542506,
+     "teacher_linear_relative_response": 2.3507219775097907e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006304385222005426,
+       "private_normalized_response": 0.019392981639037254
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.615997745680008e-05,
+       "private_normalized_response": 0.01923655037418414
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.000600314420467402,
+     "teacher_linear_relative_response": 2.4620380544589842e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006270487158615652,
+       "private_normalized_response": 0.019357123321792322
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.840326392352016e-05,
+       "private_normalized_response": 0.019238693329162435
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0027848726277015993,
+     "teacher_linear_relative_response": 2.203095905164731e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000711121397300083,
+       "private_normalized_response": 0.045515155806786126
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00014823135005793568,
+       "private_normalized_response": 0.04516791136862083
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.002438265096246575,
+     "teacher_linear_relative_response": 2.2487041006744706e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00042254866468580024,
+       "private_normalized_response": 0.04366916729161842
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.738743213993554e-05,
+       "private_normalized_response": 0.04355869801143623
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.0007859661348954087,
+     "teacher_linear_relative_response": 2.0349017311786692e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006294894171934805,
+       "private_normalized_response": 0.02355763324046073
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00020462096247020822,
+       "private_normalized_response": 0.02333539593261989
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0006375977309940544,
+     "teacher_linear_relative_response": 2.2068380482418583e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006421417421913864,
+       "private_normalized_response": 0.018281044071581196
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.6266957282155156e-05,
+       "private_normalized_response": 0.020768218631195157
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.00043990272298654486,
+     "teacher_linear_relative_response": 1.9920101549954966e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005767278181808836,
+       "private_normalized_response": 0.015231085157179768
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.537194887620523e-05,
+       "private_normalized_response": 0.015431581874131626
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0007313677414470388,
+     "teacher_linear_relative_response": 2.0088852621136483e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006484355676989505,
+       "private_normalized_response": 0.017928134464491353
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00010355840076533014,
+       "private_normalized_response": 0.018397774864298087
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0007950375540035807,
+     "teacher_linear_relative_response": 2.2127092426949238e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007211016537006506,
+       "private_normalized_response": 0.022781862434384993
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.6676450501741155e-05,
+       "private_normalized_response": 0.023024949256514295
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0005455735306681703,
+     "teacher_linear_relative_response": 1.9434505014274067e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007367177344960234,
+       "private_normalized_response": 0.019408711439014084
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.8816778455204506e-05,
+       "private_normalized_response": 0.01947611972865462
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.001154539750192348,
+     "teacher_linear_relative_response": 2.068421434784772e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006695739576229745,
+       "private_normalized_response": 0.02985937702936759
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.343055773642249e-05,
+       "private_normalized_response": 0.02993245830088821
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0013049634092778357,
+     "teacher_linear_relative_response": 1.9433734490940577e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005175635920161403,
+       "private_normalized_response": 0.029639137565600705
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00034664667857497,
+       "private_normalized_response": 0.029727770051290753
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.00046798534023053377,
+     "teacher_linear_relative_response": 1.8563191218172185e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005845483373805929,
+       "private_normalized_response": 0.014605435404097875
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.180690982149417e-05,
+       "private_normalized_response": 0.014865560853652371
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0007362311068911298,
+     "teacher_linear_relative_response": 2.358446156432582e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005909275321112783,
+       "private_normalized_response": 0.024665762496897517
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00022383879477260723,
+       "private_normalized_response": 0.02418387577090201
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0007337729335410041,
+     "teacher_linear_relative_response": 2.002452965646001e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007310912342014997,
+       "private_normalized_response": 0.023548863136031165
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.077186839476802e-05,
+       "private_normalized_response": 0.023784266602334243
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0011405333223104923,
+     "teacher_linear_relative_response": 2.0890740299378225e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006579186481985416,
+       "private_normalized_response": 0.02396489066998136
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.3498740402683227e-05,
+       "private_normalized_response": 0.023919792257167272
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0004323064326594565,
+     "teacher_linear_relative_response": 1.8834429041392295e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005136116311283649,
+       "private_normalized_response": 0.01817778082343157
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00028127805820738394,
+       "private_normalized_response": 0.01712590163439415
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0017002562055457929,
+     "teacher_linear_relative_response": 2.3899271133856603e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005504786354381922,
+       "private_normalized_response": 0.03526079141901921
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.3479181090833605e-05,
+       "private_normalized_response": 0.03444170587478441
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.00046051628849994275,
+     "teacher_linear_relative_response": 2.3134983793023644e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005880106754300352,
+       "private_normalized_response": 0.014332604608090523
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.722067148510399e-05,
+       "private_normalized_response": 0.014568845231530413
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 5,
+   "source_client": 5,
+   "row": 31987,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.0043685756387611884,
+     "teacher_linear_relative_response": 5.192250490733657e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001749617996202064,
+       "private_normalized_response": 0.052980914891017535
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00016581208274526929,
+       "private_normalized_response": 0.05476869037029321
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.007229307517893839,
+     "teacher_linear_relative_response": 2.6676075450418796e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001114974797604942,
+       "private_normalized_response": 0.06359467518988927
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.5890614169260015e-05,
+       "private_normalized_response": 0.06843071998741485
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0047006074305999904,
+     "teacher_linear_relative_response": 5.652905971968946e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000654091211182728,
+       "private_normalized_response": 0.04751277603683942
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.152907573719455e-05,
+       "private_normalized_response": 0.047233809193107754
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0034009936923095003,
+     "teacher_linear_relative_response": 2.6550909119012915e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001788627632288843,
+       "private_normalized_response": 0.034264577414591976
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.181672478125673e-05,
+       "private_normalized_response": 0.03783026504290709
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.004453344544813411,
+     "teacher_linear_relative_response": 5.087124246708332e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017268170942802033,
+       "private_normalized_response": 0.04644247376506581
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001983673406806573,
+       "private_normalized_response": 0.047074259908433475
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.011819524355220297,
+     "teacher_linear_relative_response": 2.643871862676794e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003095782892567853,
+       "private_normalized_response": 0.08620252933218894
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.356049099084242e-05,
+       "private_normalized_response": 0.08615856106076179
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0034111447181041535,
+     "teacher_linear_relative_response": 4.742148175521003e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017160861507334866,
+       "private_normalized_response": 0.040816331229577896
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00019906303587533095,
+       "private_normalized_response": 0.04113733016486724
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.008787502125784564,
+     "teacher_linear_relative_response": 2.0471944719602298e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002191421100268618,
+       "private_normalized_response": 0.06163645916599274
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.922121642080064e-05,
+       "private_normalized_response": 0.061951020618900225
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0029244652100008247,
+     "teacher_linear_relative_response": 4.4311241039732605e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000404991231755842,
+       "private_normalized_response": 0.04556888810964224
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.8730552614273e-05,
+       "private_normalized_response": 0.04539638550985181
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.00714881431709163,
+     "teacher_linear_relative_response": 4.232046024088419e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005548013191692711,
+       "private_normalized_response": 0.05979986806956684
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.634947063931694e-05,
+       "private_normalized_response": 0.061575262652847074
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.004615097520180566,
+     "teacher_linear_relative_response": 3.322548170285956e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001829024729038552,
+       "private_normalized_response": 0.05061050625972557
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.026861025378497e-05,
+       "private_normalized_response": 0.05049898746235339
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.008856266327647699,
+     "teacher_linear_relative_response": 5.840811162242729e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009371111633078871,
+       "private_normalized_response": 0.07504398052842919
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00012926140118302347,
+       "private_normalized_response": 0.07385015622613485
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.006407754742716748,
+     "teacher_linear_relative_response": 3.9841615678061024e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013615006968510307,
+       "private_normalized_response": 0.05970798726520489
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.096951083631389e-05,
+       "private_normalized_response": 0.0617842547437349
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0044692684300693996,
+     "teacher_linear_relative_response": 4.5617935614947864e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001020150023296643,
+       "private_normalized_response": 0.045044339020858415
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.8281618903710135e-05,
+       "private_normalized_response": 0.04471132515291657
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.006308406145843416,
+     "teacher_linear_relative_response": 3.237807101359291e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0029608475159534522,
+       "private_normalized_response": 0.05680940912442336
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.60208020145092e-05,
+       "private_normalized_response": 0.05667797305657263
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0059765964630682155,
+     "teacher_linear_relative_response": 2.2994042545320658e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0030281710795613285,
+       "private_normalized_response": 0.0466013453750211
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.53585066206527e-05,
+       "private_normalized_response": 0.05105464602819537
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.016242114580914624,
+     "teacher_linear_relative_response": 6.745017381092503e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006818646877629325,
+       "private_normalized_response": 0.08349341590844896
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00012717350658791052,
+       "private_normalized_response": 0.08593511077577955
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0028917405893958852,
+     "teacher_linear_relative_response": 2.746233957209227e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001587838849765742,
+       "private_normalized_response": 0.036487472145278574
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00012293182228043567,
+       "private_normalized_response": 0.036607470387360494
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.004179542701381941,
+     "teacher_linear_relative_response": 4.1217810446485055e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0020784499799827924,
+       "private_normalized_response": 0.04438269875090139
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.128805645579055e-05,
+       "private_normalized_response": 0.045227695337757015
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.01577601825448876,
+     "teacher_linear_relative_response": 3.508973658053045e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003080155269904,
+       "private_normalized_response": 0.10591360688654071
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00011592122318989876,
+       "private_normalized_response": 0.10622235862989872
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 6,
+   "source_client": 6,
+   "row": 44736,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.000601616389190872,
+     "teacher_linear_relative_response": 1.806164590091664e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005117170304531696,
+       "private_normalized_response": 0.019481977536869637
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00013594721211327324,
+       "private_normalized_response": 0.01949818014880189
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.001193465771364726,
+     "teacher_linear_relative_response": 2.6168038675320375e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000939942037602429,
+       "private_normalized_response": 0.027849489318842218
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00010110518772928454,
+       "private_normalized_response": 0.027096493266821155
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0004346501066237065,
+     "teacher_linear_relative_response": 4.597707972688802e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00036466697214691265,
+       "private_normalized_response": 0.018165412365222726
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.322852133054647e-05,
+       "private_normalized_response": 0.018122112163935947
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0004607630324271357,
+     "teacher_linear_relative_response": 1.4639964116337525e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003085042965274361,
+       "private_normalized_response": 0.016716363756245044
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.4642604080387e-05,
+       "private_normalized_response": 0.0162909215854582
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0006360759409802492,
+     "teacher_linear_relative_response": 2.4992180282946657e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008751962898548557,
+       "private_normalized_response": 0.01771025683195971
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00016747961486975703,
+       "private_normalized_response": 0.01764560631918206
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.00038010009651538626,
+     "teacher_linear_relative_response": 8.053769409727788e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00029697090710189585,
+       "private_normalized_response": 0.014242881363629709
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.9396328773103426e-05,
+       "private_normalized_response": 0.014309096596764617
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.00036262265372398266,
+     "teacher_linear_relative_response": 1.2443864237211577e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00028379035423846193,
+       "private_normalized_response": 0.013251683984632407
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.861506986074373e-05,
+       "private_normalized_response": 0.013162020034180289
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.001174873139280046,
+     "teacher_linear_relative_response": 2.148299721854697e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003301205981823289,
+       "private_normalized_response": 0.027365725065999283
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00013509871516904925,
+       "private_normalized_response": 0.027344579648085596
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0007214815284171544,
+     "teacher_linear_relative_response": 7.501156853454512e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00030272079631987747,
+       "private_normalized_response": 0.01858177156103009
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001214004937788236,
+       "private_normalized_response": 0.01926159112542525
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.001142559956285594,
+     "teacher_linear_relative_response": 1.0305686018730949e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00032086429917888395,
+       "private_normalized_response": 0.027709154868597256
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.546784231257378e-05,
+       "private_normalized_response": 0.031111707140616292
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0006799497935844608,
+     "teacher_linear_relative_response": 1.6203506184482308e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000538372236141924,
+       "private_normalized_response": 0.021715664495091224
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001464561823482246,
+       "private_normalized_response": 0.02192397155726979
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.003588393076134986,
+     "teacher_linear_relative_response": 8.274814789235913e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00031888569798292594,
+       "private_normalized_response": 0.052127000456949985
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00010284755999573506,
+       "private_normalized_response": 0.05211493062415405
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0003153348083451567,
+     "teacher_linear_relative_response": 2.1374533237961645e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006901368650052314,
+       "private_normalized_response": 0.01402608818331613
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.8187919342593e-05,
+       "private_normalized_response": 0.01418803589807701
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0006969669381543498,
+     "teacher_linear_relative_response": 6.000548206812196e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003122328811059865,
+       "private_normalized_response": 0.024867814410630025
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.020637367324845e-05,
+       "private_normalized_response": 0.02492662754741523
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0008063057607221371,
+     "teacher_linear_relative_response": 2.042710197169234e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000694864992348199,
+       "private_normalized_response": 0.025219528165387535
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00012047847330494298,
+       "private_normalized_response": 0.02521330283530101
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0005903337930705845,
+     "teacher_linear_relative_response": 4.371282519361182e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00025835369568633564,
+       "private_normalized_response": 0.017505730405489844
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.668069844397118e-05,
+       "private_normalized_response": 0.017339118746078075
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.00030321179808117575,
+     "teacher_linear_relative_response": 3.4151945702310685e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000461056764337021,
+       "private_normalized_response": 0.01197247658513861
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.114266594614966e-05,
+       "private_normalized_response": 0.012017687412577398
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0008498258969891223,
+     "teacher_linear_relative_response": 1.0815211537496846e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00024402206418101469,
+       "private_normalized_response": 0.024534177065927622
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.723138430535403e-05,
+       "private_normalized_response": 0.02449085003955311
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0010575628890513024,
+     "teacher_linear_relative_response": 4.741514374424204e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0004074884226462095,
+       "private_normalized_response": 0.026617438999479194
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.657028467046422e-05,
+       "private_normalized_response": 0.026558588723535094
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.00022021466760041992,
+     "teacher_linear_relative_response": 1.162058402196976e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003167028304820087,
+       "private_normalized_response": 0.012323647767810345
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.64077279226641e-05,
+       "private_normalized_response": 0.0124484206697726
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 7,
+   "source_client": 7,
+   "row": 15693,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.0008607181642360691,
+     "teacher_linear_relative_response": 4.052365845065519e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006301810010942297,
+       "private_normalized_response": 0.02485477725061674
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.9552118126336066e-05,
+       "private_normalized_response": 0.02545307288335772
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.0007874470693956254,
+     "teacher_linear_relative_response": 4.645952496938446e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0004597459128347468,
+       "private_normalized_response": 0.02188331011479138
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.079544781107536e-05,
+       "private_normalized_response": 0.021738244508286843
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.000609214945589056,
+     "teacher_linear_relative_response": 4.474779664238881e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005826191669619687,
+       "private_normalized_response": 0.01846852154309142
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.6357253564247315e-05,
+       "private_normalized_response": 0.018437694835595504
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0006749208827994216,
+     "teacher_linear_relative_response": 4.1879302601633133e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000526239892566116,
+       "private_normalized_response": 0.022800929404021678
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.660073355161965e-05,
+       "private_normalized_response": 0.023790045941719806
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0005451784492440074,
+     "teacher_linear_relative_response": 3.8355199398434775e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005518780843778401,
+       "private_normalized_response": 0.0176183703725974
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.999422493294741e-05,
+       "private_normalized_response": 0.018564235967550323
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.0005458448205726407,
+     "teacher_linear_relative_response": 5.157718524237646e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0001882701069569808,
+       "private_normalized_response": 0.019636424361460555
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.9045603035325413e-05,
+       "private_normalized_response": 0.019143023115364054
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.00024123332418378546,
+     "teacher_linear_relative_response": 3.9807003378522217e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006599093011228962,
+       "private_normalized_response": 0.01124693176308728
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.301829698012788e-05,
+       "private_normalized_response": 0.011479516855205322
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.0008408127420489746,
+     "teacher_linear_relative_response": 3.7437919480195856e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006096412720484717,
+       "private_normalized_response": 0.021691656971205776
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.008244833257794e-05,
+       "private_normalized_response": 0.02144737800110181
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0003293892082027398,
+     "teacher_linear_relative_response": 4.0770053567760846e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006054281904115955,
+       "private_normalized_response": 0.013784027991086472
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.6613838947578165e-05,
+       "private_normalized_response": 0.014241077969040712
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.00034514609804253894,
+     "teacher_linear_relative_response": 4.8938823585982114e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000382267427515582,
+       "private_normalized_response": 0.01383632772263469
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.1778524914538302e-05,
+       "private_normalized_response": 0.014261573579704282
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0007368320473671301,
+     "teacher_linear_relative_response": 3.871434436338735e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006096384913867885,
+       "private_normalized_response": 0.02239741679250873
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.1312388222968435e-05,
+       "private_normalized_response": 0.022293553186570815
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.0005609755983346973,
+     "teacher_linear_relative_response": 4.543264229925866e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00021986778137116758,
+       "private_normalized_response": 0.016315937477651817
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.403242708619881e-05,
+       "private_normalized_response": 0.018929039979290126
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0023074998978805054,
+     "teacher_linear_relative_response": 4.7393487537936714e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0004065190240943433,
+       "private_normalized_response": 0.036003323736938826
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.726834413044397e-05,
+       "private_normalized_response": 0.036308881010012235
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.00031308391977140614,
+     "teacher_linear_relative_response": 2.9423631742618205e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00025209443595614024,
+       "private_normalized_response": 0.014371948078064105
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.4946069955205046e-05,
+       "private_normalized_response": 0.013650219363813321
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.000192326959006932,
+     "teacher_linear_relative_response": 3.18218285926656e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00025820237978340017,
+       "private_normalized_response": 0.010108676593185897
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.498100912412005e-05,
+       "private_normalized_response": 0.009997999567038817
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0011952300518185176,
+     "teacher_linear_relative_response": 4.178161862684313e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00040696628503681493,
+       "private_normalized_response": 0.030589855751824605
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.2040856170408113e-05,
+       "private_normalized_response": 0.031129835102686975
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0029155128297774506,
+     "teacher_linear_relative_response": 4.150637539454421e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005244000875617753,
+       "private_normalized_response": 0.05110541280439598
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.674451642787378e-05,
+       "private_normalized_response": 0.052022095740693414
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.00026895306888630394,
+     "teacher_linear_relative_response": 4.841882355793751e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002799557713332791,
+       "private_normalized_response": 0.013167411633000406
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.2789594103050426e-05,
+       "private_normalized_response": 0.013491271462354905
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0006754882279485705,
+     "teacher_linear_relative_response": 3.597763879443549e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006084105364583753,
+       "private_normalized_response": 0.023417588082965096
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.8577884027261943e-05,
+       "private_normalized_response": 0.022680032580159337
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0007632445501241324,
+     "teacher_linear_relative_response": 3.745558786419492e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005011823335712704,
+       "private_normalized_response": 0.026415478056424347
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.9203132485567813e-05,
+       "private_normalized_response": 0.026280432894168
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 8,
+   "source_client": 8,
+   "row": 53283,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.027710089114750664,
+     "teacher_linear_relative_response": 6.514982713887533e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005184165525757818,
+       "private_normalized_response": 0.12235892396056205
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00020855663387439122,
+       "private_normalized_response": 0.1219833125082331
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.022979269141726415,
+     "teacher_linear_relative_response": 4.724137437619706e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.013152374265708228,
+       "private_normalized_response": 0.09690632609688161
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00035596582613409204,
+       "private_normalized_response": 0.09842292988847486
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.026487208450167228,
+     "teacher_linear_relative_response": 8.71533386082525e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.023383168582775768,
+       "private_normalized_response": 0.13280502603180036
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007997570069994513,
+       "private_normalized_response": 0.13296770875008546
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.025620183188584753,
+     "teacher_linear_relative_response": 8.286579360765824e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.006005703196313477,
+       "private_normalized_response": 0.09778079328224873
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00034971822658675305,
+       "private_normalized_response": 0.09733746123968304
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.048707188658061035,
+     "teacher_linear_relative_response": 5.43868083064753e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.013532992004098214,
+       "private_normalized_response": 0.16584086167749867
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004188778345456596,
+       "private_normalized_response": 0.16725425519410902
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.02919711247990242,
+     "teacher_linear_relative_response": 6.24772572593512e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009348108879502391,
+       "private_normalized_response": 0.13311646305422356
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00018850663796260756,
+       "private_normalized_response": 0.13329863518834753
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.012445303120985237,
+     "teacher_linear_relative_response": 8.359608287655832e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.01815470613497278,
+       "private_normalized_response": 0.07427554341298168
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007583450417274882,
+       "private_normalized_response": 0.07517882320235401
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.021263953447715575,
+     "teacher_linear_relative_response": 4.6723452540631543e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00788365222314576,
+       "private_normalized_response": 0.09173251941806866
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00024008492463267444,
+       "private_normalized_response": 0.09267338167046575
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.01816714507552838,
+     "teacher_linear_relative_response": 6.104434810168495e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.01021934543767942,
+       "private_normalized_response": 0.09459366798560113
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00031221733781775803,
+       "private_normalized_response": 0.09447795404124538
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.03066330578788916,
+     "teacher_linear_relative_response": 5.802742516779853e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00047442687337535545,
+       "private_normalized_response": 0.1453514270035004
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00030692956487960105,
+       "private_normalized_response": 0.14529014939077808
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.026864627285696822,
+     "teacher_linear_relative_response": 7.871325530953632e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.021591038769069874,
+       "private_normalized_response": 0.13008913402454897
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007365607974838882,
+       "private_normalized_response": 0.13741213408611186
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.02449700472331661,
+     "teacher_linear_relative_response": 5.802950897974989e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.018106995446968196,
+       "private_normalized_response": 0.11316694501386494
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000808394450323273,
+       "private_normalized_response": 0.11274472803159022
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.04087127717549298,
+     "teacher_linear_relative_response": 8.579536550812801e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0214117731626019,
+       "private_normalized_response": 0.15396712175386523
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0009465836585771021,
+       "private_normalized_response": 0.1538091709514008
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.015063941182776524,
+     "teacher_linear_relative_response": 5.399863586545637e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006825862163925128,
+       "private_normalized_response": 0.07985569275123276
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003320703982258726,
+       "private_normalized_response": 0.07978636609282976
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.016655956323440416,
+     "teacher_linear_relative_response": 5.697187112484928e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.012764297692408144,
+       "private_normalized_response": 0.08777855928472916
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002504597381304518,
+       "private_normalized_response": 0.08830396612864443
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.010965331715302331,
+     "teacher_linear_relative_response": 4.843478675975458e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.014682784168827635,
+       "private_normalized_response": 0.07771249725477014
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00037962326596057864,
+       "private_normalized_response": 0.07751171876661493
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.02591376166857183,
+     "teacher_linear_relative_response": 5.753493602836787e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011614989536004963,
+       "private_normalized_response": 0.12848221099547544
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00020426863431056833,
+       "private_normalized_response": 0.1301247199094645
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.023849302369265482,
+     "teacher_linear_relative_response": 1.1977679869042358e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.01825111069312116,
+       "private_normalized_response": 0.11216105126691565
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0009119817384098577,
+       "private_normalized_response": 0.11400842893496237
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.03375300949525938,
+     "teacher_linear_relative_response": 1.0325928475908929e-16,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.023351094905999042,
+       "private_normalized_response": 0.16820798103695658
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.001059162461228301,
+       "private_normalized_response": 0.16736919245631482
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.018767655265860578,
+     "teacher_linear_relative_response": 4.536483987023265e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.01376418011009301,
+       "private_normalized_response": 0.10995094958154024
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00041100209277921096,
+       "private_normalized_response": 0.10859866093156845
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 9,
+   "source_client": 9,
+   "row": 13559,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.010760858337267263,
+     "teacher_linear_relative_response": 4.594184730447252e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0021896436759707002,
+       "private_normalized_response": 0.08301993495049782
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.001023396983050575,
+       "private_normalized_response": 0.08364929766085337
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.006339846453050285,
+     "teacher_linear_relative_response": 5.918341884085853e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017189088533672821,
+       "private_normalized_response": 0.06100848002977656
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0014089655007323858,
+       "private_normalized_response": 0.06116851960914349
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.004229013396772459,
+     "teacher_linear_relative_response": 3.820151775810163e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011025922940582748,
+       "private_normalized_response": 0.04418923880059746
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00024002116495217357,
+       "private_normalized_response": 0.044541565614746016
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.010892699203821639,
+     "teacher_linear_relative_response": 4.778019877170969e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019315782301100965,
+       "private_normalized_response": 0.08156843851806787
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003730077564767229,
+       "private_normalized_response": 0.08250183035844759
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.006551570827841323,
+     "teacher_linear_relative_response": 6.646090267051833e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0023187540976438055,
+       "private_normalized_response": 0.05699774274095692
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.001384568534981711,
+       "private_normalized_response": 0.057044095423997104
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.012923671871404346,
+     "teacher_linear_relative_response": 4.806367622525203e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0023331978541199813,
+       "private_normalized_response": 0.0938658097760252
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005407604549819151,
+       "private_normalized_response": 0.09259081435221436
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.006685893337358746,
+     "teacher_linear_relative_response": 4.6817244885799274e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0018103510974774725,
+       "private_normalized_response": 0.05492902820629844
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0009534326169433919,
+       "private_normalized_response": 0.05501945394326168
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.011989768684909329,
+     "teacher_linear_relative_response": 4.630214132286935e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0014322184043483119,
+       "private_normalized_response": 0.08007484351808862
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006048655502064064,
+       "private_normalized_response": 0.0812430412182184
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.005943532448249231,
+     "teacher_linear_relative_response": 5.0210785909828714e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0027156872774727146,
+       "private_normalized_response": 0.04827037174900842
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0014951599752528674,
+       "private_normalized_response": 0.049190665377360464
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0064146726377473035,
+     "teacher_linear_relative_response": 4.2111108558845647e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002443034563991958,
+       "private_normalized_response": 0.05822116030873579
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0010387622510155405,
+       "private_normalized_response": 0.05859467480557343
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.010635293351751314,
+     "teacher_linear_relative_response": 3.6830304234650835e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00229486887947427,
+       "private_normalized_response": 0.07709557229996726
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006518180948868015,
+       "private_normalized_response": 0.07697993221886697
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.010148286637889208,
+     "teacher_linear_relative_response": 3.6887847027004245e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001520303757342736,
+       "private_normalized_response": 0.06726098315115771
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00022900020550487916,
+       "private_normalized_response": 0.06915294356244868
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.006894286793079161,
+     "teacher_linear_relative_response": 3.866125712970284e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002727448513184186,
+       "private_normalized_response": 0.0700111333882539
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005687989107949194,
+       "private_normalized_response": 0.06960986821240721
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.013705235982203585,
+     "teacher_linear_relative_response": 4.276534566758308e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001395541105628958,
+       "private_normalized_response": 0.09072797974618778
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003219076768551902,
+       "private_normalized_response": 0.09088923384809022
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.007373330027727888,
+     "teacher_linear_relative_response": 5.66552223066899e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0015896446877432572,
+       "private_normalized_response": 0.0669910463975234
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.001056008037849782,
+       "private_normalized_response": 0.06651214696160879
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.007639671579943178,
+     "teacher_linear_relative_response": 3.7387756561328757e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0020282260637349402,
+       "private_normalized_response": 0.06651435745872382
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004412340575878832,
+       "private_normalized_response": 0.06762887252476059
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.011665587246319855,
+     "teacher_linear_relative_response": 2.824286080585579e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0014748920541674936,
+       "private_normalized_response": 0.08070646686333391
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00037253836789483385,
+       "private_normalized_response": 0.08075900333981878
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.007460868854016328,
+     "teacher_linear_relative_response": 6.079995460704116e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0020419812473815337,
+       "private_normalized_response": 0.059646428869159177
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000977616386743213,
+       "private_normalized_response": 0.05940055685775462
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.007017783316965061,
+     "teacher_linear_relative_response": 4.210932210930002e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001652775128850294,
+       "private_normalized_response": 0.060737452108556966
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00032735987952891866,
+       "private_normalized_response": 0.061170870129096125
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.002647852131955597,
+     "teacher_linear_relative_response": 4.980484393317521e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019375128124390953,
+       "private_normalized_response": 0.040765362750217964
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00037676094368274286,
+       "private_normalized_response": 0.04086019763611009
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 10,
+   "source_client": 10,
+   "row": 39787,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.0003137762486816054,
+     "teacher_linear_relative_response": 5.504226385805642e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003088066312407118,
+       "private_normalized_response": 0.01148567334229508
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.5020276042273532e-05,
+       "private_normalized_response": 0.01145845894260323
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.00022204526798342056,
+     "teacher_linear_relative_response": 3.1407544845866655e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002664864814658744,
+       "private_normalized_response": 0.009697572411054069
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.813385447421156e-05,
+       "private_normalized_response": 0.009686304816219045
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0003281550224652052,
+     "teacher_linear_relative_response": 3.347136831962749e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00027378407409579656,
+       "private_normalized_response": 0.011531222836072386
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.494882710038612e-05,
+       "private_normalized_response": 0.01193198826981135
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0007334443029640278,
+     "teacher_linear_relative_response": 2.2677357331881015e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00027221774425949957,
+       "private_normalized_response": 0.018584604122490456
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.614971294186885e-05,
+       "private_normalized_response": 0.02103847275750331
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0006872382884419892,
+     "teacher_linear_relative_response": 1.2825116709489429e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006312100680891583,
+       "private_normalized_response": 0.01834030267808944
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.726537065439329e-05,
+       "private_normalized_response": 0.01804803774399662
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.001718411593643036,
+     "teacher_linear_relative_response": 3.2154646843972354e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00046350917387058283,
+       "private_normalized_response": 0.03215941000870333
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00024869497205095225,
+       "private_normalized_response": 0.03195461673628848
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.000568731710955571,
+     "teacher_linear_relative_response": 3.2127664330649475e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00033081462907797956,
+       "private_normalized_response": 0.019298029755593804
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.571707919144205e-05,
+       "private_normalized_response": 0.019277593842103268
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.0002996015034515183,
+     "teacher_linear_relative_response": 2.5280635534308902e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0004995211731171771,
+       "private_normalized_response": 0.011188458261938292
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00028690705171557766,
+       "private_normalized_response": 0.01122689783580966
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0005802454541130346,
+     "teacher_linear_relative_response": 4.680331602016307e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00037180524059493407,
+       "private_normalized_response": 0.015259151864294766
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.404418993824796e-05,
+       "private_normalized_response": 0.015133011843021711
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0006079780442337782,
+     "teacher_linear_relative_response": 3.049744373151077e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00041461368327861867,
+       "private_normalized_response": 0.01877280858282971
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000256454220685078,
+       "private_normalized_response": 0.018757789107066852
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0005012565372679873,
+     "teacher_linear_relative_response": 2.836745821688892e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002163924453805006,
+       "private_normalized_response": 0.01805828353881686
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.9025669110694706e-05,
+       "private_normalized_response": 0.01792161478346124
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.0005544485871362605,
+     "teacher_linear_relative_response": 2.413389340932768e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00039856701230433475,
+       "private_normalized_response": 0.01663099205191893
+      },
+      "0.001": {
+       "teacher_normalized_response": 6.320524275368375e-05,
+       "private_normalized_response": 0.01731095472071033
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0005594105856157569,
+     "teacher_linear_relative_response": 2.4830894573745124e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0004977045215499916,
+       "private_normalized_response": 0.019649931603656922
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002076874467411501,
+       "private_normalized_response": 0.019384935745212013
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0003393753783392073,
+     "teacher_linear_relative_response": 3.5692584779306643e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003318067719622437,
+       "private_normalized_response": 0.012561926416757282
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.4539561749202794e-05,
+       "private_normalized_response": 0.011733262275161154
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0006777490334168127,
+     "teacher_linear_relative_response": 2.242637754264899e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0002785246532369723,
+       "private_normalized_response": 0.017357714784741875
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.7658370029084347e-05,
+       "private_normalized_response": 0.01665202879714077
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0002794256655030337,
+     "teacher_linear_relative_response": 3.853178374638827e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0003957460341150903,
+       "private_normalized_response": 0.010927970958725167
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00021195685213738777,
+       "private_normalized_response": 0.011075902113157312
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.000749949260040235,
+     "teacher_linear_relative_response": 3.0485766615068934e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00019407612689882313,
+       "private_normalized_response": 0.022838377857431286
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.5804720323576735e-05,
+       "private_normalized_response": 0.022654924297888852
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.001069565391275021,
+     "teacher_linear_relative_response": 4.231905350206777e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005622658827159708,
+       "private_normalized_response": 0.025108140014912572
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.201871369797101e-05,
+       "private_normalized_response": 0.025574378105306547
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0005600423740169251,
+     "teacher_linear_relative_response": 1.2287722513026792e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005439897943043974,
+       "private_normalized_response": 0.017213343300848102
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.566487469015699e-05,
+       "private_normalized_response": 0.017669344812636368
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.000197010574147406,
+     "teacher_linear_relative_response": 2.947971081795292e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00028306007458254816,
+       "private_normalized_response": 0.010609154709265906
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.5927908789514644e-05,
+       "private_normalized_response": 0.010463635687821111
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 11,
+   "source_client": 11,
+   "row": 39608,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.002103400410358231,
+     "teacher_linear_relative_response": 5.282149348294855e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006984302595356975,
+       "private_normalized_response": 0.038424832090420205
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00019023932916179432,
+       "private_normalized_response": 0.038559419341312816
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.002694203890129127,
+     "teacher_linear_relative_response": 4.338237957621725e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001342450951768692,
+       "private_normalized_response": 0.049432529423789756
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003231653348362219,
+       "private_normalized_response": 0.049258097807943296
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0026766699966961696,
+     "teacher_linear_relative_response": 4.589452559155435e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011426998341739678,
+       "private_normalized_response": 0.04898016004975985
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00023548932916919174,
+       "private_normalized_response": 0.04894944172648398
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0021340914682903976,
+     "teacher_linear_relative_response": 4.6348211137060016e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0012660174553129908,
+       "private_normalized_response": 0.0348570904594721
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002657445130292749,
+       "private_normalized_response": 0.03737324232219576
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.00200630000036373,
+     "teacher_linear_relative_response": 4.199031800706252e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001043400586274022,
+       "private_normalized_response": 0.03489356722962726
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00017008719835127602,
+       "private_normalized_response": 0.03537129956476874
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.0020523562544854704,
+     "teacher_linear_relative_response": 5.675674853959067e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0005515198156032998,
+       "private_normalized_response": 0.03397331818944488
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00027965121424802845,
+       "private_normalized_response": 0.034526595976126916
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0022510114396312522,
+     "teacher_linear_relative_response": 3.680936957954712e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0010897876287908265,
+       "private_normalized_response": 0.043884049355514126
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00019200156654537495,
+       "private_normalized_response": 0.04467127294440209
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.0025310709380269745,
+     "teacher_linear_relative_response": 3.231028124690206e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019299283282126337,
+       "private_normalized_response": 0.04378801154296835
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00038344142805100766,
+       "private_normalized_response": 0.04432230924460059
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.003119186250312532,
+     "teacher_linear_relative_response": 4.184579611160359e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0014346205274072365,
+       "private_normalized_response": 0.05384639574464002
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00037477199388815025,
+       "private_normalized_response": 0.0543375772628878
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0018053241296452573,
+     "teacher_linear_relative_response": 3.482066862342374e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0021309316271648977,
+       "private_normalized_response": 0.031281344690581935
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0008462515001687286,
+       "private_normalized_response": 0.03143031487804121
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.002601633012051334,
+     "teacher_linear_relative_response": 3.687275302337489e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002136196943295943,
+       "private_normalized_response": 0.043323030597902816
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00049675548396527,
+       "private_normalized_response": 0.0423327258589074
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.0019107707129162946,
+     "teacher_linear_relative_response": 4.092658805974893e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013698525901306774,
+       "private_normalized_response": 0.03280846853684693
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00033325615888084287,
+       "private_normalized_response": 0.033849828278919226
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0024255134213724866,
+     "teacher_linear_relative_response": 4.882740493507166e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011437476325048066,
+       "private_normalized_response": 0.0375254958306977
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000592271936301309,
+       "private_normalized_response": 0.039111736630556684
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.002669738527131593,
+     "teacher_linear_relative_response": 3.396531935627739e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002381809990919449,
+       "private_normalized_response": 0.04332803147719353
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006309973000632172,
+       "private_normalized_response": 0.04481175485664526
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0018597759700041542,
+     "teacher_linear_relative_response": 3.501309583242106e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009808532743840706,
+       "private_normalized_response": 0.03377270251539025
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00071141030858077,
+       "private_normalized_response": 0.0336529274022037
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.002341311666454452,
+     "teacher_linear_relative_response": 5.109769551851407e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008712603413543813,
+       "private_normalized_response": 0.0386531316186099
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.75266557954378e-05,
+       "private_normalized_response": 0.0390049434873605
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.001617318251001909,
+     "teacher_linear_relative_response": 3.902976046231e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0021868198043169663,
+       "private_normalized_response": 0.029086784037945623
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00038312293268202895,
+       "private_normalized_response": 0.029451120291916003
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.001241837303875901,
+     "teacher_linear_relative_response": 3.8735033806927774e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0014805982680590538,
+       "private_normalized_response": 0.028966058270258395
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003077088519320451,
+       "private_normalized_response": 0.02833596152706004
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0012687579607634798,
+     "teacher_linear_relative_response": 3.530002731703621e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002454418626927219,
+       "private_normalized_response": 0.023810898313624942
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007643827463211032,
+       "private_normalized_response": 0.026532881171014353
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0018711308958403484,
+     "teacher_linear_relative_response": 3.817408183056894e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001880928284440233,
+       "private_normalized_response": 0.03892727825557048
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003415511275337589,
+       "private_normalized_response": 0.039247588872132755
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 12,
+   "source_client": 12,
+   "row": 26268,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.00030278860056605795,
+     "teacher_linear_relative_response": 4.601099593447169e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008107617213690688,
+       "private_normalized_response": 0.011845605762918193
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.637946868819563e-05,
+       "private_normalized_response": 0.013856179820290053
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.00039822715638420227,
+     "teacher_linear_relative_response": 3.728032934199869e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002131500766396835,
+       "private_normalized_response": 0.017088495462435946
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.8745948139510332e-05,
+       "private_normalized_response": 0.01745405561294422
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0002393050241209022,
+     "teacher_linear_relative_response": 3.9449421515793e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0015842230468023698,
+       "private_normalized_response": 0.012025698138266419
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.311741846067948e-05,
+       "private_normalized_response": 0.012420121158103061
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.00030082863591139,
+     "teacher_linear_relative_response": 3.6935613527275055e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0020513074226605186,
+       "private_normalized_response": 0.01308380209488925
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.9165995542941162e-05,
+       "private_normalized_response": 0.013442348301536969
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0008324582070002715,
+     "teacher_linear_relative_response": 3.5417645728551845e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001623279674830826,
+       "private_normalized_response": 0.026163523883938347
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.3709326959301442e-05,
+       "private_normalized_response": 0.026564096836483128
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.00021483178216411968,
+     "teacher_linear_relative_response": 3.038420030835491e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0028313980830425092,
+       "private_normalized_response": 0.011266450448268316
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.2713195052651836e-05,
+       "private_normalized_response": 0.011411578190743944
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.00023829233949378262,
+     "teacher_linear_relative_response": 3.2796995230637164e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002240339810656843,
+       "private_normalized_response": 0.012551507713811043
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.142125618281221e-05,
+       "private_normalized_response": 0.012995689186400592
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.000681716177047804,
+     "teacher_linear_relative_response": 4.0067498943415484e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0006428138180308632,
+       "private_normalized_response": 0.019601084334524718
+      },
+      "0.001": {
+       "teacher_normalized_response": 5.782366783050167e-05,
+       "private_normalized_response": 0.020332174562943502
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.00012731475763273452,
+     "teacher_linear_relative_response": 3.349561582759161e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002125501787023999,
+       "private_normalized_response": 0.00811631806058201
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.5526595661361822e-05,
+       "private_normalized_response": 0.007898291207832257
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0002576136839335495,
+     "teacher_linear_relative_response": 3.726899059831168e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001871760042325252,
+       "private_normalized_response": 0.01483973348160446
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.2395681920897228e-05,
+       "private_normalized_response": 0.012904823486158788
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.00036466258084882853,
+     "teacher_linear_relative_response": 2.612058871037012e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0024138702162836093,
+       "private_normalized_response": 0.015383253726642425
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.8872749627627185e-05,
+       "private_normalized_response": 0.015398242313670358
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.0003776449131264678,
+     "teacher_linear_relative_response": 3.733120950719738e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013030904600168055,
+       "private_normalized_response": 0.015832538607998648
+      },
+      "0.001": {
+       "teacher_normalized_response": 4.5848062132384e-05,
+       "private_normalized_response": 0.01581616454148607
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0007944163935302401,
+     "teacher_linear_relative_response": 2.6320306678700705e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001413795151462109,
+       "private_normalized_response": 0.024327477933054332
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.8910205655847156e-05,
+       "private_normalized_response": 0.024367618866996607
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0005136698762376396,
+     "teacher_linear_relative_response": 5.2080277414291513e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011734837451366684,
+       "private_normalized_response": 0.019834813039678607
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.0141768876232047e-05,
+       "private_normalized_response": 0.01994539287954102
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.00031793245321642743,
+     "teacher_linear_relative_response": 4.4872291667937795e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002287973002272575,
+       "private_normalized_response": 0.014293097809575715
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.0979348806664877e-05,
+       "private_normalized_response": 0.01431377771101608
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.0006198816398266635,
+     "teacher_linear_relative_response": 4.40128695869514e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.000633060800891358,
+       "private_normalized_response": 0.019048650570425492
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.3284245423965055e-05,
+       "private_normalized_response": 0.018577903753167157
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0005435803666261628,
+     "teacher_linear_relative_response": 2.7216544446082288e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008471182879691717,
+       "private_normalized_response": 0.016001212801778717
+      },
+      "0.001": {
+       "teacher_normalized_response": 1.1756397556567126e-05,
+       "private_normalized_response": 0.016128149876598642
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0008133686862600515,
+     "teacher_linear_relative_response": 4.797369518408905e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007383331481002921,
+       "private_normalized_response": 0.023552162241183165
+      },
+      "0.001": {
+       "teacher_normalized_response": 8.160298307219644e-05,
+       "private_normalized_response": 0.023228794795931942
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0003644808495520461,
+     "teacher_linear_relative_response": 3.057705178793116e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013418871154189504,
+       "private_normalized_response": 0.013672782737867711
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.4675437231985576e-05,
+       "private_normalized_response": 0.01382972424236817
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0005546068055709386,
+     "teacher_linear_relative_response": 4.0794041697619725e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0014842237379955332,
+       "private_normalized_response": 0.01766052751585091
+      },
+      "0.001": {
+       "teacher_normalized_response": 2.295925050604243e-05,
+       "private_normalized_response": 0.017843366375082235
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 13,
+   "source_client": 13,
+   "row": 21666,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.00043268864249051676,
+     "teacher_linear_relative_response": 4.141014374556049e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0037144696928292577,
+       "private_normalized_response": 0.015887393960648633
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006587939300850403,
+       "private_normalized_response": 0.014878659061017383
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.0005844554029012803,
+     "teacher_linear_relative_response": 2.254348410545359e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019724122354244883,
+       "private_normalized_response": 0.018889394507201458
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002096260569952305,
+       "private_normalized_response": 0.01905728075020142
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0009586215510396846,
+     "teacher_linear_relative_response": 3.8055112345001843e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.004888799027519832,
+       "private_normalized_response": 0.02739507430510531
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006664274261052467,
+       "private_normalized_response": 0.027607284825379417
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.0009266405902864335,
+     "teacher_linear_relative_response": 2.4478071339272832e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003469316997395456,
+       "private_normalized_response": 0.02793331342960934
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000517913688838093,
+       "private_normalized_response": 0.02770128001657049
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0009003727030696126,
+     "teacher_linear_relative_response": 3.370808587829938e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0015732664292499067,
+       "private_normalized_response": 0.024475152302674344
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00025759720869830346,
+       "private_normalized_response": 0.022593988928684215
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.00279157954342484,
+     "teacher_linear_relative_response": 3.020160958452381e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003308295314667246,
+       "private_normalized_response": 0.03758958210823476
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005279093951969839,
+       "private_normalized_response": 0.04111754429951805
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.0008379950865401289,
+     "teacher_linear_relative_response": 2.358775746906908e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011694331321747127,
+       "private_normalized_response": 0.023863696151932845
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004569482225593097,
+       "private_normalized_response": 0.023075117982380194
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.003163203443681541,
+     "teacher_linear_relative_response": 2.369335914039314e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0044982379873441366,
+       "private_normalized_response": 0.03598484024080677
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0008774789163488078,
+       "private_normalized_response": 0.040914070735378824
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.0007990110130835071,
+     "teacher_linear_relative_response": 2.8644612243632085e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002885580675814726,
+       "private_normalized_response": 0.023987855028890854
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00037740779117580967,
+       "private_normalized_response": 0.024101831134953743
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0003203158760089874,
+     "teacher_linear_relative_response": 3.501572427938314e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.00289073887773185,
+       "private_normalized_response": 0.015222023627952662
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005316087092101349,
+       "private_normalized_response": 0.014664526866517575
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0015946174626063707,
+     "teacher_linear_relative_response": 3.1359821673373865e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0058453993408276025,
+       "private_normalized_response": 0.03189535711997138
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0007471246962779193,
+       "private_normalized_response": 0.0334232911669398
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.001190622754804388,
+     "teacher_linear_relative_response": 3.1926844080486623e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0021632234197194733,
+       "private_normalized_response": 0.027222356632163297
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0005774991900629327,
+       "private_normalized_response": 0.02761117002926054
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.0030612236672155416,
+     "teacher_linear_relative_response": 3.030084797978602e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002019723889970079,
+       "private_normalized_response": 0.0366976257735459
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003826485945433132,
+       "private_normalized_response": 0.03663596542728415
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.0010868026772903282,
+     "teacher_linear_relative_response": 3.5738203918977296e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0060554546806123,
+       "private_normalized_response": 0.029402253767078924
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006337293320735141,
+       "private_normalized_response": 0.03003315924129002
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0013314595831531023,
+     "teacher_linear_relative_response": 3.7134275268219086e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.004823882783800665,
+       "private_normalized_response": 0.033040803229601866
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006538943511077746,
+       "private_normalized_response": 0.03385264560607567
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.006634843071344896,
+     "teacher_linear_relative_response": 2.3202953011536683e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003469637684405645,
+       "private_normalized_response": 0.08073065965594503
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00028170029087187467,
+       "private_normalized_response": 0.07436009701573464
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.007788985681529362,
+     "teacher_linear_relative_response": 2.4021613850422242e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003576937058161965,
+       "private_normalized_response": 0.07811026109692215
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00036417084179155213,
+       "private_normalized_response": 0.08400229637128749
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.005518172097074252,
+     "teacher_linear_relative_response": 3.550068180055206e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0060179493129619965,
+       "private_normalized_response": 0.0689060839440889
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006989054891024877,
+       "private_normalized_response": 0.06904273764356916
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.0009692239467713721,
+     "teacher_linear_relative_response": 4.269162081216702e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.004038796742317856,
+       "private_normalized_response": 0.028490330668506317
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0006438201210177216,
+       "private_normalized_response": 0.02840422011904045
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.0016969425260605438,
+     "teacher_linear_relative_response": 2.520743007037261e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0034646495909552905,
+       "private_normalized_response": 0.0338938120595355
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004934535564158019,
+       "private_normalized_response": 0.03504352527854894
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 14,
+   "source_client": 14,
+   "row": 63757,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.0075499991198752885,
+     "teacher_linear_relative_response": 4.191115016487392e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002055800708687575,
+       "private_normalized_response": 0.07227077439854308
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00034739226859873583,
+       "private_normalized_response": 0.07313150806004245
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.003886979746571764,
+     "teacher_linear_relative_response": 3.2046533935610756e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0012081458869334422,
+       "private_normalized_response": 0.04663766199551621
+      },
+      "0.001": {
+       "teacher_normalized_response": 3.3221084497801015e-05,
+       "private_normalized_response": 0.04762343948304136
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.0025798753358252787,
+     "teacher_linear_relative_response": 4.2175518362250147e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013556342062063693,
+       "private_normalized_response": 0.034755888780536245
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003228024145859445,
+       "private_normalized_response": 0.03510578828572491
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.008501252843688856,
+     "teacher_linear_relative_response": 5.110925101729766e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019557651850945104,
+       "private_normalized_response": 0.070374360952269
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00037261774076114367,
+       "private_normalized_response": 0.07121201384707308
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.0016190194940905488,
+     "teacher_linear_relative_response": 3.3352608848990236e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001835107173937065,
+       "private_normalized_response": 0.022050974070034667
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001849819868821779,
+       "private_normalized_response": 0.02389525055771944
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.008920401572312402,
+     "teacher_linear_relative_response": 4.796567297674678e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017447656820570986,
+       "private_normalized_response": 0.07757286522242574
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003385201106457731,
+       "private_normalized_response": 0.07951479217301999
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.003928005956887394,
+     "teacher_linear_relative_response": 3.757379494703084e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009510359300638757,
+       "private_normalized_response": 0.048400201362887633
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003028144796027004,
+       "private_normalized_response": 0.0482831864288254
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.0022116664973527993,
+     "teacher_linear_relative_response": 5.1236031023116746e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001999505168693717,
+       "private_normalized_response": 0.03271333660789464
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00033720020525430765,
+       "private_normalized_response": 0.03347994489248327
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.006445454728116223,
+     "teacher_linear_relative_response": 3.1700698053539235e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019173319990621596,
+       "private_normalized_response": 0.05734032965965605
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004057999291777412,
+       "private_normalized_response": 0.0584099366414571
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.004115163458318709,
+     "teacher_linear_relative_response": 2.619565358276243e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0009585003163541394,
+       "private_normalized_response": 0.04467281156746905
+      },
+      "0.001": {
+       "teacher_normalized_response": 7.408493566417696e-05,
+       "private_normalized_response": 0.04506976337322895
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.0062493110272172,
+     "teacher_linear_relative_response": 2.6429066703404813e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0013816520814255388,
+       "private_normalized_response": 0.061137365295401216
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004656052252293075,
+       "private_normalized_response": 0.06156207182099692
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.004901063414680386,
+     "teacher_linear_relative_response": 4.662900770119405e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019746049903281485,
+       "private_normalized_response": 0.05173863039883114
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000518608972607657,
+       "private_normalized_response": 0.05295325675417489
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.006020431482268395,
+     "teacher_linear_relative_response": 3.193768422255597e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002068058942699442,
+       "private_normalized_response": 0.05320266851151671
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0004099879830795278,
+       "private_normalized_response": 0.05184651270557242
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.003795715241389381,
+     "teacher_linear_relative_response": 3.564061645196505e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019506048494436178,
+       "private_normalized_response": 0.047827773013289665
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00029082985221115125,
+       "private_normalized_response": 0.04854369941683892
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.001820936013641859,
+     "teacher_linear_relative_response": 2.2200731296139482e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0008700302142144273,
+       "private_normalized_response": 0.03243925128950919
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00012770037862989994,
+       "private_normalized_response": 0.032234185232459224
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.003449844814444798,
+     "teacher_linear_relative_response": 3.9409197355021496e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0018089013148299769,
+       "private_normalized_response": 0.04119234576127996
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002148231154075808,
+       "private_normalized_response": 0.041538494927736154
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.0013239322098566662,
+     "teacher_linear_relative_response": 3.6326323527481684e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007469891830402791,
+       "private_normalized_response": 0.03326445791499346
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00019024505644307544,
+       "private_normalized_response": 0.032767769343692514
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.0020009504153936618,
+     "teacher_linear_relative_response": 5.827286789906135e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0017830155828615075,
+       "private_normalized_response": 0.030679536340192562
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003645971042895221,
+       "private_normalized_response": 0.03067207025444036
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.006112919581638287,
+     "teacher_linear_relative_response": 5.349230513020353e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0018623775234173092,
+       "private_normalized_response": 0.06862005416728054
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003272579079772458,
+       "private_normalized_response": 0.06940215173107686
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.005512892434968643,
+     "teacher_linear_relative_response": 4.3336753940134316e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0007430446926093711,
+       "private_normalized_response": 0.050163136117865006
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.000316147174579801,
+       "private_normalized_response": 0.05026404911967254
+      }
+     }
+    }
+   }
+  },
+  {
+   "true_class": 15,
+   "source_client": 15,
+   "row": 28249,
+   "teacher_rank": 48,
+   "teacher_null_dimension": 5,
+   "clients": {
+    "0": {
+     "private_null_energy_fraction": 0.02239781795826564,
+     "teacher_linear_relative_response": 5.1366456552790084e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0037638440588101557,
+       "private_normalized_response": 0.13947696169363777
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00020918737502623725,
+       "private_normalized_response": 0.1407189321705335
+      }
+     }
+    },
+    "1": {
+     "private_null_energy_fraction": 0.019015189890088238,
+     "teacher_linear_relative_response": 5.1895809584846337e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003442469657524046,
+       "private_normalized_response": 0.1305044221288571
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00017594771092103512,
+       "private_normalized_response": 0.13140367094567557
+      }
+     }
+    },
+    "2": {
+     "private_null_energy_fraction": 0.046386105077709655,
+     "teacher_linear_relative_response": 5.679460454532737e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0033337412239486026,
+       "private_normalized_response": 0.20763745948868081
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00021090029834913457,
+       "private_normalized_response": 0.2095530225190366
+      }
+     }
+    },
+    "3": {
+     "private_null_energy_fraction": 0.017416550469372176,
+     "teacher_linear_relative_response": 5.83327683007911e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002998849410800892,
+       "private_normalized_response": 0.1159926465942808
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00013560126871003798,
+       "private_normalized_response": 0.11575199519741552
+      }
+     }
+    },
+    "4": {
+     "private_null_energy_fraction": 0.021098411781314257,
+     "teacher_linear_relative_response": 5.879399572539542e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003449040482476468,
+       "private_normalized_response": 0.12773007464923294
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001680903001218099,
+       "private_normalized_response": 0.13238186160140505
+      }
+     }
+    },
+    "5": {
+     "private_null_energy_fraction": 0.008685511998488025,
+     "teacher_linear_relative_response": 5.271457378894363e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0010183139742179208,
+       "private_normalized_response": 0.07584486078251801
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00012547309095074045,
+       "private_normalized_response": 0.07495888903063574
+      }
+     }
+    },
+    "6": {
+     "private_null_energy_fraction": 0.01282457116518188,
+     "teacher_linear_relative_response": 4.9235236391773146e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0033549524295903863,
+       "private_normalized_response": 0.10042512476127922
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00022695071970876273,
+       "private_normalized_response": 0.09935804574222105
+      }
+     }
+    },
+    "7": {
+     "private_null_energy_fraction": 0.00894673793249477,
+     "teacher_linear_relative_response": 4.436328255219376e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.001944154550892177,
+       "private_normalized_response": 0.0673867230498506
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00025893533865432665,
+       "private_normalized_response": 0.06814564123740685
+      }
+     }
+    },
+    "8": {
+     "private_null_energy_fraction": 0.006680606766114889,
+     "teacher_linear_relative_response": 4.8189235850499423e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003519902391125502,
+       "private_normalized_response": 0.06632096085720245
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00019016712200202769,
+       "private_normalized_response": 0.0678763005240817
+      }
+     }
+    },
+    "9": {
+     "private_null_energy_fraction": 0.0040319649598063315,
+     "teacher_linear_relative_response": 3.824258025823625e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0011242759248563472,
+       "private_normalized_response": 0.04516264682858535
+      },
+      "0.001": {
+       "teacher_normalized_response": 9.10160057777808e-05,
+       "private_normalized_response": 0.045646021521162185
+      }
+     }
+    },
+    "10": {
+     "private_null_energy_fraction": 0.021691098658969708,
+     "teacher_linear_relative_response": 5.42733350603188e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0033945258382429406,
+       "private_normalized_response": 0.1418522869946102
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002382692450474464,
+       "private_normalized_response": 0.1394398557862227
+      }
+     }
+    },
+    "11": {
+     "private_null_energy_fraction": 0.01093547184569509,
+     "teacher_linear_relative_response": 4.957009783372974e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002362838694733385,
+       "private_normalized_response": 0.07143173811539297
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002511793843527085,
+       "private_normalized_response": 0.07174287565578193
+      }
+     }
+    },
+    "12": {
+     "private_null_energy_fraction": 0.009921897046171,
+     "teacher_linear_relative_response": 5.150227099895769e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0031799571813971098,
+       "private_normalized_response": 0.06786657963757822
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0001953913969280896,
+       "private_normalized_response": 0.0707121542281289
+      }
+     }
+    },
+    "13": {
+     "private_null_energy_fraction": 0.005676546818480933,
+     "teacher_linear_relative_response": 5.257648084250561e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.002856660976811501,
+       "private_normalized_response": 0.055390061992571335
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002750197067541679,
+       "private_normalized_response": 0.05466700421787674
+      }
+     }
+    },
+    "14": {
+     "private_null_energy_fraction": 0.0023649349065244483,
+     "teacher_linear_relative_response": 3.469987416351284e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0019215185565766278,
+       "private_normalized_response": 0.04126857376318672
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0003459057250209996,
+       "private_normalized_response": 0.04009244467429343
+      }
+     }
+    },
+    "15": {
+     "private_null_energy_fraction": 0.01430676647354101,
+     "teacher_linear_relative_response": 4.6335723351564523e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003266492022950145,
+       "private_normalized_response": 0.11109316266301812
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00023544061470573503,
+       "private_normalized_response": 0.10940618467315803
+      }
+     }
+    },
+    "16": {
+     "private_null_energy_fraction": 0.010320182789512413,
+     "teacher_linear_relative_response": 5.525593512410036e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.003334124163440322,
+       "private_normalized_response": 0.06806680578041101
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00017234398877273493,
+       "private_normalized_response": 0.07433895097736402
+      }
+     }
+    },
+    "17": {
+     "private_null_energy_fraction": 0.011624455963139262,
+     "teacher_linear_relative_response": 5.2342572022078287e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0026271722673947328,
+       "private_normalized_response": 0.05898512890327455
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.0002538044924098416,
+       "private_normalized_response": 0.09744031183344296
+      }
+     }
+    },
+    "18": {
+     "private_null_energy_fraction": 0.017164527754072303,
+     "teacher_linear_relative_response": 5.347056559332434e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0036891352469831536,
+       "private_normalized_response": 0.1062529644882385
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00021741075105313976,
+       "private_normalized_response": 0.1251196327306554
+      }
+     }
+    },
+    "19": {
+     "private_null_energy_fraction": 0.007102146317602906,
+     "teacher_linear_relative_response": 4.768215004676131e-17,
+     "finite": {
+      "0.01": {
+       "teacher_normalized_response": 0.0026482196621311817,
+       "private_normalized_response": 0.07083235779194168
+      },
+      "0.001": {
+       "teacher_normalized_response": 0.00020647138471409555,
+       "private_normalized_response": 0.06918853914502053
+      }
+     }
+    }
+   }
+  }
+ ],
+ "seconds": 47.87542186999963
+}

@@ -1,0 +1,19 @@
+{
+  "session": "fd-s42zk04-20261015-r25-v1",
+  "run": "fd_dml_m4b_gpool_frz_gkd_s42_e50",
+  "rounds": [
+    48,
+    49,
+    50
+  ],
+  "fingerprint": "7c8eb886a50a868f8a21724e57cb74a78c3e2c480c71048a6cf020620f06d2ed",
+  "weights_sha": {
+    "48": "18fa176698daf740bbe723499aed36fac4dd09d4ada267dfa5d4f206c01e89a2",
+    "49": "adb083281666b401c9c499395a1902c7641c1ba7a4985ebbf8225b59c61ec19e",
+    "50": "18d86da4a9db10ba1be9d2f6ac5eedf20a144c6348c29363bff4b1879cc25dcb"
+  },
+  "source_tag": "20261015-r29",
+  "train_source_tag": "20261015-r25",
+  "evaluator": "fd_eval_fast.py",
+  "checkpoint_dataset": "minhtrit06/mh-fd-e48-50-s42zk04-20261015-r25-v1-f1"
+}

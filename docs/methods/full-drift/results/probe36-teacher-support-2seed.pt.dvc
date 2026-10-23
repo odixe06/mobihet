@@ -1,0 +1,5 @@
+outs:
+- md5: 186a7ebbebbb80a8f021dc5c23f9c7b3
+  size: 5460227
+  hash: md5
+  path: probe36-teacher-support-2seed.pt

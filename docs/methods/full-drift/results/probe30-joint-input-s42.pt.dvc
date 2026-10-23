@@ -1,0 +1,5 @@
+outs:
+- md5: b2944c9804e60f2665f5e64ccf2a9b73
+  size: 1705295
+  hash: md5
+  path: probe30-joint-input-s42.pt

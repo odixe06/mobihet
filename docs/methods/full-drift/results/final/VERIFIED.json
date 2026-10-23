@@ -1,0 +1,10 @@
+{
+  "complete": true,
+  "scenarios": 6,
+  "training_rounds": 300,
+  "metric_rows_checked": 1800,
+  "metric_values_checked": 18000,
+  "per_class_rows_checked": 576,
+  "report_sha": "42131b21ac3fae6728fcc87ca4e73e1e61c2b5a82f67f3ca67be6790fab06a37",
+  "provenance_sha": "0bd0c9078a92e4ea8c3d9a0991c9ac53d59975ed72e2475b3b6113d1ab1f8f92"
+}

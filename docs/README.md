@@ -1,16 +1,22 @@
 # Tài liệu dự án
 
-Bắt đầu [CONTEXT](../CONTEXT.md) → [LESSONS](../LESSONS.md) → [continue](operations/continue.md).
+Bắt đầu [CONTEXT](../CONTEXT.md) → [LESSONS kỹ thuật](../LESSONS.md) + [bài học vận hành](operations/lessons.md) → [continue](operations/continue.md).
 [Index file](file-index.md) · [Archive](archive/README.md).
 
-## Đang làm — final seed42, 20/10/2026
+## Hiện hành — 23/10/2026 ~03:55Z
 
-- [Handoff phiên sau](operations/continue.md): kernel/source/checkpoint, bước tiếp, lệnh và manual action.
-- [Pipeline train/chấm tách](operations/final-pipeline.md): protocol, timing, costs, kiểm chứng.
-- [FullDrift results đã audit](methods/full-drift/results.md): q3_zl PASS hai seed, 2-bit FAIL;
-  [design](methods/full-drift/design.md), [10metric/cổng](methods/full-drift/results/report.md).
-- [Lỗi r24 và recovery](archive/operations/final-recovery-2026-10-20.md): final-only fixture, subprocess exit;
-  [sổ lỗi dùng tiếp](operations/notebook-errors.md).
+- [Bàn giao sống — continue](operations/continue.md): đang chạy gì, bước tiếp, lệnh, việc tay (file duy nhất; snapshot cũ ở archive).
+- [Report final đủ 6 chuỗi × 50 round](methods/full-drift/results/final/report.md): đủ 10 metric, per-class, đồ thị, cost;
+  [VERIFIED](methods/full-drift/results/final/VERIFIED.json), [provenance](methods/full-drift/results/final/provenance.json).
+- Synthetic mới nhất: [P37 synthetic đổi trọng số full model + tài liệu](research/methods/synthetic-weight-dynamics-2026-10-23.md) →
+  [P36 Project48 + copula hai seed → vòng 26 FAIL](research/methods/teacher-support-two-seed-2026-10-22.md) →
+  [P35 trần năng lực bộ sinh](research/methods/support-capacity-oracle-2026-10-22.md) →
+  [P34 bộ sinh giữ cấu trúc (FAIL)](research/methods/structured-support-generator-2026-10-22.md) →
+  [P33 client học gì từ support](research/methods/client-learning-diagnosis-2026-10-22.md) →
+  [P32 support realism](research/methods/synthetic-support-realism-2026-10-22.md) →
+  [P29–31](research/methods/synthetic-gradient-diagnosis-2026-10-22.md) → [P23–28](research/methods/synthetic-learning-recovery-2026-10-22.md).
+- [Pipeline train/chấm tách](operations/final-pipeline.md); [FullDrift results đã audit](methods/full-drift/results.md),
+  [design](methods/full-drift/design.md); [sổ lỗi kernel](operations/notebook-errors.md).
 
 ## Phương pháp và bằng chứng
 
@@ -31,21 +37,27 @@ Bắt đầu [CONTEXT](../CONTEXT.md) → [LESSONS](../LESSONS.md) → [continue
 
 | câu hỏi | file |
 |---|---|
-| Kernel nào đang chạy, bước tiếp theo, lệnh, việc tay? | [continue](operations/continue.md) |
+| Đang chạy gì, bước tiếp theo, lệnh, việc tay? | [continue](operations/continue.md) |
 | Run cuối: contract train/chấm tách, timing, source, test, cost? | [final-pipeline](operations/final-pipeline.md) |
 | Account Kaggle, quota, quy tắc push/W&B/stop? | [kaggle](operations/kaggle.md) |
+| Bài học vận hành (Kaggle/pipeline, collector/máy local, Git/DVC/cloud)? | [lessons](operations/lessons.md) |
 | Lỗi kernel đã gặp và cách tránh (đọc trước khi sinh notebook)? | [notebook-errors](operations/notebook-errors.md) |
 | File/code nằm đâu, tên cũ `mh/*`, nhãn V2–V10, `.compat`? | [project-layout](operations/project-layout.md) |
 | Git/DVC: đích, lần backup gần nhất, cách đẩy/khôi phục/dọn? | [backup](operations/backup.md) |
 | Mỗi manifest DVC: md5, số file remote/local (sinh tự động)? | [artifact-index](operations/artifact-index.md) |
+| Output Kaggle của archive Build7–21 còn tải được không? | [kaggle-archive-output-index](operations/kaggle-archive-output-index.md) |
+| Chuyển Google Drive → OneDrive 22/10 (đang chạy, phiên Codex)? | [backup](operations/backup.md) |
 
-Máy đọc: [registry/](operations/registry/) (map layout/alias, kiểm package 14/10 — script dùng, không sửa tay);
-bằng chứng run cuối: [evidence/](operations/evidence/). Script: [scripts](../scripts/README.md). Skill (bản chính `.claude`):
+Máy đọc: [registry/](operations/registry/) (map layout/alias — script dùng, không sửa tay). Bằng chứng run cuối 20/10:
+[archive/operations/evidence](archive/operations/evidence/final-2026-10-20/). Script: [scripts](../scripts/README.md).
+Skill (bản chính `.claude`, mirror `.agents`): [đọc/ghi context](../.claude/skills/project-context/SKILL.md),
 [workflow](../.claude/skills/federated-experiment-workflow/SKILL.md), [Kaggle](../.claude/skills/kaggle-training-notebook/SKILL.md),
 [speed](../.claude/skills/federated-training-speed/SKILL.md), [W&B](../.claude/skills/wandb-training-monitor/SKILL.md).
 
 ## Lịch sử
 
-[Bàn giao17–20/10](archive/operations/continuation-2026-10-17.md), [nhật ký run cuối 20–21/10](archive/operations/continuation-2026-10-20-21.md),
+[Bàn giao 22/10 report final + P29–31](archive/operations/continuation-2026-10-22.md),
+[synthetic trước compact 22/10](archive/operations/continuation-synthetic-2026-10-22.md),
+[bàn giao 17–20/10](archive/operations/continuation-2026-10-17.md), [nhật ký run cuối 20–21/10](archive/operations/continuation-2026-10-20-21.md),
 [mục lục trước gọn tài liệu](archive/operations/docs-index-before-final-recovery-2026-10-20.md),
-[index archive](archive/file-index.md). Snapshot cũ không thay live health/handoff hiện tại.
+[index archive](archive/file-index.md). Snapshot cũ không thay live handoff hiện tại.

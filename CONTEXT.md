@@ -1,6 +1,6 @@
 # CONTEXT — MobiHet / federated IDS V2X
 
-Đọc CONTEXT → [LESSONS](LESSONS.md) → [handoff hiện tại](docs/operations/continue.md).
+Đọc CONTEXT → [LESSONS kỹ thuật](LESSONS.md) + [bài học vận hành](docs/operations/lessons.md) → [handoff hiện tại](docs/operations/continue.md).
 [Mục lục](docs/README.md) · [Phương pháp](docs/proposals.md) · [Index file](docs/file-index.md).
 
 ## Bài toán
@@ -9,44 +9,54 @@ Xe học IDS cộng tác qua RSU với giao tiếp hữu hạn; private model đ
 Giữ 66 feature, dataset/partition/scaler gốc; mọi model đang chạy là DAGSNet. Không raw/perturbed record,
 per-record activation/gradient rời client. Heterogeneous R2 thực nghiệm và contact/deadline R1 chưa chứng minh.
 
-## Trạng thái và quyết định hiện hành — 21/10/2026 ~17:40Z (phiên dừng)
+## Trạng thái và quyết định hiện hành — 23/10/2026 ~07:30Z
 
+- **Bàn giao sống duy nhất:** [continue](docs/operations/continue.md) — đang chạy gì, bước tiếp, lệnh, việc tay. Sửa tại chỗ;
+  snapshot cũ vào [archive/operations](docs/archive/operations/README.md). Cách đọc/ghi context: skill `project-context`.
+- **Đang chạy:** phiên Codex của owner copy dvc-storage Google Drive → OneDrive (remote DVC mặc định đã là `onedrive`, xem [backup](docs/operations/backup.md));
+  **không sửa** phần trạng thái chuyển trong backup, skill repo-backup, `.dvc/config`, `scripts/dvc_*` khi phiên đó còn chạy. Không job local/Kaggle nào chạy.
 - Phương pháp chốt: `gkd + la + kdpx`, proxy q3_zl (PASS seed42/43). [Kết quả/cổng](docs/methods/full-drift/results.md), [thiết kế](docs/methods/full-drift/design.md).
-- **Run cuối seed42** (q3_zl la_kdpx + đối chứng gkd × 20/50/100 client, 50 round × 1 epoch toàn train80%, chấm toàn test20% mỗi round,
-  headline r50, không chọn HP/round bằng test): **za, zc, zg train xong r50**; ze r1–48, zi r1–26, zk r1–33 đã audit, S2 đang chạy.
-  Chấm bằng bộ nhanh `fd_eval_fast.py` (lớp tolerance owner duyệt, khớp 99,96 %); owner chọn **song song thêm**, giữ EMA mọi round.
-  Tag chấm **r29** từ ~10:40Z (gate tương đối ≤ 2 % max|logit|; gate tuyệt đối r27 vỡ ở round muộn, model không sai). Đã audit chấm:
-  za r1–44, zc r1–27, ze r1–8 + r29–33, zg/zk r1–2; ze train đủ r1–50. Sau 17:40Z: zc chấm đủ r1–50, zg r1–34, ze r1–8 + r29–48; còn COMPLETE chưa pull (owner: ổ chật, upload trước) — danh sách ở [continue](docs/operations/continue.md). Backup Git `bcccbe5` + DVC 21/10 ~17:30Z, local đã dọn phần đã backup.
-  Exact kernel/round/account: [continue](docs/operations/continue.md); timing/contract: [pipeline](docs/operations/final-pipeline.md).
-- **Vòng 24 (owner 21/10: sinh mẫu có chủ đích): FAIL.** Probe 20: Gaussian gkd bất đồng sai chỗ; arm `xo` (lai ghép dòng own theo cặp
-  bất đồng, 0 byte) đúng chỗ nhưng s42 ep15 Δ +0,0076 < +0,010 ⇒ dừng hướng ([results §Vòng 24](docs/methods/full-drift/results.md));
-  xou (đối chứng) chỉ còn mô tả. Run cuối giữ phương pháp chốt. Phân tích sau FAIL (probe 21/22): 77 % lỗi private là lỗi teacher cũng sai
-  ⇒ vòng 25 `cv` hiệu chỉnh teacher bằng đặc trưng ảo theo lớp ([hồ sơ](docs/research/methods/teacher-virtual-feature-calibration.md)): owner đặt ngân sách ≤ 1,5× byte ⇒ chỉ **cvl** (×1,45 ở 15 epoch; cvf ×6,8 loại), cổng khóa, push r30 khanhmay0304 ~16:20Z. Proxy vẫn trao đổi; R2 giữ theo thiết kế.
-- Owner còn dùng Kaggle cho dự án khác: quota hụt bất thường là do dự án đó ([kaggle](docs/operations/kaggle.md)); đọc quota live trước mỗi push.
-- odixeuit dùng chung với dự án khác của owner: không xếp chấm/train final lên đó. minhtrit06 là luồng chấm K50 chính (cache K50 sẵn sàng 10:55Z).
-- `QUEUED` = chờ GPU. `RUNNING`/`COMPLETE`/W&B finished không chứng minh kết quả; cần collect + audit artifact. `kaggle datasets create` có thể báo
-  lỗi dù dataset đã ready — đọc status trước khi thử lại. Log live: `kaggle kernels logs --follow` (SSE).
-- Freeze mọi source/notebook đã PUSHED; sửa bằng tag mới. Resume từ round committed đã audit. Không nối adaptation FAIL y nguyên.
-- Không Git/DVC push/backup/cleanup khi owner chưa yêu cầu. Credentials account-scoped, giữ global login thuyanh316; inline W&B chỉ ở
-  private notebook 0600. Khi không rõ yêu cầu khoa học/budget, hỏi owner. Việc tay: báo exact bước và lỗi quan sát.
+- **Run cuối seed42 xong:** 6 chuỗi (q3_zl la_kdpx + đối chứng gkd × 20/50/100 client) × 50 round, chấm toàn test20 mỗi round, headline r50,
+  đã audit — [report](docs/methods/full-drift/results/final/report.md), [VERIFIED](docs/methods/full-drift/results/final/VERIFIED.json). Không repull/re-audit.
+- **Nghiên cứu synthetic (khoảng private ↔ proxy r50 ~0,024–0,028):** vòng 24 `xo` FAIL, vòng 25 `cvl` FAIL, P23–31 (teacher Project48 PASS nhưng
+  transfer FAIL; joint carrier FAIL). **P32 22/10:** copula × Project48 +0,0024 (FAIL +0,005) nhưng worst-client +0,022; lợi support thật cần
+  4 nhóm feature cùng thật (`snd_kin`, `sess`, `geo`, `prof`). **P33/P33b 22/10 (cách client học):** 71 % lợi support thật là recall posMirror +
+  suddenStop vs benign ở receiver lạ; dòng own cân bằng lớp không thêm gì ⇒ cần biến thể client khác, mẫu phải nằm trên manifold đặc trưng private
+  (Gaussian/copula precision ~0,47 vs real 0,86). **P34 FAIL** (atom chính xác + trạng thái first + định danh extractor +0,0023, không hơn
+  copula; V4-S/G61 vẫn ≈ Gaussian). **P35:** lợi cần mẫu thật của chính lớp tấn công hiếm (benign giả không hại), head chịu lệch rất ít (σ 0,05 z
+  mất 44 %); bộ sinh học được fit trên pool (GMM +0,0044, MADE +0,0026) không đủ năng lực. **P36 (owner: thử cả hai):** so **phương pháp hiện hành**,
+  Project48 + copula PASS hai seed frozen-head (+0,0077 / +0,0051); GMM lớp tấn công FAIL. **Vòng 26 online (cvp + cop) FAIL** Δ +0,0003 (posMirror +0,12 nhưng timeDelay/suddenStop xuống;
+  teacher hiệu chỉnh ≈ gốc từ ep5) ⇒ harness frozen-head không dự báo online; dừng nhánh. **Owner 23/10: thử một lần cuối** — **P37** (Kaggle, full model):
+  tách BN / head-only cho synthetic thấp hơn production ⇒ không ứng viên; oracle dòng thật chỉ +0,010 ⇒ cổng online ở trần oracle. Chờ owner đóng hướng.
+  [P37 + tài liệu tham khảo](docs/research/methods/synthetic-weight-dynamics-2026-10-23.md),
+  [P36](docs/research/methods/teacher-support-two-seed-2026-10-22.md), [P35](docs/research/methods/support-capacity-oracle-2026-10-22.md), [P34](docs/research/methods/structured-support-generator-2026-10-22.md), [P33](docs/research/methods/client-learning-diagnosis-2026-10-22.md),
+  [P32](docs/research/methods/synthetic-support-realism-2026-10-22.md),
+  [P29–31](docs/research/methods/synthetic-gradient-diagnosis-2026-10-22.md).
+- **R1 khóa:** ≤ 1,5× xa ở **cả 15/50 round**, ≤ 231.000 B/contact kể cả bootstrap; byte nhỏ của một carrier không chứng minh toàn protocol.
+  R2 mixed architectures chưa kiểm. Test20 chỉ báo cáo, không chọn HP/round/recipe.
+- Kaggle: owner dùng cho dự án khác ⇒ quota hụt bất thường là do dự án đó, đọc quota live trước push ([kaggle](docs/operations/kaggle.md)).
+  Owner 23/10: dùng mọi account thoải mái nếu còn slot GPU và quota ≥ 1,15 × giờ session, không cần nhường dự án khác.
+  `QUEUED` = chờ GPU; `RUNNING`/`COMPLETE`/W&B không chứng minh kết quả — collect + audit artifact. `datasets create` có thể báo lỗi dù ready.
+- Freeze mọi source/notebook đã PUSHED; sửa bằng tag mới. Không nối adaptation FAIL y nguyên. Không Git/DVC push/backup/cleanup khi owner
+  chưa yêu cầu. Credentials account-scoped, giữ global login thuyanh316; inline W&B chỉ ở private notebook 0600. Không rõ yêu cầu ⇒ hỏi owner.
 
 ## Phiên sau
 
-1. Mở [continue.md](docs/operations/continue.md): bảng train/chấm/screening, mục "Làm tiếp theo thứ tự".
-2. Kernel terminal ⇒ collect + audit trước mọi kết luận; train S2 xong ⇒ chấm round mới (account khác train, có cache K).
-3. Screening xo/xou xong ⇒ `report_fd.py`, đọc cổng vòng 24, báo owner.
-4. Đủ eval r1–50 cả 6 chuỗi ⇒ `report_final.py`, cập nhật costs/10 metric từ artifact đã audit.
+1. Đọc [continue](docs/operations/continue.md); kiểm job còn chạy (bảng "Đang chạy") trước khi sửa file nào.
+2. P37 FAIL theo luật khóa ([P37](docs/research/methods/synthetic-weight-dynamics-2026-10-23.md)) ⇒ owner quyết đóng hướng synthetic hoặc hướng khác. Không mở lại cvp/cop/GMM/cv/xo hay BN tính lại hậu kỳ.
+3. Giữ mọi cổng cũ, seed/horizon/R1/R2 riêng.
 
 ## Cần biết → mở
 
 | câu hỏi | tài liệu |
 |---|---|
-| Tiếp tục ngay, kernel/checkpoint/quota/manual action? | [Handoff](docs/operations/continue.md) |
+| Tiếp tục ngay: đang chạy gì, bước tiếp, lệnh, việc tay? | [Handoff](docs/operations/continue.md) |
+| Synthetic/CCVR, khoảng private–proxy, client học gì từ mẫu, synthetic đổi trọng số thế nào, tài liệu tham khảo, build cũ không được lặp? | [P37](docs/research/methods/synthetic-weight-dynamics-2026-10-23.md), [P36](docs/research/methods/teacher-support-two-seed-2026-10-22.md), [P35](docs/research/methods/support-capacity-oracle-2026-10-22.md), [P34](docs/research/methods/structured-support-generator-2026-10-22.md), [P33](docs/research/methods/client-learning-diagnosis-2026-10-22.md), [P32](docs/research/methods/synthetic-support-realism-2026-10-22.md), [P29–31](docs/research/methods/synthetic-gradient-diagnosis-2026-10-22.md), [P23–28](docs/research/methods/synthetic-learning-recovery-2026-10-22.md), [veto build cũ](docs/research/methods/synthetic-build-history-audit-2026-10-22.md) |
 | Train/chấm tách, timing, source/tests, cost? | [Pipeline cuối](docs/operations/final-pipeline.md) |
 | Kết quả nào PASS/FAIL, vì sao chọn phương pháp, vòng 24 sinh mẫu có chủ đích? | [Results](docs/methods/full-drift/results.md), [design](docs/methods/full-drift/design.md), [danh mục](docs/proposals.md) |
 | Protocol, thông tin rời client, so sánh/cost? | [Protocol](docs/research/protocol.md), [luồng FL](docs/research/federated-information-flow.md), [so sánh](docs/research/comparison-fl-dagsnet-veremi.md), [cost](docs/research/computational-cost.md) |
 | Dataset/kiến trúc cố định? | [Knowledge](knowledge/README.md) |
 | Account/quota, lỗi kernel, layout, Git/DVC? | [Kaggle](docs/operations/kaggle.md), [sổ lỗi](docs/operations/notebook-errors.md), [layout](docs/operations/project-layout.md), [backup](docs/operations/backup.md), [artifact index](docs/operations/artifact-index.md) |
-| Quyết định/kết quả lịch sử? | [Archive](docs/archive/README.md), [CONTEXT trước gọn tài liệu](docs/archive/operations/context-before-final-recovery-2026-10-20.md), [bàn giao17–20/10](docs/archive/operations/continuation-2026-10-17.md), [nhật ký 20–21/10](docs/archive/operations/continuation-2026-10-20-21.md) |
+| Quyết định/kết quả/bàn giao lịch sử? | [Archive](docs/archive/README.md), [bàn giao 22/10](docs/archive/operations/continuation-2026-10-22.md), [CONTEXT trước gọn tài liệu](docs/archive/operations/context-before-final-recovery-2026-10-20.md), [bàn giao17–20/10](docs/archive/operations/continuation-2026-10-17.md), [nhật ký 20–21/10](docs/archive/operations/continuation-2026-10-20-21.md) |
 
 Hub giữ trạng thái/quyết định/route. Số đo và commands ở docs; dữ kiện cố định ở knowledge; procedure dùng lại ở skills.
