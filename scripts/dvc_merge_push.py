@@ -39,7 +39,7 @@ def merge(dvcfile):
     entries = {e['relpath']: e['md5'] for e in json.loads(src.read_bytes())}
     work = dvcfile.parent / rel; pushed = n = 0
     for p in sorted(work.rglob('*')):
-        if not p.is_file() or p.is_symlink() or p.name.endswith('.tmp'): continue
+        if not p.is_file() or p.is_symlink() or p.name.endswith(('.tmp', '.part', '.partial')) or 'private_push' in p.parts: continue
         r = p.relative_to(work).as_posix(); h = md5(p); entries[r] = h; pushed += put(p, h); n += 1
     listing = [{'md5': h, 'relpath': r} for r, h in sorted(entries.items())]
     blob = json.dumps(listing, sort_keys=True).encode(); dh = hashlib.md5(blob).hexdigest() + '.dir'
