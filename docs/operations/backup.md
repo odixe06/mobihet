@@ -1,13 +1,13 @@
 # Git / DVC — backup và khôi phục
 
-## OneDrive — trạng thái 24/10/2026 00:21 (UTC+7)
+## OneDrive — trạng thái 24/10/2026 01:40 (UTC+7)
 
 - **Push DVC mặc định đã chuyển sang `onedrive`**:
   `/mnt/d/OneDrive/NCKH/veremi_build/mobihet/dvc-storage`. Git vẫn GitHub; bundle `mobihet.bundle` cạnh `dvc-storage`.
   Helper/skill `.agents` và `.claude` đã cập nhật. Không push mới sang Google Drive.
 - **Đang chuyển, chưa backup xong toàn dự án:** chỉ `NCKH` + `Lưu trữ` → `D:\OneDrive`, Files On-Demand.
   Nhóm MobiHet ưu tiên **30.326 object / 337,43 GB đã đạt kiểm cuối size/QuickXor/AV; đủ 30.326 ID nguồn G: đã dọn**.
-  DVC còn lại 72.313 object / 109,76 GB: đủ bản local đã kiểm MD5; cloud đã xác minh 69.398 object / 91,62 GB; đang nối kiểm cloud, không copy lại toàn bộ.
+  DVC còn lại 72.313 object / 109,76 GB: đủ bản local đã kiểm MD5; cloud đã xác minh khoảng 106,5 GB; đang nối kiểm cloud, không copy lại toàn bộ.
   Đã kiểm cloud cuối riêng 500 file nặng / 53,98 GB và dọn nguồn G: (500 HTTP204); chưa đánh dấu cả nhóm hoàn tất.
   Tiếp theo FL 73,38 GB; NCKH khác 47.209 file / 259,90 GB, gồm 142,26 GB Nextgen owner duyệt chuyển nốt nếu đủ quota.
   Gate quota thực tế đã đạt sau dọn checkpoint; chưa copy hai nhóm tiếp theo.
@@ -32,17 +32,29 @@
   Mẫu mới 12 luồng: trung bình 27,9 MB/s/136 giây, 0 lỗi; 8 luồng 12,0 MB/s/250 giây; mẫu 4 luồng cũ 5,1 MB/s.
   Khác file/lô nên không coi là benchmark cùng dữ liệu. MD5 staging phải khớp nguồn trước publish; cloud size/QuickXor/AV mới phải đạt trước xóa đúng ID G:.
   Không tải lại toàn bộ payload cloud để tính MD5. Chỉ yêu cầu online-only sau cloud đạt. 48 kiểm thử runtime đạt.
-- **Git/DVC MobiHet ưu tiên 24/10:** owner yêu cầu GitHub và DVC đồng thời; mốc trước đợt này là `f6ed8ed`.
-  Chốt snapshot code/docs trước, DVC OneDrive gộp và kiểm song song; manifest cuối được đẩy tiếp sau khi artifact đạt.
-  Worker chuyển G: tạm giữ để thay HEAD/manifest an toàn; OneDrive vẫn sync các file đã nhận.
-  Push mới ở phiên Claude trước đã dừng để ưu tiên chuyển cũ: 9 probe `.pt.dvc`, fixture-cache/input đã đẩy; `kaggle.dvc` còn cũ, payload mới đẩy một phần.
-  Có khoảng 50,87 GB object mới ngoài snapshot G:, giữ nguyên; đã kiểm và yêu cầu online-only 162 file / khoảng 19,38 GB.
+- **Git/DVC MobiHet ưu tiên 24/10:** GitHub `main` đã nhận `9921c80`, remote SHA khớp; gồm code/docs/source/notebook và index checkpoint đã nghỉ.
+  DVC 12 target hiện tại có 4.651 object nguồn duy nhất / 83,81 GB; ghi mới 7,53 GB, còn lại tái dùng bản OneDrive. Đủ nguồn và 3 `.dir` mới đã đạt kiểm cloud cuối size/QuickXor/AV.
+  Gộp partial workspace giữ entry chỉ có trên remote: `input.dvc` 3.029 entry, `kaggle.dvc` 12.718; bỏ file `.tmp`/`.part`/`.partial` và `private_push`.
+  Commit manifest/helper `c98d243`: `input.dvc` `07f88b88…dir`, `kaggle.dvc` `29327f34…dir`. Đủ **99 manifest / 31.161 object chưa nghỉ đã đạt kiểm cloud cuối size/QuickXor/AV**, gồm entry chỉ có trên remote; có proof MD5 nguồn cho đủ object.
+  Copy G: và push DVC chạy đồng thời; 99 fingerprint đã đối chiếu và cập nhật cho HEAD mới, không đổi inventory ID nguồn G: đã chốt.
+  Bundle mới sẽ công bố sau khi luồng cũ xử lý xong `NCKH/veremi_build/mobihet/mobihet.bundle` để tránh ghi đè bản mới bằng snapshot cũ.
 - **Owner đã duyệt bước sau chuyển:** push toàn bộ thay đổi dự án qua Git/DVC OneDrive; kiểm Git remote = commit local,
   manifest/object DVC đủ (checkpoint chủ động nghỉ dùng Kaggle index), bundle `--all` verify và bản công bố khớp; ghi cloud sync riêng.
   Sau backup chỉ dọn **artifact/cache local đã xác minh và không còn job cần dùng**; giữ source và toàn bộ Markdown.
   Không đổi HEAD/manifest khi luồng chuyển còn khóa fingerprint; không đẩy lại checkpoint chủ động nghỉ chỉ vì manifest lịch sử còn tham chiếu.
-- [Index hai repo archive](kaggle-archive-output-index.md) đã merge/push: Build7–8 `15a33d3`, Build9–21 `af7cc78`.
-  Thùng rác Google từng query rỗng sau dọn; phải kiểm lại ở audit cuối. Chưa đánh dấu toàn bộ công việc hoàn tất.
+- **Index phục hồi nằm trong đúng repo**, có JSON MD5 → notebook/output/aliases và helper kiểm MD5 toàn file trước xuất bản cache; đã thử pull thực tế thành công từng repo, remote SHA đã khớp:
+  [Build1–6](https://github.com/odixe06/mobihet-archive-b1-b6/blob/main/KAGGLE_OUTPUT_INDEX.md) `583cd31` (928 object / 31,97 GB, phiên cố định, GET+size đủ và mẫu MD5 đủ 13 notebook);
+  [Build7–8](https://github.com/odixe06/mobihet-archive-b7-b8/blob/main/KAGGLE_OUTPUT_INDEX.md) `fba9e46` (91 object);
+  [Build9–21](https://github.com/odixe06/mobihet-archive-b9-b21/blob/master/KAGGLE_OUTPUT_INDEX.md) `e681b37` (5.535 object).
+  Hai index cũ dùng proof GET+size 22/10, không lưu phiên ở kiểm gốc; helper lấy phiên hiện tại và từ chối nếu MD5 khác. 886 file local cũ không có Kaggle ghi riêng, không hứa khôi phục.
+  Build1–6 rà 1.248 hash / 46,58 GB: giữ checkpoint cuối/prototype và 214 object / 12,83 GB chưa khớp rõ; 928 mới chưa xóa, chờ kiểm cloud cuối nhóm chuyển.
+  Index/helper/manifest mới đã bổ sung vào `archive-recovery.zip` sẵn có; SHA256 cloud đạt, mọi entry phục hồi cũ giữ nguyên.
+  [Index tổng hợp lịch sử](kaggle-archive-output-index.md) giữ thông tin kiểm cũ, index tại từng repo là nơi pull theo MD5.
+  Google 24/10 ~01:34: vẫn vượt quota khoảng 266,98 GB; không suy nguồn chưa backup là được xóa. Thùng rác đã EMPTY_TRASH HTTP204 và query `trashed=true` rỗng; kiểm lại ở audit cuối nếu phát sinh.
+  Object 1,42 GB native đã kiểm MD5 nhưng cloud 404 dù OneDrive báo synced đã đẩy riêng thành công, hash cloud đạt; nhóm DVC còn lại đủ 109,76 GB, đang kiểm cloud cuối 72.313 object.
+  Copy FL 73,38 GB đã chạy, khoảng 18–54 MB/s theo lô; NCKH khác vẫn chờ sau đó. OneDrive cloud còn khoảng 450,54 GB lúc 01:39, đủ kế hoạch đã chọn; D: khoảng 74 GiB.
+  Kiểm cloud cuối chạy song song copy nhóm tiếp theo; source cleanup chờ đúng future kiểm thành công của nhóm đó. 58 kiểm thử runtime đạt, gồm cổng chặn xóa khi kiểm cloud lỗi.
+  Chưa đánh dấu toàn bộ công việc hoàn tất.
 - Chỉ hồ sơ này giữ trạng thái chuyển; log/proof/script tạm tại `/home/odixe/.local/state/drive-migration-20261022/`, xóa sau hoàn tất/audit cuối.
   Worker systemd tự nối; gỡ startup unit tạm `mobihet-drive-migration-20261022.service` và trả power/WSL guards khi xong.
   **Việc tay:** giữ máy bật và mạng liên tục; chỉ xử lý nguồn thiếu quyền trong danh sách CSV khi cần. Các nguồn đủ quyền được tự dọn sau xác minh.
