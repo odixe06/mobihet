@@ -1,6 +1,6 @@
 # Khôi phục checkpoint cũ từ Kaggle
 
-Owner cho phép dọn tối đa checkpoint ít giá trị: ưu tiên adaptation đã đóng FAIL, kể cả pilot ngắn PASS nhưng kiểm dài hơn FAIL. Nhóm dưới là các build lưu trữ đã chốt cổng FAIL; checkpoint trung gian của đối chứng cũ cùng build cũng thuộc phạm vi. Giữ checkpoint cuối từng run, source/config, predictions/metrics, input, smoke/reference và object được manifest khác tham chiếu.
+Owner cho phép dọn tối đa checkpoint ít giá trị: ưu tiên adaptation đã đóng FAIL, kể cả pilot ngắn PASS nhưng kiểm dài hơn FAIL. Nhóm dưới là các build lưu trữ đã chốt cổng FAIL; checkpoint trung gian của đối chứng cũ cùng build cũng thuộc phạm vi. Giữ checkpoint cuối từng run, source/config, predictions/metrics, input, smoke/reference và object được manifest khác còn dùng tham chiếu. Alias checkpoint-staging không còn dùng của chính build đã đóng được rà riêng như bổ sung bên dưới.
 
 [Danh sách đầy đủ MD5 → kernel/version/output/manifest](kaggle-retired-weights.json) · [Script khôi phục](../../scripts/restore_kaggle_retired_weights.py) · [Trạng thái dọn hiện tại](backup.md).
 
@@ -20,8 +20,12 @@ Kiểm phục hồi: listing bằng đúng tài khoản + HTTP Range đọc 1 by
 | gaussian-sampling | 380 | 11.93 | 380 | [report](../archive/methods/gaussian-sampling/builds/support-mala/results/report.md) |
 | dagsnet-joint-energy | 100 | 3.48 | 100 | [report](../archive/methods/dagsnet-joint-energy/builds/gaussian-base-energy/results/report.md) |
 | boundary-cell-counts | 1410 | 45.46 | 1410 | [report](../methods/boundary-cell-counts/builds/boundary-cell-pilot/results/utility-report.md) |
-| class-tail-risk | 544 | 11.53 | 544 | [report](../methods/class-tail-risk/builds/class-tail-pilot/results/report.md) |
+| class-tail-risk | 576 | 12.21 | 576 | [report](../methods/class-tail-risk/builds/class-tail-pilot/results/report.md) |
 | proxy-countsketch-repair | 514 | 16.20 | 514 | [report](../methods/proxy-countsketch-repair/builds/contractive-ef-pilot/results/report.md) |
+
+## Bổ sung ClassTail 24/10/2026
+
+Thêm **32 checkpoint trung gian / 0,678 GB**, cùng nội dung giữa `kaggle.dvc` và `checkpoint-staging.dvc` của build đã đóng FAIL. Đã stream và kiểm **MD5 toàn file đủ 32/32** ở phiên Kaggle cố định; giữ đủ **650 hash checkpoint cuối** đợt trước và mọi input/smoke/reference hoặc tham chiếu hiện tại ngoài build này. Source/config/metrics/predictions giữ nguyên. Tổng index **8.862 object**; trạng thái đã dọn xem [backup](backup.md).
 
 ## Output từng notebook
 
@@ -29,7 +33,7 @@ Link web mở output; version cố định trong cột/index được script g�
 
 | notebook | version đã kiểm | file đã kiểm |
 |---|---:|---:|
-| [catbaochau/mobihet-ct-u-s42-20261015-v1](https://www.kaggle.com/code/catbaochau/mobihet-ct-u-s42-20261015-v1/output) | 1 | 272/272 |
+| [catbaochau/mobihet-ct-u-s42-20261015-v1](https://www.kaggle.com/code/catbaochau/mobihet-ct-u-s42-20261015-v1/output) | 1 | 288/288 |
 | [catbaochau/mobihet-v5j-s42-20261012-v1](https://www.kaggle.com/code/catbaochau/mobihet-v5j-s42-20261012-v1/output) | 1 | 266/266 |
 | [dinhan25/mobihet-bc-u-s43-20261014-stage01-v1](https://www.kaggle.com/code/dinhan25/mobihet-bc-u-s43-20261014-stage01-v1/output) | 1 | 282/282 |
 | [dinhan25/mobihet-sa-s43-20261011](https://www.kaggle.com/code/dinhan25/mobihet-sa-s43-20261011/output) | 1 | 114/114 |
@@ -41,7 +45,7 @@ Link web mở output; version cố định trong cột/index được script g�
 | [dinhan25/mobihet-v6a-s43-20261012-v1](https://www.kaggle.com/code/dinhan25/mobihet-v6a-s43-20261012-v1/output) | 1 | 114/114 |
 | [dinhan25/mobihet-v7n-s43-20261012-v1](https://www.kaggle.com/code/dinhan25/mobihet-v7n-s43-20261012-v1/output) | 1 | 380/380 |
 | [khanhmay0304/mobihet-cef-s43-20261015-v1](https://www.kaggle.com/code/khanhmay0304/mobihet-cef-s43-20261015-v1/output) | 1 | 254/254 |
-| [khanhmay0304/mobihet-ct-u-s43-20261015-v1](https://www.kaggle.com/code/khanhmay0304/mobihet-ct-u-s43-20261015-v1/output) | 1 | 272/272 |
+| [khanhmay0304/mobihet-ct-u-s43-20261015-v1](https://www.kaggle.com/code/khanhmay0304/mobihet-ct-u-s43-20261015-v1/output) | 1 | 288/288 |
 | [khanhmay0304/mobihet-v5g-s42-20261012-v1](https://www.kaggle.com/code/khanhmay0304/mobihet-v5g-s42-20261012-v1/output) | 1 | 266/266 |
 | [khanhmay0304/mobihet-v5j-s43-20261012-v1](https://www.kaggle.com/code/khanhmay0304/mobihet-v5j-s43-20261012-v1/output) | 1 | 266/266 |
 | [minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1](https://www.kaggle.com/code/minhtran0601/mobihet-bc-u-s42-20261014-stage01-v1/output) | 1 | 260/260 |

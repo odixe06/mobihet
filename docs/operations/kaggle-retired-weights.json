@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "checked_at": "2026-10-23T15:28:50.471209+07:00",
-  "scope": "Retire old nonfinal checkpoint/resume objects from closed failed adaptations and their obsolete matched controls; preserve final checkpoints, noncheckpoint artifacts, every other current/history reference",
-  "proof_policy": "Every recovery_verified object: authenticated owner-scoped output listing and HTTP 206 bytes=0-0 size check. One whole-object MD5 sample per kernel; not full MD5 of every Kaggle output. Restore helper always verifies complete MD5 before publishing cache object.",
+  "scope": "Retire indexed nonfinal checkpoints of closed failed adaptations and obsolete controls; preserve the original 650 final hashes, input/smoke/reference and current outside-build references. Historical aliases of supplemental closed-build staging checkpoints remain recoverable by pinned Kaggle MD5.",
+  "proof_policy": "Original 8830: owner-scoped listing, HTTP206 first-byte/size checks and one whole-object MD5 sample per kernel. Supplemental 32 ClassTail: every complete file streamed and MD5/size matched at pinned version. Restore helper always verifies full MD5 before publishing cache.",
   "kept_final_hashes": 650,
   "protected_hashes": 29932,
   "manifests": {
@@ -158995,6 +158995,1006 @@
       "version": 1,
       "recovery_verified": true,
       "full_md5_sample_verified": false
+    },
+    {
+      "md5": "725cf81d75d7c16c5a2fbe31bbe94856",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_classmass_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_classmass_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_classmass_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_classmass_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782049.2649667,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "28bfe5ceaf24dc7da3fd03024e828009",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_classmass_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_classmass_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_classmass_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_classmass_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782066.2920249,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "57760d45052b0eb9d50dfd636203e9c5",
+      "size": 3247669,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_dml_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_dml_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_dml_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_dml_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782072.2037592,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "0d20a8f2defb611e36929e858b50353d",
+      "size": 66070197,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_dml_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_dml_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_dml_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_dml_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782090.6537058,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "a19f945ead7c92292aac019cd99e3e3f",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_fixed_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fixed_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_fixed_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fixed_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782091.9619708,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "ee7b188b914e83a574d87b273940edd5",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_fixed_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fixed_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_fixed_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fixed_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782176.8290613,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "75a0a58791ded403497d486fdb330488",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_fl_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fl_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_fl_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fl_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782117.9984112,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "22801813c7226d1f5f1e4da5b625208d",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_fl_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fl_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_fl_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_fl_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782128.1815498,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "8a4bd2dd4ad47e5f23923141bcade2e3",
+      "size": 5511047,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_gaussian_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_gaussian_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_gaussian_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_gaussian_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782138.3298016,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "f3c68460106a8ab5bcce6576dc00ccf1",
+      "size": 66070197,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_gaussian_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_gaussian_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_gaussian_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_gaussian_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782152.6602619,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "2f437496bc072668d08d7980929d3541",
+      "size": 10898,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_local_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_local_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_local_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_local_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782166.5599828,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "90b83dcfecd412f36c6b3c0819c0fd55",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_local_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_local_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_local_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_local_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782175.3798065,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "15bdb4c5bbe4d9a433d5c3665a300a2d",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_own_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_own_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_own_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_own_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782177.2442157,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "ebe9184df0f8c40179bd81faf1d6335d",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_own_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_own_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_own_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_own_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782187.3704364,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "7aaf3e85e7f3610bad0a450370145b61",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_shuffle_s42/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_shuffle_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_shuffle_s42/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_shuffle_s42/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782187.7229066,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "13b928d167e63c15ee48ea7bfc628464",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "catbaochau/mobihet-ct-u-s42-20261015-v1",
+      "file": "runs/ct_shuffle_s42/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_shuffle_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s42-20261015-v1/runs/ct_shuffle_s42/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s42-20261015-v1/runs/ct_shuffle_s42/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782195.7409818,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "44e374521c8579378d65ac18b4369770",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_classmass_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_classmass_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_classmass_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_classmass_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782142.1728613,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "93ca49d9e97e2978d04fa78c7842b19e",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_classmass_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_classmass_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_classmass_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_classmass_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782151.1588693,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "31f18a0a5fd36dd4a5738b174fb81fe6",
+      "size": 3247669,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_dml_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_dml_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_dml_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_dml_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782154.5679505,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "9392cb5f1cd1f49113392fc0a8250c20",
+      "size": 66070197,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_dml_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_dml_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_dml_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_dml_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782201.8974805,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "4fde311e335610c77137dd591b1dd4a2",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_fixed_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fixed_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_fixed_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fixed_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782167.537832,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "8b12e1d4069697bb25520dab75632239",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_fixed_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fixed_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_fixed_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fixed_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782176.1857982,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "f4ddd2f5d4b5a6947ea0fb803e5fafa9",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_fl_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fl_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_fl_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fl_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782184.3024888,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "a398a6eabedbf708a4284404a0246a14",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_fl_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fl_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_fl_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_fl_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782192.0771985,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "a211a1619334b29efde62aa44219f697",
+      "size": 5511047,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_gaussian_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_gaussian_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_gaussian_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_gaussian_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782204.8869836,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "ce7b33408a2f1260b4489b620f787be3",
+      "size": 66070197,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_gaussian_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_gaussian_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_gaussian_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_gaussian_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782224.6390302,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "72798a07ae28140e6689bb55274fcaa7",
+      "size": 10898,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_local_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_local_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_local_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_local_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782224.5470777,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "12f9df712dbccf6df7278b42bf2ff1eb",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_local_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_local_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_local_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_local_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782231.1714125,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "88a4bcba97945da83dfa781120a9a953",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_own_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_own_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_own_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_own_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782226.7160764,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "81cfbc2f2af906df83127794cd945c6e",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_own_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_own_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_own_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_own_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782271.162055,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "033f8cc0804cf273d50e1bddc232747a",
+      "size": 11218,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_shuffle_s43/resume/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_shuffle_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_shuffle_s43/resume/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_shuffle_s43/resume/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782244.43009,
+      "retirement_phase": "closed-shared-20261024"
+    },
+    {
+      "md5": "834772bd10c7f88dfad499c17efd5313",
+      "size": 33034485,
+      "method": "class-tail-risk",
+      "kernel": "khanhmay0304/mobihet-ct-u-s43-20261015-v1",
+      "file": "runs/ct_shuffle_s43/weights/round_001.pt",
+      "version": 1,
+      "round": 1,
+      "aliases": [
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/checkpoint-staging.dvc",
+          "dir_md5": "952d191a0c749bb91b9665901a090f37.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_shuffle_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-cal-s43-20261015-v1/runs/ct_shuffle_s43/weights/round_001.pt"
+        },
+        {
+          "manifest": "methods/class-tail-risk/builds/class-tail-pilot/kaggle.dvc",
+          "dir_md5": "2fa22616e4101eb18ce42d955ff48778.dir",
+          "relpath": "ct-u-s43-20261015-v1/runs/ct_shuffle_s43/weights/round_001.pt"
+        }
+      ],
+      "recovery_verified": true,
+      "full_md5_sample_verified": true,
+      "full_md5_verified": true,
+      "checked_at": 1792782285.63647,
+      "retirement_phase": "closed-shared-20261024"
     }
-  ]
+  ],
+  "last_updated_at": "2026-10-24T02:09:37.293280+07:00",
+  "supplemental_retirement": {
+    "phase": "closed-shared-20261024",
+    "objects": 32,
+    "bytes": 678346016,
+    "scope": "Only unused nonfinal ClassTail checkpoints shared by the same closed build Kaggle and checkpoint-staging aliases; preserve all original 650 final hashes, input/smoke/reference and current outside-build references.",
+    "all_complete_md5_verified": true
+  }
 }
