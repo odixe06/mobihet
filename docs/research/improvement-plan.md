@@ -84,8 +84,7 @@ Primary = **private F1-macro pooled trên test của chính xe**; kèm trung bì
 Không chọn HP/round theo test (protocol không có val riêng ⇒ M, S, nhiệt độ cố định trước: M = 4.096, S = 200 bước Adam 1e-3,
 batch 512, T = 1). Lặp seed 43 cho arm cuối nếu quota cho phép.
 
-## 4. Câu hỏi cho owner trước khi chạy
+## 4. Owner duyệt (30/10)
 
-1. Duyệt cổng sàng lọc 10 round full-K (thay cho 50 round mỗi arm)?
-2. Upload xác suất trên X_s (A) đổi kênh tri thức lên từ "delta tham số" sang "dự đoán trên dữ liệu tổng hợp" — đúng tinh thần
-   "bỏ train proxy" của owner? (C là phương án cực đoan: không còn proxy.)
+- Sàng lọc 10 round full-K (cổng §3 khóa trước khi chạy). Thử **mọi** hướng (A, B, C, rồi D/E) để tìm phương án tối ưu.
+- Code: `methods/mobihet.py` `arm ∈ {dml, srv, cheap, none}` (+ `agg_soft`, `m_transfer` 4.096, `server_steps` 200).
