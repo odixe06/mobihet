@@ -1,0 +1,73 @@
+# Phương pháp đang làm và bài học từ các hướng đã kiểm
+
+30 nhóm FL + recipe EMA. ClassTail, CrossClientRank thêm15/10 chiều; ProxyFuse, AntiMem/QProxy, FullDrift thêm15/10 tối.
+CountSketch sửa là adaptation của họ cũ, không đếm mới. 11 hồ sơ còn làm việc; adaptation lịch sử giữ archive.
+Gaussian, DML và Hybrid có pilot tích cực; FullDrift final seed42 đã đủ r50, R1/R2 còn chưa proof.
+**Mục tiêu = dự đoán của client**; họ frz/gkd hiện khóa **private head**, gp/gpe chỉ diagnostic. Luật gp trong
+[hồ sơ16/10](archive/research/client-model-directions-2026-10-16.md) thuộc family trước đó.
+[Chẩn đoán chững sớm](archive/research/plateau-diagnosis-2026-10-15.md).
+
+**Mỗi phương pháp một file theo tên: [research/methods](research/methods/README.md)** (owner 17/10). V2–V10 là nhãn đợt thí nghiệm, [không phải các version thay thế nhau](operations/project-layout.md).
+
+## Trạng thái hồ sơ trong methods/
+
+**23/10 — report final hoàn tất; P37 xong (không ứng viên).** [Bàn giao hiện hành](operations/continue.md).
+P29–36 đã xong; P30 joint, P32 copula, P34 bộ sinh giữ cấu trúc FAIL; P35 GMM/MADE không đủ năng lực; P36 Project48 + copula PASS hai seed frozen-head ⇒ vòng 26 online **FAIL** (Δ +0,0003). 23/10: owner thử một lần cuối ⇒ P37 (full model): không ứng viên; oracle dòng thật chỉ +0,010 = cổng. Phương pháp chốt giữ `gkd + la + kdpx`, proxy `q3_zl`.
+Các dòng pilot lịch sử dưới không thay trạng thái kernel hiện tại trong bàn giao.
+
+| phương pháp | trạng thái | tài liệu |
+|---|---|---|
+| Proxy DAGSNet chưng cất hai chiều | Pilot có lợi; full đang nối tới r50 | [Thiết kế](methods/proxy-mutual-distillation/design.md), [build/kết quả](methods/proxy-mutual-distillation/README.md) |
+| Gaussian từ moment lớp gộp | Pilot có lợi; full đang nối tới r50 | [Thiết kế](methods/gaussian-class-moments/design.md), [build/kết quả](methods/gaussian-class-moments/README.md) |
+| Kết hợp Gaussian moment và proxy DAGSNet | Pilot hai seed PASS; full đang nối tới r50 | [Thiết kế](methods/gaussian-proxy-hybrid/design.md), [build/kết quả](methods/gaussian-proxy-hybrid/README.md) |
+| BoundaryCells — đếm nhãn theo ô input | P2/P4 direct/teacher r20 hai seed FAIL; dừng adaptation | [Thiết kế](methods/boundary-cell-counts/design.md), [build/kết quả](methods/boundary-cell-counts/README.md) |
+| ResponseRisk — consistency chống receiver shortcut | Fidelity probe PASS; chưa train augmentation | [Thiết kế](methods/receiver-response-consistency/design.md), [build/kết quả](methods/receiver-response-consistency/README.md) |
+| EMA backbone + local BN + head triển khai | Thiết kế đã chốt; chưa triển khai | [Thiết kế](methods/ema-deployment-recipe/design.md), [build/kết quả](methods/ema-deployment-recipe/README.md) |
+| ClassTail — histogram CE classwise, tail-risk hardlabel local | Calibrationr2 PASS; paired utilityr20 FAIL; không nối thêm | [Nguồn/cơ chế](archive/research/new-directions-2026-10-15.md), [contract](methods/class-tail-risk/builds/class-tail-pilot/README.md) |
+| CountSketch EF sửa overshoot | Co norm PASS; smallr20 hai seed qualityFAIL, mediumr17/r14 kém own; không nối | [Sửa và cổng cũ](methods/proxy-countsketch-repair/builds/contractive-ef-pilot/README.md) |
+| CrossClientRank — pooled positive/negative score moments | Utility seed42 audited r20 **FAIL** (pooled−CE +0,0017, −own −0,0003); seed43 recovery v2 đang chạy, chỉ mô tả | [Nguồn](archive/research/new-directions-2026-10-15-afternoon.md), [utility](methods/cross-client-ranking/builds/rank-utility/README.md) |
+| ProxyFuse — trộn private-gp với proxy khi triển khai | Probe hậu kiểm hai seed **FAIL** (−0,032/−0,034 so proxy); dẫn tới proxy headline | [Thiết kế](methods/proxy-fusion/design.md), [kết quả](methods/proxy-fusion/results.md) |
+| AntiMem — receiver-swap, M4b, swap+vị trí, EMA+BN local; QProxy q8/q4 | Audited r20 hai seed: Gaussian private PASS mọi kỹ thuật (m4b +0,025, EMA +0,035–0,039); DML/Hybrid proxy FAIL, proxy EMA hại; **QProxy q4 PASS** (±0,001, byte 7,65× nhỏ) | [Thiết kế/cổng](methods/anti-memorization/design.md), [kết quả](methods/anti-memorization/results.md) |
+| FullDrift — full holdout nội bộ: FedProx, FedAvgM, FedAvg thuần, Gaussian swappos, private_ema | Audited seed42 ep6: FedProx 0 (benign +0,098); FedAvgM phân kỳ; FedAvg ≈ DML; **Gaussian swappos +0,052**, EMA Gaussian +0,024/+0,036 | [Thiết kế/cổng](methods/full-drift/design.md), [kết quả](methods/full-drift/results.md) |
+| FullDrift vòng 3 (client) — DML private: m4b, swappos, FedNTD; q4 | Cổng private gp khóa 16/10 ~04:05Z; Audited seed42 ep6: **m4b private +0,036/proxy +0,052, swappos +0,033/+0,049 PASS**; FedNTD −0,042 FAIL; q4 noninferior. Vòng 4 audited: **hidden-state KD (FedKD) +0,006 FAIL**, **Gaussian m4b +0,067 PASS** | [Thiết kế §Vòng 3–4](methods/full-drift/design.md), [nguồn](archive/research/client-model-directions-2026-10-16.md) |
+| FullDrift vòng 2 — horizon ep15 | Audited 16/10: `fd_dml` proxy phẳng ep4–15 | [Kết quả](methods/full-drift/results.md) |
+| FullDrift vòng 5–6 — m4b horizon ep15, m4b+q4; seed 43 | Vòng 5 audited: **m4b@e15 PASS** (private +0,036, proxy +0,086, benign không sụp), m4b_q4 noninferior | [Thiết kế §Vòng 5–6](methods/full-drift/design.md), [kết quả](methods/full-drift/results.md) |
+| FullDrift vòng 6–7 seed 43 | **PASS hết**: m4b private +0,031/proxy +0,039, swappos +0,034; EMA hại Gaussian-m4b hai seed ⇒ headline DML = m4b | [Kết quả](methods/full-drift/results.md) |
+| FullDrift vòng 8–10 (17/10) — kdcap/frozen teacher, FedDyn, SCAFFOLD (3 LR), Hybrid private-only, cons/JS, own controls, s43 lặp, horizon s43 | Audited ~04:40Z: **`gpool` (Hybrid private-only) PASS 3 cổng × 2 seed** (+0,016/+0,024 so m4b); own controls PASS (lợi FL +0,04/+0,05); m4b_q4 s43 noninferior; kdcap, frz, FedDyn, SCAFFOLD, JS **FAIL**. Horizon m4b ep15 s43 **PASS** (private +0,025, proxy +0,063) | [Thiết kế §Vòng 8–10](methods/full-drift/design.md), [kết quả](methods/full-drift/results.md), [theo tên](research/methods/README.md) |
+| FullDrift vòng 11–23 — cải tiến private và nén | Vòng 11 kd2/kdpx/gw2 FAIL; gpool horizon không giữ lợi. Frz/gkd rồi la_kdpx PASS hai seed; vét la/kdpx xong. **q3_zl noninferior cả hai seed**, 2-bit FAIL. Chuyển run cuối seed42 20/50/100c, train/chấm tách | [Kết quả](methods/full-drift/results.md), [pipeline cuối](operations/final-pipeline.md) |
+| FullDrift vòng 24 — sinh mẫu có chủ đích (owner 21/10) | Probe 20: lỗi còn lại ở khối benign, Gaussian gkd bất đồng sai chỗ (cos 0,09); ưu tiên trong Gaussian không sửa được. Arm `xo` (lai ghép dòng own theo cặp bất đồng, 0 byte): **FAIL** gain s42 ep15 Δ +0,0076 (cần +0,010), cơ chế đúng chỗ nhưng lợi trong nhiễu seed ⇒ dừng hướng | [Hồ sơ](research/methods/own-row-crossover-priority.md), [design §Vòng 24](methods/full-drift/design.md), [probe 20](methods/full-drift/results.md) |
+| FullDrift vòng 25 — hiệu chỉnh teacher bằng đặc trưng ảo theo lớp `cv` (owner: ngân sách ≤ 1,5× byte ⇒ chỉ cvl) | Phân tích: 77 % lỗi private là lỗi teacher cũng sai. Offline CCVR (covariance riêng) teacher 0,842 → 0,893 nhưng ×6,8 byte; cvl (covariance chung, ×1,45) offline chỉ 0,848. **cvl FAIL** s42 ep15: Δ −0,0136, benign −0,0185; lên đúng lớp mục tiêu (posMirror +0,17, timeDelay +0,11) nhưng mất lớp tốc độ (suddenConstantSpeed −0,21); head refit thua head train từ ep6 ⇒ dừng | [Hồ sơ](research/methods/teacher-virtual-feature-calibration.md), [phân tích](methods/full-drift/results.md) |
+| Synthetic recovery22/10 — compressed CCVR, teacher×support, weighting/oracle/gradient (P23–28) | Project48 teacher PASS hai seed Kaggle; private transfer và inversion **FAIL** cổng, gradient-only local **FAIL**. Oracle real support chỉ chẩn đoán, R3-ineligible; prior-only chưa chạy. Chưa online FL, R1 bootstrap/contact chưa giải quyết; dừng để compact | [Kết quả/cổng](research/methods/synthetic-learning-recovery-2026-10-22.md), [history/veto](research/methods/synthetic-build-history-audit-2026-10-22.md) |
+| Synthetic P29–31 — gradient/target/support, joint carrier, Jacobian | P29 đủ20 client xác nhận mismatch gradient; P30 joint **FAIL** gain và không hơn mean-only/zero-cross; P31 null-space energy nhỏ trên16 điểm, chưa là nguyên nhân chính. Không launch thêm | [Protocol/kết quả](research/methods/synthetic-gradient-diagnosis-2026-10-22.md) |
+| Conditional input density — proposal sau P30 FAIL | Chưa code/train; cần pooled capacity-oracle trước, atom/dequantization chưa chốt; nominal byte không phải R1 PASS | [Cơ chế/control/falsifier §7](research/methods/synthetic-transfer-identifiability-2026-10-22.md) |
+| Synthetic P32–36 — copula × Project48, ablation nhóm feature, cách client học, bộ sinh giữ cấu trúc, trần năng lực, so phương pháp hiện hành | P32 copula **FAIL** (+0,0024, worst +0,022); support thật cần `snd_kin`/`sess`/`geo`/`prof` cùng thật. P33 (không train): lợi support thật = recall posMirror + suddenStop, dòng own cân bằng lớp không thêm gì, Gaussian/copula lệch manifold đặc trưng private. **P34 FAIL** (+0,0023; atom/trạng thái/profile/định danh không đổi utility, V4-S/G61 ≈ Gaussian). P35: lợi cần mẫu thật của lớp tấn công hiếm ở độ chính xác ~0,05 z; GMM/MADE fit trên pool +0,0044/+0,0026 không đủ năng lực. **P36:** so phương pháp hiện hành, Project48 + copula PASS hai seed (+0,0077 / +0,0051); GMM lớp tấn công FAIL. **Vòng 26 online (cvp + cop) FAIL** (Δ +0,0003; teacher hiệu chỉnh ≈ gốc từ ep5, per-class đổi chiều so harness) | [P32](research/methods/synthetic-support-realism-2026-10-22.md), [P33](research/methods/client-learning-diagnosis-2026-10-22.md), [P34](research/methods/structured-support-generator-2026-10-22.md), [P35](research/methods/support-capacity-oracle-2026-10-22.md), [P36](research/methods/teacher-support-two-seed-2026-10-22.md), [vòng 26](methods/full-drift/design.md) |
+
+## Đã kết thúc — giữ bài học, source và báo cáo trong archive
+
+| phương pháp | kết luận có phạm vi | bài học / bằng chứng |
+|---|---|---|
+| Prototype trung bình lớp | Đã kiểm; đối chứng tham chiếu | [Bài học](lessons/class-prototypes.md), [hồ sơ lưu trữ](archive/methods/class-prototypes/README.md) |
+| Truyền snapshot qua contact hữu hạn | Đã kiểm; hạ tầng, còn giới hạn | [Bài học](lessons/contact-fragmentation.md), [hồ sơ lưu trữ](archive/methods/contact-fragmentation/README.md) |
+| Trao đổi tri thức tại head | Đã kiểm; không đủ lợi để ưu tiên | [Bài học](lessons/federated-head-transfer.md), [hồ sơ lưu trữ](archive/methods/federated-head-transfer/README.md) |
+| Chưng cất logit trên điểm Gaussian | Đã kiểm; không đủ lợi để ưu tiên | [Bài học](lessons/gaussian-logit-distillation.md), [hồ sơ lưu trữ](archive/methods/gaussian-logit-distillation/README.md) |
+| Fourier sketch phân phối lớp | Pilot hai seed FAIL | [Bài học](lessons/fourier-distribution-sketch.md), [hồ sơ lưu trữ](archive/methods/fourier-distribution-sketch/README.md) |
+| Synthetic book khớp latent mean | Pilot hai seed FAIL | [Bài học](lessons/latent-mean-synthetic-books.md), [hồ sơ lưu trữ](archive/methods/latent-mean-synthetic-books/README.md) |
+| Nén update proxy bằng CountSketch | Pilot hai seed FAIL; EF lỗi số | [Bài học](lessons/proxy-countsketch.md), [hồ sơ lưu trữ](archive/methods/proxy-countsketch/README.md) |
+| Proxy trong cơ sở sinh từ seed | Pilot FAIL: K512 lỗi số, K1024 teacher yếu | [Bài học](lessons/proxy-seeded-subspace.md), [hồ sơ lưu trữ](archive/methods/proxy-seeded-subspace/README.md) |
+| DAGSNet học tỷ số mật độ cho Gaussian | Pilot hai seed FAIL | [Bài học](lessons/gaussian-density-ratio.md), [hồ sơ lưu trữ](archive/methods/gaussian-density-ratio/README.md) |
+| Proxy: tọa độ ngẫu nhiên + bù lỗi | Pilot hai seed FAIL | [Bài học](lessons/proxy-random-coordinates.md), [hồ sơ lưu trữ](archive/methods/proxy-random-coordinates/README.md) |
+| Proxy: huấn luyện mạng con luân phiên | Pilot hai seed FAIL | [Bài học](lessons/proxy-rolling-subnetwork.md), [hồ sơ lưu trữ](archive/methods/proxy-rolling-subnetwork/README.md) |
+| Proxy: projection trực giao đổi seed | Pilot hai seed FAIL | [Bài học](lessons/proxy-orthogonal-projection.md), [hồ sơ lưu trữ](archive/methods/proxy-orthogonal-projection/README.md) |
+| Proxy: PowerSGD hai lượt | Pilot hai seed FAIL | [Bài học](lessons/proxy-powersgd.md), [hồ sơ lưu trữ](archive/methods/proxy-powersgd/README.md) |
+| Gaussian được vận chuyển bằng MALA | Pilot hai seed FAIL | [Bài học](lessons/gaussian-mala-transport.md), [hồ sơ lưu trữ](archive/methods/gaussian-mala-transport/README.md) |
+| Gaussian giữ atom, profile và first-session | Pilot hai seed FAIL | [Bài học](lessons/gaussian-support-constraints.md), [hồ sơ lưu trữ](archive/methods/gaussian-support-constraints/README.md) |
+| Teacher từ kernel soft target trên anchor chung | Pilot hai seed FAIL | [Bài học](lessons/kernel-anchor-distillation.md), [hồ sơ lưu trữ](archive/methods/kernel-anchor-distillation/README.md) |
+| Synthetic book khớp gradient DAGSNet | Pilot hai seed quality FAIL; cost PASS | [Bài học](lessons/gradient-synthetic-books.md), [hồ sơ lưu trữ](archive/methods/gradient-synthetic-books/README.md) |
+| Moment primitive + tái dựng feature hình học | Pilot FAIL: G59 lỗi số, G61 quality/byte FAIL | [Bài học](lessons/geometry-primitive-moments.md), [hồ sơ lưu trữ](archive/methods/geometry-primitive-moments/README.md) |
+| Sketch covariance Nyström | Pilot hai seed quality FAIL; compression PASS | [Bài học](lessons/covariance-nystrom.md), [hồ sơ lưu trữ](archive/methods/covariance-nystrom/README.md) |
+| Residual hàm từ nhãn local trên anchor | Pilot hai seed quality FAIL; cost PASS | [Bài học](lessons/anchor-function-residual.md), [hồ sơ lưu trữ](archive/methods/anchor-function-residual/README.md) |
+| Joint-energy bằng DAGSNet | Cost/sampler FAIL; candidate r20 chưa đo | [Bài học](lessons/dagsnet-joint-energy.md), [hồ sơ lưu trữ](archive/methods/dagsnet-joint-energy/README.md) |
+
+Không rerun adaptation FAIL y nguyên. P2 contact là bằng chứng lịch sử còn giới hạn, yêu cầu R1 vẫn mở. Không chốt utility từ RUNNING/COMPLETE; pull và audit đúng source/controls/cổng trước kết luận.
+
+[Mục lục](README.md) · [Bài học chung](../LESSONS.md) · [Index hiện tại](file-index.md) · [Index lịch sử](archive/file-index.md).
