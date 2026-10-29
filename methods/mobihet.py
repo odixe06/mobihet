@@ -18,6 +18,21 @@ One-time bootstrap (gpool + la): each client sends per-class counts, Σx, Σxx�
 means, Cholesky factors and the global prior. Deviations from the original: shared protocol (batch 64, wd 1e-4, cosine
 1e-3 → 1e-5; original wd 0, batch 512), Gaussian rows per step = batch / 2 (original 256 per 512 real rows, same ratio),
 LZMA2 byte count measured on a fixed sample of clients per rank (lossless stage only changes bytes, not training).
+
+Arms (hp "arm"; docs/research/improvement-plan.md, owner 30/10: remove proxy training on the vehicle):
+  dml    the v1 arm above (control S0): private + proxy trained together every step.
+  srv    (A) only the private trains. After its epoch each vehicle scores a shared transfer set X_s (M Gaussian rows drawn
+         from the pooled moments with a per-round seed, so X_s is never sent) and uploads its private's class
+         probabilities (uint8). The server averages them per row (weights n_{k,c} of the row's class: a vehicle is
+         trusted on classes it has seen; hp agg_soft = "client" uses n_k) and distils the proxy on X_s (S Adam steps,
+         BN frozen), then sends the Q3 delta as before. FedDF (Lin et al. 2020) / FedMD (Li & Wang 2019) style.
+  cheap  (B) only the private trains on real rows; after the epoch the proxy (from the replica) is distilled from the
+         private on X_s on the vehicle (M / 256 steps, BN frozen), and the Q3 delta is uploaded as in dml.
+  none   (C) no proxy. Vehicles upload per-class mean private probabilities on their real rows (16 x 16 + counts, as
+         FedDistill, Jeong et al. 2018); private KD targets are the pooled class rows Q[y] (real and Gaussian rows).
+In srv/cheap the proxy never sees real rows, so its BN statistics come from the vehicles: the frozen teacher's forward on
+real rows uses batch statistics (dropout off) and its running statistics are uploaded (fp16) and n_k-averaged. The KD
+weight w = 1/(CE_private + CE_teacher) replaces CE_proxy by the teacher's CE (no live proxy).
 """
 import lzma
 import math
@@ -26,6 +41,8 @@ import torch
 import torch.nn.functional as F
 
 from core import grouped, local
+from core.dagsnet import DAGSNet
+from core.optim import GroupAdamW
 
 LZMA = [dict(id=lzma.FILTER_LZMA2, preset=9 | lzma.PRESET_EXTREME)]
 BITS = 3
@@ -74,6 +91,11 @@ class Method:
         self.weighted = env.hp.get("agg", "weighted") == "weighted"      # owner 29/10: n_k weights (original: 1/K)
         self.gen_q = torch.Generator(device=dev).manual_seed(env.hp["seed"] * 7 + env.rank)
         self.gen_g = torch.Generator(device=dev).manual_seed(env.hp["seed"] * 11 + env.rank)
+        self.arm = env.hp.get("arm", "dml")
+        assert self.arm in ("dml", "srv", "cheap", "none"), self.arm
+        self.M = env.hp.get("m_transfer", 4096)
+        self.S = env.hp.get("server_steps", 200)
+        self.Q = None                                                 # arm none: pooled class probabilities (16, 16)
         self._bootstrap()
 
     def _bootstrap(self):
@@ -84,6 +106,7 @@ class Method:
         s2 = torch.zeros(C, D, D, dtype=torch.float64, device=env.dev)
         client = torch.repeat_interleave(torch.arange(env.K, device=env.dev), env.train.off[1:] - env.train.off[:-1])
         cnt.index_put_((client, Y.long()), torch.ones(len(Y), device=env.dev), accumulate=True)
+        self.cnt = cnt                                               # n_{k,c} (srv class-aware weights)
         for c in range(C):
             for i in range(0, len(Y), 1 << 21):
                 x = X[i:i + (1 << 21)][Y[i:i + (1 << 21)] == c].double()
@@ -103,7 +126,55 @@ class Method:
 
     def payload_bytes(self):
         n = 4 * (self.env.lay.P + self.env.lay.B)
-        return {"dense_reference": n, "bootstrap": self.bootstrap_bytes, "measured": "rounds.jsonl bytes_up/bytes_down"}
+        return {"arm": self.arm, "dense_reference": n, "bootstrap": self.bootstrap_bytes,
+                "measured": "rounds.jsonl bytes_up/bytes_down"}
+
+    def transfer_set(self, r):
+        """X_s for round r: M Gaussian rows, balanced labels, same on every rank and on the server (seeded, never sent)."""
+        g = torch.Generator(device=self.env.dev).manual_seed(self.env.hp["seed"] * 1000 + r)
+        ys = torch.arange(self.M, device=self.env.dev) % 16
+        z = torch.randn(self.M, self.mu.shape[1], device=self.env.dev, generator=g)
+        xs = (self.mu[ys] + (self.L[ys] @ z[..., None]).squeeze(-1)).clamp(-4, 4)
+        return xs, ys
+
+    def _loss_private(self, ctx):
+        """srv / cheap / none: only the private trains (models = 1)."""
+        cfg = self.env.cfg
+        G, b, a = ctx.Gfix, ctx.x.shape[1], self.aux
+        act = ctx.mask.any(1)
+        z = torch.randn(G, a, self.mu.shape[1], device=ctx.x.device, generator=self.gen_g)
+        xg = (self.mu[self.labels] + (self.L[self.labels] @ z[..., None]).squeeze(-1)).clamp(-4, 4).to(ctx.x.dtype)
+        xp = torch.cat([ctx.x, xg], 1)
+        mp = torch.cat([ctx.mask, act[:, None].expand(G, a)], 1)
+        zp, nBp = grouped.TRAIN(ctx.P, ctx.B, xp, cfg, mask=mp, train=True)
+        y = ctx.y
+        ce = local.masked_mean(F.cross_entropy((zp[:, :b] + self._shift[:, None, :]).reshape(-1, 16), y.reshape(-1),
+                                               reduction="none").view(G, b), ctx.mask)
+        lsp = F.log_softmax(zp, -1)
+        if self.arm == "none":
+            with torch.no_grad():                                    # class sums of private probabilities, real rows
+                pr = torch.where(ctx.mask[..., None], lsp[:, :b].detach().exp(), 0.0)   # where: padded rows may be inf/NaN
+                self._csum.index_put_((torch.arange(G, device=y.device)[:, None].expand_as(y), y), pr, accumulate=True)
+            if self.Q is None:
+                aux_ce = F.cross_entropy(zp[:, b:].reshape(-1, 16), self.labels.repeat(G), reduction="none").view(G, a).mean(1)
+                return ce + aux_ce, nBp
+            lt = self.Q.clamp_min(1e-6).log()
+            lt_r, lt_g = lt[y], lt[self.labels][None].expand(G, a, 16)
+            ce_t = local.masked_mean(-lt_r.gather(-1, y[..., None]).squeeze(-1), ctx.mask)
+        else:
+            if self.version == 0:
+                aux_ce = F.cross_entropy(zp[:, b:].reshape(-1, 16), self.labels.repeat(G), reduction="none").view(G, a).mean(1)
+                return ce + aux_ce, nBp
+            with torch.no_grad():
+                zr, nBt = grouped.TRAIN(self._teacher_p, self._tb, ctx.x, self._cfg0, mask=ctx.mask, train=True)
+                zg, _ = grouped.TRAIN(self._teacher_p, self._teacher_b, xg, cfg, train=False)
+                self._tb = {k: torch.where(act.view(-1, *([1] * (v.dim() - 1))), nBt[k], v) for k, v in self._tb.items()}
+                lt_r, lt_g = F.log_softmax(zr.float(), -1), F.log_softmax(zg.float(), -1)
+            ce_t = local.masked_mean(F.nll_loss(lt_r.reshape(-1, 16), y.reshape(-1), reduction="none").view(G, b), ctx.mask)
+        raw = 1 / (ce + ce_t).detach().clamp_min(1e-6)
+        kd = local.masked_mean((lt_r.exp() * (lt_r - lsp[:, :b])).sum(-1), ctx.mask)
+        gkd = (lt_g.exp() * (lt_g - lsp[:, b:])).sum(-1).mean(1)
+        return ce + raw * (kd + gkd), nBp
 
     def _loss(self, ctx):
         env, cfg = self.env, self.env.cfg
@@ -139,6 +210,8 @@ class Method:
         return loss, [nBp, nBr]
 
     def round(self, r, lr):
+        if self.arm != "dml":
+            return self._round_private(r, lr)
         env, lay = self.env, self.env.lay
         P = lay.P
         dsum = torch.zeros_like(self.g_p, dtype=torch.float64)
@@ -192,16 +265,179 @@ class Method:
                 "bytes_up": float(up[0] / up[1]), "bytes_down": down_bytes,
                 "q_residual_rel": float((self.exact - self.g_p).norm() / self.exact.norm())}
 
+    def _round_private(self, r, lr):
+        env, lay, dev = self.env, self.env.lay, self.env.dev
+        P, Bn = lay.P, lay.B
+        loss = torch.zeros(env.K, device=dev)
+        steps = torch.zeros(2, device=dev)                              # applied, skipped (non-finite fp16 gradient)
+        bsum = torch.zeros_like(self.g_b, dtype=torch.float64)          # teacher BN statistics on real rows
+        dsum = torch.zeros_like(self.g_p, dtype=torch.float64)          # cheap: Σ w Q3(Δ proxy)
+        xs, ys = self.transfer_set(r) if self.arm in ("srv", "cheap") else (None, None)
+        soft = torch.zeros(self.M, 16, device=dev, dtype=torch.float64) if self.arm == "srv" else None
+        swt = torch.zeros(self.M, device=dev, dtype=torch.float64) if self.arm == "srv" else None
+        csum = torch.zeros(16, 16, device=dev, dtype=torch.float64)
+        nbytes, sampled = 0, 0
+        self._cfg0 = dict(env.cfg, dropout=0.0)
+        for idx in env.groups_idx():
+            G = len(idx)
+            Gf = local.group_size(env.train.off, idx, env.hp)
+            self._shift = local.pad_rows(self.la_shift[idx], Gf)
+            if self.version > 0 and self.arm != "none":
+                self._teacher_p = lay.params(self.g_p[None].repeat(Gf, 1))
+                self._teacher_b = lay.bufs(self.g_b[None].repeat(Gf, 1))
+                self._tb = {k: v.clone() for k, v in self._teacher_b.items()}   # running stats, updated every step
+            if self.arm == "none":
+                self._csum = torch.zeros(Gf, 16, 16, device=dev)
+            flat, bufs = self.priv_p[idx], self.priv_b[idx]
+            st = local.local_epoch(lay, flat, bufs, env.train, idx, env.cfg, env.hp, lr, env.gen, loss_fn=self._loss_private)
+            self.priv_p[idx], self.priv_b[idx] = flat, bufs
+            loss[idx] = st["loss"]
+            steps += torch.stack([st["applied"].sum(), st["skipped"].sum()])
+            w = env.n[idx].double()
+            body = []
+            if self.arm == "none":
+                csum += self._csum[:G].sum(0).double()                   # per-class sums; counts = self.cnt
+                body.append(self._csum[:G].half().cpu().numpy().tobytes())
+            if self.arm != "none" and self.version > 0:
+                tb = lay.flat_bufs(self._tb)[:G]
+                bsum += (w[:, None] * tb.half().double()).sum(0)
+            if self.arm in ("srv", "cheap"):
+                prob = self._probs(flat, bufs, xs, G)
+            if self.arm == "srv":
+                q8 = (prob * 255).round()                                  # uint8 upload
+                pq = q8 / q8.sum(-1, keepdim=True).clamp_min(1)
+                wk = self.cnt[idx][:, ys].double() if env.hp.get("agg_soft", "class") == "class" else w[:, None].expand(G, self.M)
+                soft += (wk[..., None] * pq.double()).sum(0)
+                swt += wk.sum(0)
+                if sampled < BYTES_SAMPLE:
+                    for i in range(min(G, BYTES_SAMPLE - sampled)):
+                        nbytes += 32 + len(lzma.compress(q8[i].to(torch.uint8).cpu().numpy().tobytes() +
+                                                         (lay.flat_bufs(self._tb)[i].half().cpu().numpy().tobytes()
+                                                          if self.version > 0 else b""),
+                                                         format=lzma.FORMAT_RAW, filters=LZMA))
+                    sampled += min(G, BYTES_SAMPLE - sampled)
+            elif self.arm == "cheap":
+                pr = self._distil_on_vehicle(prob, xs, G)
+                delta = lay.params(pr - self.g_p[None])
+                codes, scales = [], []
+                for k, shape in lay.p:
+                    d = delta[k].reshape(G, shape[0] if len(shape) > 1 else 1, -1)
+                    sent, q, sc = quantize(d, self.gen_q)
+                    dsum[_slice(lay, k)] += (w[:, None].float() * sent.reshape(G, -1)).sum(0).double()
+                    codes.append(q); scales.append(sc)
+                if sampled < BYTES_SAMPLE:
+                    tbf = lay.flat_bufs(self._tb) if self.version > 0 else self.g_b[None].expand(G, -1)
+                    for i in range(min(G, BYTES_SAMPLE - sampled)):
+                        nbytes += packet_bytes([c[i] for c in codes], [sc[i] for sc in scales], tbf[i])
+                    sampled += min(G, BYTES_SAMPLE - sampled)
+            elif self.arm == "none" and sampled < BYTES_SAMPLE:
+                nbytes += 32 + 16 * 16 * 2                                 # fp16 class sums (counts sent once in bootstrap)
+                sampled += 1
+        N = env.allreduce(env.n.sum().clone())
+        steps = env.allreduce(steps)
+        info = {"train_loss": float(env.allreduce((loss * env.n).sum()) / N),
+                "skipped_frac": float(steps[1] / steps.sum().clamp_min(1))}
+        if self.arm == "none":
+            csum = env.allreduce(csum)
+            tot = env.allreduce(self.cnt.sum(0).double())
+            self.Q = (csum / tot[:, None].clamp_min(1)).float()
+            down_bytes = 32 + 16 * 16 * 2
+        else:
+            if self.version > 0:
+                self.g_b = (env.allreduce(bsum) / N).float()
+            if self.arm == "srv":
+                soft, swt = env.allreduce(soft), env.allreduce(swt)
+                target = (soft / swt[:, None].clamp_min(1e-12)).float()
+                self.exact = self._distil_on_server(target, xs)
+                info["server_kl_end"] = self._kl_end
+            else:
+                self.exact = self.exact + (env.allreduce(dsum) / N).float()
+            down = self.exact - self.g_p
+            dv = lay.params(down[None])
+            dq, codes, scales = torch.zeros_like(down), [], []
+            for k, shape in lay.p:
+                d = dv[k].reshape(1, shape[0] if len(shape) > 1 else 1, -1)
+                sent, q, sc = quantize(d)
+                dq[_slice(lay, k)] = sent.reshape(-1); codes.append(q[0]); scales.append(sc[0])
+            self.g_p = self.g_p + dq
+            down_bytes = packet_bytes(codes, scales, self.g_b)
+            info["q_residual_rel"] = float((self.exact - self.g_p).norm() / self.exact.norm())
+        up = env.allreduce(torch.tensor([float(nbytes), float(max(sampled, 1))], device=dev))
+        self.version = r
+        info.update(bytes_up=float(up[0] / up[1]), bytes_down=down_bytes)
+        return info
+
+    @torch.no_grad()
+    def _probs(self, flat, bufs, xs, G, chunk=512):
+        """Private class probabilities of a group on X_s -> (G, M, 16), eval mode, in row chunks."""
+        env, lay = self.env, self.env.lay
+        P, B = lay.params(flat), lay.bufs(bufs)
+        out = []
+        for s0 in range(0, len(xs), chunk):
+            with torch.autocast("cuda", dtype=torch.float16, enabled=env.dev.type == "cuda"):
+                z, _ = grouped.EVAL(P, B, xs[s0:s0 + chunk][None].expand(G, -1, -1).to(env.train.X.dtype), env.cfg,
+                                    train=False)
+            out.append(z.float().softmax(-1))
+        return torch.cat(out, 1)
+
+    def _distil_on_server(self, target, xs):
+        """Proxy ← pooled soft labels on X_s: S Adam steps (lr 1e-3, batch 512), BN frozen (eval mode, no dropout), from the
+        exact proxy. Rank 0 computes, every rank receives the same parameters."""
+        env, lay = self.env, self.env.lay
+        m = DAGSNet(env.cfg).to(env.dev)
+        m.load_state_dict(lay.state_dict(self.exact, self.g_b), strict=False)
+        m.eval()
+        if env.rank == 0:
+            opt = torch.optim.Adam(m.parameters(), lr=1e-3)
+            g = torch.Generator(device=env.dev).manual_seed(env.hp["seed"] + self.version)
+            for _ in range(self.S):
+                i = torch.randint(0, len(xs), (512,), device=env.dev, generator=g)
+                l = F.kl_div(F.log_softmax(m(xs[i]), -1), target[i], reduction="batchmean")
+                opt.zero_grad(); l.backward(); opt.step()
+            self._kl_end = float(l.detach())
+        flat = torch.cat([m.state_dict()[k].reshape(-1).float() for k, _ in lay.p])
+        if env.world > 1:
+            import torch.distributed as dist
+            dist.broadcast(flat, 0)
+            kl = torch.tensor([getattr(self, "_kl_end", 0.0)], device=env.dev); dist.broadcast(kl, 0); self._kl_end = float(kl)
+        return flat
+
+    def _distil_on_vehicle(self, prob, xs, G):
+        """cheap: proxies (from the replica) ← this group's privates on X_s, batch 256, one pass, BN frozen. -> (G, P)."""
+        env, lay = self.env, self.env.lay
+        P = lay.P
+        flat = self.g_p[None].repeat(G, 1)
+        Bv = lay.bufs(self.g_b[None].repeat(G, 1))
+        opt = GroupAdamW(flat, wd=env.hp["weight_decay"], clip=env.hp["clip"])
+        act = torch.ones(G, dtype=torch.bool, device=env.dev)
+        bs = 256
+        for s0 in range(0, len(xs), bs):
+            leaves = {k: v.detach().requires_grad_(True) for k, v in lay.params(flat).items()}
+            x = xs[s0:s0 + bs][None].expand(G, -1, -1).to(env.train.X.dtype)
+            with torch.autocast("cuda", dtype=torch.float16, enabled=env.dev.type == "cuda"):
+                zr, _ = grouped.TRAIN(leaves, Bv, x, self._cfg0, train=False)
+            t = prob[:, s0:s0 + bs]
+            l = (t * (t.clamp_min(1e-8).log() - F.log_softmax(zr.float(), -1))).sum(-1).mean(1)
+            (l.sum() * 1024).backward()
+            grad = torch.cat([leaves[k].grad.reshape(G, -1) for k, _ in lay.p], dim=1) / 1024
+            opt.step(flat, grad, 1e-3, act & torch.isfinite(grad).all(1))
+        return flat
+
     def evaluate(self):
-        return {"private": self.env.eval_clients(self.priv_p, self.priv_b), "proxy": self.env.eval_global(self.g_p, self.g_b)}
+        out = {"private": self.env.eval_clients(self.priv_p, self.priv_b)}
+        if self.arm != "none":
+            out["proxy"] = self.env.eval_global(self.g_p, self.g_b)
+        return out
 
     def state(self):
-        return {k: getattr(self, k).cpu() for k in ("priv_p", "priv_b", "g_p", "g_b", "exact")} | {"version": self.version}
+        return {k: getattr(self, k).cpu() for k in ("priv_p", "priv_b", "g_p", "g_b", "exact")} | {
+            "version": self.version, "Q": None if self.Q is None else self.Q.cpu()}
 
     def load_state(self, s):
         for k in ("priv_p", "priv_b", "g_p", "g_b", "exact"):
             setattr(self, k, s[k].to(self.env.dev))
         self.version = s["version"]
+        self.Q = None if s.get("Q") is None else s["Q"].to(self.env.dev)
 
 
 def _slice(lay, key):

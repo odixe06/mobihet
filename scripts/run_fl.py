@@ -41,12 +41,18 @@ def main():
     ap.add_argument("--wandb", default="", help="W&B project; empty = off")
     ap.add_argument("--max-hours", type=float, default=0, help="stop before a round would cross this budget")
     ap.add_argument("--set", nargs="*", default=[], help="method hyperparameters k=v (paper values are the defaults)")
+    ap.add_argument("--until", type=int, default=0, help="screening: run rounds 1..until of the --rounds LR schedule, then save")
     ap.add_argument("--save-every", type=int, default=0, help="also save resume state every N rounds (0: only at a budget stop)")
     a = ap.parse_args()
     T0 = time.monotonic()
 
     hp = dict(PROTOCOL, rounds=a.rounds)
-    mhp = {k: json.loads(v) for k, v in (s.split("=", 1) for s in a.set)}
+    def _val(v):
+        try:
+            return json.loads(v)
+        except json.JSONDecodeError:
+            return v                                                   # bare string, e.g. arm=srv (shell strips quotes)
+    mhp = {k: _val(v) for k, v in (s.split("=", 1) for s in a.set)}
     hp.update(mhp)
     cfg = width(a.width)
     clients = None
@@ -113,7 +119,8 @@ def main():
             torch.distributed.barrier()
 
     worst, saved, r_done, stopped = 0.0, start - 1, start - 1, False
-    for r in range(start, hp["rounds"] + 1):
+    last = min(hp["rounds"], a.until) if a.until else hp["rounds"]
+    for r in range(start, last + 1):
         stop = torch.tensor(float(bool(a.max_hours) and time.monotonic() - T0 + 1.15 * worst > a.max_hours * 3600),
                             device=env.dev)
         if env.world > 1:
@@ -150,7 +157,7 @@ def main():
             snap = {k: v for k, v in M.state().items() if torch.is_tensor(v) and v.numel() < 10_000_000}
             os.makedirs(os.path.join(a.out, "models"), exist_ok=True)
             torch.save(snap, os.path.join(a.out, "models", f"r{r:03d}.pt"))
-        if (a.save_every and r % a.save_every == 0) or r == hp["rounds"]:
+        if (a.save_every and r % a.save_every == 0) or r == last:
             save(r); saved = r
         worst = max(worst, time.monotonic() - t)
     if stopped and r_done > saved:

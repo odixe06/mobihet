@@ -12,6 +12,7 @@ from core.data import Split
 from core.flat import Layout
 
 METHODS = ["fedavg", "mobihet"]
+ARMS = ["dml", "srv", "cheap", "none"]
 
 
 class ToyEnv:
@@ -71,3 +72,21 @@ def test_method_runs(name):
     M2.load_state(s)
     for v in views:
         assert (M2.evaluate()[v] == views[v]).all()
+
+
+@pytest.mark.parametrize("arm", ARMS)
+def test_mobihet_arms(arm):
+    env = ToyEnv()
+    env.hp.update(arm=arm, m_transfer=64, server_steps=5)
+    M = importlib.import_module("methods.mobihet").Method(env)
+    for r in (1, 2):
+        info = M.round(r, 1e-3)
+        assert np.isfinite(info["train_loss"]) and info["bytes_up"] > 0, info
+    views = M.evaluate()
+    assert all(c.sum() == len(env.test.Y) for c in views.values())
+    if arm != "dml":
+        assert ("proxy" in views) == (arm != "none")
+    M2 = importlib.import_module("methods.mobihet").Method(ToyEnv())
+    M2.env.hp.update(arm=arm, m_transfer=64, server_steps=5)
+    M2.load_state(M.state())
+    assert (M2.evaluate()["private"] == views["private"]).all()

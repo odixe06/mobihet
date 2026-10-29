@@ -26,7 +26,7 @@ WANDB_PROJECT = "mobihet-v4"
 def cells(a, sha):
     run = a.run or a.slug
     args = a.args or (f"scripts/run_fl.py --method {a.method} --out /kaggle/working/{run} --width {a.width} "
-                      f"--rounds {a.rounds} --compile --wandb {WANDB_PROJECT} --max-hours BUDGET --cache ''" + (" --set " + " ".join(a.set) if a.set else ""))
+                      f"--rounds {a.rounds}" + (f" --until {a.until}" if a.until else "") + f" --compile --wandb {WANDB_PROJECT} --max-hours BUDGET --cache ''" + (" --set " + " ".join(a.set) if a.set else ""))
     yield "markdown", f"# {a.slug}\n\nRepo `{REPO}` @ `{sha}` · dataset `{DATASET}` · `torchrun --nproc_per_node=2 {args}`"
     yield "code", """import time, os, subprocess, sys, glob, shutil
 T0 = time.monotonic()
@@ -58,6 +58,7 @@ from core import data as D
 D.build_npy(D.find_root(), "/kaggle/temp/v4npy")    # one reader; every rank then memmaps (V4_NPY)
 print(f"npy cache built in {time.monotonic() - t:.0f}s")"""
     yield "code", resume + f"""os.environ.update(TORCHINDUCTOR_COMPILE_THREADS="2", PYTHONUNBUFFERED="1", OMP_NUM_THREADS="2",
+                  PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True",   # GPU near-full: avoid allocator thrash (MobiHet 30/10)
                   V4_NPY="/kaggle/temp/v4npy")
 budget = {a.max_hours} - (time.monotonic() - T0) / 3600
 cmd = "cd /kaggle/temp/src && torchrun --standalone --nproc_per_node=2 {args}".replace("BUDGET", f"{{budget - 0.4:.2f}}")
@@ -77,6 +78,7 @@ def main():
     ap.add_argument("--run", default="", help="run dir name (default slug); keep it across resume sessions")
     ap.add_argument("--width", type=float, default=1.0)
     ap.add_argument("--rounds", type=int, default=50)
+    ap.add_argument("--until", type=int, default=0, help="screening: stop after this round (LR schedule of --rounds)")
     ap.add_argument("--max-hours", type=float, default=11.5)
     ap.add_argument("--set", nargs="*", default=[])
     ap.add_argument("--args", default="", help="replace the run_fl.py command line (e.g. a centralized script)")
