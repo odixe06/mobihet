@@ -20,11 +20,12 @@ với 15 baseline của repo đó (cùng code `core/`, cùng `scripts/cost.py`).
 - Kế thừa v2 (29–30/10): W = 1; gộp theo n_k; một seed 42; W&B online (project `mobihet-v4`); repo public, không đẩy data/PDF/credentials;
   commit không có `Co-Authored-By`.
 
-## Trạng thái — 30/10/2026
+## Trạng thái — 30/10/2026 11:20 (giờ VN)
 
-- Arm hiện hành (v1 chốt) = `methods/mobihet.py`: `gkd + la + kdpx`, frz teacher, proxy q3_zl. Trên v4 (run v2 `fl2-mobihet`):
-  r1 private 0,801 / proxy 0,441, **r1 1.335 s + eval 398 s, r2 > 36 phút** (FedAvg 224 s) ⇒ quá chậm cho 50 round; đang tìm nguyên nhân.
-- Chi phí đo ([cost](docs/research/cost.md)): MobiHet 8,97 × forward/dòng (FedAvg 2,99), byte ~117 KB/xe/round (dense 1,6 MB).
+- Sàng lọc 10 round full K xong ([screening-r10](docs/research/screening-r10.md)): **bỏ proxy (arm `none`) tốt nhất và rẻ nhất**
+  (r10 0,8679, 529 s/round, 544 B/round; arm v1 `dml` 0,8584 r9, 1.066 s/round, 117 KB). Proxy chưng cất ở server/xe FAIL.
+- Bộ sinh synthetic trên `none`: copula 0,8732 (+0,005), trần oracle 0,8802, không synthetic 0,8497 ⇒ synthetic vẫn cần.
+- Đề xuất tiếp H0–H4 + F chờ owner duyệt ([improvement-plan §5](docs/research/improvement-plan.md)). Không kernel nào chạy.
 
 ## Cần biết → mở
 
@@ -32,7 +33,8 @@ với 15 baseline của repo đó (cùng code `core/`, cùng `scripts/cost.py`).
 |---|---|
 | Đang làm gì, bước tiếp, việc tay? | [continue](docs/operations/continue.md) |
 | Protocol chung (giống repo baseline) | [protocol](docs/research/protocol.md) |
-| Cải tiến MobiHet: phân tích, thí nghiệm, cổng | [improvement-plan](docs/research/improvement-plan.md) |
+| Cải tiến MobiHet: phân tích, thí nghiệm, cổng, đề xuất tiếp | [improvement-plan](docs/research/improvement-plan.md) |
+| Kết quả sàng lọc S0–S4, G0–G4 | [screening-r10](docs/research/screening-r10.md) |
 | Chi phí tính toán / băng thông | [cost](docs/research/cost.md) |
 | Dataset, DAGSNet, máy | [knowledge](knowledge/README.md) |
 | Kaggle, lỗi kernel, backup | [kaggle](docs/operations/kaggle.md), [sổ lỗi](docs/operations/notebook-errors.md), [backup](docs/operations/backup.md) |

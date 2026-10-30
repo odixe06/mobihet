@@ -88,3 +88,29 @@ batch 512, T = 1). Lặp seed 43 cho arm cuối nếu quota cho phép.
 
 - Sàng lọc 10 round full-K (cổng §3 khóa trước khi chạy). Thử **mọi** hướng (A, B, C, rồi D/E) để tìm phương án tối ưu.
 - Code: `methods/mobihet.py` `arm ∈ {dml, srv, cheap, none}` (+ `agg_soft`, `m_transfer` 4.096, `server_steps` 200).
+- 30/10 (sau S0–S4): nền = **S4 `none`** (không proxy); chạy cả 5 bộ sinh G0–G4 song song. Không proxy vẫn giữ được model khác nhau
+  mỗi xe (chỉ trao đổi xác suất 16 × 16 + thống kê input, không tham số) — owner chỉ xét về phương pháp, **không cần chạy kiểm chứng**;
+  nếu cần: arm trộn độ rộng W theo xe (k mod 3 → W 1 / 0,5 / 0,25), báo F1 theo nhóm.
+
+## 5. Kết quả tới 30/10 và đề xuất tiếp (chưa chạy; chờ owner duyệt)
+
+Kết quả: [screening-r10](screening-r10.md). Tóm tắt r10 (private F1 pooled / p10): S0 `dml` 0,8584 (r9) · S1 `srv` 0,8514 FAIL ·
+S3 `cheap` 0,7778 FAIL · **S4 `none` 0,8679 / 0,567** · G0 off 0,8497 · G1 oracle 0,8802 (trần) · G2 short 0,8669 · G3 mix 0,8667 /
+0,580 · **G4 copula 0,8732 / 0,574** (+0,0053, FAIL cổng +0,010, lấy ~43 % khoảng trần). FedAvg r10 0,8749, FedProto r10 0,8629.
+
+Đọc: bỏ proxy là hướng đúng (rẻ nhất, tốt nhất, 544 B/round); synthetic vẫn cần (G0 −0,018, p10 −0,078); chất lượng input còn
++0,012 để lấy; copula đi đúng hướng. Rủi ro lớn nhất: mọi Δ ≤ 0,006 là **một seed** và 10 round (v1: lợi ep6 từng biến mất ở ep15).
+
+Đề xuất (nền = G4 copula trên S4; một yếu tố/arm; 10 round full K; cổng như §3: Δ ≥ +0,010 vs nền, p10 không giảm > 0,010):
+
+| # | arm | đổi gì | lý do / câu hỏi |
+|---|---|---|---|
+| H0 | S4 và G4, **seed 43** | lặp seed | đo nhiễu giữa seed; G4 − S4 cùng dấu ở 2 seed mới tin +0,005. Ưu tiên cao nhất |
+| H1 | copula hỗn hợp theo (lớp × cụm scenario·run, 8 cụm như AFPHA) | biên + tương quan theo cụm, chọn cụm ∝ n_{c,cụm} gộp | input phủ đúng các "chế độ" dữ liệu của xe khác (oracle lấy ngẫu nhiên dòng toàn cục) |
+| H2 | copula + mix (G3 trên dòng copula) | mixup dòng copula × dòng thật cùng lớp | G3 tăng p10/mean/xe, G4 tăng pooled ⇒ thử cộng |
+| H3 | copula, liều ×2 (64 dòng/bước) | số dòng synthetic | v1 `gw2` −0,005 với proxy; với teacher Q[y] chưa biết |
+| H4 | copula, đích CE one-hot thay Q[y] trên dòng synthetic | loại đích | Q[y] chỉ phụ thuộc nhãn ⇒ gần label smoothing; đo đích nào tốt hơn |
+| F | arm thắng (hoặc G4 nếu không arm nào qua), **50 round**, + S4 50 round | headline | so FedAvg 0,9042 / FedProto 0,8698 / APFed 0,9119 ([results baseline](https://github.com/odixe06/fl_dagsnet_veremi_v2/blob/main/docs/research/results.md)) |
+
+Sau đó (từ §2, áp lên arm thắng): E1 logit standardization, E3 trọng số KD theo độ tin lớp; D2 (BN inversion) không áp được khi
+không có model chung. Chi phí: H0–H4 ~1,6 h/run (6 run song song đủ quota); F ~8 h/run (529–546 s/round × 50 + eval).
