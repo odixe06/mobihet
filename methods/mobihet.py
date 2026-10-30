@@ -30,6 +30,15 @@ Arms (hp "arm"; docs/research/improvement-plan.md, owner 30/10: remove proxy tra
          private on X_s on the vehicle (M / 256 steps, BN frozen), and the Q3 delta is uploaded as in dml.
   none   (C) no proxy. Vehicles upload per-class mean private probabilities on their real rows (16 x 16 + counts, as
          FedDistill, Jeong et al. 2018); private KD targets are the pooled class rows Q[y] (real and Gaussian rows).
+Synthetic rows (hp "synth", private-only arms; docs/research/screening-r10.md, owner 30/10): a = batch / 2 rows per step,
+  gauss   pooled class Gaussian (default, as above), balanced labels
+  off     no synthetic rows (KD on real rows only)
+  oracle  real train rows of other vehicles (this rank's pool) with balanced labels: upper bound, not deployable
+  short   Gaussian, labels drawn per vehicle with p_{k,c} ∝ exp(−16 n_{k,c} / n_k) (classes it lacks first)
+  mix     gauss, then each row is mixed λ x + (1 − λ) x_g, λ ~ U(0, 1), with a random real row x of the same class in the
+          batch when there is one (FedMix-like, Yoon et al. 2021; the real row never leaves the vehicle)
+  copula  Gaussian copula: pooled per-class marginal histograms (256 bins on [−4, 4], summable) and the covariance of
+          normal scores; x = F_c^{-1}(Φ(z)), z ~ N(0, R_c), linear inside a bin (v1 P-copula, reopened as an input source)
 In srv/cheap the proxy never sees real rows, so its BN statistics come from the vehicles: the frozen teacher's forward on
 real rows uses batch statistics (dropout off) and its running statistics are uploaded (fp16) and n_k-averaged. The KD
 weight w = 1/(CE_private + CE_teacher) replaces CE_proxy by the teacher's CE (no live proxy).
@@ -96,6 +105,9 @@ class Method:
         self.M = env.hp.get("m_transfer", 4096)
         self.S = env.hp.get("server_steps", 200)
         self.Q = None                                                 # arm none: pooled class probabilities (16, 16)
+        self.synth = env.hp.get("synth", "gauss")
+        assert self.synth in ("gauss", "off", "oracle", "short", "mix", "copula"), self.synth
+        assert self.synth == "gauss" or self.arm != "dml", "synth arms are for the private-only arms"
         self._bootstrap()
 
     def _bootstrap(self):
@@ -123,6 +135,78 @@ class Method:
         self.labels = torch.arange(self.aux, device=env.dev) % C
         tri = D * (D + 1) // 2
         self.bootstrap_bytes = {"up": 4 * C * (1 + D + tri), "down": 4 * C * (D + tri) + 4 * C}
+        if self.synth == "short":
+            self.p_short = torch.exp(-C * cnt / cnt.sum(1, keepdim=True).clamp_min(1))
+        elif self.synth == "oracle":
+            self.cls_idx = torch.argsort(Y.long())
+            n_c = cnt.sum(0).long()
+            self.cls_n, self.cls_off = n_c, torch.cumsum(n_c, 0) - n_c
+        elif self.synth == "copula":
+            self._copula_bootstrap(client)
+
+    def _copula_bootstrap(self, client, NB=256):
+        """Pooled per-class marginal histograms (C, D, NB) on [−4, 4] and normal-score covariance (both sums)."""
+        env, X, Y = self.env, self.env.train.X, self.env.train.Y
+        C, D = 16, X.shape[1]
+        hist = torch.zeros(C * D * NB, dtype=torch.float64, device=env.dev)
+        f = torch.arange(D, device=env.dev)
+        bins = lambda x: ((x.float() + 4) * (NB / 8)).long().clamp(0, NB - 1)
+        for i in range(0, len(Y), 1 << 20):
+            x, y = X[i:i + (1 << 20)], Y[i:i + (1 << 20)].long()
+            hist.index_add_(0, ((y[:, None] * D + f) * NB + bins(x)).reshape(-1),
+                            torch.ones(x.numel(), dtype=torch.float64, device=env.dev))
+        hist = env.allreduce(hist).view(C, D, NB)
+        mass = hist / hist.sum(-1, keepdim=True).clamp_min(1)
+        cdf = mass.cumsum(-1)
+        nd = torch.distributions.Normal(0.0, 1.0)
+        score = nd.icdf((cdf - mass / 2).clamp(1e-4, 1 - 1e-4)).float()      # mid-rank normal score of each bin
+        s1 = torch.zeros(C, D, dtype=torch.float64, device=env.dev)
+        s2 = torch.zeros(C, D, D, dtype=torch.float64, device=env.dev)
+        for i in range(0, len(Y), 1 << 20):
+            x, y = X[i:i + (1 << 20)], Y[i:i + (1 << 20)].long()
+            z = score[y[:, None], f, bins(x)].double()
+            for c in range(C):
+                zc = z[y == c]
+                s1[c] += zc.sum(0); s2[c] += zc.T @ zc
+        s1, s2 = env.allreduce(s1), env.allreduce(s2)
+        tot = hist[:, 0].sum(-1).clamp_min(1)
+        mu = s1 / tot[:, None]
+        cov = s2 / tot[:, None, None] - mu[:, :, None] * mu[:, None, :] + 1e-4 * torch.eye(D, device=env.dev, dtype=torch.float64)
+        self.cop_mu, self.cop_L = mu.float(), torch.linalg.cholesky(cov).float()
+        self.cop_cdf, self.cop_mass = cdf.float().contiguous(), mass.float()
+        self.bootstrap_bytes["up"] += 4 * C * D * NB + 4 * C * (D + D * (D + 1) // 2)
+        self.bootstrap_bytes["down"] += 4 * C * D * NB + 4 * C * (D + D * (D + 1) // 2)
+
+    def _synth(self, ctx):
+        """Synthetic rows (G, a, D) and labels (G, a) for one step, per hp synth (see module docstring)."""
+        G, a, dev = ctx.Gfix, self.aux, ctx.x.device
+        if self.synth == "short":
+            lab = torch.multinomial(self.p_short[ctx.clients], a, replacement=True, generator=self.gen_g)
+        else:
+            lab = self.labels[None].expand(G, a)
+        if self.synth == "oracle":
+            u = torch.rand(G, a, device=dev, generator=self.gen_g)
+            pos = self.cls_off[lab] + (u * self.cls_n[lab]).long().minimum((self.cls_n[lab] - 1).clamp_min(0))
+            return self.env.train.X[self.cls_idx[pos]].to(ctx.x.dtype), lab
+        if self.synth == "copula":
+            z = torch.randn(G, a, self.cop_mu.shape[1], device=dev, generator=self.gen_g)
+            z = self.cop_mu[lab] + (self.cop_L[lab] @ z[..., None]).squeeze(-1)
+            u = torch.special.ndtr(z).clamp(1e-6, 1 - 1e-6)
+            cdf = self.cop_cdf[lab]                                          # (G, a, D, NB)
+            j = torch.searchsorted(cdf, u[..., None]).clamp(max=cdf.shape[-1] - 1)
+            hi = cdf.gather(-1, j).squeeze(-1)
+            m = self.cop_mass[lab].gather(-1, j).squeeze(-1)
+            frac = ((u - (hi - m)) / m.clamp_min(1e-12)).clamp(0, 1)
+            return (-4 + (j.squeeze(-1) + frac) * (8 / cdf.shape[-1])).to(ctx.x.dtype), lab
+        z = torch.randn(G, a, self.mu.shape[1], device=dev, generator=self.gen_g)
+        xg = (self.mu[lab] + (self.L[lab] @ z[..., None]).squeeze(-1)).clamp(-4, 4)
+        if self.synth == "mix":
+            same = (ctx.y[:, None, :] == lab[..., None]) & ctx.mask[:, None, :]     # (G, a, b) real rows of the class
+            pick = (torch.rand(same.shape, device=dev, generator=self.gen_g) * same).argmax(-1)
+            xr = ctx.x.gather(1, pick[..., None].expand(-1, -1, xg.shape[-1])).float()
+            lam = torch.rand(G, a, 1, device=dev, generator=self.gen_g)
+            xg = torch.where(same.any(-1, keepdim=True), lam * xr + (1 - lam) * xg, xg)
+        return xg.to(ctx.x.dtype), lab
 
     def payload_bytes(self):
         n = 4 * (self.env.lay.P + self.env.lay.B)
@@ -142,10 +226,12 @@ class Method:
         cfg = self.env.cfg
         G, b, a = ctx.Gfix, ctx.x.shape[1], self.aux
         act = ctx.mask.any(1)
-        z = torch.randn(G, a, self.mu.shape[1], device=ctx.x.device, generator=self.gen_g)
-        xg = (self.mu[self.labels] + (self.L[self.labels] @ z[..., None]).squeeze(-1)).clamp(-4, 4).to(ctx.x.dtype)
-        xp = torch.cat([ctx.x, xg], 1)
-        mp = torch.cat([ctx.mask, act[:, None].expand(G, a)], 1)
+        if self.synth == "off":
+            a, xp, mp = 0, ctx.x, ctx.mask
+        else:
+            xg, lab = self._synth(ctx)
+            xp = torch.cat([ctx.x, xg], 1)
+            mp = torch.cat([ctx.mask, act[:, None].expand(G, a)], 1)
         zp, nBp = grouped.TRAIN(ctx.P, ctx.B, xp, cfg, mask=mp, train=True)
         y = ctx.y
         ce = local.masked_mean(F.cross_entropy((zp[:, :b] + self._shift[:, None, :]).reshape(-1, 16), y.reshape(-1),
@@ -156,24 +242,29 @@ class Method:
                 pr = torch.where(ctx.mask[..., None], lsp[:, :b].detach().exp(), 0.0)   # where: padded rows may be inf/NaN
                 self._csum.index_put_((torch.arange(G, device=y.device)[:, None].expand_as(y), y), pr, accumulate=True)
             if self.Q is None:
-                aux_ce = F.cross_entropy(zp[:, b:].reshape(-1, 16), self.labels.repeat(G), reduction="none").view(G, a).mean(1)
+                if a == 0:
+                    return ce, nBp
+                aux_ce = F.cross_entropy(zp[:, b:].reshape(-1, 16), lab.reshape(-1), reduction="none").view(G, a).mean(1)
                 return ce + aux_ce, nBp
             lt = self.Q.clamp_min(1e-6).log()
-            lt_r, lt_g = lt[y], lt[self.labels][None].expand(G, a, 16)
+            lt_r = lt[y]
+            lt_g = lt[lab] if a else None
             ce_t = local.masked_mean(-lt_r.gather(-1, y[..., None]).squeeze(-1), ctx.mask)
         else:
             if self.version == 0:
-                aux_ce = F.cross_entropy(zp[:, b:].reshape(-1, 16), self.labels.repeat(G), reduction="none").view(G, a).mean(1)
+                if a == 0:
+                    return ce, nBp
+                aux_ce = F.cross_entropy(zp[:, b:].reshape(-1, 16), lab.reshape(-1), reduction="none").view(G, a).mean(1)
                 return ce + aux_ce, nBp
             with torch.no_grad():
                 zr, nBt = grouped.TRAIN(self._teacher_p, self._tb, ctx.x, self._cfg0, mask=ctx.mask, train=True)
-                zg, _ = grouped.TRAIN(self._teacher_p, self._teacher_b, xg, cfg, train=False)
                 self._tb = {k: torch.where(act.view(-1, *([1] * (v.dim() - 1))), nBt[k], v) for k, v in self._tb.items()}
-                lt_r, lt_g = F.log_softmax(zr.float(), -1), F.log_softmax(zg.float(), -1)
+                lt_r = F.log_softmax(zr.float(), -1)
+                lt_g = F.log_softmax(grouped.TRAIN(self._teacher_p, self._teacher_b, xg, cfg, train=False)[0].float(), -1) if a else None
             ce_t = local.masked_mean(F.nll_loss(lt_r.reshape(-1, 16), y.reshape(-1), reduction="none").view(G, b), ctx.mask)
         raw = 1 / (ce + ce_t).detach().clamp_min(1e-6)
         kd = local.masked_mean((lt_r.exp() * (lt_r - lsp[:, :b])).sum(-1), ctx.mask)
-        gkd = (lt_g.exp() * (lt_g - lsp[:, b:])).sum(-1).mean(1)
+        gkd = (lt_g.exp() * (lt_g - lsp[:, b:])).sum(-1).mean(1) if a else 0.0
         return ce + raw * (kd + gkd), nBp
 
     def _loss(self, ctx):

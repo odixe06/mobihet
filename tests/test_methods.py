@@ -90,3 +90,21 @@ def test_mobihet_arms(arm):
     M2.env.hp.update(arm=arm, m_transfer=64, server_steps=5)
     M2.load_state(M.state())
     assert (M2.evaluate()["private"] == views["private"]).all()
+
+
+@pytest.mark.parametrize("synth", ["off", "oracle", "short", "mix", "copula"])
+def test_mobihet_synth(synth):
+    env = ToyEnv()
+    env.hp.update(arm="none", synth=synth)
+    M = importlib.import_module("methods.mobihet").Method(env)
+    ctx = type("C", (), {})()
+    ctx.Gfix, ctx.clients = 2, torch.tensor([0, 1])
+    ctx.x, ctx.y = env.train.X[:2 * 64].view(2, 64, -1), env.train.Y[:2 * 64].long().view(2, 64)
+    ctx.mask = torch.ones(2, 64, dtype=torch.bool)
+    if synth != "off":
+        xg, lab = M._synth(ctx)
+        assert xg.shape == (2, M.aux, ctx.x.shape[-1]) and lab.shape == (2, M.aux) and torch.isfinite(xg.float()).all()
+        if synth in ("copula", "mix", "short"):
+            assert xg.float().abs().max() <= 4 + 1e-3
+    for r in (1, 2):
+        assert np.isfinite(M.round(r, 1e-3)["train_loss"])
