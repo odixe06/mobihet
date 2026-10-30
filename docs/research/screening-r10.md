@@ -34,3 +34,35 @@ Server distill của `srv` (200 × 512 × 3 fwd mỗi round ≈ 57 fwd-dòng/xe)
 - Bỏ hẳn proxy (S4, KD về xác suất trung bình theo lớp kiểu FedDistill) mạnh nhất ở r9–r10 và còn tăng đều (+0,0017/round r9→r10).
   Thua FedAvg global 0,006–0,007, thua xa ở p10 (0,54 vs 0,68): xe yếu chưa được lợi từ gộp.
 - S0 có cú tụt r2 (0,708), từ r3 hồi phục — đặc điểm DML đã biết.
+
+# Sàng lọc bộ sinh synthetic trên S4 `none` — G0–G4 (30/10/2026)
+
+Cùng protocol, SHA `f86e137`, hp `synth` (docstring [methods/mobihet.py](../../methods/mobihet.py)). Đối chứng S4 (`gauss`). Audit: 10/10 round,
+không có giá trị không hữu hạn, skipped 0, HP đúng protocol. Một seed.
+
+| arm | synth | private F1 r10 | Δ vs S4 | mean/xe | p10 | Δ p10 | s/round |
+|---|---|---|---|---|---|---|---|
+| S4 | gauss (Gaussian gộp) | 0,8679 | — | 0,7724 | 0,5671 | — | 529 |
+| G0 | off (không synthetic) | 0,8497 | **−0,0182** | 0,7289 | 0,4891 | −0,0780 | 449 |
+| G1 | oracle (dòng thật client khác, không triển khai được) | **0,8802** | **+0,0123** | 0,7879 | 0,5896 | +0,0225 | 537 |
+| G2 | short (ưu tiên lớp xe thiếu) | 0,8669 | −0,0010 | 0,7647 | 0,5423 | −0,0248 | 522 |
+| G3 | mix (FedMix) | 0,8667 | −0,0012 | 0,7775 | 0,5796 | +0,0125 | 543 |
+| G4 | copula | 0,8732 | **+0,0053** | 0,7793 | 0,5738 | +0,0067 | 546 |
+
+## Cổng
+
+| | điều kiện | đo | kết luận |
+|---|---|---|---|
+| G1 trần | G1 − S4 ≥ +0,005 thì còn chỗ cho bộ sinh | +0,0123 | **còn chỗ** ⇒ tiếp tục mảng bộ sinh |
+| G2 | Δ ≥ +0,010 và Δp10 ≥ −0,010 | −0,0010; −0,0248 | **FAIL** |
+| G3 | như G2 | −0,0012; +0,0125 | **FAIL** (p10 và mean/xe tăng, pooled không) |
+| G4 | như G2 | +0,0053; +0,0067 | **FAIL** cổng gain, nhưng lấy được ~43 % khoảng trần (0,0053 / 0,0123) |
+| G0 | mô tả | −0,0182; −0,0780 | synthetic **cần** cả khi không có proxy, nhất là cho xe yếu (p10) |
+
+## Đọc
+
+- Không proxy vẫn cần synthetic: bỏ đi mất 0,018 pooled và 0,078 ở p10 — dòng Gaussian là input duy nhất của lớp xe không có.
+- Dòng thật của client khác hơn Gaussian 0,012 ⇒ chất lượng input còn đáng cải thiện. Copula (biên thật hơn) lấy gần một nửa;
+  khớp v1 (copula tăng độ đồng ý nhãn 0,47 → 0,67). Ở v1 với proxy teacher, copula FAIL utility; ở đây (teacher Q[y], không phụ
+  thuộc mẫu) nó có ích hơn.
+- Đổi phân phối nhãn (G2) không giúp và hại p10. Mixup (G3) chỉ áp dụng cho lớp xe đã có ⇒ không chạm lớp thiếu, chỉ đỡ trung bình/xe.

@@ -7,7 +7,10 @@
 Kết quả + cổng: [screening-r10](../research/screening-r10.md). S1 FAIL sát ngưỡng, S3 FAIL, **S4 `none` tốt nhất** (r10 0,8679, 0,50 × FLOPs S0, 544 B/round).
 Kernel `mh-s0..s4` đều COMPLETE (S0 dừng budget r9).
 
-## Đang chạy — sàng lọc bộ sinh synthetic trên S4 `none` (push 30/10 ~07:30 VN, SHA `f86e137`, budget 4 h)
+## Xong — sàng lọc bộ sinh synthetic trên S4 `none` (kết quả + cổng: [screening-r10](../research/screening-r10.md) §G; G4 copula +0,0053, trần oracle +0,0123, G0 off −0,0182)
+
+<!-- bảng push giữ để tra kernel -->
+### Push (push 30/10 ~07:30 VN, SHA `f86e137`, budget 4 h)
 
 Owner 30/10: nền = S4 `none`, chạy cả 5 song song. hp `synth` ([methods/mobihet.py](../../methods/mobihet.py) docstring). Đối chứng = S4
 (`gauss`, r10 0,8679, p10 r10 0,5671). Một yếu tố/arm, 10 round, full K.
