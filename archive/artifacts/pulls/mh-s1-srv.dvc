@@ -1,0 +1,6 @@
+outs:
+- md5: 9f3ac66d34e21c404ddfce1314ba0665.dir
+  size: 389524553
+  nfiles: 23
+  hash: md5
+  path: mh-s1-srv

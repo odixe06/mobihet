@@ -1,0 +1,6 @@
+outs:
+- md5: 6ce4d0babb9f55ecbc0ae47b349e3a20.dir
+  size: 384857562
+  nfiles: 48
+  hash: md5
+  path: mh-h2-copulamix

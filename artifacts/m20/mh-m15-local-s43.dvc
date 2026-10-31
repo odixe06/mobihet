@@ -1,0 +1,6 @@
+outs:
+- md5: 7b4205a2a8e7ab45324c0ba1057071b1.dir
+  size: 773540861
+  nfiles: 85
+  hash: md5
+  path: mh-m15-local-s43

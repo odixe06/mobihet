@@ -1,0 +1,6 @@
+outs:
+- md5: 3e018a0ec3443e1864c47d21d55cd4ea.dir
+  size: 387987264
+  nfiles: 55
+  hash: md5
+  path: mh-l3-hardadapt-s43

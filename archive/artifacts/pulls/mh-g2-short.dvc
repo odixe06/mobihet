@@ -1,0 +1,6 @@
+outs:
+- md5: 69d4669dbb42e5c33881108ce3d2b519.dir
+  size: 384770987
+  nfiles: 23
+  hash: md5
+  path: mh-g2-short

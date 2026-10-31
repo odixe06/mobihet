@@ -1,0 +1,6 @@
+outs:
+- md5: cd1b9c178bc5bb6eb58a8433f5646246.dir
+  size: 772948079
+  nfiles: 85
+  hash: md5
+  path: mh-m5-gate-s43

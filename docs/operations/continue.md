@@ -1,46 +1,56 @@
-# Continue — bàn giao sống, 30/10/2026 ~11:20 (giờ VN)
+# Continue — bàn giao sống, 01/11/2026
 
-**File duy nhất cho "đang ở đâu, làm gì tiếp".** Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) →
-[bài học vận hành](lessons.md) → trang này. Sửa tại chỗ.
+Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
 
-## Đang chạy
+## Hiện tại
 
-Không có kernel MobiHet nào chạy. (Repo baseline còn `fl2-nilm-r2`, `fl2-tinyproto-r3`: xem bàn giao của repo đó.)
+Owner đã yêu cầu Git/DVC push, archive phần lỗi thời và dọn local sau backup xác minh.
+DVC đang push nền; chưa xóa checkpoint/cache. Trạng thái/kết quả backup tại [backup](backup.md).
+Không kernel train hoặc collector còn sống. Chưa launch batch sau M.
 
-## Đã xong (30/10) — chi tiết + cổng: [screening-r10](../research/screening-r10.md)
+M0–M15 exactversion1 đủ20round: fullaudit PASS. [Kết quả](../research/results-m20.md),
+[10metric](../research/metrics-m20.md), [đề xuất chẩn đoán](../research/diagnosis.md).
+54tests PASS; phân tích/audit sau migration khớp JSON/CSV trước migration; 5overlay training giữ nguyên SHA.
 
-Sàng lọc 10 round, full 5.343 xe, W = 1, seed 42, `group_rows` 4.096, budget 4 h, W&B `mobihet-v4`. Pull: `runs/pulls/<slug>/`
-(git-ignored, bỏ `state*.pt`); audit 10/10 PASS (đủ round, CMs, `models/rXXX.pt`, không NaN, HP đúng protocol).
+## Job backup đang chạy
 
-| kernel | account | SHA | arm / synth | private F1 r10 | p10 |
-|---|---|---|---|---|---|
-| `mh-s0-dml` | odixe0502 | 6c3536d | dml (v1) | 0,8584 (r9, dừng budget) | 0,542 |
-| `mh-s1-srv` | odixe0502 | 6c3536d | srv | 0,8514 — FAIL | 0,587 |
-| `mh-s2-srvclient` | minhtriethihi | 6c3536d | srv, n_k | 0,8451 | 0,582 |
-| `mh-s3-cheap` | minhtran0601 | 6c3536d | cheap | 0,7778 — FAIL | 0,464 |
-| `mh-s4-none` | trietbackup | 6c3536d | **none** / gauss | **0,8679** | 0,567 |
-| `mh-g0-off` | catbaochau | f86e137 | none / off | 0,8497 | 0,489 |
-| `mh-g1-oracle` | catbaochau | f86e137 | none / oracle (trần) | 0,8802 | 0,590 |
-| `mh-g2-short` | nguyenminhtran060113 | f86e137 | none / short | 0,8669 — FAIL | 0,542 |
-| `mh-g3-mix` | annhannh331 | f86e137 | none / mix | 0,8667 — FAIL | 0,580 |
-| `mh-g4-copula` | annhtnt | f86e137 | none / **copula** | **0,8732** — FAIL cổng +0,010 | 0,574 |
+- Job `mobihet-dvc-backup-20261101`, supervisorPID10111; deliveryqueue(auto), viewer none.
+- Ownerthread `01a18d65-e3b8-73f1-80b6-7b66531915da`.
+- State `/home/odixe/.codex/long-jobs/jobs/mobihet-dvc-backup-20261101/state.json`.
+- Log `/home/odixe/project/mobihet/runs/maintenance-20261101/dvc-backup.log`.
+- Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/maintenance-20261101/dvc-backup.log`.
+- Worker `runs/maintenance-20261101/push_verify.py`: push đúng68target trong inventory → status-c →
+  kiểm size mọiobject/MD5directory +20dataobject → ghi `docs/operations/backup-verification.json` → `BACKUP_DVC_VERIFIED`.
+- Worker sở hữu inventory/manifests/cache/payload: giữ bất biến khi chạy; chưa cleanup/Gitpush/bundle.
+- Completion: đọc state/log/receipt, kiểm độc lập → Gitpushmain/ls-remote → bundleallrefs/verify →
+  cleanup65payload +eligiblecache trong inventory, giữ evidence/log; cập nhật backup/bàn giao, push metadata cuối.
+- Không watcher/collector trùng, không modelpollwaiting. Nếu fail giữ toàn bộ local, sửa/retry đúng target.
 
-Kết luận: bỏ proxy (S4) tốt nhất và rẻ nhất (529 s/round, 544 B/round, 4,48 × fwd/dòng); synthetic vẫn cần; copula tốt nhất trong
-các bộ sinh, trần oracle còn +0,012. Owner 30/10: không proxy vẫn cho model khác nhau mỗi xe — chỉ xét về phương pháp, không chạy kiểm chứng.
+## Job đã đóng, không chạy lại
 
-## Bước tiếp — chờ owner duyệt đề xuất [improvement-plan §5](../research/improvement-plan.md)
+Recovery `kaggle-m-v1-recover-collect-audit-20261101`: succeeded/exit0,
+`M20_ARTIFACT_AUDIT_PASS` + `M20_PULL_AUDIT_DONE`; 1360file,16×20round đã kiểm artifact.
+State `/home/odixe/.codex/long-jobs/jobs/kaggle-m-v1-recover-collect-audit-20261101/state.json`;
+log `/home/odixe/project/mobihet/runs/m-study/recover-collect-audit.log`.
+Ownerthread `01a18d65-e3b8-73f1-80b6-7b66531915da`, supervisor cũ6298, deliveryqueue(auto), viewer none.
+Completion có thể đến muộn: đã xử lý, không recollect/retry delivery.
+Watcher trước reboot `kaggle-m-v1-watch-collect-20m-20261031` có state running stale, PID đã mất;
+không sửa state/kill PID tái chế/restarttraining. Các job L cũng đã đóng.
 
-1. H0 (seed 43 cho S4 và G4) + H1–H4 trên nền G4, 10 round, song song (6 run × ~1,6 h). Code cần thêm:
-   - H0: chỉ `--set seed=43` (kiểm tên run W&B không trùng).
-   - H1: copula hỗn hợp theo (lớp × cụm scenario·run) — cụm từ `clients.parquet` như `methods/afpha.py` của repo baseline.
-   - H2: `synth=copula_mix` (mix trên dòng copula); H3: hp số dòng synthetic/bước (mặc định batch/2); H4: đích synthetic one-hot.
-   - Test toy + smoke local (`--subset 100 --until 2 --compile --set group_rows=1024 eval_rows=2048`; GPU local 4 GB OOM với mặc định).
-2. F: arm thắng (hoặc G4) + S4, 50 round (~8 h/run, budget 11,5 h); so [results baseline](https://github.com/odixe06/fl_dagsnet_veremi_v2/blob/main/docs/research/results.md).
+## Dữ liệu cần mở lần sau
 
-Push: `python scripts/gen_notebook.py --owner <acct> --slug <slug> --method mobihet --rounds 50 --until 10 --max-hours 4 --set arm=none group_rows=4096 synth=<s>`
-→ `embed_wandb_key.py <nb> --metadata <meta>` → `chmod 600` → `ast.parse` mọi cell → `kaggle_as.py <acct> -- kaggle kernels push -p notebooks/<slug> -t 14400`.
-Quota refresh hằng ngày 00:00 UTC; đọc live `kaggle_account.py quota` trước khi push.
+- `evidence/m20`: config/CM/probe/external/provenance, không modelbank.
+- `evidence/m20-summary`: batch/audit/analysis/collection/teacher-tables.npz, source/smoke/equivalence proof.
+- `evidence/research-data`: train_counts/test_support5343×16.
+- `artifacts/m20/*.dvc`: snapshot đầy đủ; restore chọn lọc khi cần. Archive không đọc mặc định.
+- Frozen source/config/data contract ở [spec](../research/screening-m20.md) và provenance, không thay bằng HEAD khi replay.
 
-## Việc tay (owner)
+## Tiếp tục sau bảo trì
 
-- Duyệt đề xuất §5 (H0–H4, F).
+1. Kiểm backup state/log/artifact nếu nhận completion; hoàn tất cleanup đúng danh sách đã xác minh.
+2. Dựa M20, khóa factorial tách realgate khỏi syntheticfallback; sau đó mixturetarget khỏi realKDweight.
+3. Kiểm fullQ so diagonal/offdiagonal-uniform trước tăng packet/đổi generator. Theo own-test/tail/xe nhỏ/absent-class.
+4. Giữ20round chẩn đoán/cosine50, seed42/43, DAGSNetW1, protocol chung; không tự50round hoặc chọn HP theo test.
+   Thiết kế mới phải ghi evidence → mechanism → falsifier trước khi launch.
+
+Không việc tay bắt buộc hiện tại. Không raw local data/privateweight trong FL; chưa DP/mixedarchitecture/contactdrop proof.

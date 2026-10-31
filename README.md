@@ -1,19 +1,19 @@
 # MobiHet
 
-Federated IDS cho V2X: mỗi xe giữ model private (kiến trúc tùy ý), chỉ trao đổi một proxy nén (Q3 + LZMA2) với băng thông hạn chế.
-Phiên bản 2 trên VeReMi NextGen v4 — **5.343 client = 5.343 xe nhận**, 16 lớp, DAGSNet, cùng protocol với 15 baseline của
-[`odixe06/fl_dagsnet_veremi_v2`](https://github.com/odixe06/fl_dagsnet_veremi_v2). Lịch sử v1: [history/v1](history/v1/README.md),
-repo [`odixe06/mobihet-archive-veremi-v1`](https://github.com/odixe06/mobihet-archive-veremi-v1).
+Nghiên cứu federated IDS V2X trên VeReMi NextGen v4: 5.343 xe, 16 lớp. Mỗi xe giữ model riêng;
+nhánh hiện tại trao đổi thống kê gộp và bảng xác suất theo lớp, không dùng proxy neural hoặc chia sẻ mẫu local.
+Mục tiêu: cải thiện từng xe, đặc biệt xe ít mẫu/non-IID, trong giới hạn giao tiếp và hỗ trợ khác kiến trúc.
 
-- Dataset: Kaggle [`odixe0502/veremi-nextgen-v4-scaled-per-vehicle`](https://www.kaggle.com/datasets/odixe0502/veremi-nextgen-v4-scaled-per-vehicle) — [mô tả](knowledge/dataset.md).
-- Bắt đầu: [CONTEXT.md](CONTEXT.md). Env: conda `nckh` ([environment.yml](environment.yml)).
+Bắt đầu tại [CONTEXT.md](CONTEXT.md). Mọi trạng thái job và bước tiếp chỉ ghi tại [bàn giao sống](docs/operations/continue.md).
+Dùng env conda `nckh`; [protocol](docs/research/protocol.md), [dataset/model/runtime](knowledge/README.md).
 
-```
-core/      DAGSNet tham chiếu + bản grouped (nhiều client/bước), dữ liệu thường trú GPU, AdamW theo client, eval, metric
-methods/   mobihet.py (phương pháp), fedavg.py (đối chứng)
-scripts/   run_fl.py, run_central.py, gen_notebook.py, cost.py, report.py, benchmark
-tests/     test tương đương / đơn vị
-knowledge/ dữ kiện bất biến (máy, dataset, DAGSNet)
-docs/      protocol, kế hoạch cải tiến, chi phí, vận hành
-history/v1 toàn bộ tài liệu + lesson MobiHet v1 (chỉ đọc)
-```
+| thư mục | trách nhiệm |
+|---|---|
+| `core/`, `methods/`, `tests/` | train/eval dùng chung, cơ chế hiện tại, kiểm chứng |
+| `scripts/` | công cụ đang dùng; xem [danh mục](scripts/README.md) |
+| `docs/` | kết quả, chẩn đoán và vận hành hiện tại |
+| `knowledge/` | schema dữ liệu, kiến trúc, runtime |
+| `runs/` | bằng chứng làm việc và artifact; dữ liệu nặng theo DVC |
+| `archive/` | code/tài liệu đã nghỉ; loại khỏi đọc/tìm kiếm mặc định |
+
+Git chỉ chứa code, tài liệu, DVC metadata. [Backup/khôi phục](docs/operations/backup.md).

@@ -1,0 +1,6 @@
+outs:
+- md5: 4fc47bf2b4d9d0b334412445b63823b3.dir
+  size: 384758126
+  nfiles: 48
+  hash: md5
+  path: mh-h3-dose

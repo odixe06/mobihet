@@ -92,13 +92,13 @@ batch 512, T = 1). Lặp seed 43 cho arm cuối nếu quota cho phép.
   mỗi xe (chỉ trao đổi xác suất 16 × 16 + thống kê input, không tham số) — owner chỉ xét về phương pháp, **không cần chạy kiểm chứng**;
   nếu cần: arm trộn độ rộng W theo xe (k mod 3 → W 1 / 0,5 / 0,25), báo F1 theo nhóm.
 
-## 5. Kết quả tới 30/10 và đề xuất tiếp (chưa chạy; chờ owner duyệt)
+## 5. Kết quả tới 30/10 và H0–H4 (owner duyệt, đã push)
 
 Kết quả: [screening-r10](screening-r10.md). Tóm tắt r10 (private F1 pooled / p10): S0 `dml` 0,8584 (r9) · S1 `srv` 0,8514 FAIL ·
 S3 `cheap` 0,7778 FAIL · **S4 `none` 0,8679 / 0,567** · G0 off 0,8497 · G1 oracle 0,8802 (trần) · G2 short 0,8669 · G3 mix 0,8667 /
 0,580 · **G4 copula 0,8732 / 0,574** (+0,0053, FAIL cổng +0,010, lấy ~43 % khoảng trần). FedAvg r10 0,8749, FedProto r10 0,8629.
 
-Đọc: bỏ proxy là hướng đúng (rẻ nhất, tốt nhất, 544 B/round); synthetic vẫn cần (G0 −0,018, p10 −0,078); chất lượng input còn
+Đọc: bỏ proxy tốt nhất ở sàng lọc đã có (1.088 B hai chiều/round, chưa cộng bootstrap); synthetic vẫn cần (G0 −0,018, p10 −0,078); chất lượng input còn
 +0,012 để lấy; copula đi đúng hướng. Rủi ro lớn nhất: mọi Δ ≤ 0,006 là **một seed** và 10 round (v1: lợi ep6 từng biến mất ở ep15).
 
 Đề xuất (nền = G4 copula trên S4; một yếu tố/arm; 10 round full K; cổng như §3: Δ ≥ +0,010 vs nền, p10 không giảm > 0,010):
@@ -114,3 +114,53 @@ S3 `cheap` 0,7778 FAIL · **S4 `none` 0,8679 / 0,567** · G0 off 0,8497 · G1 or
 
 Sau đó (từ §2, áp lên arm thắng): E1 logit standardization, E3 trọng số KD theo độ tin lớp; D2 (BN inversion) không áp được khi
 không có model chung. Chi phí: H0–H4 ~1,6 h/run (6 run song song đủ quota); F ~8 h/run (529–546 s/round × 50 + eval).
+
+
+## 6. Batch H0–H4 đã khóa và push (30/10 ~17:17–17:27)
+
+Owner duyệt 6 run H0–H4; 50 round chốt sau kết quả. Spec/cổng, source và kế toán bootstrap: [screening-h10](screening-h10.md).
+Trạng thái runtime: [bàn giao](../operations/continue.md). Chưa có kết quả H, không coi local smoke hoặc startup hai T4 là PASS utility.
+Owner giữ MobiHet ngoài Notion; thử baseline và báo cáo nằm trong repo `../fl_dagsnet_veremi_v2`.
+
+## 7. Audit H và batch J (30/10 tối)
+
+[H0–H4 đã audit](screening-h10.md): mọi arm H1–H4 FAIL gain, H3 cao nhất mô tả; copula gain lặp dấu hai seed.
+Owner phiên mới chốt ưu tiên F1, báo cả thời gian/byte; tiếp tục10-round fullK, phân tích dataset để xây cơ chế.
+[Chẩn đoán và J0–J4 khóa trước push](screening-j10.md): tập anchor chung + teacher theo từng mẫu,
+đối chứng cùng support, nguồn gauss/copula, kết hợp dose64, ablation KL trên real. Không proxy.
+[Lý do và nguồn primary](synthetic-kd-next.md); không mở lại hướng v1 FAIL thiếu giả thuyết mới.
+Không chọn HP/round theo test; test chỉ chẩn đoán mô tả/đánh giá cổng đã khóa. Chưa gọi phương pháp tối ưu.
+
+## 8. J đã audit, xây lại từ hợp đồng federated (31/10)
+
+[J0–J4 đềuFAIL](screening-j10.md). Owner cho phép xây lại phương pháp, không share rawlocaldata, đầu ra chung hỗ trợmodelkhác;
+chưa có trầnbyte, ưu tiênF1/đánh đổi chi phí; giữDAGSNet chung trước.
+[Thiết kế từ bài toán](federated-design.md) ưu tiênthôngtinmeanprob từdòngthật thaytruyềnproxy hoặc probeanchorđắt.
+[K0–K9](screening-k10.md): factorialdose×realKD haiseed, augmentationcontrol, conditionalteacher, labelagreementgate.
+Mụcđích kiểmchứngcơchế và tìmứngviên, chưa gọi tốiưu; chỉ50round sau khi chốt bằngchứng.
+
+## 9. K kết quả và khả thi (31/10 ~10:27)
+
+[Kresults](results-k10.md): gatePASSgainr10cả42/43nhưngsátngưỡng43;augmentationlàđốichứngmạnh,tail/lowdata tốt hơn.
+Combo/conditionalFAIL. Chưachốtmethodtổng; đềnghịxácnhận50roundgatevsaugmentation cùngseed, rồi mixedarchitecture,
+giữnguyênprotocolvàkhôngsharelocaldata. Tácvụ31/10nàychỉpull/audit, chưa launchF/50round.
+
+## 10. Ưu tiên phân biệt nguyên nhân sau K (31/10)
+
+Owner yêu cầu tiếp thínghiệm tìmnguyênnhân học yếu. [Đối chứng cơ chế](root-cause-experiments.md):
+offlineQ/CM cho thấy gate chỉtắt realKDtimeDelay; synthetictarget sai vàadaptivecoefficient chưa được tách.
+Đềxuất4cellmới×2seed=8run, táidùng K khi tươngthích; instrumentgradient và kiểmwirecodec trướclaunch.
+Sau factorial mới mởsyntheticfallback/postepochteacher/weighting/generatorrepair theo evidence.
+Giữ50roundgatevsaugmentation là bướcxácnhận sau, chưalaunch; không mở lại phươngpháp v1FAIL thiếu cơ chế mới.
+
+31/10ownerduyệtthựchiện: [L12run](screening-l10.md) thêmcodeccontrolcùngcode,
+giữcopula/protocol, instrument34client vàfulltrainCM tại1/2/5/10. Runtimeởbàngiao; chưautilityL.
+
+## 11. L hoàn tất: sửa lossweight trước generator (31/10)
+
+[Lresults](results-l10.md): 12run/120roundđủCM/source/config/metric/probe/snapshotsPASS.
+Fixed1 tốt hơnadaptive cảhai seed; softtarget cólợi khigiữscale. SoftfixedgateL6/L7=.887030/.887433,
+softfixednoRealL0/L1=.886315/.886861 đềuPASSgaincảhai seed. Lợirealgatechỉ+.000715/+.000572, cầnlặpđốichứng.
+L4/L5tốt hơntail/ítmẫu nhưngpooledthấp hơn. Nhóm<256 củaL6/L7vẫnkémaugmentation.
+Ưu tiênnềnsoftfixed, kiểmrepeatability, syntheticfallbackrulengeneric vàpostepochteacher;
+diagnosticfitmới trainfold→valfold đểxétshift. KhôngmởlạigeneratorFAILthiếubằngchứng; chưa launchbatchmới/50round.

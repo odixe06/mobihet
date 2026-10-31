@@ -1,0 +1,6 @@
+outs:
+- md5: 9d1f46b79c5a7526df40e197ba102d77.dir
+  size: 384824696
+  nfiles: 48
+  hash: md5
+  path: mh-h0-gauss-s43

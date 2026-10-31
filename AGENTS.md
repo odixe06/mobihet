@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
@@ -94,3 +94,23 @@ Trước khi làm, gọi skill khớp với việc; nhiều việc khớp nhiề
 | sắp xếp CONTEXT/docs/knowledge, quyết định đặt thông tin ở đâu | `context-hub` |
 | nắm toàn bộ context đầu phiên / sau compact, ghi bàn giao sống, snapshot mốc, dời tài liệu + kiểm link | `project-context` |
 | backup Git, restore, dọn ổ (chỉ khi owner yêu cầu) | `repo-backup` |
+| job nền, chờ kernel Kaggle, poll trạng thái, nhận completion hoặc phục hồi delivery | `codex-long-jobs` (skill global; xem mục 8) |
+
+**Archive:** `archive/` nằm ngoài tuyến đọc/tìm kiếm mặc định. Không nạp lịch sử cũ khi bắt đầu phiên hoặc suy luận phương pháp.
+Chỉ mở khi owner yêu cầu tra/khôi phục cụ thể. Dùng `python scripts/check_docs.py` để kiểm link active, loại archive.
+
+## 8. Job nền và chờ Kaggle — Codex
+
+Trước khi chạy job nền hoặc chờ kernel, đọc skill **`codex-long-jobs`** theo catalog phiên
+(hiện tại: [SKILL.md](/home/odixe/.codex/skills/codex-long-jobs/SKILL.md)).
+
+- Chạy worker xác định qua controller của skill; worker ghi log/state và supervisor gửi completion về thread gốc.
+- Poll Kaggle **20 phút/lần (1200 giây)** bằng worker local, đúng `owner/slug/version`. Query lỗi là chưa rõ trạng thái;
+  `COMPLETE` chỉ là trạng thái vận hành, phải audit output mới kết luận huấn luyện hoàn tất.
+- **Không model polling trong lúc chờ:** sau khi xác nhận job `running` một lần, nếu chỉ còn chờ thì kết thúc turn;
+  để worker chờ và completion đánh thức phiên. Không lặp gọi model, status hoặc sleep tool để duy trì chờ.
+- Ghi job ID, supervisor PID, log/state path, owner thread và delivery mode vào `docs/operations/continue.md`;
+  báo user đường dẫn log và lệnh theo dõi. Trước start/retry, kiểm job cũ để tránh watcher/collector hoặc delivery trùng.
+- Khi nhận completion: đọc state + log, kiểm artifact thực và số round đã khóa; tiếp tục đúng phần việc đã được ủy quyền,
+  hoặc báo blocker cụ thể. Exit0/completion không thay artifact audit.
+- Chỉ hủy job khỏe khi owner yêu cầu rõ; dùng controller để hủy cả process group theo skill.

@@ -1,0 +1,6 @@
+outs:
+- md5: ce830de48112d47dbcc822a10a3f9e2a.dir
+  size: 389482292
+  nfiles: 23
+  hash: md5
+  path: mh-s2-srvclient

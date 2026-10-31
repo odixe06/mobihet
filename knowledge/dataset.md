@@ -56,5 +56,6 @@ Local: `/home/odixe/project/mobihet-features/data/v4-scaled/` (không chép vào
 
 - benign ↔ timeDelayAttack là cặp nhầm chính (timeDelay dời cả thời gian gửi và nhận ⇒ gần như không để lại mâu thuẫn).
 - Mỗi world chỉ có một loại tấn công ⇒ benign giữa luồng Sybil/DoS dễ nhận hơn benign ở world yên tĩnh (shortcut bối cảnh).
-- Sybil dồn nửa sau vòng đời xe nhận: 8,0 % train / 17,7 % test ⇒ test có prior khác train.
+- Sybil dồn nửa sau vòng đời xe nhận: **8,80 % train+val / 17,67 % test** ⇒ test có prior khác train.
+  Fulltraincount vàCMsupport đãkiểm31/10:3.287.699/37.361.273 và1.652.147/9.347.679; số8,0%ghi chútrước khôngđúngtrainFLgộphiệntại.
 - Tham chiếu centralized của bên dựng dataset (fold val, xe chưa thấy): HistGradientBoosting 0,959, MLP 3×256 0,944 macro-F1.

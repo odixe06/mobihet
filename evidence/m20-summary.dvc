@@ -1,0 +1,6 @@
+outs:
+- md5: 7c8a584244ad815af2d617891f0764f1.dir
+  size: 4308003
+  nfiles: 13
+  hash: md5
+  path: m20-summary

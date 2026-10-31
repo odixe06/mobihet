@@ -1,0 +1,6 @@
+outs:
+- md5: 9618f720e8787018819e78b959e9a2e4.dir
+  size: 387570020
+  nfiles: 55
+  hash: md5
+  path: mh-l0-softfix-s42

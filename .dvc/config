@@ -1,0 +1,6 @@
+[core]
+    remote = onedrive
+[cache]
+    type = "hardlink,copy"
+['remote "onedrive"']
+    url = /home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage

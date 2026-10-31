@@ -1,0 +1,6 @@
+outs:
+- md5: ecdf5b2fe8777255204a8a90b1843763.dir
+  size: 384595644
+  nfiles: 23
+  hash: md5
+  path: mh-g1-oracle

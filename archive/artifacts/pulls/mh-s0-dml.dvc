@@ -1,0 +1,6 @@
+outs:
+- md5: 26718d8e8b7760b66c2e7cfef0c341e1.dir
+  size: 349430202
+  nfiles: 21
+  hash: md5
+  path: mh-s0-dml

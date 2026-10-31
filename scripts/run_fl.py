@@ -131,6 +131,7 @@ def main():
             break
         t = time.monotonic()
         lr = fl.cosine_lr(r, hp["rounds"], hp["lr_max"], hp["lr_min"])
+        teacher_before = M.Q if hp.get("diagnostics", False) else None
         info = M.round(r, lr)
         if info.get("skipped_frac", 0) > 0.01:
             print(f"WARNING r{r}: {info['skipped_frac']:.1%} of client steps skipped (non-finite gradients)", flush=True)
@@ -138,6 +139,11 @@ def main():
         views = M.evaluate()
         t_eval = time.monotonic() - t - t_train
         row = {"round": r, "lr": lr, "t_train": t_train, "t_eval": t_eval, **info}
+        if hp.get("diagnostics", False):
+            from methods import mobihet_diagnostics
+            t_probe = time.monotonic()
+            row.update(mobihet_diagnostics.run(M, r, teacher_before, a.out))
+            row["t_diagnostics"] = time.monotonic() - t_probe
         for v, cms in views.items():
             s = metrics.summary(cms)
             row.update({f"{v}/{k}": s[k] for k in metrics.TEN + ["client_f1_macro_mean", "client_f1_macro_p10",

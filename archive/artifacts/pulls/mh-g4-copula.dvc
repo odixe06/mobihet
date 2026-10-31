@@ -1,0 +1,6 @@
+outs:
+- md5: f1169be8d46dbb11530f7f1a6aed1139.dir
+  size: 384669068
+  nfiles: 23
+  hash: md5
+  path: mh-g4-copula

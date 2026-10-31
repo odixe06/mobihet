@@ -1,0 +1,6 @@
+outs:
+- md5: 6cb9f622e49cf8af85261c46e9db41fb.dir
+  size: 391350334
+  nfiles: 23
+  hash: md5
+  path: mh-s3-cheap

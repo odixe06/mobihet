@@ -1,0 +1,6 @@
+outs:
+- md5: e9ed7bfd62723dac78db36adda998c91.dir
+  size: 387269390
+  nfiles: 55
+  hash: md5
+  path: mh-l10-gatewire-s42

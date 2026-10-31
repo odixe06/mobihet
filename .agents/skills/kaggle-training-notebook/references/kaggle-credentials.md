@@ -12,8 +12,8 @@ this preserves the active global login. `KAGGLE_API_TOKEN` may contain the saved
 which the installed SDK reads. Do not export it globally or put the raw value on a command line.
 
 A token-only account can run account-scoped CLI commands without browser login. `kaggle_account.py quota/health/plan` supports both token-only and OAuth accounts.
-Global `use/ensure` still requires OAuth snapshots; prefer `kaggle_as.py` for process-scoped commands. The owner will perform CLI browser login
-after environment setup. `list` inventories both token-only and OAuth accounts.
+Global `use/ensure` still requires OAuth snapshots; prefer `kaggle_as.py` for process-scoped commands. Use the existing authenticated CLI login. `list` inventories saved API tokens and OAuth snapshots; a missing snapshot
+is not a CLI failure when another supported credential is available.
 
 For a new OAuth account, use `kaggle_account.py add-account <username>`: save the current snapshot
 before browser login, then save the new snapshot. The owner completes browser authorization.
@@ -30,5 +30,5 @@ CLI is the configured channel for this checkout. Kaggle MCP, a Codex header help
 do not run missing helpers or claim reconnect/authentication from historical notes.
 If MCP is explicitly configured later, verify it independently using an account-scoped native read.
 
-Read [multi-account.md](multi-account.md) for the OAuth workflow. Current project/account policy
+Read [multi-account.md](multi-account.md) for account-scoped CLI operation. Current project/account policy
 and local setup take precedence over dated observations in that reference.

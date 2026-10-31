@@ -47,3 +47,21 @@ Lưu ý:
 - FLOPs đếm matmul/conv (quy ước chuẩn của FlopCounterMode); phép elementwise, lượng tử hóa, LZMA không tính.
 - Server FLOPs trong `cost.json` (`server_flops_per_round_toy`) đo trên 8 xe toy; ở quy mô thật tỉ lệ với N_p (Big-O ở bảng).
 - Thời gian GPU thật không tỉ lệ đúng với FLOPs (engine grouped, đệm, bộ nhớ): đọc `t_train` từ run, không suy từ c_m.
+
+
+## MobiHet v4 — sửa kế toán bootstrap (30/10 ~17:40)
+
+Các baseline trong bảng kế thừa ở trên chỉ tham khảo; nguồn cập nhật của baseline nằm tại
+`../fl_dagsnet_veremi_v2/docs/research/cost.md`. Repo này phát triển các arm MobiHet.
+
+`none`: 544 B lên + 544 B xuống = **1.088 B/xe/round**. Các giá trị sau từ `bootstrap_bytes` của source/harness,
+chưa tính overhead transport/secure aggregation. Tổng H1 là kế toán dense hiện hành, không khẳng định wire codec đã đo trên mạng thật.
+
+| arm | bootstrap hai chiều / xe | tổng 10 round / xe | tổng 50 round nếu payload giữ nguyên / xe |
+|---|---:|---:|---:|
+| S4 Gaussian | 394.368 B | 405.248 B | 448.768 B |
+| G4 copula / H2 / H3 / H4 | 3.311.744 B | 3.322.624 B | 3.366.144 B |
+| H1 copula × 8 nhóm, dense | 23.733.376 B | 23.744.256 B | 23.787.776 B |
+
+Không chọn H1 là rẻ hơn DML chỉ vì payload từng round nhỏ: bootstrap lớn có thể đảo thứ tự tổng chi phí.
+Giữ nguyên cổng đã khóa; báo tradeoff utility/cost trước khi owner chọn arm 50 round. Đo thời gian/GPU thực khi có artifact H.

@@ -1,0 +1,6 @@
+outs:
+- md5: 368ce2a20b959b5e20d82a0b8f05b4f4.dir
+  size: 384759322
+  nfiles: 23
+  hash: md5
+  path: mh-g3-mix

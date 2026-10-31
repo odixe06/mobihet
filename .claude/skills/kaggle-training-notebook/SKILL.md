@@ -52,15 +52,12 @@ projects). A long job started locally competes for RAM with everything else and 
 
 ## Route
 
-1. Read [kaggle-mcp.md](references/kaggle-mcp.md), discover callable tools and verify an
-   account-scoped read such as quota. Public dataset metadata does not authenticate the account.
-   Record MCP and CLI results separately. Missing MCP does not prevent local audits or skill
-   edits; respect a user requirement to verify MCP before building models. Never print tokens.
-   Before requesting credentials, inspect the user-designated ~/.kaggle/ directory:
-   credentials.json identifies the active CLI account; accounts/<username>.mcp-token
-   stores its MCP bearer. Follow [saved credentials](references/kaggle-credentials.md).
-   Never print tokens, silently switch accounts, or overwrite OAuth credentials with a
-   bearer. The current Codex header helper does not require an environment export.
+1. Use the authenticated Kaggle CLI in `nckh`. Verify the active account with SDK credential introspection;
+   use `kaggle_as.py <owner> -- <command>` for another saved account, preserving the global login.
+   Read [saved credentials](references/kaggle-credentials.md), then query owner-scoped quota/slots.
+   CLI operations require no MCP JSON, MCP server, header synchronization or client reconnect.
+   If the owner explicitly requests MCP later, read [kaggle-mcp.md](references/kaggle-mcp.md) for that optional setup.
+   Never print tokens or request another login merely because an optional MCP connection is absent.
 2. Extract the method and unresolved choices into `papers/<slug>/paper.md` and `rebuild.md`;
    see [paper-dossier.md](references/paper-dossier.md). Do not invent missing equations,
    optimizer settings or adaptive rules and attribute them to the paper. Resolve scientific
@@ -112,8 +109,7 @@ projects). A long job started locally competes for RAM with everything else and 
    Under the **2026-09-10** policy the agent runs those two with `--confirm` itself, without
    asking; announce which account and why. The user's only account action is reconnecting
    the MCP client when a reconnect is actually needed. Budget free hours after used and
-   reserved time, including all planned simultaneous runs. Reconnect MCP after a switch and verify
-   alignment; use selected CLI OAuth while MCP identity remains uncertain. An account with quota
+   reserved time, including all planned simultaneous runs. After an authorized global switch, verify the new CLI identity with SDK introspection. An account with quota
    is not an account with GPUs -- zero-GPU allocation has been account-scoped here before, and
    only a run proves it. Script creation does not itself authorize launching runs.
 7. Pull bulk output with `scripts/pull_kernel_output.py` through `scripts/kaggle_as.py <owner>`

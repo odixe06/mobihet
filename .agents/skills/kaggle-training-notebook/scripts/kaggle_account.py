@@ -120,15 +120,14 @@ def cmd_list(args: argparse.Namespace) -> int:
     if not users:
         print(f"no accounts saved in {ACCOUNTS}")
         return 1
-    print(f"{'account':<16} {'CLI creds':<10} {'MCP token':<10} active")
+    print(f"{'account':<16} {'OAuth snapshot':<16} {'API token':<10} active")
     for u in users:
-        print(f"{u:<16} {'yes' if creds_path(u).is_file() else 'MISSING':<10} "
-              f"{'yes' if token_path(u).is_file() else 'MISSING':<10} "
+        print(f"{u:<16} {'yes' if creds_path(u).is_file() else 'no':<16} "
+              f"{'yes' if token_path(u).is_file() else 'no':<10} "
               f"{'<-- ACTIVE' if u == act else ''}")
     if act and act not in users:
         print(f"\nactive login is {act}, which has no snapshot — run: save {act}")
     if not args.mcp_config.is_file():
-        print(f"\n{args.mcp_config} does not exist; nothing carries an MCP bearer for this host.")
         return 0
     mcp_user = mcp_account(args.mcp_config)
     print(f"\n.mcp.json ({args.mcp_config}) carries the token of: {mcp_user or 'unknown'}")

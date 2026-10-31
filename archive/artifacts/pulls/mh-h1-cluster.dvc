@@ -1,0 +1,6 @@
+outs:
+- md5: 1c7311ae08e60a397f68dceff58c4d0c.dir
+  size: 384786723
+  nfiles: 48
+  hash: md5
+  path: mh-h1-cluster

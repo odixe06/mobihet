@@ -1,0 +1,6 @@
+outs:
+- md5: d6b9a968ed3c799d414acbf785d2932a.dir
+  size: 384802645
+  nfiles: 48
+  hash: md5
+  path: mh-k8-gate-s42

@@ -1,0 +1,6 @@
+outs:
+- md5: bc68a56d7d7d4638c4c4645cd72cb575.dir
+  size: 385070246
+  nfiles: 48
+  hash: md5
+  path: mh-k7-bucket-s43

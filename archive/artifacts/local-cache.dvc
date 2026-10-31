@@ -1,0 +1,6 @@
+outs:
+- md5: bee24986d46d4b7b668b1e7f0232dfc2.dir
+  size: 186947122
+  nfiles: 31
+  hash: md5
+  path: local-cache

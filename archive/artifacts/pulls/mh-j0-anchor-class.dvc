@@ -1,0 +1,6 @@
+outs:
+- md5: 4f545b12127300980218b9ff8529207a.dir
+  size: 384831109
+  nfiles: 48
+  hash: md5
+  path: mh-j0-anchor-class

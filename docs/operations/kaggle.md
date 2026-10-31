@@ -27,15 +27,13 @@ Số liệu throughput CLI cũ trong skill là lịch sử, chưa benchmark lạ
 Đã lưu 16 token trong `~/.kaggle/accounts/`, token 0600, thư mục 0700; mapping email nằm riêng
 ở `~/.kaggle/account-roster.json` (0600), không đưa vào repo. SDK introspection xác nhận 16/16 token
 active và username khớp tên file. Trạng thái có thể đổi; kiểm lại khi cần.
-User sẽ đăng nhập OAuth CLI sau. Không ép tài khoản mặc định; chọn account theo quota và slot GPU live,
+31/10: owner đã đăng nhập CLI **dinhan25**; dùng login hiện có. Không ép tài khoản mặc định; chọn account theo quota và slot GPU live,
 chạy qua `kaggle_as.py`, giữ global login đang có. Helper `quota/health/plan` hỗ trợ token-only;
 `use/ensure` vẫn cần OAuth snapshot và quy trình chuyển global, không dùng để thay thế lệnh account-scoped.
 
 ```bash
 source /home/odixe/Tools/miniconda3/etc/profile.d/conda.sh
 conda activate nckh
-# User tự đăng nhập khi sẵn sàng:
-kaggle auth login
 # Kiểm quota không đổi global login:
 python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py quota
 ```
@@ -48,7 +46,7 @@ nguyenminhtran060113, odixe0502, odixeuit, takids1909, thuyanh316, trietbackup.
 
 | lưu ý | account |
 |---|---|
-| Không đổi global CLI khi làm việc account khác; user sẽ tự login trên host mới | không ép tài khoản |
+| Giữ global CLI dinhan25; account khác dùng kaggle_as.py | dinhan25 đã login |
 | `kaggle datasets create` từng 403 với dataset 2–12 GB (≤17/10). **21/10 06:07Z tạo được** dataset private 27 B (ready, đã xóa) ⇒ dataset nhỏ (nguồn, checkpoint) upload trực tiếp được; dataset GB chưa kiểm lại | odixeuit, minhtrit06 |
 | Refresh token OAuth hỏng 20/10; hook 21/10 báo 16/16 account healthy | minhtrit06 |
 | **Owner dùng cho dự án khác từ 21/10** (≈11h GPU tới 08Z); owner 21/10 ~18:35Z: **được xếp chấm/train khi có slot** (cache K100 push 18:35Z). Chia quota và 2 slot GPU với dự án kia; không thu hồi token khi chưa pull xo/xu | odixeuit |
@@ -67,4 +65,4 @@ nguyenminhtran060113, odixe0502, odixeuit, takids1909, thuyanh316, trietbackup.
 - `QUEUED` = chờ GPU, không phải lỗi. `RUNNING`/`COMPLETE`/W&B finished không chứng minh đã train: phải có log/heartbeat và audit artifact.
   Log live: `kaggle kernels logs --follow` (SSE) giới hạn ~35 s; `kernels logs` thường rỗng khi đang chạy.
 - Dừng session chỉ làm được trên web (owner bấm **Stop session**); API không hủy được.
-- Kaggle native MCP chưa cấu hình; CLI có xác thực là kênh chính.
+- CLI là kênh chính; đã xóa MCP JSON của repo theo yêu cầu owner31/10. Skill không yêu cầu MCP/reconnect.

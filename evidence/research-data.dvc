@@ -1,0 +1,6 @@
+outs:
+- md5: 7c5204f7f20792663c9cfc76541c8101.dir
+  size: 1368064
+  nfiles: 2
+  hash: md5
+  path: research-data

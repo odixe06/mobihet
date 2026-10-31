@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-01",
+  "moves": [
+    {
+      "from": "history/v1",
+      "to": "archive/legacy-v1",
+      "files": 643,
+      "tree_sha256": "44a10255fe932757f06be88f28dca6be21839d2ef230ee934f9546cd24677abc"
+    },
+    {
+      "from": "docs/archive",
+      "to": "archive/handoffs",
+      "files": 11,
+      "tree_sha256": "618204bdb62ad8e88eee56f1ebe7db724f12877bf084c9ece5076a6ef256a2c2"
+    },
+    {
+      "from": "docs/research/cost.md",
+      "to": "archive/docs/research/cost.md",
+      "files": 1,
+      "tree_sha256": "02768ad5f7d60c769fdb3df543c7c917dd6600118add4e2fb071d87dcafa652d"
+    },
+    {
+      "from": "docs/research/cost.json",
+      "to": "archive/docs/research/cost.json",
+      "files": 1,
+      "tree_sha256": "079e13a7a00e5b5c2396f84b89d18308946d7e2f4850255b158267e89593a167"
+    },
+    {
+      "from": "docs/research/federated-design.md",
+      "to": "archive/docs/research/federated-design.md",
+      "files": 1,
+      "tree_sha256": "a2e1a08ae3487d9331e2658cbc03a2ed282eba9fdf4a2800d5e85d642f32cc14"
+    },
+    {
+      "from": "docs/research/improvement-plan.md",
+      "to": "archive/docs/research/improvement-plan.md",
+      "files": 1,
+      "tree_sha256": "ddf1706dc849447c1d6a0fc8c0cc47af1aa4f9e164f631ddf44526399ede06e1"
+    },
+    {
+      "from": "docs/research/root-cause-experiments.md",
+      "to": "archive/docs/research/root-cause-experiments.md",
+      "files": 1,
+      "tree_sha256": "6342f45fbeb73f374eb25495534e5e28a1e02312653ac8eed131041d683338eb"
+    },
+    {
+      "from": "docs/research/synthetic-kd-next.md",
+      "to": "archive/docs/research/synthetic-kd-next.md",
+      "files": 1,
+      "tree_sha256": "0e7e1325f5985011104fdc9b418d669f849416d91200686ce77ca60fbee9b9e3"
+    },
+    {
+      "from": "docs/research/validation-k-design.md",
+      "to": "archive/docs/research/validation-k-design.md",
+      "files": 1,
+      "tree_sha256": "985d19ff623149bb9e3740a48ef9eaf79f7063cfae3b8335fc6d22b1d9ee57b0"
+    },
+    {
+      "from": "docs/research/results-k10.md",
+      "to": "archive/docs/research/results-k10.md",
+      "files": 1,
+      "tree_sha256": "c838885164baa4ff907bbe6670822d8de9f5b0e80c18bc72a5c723e0c390d78d"
+    },
+    {
+      "from": "docs/research/results-l10.md",
+      "to": "archive/docs/research/results-l10.md",
+      "files": 1,
+      "tree_sha256": "453942bf38c7446a142830555244544689d5289a6550a43aa53e0329d9cf7600"
+    },
+    {
+      "from": "docs/research/screening-r10.md",
+      "to": "archive/docs/research/screening-r10.md",
+      "files": 1,
+      "tree_sha256": "a697e37522092561613b118804c4db4b98a20bf37e1e29d6a59acac750f40c08"
+    },
+    {
+      "from": "docs/research/screening-h10.md",
+      "to": "archive/docs/research/screening-h10.md",
+      "files": 1,
+      "tree_sha256": "35fa21cae67e1d2144e7a27bd7eb6fe87aa3f830c975764edaad2eeef0223995"
+    },
+    {
+      "from": "docs/research/screening-j10.md",
+      "to": "archive/docs/research/screening-j10.md",
+      "files": 1,
+      "tree_sha256": "5f86e2c33942c409413a82d9bf1052630f88a7c45680efd2580a98d26210e320"
+    },
+    {
+      "from": "docs/research/screening-k10.md",
+      "to": "archive/docs/research/screening-k10.md",
+      "files": 1,
+      "tree_sha256": "387f28dab4b3840a2f1bac9d63a7b6c31348c13f7d9296ef498db22d8f55cabb"
+    },
+    {
+      "from": "docs/research/screening-l10.md",
+      "to": "archive/docs/research/screening-l10.md",
+      "files": 1,
+      "tree_sha256": "fc222403e74767528a52e2a5a2bc711be4668b6614ec81a46fc01297f94d53cf"
+    },
+    {
+      "from": "scripts/analyse_l_screening.py",
+      "to": "archive/scripts/analyse_l_screening.py",
+      "files": 1,
+      "tree_sha256": "0154f2c6b351f920e0a10e6bab7795e08d0825260ea31d8cba564afc6dd76f5e"
+    },
+    {
+      "from": "scripts/audit_l_diagnostics.py",
+      "to": "archive/scripts/audit_l_diagnostics.py",
+      "files": 1,
+      "tree_sha256": "e7436aa25b17a234c733a085b4778c07817e7d073b8253c7632ca6e0b05c1eb3"
+    },
+    {
+      "from": "scripts/diagnose_private.py",
+      "to": "archive/scripts/diagnose_private.py",
+      "files": 1,
+      "tree_sha256": "ee8bca1b0a847cb24b6489ce552c8b4378b975d60a62e387bf64b04630fbd0e3"
+    },
+    {
+      "from": "scripts/diagnose_kd_mechanisms.py",
+      "to": "archive/scripts/diagnose_kd_mechanisms.py",
+      "files": 1,
+      "tree_sha256": "e01a9d6ca3af8b600a5f12124ff028417827a9f9d728316547d096320b468fc0"
+    },
+    {
+      "from": "scripts/cost.py",
+      "to": "archive/scripts/cost.py",
+      "files": 1,
+      "tree_sha256": "ced00fef4193780a8f0029c09bdc0b29d30639d3f0cd1b43e2e1f36088740c02"
+    },
+    {
+      "from": "scripts/prepare_m20.py",
+      "to": "archive/scripts/prepare_m20.py",
+      "files": 1,
+      "tree_sha256": "e08fdb7c4d7c6f42a9141ebd10401ec7d639ef8a4102074088db615055ada785"
+    },
+    {
+      "from": "scripts/launch_m20.py",
+      "to": "archive/scripts/launch_m20.py",
+      "files": 1,
+      "tree_sha256": "5dcf0de5debf9d518b1e3c1f9660ac9418d9fde378318f9a288b8345afc2c723"
+    },
+    {
+      "from": "scripts/check_m20_startup.py",
+      "to": "archive/scripts/check_m20_startup.py",
+      "files": 1,
+      "tree_sha256": "18283ec26f23aa8274c0f391a94839405bc7c736fd040008c93b234c5deb380a"
+    },
+    {
+      "from": "scripts/watch_collect_m20.py",
+      "to": "archive/scripts/watch_collect_m20.py",
+      "files": 1,
+      "sha256": "1e3a3f5216fc808f204717e982e7e66d49b723c53db28d9c7de001df29c2c232",
+      "reason": "M20 collection/audit finished; use active audit/analysis and generic watcher for new batches"
+    }
+  ],
+  "active_links_rewritten": [
+    "CONTEXT.md",
+    "README.md",
+    "LESSONS.md",
+    "docs/operations/continue.md",
+    "docs/research/screening-m20.md"
+  ],
+  "archive_content": "byte-preserved; restore original paths before executing historical scripts"
+}

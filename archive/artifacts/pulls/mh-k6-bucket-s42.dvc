@@ -1,0 +1,6 @@
+outs:
+- md5: 20afbeddc82ca0c82c9dba825c586916.dir
+  size: 385089873
+  nfiles: 48
+  hash: md5
+  path: mh-k6-bucket-s42

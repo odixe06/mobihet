@@ -1,0 +1,6 @@
+outs:
+- md5: 2d2f1aa13d8bd327cd6953d9458f3f7d.dir
+  size: 387249470
+  nfiles: 55
+  hash: md5
+  path: mh-l11-gatewire-s43

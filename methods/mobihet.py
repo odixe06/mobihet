@@ -39,6 +39,13 @@ Synthetic rows (hp "synth", private-only arms; docs/research/screening-r10.md, o
           batch when there is one (FedMix-like, Yoon et al. 2021; the real row never leaves the vehicle)
   copula  Gaussian copula: pooled per-class marginal histograms (256 bins on [−4, 4], summable) and the covariance of
           normal scores; x = F_c^{-1}(Φ(z)), z ~ N(0, R_c), linear inside a bin (v1 P-copula, reopened as an input source)
+  copula_cluster  copula per class x scenario/run; sample a cluster by its pooled class count (H1)
+  copula_mix      copula rows mixed with same-class local real rows, as in mix (H2)
+hp synth_rows (default batch/2) controls the number of synthetic rows (H3: 64 at batch 64).
+hp synth_target = onehot replaces synthetic Q[y] KD by CE in arm none; real-row KD stays unchanged (H4).
+hp anchor = class/ensemble uses a fixed seeded support (m_transfer rows); ensemble sends uint8 private probabilities
+on that support and distils sample-indexed targets directly, without a server proxy. Class is the same-support Q[y]
+control. hp real_kd=false disables real-row Q[y] KD only in arm none (diagnostic ablation).
 In srv/cheap the proxy never sees real rows, so its BN statistics come from the vehicles: the frozen teacher's forward on
 real rows uses batch statistics (dropout off) and its running statistics are uploaded (fp16) and n_k-averaged. The KD
 weight w = 1/(CE_private + CE_teacher) replaces CE_proxy by the teacher's CE (no live proxy).
@@ -96,7 +103,8 @@ class Method:
         self.g_p, self.g_b = p0[0].clone(), b0[0].clone()            # proxy replica every client holds
         self.exact = self.g_p.clone()                               # server's exact proxy (error feedback)
         self.version = 0
-        self.aux = env.hp["batch"] // 2
+        self.aux = env.hp.get("synth_rows", env.hp["batch"] // 2)
+        assert isinstance(self.aux, int) and self.aux > 0, self.aux
         self.weighted = env.hp.get("agg", "weighted") == "weighted"      # owner 29/10: n_k weights (original: 1/K)
         self.gen_q = torch.Generator(device=dev).manual_seed(env.hp["seed"] * 7 + env.rank)
         self.gen_g = torch.Generator(device=dev).manual_seed(env.hp["seed"] * 11 + env.rank)
@@ -106,9 +114,80 @@ class Method:
         self.S = env.hp.get("server_steps", 200)
         self.Q = None                                                 # arm none: pooled class probabilities (16, 16)
         self.synth = env.hp.get("synth", "gauss")
-        assert self.synth in ("gauss", "off", "oracle", "short", "mix", "copula"), self.synth
+        assert self.synth in ("gauss", "off", "oracle", "short", "mix", "copula", "copula_cluster", "copula_mix"), self.synth
         assert self.synth == "gauss" or self.arm != "dml", "synth arms are for the private-only arms"
+        self.synth_target = env.hp.get("synth_target", "soft")
+        assert self.synth_target in ("soft", "onehot", "fallback"), self.synth_target
+        assert self.synth_target == "soft" or self.arm == "none", "onehot target is for arm none"
+        self.no_kd = env.hp.get("no_kd", False)
+        self.kd_weight = env.hp.get("kd_weight", "adaptive")
+        self.q_codec = env.hp.get("q_codec", "legacy")
+        self.q_collect = env.hp.get("q_collect", "online")
+        self.kd_support = env.hp.get("kd_support", "off")
+        self.q_agg = env.hp.get("q_agg", "count")
+        assert self.q_collect in ("online", "postepoch")
+        assert self.kd_support in ("off", "uniform", "local")
+        assert self.q_agg in ("count", "sqrt_count")
+        assert self.q_agg == "count" or (self.arm == "none" and not self.no_kd and self.q_codec == "mean_fp16"
+                                         and env.hp.get("kd_bins", 1) == 1 and env.hp.get("anchor", "off") == "off")
+        assert self.q_collect == "online" or (self.arm == "none" and not self.no_kd and self.q_codec == "mean_fp16"
+                                              and env.hp.get("kd_bins", 1) == 1 and env.hp.get("anchor", "off") == "off")
+        assert self.kd_support == "off" or (self.arm == "none" and self.synth_target == "fallback")
+        assert self.kd_weight in ("adaptive", "fixed")
+        assert self.q_codec in ("legacy", "mean_fp16")
+        assert self.kd_weight == "adaptive" or self.arm == "none"
+        self.kd_bins = env.hp.get("kd_bins", 1)
+        assert isinstance(self.no_kd, bool) and self.kd_bins in (1, 8)
+        assert not (self.no_kd or self.kd_bins > 1) or self.arm == "none"
+        assert not self.no_kd or self.kd_bins == 1
+        assert self.q_codec == "legacy" or (self.arm == "none" and self.kd_bins == 1)
         self._bootstrap()
+        self.bucket_Q = None
+        if self.kd_bins > 1:
+            self._bucket_bootstrap()
+        self.anchor = env.hp.get("anchor", "off")
+        self.real_kd = env.hp.get("real_kd", True)
+        self.real_kd_gate = env.hp.get("real_kd_gate", False)
+        assert isinstance(self.real_kd, bool)
+        assert isinstance(self.real_kd_gate, bool)
+        assert not self.real_kd_gate or (self.arm == "none" and self.real_kd)
+        assert self.real_kd or self.arm == "none"
+        assert self.anchor in ("off", "class", "ensemble"), self.anchor
+        assert self.anchor == "off" or (not self.no_kd and self.kd_bins == 1)
+        self.anchor_Q = None
+        if self.anchor != "off":
+            assert self.arm == "none" and self.synth in ("gauss", "copula")
+            assert self.M % 16 == 0
+            # Same finite support on every vehicle/rank; keep the streaming sampler RNG intact.
+            from types import SimpleNamespace
+            gen, aux, labels = self.gen_g, self.aux, self.labels
+            self.gen_g = torch.Generator(device=dev).manual_seed(env.hp["seed"] * 1009)
+            self.aux, self.labels = self.M, torch.arange(self.M, device=dev) % 16
+            ctx = SimpleNamespace(Gfix=1, x=env.train.X[:1], clients=torch.zeros(1, dtype=torch.long, device=dev))
+            self.anchor_X, self.anchor_y = self._synth(ctx)
+            self.anchor_X, self.anchor_y = self.anchor_X[0], self.anchor_y[0]
+            self.gen_g, self.aux, self.labels = gen, aux, labels
+
+    def _bucket(self, x):
+        bits = (x.float() @ self.router > 0).long()
+        return (bits * bits.new_tensor([1, 2, 4])).sum(-1)
+
+    def _bucket_bootstrap(self):
+        """Fixed input partition, fitted with train counts only; no learned representation is shared."""
+        env = self.env
+        gen = torch.Generator().manual_seed(20261031)
+        self.router = (2 * torch.randint(2, (env.train.X.shape[1], 3), generator=gen) - 1).float().to(env.dev)
+        self.bucket_cnt = torch.zeros(env.K * 16 * 8, device=env.dev)
+        client = torch.repeat_interleave(torch.arange(env.K, device=env.dev), env.train.off[1:] - env.train.off[:-1])
+        for i in range(0, len(client), 1 << 20):
+            y = env.train.Y[i:i + (1 << 20)].long()
+            b = self._bucket(env.train.X[i:i + (1 << 20)])
+            key = (client[i:i + (1 << 20)] * 16 + y) * 8 + b
+            self.bucket_cnt.index_add_(0, key, torch.ones_like(key, dtype=torch.float32))
+        self.bucket_cnt = self.bucket_cnt.view(env.K, 16, 8)
+        self.bucket_tot = env.allreduce(self.bucket_cnt.sum(0).double())
+        for direction in ("up", "down"):
+            self.bootstrap_bytes[direction] += 16 * 8 * 4
 
     def _bootstrap(self):
         env, X, Y = self.env, self.env.train.X, self.env.train.Y
@@ -141,13 +220,30 @@ class Method:
             self.cls_idx = torch.argsort(Y.long())
             n_c = cnt.sum(0).long()
             self.cls_n, self.cls_off = n_c, torch.cumsum(n_c, 0) - n_c
-        elif self.synth == "copula":
+        elif self.synth.startswith("copula"):
             self._copula_bootstrap(client)
+
+    def _client_clusters(self):
+        """Public scenario/run metadata; no labels or test rows enter the cluster assignment."""
+        import os
+        import pandas as pd
+        from core import data as D
+
+        c = pd.read_parquet(os.path.join(D.find_root(), "clients.parquet"))
+        keys = sorted(set(zip(c.scenario, c.run)))
+        assert len(keys) == 8, f"expected 8 scenario/run groups, got {len(keys)}"
+        key = {k: i for i, k in enumerate(keys)}
+        by_id = dict(zip(c.client_id, [key[k] for k in zip(c.scenario, c.run)]))
+        return torch.tensor([by_id[int(i)] for i in self.env.ids], device=self.env.dev), len(keys)
 
     def _copula_bootstrap(self, client, NB=256):
         """Pooled per-class marginal histograms (C, D, NB) on [−4, 4] and normal-score covariance (both sums)."""
         env, X, Y = self.env, self.env.train.X, self.env.train.Y
         C, D = 16, X.shape[1]
+        if self.synth == "copula_cluster":
+            cluster, self.n_cop_clusters = self._client_clusters()
+            Y = Y.long() * self.n_cop_clusters + cluster[client]
+            C *= self.n_cop_clusters
         hist = torch.zeros(C * D * NB, dtype=torch.float64, device=env.dev)
         f = torch.arange(D, device=env.dev)
         bins = lambda x: ((x.float() + 4) * (NB / 8)).long().clamp(0, NB - 1)
@@ -156,6 +252,9 @@ class Method:
             hist.index_add_(0, ((y[:, None] * D + f) * NB + bins(x)).reshape(-1),
                             torch.ones(x.numel(), dtype=torch.float64, device=env.dev))
         hist = env.allreduce(hist).view(C, D, NB)
+        if self.synth == "copula_cluster":
+            n = hist[:, 0].sum(-1).view(16, self.n_cop_clusters)
+            self.cop_cluster_prob = (n / n.sum(-1, keepdim=True).clamp_min(1)).float()
         mass = hist / hist.sum(-1, keepdim=True).clamp_min(1)
         cdf = mass.cumsum(-1)
         nd = torch.distributions.Normal(0.0, 1.0)
@@ -180,6 +279,11 @@ class Method:
     def _synth(self, ctx):
         """Synthetic rows (G, a, D) and labels (G, a) for one step, per hp synth (see module docstring)."""
         G, a, dev = ctx.Gfix, self.aux, ctx.x.device
+        if hasattr(self, "anchor_X"):
+            # Balanced classes as in the streaming control; random instance within each class.
+            j = torch.randint(self.M // 16, (G, a), device=dev, generator=self.gen_g)
+            self._anchor_idx = j * 16 + self.labels[None]
+            return self.anchor_X[self._anchor_idx].to(ctx.x.dtype), self.anchor_y[self._anchor_idx]
         if self.synth == "short":
             lab = torch.multinomial(self.p_short[ctx.clients], a, replacement=True, generator=self.gen_g)
         else:
@@ -188,19 +292,27 @@ class Method:
             u = torch.rand(G, a, device=dev, generator=self.gen_g)
             pos = self.cls_off[lab] + (u * self.cls_n[lab]).long().minimum((self.cls_n[lab] - 1).clamp_min(0))
             return self.env.train.X[self.cls_idx[pos]].to(ctx.x.dtype), lab
-        if self.synth == "copula":
+        if self.synth.startswith("copula"):
+            cat = lab
+            if self.synth == "copula_cluster":
+                cluster = torch.multinomial(self.cop_cluster_prob[lab].reshape(-1, self.n_cop_clusters), 1,
+                                            generator=self.gen_g).view(G, a)
+                cat = lab * self.n_cop_clusters + cluster
             z = torch.randn(G, a, self.cop_mu.shape[1], device=dev, generator=self.gen_g)
-            z = self.cop_mu[lab] + (self.cop_L[lab] @ z[..., None]).squeeze(-1)
+            z = self.cop_mu[cat] + (self.cop_L[cat] @ z[..., None]).squeeze(-1)
             u = torch.special.ndtr(z).clamp(1e-6, 1 - 1e-6)
-            cdf = self.cop_cdf[lab]                                          # (G, a, D, NB)
+            cdf = self.cop_cdf[cat]                                          # (G, a, D, NB)
             j = torch.searchsorted(cdf, u[..., None]).clamp(max=cdf.shape[-1] - 1)
             hi = cdf.gather(-1, j).squeeze(-1)
-            m = self.cop_mass[lab].gather(-1, j).squeeze(-1)
+            m = self.cop_mass[cat].gather(-1, j).squeeze(-1)
             frac = ((u - (hi - m)) / m.clamp_min(1e-12)).clamp(0, 1)
-            return (-4 + (j.squeeze(-1) + frac) * (8 / cdf.shape[-1])).to(ctx.x.dtype), lab
-        z = torch.randn(G, a, self.mu.shape[1], device=dev, generator=self.gen_g)
-        xg = (self.mu[lab] + (self.L[lab] @ z[..., None]).squeeze(-1)).clamp(-4, 4)
-        if self.synth == "mix":
+            xg = -4 + (j.squeeze(-1) + frac) * (8 / cdf.shape[-1])
+            if self.synth != "copula_mix":
+                return xg.to(ctx.x.dtype), lab
+        else:
+            z = torch.randn(G, a, self.mu.shape[1], device=dev, generator=self.gen_g)
+            xg = (self.mu[lab] + (self.L[lab] @ z[..., None]).squeeze(-1)).clamp(-4, 4)
+        if self.synth in ("mix", "copula_mix"):
             same = (ctx.y[:, None, :] == lab[..., None]) & ctx.mask[:, None, :]     # (G, a, b) real rows of the class
             pick = (torch.rand(same.shape, device=dev, generator=self.gen_g) * same).argmax(-1)
             xr = ctx.x.gather(1, pick[..., None].expand(-1, -1, xg.shape[-1])).float()
@@ -238,9 +350,14 @@ class Method:
                                                reduction="none").view(G, b), ctx.mask)
         lsp = F.log_softmax(zp, -1)
         if self.arm == "none":
-            with torch.no_grad():                                    # class sums of private probabilities, real rows
-                pr = torch.where(ctx.mask[..., None], lsp[:, :b].detach().exp(), 0.0)   # where: padded rows may be inf/NaN
-                self._csum.index_put_((torch.arange(G, device=y.device)[:, None].expand_as(y), y), pr, accumulate=True)
+            if self.no_kd:
+                aux_ce = -lsp[:, b:].gather(-1, lab[..., None]).squeeze(-1).mean(1) if a else 0.0
+                return ce + aux_ce, nBp
+            if self.q_collect == "online":
+                with torch.no_grad():                                # class sums of private probabilities, real rows
+                    pr = torch.where(ctx.mask[..., None], lsp[:, :b].detach().exp(), 0.0)   # padded rows may be inf/NaN
+                    key = y * 8 + self._bucket(ctx.x) if self.kd_bins > 1 else y
+                    self._csum.index_put_((torch.arange(G, device=y.device)[:, None].expand_as(y), key), pr, accumulate=True)
             if self.Q is None:
                 if a == 0:
                     return ce, nBp
@@ -249,6 +366,10 @@ class Method:
             lt = self.Q.clamp_min(1e-6).log()
             lt_r = lt[y]
             lt_g = lt[lab] if a else None
+            if a and self.bucket_Q is not None:
+                lt_g = self.bucket_Q[lab, self._bucket(xg)].clamp_min(1e-6).log()
+            if a and self.anchor == "ensemble" and self.anchor_Q is not None:
+                lt_g = self.anchor_Q[self._anchor_idx].clamp_min(1e-6).log()
             ce_t = local.masked_mean(-lt_r.gather(-1, y[..., None]).squeeze(-1), ctx.mask)
         else:
             if self.version == 0:
@@ -263,9 +384,34 @@ class Method:
                 lt_g = F.log_softmax(grouped.TRAIN(self._teacher_p, self._teacher_b, xg, cfg, train=False)[0].float(), -1) if a else None
             ce_t = local.masked_mean(F.nll_loss(lt_r.reshape(-1, 16), y.reshape(-1), reduction="none").view(G, b), ctx.mask)
         raw = 1 / (ce + ce_t).detach().clamp_min(1e-6)
-        kd = local.masked_mean((lt_r.exp() * (lt_r - lsp[:, :b])).sum(-1), ctx.mask)
-        gkd = (lt_g.exp() * (lt_g - lsp[:, b:])).sum(-1).mean(1) if a else 0.0
+        if self.kd_weight == "fixed":
+            raw = torch.ones_like(raw)
+        kl_real = (lt_r.exp() * (lt_r - lsp[:, :b])).sum(-1)
+        if self.kd_support != "off":
+            kl_real = kl_real * self._support_weight(y, ctx.clients)
+        if self.real_kd_gate:
+            kl_real = torch.where(lt_r.argmax(-1) == y, kl_real, 0.0)
+        kd = local.masked_mean(kl_real, ctx.mask)
+        if not self.real_kd:
+            kd = torch.zeros_like(kd)
+        if a and self.synth_target == "onehot":
+            gkd = -lsp[:, b:].gather(-1, lab[..., None]).squeeze(-1).mean(1)
+        elif a and self.synth_target == "fallback":
+            rho = self._support_weight(lab, ctx.clients)
+            rho = torch.where(lt_g.argmax(-1) == lab, rho, 0.0)
+            target = rho[..., None] * lt_g.exp() + (1 - rho[..., None]) * F.one_hot(lab, 16)
+            gkd = (target * (target.clamp_min(1e-6).log() - lsp[:, b:])).sum(-1).mean(1)
+        else:
+            gkd = (lt_g.exp() * (lt_g - lsp[:, b:])).sum(-1).mean(1) if a else 0.0
         return ce + raw * (kd + gkd), nBp
+
+    def _support_weight(self, labels, clients):
+        if self.kd_support == "off":
+            return torch.ones_like(labels, dtype=torch.float32)
+        if self.kd_support == "uniform":
+            return torch.full_like(labels, 0.5, dtype=torch.float32)
+        count = local.pad_rows(self.cnt[clients], labels.shape[0]).gather(1, labels)
+        return self.env.hp["batch"] / (self.env.hp["batch"] + count)
 
     def _loss(self, ctx):
         env, cfg = self.env, self.env.cfg
@@ -367,6 +513,9 @@ class Method:
         soft = torch.zeros(self.M, 16, device=dev, dtype=torch.float64) if self.arm == "srv" else None
         swt = torch.zeros(self.M, device=dev, dtype=torch.float64) if self.arm == "srv" else None
         csum = torch.zeros(16, 16, device=dev, dtype=torch.float64)
+        csum_bucket = torch.zeros(16, 8, 16, device=dev, dtype=torch.float64) if self.kd_bins > 1 else None
+        anchor_sum = torch.zeros(self.M, 16, device=dev, dtype=torch.float64) if self.anchor == "ensemble" else None
+        anchor_weight = torch.zeros(self.M, device=dev, dtype=torch.float64) if self.anchor == "ensemble" else None
         nbytes, sampled = 0, 0
         self._cfg0 = dict(env.cfg, dropout=0.0)
         for idx in env.groups_idx():
@@ -378,7 +527,7 @@ class Method:
                 self._teacher_b = lay.bufs(self.g_b[None].repeat(Gf, 1))
                 self._tb = {k: v.clone() for k, v in self._teacher_b.items()}   # running stats, updated every step
             if self.arm == "none":
-                self._csum = torch.zeros(Gf, 16, 16, device=dev)
+                self._csum = torch.zeros(Gf, 16 * self.kd_bins, 16, device=dev)
             flat, bufs = self.priv_p[idx], self.priv_b[idx]
             st = local.local_epoch(lay, flat, bufs, env.train, idx, env.cfg, env.hp, lr, env.gen, loss_fn=self._loss_private)
             self.priv_p[idx], self.priv_b[idx] = flat, bufs
@@ -387,8 +536,29 @@ class Method:
             w = env.n[idx].double()
             body = []
             if self.arm == "none":
-                csum += self._csum[:G].sum(0).double()                   # per-class sums; counts = self.cnt
-                body.append(self._csum[:G].half().cpu().numpy().tobytes())
+                if not self.no_kd and self.kd_bins == 1 and self.q_collect == "online":
+                    if self.q_codec == "mean_fp16":
+                        packet = (self._csum[:G] / self.cnt[idx, :, None].clamp_min(1)).half()
+                        decoded = packet.float()
+                        weight = self.cnt[idx, :, None].double()
+                        if self.q_agg == "sqrt_count":
+                            weight = weight.sqrt()
+                        csum += (decoded.double() * weight).sum(0)
+                    else:
+                        csum += self._csum[:G].sum(0).double()           # historical, unquantized aggregation
+                        body.append(self._csum[:G].half().cpu().numpy().tobytes())
+                elif self.kd_bins > 1:
+                    count = self.bucket_cnt[idx]
+                    mean = self._csum[:G].view(G, 16, 8, 16) / count[..., None].clamp_min(1)
+                    decoded = mean.half().float()                       # fp16 means on wire; sums could overflow fp16
+                    csum_bucket += (decoded.double() * count[..., None].double()).sum(0)
+                if self.anchor == "ensemble":
+                    prob = self._probs(flat, bufs, self.anchor_X, G)
+                    q8 = (prob * 255).round()
+                    prob = q8 / q8.sum(-1, keepdim=True).clamp_min(1)
+                    wk = self.cnt[idx][:, self.anchor_y].double()
+                    anchor_sum += (wk[..., None] * prob.double()).sum(0)
+                    anchor_weight += wk.sum(0)
             if self.arm != "none" and self.version > 0:
                 tb = lay.flat_bufs(self._tb)[:G]
                 bsum += (w[:, None] * tb.half().double()).sum(0)
@@ -422,17 +592,59 @@ class Method:
                         nbytes += packet_bytes([c[i] for c in codes], [sc[i] for sc in scales], tbf[i])
                     sampled += min(G, BYTES_SAMPLE - sampled)
             elif self.arm == "none" and sampled < BYTES_SAMPLE:
-                nbytes += 32 + 16 * 16 * 2                                 # fp16 class sums (counts sent once in bootstrap)
+                nbytes += 0 if self.no_kd else 32 + 16 * self.kd_bins * 16 * 2
                 sampled += 1
         N = env.allreduce(env.n.sum().clone())
         steps = env.allreduce(steps)
         info = {"train_loss": float(env.allreduce((loss * env.n).sum()) / N),
                 "skipped_frac": float(steps[1] / steps.sum().clamp_min(1))}
         if self.arm == "none":
-            csum = env.allreduce(csum)
-            tot = env.allreduce(self.cnt.sum(0).double())
-            self.Q = (csum / tot[:, None].clamp_min(1)).float()
-            down_bytes = 32 + 16 * 16 * 2
+            previous_q = self.Q
+            if self.q_collect == "postepoch":
+                import time
+                from methods.mobihet_teacher import class_probability_sums
+                if dev.type == "cuda":
+                    torch.cuda.synchronize(dev)
+                t_collect = time.monotonic()
+                sums, counts = class_probability_sums(env, self.priv_p, self.priv_b, env.hp.get("eval_rows", 1 << 15))
+                assert torch.equal(counts, self.cnt), "postepoch must cover every local train row once"
+                packet = (sums / counts[..., None].clamp_min(1)).half()
+                weight = counts[..., None].double()
+                if self.q_agg == "sqrt_count":
+                    weight = weight.sqrt()
+                csum = (packet.float().double() * weight).sum(0)
+                if dev.type == "cuda":
+                    torch.cuda.synchronize(dev)
+                info["q_collect_seconds"] = time.monotonic() - t_collect
+            down_bytes = 0 if self.no_kd else 32 + 16 * self.kd_bins * 16 * 2
+            if self.kd_bins > 1:
+                self._aggregate_buckets(env.allreduce(csum_bucket))
+                info["bucket_nonempty_frac"] = float((self.bucket_tot > 0).float().mean())
+                info["bucket_target_variation"] = float(((self.bucket_Q - self.Q[:, None]) ** 2).sum(-1).mean())
+            elif not self.no_kd:
+                csum = env.allreduce(csum)
+                local_tot = self.cnt.sum(0).double() if self.q_agg == "count" else self.cnt.double().sqrt().sum(0)
+                tot = env.allreduce(local_tot)
+                self.Q = (csum / tot[:, None].clamp_min(1)).float()
+                if self.q_codec == "mean_fp16":
+                    self.Q = self.Q.half().float()
+                    self.Q = self.Q / self.Q.sum(-1, keepdim=True).clamp_min(1e-12)
+                if env.hp.get("teacher_diagnostics", False):
+                    info["q_true_probability_mean"] = float(self.Q.diag().mean())
+                    info["q_rejected_classes"] = (self.Q.argmax(-1) != torch.arange(16, device=dev)).nonzero().flatten().tolist()
+                    info["q_entropy_mean"] = float(-(self.Q * self.Q.clamp_min(1e-6).log()).sum(-1).mean())
+                    info["q_change_l1"] = None if previous_q is None else float((self.Q - previous_q).abs().sum(-1).mean())
+            if self.anchor == "ensemble":
+                target = env.allreduce(anchor_sum) / env.allreduce(anchor_weight)[:, None].clamp_min(1)
+                q8 = (target * 255).round()
+                self.anchor_Q = (q8 / q8.sum(-1, keepdim=True).clamp_min(1)).float()
+                info["anchor_label_agreement"] = float((self.anchor_Q.argmax(-1) == self.anchor_y).float().mean())
+                info["anchor_true_probability"] = float(self.anchor_Q.gather(1, self.anchor_y[:, None]).mean())
+                info["anchor_entropy"] = float(-(self.anchor_Q * self.anchor_Q.clamp_min(1e-6).log()).sum(-1).mean())
+                # Additional uint8 probability packet in each direction; inputs regenerated by seed.
+                extra = 32 + self.M * 16
+                nbytes += sampled * extra
+                down_bytes += extra
         else:
             if self.version > 0:
                 self.g_b = (env.allreduce(bsum) / N).float()
@@ -457,6 +669,16 @@ class Method:
         self.version = r
         info.update(bytes_up=float(up[0] / up[1]), bytes_down=down_bytes)
         return info
+
+    def _aggregate_buckets(self, sums):
+        """Decode downlink, then derive the marginal teacher from the same received conditional table."""
+        count = self.bucket_tot
+        marginal = sums.sum(1) / count.sum(1)[:, None].clamp_min(1)
+        table = sums / count[..., None].clamp_min(1)
+        table = torch.where(count[..., None] > 0, table, marginal[:, None])
+        decoded = table.half().float()
+        self.bucket_Q = decoded / decoded.sum(-1, keepdim=True).clamp_min(1e-12)
+        self.Q = (self.bucket_Q.double() * count[..., None]).sum(1).float() / count.sum(1)[:, None].float().clamp_min(1)
 
     @torch.no_grad()
     def _probs(self, flat, bufs, xs, G, chunk=512):
@@ -522,13 +744,17 @@ class Method:
 
     def state(self):
         return {k: getattr(self, k).cpu() for k in ("priv_p", "priv_b", "g_p", "g_b", "exact")} | {
-            "version": self.version, "Q": None if self.Q is None else self.Q.cpu()}
+            "version": self.version, "Q": None if self.Q is None else self.Q.cpu(),
+            "anchor_Q": None if self.anchor_Q is None else self.anchor_Q.cpu(),
+            "bucket_Q": None if self.bucket_Q is None else self.bucket_Q.cpu()}
 
     def load_state(self, s):
         for k in ("priv_p", "priv_b", "g_p", "g_b", "exact"):
             setattr(self, k, s[k].to(self.env.dev))
         self.version = s["version"]
         self.Q = None if s.get("Q") is None else s["Q"].to(self.env.dev)
+        self.anchor_Q = None if s.get("anchor_Q") is None else s["anchor_Q"].to(self.env.dev)
+        self.bucket_Q = None if s.get("bucket_Q") is None else s["bucket_Q"].to(self.env.dev)
 
 
 def _slice(lay, key):

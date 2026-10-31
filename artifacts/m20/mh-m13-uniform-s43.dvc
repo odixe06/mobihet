@@ -1,0 +1,6 @@
+outs:
+- md5: ddefe707d8fa692ec534c31953cbacb6.dir
+  size: 773315320
+  nfiles: 85
+  hash: md5
+  path: mh-m13-uniform-s43

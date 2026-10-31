@@ -66,3 +66,10 @@ không có giá trị không hữu hạn, skipped 0, HP đúng protocol. Một s
   khớp v1 (copula tăng độ đồng ý nhãn 0,47 → 0,67). Ở v1 với proxy teacher, copula FAIL utility; ở đây (teacher Q[y], không phụ
   thuộc mẫu) nó có ích hơn.
 - Đổi phân phối nhãn (G2) không giúp và hại p10. Mixup (G3) chỉ áp dụng cho lớp xe đã có ⇒ không chạm lớp thiếu, chỉ đỡ trung bình/xe.
+
+
+## Sửa kế toán byte 30/10 ~17:10
+
+544 B là **mỗi chiều**, tức 1.088 B/xe/round. Các bảng lên/xuống ở trên đúng nhưng lời tóm tắt cũ bỏ bootstrap.
+S4 bootstrap hai chiều 394.368 B/xe; G4 3.311.744 B/xe. So chi phí end-to-end phải cộng khoản này, xem [H0–H4](screening-h10.md).
+Không thay kết quả F1 hoặc cổng đã khóa.
