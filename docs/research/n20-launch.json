@@ -322,7 +322,7 @@
       "notebook_sha256": "1adc56a85e823cbe77475d900f091e9c4e1259422b4c59a8517ad76032311bc6"
     }
   ],
-  "launch_state": "prepared, not yet pushed",
+  "launch_state": "8 exact version1 pushes confirmed; startup/training audit pending",
   "preflight": "54tests + real4cells/2round compiled AMP PASS; details runs/n-study/smoke-audit.json",
   "quota_plan": {
     "at": "2026-11-01T02:29:41+0700",
@@ -904,5 +904,61 @@
         "state_sha256": "4bf626a421b6d180d22177088cd1e5f7f4d1d0e1246553babdd7a20a1d4572a9"
       }
     ]
+  },
+  "push_receipts": [
+    {
+      "at": "2026-11-01T02:38:20+0700",
+      "ref": "anhtruong1909/mh-n0-noreal-soft-s42/1",
+      "returncode": 0,
+      "notebook_sha256": "cf0a0fa5138bc993f6fdd51b5ae5d62485a1774d72301fcd4a642666729dad4f"
+    },
+    {
+      "at": "2026-11-01T02:38:31+0700",
+      "ref": "odixe0502/mh-n1-noreal-soft-s43/1",
+      "returncode": 0,
+      "notebook_sha256": "b6adbd726b63ac089c0838ba28f17ead1b13ce9de7ae4551e96e7bf318670b47"
+    },
+    {
+      "at": "2026-11-01T02:38:45+0700",
+      "ref": "dinhan25/mh-n2-gate-soft-s42/1",
+      "returncode": 0,
+      "notebook_sha256": "d9230b171ac83abc1d7a05c37b57486ad6da7f3ea3f60030f935e029b356786e"
+    },
+    {
+      "at": "2026-11-01T02:38:59+0700",
+      "ref": "takids1909/mh-n3-gate-soft-s43/1",
+      "returncode": 0,
+      "notebook_sha256": "a4c56a2c59838a2588ec86c67fe2fda1c6654b7d6fd5a29f181f7ffc51f1cd0c"
+    },
+    {
+      "at": "2026-11-01T02:39:11+0700",
+      "ref": "annhannh331/mh-n4-noreal-fallback-s42/1",
+      "returncode": 0,
+      "notebook_sha256": "38e026b9a0dd6f18757714a4d56257a9921fc18913e67a5b97e6debaf4b03158"
+    },
+    {
+      "at": "2026-11-01T02:39:22+0700",
+      "ref": "minhtriethihi/mh-n5-noreal-fallback-s43/1",
+      "returncode": 0,
+      "notebook_sha256": "faeaf3659d2c5567e95844a920690af64ebe69c43761d7f134a5323d84e2dea1"
+    },
+    {
+      "at": "2026-11-01T02:39:31+0700",
+      "ref": "khanhmay0304/mh-n6-gate-fallback-s42/1",
+      "returncode": 0,
+      "notebook_sha256": "f8f91c326a2df4657ae090aa17ec04bf73fe33d149e5433196bde67e1c4a931a"
+    },
+    {
+      "at": "2026-11-01T02:39:42+0700",
+      "ref": "accanniez/mh-n7-gate-fallback-s43/1",
+      "returncode": 0,
+      "notebook_sha256": "1adc56a85e823cbe77475d900f091e9c4e1259422b4c59a8517ad76032311bc6"
+    }
+  ],
+  "launch_complete": {
+    "batch_sha256": "f6f35bb881f251544fedb6c7d120eb7455533ab52d93bb73a0dba2a65f47f158",
+    "runs": 8,
+    "global_login": "dinhan25",
+    "at": "2026-11-01T02:39:42+0700"
   }
 }

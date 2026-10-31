@@ -6,7 +6,7 @@
 
 Owner đã yêu cầu Git/DVC push, archive phần lỗi thời và dọn local sau backup xác minh.
 Backup đã xác minh và cleanup hoàn tất; cập nhật bundle theo commit metadata cuối. Trạng thái/kết quả backup tại [backup](backup.md).
-Owner đã yêu cầu bắt đầu kiểm chứng: batch N20 (4ô factorial ×2seed) đã khóa, worker đang launch rồi watch/collect/audit.
+Owner đã yêu cầu bắt đầu kiểm chứng: N0–N7 exactversion1 đã push đủ8run; worker kiểm startup rồi watch/collect/audit.
 
 M0–M15 exactversion1 đủ20round: fullaudit PASS. [Kết quả](../research/results-m20.md),
 [10metric](../research/metrics-m20.md), [đề xuất chẩn đoán](../research/diagnosis.md).
