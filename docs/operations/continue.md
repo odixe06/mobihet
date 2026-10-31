@@ -45,6 +45,15 @@ không sửa state/kill PID tái chế/restarttraining. Các job L cũng đã đ
 - `artifacts/m20/*.dvc`: snapshot đầy đủ; restore chọn lọc khi cần. Archive không đọc mặc định.
 - Frozen source/config/data contract ở [spec](../research/screening-m20.md) và provenance, không thay bằng HEAD khi replay.
 
+## Phân tích trong lúc DVC push
+
+Owner yêu cầu phân tích tiếp và reference gắn đúng cơ chế đã thử.
+[Phân tích sâu](../research/analysis-m20-mechanisms.md), [đối chứng đề xuất](../research/diagnostic-next.md);
+`python scripts/diagnose_m20.py` tái tạo JSON+figure từ evidence nhẹ. Không sửa payload/cache/manifest đang push.
+Bài học mới đã ghi LESSONS; FD/KD reference gắn code/Mrun và deviation tại method.md. Không thêm paper chưa thử vào methodreference.
+Các file mới phải đưa vào commit/push cuối của backup; `runs/diagnosis-m20` là output tái tạo được, giữ local khi cleanup.
+Chưa train/launch mới hoặc đổi protocol.
+
 ## Tiếp tục sau bảo trì
 
 1. Kiểm backup state/log/artifact nếu nhận completion; hoàn tất cleanup đúng danh sách đã xác minh.

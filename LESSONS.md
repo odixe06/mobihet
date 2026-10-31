@@ -60,3 +60,10 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 - Server sqrt(n) tăng pooled cảhai seed, xe<256 chưa hưởng nhất quán. Localρ theo count chưa hơn uniform ổn định.
 - Own-test seen-class có thể tăng trong khi absent-class xe nhỏ giảm; nâng pooled/tail không tự giải quyết thiếu lớp.
 - Artifact M20 đã kiểm320snapshot/320testCM/96trainCM/3264shadowprobe; giới hạn bằng chứng vẫn như mục audit ở trên.
+
+- M20: gain sqrt(n) pooled tập trung84–87% vào timeDelay; realKD giảm timeDelay nhưng nâng15lớp còn lại. Không gọi gain tổng là cải thiện đồng đều.
+- Gap train/test timeDelay vẫn rất lớn sau cân theo support test cùng xe/lớp, cả xe nhiều mẫu. In-sampletrain không tách overfit/temporalshift.
+- Uniform hóa offdiagonal giữ Qyy nhưng đổi entropy và có thể đổi argmaxgate; hoán vị offdiagonal giữ entropy nhưng phá quan hệ lớp.
+  Muốn kiểm nội dung Q phải tách các confound này, giữ rawgate/lịch teacher phù hợp.
+- Negative logitgradient không đồng nghĩa parametergradient tổng âm hoặc KD có hại. KL/hardCE khác entropyconstant; trainloss thấp không đủ chứng minh học tốt hơn.
+- 1epoch không là cùng số bước: xe nhỏ2–4step/r. Tăng KD dựa count chưa thay được phân tích lượng tối ưu và generalization.

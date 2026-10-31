@@ -9,7 +9,7 @@ Chạy từ repo root, env conda `nckh`. Script trong archive không thuộc wor
 | Status Kaggle nền, không model polling | `watch_kaggle_batch.py` + skill codex-long-jobs |
 | CLI/network có timeout | `kaggle_cli_bounded.py`, `run_bounded_python.py` |
 | Audit M20, giữ exact version | `audit_m20.py`, `audit_screening.py` |
-| Phân tích M20 và thống kê dùng chung | `analyse_m20.py`, `research_metrics.py`, `report_m20.py` |
+| Phân tích M20 và thống kê dùng chung | `analyse_m20.py`, `research_metrics.py`, `report_m20.py`, `diagnose_m20.py` |
 | Local probe có memory guard/cache | `run_local_guarded.py`, `cache_subset.py` |
 | Đo grouped/runtime và width gate | `bench_grouped.py`, `run_central.py` |
 | Bảng metric từ CM | `report.py` |
@@ -20,3 +20,5 @@ Sau cleanup, auditor snapshot cần restore DVC trước; phân tích thường 
 
 M20: `python scripts/analyse_m20.py` đọc evidence nhẹ; `python scripts/report_m20.py` tái tạo báo cáo/figure.
 `python scripts/audit_m20.py` cần restore đủ `artifacts/m20/*.dvc`; không đọc archive.
+
+`python scripts/diagnose_m20.py`: phân tích paired/cohort/Q/exposure/gap, JSON+figure ở `runs/diagnosis-m20`; không train hoặc đổi evidence.

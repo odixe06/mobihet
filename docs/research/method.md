@@ -27,3 +27,17 @@ Q codec meanfp16:544B/chiều,1088B/xe/round; copula bootstrap3311744B/xe hai ch
 Số byte chưa gồm transport/ACK/secureaggregation end-to-end. Aggregate statistics chưa có DP guarantee.
 Client model khác kiến trúc và contactdrop chưa được kiểm; batch hiện cùng DAGSNetW1.
 Snapshot nhỏ không chứa fullprivatebank, không dùng làm checkpoint resume.
+
+## Reference gắn với phần thực sự đã thử
+
+Chỉ reference cơ chế đã có code và run; không coi trích dẫn là bằng chứng utility trên VeReMi.
+
+| nguồn gốc | thành phần đã chạy | khác biệt/phạm vi |
+|---|---|---|
+| [Jeong et al., FD, 2018; §2/Algorithm1](https://arxiv.org/html/1811.11479v2#S2) | M2–M15 gửi mean outputsoftmax theo trueclass, nhận teacherrow cùng lớp | Bài gốc gọi output đãsoftmax là logitvector, teacher loại chính client và trung bình peer; M dùng Q chung gồm self, weighted n/sqrt(n), fp16, LA và syntheticcopula. Là adaptation, chưa reproduce FD gốc. |
+| [Hinton et al., KD, 2015; §2](https://arxiv.org/html/1503.02531v1#S2) | CEreal + KL từ softtarget trong M2–M15; augmentation M0/M1 là noKDcontrol | M dùng T=1 và teacher theo lớp; bài gốc distill phân phối theo từng input. KL có cùng studentgradient với softCE khi target cố định; không tái tạo toàn bộ teacher/model của bài. |
+
+Copula bootstrap/gate/fallback/supportmixture/server sqrt(n) là thiết kế đang kiểm của dự án; kết quả nằm trong M20.
+FAug cùng bài FD yêu cầu upload seed samples để train GAN; **không áp dụng** trong phương pháp hiện tại.
+DAGSNet thực sự dùng cho mọi M, nguồn và deviation tại [đặc tả kiến trúc](../../knowledge/dagsnet.md).
+Bài báo/ý tưởng chưa triển khai không đưa vào bảng reference phương pháp đã thử; đề xuất giữ ở [diagnostic-next](diagnostic-next.md).
