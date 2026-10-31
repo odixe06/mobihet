@@ -5,9 +5,9 @@ Procedure: [repo-backup](../../.agents/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
 
-- Git `https://github.com/odixe06/mobihet.git`, branch `main`. Backup trước cleanup: `256b741318c81bbea9da2f247650dfb5b3380f00`, ls-remote khớp. Metadata sau cleanup nằm ở commit tiếp theo; xác minh lại main/bundle khi push.
+- Git `https://github.com/odixe06/mobihet.git`, branch `main`. Backup trước cleanup: `256b741318c81bbea9da2f247650dfb5b3380f00`, ls-remote khớp. Metadata/source N đã push `00c8fba5a34ccf320f752a931ef424f357943eb3`; runtime metadata nằm ở commit tiếp theo. `git ls-remote origin refs/heads/main` là latest authoritative.
 - DVC `onedrive`: `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage`.
-- Bundle cố định `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: fullhistory/allrefs, verify PASS trước cleanup; cập nhật sau commit cuối.
+- Bundle cố định `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: fullhistory/allrefs, verify PASS trước cleanup; được thay bằng bundle đã verify sau commit metadata cuối.
 - Mount `onedrive:`/`fuse.rclone` đã kiểm; filesystem backup PASS. Cloud upload **unchecked**; giữ nguyên rclone/VFSuploadcache.
 
 ## 2. Tracked artifacts

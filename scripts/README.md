@@ -24,3 +24,5 @@ M20: `python scripts/analyse_m20.py` đọc evidence nhẹ; `python scripts/repo
 `python scripts/diagnose_m20.py`: phân tích paired/cohort/Q/exposure/gap, JSON+figure ở `runs/diagnosis-m20`; không train hoặc đổi evidence.
 
 N20: `preflight_n20.py` kiểm4ô trên realdata; `prepare_n20.py` sinh notebook sau khi source đãpush; `launch_n20.py` kiểmquota rồi push đúng1lần theo SHA/intent.
+
+`run_n20_batch.py` nối launch→watch/collect/audit qua codex-long-jobs. `check_screening_startup.py` kiểm một lượt W&B/logs; worker tự lặp khi cần, không model polling.

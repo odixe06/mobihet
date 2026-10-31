@@ -28,20 +28,29 @@ def collect(spec,root,logs):
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--batch',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--root',type=Path,required=True);a=ap.parse_args()
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--batch',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--entity',default='');a=ap.parse_args()
     a.out.mkdir(parents=True,exist_ok=True);a.root.mkdir(parents=True,exist_ok=True)
     lock=(a.out/'collector.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-    watch=subprocess.run([sys.executable,str(ROOT/'scripts/watch_kaggle_batch.py'),'--batch',str(a.batch),'--out',str(a.out/'watch'),'--interval','1200','--stop-on-error'],cwd=ROOT)
-    assert watch.returncode in [0,2],f'Watcher failed {watch.returncode}'
+    proc=subprocess.Popen([sys.executable,str(ROOT/'scripts/watch_kaggle_batch.py'),'--batch',str(a.batch),'--out',str(a.out/'watch'),'--interval','1200','--stop-on-error'],cwd=ROOT)
+    while a.entity:
+        subprocess.run([sys.executable,str(ROOT/'scripts/check_screening_startup.py'),'--batch',str(a.batch),'--out',str(a.out/'startup'),'--entity',a.entity],check=True,cwd=ROOT)
+        ready=json.loads((a.out/'startup/startup.json').read_text())['all_ready']
+        if ready or proc.poll() is not None:break
+        try:
+            proc.wait(timeout=1200)
+            break
+        except subprocess.TimeoutExpired:pass
+    code=proc.wait()
+    assert code in [0,2],f'Watcher failed {code}'
     assert shutil.disk_usage(a.root).free>12*2**30,'Need12GiB free for8runs/snapshots'
     batch=json.loads(a.batch.read_text())
-    if watch.returncode==2:
+    if code==2:
         terminal=json.loads((a.out/'watch/attention.json').read_text())['runs']
         refs={r['ref'] for r in terminal if r['terminal']}
         batch=[r for r in batch if f'{r["account"]}/{r["slug"]}/{r["version"]}' in refs]
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:rows=list(pool.map(lambda s:collect(s,a.root,a.out),batch))
     (a.out/'collection.json').write_text(json.dumps(rows,indent=2)+'\n')
-    if watch.returncode==2:
+    if code==2:
         print('TERMINAL_KERNEL_ERROR_COLLECTED; leave other kernels running',flush=True)
         return 2
     assert all(r['returncode']==0 and not r['missing'] for r in rows),rows
