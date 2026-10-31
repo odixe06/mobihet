@@ -21,9 +21,9 @@ Nhánh hiện tại không proxy neural; Q là bảng xác suất theo lớp. Ch
 M0–M15 version1 đã collect và audit đủ20round; source/config/CM/Qlag/codec/snapshot PASS.
 Kết quả và giới hạn tại [M20](docs/research/results-m20.md). Không kernel hoặc collector đang chạy.
 
-Owner yêu cầu push Git/DVC, gọn context/archive và xóa local sau backup đã kiểm.
+Backup Git/DVC đã kiểm, archive và cleanup local hoàn tất. Owner đã yêu cầu chạy kiểm chứng N20.
 Trạng thái backup/cleanup duy nhất ở [bàn giao](docs/operations/continue.md).
-Sau bảo trì: khóa đối chứng tách realKD/synthetic gate rồi mới cải tiến cơ chế tổng; chưa launch batch mới.
+N20 tách realKD/synthetic fallback; thiết kế/preflight/launch và jobownership ở bàn giao.
 
 ## Cần biết → mở
 

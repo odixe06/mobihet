@@ -6,7 +6,7 @@ Chạy từ repo root, env conda `nckh`. Script trong archive không thuộc wor
 |---|---|
 | FL theo protocol, artifact mỗi round | `run_fl.py` |
 | Notebook private, pinned source/overlay | `gen_notebook.py` |
-| Status Kaggle nền, không model polling | `watch_kaggle_batch.py` + skill codex-long-jobs |
+| Status/collect Kaggle nền, không model polling | `watch_kaggle_batch.py`, `watch_collect_screening.py` + skill codex-long-jobs |
 | CLI/network có timeout | `kaggle_cli_bounded.py`, `run_bounded_python.py` |
 | Audit M20, giữ exact version | `audit_m20.py`, `audit_screening.py` |
 | Phân tích M20 và thống kê dùng chung | `analyse_m20.py`, `research_metrics.py`, `report_m20.py`, `diagnose_m20.py` |
@@ -22,3 +22,5 @@ M20: `python scripts/analyse_m20.py` đọc evidence nhẹ; `python scripts/repo
 `python scripts/audit_m20.py` cần restore đủ `artifacts/m20/*.dvc`; không đọc archive.
 
 `python scripts/diagnose_m20.py`: phân tích paired/cohort/Q/exposure/gap, JSON+figure ở `runs/diagnosis-m20`; không train hoặc đổi evidence.
+
+N20: `preflight_n20.py` kiểm4ô trên realdata; `prepare_n20.py` sinh notebook sau khi source đãpush; `launch_n20.py` kiểmquota rồi push đúng1lần theo SHA/intent.

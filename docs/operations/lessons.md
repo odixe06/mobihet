@@ -26,3 +26,5 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
   Backup chưa đủ nếu mới push Git hoặc mới push DVC; kiểm riêng cảhai và bundle.
 - Gitindex byteSHA có thể đổi mà stagedtree không đổi. Owner cấm mọi trailer `Co-Authored-By:`; không sửa lịch sử/forcepush.
 - Baseline/NILM/Notion thuộc repo khác; không chép trạng thái của chúng thành nguồn thứhai trong repo này.
+
+- Local `compile_gate` kiểm finite cả slot padded. Fixture2xe với group_rows256 tạo4slot đã báo NaN; cùng dữ liệu với128/2slot PASS. Chọn fixture đủ activeclient cho gate; không hạ gate hoặc sửa loss để che lỗi fixture.

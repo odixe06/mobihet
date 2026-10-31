@@ -29,5 +29,14 @@
     "ffd7c6d640c6770ed4580857db54f385"
   ],
   "cloud_upload_state": "unchecked; filesystem copy verified",
-  "remote": "/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage"
+  "remote": "/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage",
+  "completion_independent_check": {
+    "all_objects_size": 2540,
+    "all_dir_md5": 68,
+    "additional_data_md5": [
+      "002c609f2a63e2b39efbac869c45ac80",
+      "ffc4138be1204818b701c5d2a5f5001d",
+      "de85b1806a4bf72cef4b9f7c28e4df03"
+    ]
+  }
 }
