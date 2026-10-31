@@ -1,0 +1,33 @@
+{
+  "completed_at": "2026-11-01T02:24:44+0700",
+  "inventory_sha256": "6165e3ac2ab4001c3e5a8bfa1caf856081fbbcba9587f7cf63815ca8d0f20623",
+  "dvc_push_exit": 0,
+  "dvc_status_cloud": {},
+  "remote_objects_size_verified": 2540,
+  "remote_unique_bytes": 30696795246,
+  "directory_manifests_md5_verified": 68,
+  "data_object_md5_sample": [
+    "002c4bea18a58061e4fd9a572bc72b09",
+    "0d81e072b5078724000a80f6c4e5316c",
+    "1b19e891ea13b2f900ba714806bf0869",
+    "29079e196bf04146718f8d840cc6a826",
+    "35851638a3b782345ac56b888a496d6a",
+    "42d16a5cec8e0e85c0a967eb79110f12",
+    "4e8ad6fe8bb3c821983383e16108dea4",
+    "5cb48c59415dff21804c2cdb46634fa5",
+    "6b84d14e77c1fe79d689c3020cd8c323",
+    "78637c9c7619e408bd521b5d33f53766",
+    "87c3e0041600169c610feb5ca59dfd00",
+    "94ffe123af3d69fd390f5e337263f10b",
+    "a21d8a4e0253bf01324cef548e877dc5",
+    "adc336e98b6637802867d1b090a806ae",
+    "bbf585f38405f39f0274236207282d9b",
+    "c8be38e3bc19482180dff0634926d13a",
+    "d847f063536ef060e60268bf39e09df9",
+    "e6d4da5245732da6ab3062770b71ca60",
+    "f316961e2f4e8511098b82294605a8ba",
+    "ffd7c6d640c6770ed4580857db54f385"
+  ],
+  "cloud_upload_state": "unchecked; filesystem copy verified",
+  "remote": "/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage"
+}
