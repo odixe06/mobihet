@@ -193,3 +193,12 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 - Thiếu tối ưu ở xe nhỏ là nguyên nhân lớn của p10/lớp vắng: bước chỉ synthetic (0 byte, +3,5% bước) nâng xe<256 +.02,
   lớp vắng +.13 mà dữ liệu local vẫn đúng 1 epoch.
 - Nén bootstrap (CDF uint16, fp16 Cholesky, uplink thưa) giữ utility; nhưng uplink thưa không dùng được với secure aggregation.
+
+## X20 — combo, input-bank, NCKD giới hạn lớp xe có
+
+- Giới hạn KD vào lớp xe có sửa đúng hại lớp vắng (absent +.04, xe lớn +.12–.15), nhưng cặp nhầm có lớp mặt ở mọi xe
+  (benign/timeDelay) vẫn bị dạy lại sự nhầm của teacher: mọi KD dòng thật tốn timeDelay.
+- Gain pooled ở xe lớn (+.002) không chuyển thành gain xe yếu; đọc cohort trước khi nhận thành phần "tốt nhất pooled".
+- Tầng tùy chọn qua gate r20 vẫn có thể chỉ là tăng tốc: đọc quỹ đạo r10/r15/r20 của hiệu, không chỉ endpoint.
+- Gate trượt sát ngưỡng vẫn là trượt; không nới gate sau khi xem số.
+

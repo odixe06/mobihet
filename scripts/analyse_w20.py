@@ -47,7 +47,7 @@ def main():
     folder = {"W": "w20", "X": "x20", "R": "r20", "Q": "q20"}
     arms = {k: {"dir": f"artifacts/{folder[k[0]]}/{v['slug']}/{v['slug']}",
                 "mode": v["mode"], "seed": v["seed"]} for k, v in a["arms"].items() if v["split"] == "test"}
-    cms = {k: cm20(k, arms) for k in arms if k[0] in "WQR" and (ROOT / arms[k]["dir"] / "cms_r020.npz").exists()}
+    cms = {k: cm20(k, arms) for k in arms if k[0] in "WQRX" and (ROOT / arms[k]["dir"] / "cms_r020.npz").exists()}
     f = {k: client_f1(cm) for k, cm in cms.items()}
     noise = {42: np.abs(f["R0"] - f["R2"]), 43: np.abs(f["R1"] - f["R3"])}
     res = {"arms": {}, "pairs": {}}

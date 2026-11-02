@@ -1,5 +1,7 @@
 # X20 — combo thành phần đã qua W20 và non-target KD giới hạn trong lớp xe có
 
+**Đã đóng 03/11:** core PASS, bank PASS, nckd_local xác nhận, full không qua → [kết quả](results-x20.md).
+
 Thiết kế sau [W20](results-w20.md). Owner 02/11 (sau W20) ủy quyền chạy các kiểm nghiệm cần thiết cho phương pháp cuối.
 Giữ nguyên protocol W: DAGSNet W1/full 5343/20 round/cosine50/seed 42–43/batch64/AdamW reset/AMP fp16/clip1, 1 epoch dữ liệu local.
 Không chọn HP/round bằng official test; floor 16 và codec giữ nguyên như W20 (không tinh chỉnh).

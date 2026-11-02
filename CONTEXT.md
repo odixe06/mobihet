@@ -18,23 +18,23 @@ không dòng dữ liệu, nhãn từng dòng, trọng số, BN, gradient. Chưa 
 - Kaggle: credential theo process, giữ global login; cache npy dùng chung qua kernel public `odixe0502/mobihet-v4npy-cache`.
   W&B online. Commit không có trailer `Co-Authored-By`.
 
-## Trạng thái — 02/11/2026 22:30
+## Trạng thái — 03/11/2026
 
-M→W đã đóng audit. [W20](docs/research/results-w20.md): step floor synthetic nâng mạnh xe nhỏ/lớp vắng (giữ); bootstrap nén
-3,31 → 1,02 MB giữ utility (giữ); non-target KD trên dòng thật cắt feedback, pooled tốt nhất nhưng còn đè lớp vắng;
-synthetic hard+NCKD chỉ dời ngưỡng timeDelay/benign (loại).
+M→X đã đóng audit. [X20](docs/research/results-x20.md): floor + bootstrap nén cộng thẳng (core); input-bank qua gate
+(p10 .717, low256 .801) nhưng lợi thu hẹp theo round; NCKD giới hạn lớp xe có xóa hại lớp vắng nhưng vẫn tốn timeDelay,
+combo full trượt gate → không realKD.
 
-[Đề xuất phương pháp](docs/research/proposal.md): copula bootstrap nén + class Q trên synthetic + step floor (~1,02 MB/xe/20 round),
-tầng input-bank và realKD non-target chờ **X20** ([thiết kế](docs/research/screening-x20.md): core, bank, nckd_local, full).
-N/O/P/Q đã DVC; R/V/W chưa DVC (OneDrive thiếu chỗ). Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
+[Đề xuất phương pháp](docs/research/proposal.md): copula bootstrap nén + class Q trên synthetic + step floor + input-bank
+(~2,33 MB/xe/20 round; lõi không bank 1,02 MB). Bước tiếp: 50 round core+bank và core cùng baseline — **chờ owner duyệt quota**.
+N/O/P/Q đã DVC; R/V/W/X chưa DVC (OneDrive thiếu chỗ). Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
 
 ## Cần biết → mở
 
 | câu hỏi | tài liệu |
 |---|---|
 | Phương pháp đề xuất, byte, thành phần nào đã chứng minh? | [proposal](docs/research/proposal.md) |
-| Nguyên nhân đã biết, đang kiểm gì? | [diagnosis](docs/research/diagnosis.md), [X20](docs/research/screening-x20.md) |
-| Kết quả mới và giới hạn bằng chứng? | [W20](docs/research/results-w20.md), [R20/V20](docs/research/results-r20-v20.md), [Q20](docs/research/results-q20.md), [P20](docs/research/results-p20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
+| Nguyên nhân đã biết, đang kiểm gì? | [diagnosis](docs/research/diagnosis.md) |
+| Kết quả mới và giới hạn bằng chứng? | [X20](docs/research/results-x20.md), [W20](docs/research/results-w20.md), [R20/V20](docs/research/results-r20-v20.md), [Q20](docs/research/results-q20.md), [P20](docs/research/results-p20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
 | Cơ chế code/cấu hình chung? | [method](docs/research/method.md), [protocol](docs/research/protocol.md) |
 | Job nào sống, bước tiếp, việc tay? | [continue](docs/operations/continue.md) |
 | Chạy công cụ, Kaggle, backup/khôi phục? | [operations](docs/operations/README.md), [scripts](scripts/README.md), [backup](docs/operations/backup.md) |
