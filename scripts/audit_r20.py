@@ -62,7 +62,7 @@ def check_decoded_probability(probability, body):
             "scope": "fp16 body/fp32 normalization consistency; not exact CUDA replay"}
 
 
-def extra(root, spec, counts, method="mobihet_rstudy", bootstrap_total=3311744):
+def extra(root, spec, counts, method="mobihet_rstudy", bootstrap_total=3311744, endpoint=20):
     folder = root / spec["slug"]; d = folder / spec["slug"]
     check_executed_source(folder, spec)
     manifest = json.loads((folder / "provenance/source_manifest.json").read_text())
@@ -111,8 +111,8 @@ def extra(root, spec, counts, method="mobihet_rstudy", bootstrap_total=3311744):
             assert row["input_up_bytes"] == row["input_down_bytes"] == 32800
         assert s.get("teacher_p") is None and s.get("teacher_b") is None
         snapshots.append({"round": r, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
-    assert len(snapshots) == 20
-    if bank_hashes: assert len(set(bank_hashes)) == 20
+    assert len(snapshots) == endpoint
+    if bank_hashes: assert len(set(bank_hashes)) == endpoint
     for r in PROBE_ROUNDS:
         with np.load(d / f"train_cms_r{r:03}.npz") as z:
             assert np.array_equal(z["ids"], np.arange(5343)) and np.array_equal(z["private"].sum(2), counts)
@@ -136,7 +136,7 @@ def extra(root, spec, counts, method="mobihet_rstudy", bootstrap_total=3311744):
     for rank in (0, 1):
         records = [json.loads(line) for line in (d / "recovery" / f"rank{rank}.jsonl").read_text().splitlines()]
         assert records[0] == {"rank": rank, "event": "compile_guard", "compiled_ranks": 2, "world": 2}
-        assert len(records) == 21 and [v["round"] for v in records[1:]] == list(range(1, 21))
+        assert len(records) == endpoint + 1 and [v["round"] for v in records[1:]] == list(range(1, endpoint + 1))
         assert all(v["event"] == "round_finite" and v["clients"] == (2672 if rank == 0 else 2671)
                    and v["groups"] == (0 if mode == "stream" else 42) for v in records[1:])
     text = (folder / (spec["slug"] + ".log")).read_text()

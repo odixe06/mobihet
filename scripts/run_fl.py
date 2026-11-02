@@ -9,9 +9,12 @@ prototypes / control variates — every tensor of M.state() under 10 M elements,
 budget stop, at the last round (the full state incl. per-client banks, for later tests), and every --save-every rounds if set: each rank writes
 its own (state.pt on rank 0 with the round and RNG states, state_rank<r>.pt on rank r > 0: per-client banks differ per
 rank), atomically. Per-client banks are GBs at W = 1, and /kaggle/working holds ~20 GB: a resumed run deletes the copied-in
-state once loaded, so the disk never holds two copies.
+state once loaded, and a save removes the rank's previous state before writing the new one, so the disk never holds two
+copies (--save-every 1 at W = 1: 8.5 GB per round). Resume drops *.jsonl rows of rounds after the saved one (a crash between
+a round's rows and its state save), so history never holds a round twice.
 """
 import argparse
+import glob
 import importlib
 import json
 import os
@@ -36,6 +39,7 @@ def main():
     ap.add_argument("--width", type=float, default=float(os.environ.get("DAGS_WIDTH", 1.0)))
     ap.add_argument("--rounds", type=int, default=PROTOCOL["rounds"])
     ap.add_argument("--subset", type=int, default=0, help="local probes: N random clients (seed 7)")
+    ap.add_argument("--clients", default="", help="local probes: comma-separated client ids (overrides --subset)")
     ap.add_argument("--cache", default=os.environ.get("V4_CACHE", "cache"))
     ap.add_argument("--compile", action="store_true")
     ap.add_argument("--wandb", default="", help="W&B project; empty = off")
@@ -58,6 +62,8 @@ def main():
     clients = None
     if a.subset:
         clients = np.sort(np.random.default_rng(7).choice(5343, a.subset, replace=False)).tolist()
+    if a.clients:
+        clients = sorted(int(c) for c in a.clients.split(","))
     env = fl.Env(cfg, hp, clients=clients, cache=a.cache or None)
     M = importlib.import_module(f"methods.{a.method}").Method(env)
     cfg = env.cfg                                                     # a method may change the model (LwFedNIDS prunes it)
@@ -84,10 +90,27 @@ def main():
             mine = torch.load(my_state, map_location="cpu", weights_only=True)
             assert mine["round"] == s["round"], f"rank {env.rank} state is round {mine['round']}, rank 0 {s['round']}"
             s["method_state"] = mine["method_state"]
+        own = mine if env.rank else s
         M.load_state(s["method_state"])
         env.gen.set_state(s["gen"][env.rank])
+        if "rng_cpu" in own:                                         # global RNG (dropout): exact continuation
+            torch.set_rng_state(own["rng_cpu"])
+            if env.dev.type == "cuda":
+                torch.cuda.set_rng_state(own["rng_cuda"], env.dev)
         start = s["round"] + 1
-        del s
+        del s, own                                                   # drop the host copy of the private bank
+        if env.rank:
+            del mine
+        if main_rank:                                                # rows past the saved round are redone below
+            for f in [*glob.glob(os.path.join(a.out, "*.jsonl")), *glob.glob(os.path.join(a.out, "recovery", "*.jsonl"))]:
+                rows = open(f).read().splitlines()
+                keep = [x for x in rows if json.loads(x).get("round", 0) < start]
+                if len(keep) < len(rows):
+                    print(f"resume: dropped {len(rows) - len(keep)} rows past round {start - 1} from {f}", flush=True)
+                    with open(f + ".tmp", "w") as h:
+                        h.write("".join(x + "\n" for x in keep))
+                    os.replace(f + ".tmp", f)
+        print(f"resumed rank{env.rank} at round {start}", flush=True)
         if env.world > 1:
             torch.distributed.barrier()                              # every rank has loaded before any file goes
         os.remove(my_state)
@@ -109,10 +132,14 @@ def main():
             torch.distributed.all_gather_object(gens, g)
         else:
             gens = [g]
-        body = {"round": r, "method_state": M.state()}
+        body = {"round": r, "method_state": M.state(), "rng_cpu": torch.get_rng_state()}
+        if env.dev.type == "cuda":
+            body["rng_cuda"] = torch.cuda.get_rng_state(env.dev)
         if main_rank:
             body.update(cfg=cfg, hp=hp, method=a.method, gen=gens)
         tmp = my_state + ".tmp"
+        if os.path.exists(my_state):                                 # one copy on disk (see module docstring)
+            os.remove(my_state)
         torch.save(body, tmp)
         os.replace(tmp, my_state)
         if env.world > 1:
