@@ -1,0 +1,6 @@
+outs:
+- md5: 2c51b75e19ab39036fcaf8ea87a3cfaf.dir
+  size: 813233967
+  nfiles: 120
+  hash: md5
+  path: mh-q4-mixed-class-s42

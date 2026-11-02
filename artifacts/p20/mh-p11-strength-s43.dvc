@@ -1,0 +1,6 @@
+outs:
+- md5: f548900dc8fb6c98a62eeaebf64408f6.dir
+  size: 804582253
+  nfiles: 115
+  hash: md5
+  path: mh-p11-strength-s43

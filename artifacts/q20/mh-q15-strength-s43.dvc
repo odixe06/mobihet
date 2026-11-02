@@ -1,0 +1,6 @@
+outs:
+- md5: 6c44c47ee122d96ca19754a368fe9763.dir
+  size: 812725560
+  nfiles: 120
+  hash: md5
+  path: mh-q15-strength-s43

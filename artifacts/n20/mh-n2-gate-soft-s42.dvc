@@ -1,0 +1,6 @@
+outs:
+- md5: e21793be50de02f2d817b13f2464686b.dir
+  size: 773053269
+  nfiles: 98
+  hash: md5
+  path: mh-n2-gate-soft-s42

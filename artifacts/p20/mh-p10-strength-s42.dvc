@@ -1,0 +1,6 @@
+outs:
+- md5: 31ed4af8c1da2bbeea4a3aade54ab31c.dir
+  size: 804615868
+  nfiles: 115
+  hash: md5
+  path: mh-p10-strength-s42

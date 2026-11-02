@@ -1,0 +1,6 @@
+outs:
+- md5: 03b090e2ebb0b94825b71c6e4c79c8cf.dir
+  size: 773815976
+  nfiles: 102
+  hash: md5
+  path: mh-o7-noreal-permuted-s43

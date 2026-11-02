@@ -1,0 +1,6 @@
+outs:
+- md5: 5d46c1fab77f7574b8619849363c44c1.dir
+  size: 804573155
+  nfiles: 115
+  hash: md5
+  path: mh-p6-gate-s42

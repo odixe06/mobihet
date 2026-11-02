@@ -1,0 +1,6 @@
+outs:
+- md5: 55772dca685ab56ba372f76690eb3d20.dir
+  size: 813141149
+  nfiles: 120
+  hash: md5
+  path: mh-q9-input-sqrt-s43

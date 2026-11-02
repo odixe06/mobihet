@@ -1,0 +1,6 @@
+outs:
+- md5: aa79035a27c3a305a1a74ede76bfcb59.dir
+  size: 813141718
+  nfiles: 120
+  hash: md5
+  path: mh-q7-mixed-input-s43

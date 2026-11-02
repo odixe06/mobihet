@@ -1,0 +1,6 @@
+outs:
+- md5: 37d5e64842969722d44d9fb5c43076f7.dir
+  size: 812745111
+  nfiles: 120
+  hash: md5
+  path: mh-q14-strength-s42

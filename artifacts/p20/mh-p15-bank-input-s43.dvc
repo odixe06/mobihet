@@ -1,0 +1,6 @@
+outs:
+- md5: 0a543d9366c8f45e3f3f5e3eef9400da.dir
+  size: 813095812
+  nfiles: 115
+  hash: md5
+  path: mh-p15-bank-input-s43

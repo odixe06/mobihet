@@ -1,0 +1,6 @@
+outs:
+- md5: b41508385d3b970eb897ee3dc0a8945d.dir
+  size: 813172351
+  nfiles: 115
+  hash: md5
+  path: mh-p12-bank-class-s42

@@ -1,0 +1,6 @@
+outs:
+- md5: 5e3c3e9c667237622bd956171c83c7b0.dir
+  size: 804537221
+  nfiles: 115
+  hash: md5
+  path: mh-p7-gate-s43

@@ -1,0 +1,6 @@
+outs:
+- md5: deda038a926622a6cf949e9bbc1fc96b.dir
+  size: 845716776
+  nfiles: 115
+  hash: md5
+  path: mh-p28-proxy-weights-bank-s42

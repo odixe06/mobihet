@@ -1,0 +1,6 @@
+outs:
+- md5: af3258294c7e0a0cc0d01a92a6611b71.dir
+  size: 805050218
+  nfiles: 115
+  hash: md5
+  path: mh-p4-class-s42

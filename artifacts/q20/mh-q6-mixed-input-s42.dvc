@@ -1,0 +1,6 @@
+outs:
+- md5: 43277321e3a4ee685f9147631726919e.dir
+  size: 813163036
+  nfiles: 120
+  hash: md5
+  path: mh-q6-mixed-input-s42

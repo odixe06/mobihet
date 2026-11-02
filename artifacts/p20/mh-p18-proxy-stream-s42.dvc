@@ -1,0 +1,6 @@
+outs:
+- md5: d7beed1d46c0bd2082d47f02e95527c2.dir
+  size: 846072802
+  nfiles: 115
+  hash: md5
+  path: mh-p18-proxy-stream-s42

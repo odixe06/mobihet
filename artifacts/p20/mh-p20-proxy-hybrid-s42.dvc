@@ -1,0 +1,6 @@
+outs:
+- md5: e0169676139cc7c93993ead8e446010d.dir
+  size: 845885565
+  nfiles: 115
+  hash: md5
+  path: mh-p20-proxy-hybrid-s42

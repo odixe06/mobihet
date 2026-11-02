@@ -1,0 +1,6 @@
+outs:
+- md5: 346dd83c8e1d1a8c175ec60a2de23cd9.dir
+  size: 292290
+  nfiles: 48
+  hash: md5
+  path: mh-p21-proxy-hybrid-s43

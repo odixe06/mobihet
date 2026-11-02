@@ -1,0 +1,6 @@
+outs:
+- md5: 496fdfb1fde8722e79b749925e1395b2.dir
+  size: 813087994
+  nfiles: 115
+  hash: md5
+  path: mh-p14-bank-input-s42

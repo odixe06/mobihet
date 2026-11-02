@@ -1,0 +1,6 @@
+outs:
+- md5: fd55c863eaba6032ca611b1b94dc9dbc.dir
+  size: 773781596
+  nfiles: 102
+  hash: md5
+  path: mh-o4-noreal-uniform-s42

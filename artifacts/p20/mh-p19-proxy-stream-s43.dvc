@@ -1,0 +1,6 @@
+outs:
+- md5: 2a6c11b8f095eb2a90544d6cad594fe9.dir
+  size: 846021980
+  nfiles: 115
+  hash: md5
+  path: mh-p19-proxy-stream-s43

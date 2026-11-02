@@ -1,0 +1,6 @@
+outs:
+- md5: 8bacf0cdbf24abce05e7e5cd8beaba7c.dir
+  size: 805032036
+  nfiles: 120
+  hash: md5
+  path: mh-q1-stream-s43

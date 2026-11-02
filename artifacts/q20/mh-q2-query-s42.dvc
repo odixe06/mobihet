@@ -1,0 +1,6 @@
+outs:
+- md5: f9efc56e07433fd9d386cd2533088d45.dir
+  size: 813165647
+  nfiles: 120
+  hash: md5
+  path: mh-q2-query-s42

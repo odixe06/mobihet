@@ -1,0 +1,6 @@
+outs:
+- md5: 85a7c97b3bb0f27b5d908cf2890e6c52.dir
+  size: 805406685
+  nfiles: 115
+  hash: md5
+  path: mh-p2-augment-s42

@@ -1,0 +1,6 @@
+outs:
+- md5: fd3c5a5199ef04c38a48646c9ab1e18b.dir
+  size: 845723783
+  nfiles: 115
+  hash: md5
+  path: mh-p16-proxy-bank-s42

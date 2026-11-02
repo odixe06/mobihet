@@ -1,0 +1,6 @@
+outs:
+- md5: 81f79422099d25f7e4115e66356fc373.dir
+  size: 845734413
+  nfiles: 115
+  hash: md5
+  path: mh-p29-proxy-weights-bank-s43

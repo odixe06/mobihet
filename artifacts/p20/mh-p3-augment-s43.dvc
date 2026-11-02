@@ -1,0 +1,6 @@
+outs:
+- md5: 6f52bf03c65bd5615dc1ddcbb8dc8d3b.dir
+  size: 805372453
+  nfiles: 115
+  hash: md5
+  path: mh-p3-augment-s43

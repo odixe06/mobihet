@@ -1,0 +1,6 @@
+outs:
+- md5: f31c1bf86403ee97d8a32bb9748b846e.dir
+  size: 773280231
+  nfiles: 102
+  hash: md5
+  path: mh-o2-gate-full-s42

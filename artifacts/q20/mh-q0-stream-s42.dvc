@@ -1,0 +1,6 @@
+outs:
+- md5: f9823d0138f0c69ed32a2c1e0c41a7b9.dir
+  size: 805068053
+  nfiles: 120
+  hash: md5
+  path: mh-q0-stream-s42
