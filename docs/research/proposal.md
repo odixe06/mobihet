@@ -1,6 +1,6 @@
 # Phương pháp đề xuất — MobiHet cho IDS V2X băng thông thấp, mô hình khác nhau
 
-Trạng thái 03/11/2026 sau X20: **phương pháp 20 round đã chốt: lõi + tầng input-bank, không realKD.** Chưa có 50 round.
+Trạng thái 03/11/2026 sau X20: **phương pháp 20 round đã chốt: lõi + tầng input-bank, không realKD.** 50 round đang chạy ([F50](screening-f50.md)).
 Bằng chứng: [X20](results-x20.md), [W20](results-w20.md), [R20/V20](results-r20-v20.md), [Q20](results-q20.md), [P20](results-p20.md), [LESSONS](../../LESSONS.md).
 
 ## Ràng buộc thiết kế

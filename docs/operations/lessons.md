@@ -76,3 +76,7 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
   sẽ lỗi FileNotFound. Study không replay bỏ chọn test đó (preflight `--study=x20`); study có replay phải
   `dvc pull artifacts/q20/mh-q6-mixed-input-s42.dvc artifacts/q20/mh-q7-mixed-input-s43.dvc` trước preflight.
 - Pipeline W/X dùng chung `scripts/run_w20.py --study <w20|x20>`, cache npy chung (`runs/w-study/builder.json`).
+- Resume chính xác cần cả RNG torch CPU/CUDA toàn cục (dropout), không chỉ generator của driver/phương pháp: thiếu nó, round đầu
+  sau resume đã lệch (F50 preflight 03/11). State đầy đủ W1 ≈8,5 GB: mỗi lần lưu xóa bản cũ của rank trước khi ghi để output
+  Kaggle (~20 GB) không giữ hai bản.
+

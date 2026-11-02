@@ -1,0 +1,229 @@
+{
+  "batch_sha256": "e0a492fad48a0cf02d903c04e2242fc87072b6350302cb4a7bd5db39f6082cc8",
+  "batch": [
+    {
+      "arm": "F0",
+      "cell": "bank",
+      "mode": "mixed_input",
+      "r_kind": "live",
+      "account": "heykewtiie",
+      "slug": "mh-f0-bank-s42-r50",
+      "version": 1,
+      "hp": [
+        "arm=none",
+        "group_rows=4096",
+        "synth=copula",
+        "synth_rows=64",
+        "q_codec=mean_fp16",
+        "kd_weight=fixed",
+        "diagnostics=true",
+        "diagnostic_ids=[506,0,1571,929,3303,2048,4752,4269,504,1,1587,935,3304,2043,4754,4266,512,29,1566,904,3306,2052,4757,4267,1547,885,3318,2357,4748,4265,1548,886,4747,4279]",
+        "diagnostic_rounds=[1,2,5,10,15,20]",
+        "teacher_diagnostics=true",
+        "external_diagnostics=true",
+        "q_collect=online",
+        "q_agg=count",
+        "kd_support=off",
+        "seed=42",
+        "synth_target=soft",
+        "anchor=off",
+        "kd_bins=1",
+        "no_kd=false",
+        "study_mode=class",
+        "teacher_rows=1024",
+        "proxy_steps=200",
+        "real_kd=false",
+        "real_kd_gate=false",
+        "next_mode=mixed_input",
+        "r_kind=live",
+        "synth_step_floor=16",
+        "w_boot=compact"
+      ],
+      "base_sha": "20dbc19c5f7b8b8710dd6904ccbbaa7a36ab2d96",
+      "source_sha256": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+      "overlay_sha256": {
+        "methods/mobihet.py": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1"
+      },
+      "notebook_sha256": "b82931571a39b6fbd3e6a05aee98a73a8829191de467a8a246d9504d95d01578",
+      "metadata_sha256": "7c0ff746f68b99e5976f42fd00503daece0cddb40572cf9e4c2f6d21dd6cdae2",
+      "cap_hours": 11.0,
+      "resume_cap_hours": 2.5,
+      "endpoint": 50,
+      "lr_schedule_rounds": 50,
+      "save_every": 1,
+      "npy_kernel": "odixe0502/mobihet-v4npy-cache",
+      "npy_manifest_sha256": "fccc0f72ada07efc948a7f360485796dfd0b7d804375af4cc8534ca2860a6524",
+      "bootstrap_total": 1000439
+    },
+    {
+      "arm": "F1",
+      "cell": "bank",
+      "mode": "mixed_input",
+      "r_kind": "live",
+      "account": "chuchimnon",
+      "slug": "mh-f1-bank-s43-r50",
+      "version": 1,
+      "hp": [
+        "arm=none",
+        "group_rows=4096",
+        "synth=copula",
+        "synth_rows=64",
+        "q_codec=mean_fp16",
+        "kd_weight=fixed",
+        "diagnostics=true",
+        "diagnostic_ids=[506,0,1571,929,3303,2048,4752,4269,504,1,1587,935,3304,2043,4754,4266,512,29,1566,904,3306,2052,4757,4267,1547,885,3318,2357,4748,4265,1548,886,4747,4279]",
+        "diagnostic_rounds=[1,2,5,10,15,20]",
+        "teacher_diagnostics=true",
+        "external_diagnostics=true",
+        "q_collect=online",
+        "q_agg=count",
+        "kd_support=off",
+        "seed=43",
+        "synth_target=soft",
+        "anchor=off",
+        "kd_bins=1",
+        "no_kd=false",
+        "study_mode=class",
+        "teacher_rows=1024",
+        "proxy_steps=200",
+        "real_kd=false",
+        "real_kd_gate=false",
+        "next_mode=mixed_input",
+        "r_kind=live",
+        "synth_step_floor=16",
+        "w_boot=compact"
+      ],
+      "base_sha": "20dbc19c5f7b8b8710dd6904ccbbaa7a36ab2d96",
+      "source_sha256": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+      "overlay_sha256": {
+        "methods/mobihet.py": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1"
+      },
+      "notebook_sha256": "d925ef2995ae68c0e07c814c2ad4d748c32d4e4a812fef8a4b2cc2598384afbb",
+      "metadata_sha256": "866f1d1601b305482e6bede520cfb79ac012dbdc3949c6798c339ec61b978257",
+      "cap_hours": 11.0,
+      "resume_cap_hours": 2.5,
+      "endpoint": 50,
+      "lr_schedule_rounds": 50,
+      "save_every": 1,
+      "npy_kernel": "odixe0502/mobihet-v4npy-cache",
+      "npy_manifest_sha256": "fccc0f72ada07efc948a7f360485796dfd0b7d804375af4cc8534ca2860a6524",
+      "bootstrap_total": 1000439
+    },
+    {
+      "arm": "F2",
+      "cell": "core",
+      "mode": "stream",
+      "r_kind": "live",
+      "account": "keocaosu",
+      "slug": "mh-f2-core-s42-r50",
+      "version": 1,
+      "hp": [
+        "arm=none",
+        "group_rows=4096",
+        "synth=copula",
+        "synth_rows=64",
+        "q_codec=mean_fp16",
+        "kd_weight=fixed",
+        "diagnostics=true",
+        "diagnostic_ids=[506,0,1571,929,3303,2048,4752,4269,504,1,1587,935,3304,2043,4754,4266,512,29,1566,904,3306,2052,4757,4267,1547,885,3318,2357,4748,4265,1548,886,4747,4279]",
+        "diagnostic_rounds=[1,2,5,10,15,20]",
+        "teacher_diagnostics=true",
+        "external_diagnostics=true",
+        "q_collect=online",
+        "q_agg=count",
+        "kd_support=off",
+        "seed=42",
+        "synth_target=soft",
+        "anchor=off",
+        "kd_bins=1",
+        "no_kd=false",
+        "study_mode=class",
+        "teacher_rows=1024",
+        "proxy_steps=200",
+        "real_kd=false",
+        "real_kd_gate=false",
+        "next_mode=stream",
+        "r_kind=live",
+        "synth_step_floor=16",
+        "w_boot=compact"
+      ],
+      "base_sha": "20dbc19c5f7b8b8710dd6904ccbbaa7a36ab2d96",
+      "source_sha256": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+      "overlay_sha256": {
+        "methods/mobihet.py": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1"
+      },
+      "notebook_sha256": "3341cebce96ca7b8606782f42bd21debdd4ad607ed731d6e4936a80ba78fa054",
+      "metadata_sha256": "a5408b8547087c60f965033d435a5c957116c9172ab2c91618aaaba31045ee7b",
+      "cap_hours": 11.0,
+      "resume_cap_hours": 2.5,
+      "endpoint": 50,
+      "lr_schedule_rounds": 50,
+      "save_every": 1,
+      "npy_kernel": "odixe0502/mobihet-v4npy-cache",
+      "npy_manifest_sha256": "fccc0f72ada07efc948a7f360485796dfd0b7d804375af4cc8534ca2860a6524",
+      "bootstrap_total": 1000439
+    }
+  ],
+  "preflight_sha256": "d47f9a29416718552e413f947820872d67c038aa3fcc61dba1545625e436f010",
+  "quota_sha256": "e704d8dbe642869b4214cfcea72ec4a109f02fe1bc79afa868158efe4e5fb4ed",
+  "builder": {
+    "ref": "odixe0502/mobihet-v4npy-cache",
+    "version": 1,
+    "manifest_sha256": "fccc0f72ada07efc948a7f360485796dfd0b7d804375af4cc8534ca2860a6524",
+    "files": {
+      "done": {
+        "bytes": 2,
+        "sha256": "2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df"
+      },
+      "test_F.npy": {
+        "bytes": 9347807,
+        "sha256": "8f86135360f64b1fd78b559fc7f6d2bcfab21e5d0a3e11cc93ffbc2a1899e007"
+      },
+      "test_X.npy": {
+        "bytes": 1439542694,
+        "sha256": "67c3b3d270bfb43861195f9435ea8ad9b7f27f30e0020610482876b3681345bb"
+      },
+      "test_Y.npy": {
+        "bytes": 9347807,
+        "sha256": "f2de8269f4983055de384e89400b52eb21282933ce89568554c88094655d79e4"
+      },
+      "test_ids.npy": {
+        "bytes": 42872,
+        "sha256": "7c6e3b3f39831a86bddb9a2710a3ff69d0ebe806f09210d141a6fe738727d9f7"
+      },
+      "test_off.npy": {
+        "bytes": 42880,
+        "sha256": "ddf52a4f13205cae12c8b99a690332f961abea32fce23e61485824d710545dd5"
+      },
+      "train_F.npy": {
+        "bytes": 37361401,
+        "sha256": "e930329a956ce50022cd365a4d7cb51dbe1d86f4c5de8e5eb11b24ac62ae6bab"
+      },
+      "train_X.npy": {
+        "bytes": 5753636170,
+        "sha256": "27764c7e7d160122a8be9907039573fa25a3bc9a36ef3784846907e722dda0f5"
+      },
+      "train_Y.npy": {
+        "bytes": 37361401,
+        "sha256": "dc6d73e4de547b8ee7492e3bbf344ff9bddc6ca08e94d659b4d5b158604c84fd"
+      },
+      "train_ids.npy": {
+        "bytes": 42872,
+        "sha256": "7c6e3b3f39831a86bddb9a2710a3ff69d0ebe806f09210d141a6fe738727d9f7"
+      },
+      "train_off.npy": {
+        "bytes": 42880,
+        "sha256": "628c8748ebdc259d8d6ac8160563a57cf045bb344fb720fa437ddf0f4debec91"
+      }
+    },
+    "base_sha": "97cf51d8fae5ff984dabcb69c03747a4e4ca1282"
+  },
+  "deferred": [
+    [
+      "core",
+      43
+    ]
+  ],
+  "authorization": "Owner 03/11: run the proposed method (core+bank) at 50 rounds with core as bank ablation; no mixed architecture; checkpoint every round",
+  "scope": "X20 core/bank recipe unchanged, rounds 1..50 of cosine50, --save-every 1; core seed 43 deferred to the 07/11 quota reset"
+}

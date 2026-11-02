@@ -25,7 +25,8 @@ M→X đã đóng audit. [X20](docs/research/results-x20.md): floor + bootstrap 
 combo full trượt gate → không realKD.
 
 [Đề xuất phương pháp](docs/research/proposal.md): copula bootstrap nén + class Q trên synthetic + step floor + input-bank
-(~2,33 MB/xe/20 round; lõi không bank 1,02 MB). Bước tiếp: 50 round core+bank và core cùng baseline — **chờ owner duyệt quota**.
+(~2,33 MB/xe/20 round; lõi không bank 1,02 MB). **F50 đang chạy**: 50 round bank s42/s43 + core s42, checkpoint mỗi round
+([thiết kế](docs/research/screening-f50.md)); core s43 sau quota reset 07/11.
 N/O/P/Q đã DVC; R/V/W/X chưa DVC (OneDrive thiếu chỗ). Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
 
 ## Cần biết → mở
