@@ -17,7 +17,9 @@ Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/
 |---|---|---|
 | `kaggle-x20-pipeline-20m-20261102` | `scripts/run_w20.py --study x20`: quota → 8 notebook → push 2 kernel/owner → poll 1200 s → pull → audit → `X20_CLOSED` | `runs/x-study/pipeline.log` |
 
-Cache npy dùng lại `odixe0502/mobihet-v4npy-cache/1` (manifest `runs/w-study/builder.json`). Manifest khóa sẽ ở
+8 kernel đã push (02/11 ~22:40) từ `5f9f028`: keocaosu X0/X1 core, nguyetquedo X2/X3 bank,
+novahihi X4/X5 live_real_nckd_local, emtrangtri X6/X7 full.
+Cache npy dùng lại `odixe0502/mobihet-v4npy-cache/1` (manifest `runs/w-study/builder.json`). Manifest khóa
 `docs/research/x20-launch.json`, batch `runs/x-study/batch.json`, owner theo `runs/x-study/quota.json` (quota reset 07/11).
 State: `/home/odixe/.codex/long-jobs/jobs/<job>/state.json`; delivery event-only.
 Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/x-study/pipeline.log`.
