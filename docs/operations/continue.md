@@ -16,13 +16,19 @@ Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/
 
 | job | việc | log |
 |---|---|---|
-| `kaggle-w20-pipeline-20m-20261102b` | builder `odixe0502/mobihet-v4npy-cache/1` → quota → 10 notebook → gates/push → poll 1200 s → pull → audit 20 round | `runs/w-study/pipeline.log` |
+| `kaggle-w20-pipeline-20m-20261102c` | 10 kernel đã push + RUNNING (17:02); poll 1200 s → pull → `audit_w20.py` 20 round → `W20_CLOSED` | `runs/w-study/pipeline.log` |
+
+Builder `odixe0502/mobihet-v4npy-cache/1` COMPLETE, manifest SHA `fccc0f72…6524` (`runs/w-study/builder.json`).
+Owner: nguyetquedo W0/W1 replay (blob teacher private mới stage), novahihi W2/W3, emtrangtri W4/W5, heykewtiie W6/W7,
+chuchimnon W8/W9 — 2 kernel/owner như P20. 16 owner cũ < 6,1 h quota tuần lúc 16:59.
+Manifest khóa [w20-launch.json](../research/w20-launch.json), batch `runs/w-study/batch.json`.
 
 State: `/home/odixe/.codex/long-jobs/jobs/<job>/state.json`; delivery event-only (không đánh thức phiên nào).
 Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/w-study/pipeline.log`.
 Pipeline W dừng ở stage lỗi và giữ receipt (`runs/w-study/builder*.json`, `quota.json`, `batch.json`, `*.push*.json`);
 chạy lại `python scripts/run_w20.py` tiếp từ stage còn thiếu, `--collect-only` khi đã push. Không xóa intent để push lại mù.
-Attempt đầu `kaggle-w20-pipeline-20m-20261102` failed trước push (guard credential bắt nhầm `--wandb`), log `pipeline-attempt1.log`.
+Attempt `…02` failed trước push (guard credential bắt nhầm `--wandb`, `pipeline-attempt1.log`); `…02b` failed ở chọn owner
+(chỉ 6 owner đủ quota, 1 run/owner) → cho 2 run/owner, `pipeline-attempt2.log`. Không kernel nào bị push trùng.
 DVC attempt đầu failed vì `.gitignore` ignore-all trong `o20-early`/`p20` (đã xóa), log `dvc-backup-attempt1.log`.
 
 ## Khi job xong

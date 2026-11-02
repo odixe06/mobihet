@@ -137,21 +137,27 @@ def prepare(head, build, quota):
     assert {(r["cell"], r["seed"]) for r in smoke["reports"] if r["check"] == "cell"} == {(c, s) for c in CELLS for s in (42, 43)}
     suites = ET.parse(OUT / "tests.xml").getroot().findall("testsuite")
     assert all(int(s.attrib[k]) == 0 for s in suites for k in ("failures", "errors", "skipped"))
-    eligible = sorted([q["user"] for q in quota["accounts"] if not q.get("inventory_error") and not q["active_recent"]
-                       and not q["unknown_recent"] and q["gpu_left"] >= CAP * 1.15], key=lambda u: (-next(
-                           q["gpu_left"] for q in quota["accounts"] if q["user"] == u), u))
+    # up to two concurrent kernels per owner (as P20), each owner covering the sum of its caps x 1.15
+    slots = []
+    for q in sorted(quota["accounts"], key=lambda q: (-q.get("gpu_left", 0), q["user"])):
+        if q.get("inventory_error") or q["active_recent"] or q["unknown_recent"]: continue
+        slots += [q["user"]] * min(2, int(q["gpu_left"] // (CAP * 1.15)))
     plan = [(cell, seed) for cell in CELLS for seed in (42, 43)]
-    assert len(eligible) >= len(plan), f"{len(plan)} full owner allocations required, {len(eligible)} eligible; do not cut rounds/seeds"
-    # replay needs the frozen Q6/Q7 blob, staged only as the R owners' private datasets (never Git/notebook)
-    inputs = {path.name.removesuffix(".ready.json"): json.loads(path.read_text())
-              for path in (ROOT / "runs/r-study/input-datasets").glob("*.ready.json")}
-    owners, free = {}, list(eligible)
-    for cell, seed in plan:
-        if CELLS[cell]["r_kind"] == "replay":
-            owner = next(u for u in free if u in inputs and inputs[u]["private"] and inputs[u]["download_sha_verified"])
-            owners[(cell, seed)] = owner; free.remove(owner)
-    for cell, seed in plan:
-        if (cell, seed) not in owners: owners[(cell, seed)] = free.pop(0)
+    assert len(slots) >= len(plan), f"{len(plan)} full allocations required, {len(slots)} slots; do not cut rounds/seeds"
+    # replay needs the frozen Q6/Q7 blob as an owner-private dataset (never Git/notebook); both replay seeds share one owner
+    replay = [(c, s) for c, s in plan if CELLS[c]["r_kind"] == "replay"]
+    first = slots[0]
+    assert slots.count(first) >= len(replay)
+    owners = {key: first for key in replay}
+    for _ in replay: slots.remove(first)
+    for key in plan:
+        if key not in owners: owners[key] = slots.pop(0)
+    ready = ROOT / "runs/r-study/input-datasets" / (first + ".ready.json")
+    if replay and not ready.exists():
+        subprocess.run([*cli(first)[:4], sys.executable, str(ROOT / "scripts/run_bounded_python.py"),
+                        str(ROOT / "scripts/stage_r20_input.py"), "--owner", first], check=True, cwd=ROOT)
+    inputs = {first: json.loads(ready.read_text())} if replay else {}
+    if replay: assert inputs[first]["private"] and inputs[first]["download_sha_verified"]
     parents = {r["arm"]: r for r in json.loads((ROOT / "runs/q-study/batch.json").read_text())}
     runtime = json.loads((ROOT / "knowledge/runtime.json").read_text())
     from methods import mobihet_rstudy_data as frozen
