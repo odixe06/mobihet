@@ -154,7 +154,7 @@ Tham chiếu khácrepo kế thừa auditbounded, không significance hoặc đ�
 | 4, sau validation | Gửi reliabilitysummary gộp từnglớp; so count vs shrinkagequalityweight cùnginput/byte, rồi querymemory/diversity cùngbudget và agecontrol | Confidence/agreement không là correctness. Không rawrow/privateweights; memoryrow phải đúnginput/version, không gộp rowindex của các bankkhác |
 
 Không launch phase mới hoặc thay frozenQHP từ bảng này; đây là thiết kế tiếp cần khóa trước run.
-[Pipeline đề xuất](proposed-method-p20.md) được cập nhật theo Q. Chưa triển khai validationreliability/memory/gradientprojection.
+[Pipeline đề xuất](../../archive/docs/research/proposed-method-p20.md) được cập nhật theo Q. Chưa triển khai validationreliability/memory/gradientprojection.
 Client vẫn DAGSNetW1 để so benchmark; schemaoutput cho phép khácmodel về thiết kế, heterogeneousproof còn thiếu.
 
 Reference đúng phần đã thử tại [Qdesign](screening-q20.md): FD/KD cho classQ/KL, FedMDadaptation cho sharedsyntheticinputconsensus.

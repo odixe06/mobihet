@@ -71,7 +71,7 @@ teacher1024/proxy200step: state tensors/BN/CM/method+envRNGbitexact, rejected ea
 Source trước/sau khớp; `runs/p-study/recovery-p21/preflight-verification.json` đã kiểm actualartifact.
 Đây là local sm86; T4probe cũ fullround1 là bằng chứng bổ sung, không proof mọi20round hoặc xác định rootcause.
 
-[Manifest recovery](p21-recovery-launch.json) giữ original8overlay/SHA/HP, thêm guardentrypoint, slug mới
+[Manifest recovery](../../../docs/research/p21-recovery-launch.json) giữ original8overlay/SHA/HP, thêm guardentrypoint, slug mới
 `accanniez/mh-p21-hybrid-s43-recovery1/1`. Worker launch/watch1200s/pull/audit ở bàn giao;
 chỉ pushreceipt mới xác nhận remote, chưa nhận seed43F1 trước fullaudit20round.
 

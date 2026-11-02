@@ -2,7 +2,7 @@
 
 Owner 31/10 yêu cầu tiếp tục thử nghiệm, kiểm khả năng sửa lỗi qua round; sau đó chốt **20 round chẩn đoán**, không 50.
 Owner bổ sung ưu tiên xe ít dữ liệu/thiếu lớp, nhận thông tin toàn mạng theo nhu cầu từng xe.
-Nền: [L đã audit](../../archive/docs/research/results-l10.md), [nguyên nhân](../../archive/docs/research/root-cause-experiments.md), [protocol](protocol.md).
+Nền: [L đã audit](results-l10.md), [nguyên nhân](root-cause-experiments.md), [protocol](../../../docs/research/protocol.md).
 
 ## Phạm vi chẩn đoán
 
@@ -99,4 +99,4 @@ xấu đi; localρ không hơn uniform/tail; hoặc train tăng/test đứng yê
 - Poll status exactversion nền1200s bằng codex-long-jobs, không modelpolling lúc chờ. Completion chỉ là tín hiệu collect/audit.
 
 Manifest thực thi: `runs/m-study/batch.json`; quota/preflight/source/artifact được ghi cùng thư mục. Trạng thái chạy xem
-[bàn giao sống](../operations/continue.md). Không Git/DVCpush, không cleanup hoặc launch50round.
+[bàn giao sống](../../../docs/operations/continue.md). Không Git/DVCpush, không cleanup hoặc launch50round.

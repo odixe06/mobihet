@@ -5,61 +5,39 @@
 
 ## Bài toán và quyết định đang có hiệu lực
 
-Federated IDS V2X, VeReMi NextGen v4: 5.343 xe, 16 lớp, 77 đầu vào. Mỗi xe giữ model riêng;
-trao đổi thống kê gộp/output schema chung, không mẫu thật, feature/nhãn từng dòng hoặc private weights.
-M/N/O dùng Q là bảng xác suất theo lớp; P đang kiểm thêm teacher theo input và proxy riêng tại server.
-Chưa có bảo đảm DP/secure aggregation.
+Federated IDS V2X, VeReMi NextGen v4: 5.343 xe, 16 lớp, 77 đầu vào. Mỗi xe giữ model riêng.
+Hai yêu cầu của owner: **băng thông hạn chế** và **mỗi xe có thể dùng mô hình khác nhau** → chỉ trao đổi thống kê dữ liệu gộp
+và xác suất đầu ra 16 lớp; không dòng dữ liệu, nhãn từng dòng, trọng số, BN, gradient. Chưa có DP/secure aggregation.
 
-- Ưu tiên own-test tương lai của từng xe, cải thiện xe ít mẫu/non-IID và giảm chênh chất lượng bằng cách nâng xe yếu.
-- Tối ưu ba khâu: thông tin upload → server xử lý/downlink → client kết hợp local và teacher.
-- Chưa ngưỡng byte cứng; báo bootstrap + upload/download và thời gian. Schema hỗ trợ khác kiến trúc;
-  thí nghiệm hiện giữ DAGSNet W1 để cô lập cơ chế, chưa chứng minh kiến trúc trộn.
-- Protocol chung 50 round; batch chẩn đoán M/N/O chỉ r1–20, vẫn cosine50, seed42/43. Không tự kéo dài hoặc chọn best test round.
-- Kaggle dùng credential theo process, giữ global login hiện tại; trạng thái tài khoản ở bàn giao. W&B online. Không cần MCP JSON.
+- Ưu tiên own-test tương lai từng xe, nâng xe ít mẫu/non-IID (không kéo xe mạnh xuống). Báo đủ byte hai chiều gồm bootstrap.
+- Thí nghiệm giữ DAGSNet W1 cho mọi xe để cô lập cơ chế; trộn kiến trúc chưa chạy (owner 02/11: chưa cần).
+- Protocol chung 50 round ([protocol](docs/research/protocol.md)); batch chẩn đoán 20 round, cosine50, seed 42/43.
+  Không tự kéo dài, không chọn best round/HP bằng official test. 1 epoch/round trên dữ liệu local như repo benchmark;
+  bước chỉ synthetic là cơ chế phương pháp được phép (owner 02/11).
+- Kaggle: credential theo process, giữ global login; cache npy dùng chung qua kernel public `odixe0502/mobihet-v4npy-cache`.
+  W&B online. Commit không có trailer `Co-Authored-By`.
 
-## Trạng thái — 02/11/2026
+## Trạng thái — 02/11/2026 17:00
 
-M0–M15, N0–N7 và O0–O7 version1 đã collect/audit đủ20round; source/config/CM/Qlag/codec/snapshot PASS.
-[O20](docs/research/results-o20.md) đã kiểm đủ2seed: teachertrajectory và cách nhận KD đều quan trọng;
-fullQ có utility pooled nhưng lợi ích chưa đều cho xe yếu. Các job đã đóng, không restart/poll/collect lại.
+M→V đã đóng audit. [R20/V20](docs/research/results-r20-v20.md): độ ồn phiên đã đo; realKD hại timeDelay/lớp vắng cả khi
+teacher cố định (margin chỉ thắng nhờ bảo vệ teacher); val sạch xác nhận augmentation copula là nguồn lợi chính,
+input-target nâng xe yếu, realKD không còn lợi pooled. Bootstrap chiếm 97% byte và nén được ~70%.
 
-Backup Git/DVC đã kiểm, archive và cleanup local hoàn tất. Owner đã yêu cầu chạy kiểm chứng N20.
-Trạng thái backup/cleanup duy nhất ở [bàn giao](docs/operations/continue.md).
-Artifact N/O mới chưa DVCbackup; giữ local. Chưa chốt phương pháp tổng.
-Jobclosure/callback muộn chỉ ở bàn giao; không tự tăng round hoặc đổi protocol.
-
-Owner01/11 đã ủy quyền P20 nhiều kiểm nghiệm song song: teacherinput/proxyserver/clientreception/v4missingness/localLA.
-[Thiết kế32run](docs/research/screening-p20.md), [audit nguồn v1/features/benchmark](docs/research/prior-evidence-p20.md).
-Giữ clientDAGSNetW1 như benchmark; v1 chỉ tham khảo khácdataset66feature/20–100client.
-P0–P31 exactversion1 đã pull/audit đủ32:31PASS_BOUNDED đủ20round, P21 nonfinite trước round1.
-[Auditclosure](docs/research/audit-p20.md), [sự cố/probe](docs/research/p20-numerical-incident.md).
-Đã đóng gate audit và [phân tích P20 gốc](docs/research/results-p20.md).
-[Recovery P21/C10seed43](docs/research/results-p21-recovery.md) đã audit đủ20round, bổ sung đủ32logicalarm/hai seed;
-giữ originalP21FAIL và báo cáo gốc. Hybrid hơn proxythuần pooled cảhai seed nhưng vẫn dưới streamingclassQ,
-xe nhỏ chưa hơn ensemble nhất quán; chưa chốt phương pháp tổng hoặc numericalrootcausefix.
-Trạng thái job duy nhất ở bàn giao; không restart collector/launcher từ callback muộn.
-
-[Q20](docs/research/results-q20.md) đã pull/audit/phân tích đủ16run/8cell×seed42/43,
-DAGSNetW1/20round/cosine50/train+val; không trainingfailure. Controlquery qua tripwire, inputtarget nâng mean/p10 xe yếu;
-sqrtinputweight giảm pooled cảhai seed. Margin nâng pooled/mean/p10 nhưng vẫn hại absent/timeDelay,
-chi phí4.645504MB/xe so compactQ3.333504MB; chưa phương pháp tổng hoặc thắng benchmark.
-Worker đều đã đóng; checker CPU/CUDA đã sửa, không trainlại. Owner02/11 đãủyquyền [R20](docs/research/screening-r20.md): phase8replay cùngQ/inputhistory đãpush đủ8kernel`-input1`version1 sau privateinput/preflightgates;
-worker poll/pull/audit1200s. [V20](docs/research/screening-v20.md) split/localpreflightPASS, phase8validation đãpush đủ8kernel version1, receipt/SHA đãkiểm;
-V0/V1ERROR saufirstepoch tại guardzero-skip; [hai probeT4](docs/research/v20-skip-incident.md) đãaudit3/5skip trên513368step, mọixeapplied/weightsBNfinite.
-Worker CErecovery riêng chạyfresh20round với guardcommon+perclientfinite/applied, core/HPkhôngđổi;6kernel khác giữwatch, originalfailures giữnguyên.
-chưa remotecompletion, không đổi headline own-test. Owner bổ sung tài khoản; phase4repeatA/B×2seed đãpush đủ4version1 sau inventory6owner mới.
-Không modelpoll; trạng thái/actualpushreceipt ở bàn giao.
-Memory/qualityweight/gradientprojection chưa triển khai.
+[Đề xuất phương pháp](docs/research/proposal.md): copula bootstrap nén + class Q trên synthetic (~1 MB/xe/20 round),
+tầng input-bank tùy chọn, không realKD. **W20 đang chạy** (10 run: non-target KD, step floor, bootstrap nén) —
+[thiết kế](docs/research/screening-w20.md). Backup DVC N/O/P/Q đang đẩy; xóa local N/O/P/Q sau verify (owner đã cho phép).
+Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
 
 ## Cần biết → mở
 
 | câu hỏi | tài liệu |
 |---|---|
-| Cơ chế hiện tại và cấu hình chung? | [method](docs/research/method.md), [protocol](docs/research/protocol.md) |
-| Kết quả mới và giới hạn bằng chứng? | [Q20](docs/research/results-q20.md), [Q byte/time](docs/research/cost-q20.md), [P21 bổ sung](docs/research/results-p21-recovery.md), [P20 gốc](docs/research/results-p20.md), [O20](docs/research/results-o20.md) |
-| Nguyên nhân nào đã biết, cần kiểm gì tiếp? | [diagnosis](docs/research/diagnosis.md) |
-| Job nào sống, ai sở hữu file, bước tiếp? | [continue](docs/operations/continue.md) |
-| Cách chạy công cụ, backup và khôi phục? | [operations](docs/operations/README.md), [scripts](scripts/README.md) |
+| Phương pháp đề xuất, byte, thành phần nào đã chứng minh? | [proposal](docs/research/proposal.md) |
+| Nguyên nhân đã biết, đang kiểm gì? | [diagnosis](docs/research/diagnosis.md), [W20](docs/research/screening-w20.md) |
+| Kết quả mới và giới hạn bằng chứng? | [R20/V20](docs/research/results-r20-v20.md), [Q20](docs/research/results-q20.md), [P20](docs/research/results-p20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
+| Cơ chế code/cấu hình chung? | [method](docs/research/method.md), [protocol](docs/research/protocol.md) |
+| Job nào sống, bước tiếp, việc tay? | [continue](docs/operations/continue.md) |
+| Chạy công cụ, Kaggle, backup/khôi phục? | [operations](docs/operations/README.md), [scripts](scripts/README.md), [backup](docs/operations/backup.md) |
 | Dataset, model, máy, image? | [knowledge](knowledge/README.md) |
 
-Số đo ở kết quả; quyết định ở diagnosis/protocol; dữ kiện bất biến ở knowledge; trạng thái job chỉ ở continue.
+Số đo ở kết quả; quyết định ở diagnosis/proposal/protocol; dữ kiện bất biến ở knowledge; trạng thái job chỉ ở continue.

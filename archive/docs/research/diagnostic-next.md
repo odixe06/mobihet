@@ -1,6 +1,6 @@
 # Chẩn đoán tiếp sau P20 — trạng thái và thiết kế đề xuất
 
-**P đã đóng audit và phân tích:** [kết quả/bài học](results-p20.md), [audit](audit-p20.md), [byte/time](cost-p20.md).
+**P đã đóng audit và phân tích:** [kết quả/bài học](../../../docs/research/results-p20.md), [audit](audit-p20.md), [byte/time](cost-p20.md).
 Registry: margin/strength đã thử, pooledgain nhưng xe yếu/absent chưa an toàn; inputteacher matchedbank có utility;
 proxythuần/modelcarrier chưa lợi; projectionflag không ổn định. [Hybrid đủ hai seed](results-p21-recovery.md)
 hơn proxythuần pooled nhưng vẫn dưới streamingclassQ, xe nhỏ chưa hơn ensemble nhất quán. Chưa có phương pháp tổng.
@@ -9,7 +9,7 @@ Thứ tự hiện hành: validation train-only sạch → replay cùngproxy đ�
 các mục bên dưới giữ lý do và can thiệp M/N/O/P đã biết, không đọc như mọi cell còn chưa chạy.
 Seed thiếu đã phục hồi/audit20round; originalP21FAIL giữ nguyên. [Đề xuất sau P](proposed-method-p20.md)
 khóa thứ tự kiểm support→targetresolution→serverreliability→clientreception.
-[Q20](results-q20.md) đã audit/phân tích16×20: inputtarget nâng weakcohort, sqrtinputweight chưa giúp;
+[Q20](../../../docs/research/results-q20.md) đã audit/phân tích16×20: inputtarget nâng weakcohort, sqrtinputweight chưa giúp;
 margin tăng pooled/mean/p10 nhưng hại absent/timeDelay. Tiếp: repeatedcontrol/receptionreplay cùngteacher,
 validation sạch trước qualityweight. Nhánh validationreliability/memory/gradientprojection chưa triển khai.
 
@@ -113,6 +113,6 @@ không mở lại timing chỉ từ replaygain. Không dùng class13test để h
 Khóa cell, source/config/data fingerprint, teacherlag, permutation và endpoint trước chạy; không chọn thử cảmọi combo để tìm win.
 Kiểm loss/gradient đúng công thức và control tái lập; quota/2×T4/W&B theo skill. Báo đủ10metric, lớp, pairedclient/cohort,
 bootstrap+upload/download/time. Bất kỳ giới hạn nào của artifact/DP/mixedarchitecture phải giữ nguyên phạm vi.
-Backup/cleanup trước N đã xong. N20 đã đóng; runtime/jobownership và trạng thái backup N chỉ ở [bàn giao](../operations/continue.md).
+Backup/cleanup trước N đã xong. N20 đã đóng; runtime/jobownership và trạng thái backup N chỉ ở [bàn giao](../../../docs/operations/continue.md).
 Mục2 O20 đã hoàn tất/audit; mục3validation còn đề xuất, mục4 một phần đang kiểm trong P20 theo thiết kế riêng.
 Trạng thái launch/job duy nhất ở bàn giao; không chạy thêm launcher ngoài worker sở hữu P.

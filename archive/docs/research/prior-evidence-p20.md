@@ -9,7 +9,7 @@ Provenance/SHA và audit dữ liệu: `runs/p-study/prior-evidence.json`, tái t
 Giữ DAGSNetW1/395408parameter/77input/16class, optimizer/batch/epoch/LR chung. P vẫn là screening20round,
 không gọi là benchmark thắng baseline50round. Không chuyển client sang model khác; schema kiến trúc độc lập vẫn là yêu cầu phương pháp.
 
-[Tham chiếu r20](benchmark-r20-reference.md) tính lại17CMview trên cùng test/support, đủ10metric;
+[Tham chiếu r20](../../../docs/research/benchmark-r20-reference.md) tính lại17CMview trên cùng test/support, đủ10metric;
 giữ khác biệt global/client/prototype. Hai baseline có pruning/head bổ sung tách khỏi bảng đồng nhất parameter.
 Không suy chênh phương pháp là causal effect riêng teacher hoặc dùng baseline50 so screening20.
 

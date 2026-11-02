@@ -91,3 +91,12 @@ V20 zero-skip incident: `probe_v20_skips.py` quan sát mộtepochCE, `preflight_
 CErecovery sauprobe: `methods/mobihet_vrecover.py`, `preflight_v20_recovery.py`, `prepare_v20_recovery.py`,
 `launch_v20_recovery.py`, `run_v20_recovery_batch.py`, `audit_v20_recovery.py`; controller `run_v20_recovery_pipeline.py`.
 Hai runfresh20round riêng`runs/v-study/recovery-ce`/`artifacts/v20-recovery`; chỉ sửa guard/observability, giữ core/HP và originalfailures.
+
+R/V phân tích: `analyse_r20_v20.py` → `runs/r-study/analysis/{analysis.json,endpoint.csv}` (repeat spread, replay vs live, val).
+Byte bootstrap offline: `measure_bootstrap_codec.py --root ../mobihet-features/data/v4-scaled` → `runs/bootstrap-codec/`.
+
+W20 (`methods/mobihet_wstudy.py`, ô ở `w20_common.py`): `preflight_w20.py` (local, knob mặc định bit-exact Live/Replay) →
+`run_w20.py` một worker: builder cache npy public → quota → notebook → gates/push → watch 1200 s/pull/`audit_w20.py`.
+Mỗi stage có receipt trong `runs/w-study`; chạy lại tiếp từ stage thiếu, `--collect-only` sau khi đã push.
+Cache npy dùng chung cho batch mới: `gen_notebook.py --npy-kernel odixe0502/mobihet-v4npy-cache --npy-manifest-sha256 <sha>`
+(sha của `runs/w-study/builder/v4npy/manifest.json`); `--build-npy` sinh kernel builder CPU public, không credential.

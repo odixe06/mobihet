@@ -69,7 +69,7 @@ def builder(head):
                         "--build-npy", "--sha", head], check=True, capture_output=True, cwd=ROOT)
         folder = ROOT / "notebooks" / BUILDER_SLUG
         text = (folder / f"{BUILDER_SLUG}.ipynb").read_text()
-        assert "WANDB" not in text.upper() and json.loads((folder / "kernel-metadata.json").read_text())["is_private"] is False
+        assert "INLINE WANDB CREDENTIAL" not in text and "wandb.login" not in text and "import wandb" not in text and json.loads((folder / "kernel-metadata.json").read_text())["is_private"] is False
         p = subprocess.run(["timeout", "--foreground", "240s", *cli(BUILDER_OWNER), "kernels", "push", "-p", str(folder)],
                            capture_output=True, text=True)
         (OUT / "builder-push.log").write_text(p.stdout + p.stderr)

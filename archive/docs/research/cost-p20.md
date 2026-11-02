@@ -74,4 +74,4 @@ Scoring/server/bank nằm trong train, không cộng lần hai. Phần chưa ph�
 | P31 | 9193.84 | 666.74 | 640.46 | 12114.13 | 1613.09 | 0.00 | 0.00 |
 
 P21 lỗi trước round1, không ghép vào chi phí20round. Không có measured GPUkernel-time/utilization hoặc bandwidth/contactlatency.
-Full CSV: `runs/p-study/analysis/costs.csv`; [10metric](metrics-p20.md), [kết quả](results-p20.md).
+Full CSV: `runs/p-study/analysis/costs.csv`; [10metric](metrics-p20.md), [kết quả](../../../docs/research/results-p20.md).

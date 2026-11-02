@@ -18,11 +18,11 @@ Mục tiêu: từng xe học tốt trên own-test, nhất là ít dữ liệu/no
 - Server: n_kc so sqrt(n_kc), cùng packet/schema.
 - Client: augmentation, softtarget, realgate, fallback, uniform/local support mixture; loss outer coefficient1.
   Localρ=64/(64+n_kc), lớp ít mẫu nhận Q nhiều hơn. Đây là giả thuyết chẩn đoán, không bảo đảm có ích.
-- Chi tiết thiết kế đã khóa: [screening-m20](screening-m20.md); kết quả ở [results-m20](results-m20.md).
+- Chi tiết thiết kế đã khóa: [screening-m20](../../archive/docs/research/screening-m20.md); kết quả ở [results-m20](../../archive/docs/research/results-m20.md).
 - N giữ nguyên source/loss/protocol, hoàn tất factorial realKDoff/gate × syntheticsoft/fallback:
-  [screening-n20](screening-n20.md), [results-n20](results-n20.md). Reference FD/KD bên dưới áp dụng cùng thành phần trong N0–N7.
-- [O20](screening-o20.md) giữ code client/codec N, thay downlink bằng lịch Q train-only N đã audit để chẩn đoán.
-  Uplink live vẫn collect; Q_live không dùng feedback. [Kết quả](results-o20.md) đủ8×20; replay chưa là phương pháp liveFL hoặc bằng chứng giảm byte.
+  [screening-n20](../../archive/docs/research/screening-n20.md), [results-n20](../../archive/docs/research/results-n20.md). Reference FD/KD bên dưới áp dụng cùng thành phần trong N0–N7.
+- [O20](../../archive/docs/research/screening-o20.md) giữ code client/codec N, thay downlink bằng lịch Q train-only N đã audit để chẩn đoán.
+  Uplink live vẫn collect; Q_live không dùng feedback. [Kết quả](../../archive/docs/research/results-o20.md) đủ8×20; replay chưa là phương pháp liveFL hoặc bằng chứng giảm byte.
 
 ## Chi phí và giới hạn
 
@@ -44,13 +44,13 @@ Chỉ reference cơ chế đã có code và run; không coi trích dẫn là b�
 Copula bootstrap/gate/fallback/supportmixture/server sqrt(n) là thiết kế đang kiểm của dự án; kết quả ở M20 và N20.
 FAug cùng bài FD yêu cầu upload seed samples để train GAN; **không áp dụng** trong phương pháp hiện tại.
 DAGSNet thực sự dùng cho mọi M, nguồn và deviation tại [đặc tả kiến trúc](../../knowledge/dagsnet.md).
-Bài báo/ý tưởng chưa triển khai không đưa vào bảng reference phương pháp đã thử; đề xuất giữ ở [diagnostic-next](diagnostic-next.md).
+Bài báo/ý tưởng chưa triển khai không đưa vào bảng reference phương pháp đã thử; đề xuất giữ ở [diagnostic-next](../../archive/docs/research/diagnostic-next.md).
 
-P20 gốc31run đủ20round/P21r0; [kết quả gốc](results-p20.md) và [transfer từngxe](p20-client-transfer.md).
-[Recovery C10seed43](results-p21-recovery.md) đã audit20round: hybrid hơn proxythuần pooled cảhai seed nhưng vẫn dưới streamingclassQ.
-[Đề xuất pipeline](proposed-method-p20.md) giữ streamingclassQ, kiểm thêm
+P20 gốc31run đủ20round/P21r0; [kết quả gốc](results-p20.md) và [transfer từngxe](../../archive/docs/research/p20-client-transfer.md).
+[Recovery C10seed43](../../archive/docs/research/results-p21-recovery.md) đã audit20round: hybrid hơn proxythuần pooled cảhai seed nhưng vẫn dưới streamingclassQ.
+[Đề xuất pipeline](../../archive/docs/research/proposed-method-p20.md) giữ streamingclassQ, kiểm thêm
 support/inputtargets/serverreliability/reception từngkhâu; chưa triển khai hoặc nhận method tổng.
-[Thiết kế](screening-p20.md) gắn reference đúng thành phần:
+[Thiết kế](../../archive/docs/research/screening-p20.md) gắn reference đúng thành phần:
 
 | nguồn | thành phần P đã chạy và audit | deviation |
 |---|---|---|
@@ -64,3 +64,7 @@ batch chưa kiểm modeltrộn. ClassQ và proxy là các đối chứng song so
 và realKD/margin/strength controls. [Kết quả Q](results-q20.md) đủ16×20: inputtarget nâng weakcohort,
 margin nâng pooled/mean/p10 nhưng vẫn hại absent/timeDelay; sqrtinputweight chưa giúp. Chưa method tổng.
 Không serverproxyfit hoặc modeldownlink Q, không gán FedDFproxyfit cho Q; inputconsensus vẫn là adaptation FedMD ở trên.
+
+[R20/V20](results-r20-v20.md) tách độ ồn phiên, tiếp nhận realKD với teacher cố định và validation sạch: realKD bị loại khỏi
+mặc định. Hướng hiện hành và byte theo tầng: [proposal](proposal.md); ô đang chạy: [W20](screening-w20.md)
+(non-target KD theo [Decoupled KD, Zhao et al. 2022](https://arxiv.org/abs/2203.08679), step floor synthetic, bootstrap nén).

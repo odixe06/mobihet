@@ -1,6 +1,6 @@
 # P20 — closure audit, 01/11/2026
 
-Đã pull và phân loại đủ32kernel exactversion1 theo [manifest](p20-launch.json):
+Đã pull và phân loại đủ32kernel exactversion1 theo [manifest](../../../docs/research/p20-launch.json):
 **31run PASS_BOUNDED đủ20round; P21 lỗi trước round1;0auditfailure chưa xử lý**.
 Đây là trạng thái artifact, không kết luận phương pháp thắng hoặc đạt fairness.
 

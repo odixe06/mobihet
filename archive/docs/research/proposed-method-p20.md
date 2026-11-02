@@ -1,11 +1,11 @@
 # Hướng phương pháp sau P20 — nâng xe yếu, giữ khả năng của xe mạnh
 
 Trạng thái: **đề xuất để kiểm chứng**, chưa là phương pháp tối ưu hoặc kết quả mới.
-Nguồn: [31run đã audit](results-p20.md), [transfer từng xe](p20-client-transfer.md),
-[O20 replay](results-o20.md), [M/N/O/P lessons](../../LESSONS.md).
+Nguồn: [31run đã audit](../../../docs/research/results-p20.md), [transfer từng xe](p20-client-transfer.md),
+[O20 replay](results-o20.md), [M/N/O/P lessons](../../../LESSONS.md).
 [P21/C10seed43](results-p21-recovery.md) đã audit/phân tích20round; hybrid hơn proxythuần pooled hai seed,
 vẫn dưới streamingclassQ, xe nhỏ chưa hơn ensemble nhất quán. Chưa thay hướng chính bằng proxy.
-[Q20](results-q20.md) đã audit/phân tích16run: S0/querycontrol/S1/S2,
+[Q20](../../../docs/research/results-q20.md) đã audit/phân tích16run: S0/querycontrol/S1/S2,
 inputensemble√n và realKD/margin/strength. Inputtargets nâng weakcohort, margin tăng pooled/mean/p10 nhưng hại absent/timeDelay;
 sqrtinputweight chưa giúp. Không xem negativecount như causalharm khi querycontrol cũng đổi percar;
 repeatedcontrol/receptionreplay và validation sạch là cổng tiếp.

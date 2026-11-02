@@ -23,4 +23,4 @@ F1 mỗi xe tính lớp có mặt; dấu delta dùng tolerance1e-12. Hai seed kh
 
 C10 chỉ seed42, không gọi stable gain. Số lượng xe không cân theo testrows hoặc độ lớn delta; xem mean/p10/absent/perclass cùng lúc.
 Không có cơ chế chung đã chứng minh tăng mọi xe; personalized reception cần validation riêng, không oracle theo test.
-Nguồn: `runs/p-study/analysis/client-transfer.json`; [phân tích chính](results-p20.md).
+Nguồn: `runs/p-study/analysis/client-transfer.json`; [phân tích chính](../../../docs/research/results-p20.md).

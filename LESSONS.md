@@ -1,6 +1,6 @@
 # Bài học kỹ thuật còn áp dụng
 
-Đọc sau CONTEXT. Bằng chứng hiện tại: [M20](docs/research/results-m20.md), [chẩn đoán tiếp](docs/research/diagnosis.md).
+Đọc sau CONTEXT. Bằng chứng hiện tại: [M20](archive/docs/research/results-m20.md), [chẩn đoán tiếp](docs/research/diagnosis.md).
 Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không bỏ bài học dưới đây vì đã archive run.
 
 ## Hợp đồng dữ liệu và đánh giá
@@ -82,7 +82,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 
 ## N20 factorial đã audit
 
-- [N20](docs/research/results-n20.md): realKD giảm timeDelay ở cả soft/fallback nhưng nâng other15/mean/p10.
+- [N20](archive/docs/research/results-n20.md): realKD giảm timeDelay ở cả soft/fallback nhưng nâng other15/mean/p10.
   Không tắt/tăng KD đồng loạt từ pooled alone; fallback gain nhỏ chưa nâng đồng đều client/cohort.
 - Fallback khi realKDoff vẫn đổi target đột ngột và dao động sớm. Bác bỏ “chỉrealKD gâydaođộng”;
   bỏreal không tự xóa chatter, nhưng C vẫn học r15→20. Không gọi tất cả client/model plateau sau20round.
@@ -98,7 +98,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 
 ## O20 replay đã audit đầy đủ
 
-- [O20](docs/research/results-o20.md): fullQ/realgate hơn noReal pooled cảhai seed khi cùng teacher nguồn,
+- [O20](archive/docs/research/results-o20.md): fullQ/realgate hơn noReal pooled cảhai seed khi cùng teacher nguồn,
   nhưng vẫn giảm timeDelay và tail/xe nhỏ chưa lợi nhất quán. Không biến kết luận Nlive thành “realKD luôn hại pooled”.
 - ReplayrealKD vẫn hại13 từr2 dù gate13đóng và Q chung; không cần feedback để có hại cục bộ. Đổi lịchteacher
   từ livegate sang nguồn noReal phục hồi một phần timeDelay; không phân rã causal hoặc gán mọi lỗi cho feedback/gate13.
@@ -121,7 +121,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 
 ## P20 — teacher, support và clientobjective
 
-- [P20 gốc](docs/research/results-p20.md) đã đóng gate32run:31×20round/P21r0. [Recovery P21](docs/research/results-p21-recovery.md)
+- [P20 gốc](docs/research/results-p20.md) đã đóng gate32run:31×20round/P21r0. [Recovery P21](archive/docs/research/results-p21-recovery.md)
   bổ sung seed43 đủ20round, không thay originalfailure bằng probe1round hoặc gọi freshretry là resume.
   P21 lỗi số học trước serverfit không là utilityFAIL của hybrid; guardPASS/recovery không chứng minh rootcause đã sửa.
 - Augmentation là phần gain lớn nhất so localCE; local-only có accuracy0 trên absentrows xe nhỏ, synthetic giúp đáng kể.
@@ -140,7 +140,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
   Mixture/countρ, postepochQ, BNsplit/head-only và v1 khácdataset đã có bài học; không đổi tên để thử lại thiếu hypothesis mới.
 - Bootstrap vẫn chi phối compactQ20round. Báo đủ setup/two-waybytes; timer server/scoring nằm trong train,
   không cộng lại hoặc gọi walltime2T4 là latency xe. Hai seed/repeatedofficialtest không là significance/confirmatoryproof.
-- [Pairedclientdiagnostic](docs/research/p20-client-transfer.md): thêm softQ hơn augmentation pooled nhưng2207/2240xe giảmF1,
+- [Pairedclientdiagnostic](archive/docs/research/p20-client-transfer.md): thêm softQ hơn augmentation pooled nhưng2207/2240xe giảmF1,
   chỉ~38%xe<256 tăng. Margin so C2 vẫn có1059xe giảm cảhai seed. Mean/p10/cohortgain chưa là mọi xe tốt lên;
   số xe giảm phải đọc cùng độ lớn delta/support, không chọn method từngxe bằng officialtest.
 - C10hybrid (.5ensemble+.5onehot khi fitproxy) hơn C8pooled+.010208/+.008540 hai seed; vẫn dưới C2streamclassQ
@@ -165,3 +165,19 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
   Mean/p10 tăng và std giảm không bảo đảm mọi xe/absentclass tốt hơn.
 - Xe nhỏ vẫn tăngr15→20; gap matchedtimeDelay còn cả xe>=4096 và control. Chưa plateau chung hoặc phân biệt overfit/shift
   khi train+val đãfit. Q không proxyteacher, không có realclassifierteacherqualitydiagnostic để gọi agreement là accuracy.
+
+## R20/V20 — độ ồn, replay tiếp nhận, validation sạch
+
+- [R20/V20](docs/research/results-r20-v20.md): ba phiên cùng công thức/seed lệch pooled ≤.0005, p10 ≤.006, low256 ≤.003,
+  timeDelay ≤.0035; ~250 xe dao động >.05 mỗi chiều. Đếm "số xe giảm" và chênh dưới các ngưỡng này không là bằng chứng.
+- Teacher cố định, realKD vẫn −.05 timeDelay/lớp vắng: tác hại không cần feedback. Live gấp đôi do vòng phản hồi
+  (Q[13,13] r20 .739 noReal → .581 binary). **Margin ≤ binary/strength khi teacher cố định**; lợi live của margin là
+  bảo vệ teacher, không phải tiếp nhận tốt hơn. Sửa kết luận Q20 "margin hơn binary" thành hiệu ứng trajectory.
+- Val sạch: augment−CE +.0226 pooled (nguồn lợi chính, không do test); mixed_input−augment +.0025 pooled/+.009–.014 p10;
+  margin−mixed pooled ≈ ồn nhưng timeDelay −.077, lớp vắng −.06/−.07. Loại realKD khỏi mặc định.
+- Gap timeDelay train→val có cả ở CE thuần (xe≥4096 .886→.267): giới hạn dữ liệu/đặc trưng, KD chỉ làm nặng thêm.
+- Cơ chế hại là phần target-class của KL theo lớp; phần non-target (quan hệ lớp) mới là utility O20. Tách hai phần trước
+  khi bỏ KD (W20 NCKD). NCKD có gradient 0 lên logit lớp thật — kiểm bằng test, không chỉ công thức.
+- Bootstrap copula: 76% byte là histogram dày, 12% là moment Gaussian không dùng trên đường copula. Histogram xe mã thưa
+  không mất mát ~74 KB thay 1,26 MB; tổng server không đổi nên không cần chạy lại để chứng minh.
+- Shadow diagnostics tự dựng ctx ngoài local_epoch: hook mới trên ctx phải có fallback, nếu không preflight chết ở diagnostics.

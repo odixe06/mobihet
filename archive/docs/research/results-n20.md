@@ -2,7 +2,7 @@
 
 **8/8 run version1 đủ20round, artifact audit PASS.** RealKD tiếp tục đổi lợi ích giữa các lớp;
 fallback có thể gây dao động cả khi tắt realKD. Chưa có phương án thắng đồng đều hoặc giải quyết tổng quát hóa.
-[Thiết kế khóa](screening-n20.md), [cơ chế và reference đã thử](method.md), [đủ10metric](metrics-n20.md).
+[Thiết kế khóa](screening-n20.md), [cơ chế và reference đã thử](../../../docs/research/method.md), [đủ10metric](metrics-n20.md).
 
 ## Bằng chứng và phép so
 
@@ -59,7 +59,7 @@ không gọi mọi tương tác đều bất lợi hoặc cộng gains từ M đ
 | C | +.003061/+.003108 | .000695/.000724 | 3/1 |
 | D | −.000090/+.000253 | .000290/.000414 | 3/5 |
 
-![N20 own-test factorial curves](figures/n20-factorial.png)
+![N20 own-test factorial curves](../../../docs/research/figures/n20-factorial.png)
 
 Pooled panel zoom. A/B/C vẫn tăng r15→20; D gần đứng endpoint đoạn cuối, không chứng minh hết khả năng học sau20round.
 

@@ -65,3 +65,10 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
   Không restore/switch để qua assert cũ. Gate bằng serverintrospection từngsavedowner và scopedkaggle_as; ghi globalbefore/after
   thayhardcodeusername. Khóa authorizedowners trước batch, không tự thêm account mới do roster/global thay đổi.
   Vpipelinefail trước notebook/push là operationalguard, không teacher/model utilityfailure hoặc mất savedcredential.
+
+- Kernel build npy 448 s + compile ~8 phút mỗi run. Cache npy dựng một lần bởi kernel CPU public
+  `odixe0502/mobihet-v4npy-cache`, run sau mount qua `kernel_sources` + kiểm SHA manifest (`gen_notebook.py --npy-kernel`).
+  Kernel private không mount chéo tài khoản được; nhánh V (không đọc test) vẫn tự build cache riêng.
+- Client trải nhiều file parquet (4 nhóm liên thông tới 198 file/19M dòng): thống kê theo client phải gộp qua file, không theo từng file.
+- OneDrive remote còn ~67 GB (02/11) — 97% dung lượng artifact là snapshot `models/r*.pt`. Kiểm quota cloud trước dvc push lớn.
+- Guard credential của notebook public phải tìm marker credential, không chuỗi "wandb" chung (lệnh mẫu có `--wandb`).

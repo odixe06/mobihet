@@ -29,7 +29,7 @@ Giảmdaođộng không đủ utility nếu F1/xe nhỏ/15lớp còn lại giả
 ## Cấu hình và đánh giá khóa
 
 - Full5.343xe, DAGSNetW1, mọi xe mỗi round; r1–20 mới, cosine theo50, seed42/43.
-- [Protocol chung](protocol.md): batch64,1epoch, AdamWreset/round, clip1,AMPfp16; không thay LR/optimizer/data split.
+- [Protocol chung](../../../docs/research/protocol.md): batch64,1epoch, AdamWreset/round, clip1,AMPfp16; không thay LR/optimizer/data split.
 - Cùng copula64synthetic/bước, LAreal, meanfp16encode/decode, server countaggregation; group_rows4096.
 - Không neuralproxy, không rawrows/features/per-rowlabels/privateweights trong thông điệp FL; schema output không phụ thuộc kiến trúc.
   Batch này chung DAGSNet, chưa mixedarchitecture/DP/secureaggregation/contactdrop proof.
@@ -52,5 +52,5 @@ Nguồn, metadata notebookprivate/image pin, W&B online, quota/owneridentity ph�
 
 Poll exactowner/slug/version1 nền1200s qua codex-long-jobs, không modelpollwaiting. Initialhealth kiểm2×T4/compile/W&B,
 terminal thì collect+audi20round trước kết luận. ERROR được pull để giữ bằng chứng; không tự cancel healthy kernel.
-Manifest `runs/n-study/batch.json`, runtime/jobownership duy nhất ở [continue](../operations/continue.md).
-Reference chỉ gắn phần cơ chế đã chạy tại [method](method.md); N là adaptation/ablation của dự án, không benchmark reproduce bài gốc.
+Manifest `runs/n-study/batch.json`, runtime/jobownership duy nhất ở [continue](../../../docs/operations/continue.md).
+Reference chỉ gắn phần cơ chế đã chạy tại [method](../../../docs/research/method.md); N là adaptation/ablation của dự án, không benchmark reproduce bài gốc.

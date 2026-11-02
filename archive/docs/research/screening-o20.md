@@ -50,7 +50,7 @@ không sửa model/loss/optimizer/LR. Không neuralproxy. Schema không phụ th
 
 ## Protocol, endpoint và quyết định
 
-Giữ [protocol](protocol.md):5343xe, W1,1epoch/batch64,AdamWreset/round,clip1/fp16;
+Giữ [protocol](../../../docs/research/protocol.md):5343xe, W1,1epoch/batch64,AdamWreset/round,clip1/fp16;
 20round mới/cosine50, seed42/43; copula64/step, LAreal, fixedweight1, supportoff, online/count/meanfp16.
 Own-test từng xe endpoint20, pooled10metric/16class, mean/p10/std/cohort/absent/rare và pairedclientdelta.
 Δr20−r15/slope11–20;34shadowclients tại1/2/5/10/15/20, external34 tại1/10/20 chỉ evaluator, không vào train/Q.
@@ -88,5 +88,5 @@ Workercodex-long-jobs poll1200s, không modelpollwaiting; startup W&B/logs → t
 `audit_o20.py` giữ fullsource/CM/finite/probe/lag checks M/N, thêm rawQ/target từng snapshot vs frozeninput,
 giữ Q_live tách khỏi Q_used và báo cảhai cách tính byte. COMPLETE/exit0 không thay audit đủ8×20round.
 ERROR vẫn collect terminal để giữ bằng chứng, không cancel kernel khỏe hoặc launchtrùng khi push chưa rõ.
-Manifest/runtime/ownership ở [continue](../operations/continue.md). Reference FD/KD vẫn như [method](method.md),
+Manifest/runtime/ownership ở [continue](../../../docs/operations/continue.md). Reference FD/KD vẫn như [method](../../../docs/research/method.md),
 replay/hoán vị là chẩn đoán dự án, không thêm paper chưa triển khai hoặc gọi reproduce phương pháp gốc.

@@ -4,7 +4,7 @@
 Nguồn: CM/probe/Q của16run đã audit, [kết quả/10metric](results-m20.md). Đây là phân tích hậu nghiệm; không chọn HP/best round theo test, không thay protocol.
 Tái tạo: `python scripts/diagnose_m20.py`; JSON/figure tại `runs/diagnosis-m20/`. Input fingerprint gồm3manifest evidence + batch/Q/count/support. Không sửa artifact DVC đang push.
 
-![M20 mechanism diagnosis](figures/m20-mechanisms.png)
+![M20 mechanism diagnosis](../../../docs/research/figures/m20-mechanisms.png)
 
 ## 1. Điểm tổng che đánh đổi giữa các lớp
 

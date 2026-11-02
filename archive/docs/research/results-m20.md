@@ -1,12 +1,12 @@
 # M20 — kết quả và chẩn đoán, 01/11/2026
 
 **16/16 run version1 hoàn tất và audit đủ20round.** Own-test từng xe là chính; chưa chốt phương pháp tổng.
-Full5343xe, cosine50, seed42/43, DAGSNetW1; [thiết kế đãkhóa](screening-m20.md), [cơ chế](method.md).
+Full5343xe, cosine50, seed42/43, DAGSNetW1; [thiết kế đãkhóa](screening-m20.md), [cơ chế](../../../docs/research/method.md).
 
 ## Bằng chứng và phạm vi
 
 Pull1360file/12,371,633,095B (11.522GiB),56artifactđích/run. Source/config/LR/IDs/support/2×T4/compile2rank,320testCM,96trainCM,3264shadowprobe và320snapshot PASS. Qlag/fp16codec/synthetic-supportweight và externalpoolhash được đối chiếu từartifact. Không fullprivatebank/predictionreplay/exactresume hoặc fullcontentfingerprintdataset.
-Bản làm việc nhẹ tại `evidence/m20`, `evidence/m20-summary`, `evidence/research-data`; snapshotđầyđủ khôi phục theo [backup](../operations/backup.md).
+Bản làm việc nhẹ tại `evidence/m20`, `evidence/m20-summary`, `evidence/research-data`; snapshotđầyđủ khôi phục theo [backup](../../../docs/operations/backup.md).
 
 ## Own-test tại round20
 
@@ -34,7 +34,7 @@ Accuracy=precision_micro=recall_micro=recall_weighted=f1_micro trong single-labe
 
 Gatecontrol tăngF1r15→20 +.003102/+.003058; noReal +.002834/+.002796. Fallback chỉ+.000179/−.000213. Không bão hòa đồngloạt; mức tăng chậm vàranking phụthuộc endpoint. Gatexe<256 từkémaugmentationr10 sanghơn khoảng+.00567/+.00555r20. Không chọn best-round.
 
-![Own-test learning and low-data cohorts](figures/m20-curves.png)
+![Own-test learning and low-data cohorts](../../../docs/research/figures/m20-curves.png)
 
 Qargmaxđúng chưa nghĩa teacher mạnh: tạiQr13, timeDelaytrueprob≈.49 vàbenign≈.47. Từ r14 bật lại realKD và đổi synthetic hard→soft cùnglúc; F1timeDelay giảm≈.07 ở cảhai seed. Qr14 sai→r15hardfallback phục hồi; Qr15đúng→r16giảm lại. Bảng dùng đúngteacherQr−1, không lấyQr đểgiải thích trainingr. Đây là bằngchứngtheothờigian, chưa tách nhân quả hai kênh.
 
@@ -76,4 +76,4 @@ Q1088B/xe/r +3311744Bbootstrap =3333504B/xe/20r; augmentation3311744B. Bootstrap
 ## Kết luận có giới hạn và bước tiếp
 
 Hai seed vànhiềubatchđãđọc officialtest; không significance hoặc r>20/mixedarchitecture/contactdrop proof. Train+valđãfit, không independentvalidation. Không rawsharing nhưng chưa formalDP/secureaggregation.
-Ưu tiên đối chứng tách chuyểnđổi realKD/synthetic, sauđó tách targetmixture khỏi realKDweight. Kiểm nội dung offdiagonalQ cóutility hơn chỉlabel-smoothing trước khi tăngpacket hoặc đổigenerator. Chi tiết [diagnosis](diagnosis.md); backup/cleanup xong mới khóa batch tiếp. Chưa launchthêm.
+Ưu tiên đối chứng tách chuyểnđổi realKD/synthetic, sauđó tách targetmixture khỏi realKDweight. Kiểm nội dung offdiagonalQ cóutility hơn chỉlabel-smoothing trước khi tăngpacket hoặc đổigenerator. Chi tiết [diagnosis](../../../docs/research/diagnosis.md); backup/cleanup xong mới khóa batch tiếp. Chưa launchthêm.

@@ -28,7 +28,7 @@ Step floor 16 = số bước của xe 1024 dòng ở batch 64, cố định trư
 |---|---:|---:|---:|---:|
 | stream (control) | 1.655.872 | 1.655.872 | 544/544 | 3.333.504 |
 | synth_nckd, step_floor | như control | | 544/544 | 3.333.504 |
-| boot_compact | 270.999 | 729.408 | 544/544 | 1.022.167 |
+| boot_compact | 271.031 | 729.408 | 544/544 | 1.022.199 |
 | replay/live real_nckd | như Q mixed_input | | 33.344/33.344 | 4.645.504 |
 
 Uplink compact = 64 (count) + 73.847 (histogram thưa, trung bình đo offline, không mất mát) + 197.120 (tổng hiệp phương sai fp32).

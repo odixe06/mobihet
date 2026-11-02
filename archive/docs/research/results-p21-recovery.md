@@ -3,7 +3,7 @@
 **Hybrid hơn proxy thuần và inputensemble cùng bank về pooled F1, nhưng vẫn dưới streamingclassQ.**
 Xe<256mẫu chưa hơn proxy/ensemble nhất quán. Chưa chọn hybrid làm phương pháp chính hoặc tăng lực KD cho mọi xe.
 
-Đây là bổ sung cho [phân tích P20 ngày01/11](results-p20.md), không ghi đè artifact, closure hoặc báo cáo cũ.
+Đây là bổ sung cho [phân tích P20 ngày01/11](../../../docs/research/results-p20.md), không ghi đè artifact, closure hoặc báo cáo cũ.
 OriginalP21 vẫn FAIL trước r1; `accanniez/mh-p21-hybrid-s43-recovery1/1` là P21R1/logicalP21/C10seed43,
 fresh r1–20, không resume. Kết hợp31run cũ với recovery: đủ32logicalarm/16cell×2seed tại endpoint20.
 
@@ -49,7 +49,7 @@ Số xe giảm đọc cùng support và độ lớn delta; đây không signific
 Trên1555absenttestrow của xe nhỏ, C10 accuracy=.527331/.538264, vẫn dưới C2=.533119/.543408;
 mean/p10 tốt hơn không tự bảo toàn lớp chưa thấy.
 
-![C10 đủ hai seed, so C2 và C8](figures/p21-recovery.png)
+![C10 đủ hai seed, so C2 và C8](../../../docs/research/figures/p21-recovery.png)
 
 Band=min–max hai seed, không confidenceinterval. Hybrid còn tăng r15→20:
 pooled+.002984/+.000832, meanxe<256+.030445/+.034239. Chưa có plateau đồng loạt.
@@ -104,9 +104,9 @@ replay cùngtrajectory còn cần để tách feedback khỏi support. [Đề xu
 
 Hai seed/20round, officialtest đã đọc nhiều batch: exploratory, không freshconfirmatorytest hoặc proof50round.
 Benign/timeDelay featureoverlap, worldcontextshortcut và Sybilprior8.80%train→17.67%test vẫn là caveat
-([dataset](../../knowledge/dataset.md)); chưa tách overfit khỏi temporalshift bằng validation độc lập.
+([dataset](../../../knowledge/dataset.md)); chưa tách overfit khỏi temporalshift bằng validation độc lập.
 Không rawlocalrows/features/per-rowlabels/privateweights trong FLmessages; chưa formalDP/secureaggregation hoặc mixedarchitectureproof.
-Reference gắn đúng thành phần C8/C10 tại [method](method.md): adaptationserverdistillation, hybridhardlabel là giả thuyết riêng.
+Reference gắn đúng thành phần C8/C10 tại [method](../../../docs/research/method.md): adaptationserverdistillation, hybridhardlabel là giả thuyết riêng.
 
 Tái tạo: `python scripts/analyse_p21_recovery.py` trong envnckh; giữ nguyên báo cáo/source P20 gốc và failureP21.
 Fullprecision: `runs/p-study/analysis-p21-recovery/{analysis.json,metrics-all-rounds.csv,verification.json}`.

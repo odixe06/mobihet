@@ -2,7 +2,7 @@
 
 Owner01/11 ủy quyền nhiều kiểm nghiệm song song, gồm đối chứng, giữ clientmodel chung repo benchmark.
 V1 chỉ tham khảo66feature/20–100client, không chuyển sốF1/ngưỡng/kết luận nguyên nhân sang v4.
-[Audit nguồn](prior-evidence-p20.md), [bằng chứng O](results-o20.md), [protocol](protocol.md).
+[Audit nguồn](prior-evidence-p20.md), [bằng chứng O](results-o20.md), [protocol](../../../docs/research/protocol.md).
 
 ## Quy tắc chung và cổng trước launch
 
@@ -120,11 +120,11 @@ Poll1200s bằng codex-long-jobs, không modelpollwaiting; earlyterminal đượ
 
 ## Reference đúng thành phần
 
-ClassQ/KL kế thừa [method](method.md). Perinputconsensus và serverensemble→proxy là adaptation của
+ClassQ/KL kế thừa [method](../../../docs/research/method.md). Perinputconsensus và serverensemble→proxy là adaptation của
 [FedMD §2.2](https://arxiv.org/html/1910.03581v1#S2.SS2) và [FedDF §3](https://arxiv.org/html/2006.07242v3#S3),
 khác bài gốc: syntheticcopula seed thay publicdataset, không uploadprivateweights, weightedprobabilities thay logitmean,
 16class/5343client và protocolDAGSNet của dự án. Không gọi reproduce nguyên bài hoặc chuyển gain paper sang VeReMi.
 Reference chỉ gắn code đã kiểm local/cell tương ứng; remotecompletion/utility chỉ sau collectaudit.
 Projection/margin/strength/hybridtarget là giả thuyết dự án, không gán tên paper chưa triển khai.
 
-Source/batch/notebookSHA và ownership runtime ở [continue](../operations/continue.md); file manifest khóa sẽ ghi sau preflight.
+Source/batch/notebookSHA và ownership runtime ở [continue](../../../docs/operations/continue.md); file manifest khóa sẽ ghi sau preflight.

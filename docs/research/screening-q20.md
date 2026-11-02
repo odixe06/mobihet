@@ -1,6 +1,6 @@
 # Q20 — streaming, inputtarget, serverweight và clientreception
 
-Owner yêu cầu bắt đầu các kiểm nghiệm theo [đề xuất sau P](proposed-method-p20.md).
+Owner yêu cầu bắt đầu các kiểm nghiệm theo [đề xuất sau P](../../archive/docs/research/proposed-method-p20.md).
 Batch đầu16run/8cell×seed42/43,20round fresh/cosine50/full5343/DAGSNetW1/batch64/1epoch,
 AdamWreset/AMPfp16/clip1 như [protocol](protocol.md). Own-test từngxe, đủ10metric mỗi round.
 Giữ train+val37.361.273/test9.347.679; không dùng test chọn HP hoặc sourceexpert.
