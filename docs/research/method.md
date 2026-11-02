@@ -19,6 +19,10 @@ Mục tiêu: từng xe học tốt trên own-test, nhất là ít dữ liệu/no
 - Client: augmentation, softtarget, realgate, fallback, uniform/local support mixture; loss outer coefficient1.
   Localρ=64/(64+n_kc), lớp ít mẫu nhận Q nhiều hơn. Đây là giả thuyết chẩn đoán, không bảo đảm có ích.
 - Chi tiết thiết kế đã khóa: [screening-m20](screening-m20.md); kết quả ở [results-m20](results-m20.md).
+- N giữ nguyên source/loss/protocol, hoàn tất factorial realKDoff/gate × syntheticsoft/fallback:
+  [screening-n20](screening-n20.md), [results-n20](results-n20.md). Reference FD/KD bên dưới áp dụng cùng thành phần trong N0–N7.
+- [O20](screening-o20.md) giữ code client/codec N, thay downlink bằng lịch Q train-only N đã audit để chẩn đoán.
+  Uplink live vẫn collect; Q_live không dùng feedback. [Kết quả](results-o20.md) đủ8×20; replay chưa là phương pháp liveFL hoặc bằng chứng giảm byte.
 
 ## Chi phí và giới hạn
 
@@ -37,7 +41,26 @@ Chỉ reference cơ chế đã có code và run; không coi trích dẫn là b�
 | [Jeong et al., FD, 2018; §2/Algorithm1](https://arxiv.org/html/1811.11479v2#S2) | M2–M15 gửi mean outputsoftmax theo trueclass, nhận teacherrow cùng lớp | Bài gốc gọi output đãsoftmax là logitvector, teacher loại chính client và trung bình peer; M dùng Q chung gồm self, weighted n/sqrt(n), fp16, LA và syntheticcopula. Là adaptation, chưa reproduce FD gốc. |
 | [Hinton et al., KD, 2015; §2](https://arxiv.org/html/1503.02531v1#S2) | CEreal + KL từ softtarget trong M2–M15; augmentation M0/M1 là noKDcontrol | M dùng T=1 và teacher theo lớp; bài gốc distill phân phối theo từng input. KL có cùng studentgradient với softCE khi target cố định; không tái tạo toàn bộ teacher/model của bài. |
 
-Copula bootstrap/gate/fallback/supportmixture/server sqrt(n) là thiết kế đang kiểm của dự án; kết quả nằm trong M20.
+Copula bootstrap/gate/fallback/supportmixture/server sqrt(n) là thiết kế đang kiểm của dự án; kết quả ở M20 và N20.
 FAug cùng bài FD yêu cầu upload seed samples để train GAN; **không áp dụng** trong phương pháp hiện tại.
 DAGSNet thực sự dùng cho mọi M, nguồn và deviation tại [đặc tả kiến trúc](../../knowledge/dagsnet.md).
 Bài báo/ý tưởng chưa triển khai không đưa vào bảng reference phương pháp đã thử; đề xuất giữ ở [diagnostic-next](diagnostic-next.md).
+
+P20 gốc31run đủ20round/P21r0; [kết quả gốc](results-p20.md) và [transfer từngxe](p20-client-transfer.md).
+[Recovery C10seed43](results-p21-recovery.md) đã audit20round: hybrid hơn proxythuần pooled cảhai seed nhưng vẫn dưới streamingclassQ.
+[Đề xuất pipeline](proposed-method-p20.md) giữ streamingclassQ, kiểm thêm
+support/inputtargets/serverreliability/reception từngkhâu; chưa triển khai hoặc nhận method tổng.
+[Thiết kế](screening-p20.md) gắn reference đúng thành phần:
+
+| nguồn | thành phần P đã chạy và audit | deviation |
+|---|---|---|
+| [FedMD, Li & Wang2019, §2.2](https://arxiv.org/html/1910.03581v1#S2.SS2) | C7 trao đổi output trên sharedsyntheticbank thay classmean | copula refresh/r thay publicdata, không publicpretraining, classcountweights, probabilityfp16 thay logitmean; không reproduce FedMD |
+| [FedDF, Lin et al.2020, §3](https://arxiv.org/html/2006.07242v3#S3) | C8/C9/C10/C14 serverproxy học aggregateoutput | privateweights không upload, seedcopula thay public/unlabeledpool, warmstartserver/BNsynthetic; C10hybridlabel là giả thuyết riêng, không công thức paper |
+
+Clientmodel mọi P giữ DAGSNetW1 như repo benchmark. Serverproxy riêng không ràng buộc kiến trúc client về mặt schema;
+batch chưa kiểm modeltrộn. ClassQ và proxy là các đối chứng song song, chưa chọn teacher cuối.
+
+[Q20](screening-q20.md) tiếp nối C2/C7: giữ onlineclassQ, mixed32stream/32bank, inputensemble count/sqrt
+và realKD/margin/strength controls. [Kết quả Q](results-q20.md) đủ16×20: inputtarget nâng weakcohort,
+margin nâng pooled/mean/p10 nhưng vẫn hại absent/timeDelay; sqrtinputweight chưa giúp. Chưa method tổng.
+Không serverproxyfit hoặc modeldownlink Q, không gán FedDFproxyfit cho Q; inputconsensus vẫn là adaptation FedMD ở trên.

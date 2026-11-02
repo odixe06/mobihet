@@ -24,9 +24,21 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 - Hai rank giữ privatebank khác nhau: fullresume phải lưu từngrank, cùng round; budgetstop cần đồng thuận tránh deadlock.
   Snapshot nhỏ loại privateweights, không phải checkpoint đầy đủ. Exactresume RNG chưa được chứng minh.
 - CEreal dùng LA, KD dùng rawlogit có chủ đích; khác hệ xác suất chưa tự chứng minh bug.
+- V20 V0/V1 dừng r1 tại guard`skipped_frac==0` sau2T4compilePASS. P0/P1 đãaudit có skip rất nhỏ mọiround,
+  còn P2/P3augmentation có skip ởroundmuộn: localfixture skip0 không chứng minh fullnetwork skip0.
+  `core/local.py` dùng fixedloss_scale4096, không dynamicGradScaler; chưa được gọi skip là warm-up.
+  OriginalVfailed mất skipfraction vì guard ném lỗi trướclog. ProbeT4full5343 mới đo3/513368 và5/513368,
+  mọi xe có appliedstep, weights/BN/loss finite; đây không giá trịkhôi phục của hai failuregốc.
+  Một xe193trainrow vẫn mất1/4step: globalfraction nhỏ không bảo đảm mọi xe ítảnhhưởng.
+  RecoveryCE chỉ sửa guard về common≤1% +positiveapplied từngxe +finite, lưucounters mỗiround;
+  không đổi optimizer/AMP/fixedscale hoặc gọi rootcauseoverflow đãsửa. Giữ oldfail và dùng slug/source riêng.
 - Shadowprobe34xe là postepochfp32/trainBN/dropout0 trên clone, không actualAMPgradient hoặc clippingfraction toàn mạng.
 - Audit phải dùng artifact thật: sourceoverlay/config/LR/IDs/support, CM→10metric, finite tensors/teacherlag.
   Dataset hiện chưa có fullcontentfingerprint và chưa prediction→CM replay; phải nói rõ phạm vi.
+- Q20: chuẩn hóa cùng fp16body trên CPU/CUDA có thể lệch2.384e-7, vượt atol2e-7 dù target lưu đúng.
+  Probe100snapshot T4 khớp decodeCUDA local; auditor dùng khoảng theo từng entry từ gamma16 của sumfp32 và u của division,
+  giữ exactbody/aggregate/source/signature checks, không nới atol chung. Test storedboundary và targetcorruption phải cùng qua.
+  Đây là roundingconsistency, không proof exactCUDAreplay mọi runtime hoặc lý do trainlại.
 
 ## Những hướng đã thử và điều cần giữ
 
@@ -67,3 +79,89 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
   Muốn kiểm nội dung Q phải tách các confound này, giữ rawgate/lịch teacher phù hợp.
 - Negative logitgradient không đồng nghĩa parametergradient tổng âm hoặc KD có hại. KL/hardCE khác entropyconstant; trainloss thấp không đủ chứng minh học tốt hơn.
 - 1epoch không là cùng số bước: xe nhỏ2–4step/r. Tăng KD dựa count chưa thay được phân tích lượng tối ưu và generalization.
+
+## N20 factorial đã audit
+
+- [N20](docs/research/results-n20.md): realKD giảm timeDelay ở cả soft/fallback nhưng nâng other15/mean/p10.
+  Không tắt/tăng KD đồng loạt từ pooled alone; fallback gain nhỏ chưa nâng đồng đều client/cohort.
+- Fallback khi realKDoff vẫn đổi target đột ngột và dao động sớm. Bác bỏ “chỉrealKD gâydaođộng”;
+  bỏreal không tự xóa chatter, nhưng C vẫn học r15→20. Không gọi tất cả client/model plateau sau20round.
+- Realgate13đóng vẫn giảm timeDelay ngayr2 khi bật realKD các lớp khác. Cần tách crossclasseffect/feedback;
+  sửa confidence/gate13 riêng chưa chứng minh đủ. Teacherargmax đúng hoặc gate lớp yếu bị chặn không bảo vệ mọi decisionboundary.
+- N matchedsameclient/class train/testgap vẫn lớn ở xe nhiều mẫu; không quy toàn bộ cho thiếu lớp hoặc ít step.
+- Factorial liveFL đo total effect vì Qtrajectory khác; replay cùngteacher cần thiết để tách nội dung/tiếp nhận khỏi feedback.
+  Hai seed/sessionr1spread không là significance/noisebound; không chọn C vì pooled hơn vài phầnvạn.
+- Replay: reencode Q đãnormalized có thể lệch~1e−4; giữ Q nguồn, phục hồi packet tương đương và kiểm decode GPU
+  trước train. CPU/CUDA reduction có thể lệch1ULP; không sửa teacher để ép CPUbitexact. Permutation phải khóa SHA theo runtime.
+- Replay preload toàn lịch teacher là chi phí setup riêng. Không vừa tính cachehistory vừa tính lại từng downlink,
+  hoặc coi packet-equivalent là đo liveFL/contactcost.
+
+## O20 replay đã audit đầy đủ
+
+- [O20](docs/research/results-o20.md): fullQ/realgate hơn noReal pooled cảhai seed khi cùng teacher nguồn,
+  nhưng vẫn giảm timeDelay và tail/xe nhỏ chưa lợi nhất quán. Không biến kết luận Nlive thành “realKD luôn hại pooled”.
+- ReplayrealKD vẫn hại13 từr2 dù gate13đóng và Q chung; không cần feedback để có hại cục bộ. Đổi lịchteacher
+  từ livegate sang nguồn noReal phục hồi một phần timeDelay; không phân rã causal hoặc gán mọi lỗi cho feedback/gate13.
+- FullQ hơn diagonal-preservinguniform và entropy-preservingpermutation pooled cảhai seed. Có utility của offdiagonalidentity
+  trong cấu hình này; không bỏ offdiagonal trước proofmới. Uniform lại lợi meanxe<256/timeDelay: pooledutility không đồng đều.
+  UniformO là chia đều offdiagonal/giữdiagonal; khác uniformM12 trộn hard/softρ=.5, không cộng gain hoặc coi cùng can thiệp.
+- R0replaycontrol đạt tripwire so N0/N1 ở cảhai seed, không bitexact hoặc significance. R1 vẫn học r15→20;
+  gap train/test vẫn lớn cả xe nhiều mẫu. Chưa chọn phương pháp tổng, liveFL/mixedarchitecture/r>20 chưa kiểm.
+
+## Đối chiếu nguồn trước P20
+
+- Owner xác nhận v1 chỉ tham khảo66feature/20–100client, không chuyển gain/ngưỡng/causalclaim sang v4/5343xe.
+  V1 teacher tốt hơn nhưng transfer/online không giữ gain; BNsplit/head-only đã FAIL. Không coi teacher là bottleneck duy nhất.
+- V4 scaler định nghĩa6NaNflags0/1 và mapping featurethiếu→0. Audit bounded419840trainrow không vi phạm;
+  fixture copula hiện sinh100%cờ khác0/1, projection đưa về0%. Đây là fidelityconstraint, **chưa utilitygain**.
+- Teacher classQ phụ thuộc trueclass, không phải classifier inputdependent. Không chấm Q[y_true] rồi so accuracy với neuralproxy
+  như cùng nhiệm vụ. P dùng evaluator-only proxy/studentCM trên cùng diagnosticrows, không dùng để chọn luật/HP.
+- DAGSNet/grouped/protocol hiện khớp byte repo benchmark. LwFedNIDS đãprune39494parameter và V2X-HtFL461456parameter
+  có headriêng trong kết quả cũ; tách khỏi bảng tham chiếu đồng nhất395408parameter. [Đối chiếu](docs/research/benchmark-r20-reference.md).
+
+## P20 — teacher, support và clientobjective
+
+- [P20 gốc](docs/research/results-p20.md) đã đóng gate32run:31×20round/P21r0. [Recovery P21](docs/research/results-p21-recovery.md)
+  bổ sung seed43 đủ20round, không thay originalfailure bằng probe1round hoặc gọi freshretry là resume.
+  P21 lỗi số học trước serverfit không là utilityFAIL của hybrid; guardPASS/recovery không chứng minh rootcause đã sửa.
+- Augmentation là phần gain lớn nhất so localCE; local-only có accuracy0 trên absentrows xe nhỏ, synthetic giúp đáng kể.
+  SoftclassQ vẫn thêm utility pooled cảhai seed; không gọi learnedteacher vôích hoặc augmentation zeroFL.
+- Cùngbank, inputtarget hơn classmean cảpooled/low256/p10; nhưng bankhard vẫn thua streaminghard pooled,
+  inputteacher vẫn dưới streamingclassQ. Teacherresolution và sampling/support là hai vấn đề cần tách; livecontrast không cô lập feedback.
+- Serverproxy C8 chưa hơn inputensemble C7; trên34xe diagnostic, neuralteacherF1 thấp hơn private student ở cùng realrows.
+  FitKL/syntheticagreement không chứng minh realteacherquality. Paired teacher đúng/student sai là cơ hội, không count lỗiKD đã sửa.
+- Modelcarrier vs outputcarrier cùngbank qua tripwire cảhai seed, không bitexact. Model tốn nhiều byte hơn mà không utility ổn định;
+  streamingquery qua proxy còn giảmpooled cảhai seed. Không mặc định tăng kích thước teacher hoặc downweights sẽ tốt hơn.
+- BinaryrealKD tăng meanxe nhỏ nhưng giảm absentclassaccuracy và timeDelay cảhai seed. Margin hơn binary/strength pooled,
+  nhưng low256/p10 không lợi cảhai seed và absent vẫn dưới noReal. Confidence lớp hoặc ítdata chưa đủ để ép mọi xe theo teacher.
+- C2 và xe nhỏ vẫn tăngr15→20; C9pooled giảm trong khi meanxe nhỏ tăng. Không gọi một curve là plateau toàn hệ thống.
+  Gap seenclass train/test tồn tại cả xe>=4096; chưa tách overfit/temporalshift bằng in-sampletrain.
+- Projection đúngNaNflag không tăng pooled ổn định. Không coi syntacticconstraint là jointmanifold hoặc nguyên nhân utility chính.
+  Mixture/countρ, postepochQ, BNsplit/head-only và v1 khácdataset đã có bài học; không đổi tên để thử lại thiếu hypothesis mới.
+- Bootstrap vẫn chi phối compactQ20round. Báo đủ setup/two-waybytes; timer server/scoring nằm trong train,
+  không cộng lại hoặc gọi walltime2T4 là latency xe. Hai seed/repeatedofficialtest không là significance/confirmatoryproof.
+- [Pairedclientdiagnostic](docs/research/p20-client-transfer.md): thêm softQ hơn augmentation pooled nhưng2207/2240xe giảmF1,
+  chỉ~38%xe<256 tăng. Margin so C2 vẫn có1059xe giảm cảhai seed. Mean/p10/cohortgain chưa là mọi xe tốt lên;
+  số xe giảm phải đọc cùng độ lớn delta/support, không chọn method từngxe bằng officialtest.
+- C10hybrid (.5ensemble+.5onehot khi fitproxy) hơn C8pooled+.010208/+.008540 hai seed; vẫn dưới C2streamclassQ
+  −.002447/−.004481. Xe<256 chưa hơn proxy/ensemble nhất quán; so C2 có1412xe giảm cảhai seed.
+  Cải thiện objective server có utility trong setting đã thử, không đủ chọn proxy làm teacher mặc định hoặc tăng KD cho mọi xe.
+  Teacher C10 trên34xe diagnostic vẫn dưới student, teacherđúng/studentsai không phải count lỗi KD đã sửa.
+
+## Q20 — ba khâu và độ tin cậy từng xe
+
+- [16run Q20](docs/research/results-q20.md) đủ20round/hai seed, querycontrol−stream qua tripwire, nhưng fullremote CM/Q
+  không bitexact dù localfixture bitexact. Querycontrol cũng có1227xe delta âm cảhai seed; không biến negativecount
+  thành causalKDfailure hoặc dùng hai seed làm noisebound/significance. Báo thêm độ lớn/support và repeatedcontrol.
+- Mixedsupport dùng classQ riêng chưa nâng pooled/p10 ổn định. Cùng support, inputtarget nâng meanxe<256/p10 cảhai seed;
+  so querycontrol, pooled gần giữ nguyên, meanxe nhỏ tăng. Có utility resolution/weakcohort, chưa chứng minh utility/byte thắng compactQ.
+- Sqrtweight chỉ cho inputensemble giảm pooled cảhai seed, xe nhỏ trái dấu; gain sqrtclassQ ở M không chuyển sang mọi teacher.
+  Count/confidence không là expertquality; cần validation sạch trước qualityweightserver.
+- Margin trong mixedinput nâng pooled/mean/p10 so stream, nhưng absentaccuracy xe nhỏ và timeDelay giảm.
+  RealKDtradeoff tồn tại sau inputresolution; teacher tốt theo classargmax/agreement chưa đủ bảo vệ clientobjective.
+  Live contrasts gồm feedback; receptionreplay cùngQ/inputhistory mới tách được feedback khỏi cách học.
+- Margin có1005xe delta âm cảhai seed so stream, nhưng querycontrol cũng có biến động percar lớn.
+  Mô tả giảm>.05 cảhai seed là75xe margin/29xe control, không causalcount hoặc CI.
+  Mean/p10 tăng và std giảm không bảo đảm mọi xe/absentclass tốt hơn.
+- Xe nhỏ vẫn tăngr15→20; gap matchedtimeDelay còn cả xe>=4096 và control. Chưa plateau chung hoặc phân biệt overfit/shift
+  khi train+val đãfit. Q không proxyteacher, không có realclassifierteacherqualitydiagnostic để gọi agreement là accuracy.

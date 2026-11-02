@@ -1,0 +1,61 @@
+{
+  "batch_sha256": "9f593643da95e856ecd1c993308a7e4db2ccd6952c6a81003eb809bb7f7c7510",
+  "batch": [
+    {
+      "arm": "P21R1",
+      "cell": "C10",
+      "mode": "proxy_hybrid",
+      "account": "accanniez",
+      "slug": "mh-p21-hybrid-s43-recovery1",
+      "version": 1,
+      "hp": [
+        "arm=none",
+        "group_rows=4096",
+        "synth=copula",
+        "synth_rows=64",
+        "q_codec=mean_fp16",
+        "kd_weight=fixed",
+        "diagnostics=true",
+        "diagnostic_ids=[506,0,1571,929,3303,2048,4752,4269,504,1,1587,935,3304,2043,4754,4266,512,29,1566,904,3306,2052,4757,4267,1547,885,3318,2357,4748,4265,1548,886,4747,4279]",
+        "diagnostic_rounds=[1,2,5,10,15,20]",
+        "teacher_diagnostics=true",
+        "external_diagnostics=true",
+        "q_collect=online",
+        "q_agg=count",
+        "kd_support=off",
+        "real_kd=false",
+        "real_kd_gate=false",
+        "seed=43",
+        "synth_target=soft",
+        "anchor=off",
+        "kd_bins=1",
+        "no_kd=false",
+        "study_mode=proxy_hybrid",
+        "teacher_rows=1024",
+        "proxy_steps=200"
+      ],
+      "base_sha": "8b27c02fdf840e4e2f8639d4e233f83a0efd745b",
+      "source_sha256": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+      "overlay_sha256": {
+        "methods/mobihet.py": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+        "methods/mobihet_diagnostics.py": "8d32a58bb09baf6820352158453ea77aa958ce92ff75b747def7e9c1ed393f24",
+        "methods/mobihet_teacher.py": "f8c4df77c20b1d6fac9120fd0438448c4f993eb9e6ad582d987cac46cb9aa465",
+        "methods/mobihet_external_diagnostic.py": "38ca087bb05d64b545fc012e4ca82737b5f7bb24aa4cb080558cb75ed7358583",
+        "scripts/run_fl.py": "631804cae518c10b1bb1611c6546aa0d453fb762509639381a6200b5e25038af",
+        "methods/mobihet_study.py": "cdb7527c25a6d8b959691e1272fa454980bc795507891d4b9d0a89f7a69bf975",
+        "methods/mobihet_study_wire.py": "4ae51a06bf0b0d39691dd2d46b8df8f8ee8f935121f09ad8cd61dd4aa13ce448",
+        "methods/mobihet_study_diagnostics.py": "9db42b123bb99b66fc7cd8c20a23310d3ee555cee682bc3398166ca9a1d7adf8",
+        "scripts/run_p21_recovery.py": "ae88a86d963817ebbf6dede31f9e9e337a72ebd39ffe4330dc1efe611681884e"
+      },
+      "cap_hours": 7,
+      "endpoint": 20,
+      "lr_schedule_rounds": 50,
+      "notebook_sha256": "69b90258ab100041703e3d7caa72b7025ced975c155aa50767cb7323aa44b823",
+      "original_arm": "P21",
+      "preflight_sha256": "e9610df2703dcdb5303eb39b56508b91a2d267dbfd3e2916897f4e73101dd93a",
+      "restart": "fresh r1, no compatible checkpoint exists",
+      "guard": "strict compile gate + nonfinite metadata; finite path bitexact locally"
+    }
+  ],
+  "scope": "One authorized missing seed, same locked P21 configuration; push/audit receipts required"
+}

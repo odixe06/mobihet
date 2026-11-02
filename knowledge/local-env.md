@@ -26,6 +26,6 @@ python scripts/run_local_guarded.py python <script> <args>   # watchdog dừng k
 - Owner 29/10: task **< 1 giờ chạy local**, task dài chạy Kaggle (2×T4, 16 account). Ước lượng thời gian/RAM trước khi chạy.
 - Local không chứa nổi dataset đầy đủ: 46,7M dòng × 77 cột fp16 = 7,2 GB RAM, GPU 4 GiB. Local dùng tập con (vài trăm client)
   hoặc stream theo file. Kaggle: cả train (5,75 GB fp16) lẫn test (1,44 GB) nằm thường trú trên mỗi T4 (15 GB).
-- sm_86 local không chứng minh hành vi compile/AMP trên T4 sm_75; T4 không có BF16 ⇒ AMP fp16 + GradScaler.
+- sm_86 local không chứng minh hành vi compile/AMP trên T4 sm_75; T4 không có BF16. FLcore hiện dùng AMPfp16 với fixedloss_scale4096, không dynamicGradScaler.
 - Env `nckh` dùng chung: không cài/gỡ package, không ghi đè `mobihet-compat.pth` (của repo `mobihet`).
 - Dựng lại env trên máy mới: `conda env create -f environment.yml` (không chạy trên máy đã có `nckh`).

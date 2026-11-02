@@ -59,7 +59,7 @@ def ce_loss(logits, y, mask):
 class Ctx:
     """What a method's loss sees at one grouped step. Rows >= G are padding clients (never active): per-client tensors a
     method brings must be padded with ctx.pad(t) so every grouped step has one compiled shape."""
-    __slots__ = ("P", "B", "x", "y", "mask", "rows", "clients", "step", "flat", "G", "Gfix")
+    __slots__ = ("P", "B", "x", "y", "mask", "rows", "clients", "step", "flat", "G", "Gfix", "active")
 
     def pad(self, t):
         return pad_rows(t, self.Gfix)
@@ -89,6 +89,10 @@ def local_epoch(lay, flat, bufs, data, clients, cfg, hp, lr, gen, loss_fn=None, 
     n = (off[clients + 1] - off[clients])
     b = slot(n.max().item(), hp["batch"])
     steps = int(math.ceil(n.max().item() / b))
+    # synthetic step floor (method mechanism, default off): every client still sees each local row exactly once; a client
+    # with fewer than `floor` real steps takes extra steps on its synthetic rows only (no BN-buffer update on those steps)
+    floor = hp.get("synth_step_floor", 0)
+    steps = max(steps, floor)
     ctx = Ctx()
     ctx.G, ctx.Gfix = G, group_size(off, clients, hp)
     clients_p = ctx.pad(clients)
@@ -114,7 +118,9 @@ def local_epoch(lay, flat, bufs, data, clients, cfg, hp, lr, gen, loss_fn=None, 
         # contiguous: a slice of the (G, steps*b) schedule has a group-dependent stride, and a stride change is a
         # recompile of the static-shape graph (8 recompiles -> silent eager fallback, Kaggle probe 29/10)
         rows, mask = pos[:, sl].contiguous(), valid[:, sl].contiguous()
-        active = mask.any(1)
+        has_real = mask.any(1)
+        active = has_real | ((s < floor) & (n_p > 0)) if floor else has_real
+        ctx.active = active
         ctx.P, ctx.B, ctx.flat = (leaves[0], bviews[0], flat_p) if one else (leaves, bviews, flat_p)
         ctx.x, ctx.y, ctx.mask, ctx.rows, ctx.step = X[rows], Y[rows].long(), mask, rows, s
         with torch.autocast("cuda", dtype=torch.float16, enabled=hp.get("amp", True) and X.is_cuda):
@@ -134,8 +140,8 @@ def local_epoch(lay, flat, bufs, data, clients, cfg, hp, lr, gen, loss_fn=None, 
         _, ok = opt.step(flat_p, grad, lr, active)
         if Bn:
             nb = lay.flat_bufs(newB) if one else torch.cat([lay.flat_bufs(d) for d in newB], dim=1)
-            bufs_p.copy_(torch.where(ok[:, None], nb, bufs_p))
-        loss_sum += loss.detach() * ok
+            bufs_p.copy_(torch.where((ok & has_real)[:, None], nb, bufs_p))
+        loss_sum += loss.detach() * (ok & has_real)
         skipped += (active & ~ok).float()
         applied += ok.float()
     flat.copy_(flat_p[:G]); bufs.copy_(bufs_p[:G])

@@ -1,0 +1,159 @@
+Snapshot 2026-11-02T03:43:27.971258+07:00; live state: docs/operations/continue.md
+
+# Continue — bàn giao sống, 02/11/2026 — Q20 đang chạy, P21 recovery đã đóng
+
+Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
+
+## Hiện tại
+
+**Q20 được owner ủy quyền; worker launch/watch/collect/audit đang chạy, không gọi launcher thứhai.**
+Job `kaggle-q-v1-watch-collect-20m-20261101`, supervisor22433, deliveryqueue(auto), viewer none,
+ownerthread `01a18d65-e3b8-73f1-80b6-7b66531915da`.
+State `/home/odixe/.codex/long-jobs/jobs/kaggle-q-v1-watch-collect-20m-20261101/state.json`;
+log `/home/odixe/project/mobihet/runs/q-study/worker.log`.
+Xem: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/q-study/worker.log`.
+[Thiết kế Q](../research/screening-q20.md), [manifest](../research/q20-launch.json):16run/8cell×seed42/43,
+stream/querycontrol/mixedclass/mixedinput/inputsqrt/real/margin/strength. Full5343/W1/20round/cosine50,
+train+val/protocol không đổi,64synthetic; chưa utilityQ hoặc validationqualityweight.
+Cap6h/run từ logcontrolP max4.534h;96h+15%=110.4h.15account, dinhan25 hai slot; accanniez/P21 bị loại khỏi Qallocation.
+
+Worker sở hữu `runs/q-study` (trừ preflight/inventory đã đóng), `artifacts/q20`, runtime11overlay trong manifest
+và scripts launch/audit/worker đang dùng: không sửa nóng. Đã kiểm16/16pushreceipt/notebookSHA;
+`launch-complete.json` xác nhận đủ16push, snapshot23:53:13+07=9RUNNING/7QUEUED, startup0/16 cònpending.
+Trạng thái API chưa traininghealth/round1proof. Chỉ `closure.json` sau audit xác nhận sốrun đủ20round.
+Poll1200s; earlypull tối đa4run×8connections, auditserial. ERROR/auditfailure được pull và gửi completion,
+để các kernel khỏe chạy. Sau chẩn đoán dùng `run_q20_batch.py --collect-only` để khôi phục giám sát,
+không gọi lại launch hoặc sửa frozenbatch. Tách retry arm lỗi bằng slug mới và audit, không bỏ bằng chứng cũ.
+
+Qpreflight `q20-local-preflight-20261101` succeeded23:38:52+07, supervisor20698;
+state `/home/odixe/.codex/long-jobs/jobs/q20-local-preflight-20261101/state.json`, log `runs/q-study/preflight.log`.
+35testPASS;16mode/seed×3round trên173train/46test/W1/compiledAMP. Source14file trước/saukhớp,
+reference/query vsC2 weights/BN/Q/method+env+CPU/CUDARNGbitexact; mixedr1bitexact, strictrebuild/state/diagnosticstatePASS.
+`runs/q-study/preflight-verification.json` kiểm actualartifact/source/notebookprivate2T4/11overlay;
+không full5343/T4/utility/exactresume proof. Callbackpreflight chỉ ack, không duplicateworker.
+Thêm3target-routing/gradient/inputsqrt-isolation tests PASS3.54s, không sửa runtime đãfreeze;
+`runs/q-verification-20261101/target-tests.xml`, `tests/test_q20_targets.py`.
+
+Qinventory đầu `q20-quota-inventory-20261101` failed trước prepare/push, supervisor20337,
+log `runs/q-study/inventory.log`: CSV có2recordref rỗng ở minhtrit06, assertowner quá chặt.
+Đã giữ `runs/q-study/inventory-v1.py`, lọc ref hợp lệ theo owner đã introspect;
+job `q20-quota-inventory-fix-20261101` succeeded23:42:59+07/supervisor21166,
+state `/home/odixe/.codex/long-jobs/jobs/q20-quota-inventory-fix-20261101/state.json`, log `runs/q-study/inventory-fix.log`.
+Quota16account/eligible16slotcap6 verified, globalCLI dinhan25 không đổi. Lỗi này không auth/trainingfailure;
+callback cũ không chạy lại inventory/launcher.
+Receipt sau launch: `runs/q-verification-20261101/launch-verification.json` kiểm16push/notebook+metadata/11overlaySHA/38tests.
+Callback local đã xử lý trước delivery: inventoryfail`b0681edf34a5`, inventoryfix`1459c45d3306`,
+preflight`706c1eeb91c2`; ack ở cùng thư mục verification. Khi callback tới chỉ kiểm state/artifact/ack,
+không startjob mới hoặc gọi lại prepare/launch.
+Inventoryfailcallback`b0681edf34a5` đã nhận: kiểm lại lỗi2ref rỗng, inventoryfixsucceeded,
+16pushreceipt và processidentity hai watcherQ/P21; không queryremote/relaunch. Receipt đã ghi thời điểm nhận callback.
+Preflightcallback`706c1eeb91c2` đã nhận: kiểm state/log/14sourceSHA/38test, loadweights-only và strictrebuild
+đủ16localstatefiles finite; hai watcherQ/P21 còn đúng processidentity. Ack có stateSHA tại verification,
+không queryremote/train/relaunch; localpreflight không thay full20roundT4audit.
+Inventoryfixcallback`1459c45d3306` đã nhận02/11: kiểm state/log/marker, quotaSHA khớp manifest,
+eligible16slot và16pushreceipt; hai watcherQ/P21 còn đúng processidentity. Ack đã cập nhật tại verification;
+không queryremote hoặc chạy lại inventory/launch.
+
+**P21R1 đã collect/audit/phân tích đủ20round; không còn watcher P21 cần chạy.**
+Job `kaggle-p21-recovery20-20261101` succeeded03:35:00+07/02-11, supervisor18746,
+ownerthread `01a18d65-e3b8-73f1-80b6-7b66531915da`, deliveryqueue(auto), viewer none.
+State `/home/odixe/.codex/long-jobs/jobs/kaggle-p21-recovery20-20261101/state.json`;
+log `/home/odixe/project/mobihet/runs/p-study/recovery-p21/worker.log`.
+Xem log đã đóng: `tail -n 200 -- /home/odixe/project/mobihet/runs/p-study/recovery-p21/worker.log`.
+Exactref `accanniez/mh-p21-hybrid-s43-recovery1/1`, [manifest](../research/p21-recovery-launch.json), sameHP,
+8overlay cũ + guard; fresh r1→20/cosine50/5343/W1, không resume hoặc numericalrootcausefix.
+`runs/p-study/recovery-p21/complete.json` và reportSHA đã kiểm lại bằng actualartifact;
+`runs/p-study/analysis-p21-recovery/verification.json` khóa46sourcefile/20snapshot/20proxystrictrebuild/CM/guard.
+[Kết quả bổ sung](../research/results-p21-recovery.md), [đủ10metric20round](../research/metrics-p21-recovery.md):
+C10 đã đủ hai seed, hybrid hơn proxythuần pooled nhưng vẫn dưới streamingclassQ; chưa phương pháp tổng.
+Callback`c231b56a318f` đã xử lý, ack `runs/p-study/callbacks/recovery-p21-c231b56a318f.json`.
+Không restart/poll/collect lại từ callback preflight hoặc training; Qworker vẫn giữ source/frozenfiles của nó.
+
+OriginalP0–P31 exactversion1 vẫn31PASS_BOUNDED/P21r0. [Closure](../research/audit-p20.md),
+[phân tích gốc](../research/results-p20.md)/receipt `runs/p-study/analysis/completion-verification.json`
+giữ nguyên31arm/620round/33contrast và SHA báo cáo. Supplement recovery thêm20round,8contrast;
+combined đủ32logicalarm/640round, không ghi đè run lỗi hoặc gọi33attempt là33logicalarm.
+Preflightcallback`4b9b74d31930` đã ack ở `runs/p-study/callbacks/preflight-p21-4b9b74d31930.json`.
+
+## P21 — giữ bằng chứng sự cố gốc
+
+Original `accanniez/mh-p21-proxy-hybrid-s43/1` rank0 compilegateNaN→eager, probabilityupload nonfinite trước r1,
+không CM/snapshot/resume; giữ47source/outputfile tại `runs/p-study/failure-p21/`.
+Localprobe và T4probe1round chưa tái hiện lỗi; recovery20round compiledPASS vẫn chưa chứng minh nguyên nhân đã sửa.
+[Hồ sơ sự cố/probe/retry](../research/p20-numerical-incident.md), [kết quả recovery](../research/results-p21-recovery.md).
+Không chạy lại31run đã audit hoặc launcher32arm để xử lý callback cũ.
+
+## Job đã đóng — chỉ để nhận diện callback muộn
+
+Ownerthread mọi job dưới: `01a18d65-e3b8-73f1-80b6-7b66531915da`, deliveryqueue(auto), viewer none.
+State mỗi job: `/home/odixe/.codex/long-jobs/jobs/JOB_ID/state.json`.
+
+| job ID | kết thúc | supervisor PID | log trong repo |
+|---|---|---:|---|
+| `kaggle-p21-recovery20-20261101` | succeeded03:35:00+07/02-11, audit20round |18746| `runs/p-study/recovery-p21/worker.log` |
+| `p20-analysis-20261101` | succeeded22:25:57+07 |12491| `runs/p-study/analysis/worker.log` |
+| `p20-final-artifact-audit-20261101` | succeeded22:21:31+07 |11055| `runs/p-study/final-audit/worker.log` |
+| `p20-all-arm-audit-20261101` | succeeded22:13:31+07 | xem state | `runs/p-study/recovery-v1/all-arm-audit.log` |
+| `kaggle-p-reboot-collect-20261101` | failed22:12:27+07, gate cuối |3157| `runs/p-study/recovery-v1/reboot-worker.log` |
+| `p21-probe-reboot-collect-20261101` | succeeded21:19:36+07 |3692| `runs/p-study/numerics-t4/reboot-collect.log` |
+| `p20-numerics-probe-20261101` | succeeded16:46:21+07 |83973| `runs/p-study/numerics-probe/worker.log` |
+| `kaggle-p-v1-pipeline-20m-20261101` | failed16:40:30+07, P21ERROR |80320| `runs/p-study/pipeline.log` |
+
+Rebootcollector pull đủ32/32 rồi fail gate25PASS/6QcheckFAIL/P21r0, không downloadfailure.
+Finalaudit sửa checker đã đóng0unresolvedauditfailure; không restart collector/training từ failednotification này.
+Job trước reboot `kaggle-p-v1-recover-collect-20m-20261101` và
+`kaggle-p21-numerics-t4-inventoryfix-20261101` mất process; state running cũ là stale.
+Job `kaggle-p21-numerics-t4-20261101` fail trước push vì nonexistentprivate status trả permissiondenied;
+launcher đã sửa bằng ownlisting đủpage, chỉ một probe đã push. Không launch trùng từ callback.
+
+Callback đã đối chiếu actualartifact và lưu receipt ở `runs/p-study/callbacks/`:
+`7174ef2bc89b`, `46906843d20b`, `5b73f019bf38`, `7046ca7f9b6f`, `2680c561c43f`,
+`024548a199e8`, `92373afca9ff`, `955ad63fc9c0` (callback analysis đã nhận, kiểm lại state/log/11SHA và620round).
+Lệnh đọc log đã đóng, nếu cần: `tail -n 200 -- /home/odixe/project/mobihet/runs/p-study/analysis/worker.log`.
+Không modelpoll/sleep chờ; chỉ worker xác định1200s khi có run mới đãủyquyền.
+
+## Artifact và source cần giữ
+
+- Frozen32run: [manifest](../research/p20-launch.json), `runs/p-study/batch.json`, SHA
+  `46b660866c9fa1fa5c8acbaf01bb74de13ec4b34816c299850ecb59298872308`, baseGit8b27c02,8overlay.
+  Source/config đã chạy không thay bằng HEAD mới.31run có compilegatePASS haiT4,20round/cosine50/5343/W1.
+- `artifacts/p20/SLUG/SLUG`:3613scientificfile/25.283.541.660B tổng;620testCM/620snapshot/186trainCM,
+  diagnostic34xe và externalCM. Không fullprivatebank/resume hoặc prediction→CMreplay/fullcontentfingerprint.
+- `runs/p-study/final-audit/{closure,audit,diagnostic-audit}.json`:31PASS_BOUNDED/P21r0/0unresolved.
+  Auditor mới kiểm interval CPU/CUDAreduction→fp16→normalization;220Qsnapshot/3regressiontestsPASS.
+  Giữ `runs/p-study/recovery-v1/original-audit-p20.py` và logfalseFAIL; không nới atol đồng loạt.
+- `runs/p-study/analysis/{analysis.json,metrics-all-rounds.csv,costs.csv,completion-verification.json}`:
+  31endpoint/620round,33lockedcontrast, matchedtrain/test/cohorts/teacherpaired/byte/time.
+  Tái tạo `python scripts/analyse_p20.py` rồi `python scripts/report_p20.py`, envnckh.
+- ClientDAGSNetW1 đối chiếu `../fl_dagsnet_veremi_v2`;
+  [v1/featuresaudit](../research/prior-evidence-p20.md), [benchmarkr20reference](../research/benchmark-r20-reference.md).
+  V1 chỉ tham khảo khácdataset66feature/20–100xe; không chuyển gain/ngưỡng cũ.
+- M/N/O đều đóng. FullO canonical `artifacts/o20`8run, không dùng subsetearly6run như experimentmới;
+  `runs/o-study/analysis/completion-verification.json`. [O20](../research/results-o20.md), [N20](../research/results-n20.md).
+- CLIglobaldinhan25 không đổi; W&B `21522798-uit/mobihet-v4`, runID=slug. Key chỉ notebookprivate/ignored,
+  remoteversionhistory giữ vĩnh viễn theo quyền cósẵn; không Git/DVC notebook/draftprivate.
+
+## Backup và bước tiếp
+
+Backupjob `mobihet-dvc-backup-20261101` succeeded02:24:44/markerBACKUP_DVC_VERIFIED:
+Git/bundleHEAD8b27c02,68DVCtargets đã kiểm trước cleanup65payload/1913cacheobject;
+[receipt/restore](backup.md). Cloudmountcopy đã kiểm, cloudsync chưa chứng minh.
+**N/O/P mới chưa backup; giữ local, không dọn/xóa hoặc dvcadd snapshotpartial.** Không Git/DVCpush ở pha phân tích này.
+
+1. Để Qworker tiếp tục poll/collect/audit. Khi đủ16run, kiểm paired S0query−S0 tripwire trước utility;
+   phân tích S1−query/S2−S1/sqrt−S2/real−S2/margin−real và margin−strength, đủ10metric/low256/absent/fractionharmed/byte/time.
+   Không gọi COMPLETE/exit0 thành trainPASS hoặc đọc test để đổi HP. Kernel lỗi phải inspect evidence rồi fix/verify/recover,
+   đồng thời giữ giám sát phần khỏe bằng collect-only; callback các job local đã đóng không relaunch.
+2. P21R1 đã ghép seed43 bằng supplement riêng; giữ originalP21failure/31run/báo cáoSHA cũ và kết quả bổ sung.
+   Không launch recovery hoặc duplicatewatcher từ callback muộn; dùng supplement khi suy luận C10 hai seed.
+3. Dùng [ưu tiên kiểm chứng P20](../research/results-p20.md): validation sạch, replay cùngproxytrajectory để tách support/feedback,
+   servermemory/coverage, clientobjective bảo vệ local và absentclasses. Không mở lại mixture/countρ/BNsplit thiếu hypothesis mới.
+   [Transfer từngxe](../research/p20-client-transfer.md), [đề xuất pipeline](../research/proposed-method-p20.md):
+   giữ streamingclassQ + thử mixedsupport/inputtargets, count vs validatedexpertweight, reception có controlstrength.
+   Q20 đang kiểm support/target/inputweight/reception; reliability/memory/gradientprojection chưa chạy,
+   chưa có phương pháp tối ưu mọixe hoặc heterogeneousproof.
+4. Temporalvalidation mới phải train-only và fitbootstrap/scaler/generator foldtrain; chưa tự đổi protocolheadline.
+   Giữ20round/cosine50/seed42–43/full5343/W1; không chọn HP/bestround theo officialtest.
+
+Không việc tay bắt buộc hiện tại. Không rawlocaldata/privateweights trong FLmessages; chưa formalDP/secureaggregation,
+mixedarchitecture/contactdrop hoặc r>20proof. Kiến thức mới đã ghi LESSONS và [diagnosis](../research/diagnosis.md).

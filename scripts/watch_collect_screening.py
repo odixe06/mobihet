@@ -28,7 +28,7 @@ def collect(spec,root,logs):
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--batch',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--entity',default='');a=ap.parse_args()
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--batch',type=Path,required=True);ap.add_argument('--out',type=Path,required=True);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--entity',default='');ap.add_argument('--auditor',type=Path,default=ROOT/'scripts/audit_m20.py');a=ap.parse_args()
     a.out.mkdir(parents=True,exist_ok=True);a.root.mkdir(parents=True,exist_ok=True)
     lock=(a.out/'collector.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     proc=subprocess.Popen([sys.executable,str(ROOT/'scripts/watch_kaggle_batch.py'),'--batch',str(a.batch),'--out',str(a.out/'watch'),'--interval','1200','--stop-on-error'],cwd=ROOT)
@@ -54,7 +54,7 @@ def main():
         print('TERMINAL_KERNEL_ERROR_COLLECTED; leave other kernels running',flush=True)
         return 2
     assert all(r['returncode']==0 and not r['missing'] for r in rows),rows
-    subprocess.run([sys.executable,str(ROOT/'scripts/audit_m20.py'),'--batch',str(a.batch),'--root',str(a.root),'--out',str(a.out)],check=True,cwd=ROOT)
+    subprocess.run([sys.executable,str(a.auditor),'--batch',str(a.batch),'--root',str(a.root),'--out',str(a.out)],check=True,cwd=ROOT)
     print('SCREENING20_PULL_AUDIT_DONE',flush=True)
 
 

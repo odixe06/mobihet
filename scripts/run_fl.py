@@ -140,9 +140,12 @@ def main():
         t_eval = time.monotonic() - t - t_train
         row = {"round": r, "lr": lr, "t_train": t_train, "t_eval": t_eval, **info}
         if hp.get("diagnostics", False):
-            from methods import mobihet_diagnostics
             t_probe = time.monotonic()
-            row.update(mobihet_diagnostics.run(M, r, teacher_before, a.out))
+            if hasattr(M, "diagnostics"):
+                row.update(M.diagnostics(r, a.out))
+            else:
+                from methods import mobihet_diagnostics
+                row.update(mobihet_diagnostics.run(M, r, teacher_before, a.out))
             row["t_diagnostics"] = time.monotonic() - t_probe
         for v, cms in views.items():
             s = metrics.summary(cms)
