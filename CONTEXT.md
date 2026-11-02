@@ -25,7 +25,7 @@ input-target nâng xe yếu, realKD không còn lợi pooled. Bootstrap chiếm 
 
 [Đề xuất phương pháp](docs/research/proposal.md): copula bootstrap nén + class Q trên synthetic (~1 MB/xe/20 round),
 tầng input-bank tùy chọn, không realKD. **W20 đang chạy** (10 run: non-target KD, step floor, bootstrap nén) —
-[thiết kế](docs/research/screening-w20.md). Backup DVC N/O/P/Q đang đẩy; xóa local N/O/P/Q sau verify (owner đã cho phép).
+[thiết kế](docs/research/screening-w20.md). N/O/P/Q đã DVC push + verify và xóa local (Q giữ CM làm control); R/V chưa DVC.
 Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
 
 ## Cần biết → mở

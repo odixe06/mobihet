@@ -1,4 +1,4 @@
-# Continue — bàn giao sống, 02/11/2026 — W20 đang chạy, backup N/O/P/Q đang đẩy
+# Continue — bàn giao sống, 02/11/2026 — W20 đang chạy; backup + dọn N/O/P/Q xong
 
 Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
 Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/handoffs/2026-11-02-1700-before-w20-launch.md).
@@ -17,7 +17,6 @@ Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/
 | job | việc | log |
 |---|---|---|
 | `kaggle-w20-pipeline-20m-20261102b` | builder `odixe0502/mobihet-v4npy-cache/1` → quota → 10 notebook → gates/push → poll 1200 s → pull → audit 20 round | `runs/w-study/pipeline.log` |
-| `mobihet-dvc-backup-nopq-20261102b` | `dvc add` 71 run N/O/P/Q → `dvc push` → `dvc status -c` | `runs/maintenance-20261102/dvc-backup.log` |
 
 State: `/home/odixe/.codex/long-jobs/jobs/<job>/state.json`; delivery event-only (không đánh thức phiên nào).
 Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/w-study/pipeline.log`.
@@ -28,9 +27,8 @@ DVC attempt đầu failed vì `.gitignore` ignore-all trong `o20-early`/`p20` (�
 
 ## Khi job xong
 
-1. **DVC:** đọc log có `DVC_BACKUP_NOPQ_VERIFIED` + `status-c.txt` in sync → `git add` các `.dvc`/`.gitignore` mới, commit, push;
-   bundle mới (`git bundle create` → verify → thay `mobihet.bundle`); rồi xóa workspace 71 run + cache object tương ứng
-   (hardlink: phải xóa cả hai mới thu hồi chỗ), đo disk trước/sau, cập nhật [backup](backup.md). Giữ rclone cache.
+1. **DVC N/O/P/Q: xong** (job `mobihet-dvc-backup-nopq-20261102b` succeeded, in sync, cleanup +52,9 GB) — [backup](backup.md).
+   Q chỉ còn CM/log (control cho W); không `dvc add` lại Q.
 2. **W20:** khi `W20_CLOSED`: kiểm `closure.json`, chạy phân tích (mở rộng `scripts/analyse_r20_v20.py` thêm ô W và control),
    ghi kết quả vào `docs/research/results-w20.md`, áp quy tắc ở [proposal](../research/proposal.md#sau-w20--quy-tắc-chọn).
    Ô ERROR: pull log, phân loại lỗi train/vận hành, recovery riêng (slug mới), không restart cả batch.
@@ -40,7 +38,7 @@ DVC attempt đầu failed vì `.gitignore` ignore-all trong `o20-early`/`p20` (�
 
 [R20/V20](../research/results-r20-v20.md): đủ 4 repeat + 8 replay (R8 nối phiên) + 8 validation (V0/V1 qua V0R/V1R).
 Commit `97cf51d` (GitHub main) chứa toàn bộ code P/Q/R/V/W trước đây chạy qua overlay, preflight W `runs/w-study/preflight.json`.
-Chưa commit: chỉnh guard trong `scripts/run_w20.py`, tài liệu tổng hợp 02/11 — commit cùng metadata DVC.
+Tài liệu tổng hợp + metadata DVC: commit `c980871` (đã push).
 
 ## Việc tay cho owner
 
