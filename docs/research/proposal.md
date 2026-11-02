@@ -1,77 +1,87 @@
 # Phương pháp đề xuất — MobiHet cho IDS V2X băng thông thấp, mô hình khác nhau
 
-Trạng thái 02/11/2026: **lõi đã có bằng chứng; ba thành phần đang kiểm ở W20.** Không phải phương pháp đã chốt.
-Bằng chứng: [R20/V20](results-r20-v20.md), [Q20](results-q20.md), [P20](results-p20.md), [LESSONS](../../LESSONS.md).
+Trạng thái 02/11/2026 sau W20: **lõi đã chốt thành phần; combo và realKD đang kiểm ở [X20](screening-x20.md).** Chưa có 50 round.
+Bằng chứng: [W20](results-w20.md), [R20/V20](results-r20-v20.md), [Q20](results-q20.md), [P20](results-p20.md), [LESSONS](../../LESSONS.md).
 
 ## Ràng buộc thiết kế
 
-1. **Băng thông hạn chế:** không trao đổi trọng số; mọi gói tính đủ byte hai chiều, gồm bootstrap.
-2. **Mỗi xe một mô hình bất kỳ:** chỉ trao đổi thứ không phụ thuộc kiến trúc — thống kê dữ liệu gộp và xác suất đầu ra
-   16 lớp. Yêu cầu duy nhất với mô hình xe: nhận 77 đầu vào, trả logit 16 lớp. Thí nghiệm hiện giữ DAGSNet W1 cho mọi xe
-   để cô lập cơ chế; trộn kiến trúc chưa chạy (owner 02/11: chỉ cần bảo đảm cách truyền dùng được cho nhiều model).
-3. Không gửi dòng dữ liệu, nhãn từng dòng, trọng số riêng, BN hay gradient. Chưa có DP/secure aggregation.
+1. **Không chia sẻ dữ liệu local** (chuẩn FL): không gửi dòng dữ liệu, nhãn từng dòng, đặc trưng từng mẫu, trọng số, BN,
+   gradient. Chỉ gửi thống kê gộp và xác suất trung bình; server chỉ dùng **tổng** trên mọi xe (§Quyền riêng tư).
+2. **Băng thông hạn chế:** không trao đổi trọng số; mọi gói tính đủ byte hai chiều, gồm bootstrap.
+3. **Mỗi xe một mô hình bất kỳ:** chỉ trao đổi thứ không phụ thuộc kiến trúc. Yêu cầu duy nhất với mô hình xe: nhận 77 đầu vào,
+   trả logit 16 lớp. Thí nghiệm giữ DAGSNet W1 cho mọi xe để cô lập cơ chế; trộn kiến trúc chưa chạy.
 
 ## Luồng thông tin
 
 ```text
-Bootstrap (1 lần)   xe → server: số mẫu/lớp, histogram biên 77×256 theo lớp (mã thưa), tổng hiệp phương sai normal-score
-                    server → xe: prior toàn cục, CDF biên, mean/Cholesky copula        → mỗi xe tự sinh synthetic
-Mỗi round           xe → server: Q_k = trung bình xác suất dự đoán theo lớp thật trên dữ liệu local (16×16 fp16)
-                    server → xe: Q = trung bình theo số mẫu n_kc (16×16 fp16)
-Tầng tùy chọn       + xác suất trên 1024 truy vấn synthetic chung (seed) → target theo input cho 32/64 dòng synthetic
+Bootstrap (1 lần, 2 pha)  xe → server: số mẫu/lớp, histogram biên 77×256 theo lớp
+                          server → xe: prior + CDF biên toàn mạng (uint16)
+                          xe → server: tổng normal-score Σz, Σzzᵀ theo lớp (dùng CDF toàn mạng)
+                          server → xe: mean/Cholesky copula (fp16)              → mỗi xe tự sinh synthetic
+Mỗi round                 xe → server: Σ_rows p(x) theo lớp thật (16×16) + số mẫu/lớp
+                          server → xe: Q = trung bình toàn mạng (16×16 fp16)
+Tầng tùy chọn             + xác suất trên 1024 truy vấn synthetic chung (seed) → target theo input cho 32/64 dòng synthetic
 ```
-
-| thành phần | byte/xe | trạng thái |
-|---|---:|---|
-| bootstrap hiện tại (fp32 dày) | 3.311.744 (1 lần, 2 chiều) | đã chạy mọi batch |
-| bootstrap uplink thưa, không mất mát | 271.031 | đo offline, tổng server giữ nguyên → không cần chạy lại |
-| bootstrap downlink nén (CDF uint16, fp16 Cholesky) | 729.408 | **W20 boot_compact** |
-| class Q mỗi round | 544 + 544 | đã chạy |
-| tầng input-bank mỗi round | +32.800 mỗi chiều | đã chạy (Q/V) |
-| **tổng 20 round, lõi nén** | **≈1,02 MB** | phụ thuộc W20 |
-| tổng 20 round, lõi + input-bank | ≈2,33 MB | phụ thuộc W20 |
-| tham chiếu: FedAvg/APFed trao trọng số | ≈63,8 MB | benchmark |
 
 ## Học tại xe
 
 1. **CE + logit adjustment** trên đúng 1 epoch dữ liệu local mỗi round (như repo benchmark).
-2. **64 dòng synthetic copula mỗi bước**, target từ Q (round 1: nhãn cứng). Đây là nguồn lợi lớn nhất:
-   val sạch +.0226 pooled, p10 +.11–.13, lớp vắng 0 → .76; test +.033 pooled.
-3. Target synthetic: hiện là KL(Q[y]‖p). **W20 synth_nckd** thử nhãn cứng cho phần đúng/sai + giữ quan hệ lớp sai
-   (non-target KD) để hàng Q nhầm (Q[13] ≈ .74 timeDelay/.25 benign) không dạy synthetic timeDelay thành benign.
-4. **Không realKD** (KD trên dòng thật) ở mặc định: replay cùng teacher vẫn −.05 timeDelay, −.05 lớp vắng; val sạch không còn
-   lợi pooled. **W20 replay/live_real_nckd** kiểm dạng chỉ phần non-target — nếu bỏ được tác hại mà giữ +.005 other15 thì đưa lại.
-5. **Step floor synthetic** (W20): xe có < 16 bước thật học thêm bước chỉ synthetic. 0 byte, +3,5% bước client.
-   Xe < 256 dòng hiện chỉ 2–4 bước/round và còn tăng mạnh r15→20; đây là ứng viên chính cho khoảng cách p10 với APFed.
+2. **64 dòng synthetic copula mỗi bước**, target KL(Q[y]‖p) (round 1: nhãn cứng). Nguồn lợi lớn nhất:
+   val sạch +.0226 pooled, p10 +.11–.13, lớp vắng 0 → .76.
+3. **Step floor synthetic 16 bước/round** (W20 PASS): xe có <16 bước thật học thêm bước chỉ synthetic; dữ liệu local vẫn đúng
+   1 epoch. 0 byte, +3,5% bước, +2–4% thời gian. Xe <256 dòng: F1 +.018–.027, lớp vắng +.12–.14, p10 +.008–.018.
+4. **Không realKD** ở mặc định. KD đầy đủ hại timeDelay/lớp vắng và tạo feedback; phần non-target (NCKD) cắt feedback và cho
+   pooled cao nhất (+.0022–.0025) nhưng còn hại lớp vắng −.03. X20 kiểm `nckd_local` (chỉ lớp xe có) — chỉ đưa vào nếu qua gate.
+5. Loại: synthetic hard+NCKD (W20: chỉ dời ngưỡng timeDelay/benign, benign F1 −.018), margin/strength, sqrt input, proxy,
+   model downlink.
 
-## Server
+## Byte/xe
 
-Gộp Q theo n_kc (đã thử sqrt: không ổn định). Không proxy model, không model downlink (P20: không lợi, tốn byte).
-Tầng input-bank gộp xác suất trên truy vấn chung theo n_k,y; chỉ dùng khi ngân sách cho phép (lợi chủ yếu ở xe yếu).
+| thành phần | byte | trạng thái |
+|---|---:|---|
+| bootstrap uplink thưa, không mất mát | 271.031 (1 lần) | W20 boot_compact |
+| bootstrap downlink CDF uint16 + fp16 mean/Cholesky | 729.408 (1 lần) | W20 boot_compact, utility trong spread |
+| class Q mỗi round | 544 + 544 | mọi batch |
+| tầng input-bank mỗi round | +32.800 mỗi chiều | X20 bank |
+| **tổng 20 round, lõi** | **1.022.199** | W20; combo X20 core |
+| tổng 20 round, lõi + input-bank | 2.334.199 | X20 bank |
+| lõi khi có secure aggregation (uplink dày, số nguyên 32/64 bit) | ≈2.418.000 | ước tính, chưa chạy |
+| tham chiếu FedAvg/APFed trao trọng số | ≈63,8 MB | benchmark |
+
+## Quyền riêng tư
+
+- Server chỉ dùng **tổng toàn mạng**: histogram và Σz/Σzzᵀ gộp bằng allreduce, Q = Σ n_kc·Q_kc / Σ n_kc, bank gộp theo n_k,y
+  (đã kiểm code `methods/mobihet.py`, `mobihet_next.py`). Không bước nào cần thống kê riêng của một xe → tương thích
+  secure aggregation (server chỉ thấy tổng). Downlink chỉ là thống kê toàn mạng.
+- **Chưa có secure aggregation/DP trong thí nghiệm.** Không có SecAgg, histogram 77×256 của xe nhỏ gần như lộ giá trị biên
+  từng mẫu (không lộ liên kết giữa các cột). Tuyên bố bảo mật phải ghi rõ: tương thích SecAgg, chưa có DP.
+- SecAgg cần vector dày cố định độ rộng: uplink thưa 271 KB không dùng được; uplink dày = 1.655.872 B (đúng bằng uplink
+  fp32 đã chạy ở mọi batch trước W boot_compact) → lõi ≈2,42 MB/xe/20 round, vẫn ≈1/26 FedAvg. Không đổi utility.
 
 ## Bằng chứng theo thành phần
 
 | thành phần | kết luận | nguồn |
 |---|---|---|
-| copula augmentation | giữ — lợi lớn, tổng quát hóa trên val sạch | V20, P20 C1−C0 |
-| class Q trên synthetic | giữ — +.0016–.0019 pooled so augmentation, > độ ồn phiên .0005 | P20 C2−C1 |
+| copula augmentation | giữ — lợi lớn, tổng quát hóa trên val sạch | V20, P20 |
+| class Q trên synthetic | giữ — +.0016–.0019 pooled so augmentation | P20 |
 | quan hệ off-diagonal của Q | giữ — fullQ hơn uniform/permutation | O20 (archive) |
-| input-target bank | tầng tùy chọn — val: pooled +.0025, p10 +.009–.014 so augmentation | V20, Q20 |
-| realKD binary/margin/strength | loại khỏi mặc định — hại timeDelay/lớp vắng cả khi teacher cố định | R20, V20 |
+| step floor synthetic | giữ — xe nhỏ/lớp vắng tăng mạnh, pooled giữ | W20 |
+| bootstrap nén | giữ — −69% byte, utility trong spread | W20 |
+| input-target bank | tầng tùy chọn — chờ X20 bank (đã có floor) | V20, Q20, X20 |
+| realKD non-target | chờ X20 nckd_local — pooled tốt nhất nhưng hại lớp vắng | W20 |
+| realKD binary/margin/strength, synthetic hard+NCKD | loại | R20, V20, W20 |
 | sqrt input weight, proxy server, model downlink | loại | Q20, P20 |
-| non-target KD, step floor, bootstrap nén | đang kiểm | [W20](screening-w20.md) |
 
 ## Giới hạn còn mở
 
-- **timeDelay** là giới hạn của dữ liệu/đặc trưng: CE thuần trên val vẫn recall train .886 → val .267 ở xe lớn.
-  Cải thiện cần đặc trưng thời gian/ngữ cảnh mới ở repo features, không chỉ cơ chế FL.
-- **Xe yếu:** p10 .69–.71 so APFed .761 (chia trọng số, ~19× byte). Step floor là phép thử đầu; nếu không đủ, kế tiếp là
-  bộ nhớ truy vấn/bank tích lũy và reliability từ validation local (đã thiết kế, chưa chạy).
-- 20 round chưa bão hòa; kết luận cuối phải chạy lại combo đã chọn ở 50 round theo [protocol](protocol.md) cùng baseline.
-- Trộn kiến trúc chưa kiểm: cần một ô có ≥2 kiến trúc (vd DAGSNet W1 + W0.5) trước khi tuyên bố heterogeneous.
+- **timeDelay** bị giới hạn bởi đặc trưng: CE thuần recall train .886 → val .267 ở xe lớn; mọi biến thể loss chỉ đổi điểm
+  làm việc timeDelay/benign. Cần đặc trưng thời gian/ngữ cảnh ở repo features.
+- **Xe yếu:** p10 ~.708 (floor) so APFed .761 (chia trọng số, ~60× byte lõi). Low256 r15→20 còn tăng: 50 round sẽ cho biết
+  khoảng cách thật.
+- Kết luận cuối phải chạy combo đã chọn ở 50 round theo [protocol](protocol.md) cùng baseline.
+- Trộn kiến trúc chưa kiểm: cần một ô ≥2 kiến trúc (vd DAGSNet W1 + W0.5) trước khi tuyên bố heterogeneous.
 
-## Sau W20 — quy tắc chọn
+## Sau X20 — quy tắc chọn
 
-Đọc mọi hiệu so theo độ ồn phiên ([R20/V20 §1](results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed)).
-Giữ thành phần qua gate của nó ở cả hai seed; rồi chạy **một ô combo** (lõi + các thành phần qua gate, tầng có/không input-bank)
-2 seed × 20 round, sau đó 50 round cho bảng benchmark. Không cộng gain từng ô để dự đoán combo.
+Đọc theo [screening-x20](screening-x20.md). Phương pháp = core (+ bank nếu qua gate) (+ nckd_local nếu nckd_local và full qua gate).
+Combo thắng chạy 2 seed × 50 round cùng baseline benchmark; kèm một ô trộn kiến trúc nếu owner duyệt.

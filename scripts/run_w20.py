@@ -1,9 +1,9 @@
-"""W20 pipeline: public npy-cache builder -> quota inventory -> frozen notebooks -> all-owner gates + one-shot push ->
-local 20-min watch, early pull, 20-round audit. Each stage writes a receipt under runs/w-study and is skipped when its
+"""W20/X20 pipeline: public npy-cache builder -> quota inventory -> frozen notebooks -> all-owner gates + one-shot push ->
+local 20-min watch, early pull, 20-round audit. Each stage writes a receipt under runs/<w|x>-study and is skipped when its
 receipt exists, so a rerun resumes the failing stage instead of relaunching anything.
 
-    python scripts/run_w20.py            # whole pipeline (owner 02/11: run the batch after local preflight PASS)
-    python scripts/run_w20.py --collect-only
+    python scripts/run_w20.py [--study x20]           # whole pipeline (owner 02/11: run the batch after local preflight PASS)
+    python scripts/run_w20.py [--study x20] --collect-only
 """
 import argparse
 import concurrent.futures
@@ -26,9 +26,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.launch_repeat20 import owned_refs
 from scripts.watch_kaggle_batch import atomic_json, query, status_from_cli
-from scripts.w20_common import CELLS, SOURCES
+from scripts import w20_common, x20_common
 
-OUT = ROOT / "runs/w-study"
+STUDIES = {  # tag -> receipts, cells, artifact folder, launch authorization
+    "w20": ("runs/w-study", w20_common, "artifacts/w20", "Owner 02/11: run the whole W batch after local preflight PASS; public npy-cache builder",
+            "One component per cell vs audited Q/R controls; 20 round/cosine50; analysis reads session spread from R20"),
+    "x20": ("runs/x-study", x20_common, "artifacts/x20", "Owner 02/11 (after W20): run the tests needed for the final method; X batch after local preflight PASS",
+            "W20-passed components combined (core/bank), nckd_local one change vs W2/W3, full read only if nckd_local passes; 20 round/cosine50"),
+}
+OUT, CELLS, SOURCES, ART, TAG = ROOT / "runs/w-study", w20_common.CELLS, w20_common.SOURCES, ROOT / "artifacts/w20", "W20"
 SKILL = ROOT / ".agents/skills/kaggle-training-notebook/scripts"
 BUILDER_OWNER, BUILDER_SLUG = "odixe0502", "mobihet-v4npy-cache"
 CAP = 5.3                       # h/run: Q/R measured <= 4.8 h incl. setup; notebook keeps its own 0.4 h reserve
@@ -63,6 +69,8 @@ def builder(head):
     """Public CPU kernel that runs core.data.build_npy once; its output mounts into every W kernel."""
     receipt = OUT / "builder.json"
     if receipt.exists(): return json.loads(receipt.read_text())
+    shared = ROOT / "runs/w-study/builder.json"   # one cache for every study; each kernel re-verifies its manifest SHA256
+    if shared.exists(): return json.loads(shared.read_text())
     ref = f"{BUILDER_OWNER}/{BUILDER_SLUG}"
     if not (OUT / "builder-push.json").exists():
         subprocess.run([sys.executable, str(ROOT / "scripts/gen_notebook.py"), "--owner", BUILDER_OWNER, "--slug", BUILDER_SLUG,
@@ -81,7 +89,7 @@ def builder(head):
     spec = {"arm": "builder", "account": BUILDER_OWNER, "slug": BUILDER_SLUG, "version": push["version"]}
     while True:
         state = query(spec)
-        print("W20_BUILDER", state["status"], flush=True)
+        print(f"{TAG}_BUILDER", state["status"], flush=True)
         if state["terminal"]: break
         time.sleep(1200)
     assert state["status"] == "COMPLETE", "builder ERROR; pull its log before retry"
@@ -97,7 +105,7 @@ def builder(head):
     assert files["train_X.npy"]["bytes"] == 37361273 * 77 * 2 + 128 and files["test_X.npy"]["bytes"] == 9347679 * 77 * 2 + 128
     out = {"ref": ref, "version": push["version"], "manifest_sha256": sha(manifest), "files": files, "base_sha": head}
     atomic_json(receipt, out)
-    print("W20_BUILDER_PASS", out["manifest_sha256"], flush=True)
+    print(f"{TAG}_BUILDER_PASS", out["manifest_sha256"], flush=True)
     return out
 
 
@@ -171,7 +179,7 @@ def prepare(head, build, quota):
                if k in {"next_mode", "real_kd", "real_kd_gate"}]
         hp += [f"r_kind={spec['r_kind']}"] + [f"{k}={v}" for k, v in spec["w"].items()]
         if spec["r_kind"] == "replay": hp.append(f"r_source_sha256={frozen.SHA256}")
-        owner, arm = owners[(cell, seed)], f"W{index}"
+        owner, arm = owners[(cell, seed)], f"{TAG[0]}{index}"
         slug = f"mh-{arm.lower()}-{cell.replace('_', '-')}-s{seed}"
         args = shlex.join(["scripts/run_q20.py", "--method", "mobihet_wstudy", "--out", f"/kaggle/working/{slug}", "--width", "1",
                            "--rounds", "50", "--until", "20", "--compile", "--wandb", "mobihet-v4", "--max-hours", "BUDGET",
@@ -203,11 +211,10 @@ def prepare(head, build, quota):
                       "npy_kernel": build["ref"], "npy_manifest_sha256": build["manifest_sha256"],
                       "bootstrap_total": COMPACT_BOOTSTRAP if spec["w"].get("w_boot") == "compact" else 3311744})
     atomic_json(OUT / "batch.json", batch)
-    atomic_json(ROOT / "docs/research/w20-launch.json", {"batch_sha256": sha(OUT / "batch.json"), "batch": batch,
+    atomic_json(ROOT / f"docs/research/{TAG.lower()}-launch.json", {"batch_sha256": sha(OUT / "batch.json"), "batch": batch,
         "preflight_sha256": sha(OUT / "preflight.json"), "quota_sha256": sha(OUT / "quota.json"), "builder": build,
-        "authorization": "Owner 02/11: run the whole W batch after local preflight PASS; public npy-cache builder",
-        "scope": "One component per cell vs audited Q/R controls; 20 round/cosine50; analysis reads session spread from R20"})
-    print("W20_NOTEBOOKS_LOCKED", len(batch), flush=True)
+        "authorization": STUDIES[TAG.lower()][3], "scope": STUDIES[TAG.lower()][4]})
+    print(f"{TAG}_NOTEBOOKS_LOCKED", len(batch), flush=True)
     return batch
 
 
@@ -247,16 +254,16 @@ def launch(batch):
             log = OUT / (slug + ".push.log"); log.write_text(p.stdout + p.stderr); log.chmod(0o600)
             assert p.returncode == 0 and re.search(r"Kernel version 1 successfully pushed", p.stdout), f"Push failed/ambiguous {slug}"
             atomic_json(OUT / (slug + ".push.json"), {"ref": ref, "notebook_sha256": row["notebook_sha256"], "at": time.strftime("%Y-%m-%dT%H:%M:%S%z")})
-            print("W20_PUSHED", row["arm"], ref, flush=True)
+            print(f"{TAG}_PUSHED", row["arm"], ref, flush=True)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: list(pool.map(push, groups.items()))
     atomic_json(OUT / "launch-complete.json", {"batch_sha256": sha(OUT / "batch.json"), "runs": len(batch),
                                                "global_cli_before": before, "global_cli_after": k.active_user()})
-    print("W20_ALL_PUSHED", len(batch), flush=True)
+    print(f"{TAG}_ALL_PUSHED", len(batch), flush=True)
 
 
 def collect(spec):
-    dest = ROOT / "artifacts/w20" / spec["slug"]; dest.mkdir(parents=True, exist_ok=True)
+    dest = ART / spec["slug"]; dest.mkdir(parents=True, exist_ok=True)
     with (OUT / "collection" / (spec["slug"] + ".collect.log")).open("w") as log:
         p = subprocess.run([*cli(spec["account"])[:4], sys.executable, str(ROOT / "scripts/run_bounded_python.py"),
                             str(SKILL / "pull_kernel_output.py"), f'{spec["account"]}/{spec["slug"]}/{spec["version"]}',
@@ -287,22 +294,22 @@ def watch(batch):
             if not result.get("pulled") or result.get("audited") or known[name]["status"] != "COMPLETE": continue
             armout = OUT / "collection" / name; armout.mkdir(exist_ok=True)
             atomic_json(armout / "batch.json", [spec])
-            p = subprocess.run([sys.executable, str(ROOT / "scripts/audit_w20.py"), "--batch", str(armout / "batch.json"),
-                                "--root", str(ROOT / "artifacts/w20"), "--out", str(armout)], cwd=ROOT)
+            p = subprocess.run([sys.executable, str(ROOT / "scripts/audit_w20.py"), "--study", TAG.lower(), "--batch",
+                                str(armout / "batch.json"), "--root", str(ART), "--out", str(armout)], cwd=ROOT)
             result["audited"] = p.returncode == 0
             if result["audited"]:
                 result["report_sha256"] = {n: sha(armout / n) for n in ("audit.json", "diagnostic-audit.json")}
-                print("W20_AUDITED", name, flush=True)
+                print(f"{TAG}_AUDITED", name, flush=True)
             else:
-                print("W20_ATTENTION audit failed", name, flush=True)
+                print(f"{TAG}_ATTENTION audit failed", name, flush=True)
         atomic_json(progress, {"batch_sha256": hashlib.sha256(raw).hexdigest(), "runs": results})
         failed = [a for a, r in results.items() if r.get("terminal") and not r.get("audited")]
         audited = sum(r.get("audited", False) for r in results.values())
-        print("W20_PROGRESS", audited, "/", len(batch), "audited; failed", failed, flush=True)
+        print(f"{TAG}_PROGRESS", audited, "/", len(batch), "audited; failed", failed, flush=True)
         if all(known.get(r["arm"], {}).get("terminal") for r in batch):
             atomic_json(OUT / "closure.json", {"batch_sha256": hashlib.sha256(raw).hexdigest(), "runs": results,
                                                "full20_pass": audited, "all_classified": True})
-            print("W20_CLOSED", audited, "/", len(batch), flush=True)
+            print(f"{TAG}_CLOSED", audited, "/", len(batch), flush=True)
             return
         startup = OUT / "startup/startup.json"
         if not startup.exists() or not json.loads(startup.read_text())["all_ready"]:
@@ -312,7 +319,12 @@ def watch(batch):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--collect-only", action="store_true"); a = ap.parse_args()
+    global OUT, CELLS, SOURCES, ART, TAG
+    ap = argparse.ArgumentParser(); ap.add_argument("--collect-only", action="store_true")
+    ap.add_argument("--study", choices=sorted(STUDIES), default="w20"); a = ap.parse_args()
+    out, common, art = STUDIES[a.study][:3]
+    OUT, CELLS, SOURCES, ART, TAG = ROOT / out, common.CELLS, common.SOURCES, ROOT / art, a.study.upper()
+    OUT.mkdir(parents=True, exist_ok=True)
     lock = (OUT / "worker.lock").open("a"); fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     if not a.collect_only:
         head = git_head()
@@ -322,7 +334,7 @@ def main():
     batch = json.loads((OUT / "batch.json").read_text())
     assert (OUT / "launch-complete.json").exists(), "Partial push: inspect receipts, never launch blindly"
     watch(batch)
-    print("W20_PIPELINE_DONE", flush=True)
+    print(f"{TAG}_PIPELINE_DONE", flush=True)
 
 
 if __name__ == "__main__": main()

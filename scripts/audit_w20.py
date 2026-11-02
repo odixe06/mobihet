@@ -1,4 +1,4 @@
-"""W20 20-round audit: R20 checks (source/CM/aggregates/teacher chain/guards) with the W method, cell knobs and bootstrap bytes."""
+"""W20/X20 20-round audit: R20 checks (source/CM/aggregates/teacher chain/guards) with the W method, cell knobs and bootstrap bytes."""
 import argparse
 import json
 from pathlib import Path
@@ -10,13 +10,14 @@ import numpy as np
 
 from scripts.audit_r20 import extra
 from scripts.audit_screening import audit
-from scripts.w20_common import CELLS
+from scripts import w20_common, x20_common
 
 
 def main():
-    p = argparse.ArgumentParser()
+    p = argparse.ArgumentParser(); p.add_argument("--study", choices=("w20", "x20"), default="w20")
     for key in ("batch", "root", "out"): p.add_argument("--" + key, type=Path, required=True)
     a = p.parse_args(); a.out.mkdir(parents=True, exist_ok=True)
+    CELLS = (x20_common if a.study == "x20" else w20_common).CELLS
     counts = np.load(ROOT / "evidence/research-data/train_counts.npy")
     support = np.load(ROOT / "evidence/research-data/test_support.npy")
     common, detail = [], []
@@ -32,7 +33,7 @@ def main():
         detail.append(extra(a.root, spec, counts, method="mobihet_wstudy", bootstrap_total=spec["bootstrap_total"]) | {"cell": spec["cell"]})
     for name, data in [("audit.json", common), ("diagnostic-audit.json", detail)]:
         (a.out / name).write_text(json.dumps(data, indent=2) + "\n")
-    print("W20_ARTIFACT_AUDIT_PASS", len(common), flush=True)
+    print(a.study.upper() + "_ARTIFACT_AUDIT_PASS", len(common), flush=True)
 
 
 if __name__ == "__main__": main()

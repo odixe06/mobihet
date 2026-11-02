@@ -181,3 +181,15 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 - Bootstrap copula: 76% byte là histogram dày, 12% là moment Gaussian không dùng trên đường copula. Histogram xe mã thưa
   không mất mát ~74 KB thay 1,26 MB; tổng server không đổi nên không cần chạy lại để chứng minh.
 - Shadow diagnostics tự dựng ctx ngoài local_epoch: hook mới trên ctx phải có fallback, nếu không preflight chết ở diagnostics.
+
+## W20 — non-target KD, step floor, bootstrap nén
+
+- Ô "PASS gate" có thể chỉ dời ngưỡng giữa cặp lớp nhầm (synth hard+NCKD: timeDelay recall +.06, precision −.09,
+  benign→timeDelay ×1,85, Q[13,13] giảm). Với cặp nhầm khó, đọc precision/recall và nhầm chéo, không chỉ F1 lớp đó.
+- Bỏ phần target-class của KD cắt feedback (Q[13,13] live = noReal) nhưng KD trên dòng thật vẫn đè cả nhóm lớp vắng
+  (lỗi dồn sang lớp xe có). Hại timeDelay và hại lớp vắng là hai kênh khác nhau.
+- Đếm xe vượt độ ồn lặp chỉ hợp lệ khi ô giữ nguyên dòng RNG. Step floor đổi độ rộng permutation → xe không chạm floor
+  dao động bằng mức đổi seed dù trung bình ≈0; so với spread đổi seed hoặc trung bình theo cohort.
+- Thiếu tối ưu ở xe nhỏ là nguyên nhân lớn của p10/lớp vắng: bước chỉ synthetic (0 byte, +3,5% bước) nâng xe<256 +.02,
+  lớp vắng +.13 mà dữ liệu local vẫn đúng 1 epoch.
+- Nén bootstrap (CDF uint16, fp16 Cholesky, uplink thưa) giữ utility; nhưng uplink thưa không dùng được với secure aggregation.

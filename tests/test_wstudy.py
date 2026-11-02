@@ -58,6 +58,36 @@ def test_nckd_finite_in_fp16_logits():
     assert torch.isfinite(nckd(t.float(), (z * 10).half(), y)).all()
 
 
+def _nckd_w20(target, logits, y):
+    """nckd as launched in W20 (commit 97cf51d)."""
+    onehot = F.one_hot(y, target.shape[-1]).bool()
+    t_y = target.gather(-1, y[..., None]).squeeze(-1)
+    t_hat = target.masked_fill(onehot, 0.) / (1 - t_y).clamp_min(1e-6)[..., None]
+    log_p_hat = F.log_softmax(logits.float() - 1000. * onehot, -1)
+    kl = torch.where(onehot, 0., t_hat * (t_hat.clamp_min(1e-6).log() - log_p_hat)).sum(-1)
+    return (1 - t_y) * kl
+
+
+def test_nckd_default_is_w20_bitexact():
+    t, z, y = _rand(5)
+    for tt, zz in ((t, z), (t.float(), z.half())):
+        assert torch.equal(nckd(tt, zz, y), _nckd_w20(tt, zz, y))
+
+
+def test_nckd_local_all_kept_matches_nckd_and_ignores_absent_classes():
+    t, z, y = _rand(6)
+    keep = torch.ones(1, 16, dtype=torch.bool)
+    torch.testing.assert_close(nckd(t, z, y, keep), nckd(t, z, y), rtol=0, atol=1e-6)  # fp32 logits
+    keep = torch.rand(1, 16, generator=torch.Generator().manual_seed(7)) > .5
+    keep[0, y] = True
+    zz = z.clone().requires_grad_(True)
+    nckd(t, zz, y, keep).sum().backward()
+    assert torch.all(zz.grad[:, ~keep[0]].abs() < 1e-12) and zz.grad[:, keep[0]].abs().sum() > 0
+    # a vehicle holding only the true class has no non-target term
+    only = F.one_hot(y, 16).bool()
+    assert torch.all(nckd(t, z, y, only) == 0)
+
+
 class _Lay:
     """One scalar parameter per client; enough to drive local_epoch's schedule."""
     P, B = 1, 0

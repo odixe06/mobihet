@@ -1,8 +1,10 @@
 """W20: decoupled (non-target) KD, synthetic step floor, compact bootstrap downlink.
 
 Each W cell changes ONE component of an audited Q/R recipe; with every W knob at its default the losses are the Q/R ones.
-  w_real   "full" | "nckd"   real-row KD term (mixed_input real/margin/strength variants): full KL(Q[y] || p), or only its
-                              non-target part (1 - Q[y]_y) * KL(Q^[y] || p^) — the true-class probability is left to CE.
+  w_real   "full" | "nckd" | "nckd_local"   real-row KD term (mixed_input real/margin/strength variants): full KL(Q[y] || p),
+                              or only its non-target part (1 - Q[y]_y) * KL(Q^[y] || p^) — the true-class probability is left to
+                              CE; nckd_local restricts that non-target set to classes the vehicle holds (X20: W20 nckd suppressed
+                              classes absent from the vehicle, whose teacher mass is tiny).
   w_synth  "full" | "nckd"   synthetic-row target on streaming rows: soft KL(Q[y] || p), or hard target-vs-rest plus the same
                               non-target part, so a confused teacher row (Q[13] ~ .27 benign) no longer labels class y rows as y'.
   synth_step_floor  int      (core/local.py) clients with fewer real steps take synthetic-only steps up to this count.
@@ -24,15 +26,21 @@ from methods.mobihet_rstudy import Replay
 SPARSE_HIST_UP_MEAN = 73847
 
 
-def nckd(target, logits, y):
+def nckd(target, logits, y, keep=None):
     """(G, n) per-row (1 - t_y) * KL(t^ || p^) over non-target classes; t^/p^ renormalised without class y.
+    keep (G, 1 | n, C) bool: non-target classes allowed (default all); the weight is then the teacher mass on kept wrong classes,
+    so keep = all reproduces the full decomposition and excluded logits get no gradient.
     Masked logits use -1000 like the reference DKD code, never -inf (fp16/NaN safe)."""
-    onehot = F.one_hot(y, target.shape[-1]).bool()
-    t_y = target.gather(-1, y[..., None]).squeeze(-1)
-    t_hat = target.masked_fill(onehot, 0.) / (1 - t_y).clamp_min(1e-6)[..., None]
-    log_p_hat = F.log_softmax(logits.float() - 1000. * onehot, -1)
-    kl = torch.where(onehot, 0., t_hat * (t_hat.clamp_min(1e-6).log() - log_p_hat)).sum(-1)
-    return (1 - t_y) * kl
+    other = ~F.one_hot(y, target.shape[-1]).bool()
+    if keep is None:   # W20 arithmetic, unchanged
+        mass = 1 - target.gather(-1, y[..., None]).squeeze(-1)
+    else:
+        other = other & keep
+        mass = torch.where(other, target, 0.).sum(-1)
+    t_hat = torch.where(other, target, 0.) / mass.clamp_min(1e-6)[..., None]
+    log_p_hat = F.log_softmax(logits.float() - 1000. * ~other, -1)
+    kl = torch.where(other, t_hat * (t_hat.clamp_min(1e-6).log() - log_p_hat), 0.).sum(-1)
+    return mass * kl
 
 
 def hard_plus_nckd(target, logits, y):
@@ -50,7 +58,7 @@ class WMixin:
         """Before the parent __init__: the copula bootstrap runs inside it."""
         hp = env.hp
         self.w_real, self.w_synth, self.w_boot = hp.get("w_real", "full"), hp.get("w_synth", "full"), hp.get("w_boot", "fp32")
-        assert self.w_real in {"full", "nckd"} and self.w_synth in {"full", "nckd"} and self.w_boot in {"fp32", "compact"}
+        assert self.w_real in {"full", "nckd", "nckd_local"} and self.w_synth in {"full", "nckd"} and self.w_boot in {"fp32", "compact"}
 
     def _w_check(self):
         if self.variant in {"stream", "query"}:   # _loss_stream reproduces Base only for the S0 hp
@@ -96,8 +104,9 @@ class WMixin:
         synthetic = (lt.exp() * (lt - lsp[:, b:])).sum(-1).mean(1)
         real = torch.zeros_like(ce)
         if self.variant in {"real", "margin", "strength"}:
-            if self.w_real == "nckd":
-                kr = nckd(self.Q[ctx.y], z[:, :b], ctx.y)
+            if self.w_real != "full":
+                keep = (self.cnt[ctx.clients] > 0)[:, None] if self.w_real == "nckd_local" else None
+                kr = nckd(self.Q[ctx.y], z[:, :b], ctx.y, keep)
             else:
                 qr = self.Q[ctx.y].clamp_min(1e-6).log()
                 kr = (qr.exp() * (qr - lsp[:, :b])).sum(-1)

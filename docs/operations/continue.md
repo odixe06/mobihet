@@ -1,14 +1,13 @@
-# Continue — bàn giao sống, 02/11/2026 — W20 đang chạy; backup + dọn N/O/P/Q xong
+# Continue — bàn giao sống, 02/11/2026 — W20 đóng; X20 đang chạy
 
 Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
 Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/handoffs/2026-11-02-1700-before-w20-launch.md).
 
 ## Quyền owner đang có (02/11)
 
-- Chạy cả batch W20 sau preflight local PASS; kernel builder cache npy **public**.
+- Sau W20: chạy các kiểm nghiệm cần thiết cho phương pháp cuối → batch X20 sau preflight local PASS.
 - Step floor hợp lệ khi bước thêm chỉ synthetic; 1 epoch trên dữ liệu local giữ như repo benchmark.
-- Push GitHub/DVC; sau backup đã kiểm, **xóa local artifacts N/O/P/Q (`n20`, `o20`, `o20-early-20261101`, `p20`, `q20`)**,
-  giữ R/V. DVC đẩy đầy đủ (gồm snapshot) dù OneDrive chỉ còn ~67 GB.
+- Chuẩn FL: không chia sẻ dữ liệu local; server chỉ dùng tổng toàn mạng ([proposal §Quyền riêng tư](../research/proposal.md#quyền-riêng-tư)).
 - Không đổi protocol/HP; không chọn round/HP bằng official test; không thêm run ngoài batch đã khóa.
 - Credential Kaggle process-scoped, không đổi global login. W&B online, key chỉ trong notebook private. Commit không có trailer `Co-Authored-By`.
 
@@ -16,36 +15,28 @@ Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/
 
 | job | việc | log |
 |---|---|---|
-| `kaggle-w20-pipeline-20m-20261102c` | 10 kernel đã push + RUNNING (17:02); poll 1200 s → pull → `audit_w20.py` 20 round → `W20_CLOSED` | `runs/w-study/pipeline.log` |
+| `kaggle-x20-pipeline-20m-20261102` | `scripts/run_w20.py --study x20`: quota → 8 notebook → push 2 kernel/owner → poll 1200 s → pull → audit → `X20_CLOSED` | `runs/x-study/pipeline.log` |
 
-Builder `odixe0502/mobihet-v4npy-cache/1` COMPLETE, manifest SHA `fccc0f72…6524` (`runs/w-study/builder.json`).
-Owner: nguyetquedo W0/W1 replay (blob teacher private mới stage), novahihi W2/W3, emtrangtri W4/W5, heykewtiie W6/W7,
-chuchimnon W8/W9 — 2 kernel/owner như P20. 16 owner cũ < 6,1 h quota tuần lúc 16:59.
-Manifest khóa [w20-launch.json](../research/w20-launch.json), batch `runs/w-study/batch.json`.
-
-State: `/home/odixe/.codex/long-jobs/jobs/<job>/state.json`; delivery event-only (không đánh thức phiên nào).
-Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/w-study/pipeline.log`.
-Pipeline W dừng ở stage lỗi và giữ receipt (`runs/w-study/builder*.json`, `quota.json`, `batch.json`, `*.push*.json`);
-chạy lại `python scripts/run_w20.py` tiếp từ stage còn thiếu, `--collect-only` khi đã push. Không xóa intent để push lại mù.
-Attempt `…02` failed trước push (guard credential bắt nhầm `--wandb`, `pipeline-attempt1.log`); `…02b` failed ở chọn owner
-(chỉ 6 owner đủ quota, 1 run/owner) → cho 2 run/owner, `pipeline-attempt2.log`. Không kernel nào bị push trùng.
-DVC attempt đầu failed vì `.gitignore` ignore-all trong `o20-early`/`p20` (đã xóa), log `dvc-backup-attempt1.log`.
+Cache npy dùng lại `odixe0502/mobihet-v4npy-cache/1` (manifest `runs/w-study/builder.json`). Manifest khóa sẽ ở
+`docs/research/x20-launch.json`, batch `runs/x-study/batch.json`, owner theo `runs/x-study/quota.json` (quota reset 07/11).
+State: `/home/odixe/.codex/long-jobs/jobs/<job>/state.json`; delivery event-only.
+Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/x-study/pipeline.log`.
+Pipeline dừng ở stage lỗi, giữ receipt; chạy lại `python scripts/run_w20.py --study x20` tiếp stage còn thiếu,
+`--collect-only` khi đã push. Không xóa intent để push lại mù.
 
 ## Khi job xong
 
-1. **DVC N/O/P/Q: xong** (job `mobihet-dvc-backup-nopq-20261102b` succeeded, in sync, cleanup +52,9 GB) — [backup](backup.md).
-   Q chỉ còn CM/log (control cho W); không `dvc add` lại Q.
-2. **W20:** khi `W20_CLOSED`: kiểm `closure.json`, chạy phân tích (mở rộng `scripts/analyse_r20_v20.py` thêm ô W và control),
-   ghi kết quả vào `docs/research/results-w20.md`, áp quy tắc ở [proposal](../research/proposal.md#sau-w20--quy-tắc-chọn).
-   Ô ERROR: pull log, phân loại lỗi train/vận hành, recovery riêng (slug mới), không restart cả batch.
-3. Sau W: backup R/V/W khi OneDrive còn chỗ (cần owner giải phóng/mua thêm nếu thiếu).
+1. Khi `X20_CLOSED`: kiểm `runs/x-study/closure.json`, chạy `scripts/analyse_r20_v20.py` rồi `scripts/analyse_w20.py`
+   (đã nhận ô X và control), ghi `docs/research/results-x20.md`, áp quy tắc ở [screening-x20](../research/screening-x20.md)
+   và [proposal](../research/proposal.md#sau-x20--quy-tắc-chọn). Ô ERROR: pull log, phân loại, recovery riêng (slug mới).
+2. Combo thắng → thiết kế batch 50 round cùng baseline (cần owner duyệt quota/thời gian), cân nhắc ô trộn kiến trúc.
+3. Backup R/V/W/X khi OneDrive còn chỗ (~30 GB cần).
 
 ## Kết quả mới nhất
 
-[R20/V20](../research/results-r20-v20.md): đủ 4 repeat + 8 replay (R8 nối phiên) + 8 validation (V0/V1 qua V0R/V1R).
-Commit `97cf51d` (GitHub main) chứa toàn bộ code P/Q/R/V/W trước đây chạy qua overlay, preflight W `runs/w-study/preflight.json`.
-Tài liệu tổng hợp + metadata DVC: commit `c980871` (đã push).
+[W20](../research/results-w20.md): 10/10 audit PASS. Giữ step floor + bootstrap nén; NCKD dòng thật cắt feedback nhưng đè lớp vắng;
+synth hard+NCKD loại. Preflight X `runs/x-study/preflight.json` PASS.
 
 ## Việc tay cho owner
 
-- Khi muốn backup R/V/W (~25 GB): giải phóng hoặc mở rộng OneDrive; sau N/O/P/Q còn ~15 GB.
+- Backup R/V/W/X (~30 GB): giải phóng hoặc mở rộng OneDrive; sau N/O/P/Q còn ~15 GB.

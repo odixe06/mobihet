@@ -38,12 +38,13 @@ def arms():
             if not rec.get("audited"):
                 continue  # V0/V1 original ERROR before r1 commit; V0R/V1R are the logical cells
             out[spec["arm"]] = (ROOT / "artifacts" / art / spec["slug"] / spec["slug"], spec, "val")
-    w = ROOT / "runs/w-study/closure.json"
-    if w.exists():   # W20: only audited arms enter the analysis
+    for study, art in [("w-study", "w20"), ("x-study", "x20")]:   # W20/X20: only audited arms enter the analysis
+        w = ROOT / "runs" / study / "closure.json"
+        if not w.exists(): continue
         closure = json.loads(w.read_text())
-        for spec in json.loads((ROOT / "runs/w-study/batch.json").read_text()):
+        for spec in json.loads((ROOT / "runs" / study / "batch.json").read_text()):
             if closure["runs"].get(spec["arm"], {}).get("audited"):
-                out[spec["arm"]] = (ROOT / "artifacts/w20" / spec["slug"] / spec["slug"], spec | {"mode": spec["cell"]}, "test")
+                out[spec["arm"]] = (ROOT / "artifacts" / art / spec["slug"] / spec["slug"], spec | {"mode": spec["cell"]}, "test")
     return out
 
 
@@ -131,13 +132,18 @@ def main():
         "val_augment_vs_CE": [("V2", "V0R"), ("V3", "V1R")], "val_mixed_vs_augment": [("V4", "V2"), ("V5", "V3")],
         "val_margin_vs_mixed": [("V6", "V4"), ("V7", "V5")], "val_margin_vs_CE": [("V6", "V0R"), ("V7", "V1R")],
     }
-    w_arms = {(v["mode"], v["seed"]): k for k, v in res.items() if k.startswith("W")}
+    cells = {(v["mode"], v["seed"]): k for k, v in res.items() if k[0] in "WX"}
     stream = {42: ["Q0", "R0", "R2"], 43: ["Q1", "R1", "R3"]}
-    for (cell, seed), arm in w_arms.items():
-        refs = {"replay_real_nckd": ["R4" if seed == 42 else "R5", "R6" if seed == 42 else "R7"],
-                "live_real_nckd": ["Q6" if seed == 42 else "Q7", "Q10" if seed == 42 else "Q11"]}.get(cell, stream[seed])
-        for ref in refs:
-            pairs.setdefault(f"w_{cell}_vs_{res[ref]['mode']}", []).append((arm, ref))
+    for (cell, seed), arm in cells.items():
+        s42 = seed == 42
+        refs = {"replay_real_nckd": ["R4" if s42 else "R5", "R6" if s42 else "R7"],
+                "live_real_nckd": ["Q6" if s42 else "Q7", "Q10" if s42 else "Q11"],
+                "core": [*stream[seed], cells.get(("step_floor", seed)), cells.get(("boot_compact", seed))],
+                "bank": ["Q6" if s42 else "Q7", cells.get(("core", seed))],
+                "live_real_nckd_local": ["Q6" if s42 else "Q7", cells.get(("live_real_nckd", seed))],
+                "full": [cells.get(("bank", seed))]}.get(cell, stream[seed])
+        for ref in filter(None, refs):
+            pairs.setdefault(f"{arm[0].lower()}_{cell}_vs_{res[ref]['mode']}", []).append((arm, ref))
     contrasts = {}
     for label, items in pairs.items():
         out = []

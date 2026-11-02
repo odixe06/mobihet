@@ -25,9 +25,11 @@ from scripts.preflight_q20 import equal_state
 from scripts.preflight_r20 import capture, same
 from scripts.q20_common import settings
 from scripts.run_fl import PROTOCOL
-from scripts.w20_common import CELLS, SOURCES
+from scripts import w20_common, x20_common
 
-OUT = ROOT / "runs/w-study"
+STUDY = "x20" if "--study=x20" in sys.argv[1:] else "w20"   # python scripts/preflight_w20.py [--study=x20]
+COMMON = x20_common if STUDY == "x20" else w20_common
+CELLS, SOURCES, OUT = COMMON.CELLS, COMMON.SOURCES, ROOT / f"runs/{STUDY[0]}-study"
 
 
 def lr(r):
@@ -42,10 +44,13 @@ def run(model, seed, rounds=3):
 
 
 def main():
-    OUT.mkdir(exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=True)
     before = {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES}
     subprocess.run([sys.executable, "-m", "pytest", "-q", "tests/test_wstudy.py", "tests/test_r20.py", "tests/test_mobihet_next.py",
-        "tests/test_units.py", "--junitxml=" + str(OUT / "tests.xml")], cwd=ROOT, check=True)
+        "tests/test_units.py", "--junitxml=" + str(OUT / "tests.xml"),
+        # X has no replay cell; that test reads the Q6/Q7 checkpoints removed locally 02/11 (DVC: artifacts/q20/*.dvc)
+        *(["--deselect", "tests/test_r20.py::test_frozen_history_independent_source_and_tamper"] if STUDY == "x20" else [])],
+        cwd=ROOT, check=True)
     parent = json.loads((ROOT / "runs/q-study/batch.json").read_text())[0]
     reports = []
     for seed in (42, 43):
@@ -131,12 +136,12 @@ def main():
             reports.append({"check": "cell", "cell": cell, "seed": seed, "rounds": 3, "finite": True, "skip0": True,
                 "bootstrap_bytes": model.bootstrap_bytes, "train_loss_r3": rows[-1]["train_loss"],
                 "state_roundtrip": True, "diagnostic_state_rng_unchanged": True, "strict_rebuild": True})
-            print("W20_CELL_PASS", seed, cell, rows[-1]["train_loss"], flush=True)
+            print(STUDY.upper() + "_CELL_PASS", seed, cell, rows[-1]["train_loss"], flush=True)
             del model, restored, state, single; gc.collect(); torch.cuda.empty_cache()
     assert before == {n: hashlib.sha256((ROOT / n).read_bytes()).hexdigest() for n in SOURCES}
     (OUT / "preflight.json").write_text(json.dumps({"source_sha256": before, "source_unchanged": True, "reports": reports,
         "scope": "Real v4 W1 local sm86 173train/46test, 3 rounds; not T4/full5343/utility/fullresume proof"}, indent=2) + "\n")
-    print("W20_PREFLIGHT_PASS", flush=True)
+    print(STUDY.upper() + "_PREFLIGHT_PASS", flush=True)
 
 
 if __name__ == "__main__": main()

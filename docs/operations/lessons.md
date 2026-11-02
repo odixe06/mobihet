@@ -72,3 +72,7 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
 - Client trải nhiều file parquet (4 nhóm liên thông tới 198 file/19M dòng): thống kê theo client phải gộp qua file, không theo từng file.
 - OneDrive remote còn ~67 GB (02/11) — 97% dung lượng artifact là snapshot `models/r*.pt`. Kiểm quota cloud trước dvc push lớn.
 - Guard credential của notebook public phải tìm marker credential, không chuỗi "wandb" chung (lệnh mẫu có `--wandb`).
+- Dọn local Q (02/11) xóa `models/` → `tests/test_r20.py::test_frozen_history_independent_source_and_tamper` cần checkpoint Q6/Q7
+  sẽ lỗi FileNotFound. Study không replay bỏ chọn test đó (preflight `--study=x20`); study có replay phải
+  `dvc pull artifacts/q20/mh-q6-mixed-input-s42.dvc artifacts/q20/mh-q7-mixed-input-s43.dvc` trước preflight.
+- Pipeline W/X dùng chung `scripts/run_w20.py --study <w20|x20>`, cache npy chung (`runs/w-study/builder.json`).
