@@ -87,3 +87,4 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
 
 - `dvc push` qua rclone mount có thể lỗi Errno5 do Graph timeout khi list (05/11); mount vẫn ghi được, chạy lại đúng lệnh là đủ, DVC bỏ qua object đã có.
   `xargs` đổi exit255 thành124, và exit của job nền là của lệnh cuối: đọc RC từng bước, không tin exit0 của wrapper.
+- Restart mount khi còn dirty: rclone kiểm từng file trước khi notify (~23 phút với ~2.400 file), vượt TimeoutStartSec90 sẽ lặp restart; backend flag CLI đổi tên fs nên mất hàng đợi. Chỉ đổi flag global.

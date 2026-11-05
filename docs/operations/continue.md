@@ -49,5 +49,4 @@ F50 controller đã succeeded 14:21 ngày 03/11. `runs/f-study/closure.json`: F0
 
 ## Việc tay cho owner
 
-- Backup 05/11: rclone còn upload ~45 GB từ VFS cache; không xóa `~/.cache/rclone`, giữ mount. Xem [backup](backup.md).
 - L50 hiện chưa cần thao tác tay; quota/account/dataset lỗi phải báo evidence cụ thể. Không yêu cầu login từ suyđoán.

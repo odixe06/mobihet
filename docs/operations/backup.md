@@ -1,6 +1,6 @@
 # Git / DVC backup record
 
-Updated: 2026-11-05 15:50, Asia/Ho_Chi_Minh — C10/F50/L50/R/V/W/X đã DVC push + status in sync; cloud upload còn chờ. Không xóa local.
+Updated: 2026-11-05 20:30, Asia/Ho_Chi_Minh — C10/F50/L50/R/V/W/X đã DVC push và upload cloud xong, verify object. Không xóa local.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
@@ -8,8 +8,8 @@ Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 - Git `https://github.com/odixe06/mobihet.git`, `main`: manifest mới ở commit `e2e8f2f`; đối chiếu đỉnh bằng `git ls-remote`.
 - DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`). `dvc` ở env conda `nckh`.
 - Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, verify mỗi lần thay.
-- Cloud upload: **pending** — rclone VFS cache `~/.cache/rclone` giữ ~45 GB lúc 15:40 05/11; không xóa, nó tự giảm. Tắt máy thì rclone tiếp tục sau khi mount lại.
-- OneDrive quota: free 84,9 GiB trước upload (owner dọn 05/11) → dự kiến ~39 GiB sau upload xong. Google Drive không dùng.
+- Cloud upload: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`, `TimeoutStartSec=3600` qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
+- OneDrive quota: free 43,2 GiB sau upload (20:27 05/11). Google Drive không dùng.
 
 ## 2. Tracked artifacts
 
@@ -52,7 +52,7 @@ Chưa DVC: `runs/` (gitignored, giữ local; gồm closure/audit receipt và `ru
 | `git push` / bundle | main / all refs | `c980871`, verify PASS |
 | `dvc push -j 4` 50 manifest | C/F/L/R/V/W/X | lần 1 lỗi Errno5 (Graph timeout khi list); chạy lại exit 0, 2.990 file, log `runs/maintenance-20261105/dvc-push-retry.log` |
 | `dvc status -c` 50 manifest | C/F/L/R/V/W/X | `Cache and remote 'onedrive' are in sync.` (mức mount) |
-| `rclone lsf` cloud 15:40 | 3.068 object | 342 đã lên cloud, 2.726 chờ upload; size lệch 3 là upload dở, kiểm lại đã khớp |
+| `rclone lsf` cloud 20:27 | 3.068 object, 49.004.158.345 B | đủ, 0 thiếu, 0 lệch size (size, không checksum) |
 
 ## 4. Local cleanup
 
@@ -63,7 +63,7 @@ Chưa DVC: `runs/` (gitignored, giữ local; gồm closure/audit receipt và `ru
 
 ## 5. Next session
 
-- **Trước khi xóa bất kỳ workspace C/F/L/R/V/W/X:** chờ `du -sh ~/.cache/rclone` về gần 0, rồi so object trên cloud bằng `rclone lsf` (đủ 3.068, đúng size). PASS mount chưa đủ.
+- Object cloud đã verify 05/11; xóa workspace vẫn cần owner yêu cầu rõ. Hết file dirty: `grep -rl '"Dirty": true' ~/.cache/rclone/vfsMeta/onedrive` rỗng (cache không về 0 vì giữ tới 10 GB file sạch).
 - Reclaim tiềm năng chỉ khi owner yêu cầu: workspace 9 nhóm ~49 GB, `runs/l50-study/transfer` ~19 GB (chưa DVC).
 - Restore: `dvc pull artifacts/l50/mh-l0-core-lossless-s42-r50.dvc` (~10,5 GB). Kiểm disk trước.
 - Thêm run mới: `dvc add artifacts/<nhóm>/<slug>` từng run hoàn chỉnh → `dvc push` → `dvc status -c`.
