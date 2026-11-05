@@ -11,7 +11,7 @@ round 1..50 của lịch cosine50 ([protocol](protocol.md)), headline r50, khôn
 | F0 | bank (core + input-bank) | 42 | phương pháp đề xuất |
 | F1 | bank | 43 | phương pháp đề xuất |
 | F2 | core (floor + bootstrap nén) | 42 | ablation bank |
-| sau 07/11 | core | 43 | ablation bank, cùng recipe, launch riêng khi quota reset |
+| F3 | core | 43 | ablation bank, cùng recipe, launch 05/11 trên account mới (`scripts/run_f50_s43.py`) |
 
 Quota 03/11 chỉ đủ 3 owner có ≥ 15,5 h (session 1 cap 11 h + session resume 2,5 h, ×1,15).
 

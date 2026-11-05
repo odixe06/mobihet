@@ -1,4 +1,4 @@
-# Continue — bàn giao sống, 05/11/2026 — sau L50, backup + dọn archive
+# Continue — bàn giao sống, 05/11/2026 — F3 core s43 đang chạy
 
 Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
 Bàn giao trước: [05/11](../../archive/handoffs/2026-11-05-before-archive-cleanup.md), P/Q/R/V chi tiết [02/11](../../archive/handoffs/2026-11-02-1700-before-w20-launch.md).
@@ -27,7 +27,7 @@ Bàn giao trước: [05/11](../../archive/handoffs/2026-11-05-before-archive-cle
 
 ## Job sống
 
-Không còn job nào đang chạy.
+**F3 core s43** `outlookcheck/mh-f3-core-s43-r50/1`, push 05/11, owner = worker detached `scripts/run_f50_s43.py` (PID 86819, log `runs/f-study-s43/pipeline.log`, poll 1200 s, tự resume `-c2`, tự pull/audit). Recipe và base SHA đúng F2, chỉ đổi seed/owner; dự kiến ~11–13,5 h. Máy tắt thì worker mất, kernel vẫn chạy: chạy lại `python scripts/run_f50_s43.py --collect-only` trong env `nckh` (PATH phải có env đó).
 
 L50 controller đã `L50_CLOSED` lúc 16:28:10 ngày 04/11. `runs/l50-study/closure.json`: 2/2 session (r1–25 `emtrangtri`, r26–50 `chuchimnon`) đều pulled, audited, last_round 50, `full50_pass=1`. Kết quả chi tiết tại [results-l50](../research/results-l50.md).
 
@@ -38,8 +38,7 @@ F50 controller đã succeeded 14:21 ngày 03/11. `runs/f-study/closure.json`: F0
 ## Bước tiếp
 
 1. L50 đã đóng: đối chiếu 10 metric, cohort và byte giữa L0 Lossless và F2 Core tại [results-l50](../research/results-l50.md). Notion đã xong (owner 05/11).
-2. F50 đã đóng: viết `docs/research/results-f50.md` (10 metric r50 cạnh baseline r50).
-3. Sau quota reset 07/11: launch core s43 (F50 deferred, cùng recipe).
+2. [results-f50](../research/results-f50.md) đã viết; bank không qua luật ở seed 42. Khi F3 audit PASS: thêm cột F3 vào results, chốt core ở proposal, `dvc add`/push `artifacts/f50/mh-f3-core-s43-r50`.
 
 ## Kết quả mới nhất
 

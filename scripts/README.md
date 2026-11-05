@@ -33,3 +33,4 @@ Cache npy dùng chung cho batch mới: `gen_notebook.py --npy-kernel odixe0502/m
 X20: `x20_common.py`, dùng chung `run_w20.py --study x20`.
 F50: `f50_common.py`, `preflight_f50.py`, `run_f50.py`, `audit_f50.py`. C10: `probe_core_compression.py`, `run_c10.py`, `audit_c10.py`, `analyse_c10.py`.
 L50: `preflight_l50.py`, `preflight_l50_transfer.py`, `stage_l50.py`, `run_l50.py`, `audit_l50.py`.
+F50 kết quả: `analyse_f50.py`. Core s43: `run_f50_s43.py` (receipt `runs/f-study-s43`).

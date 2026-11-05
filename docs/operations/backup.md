@@ -1,6 +1,6 @@
 # Git / DVC backup record
 
-Updated: 2026-11-05 20:30, Asia/Ho_Chi_Minh — C10/F50/L50/R/V/W/X đã DVC push và upload cloud xong, verify object. Không xóa local.
+Updated: 2026-11-05, Asia/Ho_Chi_Minh — C/F/L/R/V/W/X đã lên cloud; local đã xóa mọi `.pt` của 9 nhóm. Workspace partial.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
@@ -30,17 +30,18 @@ Mới 05/11, mỗi run một manifest; danh sách `runs/maintenance-20261105/man
 
 | nhóm | manifest | files | logical bytes | local workspace |
 |---|---:|---:|---:|---|
-| `artifacts/c10` | 4 | 776 | 1.614.389.947 | giữ local |
-| `artifacts/f50` | 3 | 846 | 6.064.240.390 | giữ local |
-| `artifacts/l50` | 1 | 290 | 10.538.449.319 | giữ local |
-| `artifacts/r20` | 12 | 1.461 | 9.739.506.252 | giữ local |
-| `artifacts/v20-numerics` | 2 | 114 | 1.842.984 | giữ local |
-| `artifacts/v20-recovery` | 2 | 320 | 1.632.840.814 | giữ local |
-| `artifacts/v20` | 8 | 822 | 4.853.923.776 | giữ local |
-| `artifacts/w20` | 10 | 2.160 | 8.092.765.877 | giữ local |
-| `artifacts/x20` | 8 | 1.744 | 6.493.951.732 | giữ local |
+| `artifacts/c10` | 4 | 776 | 1.614.389.947 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/f50` | 3 | 846 | 6.064.240.390 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/l50` | 1 | 290 | 10.538.449.319 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/r20` | 12 | 1.461 | 9.739.506.252 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/v20-numerics` | 2 | 114 | 1.842.984 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/v20-recovery` | 2 | 320 | 1.632.840.814 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/v20` | 8 | 822 | 4.853.923.776 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/w20` | 10 | 2.160 | 8.092.765.877 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
+| `artifacts/x20` | 8 | 1.744 | 6.493.951.732 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
 
-Chưa DVC: `runs/` (gitignored, giữ local; gồm closure/audit receipt và `runs/l50-study/transfer` ~19 GB là 2 bản checkpoint chuyển account).
+**Không `dvc add` lại 50 run này** (workspace partial sẽ ghi đè manifest đầy đủ). Cần model: `dvc pull <manifest>`.
+Chưa DVC: `runs/` (gitignored, giữ local).
 
 ## 3. Checks that passed (reusable while inputs are unchanged)
 
@@ -61,10 +62,11 @@ Chưa DVC: `runs/` (gitignored, giữ local; gồm closure/audit receipt và `ru
   Disk free 43.628.335.104 → 96.503.152.640 B (**+52,9 GB**). Receipt `runs/maintenance-20261102/cleanup.json`.
 - Giữ `.dvc` manifest, evidence, R/V artifacts, rclone cache, cloud objects. Không việc tay bắt buộc.
 
+- Owner 05/11: xóa 1.042 file `.pt` (48,4 GB) + object cache tương ứng, sau khi kiểm từng object trên cloud đúng size ngay trước xóa; xóa 2 bản `runs/l50-study/transfer/*/l50-resume.bin` (19 GB, trùng nhau, state cùng size với bản DVC). Free 105 → ~172 GB. Receipt `runs/maintenance-20261105/cleanup.json`.
+
 ## 5. Next session
 
-- Object cloud đã verify 05/11; xóa workspace vẫn cần owner yêu cầu rõ. Hết file dirty: `grep -rl '"Dirty": true' ~/.cache/rclone/vfsMeta/onedrive` rỗng (cache không về 0 vì giữ tới 10 GB file sạch).
-- Reclaim tiềm năng chỉ khi owner yêu cầu: workspace 9 nhóm ~49 GB, `runs/l50-study/transfer` ~19 GB (chưa DVC).
+- Hết file dirty: `grep -rl '"Dirty": true' ~/.cache/rclone/vfsMeta/onedrive` rỗng (cache không về 0 vì giữ tới 10 GB file sạch).
 - Restore: `dvc pull artifacts/l50/mh-l0-core-lossless-s42-r50.dvc` (~10,5 GB). Kiểm disk trước.
 - Thêm run mới: `dvc add artifacts/<nhóm>/<slug>` từng run hoàn chỉnh → `dvc push` → `dvc status -c`.
   `.gitignore` ignore-all trong thư mục artifact làm `dvc add` lỗi "git-ignored" — xóa file đó trước.

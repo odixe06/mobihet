@@ -18,15 +18,15 @@ không dòng dữ liệu, nhãn từng dòng, trọng số, BN, gradient. Chưa 
 - Kaggle: credential theo process, giữ global login; cache npy dùng chung qua kernel public `odixe0502/mobihet-v4npy-cache`.
   W&B online. Commit không có trailer `Co-Authored-By`.
 
-## Trạng thái — kiểm lại 05/11/2026, L50 lossless 50 round hoàn tất PASS; docs/code N→V đã archive
+## Trạng thái — kiểm lại 05/11/2026, F50 đã viết kết quả, F3 core s43 đang chạy
 
 M→X đã đóng audit. [X20](docs/research/results-x20.md): floor + bootstrap nén cộng thẳng (core); input-bank qua gate
 (p10 .717, low256 .801) nhưng lợi thu hẹp theo round; NCKD giới hạn lớp xe có xóa hại lớp vắng nhưng vẫn tốn timeDelay,
 combo full trượt gate → không realKD.
 
 [Đề xuất phương pháp](docs/research/proposal.md): copula bootstrap nén + class Q trên synthetic + step floor + input-bank
-(~2,33 MB/xe/20 round; lõi không bank 1,02 MB). **F50 đã đóng pipeline/audit 3 run r50; diễn giải kết quả còn chờ**: 50 round bank s42/s43 + core s42, checkpoint mỗi round
-([thiết kế](docs/research/screening-f50.md)); core s43 sau quota reset 07/11.
+(~2,33 MB/xe/20 round; lõi không bank 1,02 MB). **[F50](docs/research/results-f50.md) đã đóng 3 run r50, bank không qua luật ở seed 42 → core; F3 core s43 đang chạy**: 50 round bank s42/s43 + core s42, checkpoint mỗi round
+([thiết kế](docs/research/screening-f50.md)).
 Owner03/11 chọn **Core** làm mục tiêu đề xuất; [C10](docs/research/results-c10.md) đủ 4/4 audit 10 round/seed42. **[L50](docs/research/results-l50.md) đã hoàn tất 50 round, audit PASS**: Core lossless CDF (zlib-6 uint16) đạt macro F1 0.899129 (F2 Core 0.899160), P10 0.752754; tổng communication budget 50 round giảm còn 691.466 B/xe (−34,45%). Toàn bộ kernel L50 đã đóng.
 N/O/P/Q và C/F/L/R/V/W/X đã DVC và lên cloud (05/11, [backup](docs/operations/backup.md)). Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
 
@@ -36,7 +36,7 @@ N/O/P/Q và C/F/L/R/V/W/X đã DVC và lên cloud (05/11, [backup](docs/operatio
 |---|---|
 | Phương pháp đề xuất, byte, thành phần nào đã chứng minh? | [proposal](docs/research/proposal.md) |
 | Nguyên nhân đã biết, đang kiểm gì? | [diagnosis](docs/research/diagnosis.md) |
-| Kết quả mới và giới hạn bằng chứng? | [L50](docs/research/results-l50.md), [C10](docs/research/results-c10.md), [X20](docs/research/results-x20.md), [W20](docs/research/results-w20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
+| Kết quả mới và giới hạn bằng chứng? | [F50](docs/research/results-f50.md), [L50](docs/research/results-l50.md), [C10](docs/research/results-c10.md), [X20](docs/research/results-x20.md), [W20](docs/research/results-w20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
 | Cơ chế code/cấu hình chung? | [method](docs/research/method.md), [protocol](docs/research/protocol.md) |
 | Job nào sống, bước tiếp, việc tay? | [continue](docs/operations/continue.md) |
 | Chạy công cụ, Kaggle, backup/khôi phục? | [operations](docs/operations/README.md), [scripts](scripts/README.md), [backup](docs/operations/backup.md) |
