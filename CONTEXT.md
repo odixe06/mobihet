@@ -28,7 +28,7 @@ combo full trượt gate → không realKD.
 (~2,33 MB/xe/20 round; lõi không bank 1,02 MB). **F50 đã đóng pipeline/audit 3 run r50; diễn giải kết quả còn chờ**: 50 round bank s42/s43 + core s42, checkpoint mỗi round
 ([thiết kế](docs/research/screening-f50.md)); core s43 sau quota reset 07/11.
 Owner03/11 chọn **Core** làm mục tiêu đề xuất; [C10](docs/research/results-c10.md) đủ 4/4 audit 10 round/seed42. **[L50](docs/research/results-l50.md) đã hoàn tất 50 round, audit PASS**: Core lossless CDF (zlib-6 uint16) đạt macro F1 0.899129 (F2 Core 0.899160), P10 0.752754; tổng communication budget 50 round giảm còn 691.466 B/xe (−34,45%). Toàn bộ kernel L50 đã đóng.
-N/O/P/Q đã DVC; R/V/W/X/F/L chưa DVC (OneDrive thiếu chỗ). Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
+N/O/P/Q và C/F/L/R/V/W/X đã DVC (05/11; cloud upload đợt mới còn chờ, xem [backup](docs/operations/backup.md)). Job, owner file và bước tiếp chỉ ở [bàn giao](docs/operations/continue.md).
 
 ## Cần biết → mở
 

@@ -1,15 +1,15 @@
 # Git / DVC backup record
 
-Updated: 2026-11-02 17:10, Asia/Ho_Chi_Minh — N/O/P/Q đã DVC push + verify, xóa local N/O/P và snapshot Q.
+Updated: 2026-11-05 15:50, Asia/Ho_Chi_Minh — C10/F50/L50/R/V/W/X đã DVC push + status in sync; cloud upload còn chờ. Không xóa local.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
 
-- Git `https://github.com/odixe06/mobihet.git`, `main` = `c980871b3ce0a918eaee4b6136bcd5e1eea77abf` (khớp `git ls-remote`).
-- DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`).
-- Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, `git bundle verify` PASS, main `c980871`.
-- Cloud upload: **pending** — rclone VFS cache `~/.cache/rclone` giữ ~47 GB chờ upload lúc 16:50; không xóa, nó tự giảm.
-- OneDrive quota cloud còn ~67 GB trước push này → sau khi upload xong còn ~15 GB. R/V/W (~25 GB) cần thêm chỗ.
+- Git `https://github.com/odixe06/mobihet.git`, `main`: manifest mới ở commit `e2e8f2f`; đối chiếu đỉnh bằng `git ls-remote`.
+- DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`). `dvc` ở env conda `nckh`.
+- Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, verify mỗi lần thay.
+- Cloud upload: **pending** — rclone VFS cache `~/.cache/rclone` giữ ~45 GB lúc 15:40 05/11; không xóa, nó tự giảm. Tắt máy thì rclone tiếp tục sau khi mount lại.
+- OneDrive quota: free 84,9 GiB trước upload (owner dọn 05/11) → dự kiến ~39 GiB sau upload xong. Google Drive không dùng.
 
 ## 2. Tracked artifacts
 
@@ -26,7 +26,21 @@ Mới 02/11, mỗi run một manifest `artifacts/<nhóm>/<slug>.dvc`; danh sách
 | `artifacts/q20` | 16 | 1.920 | 12.991.878.138 | **partial**: xóa `models/`, giữ CM/rounds/config/log/provenance |
 
 **Không `dvc add` lại `artifacts/q20/*`** (workspace partial sẽ ghi đè manifest đầy đủ). Cần snapshot Q: `dvc pull artifacts/q20/<slug>.dvc`.
-Chưa DVC: `artifacts/r20`, `artifacts/v20*`, `artifacts/w20` (sắp có), `runs/` (gitignored, ~0,5 GB, giữ local).
+Mới 05/11, mỗi run một manifest; danh sách `runs/maintenance-20261105/manifests.txt`, tổng 50 manifest, 8.533 file, 49.031.911.091 B (3.068 object duy nhất sau dedup).
+
+| nhóm | manifest | files | logical bytes | local workspace |
+|---|---:|---:|---:|---|
+| `artifacts/c10` | 4 | 776 | 1.614.389.947 | giữ local |
+| `artifacts/f50` | 3 | 846 | 6.064.240.390 | giữ local |
+| `artifacts/l50` | 1 | 290 | 10.538.449.319 | giữ local |
+| `artifacts/r20` | 12 | 1.461 | 9.739.506.252 | giữ local |
+| `artifacts/v20-numerics` | 2 | 114 | 1.842.984 | giữ local |
+| `artifacts/v20-recovery` | 2 | 320 | 1.632.840.814 | giữ local |
+| `artifacts/v20` | 8 | 822 | 4.853.923.776 | giữ local |
+| `artifacts/w20` | 10 | 2.160 | 8.092.765.877 | giữ local |
+| `artifacts/x20` | 8 | 1.744 | 6.493.951.732 | giữ local |
+
+Chưa DVC: `runs/` (gitignored, giữ local; gồm closure/audit receipt và `runs/l50-study/transfer` ~19 GB là 2 bản checkpoint chuyển account).
 
 ## 3. Checks that passed (reusable while inputs are unchanged)
 
@@ -36,6 +50,9 @@ Chưa DVC: `artifacts/r20`, `artifacts/v20*`, `artifacts/w20` (sắp có), `runs
 | `dvc status -c` 71 manifest | N/O/P/Q | `Cache and remote 'onedrive' are in sync.` |
 | Remote object trước xóa | 7.863 file đã xóa: object tồn tại + đúng size; 71 `.dir` có trên remote | PASS (size, không checksum toàn bộ) |
 | `git push` / bundle | main / all refs | `c980871`, verify PASS |
+| `dvc push -j 4` 50 manifest | C/F/L/R/V/W/X | lần 1 lỗi Errno5 (Graph timeout khi list); chạy lại exit 0, 2.990 file, log `runs/maintenance-20261105/dvc-push-retry.log` |
+| `dvc status -c` 50 manifest | C/F/L/R/V/W/X | `Cache and remote 'onedrive' are in sync.` (mức mount) |
+| `rclone lsf` cloud 15:40 | 3.068 object | 342 đã lên cloud, 2.726 chờ upload; size lệch 3 là upload dở, kiểm lại đã khớp |
 
 ## 4. Local cleanup
 
@@ -46,7 +63,9 @@ Chưa DVC: `artifacts/r20`, `artifacts/v20*`, `artifacts/w20` (sắp có), `runs
 
 ## 5. Next session
 
-- Backup R/V/W: kiểm OneDrive còn chỗ (~25 GB cần), `dvc add artifacts/r20/<slug> ...` từng run hoàn chỉnh → `dvc push` → `dvc status -c`.
+- **Trước khi xóa bất kỳ workspace C/F/L/R/V/W/X:** chờ `du -sh ~/.cache/rclone` về gần 0, rồi so object trên cloud bằng `rclone lsf` (đủ 3.068, đúng size). PASS mount chưa đủ.
+- Reclaim tiềm năng chỉ khi owner yêu cầu: workspace 9 nhóm ~49 GB, `runs/l50-study/transfer` ~19 GB (chưa DVC).
+- Restore: `dvc pull artifacts/l50/mh-l0-core-lossless-s42-r50.dvc` (~10,5 GB). Kiểm disk trước.
+- Thêm run mới: `dvc add artifacts/<nhóm>/<slug>` từng run hoàn chỉnh → `dvc push` → `dvc status -c`.
   `.gitignore` ignore-all trong thư mục artifact làm `dvc add` lỗi "git-ignored" — xóa file đó trước.
-- Restore: `dvc pull artifacts/p20/mh-p2-augment-s42.dvc` (~0,8 GB/run). Kiểm disk trước.
 - `deleted` trong `dvc status -c` sau cleanup chỉ là thiếu local cache, không phải remote mất.

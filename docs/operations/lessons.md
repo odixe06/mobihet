@@ -84,3 +84,6 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
 - Crossaccount continuation có kernel slug mới nhưng out/runIDW&B giữ cũ; startupcheck phải nhận wandb_run_id riêng, nếu không sẽ
   query nhầm W&B run dù training đang sống. L50 giữ cache publicodixe0502 cả2session; privatecheckpoint uploadowner2, rawSHAverify
   và cảstate2rank cùnground trước resume. Local generatedimportcell/tampergatePASS không thay verificationdataset thật.
+
+- `dvc push` qua rclone mount có thể lỗi Errno5 do Graph timeout khi list (05/11); mount vẫn ghi được, chạy lại đúng lệnh là đủ, DVC bỏ qua object đã có.
+  `xargs` đổi exit255 thành124, và exit của job nền là của lệnh cuối: đọc RC từng bước, không tin exit0 của wrapper.
