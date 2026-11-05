@@ -59,6 +59,6 @@ Giữ originalguard/source/batch và6kernel còn lại; originalfailures vẫnFA
 
 ## References theo thành phần
 
-CE/LA/copula/classQ kế thừa [method](method.md); sharedinputconsensus thích nghi từ
+CE/LA/copula/classQ kế thừa [method](../../../docs/research/method.md); sharedinputconsensus thích nghi từ
 [FedMD](https://arxiv.org/abs/1910.03581). Margin/validationbranch là chẩn đoán dự án;
 không triển khai FedDFproxyfit, FedAUXqualityweight hoặc PCGrad ở V.

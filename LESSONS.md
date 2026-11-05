@@ -121,7 +121,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 
 ## P20 — teacher, support và clientobjective
 
-- [P20 gốc](docs/research/results-p20.md) đã đóng gate32run:31×20round/P21r0. [Recovery P21](archive/docs/research/results-p21-recovery.md)
+- [P20 gốc](archive/docs/research/results-p20.md) đã đóng gate32run:31×20round/P21r0. [Recovery P21](archive/docs/research/results-p21-recovery.md)
   bổ sung seed43 đủ20round, không thay originalfailure bằng probe1round hoặc gọi freshretry là resume.
   P21 lỗi số học trước serverfit không là utilityFAIL của hybrid; guardPASS/recovery không chứng minh rootcause đã sửa.
 - Augmentation là phần gain lớn nhất so localCE; local-only có accuracy0 trên absentrows xe nhỏ, synthetic giúp đáng kể.
@@ -150,7 +150,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 
 ## Q20 — ba khâu và độ tin cậy từng xe
 
-- [16run Q20](docs/research/results-q20.md) đủ20round/hai seed, querycontrol−stream qua tripwire, nhưng fullremote CM/Q
+- [16run Q20](archive/docs/research/results-q20.md) đủ20round/hai seed, querycontrol−stream qua tripwire, nhưng fullremote CM/Q
   không bitexact dù localfixture bitexact. Querycontrol cũng có1227xe delta âm cảhai seed; không biến negativecount
   thành causalKDfailure hoặc dùng hai seed làm noisebound/significance. Báo thêm độ lớn/support và repeatedcontrol.
 - Mixedsupport dùng classQ riêng chưa nâng pooled/p10 ổn định. Cùng support, inputtarget nâng meanxe<256/p10 cảhai seed;
@@ -168,7 +168,7 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 
 ## R20/V20 — độ ồn, replay tiếp nhận, validation sạch
 
-- [R20/V20](docs/research/results-r20-v20.md): ba phiên cùng công thức/seed lệch pooled ≤.0005, p10 ≤.006, low256 ≤.003,
+- [R20/V20](archive/docs/research/results-r20-v20.md): ba phiên cùng công thức/seed lệch pooled ≤.0005, p10 ≤.006, low256 ≤.003,
   timeDelay ≤.0035; ~250 xe dao động >.05 mỗi chiều. Đếm "số xe giảm" và chênh dưới các ngưỡng này không là bằng chứng.
 - Teacher cố định, realKD vẫn −.05 timeDelay/lớp vắng: tác hại không cần feedback. Live gấp đôi do vòng phản hồi
   (Q[13,13] r20 .739 noReal → .581 binary). **Margin ≤ binary/strength khi teacher cố định**; lợi live của margin là

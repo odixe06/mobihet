@@ -72,7 +72,7 @@ Poll1200s bằng codex-long-jobs worker; COMPLETE phải pull/audit mới kết 
 
 ## Reference theo thành phần
 
-Kế thừa [method](method.md): FD/KD classQ, shared inputconsensus thích nghi từ
+Kế thừa [method](../../../docs/research/method.md): FD/KD classQ, shared inputconsensus thích nghi từ
 [FedMD](https://arxiv.org/abs/1910.03581). R replay/reception là chẩn đoán dự án, không serverproxyfit
 hoặc triển khai FedDF/PCGrad/FedAUX. Không gán paper cho thành phần chưa chạy.
 

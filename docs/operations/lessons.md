@@ -70,7 +70,7 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
   `odixe0502/mobihet-v4npy-cache`, run sau mount qua `kernel_sources` + kiểm SHA manifest (`gen_notebook.py --npy-kernel`).
   Kernel private không mount chéo tài khoản được; nhánh V (không đọc test) vẫn tự build cache riêng.
 - Client trải nhiều file parquet (4 nhóm liên thông tới 198 file/19M dòng): thống kê theo client phải gộp qua file, không theo từng file.
-- OneDrive remote còn ~67 GB (02/11) — 97% dung lượng artifact là snapshot `models/r*.pt`. Kiểm quota cloud trước dvc push lớn.
+- 97–99% dung lượng artifact là snapshot `models/r*.pt`. Kiểm `rclone about onedrive:` trước dvc push lớn; `dvc` chỉ có trong env conda `nckh`.
 - Guard credential của notebook public phải tìm marker credential, không chuỗi "wandb" chung (lệnh mẫu có `--wandb`).
 - Dọn local Q (02/11) xóa `models/` → `tests/test_r20.py::test_frozen_history_independent_source_and_tamper` cần checkpoint Q6/Q7
   sẽ lỗi FileNotFound. Study không replay bỏ chọn test đó (preflight `--study=x20`); study có replay phải

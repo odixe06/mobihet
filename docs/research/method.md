@@ -46,7 +46,7 @@ FAug cùng bài FD yêu cầu upload seed samples để train GAN; **không áp 
 DAGSNet thực sự dùng cho mọi M, nguồn và deviation tại [đặc tả kiến trúc](../../knowledge/dagsnet.md).
 Bài báo/ý tưởng chưa triển khai không đưa vào bảng reference phương pháp đã thử; đề xuất giữ ở [diagnostic-next](../../archive/docs/research/diagnostic-next.md).
 
-P20 gốc31run đủ20round/P21r0; [kết quả gốc](results-p20.md) và [transfer từngxe](../../archive/docs/research/p20-client-transfer.md).
+P20 gốc31run đủ20round/P21r0; [kết quả gốc](../../archive/docs/research/results-p20.md) và [transfer từngxe](../../archive/docs/research/p20-client-transfer.md).
 [Recovery C10seed43](../../archive/docs/research/results-p21-recovery.md) đã audit20round: hybrid hơn proxythuần pooled cảhai seed nhưng vẫn dưới streamingclassQ.
 [Đề xuất pipeline](../../archive/docs/research/proposed-method-p20.md) giữ streamingclassQ, kiểm thêm
 support/inputtargets/serverreliability/reception từngkhâu; chưa triển khai hoặc nhận method tổng.
@@ -60,11 +60,11 @@ support/inputtargets/serverreliability/reception từngkhâu; chưa triển khai
 Clientmodel mọi P giữ DAGSNetW1 như repo benchmark. Serverproxy riêng không ràng buộc kiến trúc client về mặt schema;
 batch chưa kiểm modeltrộn. ClassQ và proxy là các đối chứng song song, chưa chọn teacher cuối.
 
-[Q20](screening-q20.md) tiếp nối C2/C7: giữ onlineclassQ, mixed32stream/32bank, inputensemble count/sqrt
-và realKD/margin/strength controls. [Kết quả Q](results-q20.md) đủ16×20: inputtarget nâng weakcohort,
+[Q20](../../archive/docs/research/screening-q20.md) tiếp nối C2/C7: giữ onlineclassQ, mixed32stream/32bank, inputensemble count/sqrt
+và realKD/margin/strength controls. [Kết quả Q](../../archive/docs/research/results-q20.md) đủ16×20: inputtarget nâng weakcohort,
 margin nâng pooled/mean/p10 nhưng vẫn hại absent/timeDelay; sqrtinputweight chưa giúp. Chưa method tổng.
 Không serverproxyfit hoặc modeldownlink Q, không gán FedDFproxyfit cho Q; inputconsensus vẫn là adaptation FedMD ở trên.
 
-[R20/V20](results-r20-v20.md) tách độ ồn phiên, tiếp nhận realKD với teacher cố định và validation sạch: realKD bị loại khỏi
+[R20/V20](../../archive/docs/research/results-r20-v20.md) tách độ ồn phiên, tiếp nhận realKD với teacher cố định và validation sạch: realKD bị loại khỏi
 mặc định. Hướng hiện hành và byte theo tầng: [proposal](proposal.md); ô đang chạy: [W20](screening-w20.md)
 (non-target KD theo [Decoupled KD, Zhao et al. 2022](https://arxiv.org/abs/2203.08679), step floor synthetic, bootstrap nén).

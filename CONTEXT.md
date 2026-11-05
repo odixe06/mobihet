@@ -18,7 +18,7 @@ không dòng dữ liệu, nhãn từng dòng, trọng số, BN, gradient. Chưa 
 - Kaggle: credential theo process, giữ global login; cache npy dùng chung qua kernel public `odixe0502/mobihet-v4npy-cache`.
   W&B online. Commit không có trailer `Co-Authored-By`.
 
-## Trạng thái — kiểm lại 04/11/2026, L50 lossless 50 round hoàn tất PASS
+## Trạng thái — kiểm lại 05/11/2026, L50 lossless 50 round hoàn tất PASS; docs/code N→V đã archive
 
 M→X đã đóng audit. [X20](docs/research/results-x20.md): floor + bootstrap nén cộng thẳng (core); input-bank qua gate
 (p10 .717, low256 .801) nhưng lợi thu hẹp theo round; NCKD giới hạn lớp xe có xóa hại lớp vắng nhưng vẫn tốn timeDelay,
@@ -36,7 +36,7 @@ N/O/P/Q đã DVC; R/V/W/X/F/L chưa DVC (OneDrive thiếu chỗ). Job, owner fil
 |---|---|
 | Phương pháp đề xuất, byte, thành phần nào đã chứng minh? | [proposal](docs/research/proposal.md) |
 | Nguyên nhân đã biết, đang kiểm gì? | [diagnosis](docs/research/diagnosis.md) |
-| Kết quả mới và giới hạn bằng chứng? | [L50](docs/research/results-l50.md), [C10](docs/research/results-c10.md), [X20](docs/research/results-x20.md), [W20](docs/research/results-w20.md), [R20/V20](docs/research/results-r20-v20.md), [Q20](docs/research/results-q20.md), [P20](docs/research/results-p20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
+| Kết quả mới và giới hạn bằng chứng? | [L50](docs/research/results-l50.md), [C10](docs/research/results-c10.md), [X20](docs/research/results-x20.md), [W20](docs/research/results-w20.md), [benchmark r20](docs/research/benchmark-r20-reference.md) |
 | Cơ chế code/cấu hình chung? | [method](docs/research/method.md), [protocol](docs/research/protocol.md) |
 | Job nào sống, bước tiếp, việc tay? | [continue](docs/operations/continue.md) |
 | Chạy công cụ, Kaggle, backup/khôi phục? | [operations](docs/operations/README.md), [scripts](scripts/README.md), [backup](docs/operations/backup.md) |

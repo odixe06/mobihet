@@ -1,6 +1,6 @@
 # W20 — decoupled KD, step floor synthetic, bootstrap nén
 
-Owner 02/11 ủy quyền chạy cả batch sau preflight local PASS. Bằng chứng nền: [R20/V20](results-r20-v20.md).
+Owner 02/11 ủy quyền chạy cả batch sau preflight local PASS. Bằng chứng nền: [R20/V20](../../archive/docs/research/results-r20-v20.md).
 Giữ DAGSNet W1/full 5343/20 round/cosine50/seed42–43/batch64/AdamW reset/AMP fp16/clip1; 1 epoch trên dữ liệu local
 đúng như repo benchmark. Mỗi ô đổi **một** thành phần so với control đã audit; không chọn HP/round bằng official test.
 
@@ -43,5 +43,5 @@ Downlink compact = 64 (prior) + 630.784 (CDF uint16) + 98.560 (fp16 mean/Cholesk
   run W mount cache thay vì build 448 s.
 - Remote: 2 T4, compile gate PASS mọi rank (từ chối eager fallback) + guard finite scoring như Q/R; skip fraction ghi mỗi round,
   audit đối chiếu với mức R/V (≤ ~2e-5).
-- Audit đủ 20 round như R; đọc kết quả theo spread phiên ở [R20/V20 §1](results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed).
+- Audit đủ 20 round như R; đọc kết quả theo spread phiên ở [R20/V20 §1](../../archive/docs/research/results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed).
 - Không ghép gain các ô để dự đoán combo; combo chỉ chạy sau khi từng ô qua gate.

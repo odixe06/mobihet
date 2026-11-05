@@ -97,7 +97,7 @@ Phần non-target (quan hệ giữa các lớp sai) là phần O20 đã chứng 
 Mọi ô r15→20: pooled +.002–.004, mean xe<256 +.026–.050, p10 +.017–.033. Xe nhỏ chỉ có 2–4 bước/round
 (1 epoch, batch 64) nên còn thiếu tối ưu. 20 round không đại diện plateau 50 round.
 
-## 6. So benchmark cùng horizon (seed42 r20, [tham chiếu](benchmark-r20-reference.md))
+## 6. So benchmark cùng horizon (seed42 r20, [tham chiếu](../../../docs/research/benchmark-r20-reference.md))
 
 | phương pháp | pooled | mean | p10 | timeDelay | byte/xe/20r |
 |---|---|---|---|---|---:|
@@ -122,5 +122,5 @@ Downlink nén lossy (CDF uint16 + fp16 Cholesky ≈ 729 KB) cần kiểm utility
 1. Giữ: copula bootstrap + streaming classQ trên synthetic (544 B/round) làm lõi; input-target bank là tầng tùy chọn khi
    băng thông cho phép (+33 KB/round, lợi xe yếu trên val).
 2. Loại khỏi mặc định: realKD binary/margin/strength, sqrt input weight, proxy server/model downlink.
-3. Kiểm tiếp (W20, [thiết kế](screening-w20.md)): decoupled KD (bỏ phần target-class), step floor synthetic cho xe ít bước,
+3. Kiểm tiếp (W20, [thiết kế](../../../docs/research/screening-w20.md)): decoupled KD (bỏ phần target-class), step floor synthetic cho xe ít bước,
    downlink bootstrap nén. Mọi so sánh dùng độ ồn phiên ở mục 1 làm ngưỡng đọc.

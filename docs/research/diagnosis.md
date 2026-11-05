@@ -1,7 +1,7 @@
 # Chẩn đoán — nguyên nhân đã biết và phép thử tiếp (03/11/2026, sau X20)
 
 Mục tiêu: own-test từng xe, nâng xe ít mẫu/non-IID, băng thông thấp, schema dùng được cho mô hình khác nhau.
-Hướng phương pháp: [proposal](proposal.md). Số đo: [X20](results-x20.md), [W20](results-w20.md), [R20/V20](results-r20-v20.md), [Q20](results-q20.md), [P20](results-p20.md).
+Hướng phương pháp: [proposal](proposal.md). Số đo: [X20](results-x20.md), [W20](results-w20.md), [R20/V20](../../archive/docs/research/results-r20-v20.md), [Q20](../../archive/docs/research/results-q20.md), [P20](../../archive/docs/research/results-p20.md).
 Lịch sử M/N/O/P chi tiết đã archive; bài học còn hiệu lực ở [LESSONS](../../LESSONS.md).
 
 ## Nguyên nhân đã xác lập
@@ -41,5 +41,5 @@ Lịch sử M/N/O/P chi tiết đã archive; bài học còn hiệu lực ở [L
 5. timeDelay: đặc trưng thời gian/ngữ cảnh ở repo features — ngoài phạm vi cơ chế FL; X20 thêm bằng chứng mọi KD dòng thật
    dạy lại sự nhầm benign/timeDelay của teacher.
 
-Quy tắc đọc: mọi hiệu so với độ ồn phiên ([R20/V20 §1](results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed));
+Quy tắc đọc: mọi hiệu so với độ ồn phiên ([R20/V20 §1](../../archive/docs/research/results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed));
 không cộng gain các ô; không chọn round/HP bằng official test; hai seed không phải significance.

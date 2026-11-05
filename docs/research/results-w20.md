@@ -1,7 +1,7 @@
 # Kết quả W20 — decoupled KD, step floor synthetic, bootstrap nén
 
 02/11/2026. 10/10 run COMPLETE, audit 20 round PASS (source/CM/aggregate/teacher chain/byte/npy cache verify), skip ≤ 1,7e-6.
-Thiết kế và dấu hiệu bác bỏ: [screening-w20](screening-w20.md). Độ ồn phiên: [R20/V20 §1](results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed).
+Thiết kế và dấu hiệu bác bỏ: [screening-w20](screening-w20.md). Độ ồn phiên: [R20/V20 §1](../../archive/docs/research/results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed).
 Số liệu: `runs/r-study/analysis/{analysis.json,endpoint.csv}` (`scripts/analyse_r20_v20.py`), cohort/lớp/teacher
 `runs/w-study/analysis.json` (`scripts/analyse_w20.py`). Official own-test, đọc lặp nhiều lần, 2 seed, không CI.
 

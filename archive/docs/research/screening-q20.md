@@ -1,8 +1,8 @@
 # Q20 — streaming, inputtarget, serverweight và clientreception
 
-Owner yêu cầu bắt đầu các kiểm nghiệm theo [đề xuất sau P](../../archive/docs/research/proposed-method-p20.md).
+Owner yêu cầu bắt đầu các kiểm nghiệm theo [đề xuất sau P](proposed-method-p20.md).
 Batch đầu16run/8cell×seed42/43,20round fresh/cosine50/full5343/DAGSNetW1/batch64/1epoch,
-AdamWreset/AMPfp16/clip1 như [protocol](protocol.md). Own-test từngxe, đủ10metric mỗi round.
+AdamWreset/AMPfp16/clip1 như [protocol](../../../docs/research/protocol.md). Own-test từngxe, đủ10metric mỗi round.
 Giữ train+val37.361.273/test9.347.679; không dùng test chọn HP hoặc sourceexpert.
 P21R1 giữ worker/source riêng; Q không chờ hoặc suy gain từ C10 thiếu seed43.
 
@@ -73,9 +73,9 @@ không tự đổi headlineprotocol. Không mở lại GMM/MADE/BNsplit hoặc t
 
 ## Reference đúng thành phần
 
-ClassQ/KL kế thừa [method](method.md): FD/KD adaptations đã dùng. Inputconsensus tiếp nối C7/P20,
+ClassQ/KL kế thừa [method](../../../docs/research/method.md): FD/KD adaptations đã dùng. Inputconsensus tiếp nối C7/P20,
 tham khảo [FedMD](https://arxiv.org/abs/1910.03581); copulasharedqueries/countweightedprobability khác publicdata/logitmean của bài.
 Q không có serverproxy nên không gán FedDFproxyfit cho các cell Q. Mixedsupport/sqrtinputweight/reception là giả thuyết dự án;
 không reference PCGrad/FedAUX như thành phần đã triển khai.
 
-Trạng thái/runtime ownership tại [bàn giao](../operations/continue.md). Manifest sẽ khóa sau preflight/quota.
+Trạng thái/runtime ownership tại [bàn giao](../../../docs/operations/continue.md). Manifest sẽ khóa sau preflight/quota.

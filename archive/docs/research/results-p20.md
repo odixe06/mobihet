@@ -1,9 +1,9 @@
 # P20 — kết quả và hệ quả cho phương pháp
 
-Đã [pull/audit toàn bộ32run](../../archive/docs/research/audit-p20.md) trước phân tích:31run đủ20round, P21 lỗi trước round1.
+Đã [pull/audit toàn bộ32run](audit-p20.md) trước phân tích:31run đủ20round, P21 lỗi trước round1.
 16cell giữ5343xe/DAGSNetW1/cosine50/seed42–43. C10 chỉ còn seed42; không nội suy hoặc coi probe1round là seed43.
-Số dưới đây là F1 dạng0–1. [Đủ10metric](../../archive/docs/research/metrics-p20.md), [byte và thời gian từng run](../../archive/docs/research/cost-p20.md),
-thiết kế/tham khảo gắn với thành phần đã triển khai tại [P20](../../archive/docs/research/screening-p20.md).
+Số dưới đây là F1 dạng0–1. [Đủ10metric](metrics-p20.md), [byte và thời gian từng run](cost-p20.md),
+thiết kế/tham khảo gắn với thành phần đã triển khai tại [P20](screening-p20.md).
 
 ## Endpoint20
 
@@ -125,7 +125,7 @@ cũng không đủ bằng chứng mở lại GMM/MADE/BNsplit/head-only từng f
 
 Tổng walltime logC2 khoảng4.46/4.53h, C9 khoảng4.83/5.27h; không là latency một xe.
 Time chịu setup/compile/diagnostic/máy Kaggle; không quy mọi chênh session cho method.
-Phân rã byte/time đầy đủ ở [bảng chi phí](../../archive/docs/research/cost-p20.md); server/scoring đã nằm trong train, không cộng hai lần.
+Phân rã byte/time đầy đủ ở [bảng chi phí](cost-p20.md); server/scoring đã nằm trong train, không cộng hai lần.
 
 ## Định hướng phương pháp và kiểm chứng tiếp
 
@@ -146,7 +146,7 @@ Uploader chỉ gửi thống kê gộp/output trên synthetic chung, server gi�
 không mẫu thật, feature/nhãn từng dòng hoặc privateweights trong FLmessages. Không có formalDP/secureaggregation proof.
 Schema không phụ thuộc tham số model client, nhưng batch hiện toànDAGSNet; heterogeneousarchitecture chưa kiểm thực nghiệm.
 
-Không nhận “đã thắng benchmark”: [tham chiếu r20](benchmark-r20-reference.md) APFedclient seed42F1=.902965,
+Không nhận “đã thắng benchmark”: [tham chiếu r20](../../../docs/research/benchmark-r20-reference.md) APFedclient seed42F1=.902965,
 meanxe=.870260/p10=.760997, vẫn trên C4seed42 (.894115/.838307/.699480). Đây là tham chiếu cùnghorizon/model,
 kế thừa auditbounded khácrepo, không đối chứng nhân quả hay significance. Có khoảng cách chất lượng cần giải quyết.
 

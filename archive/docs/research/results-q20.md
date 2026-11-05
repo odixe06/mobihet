@@ -141,7 +141,7 @@ serveraggregation không có timer riêng không đồng nghĩa miễn phí. [Đ
 
 **Control vận hành gọn:** giữ streamingclassQ. **Ứng viên chất lượng:** mixedinput+margin để kiểm tiếp, chưa method cuối.
 Margin cao nhất về pooled trong8cell hai seed nhưng thêmbyte, hại absent/timeDelay và còn dưới
-[tham chiếu APFedclient seed42 r20](benchmark-r20-reference.md) .902965 cùngW1/horizon.
+[tham chiếu APFedclient seed42 r20](../../../docs/research/benchmark-r20-reference.md) .902965 cùngW1/horizon.
 Tham chiếu khácrepo kế thừa auditbounded, không significance hoặc đối chứng nhân quả.
 
 ## Kiểm chứng tiếp dựa đúng ba khâu
@@ -154,13 +154,13 @@ Tham chiếu khácrepo kế thừa auditbounded, không significance hoặc đ�
 | 4, sau validation | Gửi reliabilitysummary gộp từnglớp; so count vs shrinkagequalityweight cùnginput/byte, rồi querymemory/diversity cùngbudget và agecontrol | Confidence/agreement không là correctness. Không rawrow/privateweights; memoryrow phải đúnginput/version, không gộp rowindex của các bankkhác |
 
 Không launch phase mới hoặc thay frozenQHP từ bảng này; đây là thiết kế tiếp cần khóa trước run.
-[Pipeline đề xuất](../../archive/docs/research/proposed-method-p20.md) được cập nhật theo Q. Chưa triển khai validationreliability/memory/gradientprojection.
+[Pipeline đề xuất](proposed-method-p20.md) được cập nhật theo Q. Chưa triển khai validationreliability/memory/gradientprojection.
 Client vẫn DAGSNetW1 để so benchmark; schemaoutput cho phép khácmodel về thiết kế, heterogeneousproof còn thiếu.
 
 Reference đúng phần đã thử tại [Qdesign](screening-q20.md): FD/KD cho classQ/KL, FedMDadaptation cho sharedsyntheticinputconsensus.
 Q không có proxyfit nên không gán FedDF cho Q; mixedsupport/sqrt/reception là giả thuyết dự án.
 Hai seed/repeatedofficialtest chỉ exploratory, không freshconfirmation. Caveat dataset: benign/timeDelay featureoverlap,
-worldcontextshortcut, Sybilprior8.80%train→17.67%test ([dataset](../../knowledge/dataset.md)).
+worldcontextshortcut, Sybilprior8.80%train→17.67%test ([dataset](../../../knowledge/dataset.md)).
 Không rawlocaldata/per-rowlabels/privateweights trong FLmessages; chưa formalDP/SecAgg.
 
 Tái tạo envnckh: `python scripts/analyse_q20.py`, `python scripts/report_q20.py`;

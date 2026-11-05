@@ -1,7 +1,7 @@
 # Kết quả X20 — combo floor + nén, input-bank, non-target KD giới hạn trong lớp xe có
 
 03/11/2026. 8/8 run COMPLETE, audit 20 round PASS (`runs/x-study/closure.json`), skip 0.
-Thiết kế và gate khóa trước: [screening-x20](screening-x20.md). Độ ồn phiên: [R20/V20 §1](results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed);
+Thiết kế và gate khóa trước: [screening-x20](screening-x20.md). Độ ồn phiên: [R20/V20 §1](../../archive/docs/research/results-r20-v20.md#1-độ-ồn-giữa-các-phiên-cùng-công-thức-cùng-seed);
 spread dùng như W20: low256 .003, p10 .006, timeDelay .0035.
 Số liệu: `runs/r-study/analysis/analysis.json` (`scripts/analyse_r20_v20.py`), cohort/lớp/teacher `runs/w-study/analysis.json`
 (`scripts/analyse_w20.py`). Official own-test, đọc lặp nhiều lần, 2 seed, không CI.

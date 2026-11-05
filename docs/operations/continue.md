@@ -1,7 +1,7 @@
-# Continue — bàn giao sống, 04/11/2026 — L50 lossless, 2 account
+# Continue — bàn giao sống, 05/11/2026 — sau L50, backup + dọn archive
 
 Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
-Bàn giao trước (P/Q/R/V chi tiết, callback cũ): [snapshot](../../archive/handoffs/2026-11-02-1700-before-w20-launch.md).
+Bàn giao trước: [05/11](../../archive/handoffs/2026-11-05-before-archive-cleanup.md), P/Q/R/V chi tiết [02/11](../../archive/handoffs/2026-11-02-1700-before-w20-launch.md).
 
 ## Quyền owner đang có (02/11)
 
@@ -37,10 +37,9 @@ F50 controller đã succeeded 14:21 ngày 03/11. `runs/f-study/closure.json`: F0
 
 ## Bước tiếp
 
-1. L50 đã đóng: đối chiếu 10 metric, cohort và byte giữa L0 Lossless và F2 Core tại [results-l50](../research/results-l50.md). Hoàn tất tài liệu dự án và Notion.
+1. L50 đã đóng: đối chiếu 10 metric, cohort và byte giữa L0 Lossless và F2 Core tại [results-l50](../research/results-l50.md). Notion đã xong (owner 05/11).
 2. F50 đã đóng: viết `docs/research/results-f50.md` (10 metric r50 cạnh baseline r50).
 3. Sau quota reset 07/11: launch core s43 (F50 deferred, cùng recipe).
-4. Backup R/V/W/X/F/L khi OneDrive còn chỗ.
 
 ## Kết quả mới nhất
 
@@ -51,4 +50,3 @@ F50 controller đã succeeded 14:21 ngày 03/11. `runs/f-study/closure.json`: F0
 ## Việc tay cho owner
 
 - L50 hiện chưa cần thao tác tay; quota/account/dataset lỗi phải báo evidence cụ thể. Không yêu cầu login từ suyđoán.
-- Backup R/V/W/X: giải phóng hoặc mở rộng OneDrive; sau N/O/P/Q còn ~15 GB.
