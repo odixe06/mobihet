@@ -1,0 +1,6 @@
+outs:
+- md5: 2bc5924647311587bc9c55adf9d12a62.dir
+  size: 814898468
+  nfiles: 123
+  hash: md5
+  path: mh-r8-replay-margin-s42-input1

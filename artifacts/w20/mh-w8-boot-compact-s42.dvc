@@ -1,0 +1,6 @@
+outs:
+- md5: 9e4089bd5bc636ac07c9f1387f9b3126.dir
+  size: 805675371
+  nfiles: 216
+  hash: md5
+  path: mh-w8-boot-compact-s42

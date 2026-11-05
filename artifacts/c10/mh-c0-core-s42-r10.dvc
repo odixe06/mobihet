@@ -1,0 +1,6 @@
+outs:
+- md5: a7f846f07e6d27368c49953edd9e05c2.dir
+  size: 403550331
+  nfiles: 184
+  hash: md5
+  path: mh-c0-core-s42-r10

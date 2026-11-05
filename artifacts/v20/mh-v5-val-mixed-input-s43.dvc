@@ -1,0 +1,6 @@
+outs:
+- md5: 6fd9b96d90138272ed1477d1d4229b8a.dir
+  size: 811586079
+  nfiles: 118
+  hash: md5
+  path: mh-v5-val-mixed-input-s43

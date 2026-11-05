@@ -1,0 +1,6 @@
+outs:
+- md5: 7f0f9bc64e4cade0c6e76b4950a1123b.dir
+  size: 811273423
+  nfiles: 118
+  hash: md5
+  path: mh-v7-val-margin-s43

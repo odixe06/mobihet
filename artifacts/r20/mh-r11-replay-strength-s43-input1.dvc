@@ -1,0 +1,6 @@
+outs:
+- md5: e5225be3c59f8699d9947d1930fb4fc6.dir
+  size: 814805563
+  nfiles: 122
+  hash: md5
+  path: mh-r11-replay-strength-s43-input1

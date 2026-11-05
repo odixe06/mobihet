@@ -1,0 +1,6 @@
+outs:
+- md5: 87ceb99b4107074df7b0b2737fb85bab.dir
+  size: 815156101
+  nfiles: 122
+  hash: md5
+  path: mh-r5-replay-mixed-input-s43-input1

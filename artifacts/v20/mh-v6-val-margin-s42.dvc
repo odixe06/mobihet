@@ -1,0 +1,6 @@
+outs:
+- md5: 72cf48d499416068279fa8766b61640e.dir
+  size: 811288736
+  nfiles: 118
+  hash: md5
+  path: mh-v6-val-margin-s42

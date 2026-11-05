@@ -1,0 +1,6 @@
+outs:
+- md5: 16abdc1817c028c4dda43b7fe312d62a.dir
+  size: 805807576
+  nfiles: 216
+  hash: md5
+  path: mh-w6-step-floor-s42

@@ -1,0 +1,6 @@
+outs:
+- md5: d254341d93ce660639fbd97b7632e19a.dir
+  size: 814785674
+  nfiles: 122
+  hash: md5
+  path: mh-r7-replay-real-s43-input1

@@ -1,0 +1,6 @@
+outs:
+- md5: 3f9632a72a00033108ad7f75a1375e98.dir
+  size: 805637133
+  nfiles: 216
+  hash: md5
+  path: mh-w9-boot-compact-s43

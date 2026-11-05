@@ -1,0 +1,6 @@
+outs:
+- md5: 16e71ddacfd521bd151c6ab3002d664a.dir
+  size: 805073800
+  nfiles: 121
+  hash: md5
+  path: mh-r2-repeat-b-s42

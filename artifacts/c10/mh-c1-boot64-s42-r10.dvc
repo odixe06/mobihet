@@ -1,0 +1,6 @@
+outs:
+- md5: 1aa9a33b50f52a2f875f4d5509e82a29.dir
+  size: 403550434
+  nfiles: 184
+  hash: md5
+  path: mh-c1-boot64-s42-r10

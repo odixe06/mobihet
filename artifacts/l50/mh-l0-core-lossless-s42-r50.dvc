@@ -1,0 +1,6 @@
+outs:
+- md5: 2b40c6c6fed1f98c9e7a73ab1ca04a2a.dir
+  size: 10538449319
+  nfiles: 290
+  hash: md5
+  path: mh-l0-core-lossless-s42-r50

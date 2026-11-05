@@ -1,0 +1,6 @@
+outs:
+- md5: af224c1512f2015a66277a7107dc5d29.dir
+  size: 814805378
+  nfiles: 122
+  hash: md5
+  path: mh-r6-replay-real-s42-input1

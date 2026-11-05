@@ -1,0 +1,6 @@
+outs:
+- md5: 6ff126e83b0992fcdf2846b0de8430b8.dir
+  size: 803764411
+  nfiles: 118
+  hash: md5
+  path: mh-v3-val-augment-s43

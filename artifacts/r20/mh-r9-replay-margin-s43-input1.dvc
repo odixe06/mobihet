@@ -1,0 +1,6 @@
+outs:
+- md5: 8c0a474e658c157f07a4f60dc7014ec1.dir
+  size: 814838093
+  nfiles: 122
+  hash: md5
+  path: mh-r9-replay-margin-s43-input1

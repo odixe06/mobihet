@@ -1,0 +1,6 @@
+outs:
+- md5: 3fad3837224ccee8c5d6da8fc6f385a0.dir
+  size: 921499
+  nfiles: 57
+  hash: md5
+  path: mh-vnum-ce-s43

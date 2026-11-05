@@ -1,0 +1,6 @@
+outs:
+- md5: eb7cff0791b7a6db1cc2ef2238e045f0.dir
+  size: 814824957
+  nfiles: 122
+  hash: md5
+  path: mh-r10-replay-strength-s42-input1

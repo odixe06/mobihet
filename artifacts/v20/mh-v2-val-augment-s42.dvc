@@ -1,0 +1,6 @@
+outs:
+- md5: 752ad65cb6e8f71842186f07c150ac8e.dir
+  size: 803786463
+  nfiles: 118
+  hash: md5
+  path: mh-v2-val-augment-s42

@@ -1,0 +1,6 @@
+outs:
+- md5: 70869c55be060033917901ae128243f3.dir
+  size: 805754816
+  nfiles: 218
+  hash: md5
+  path: mh-x1-core-s43

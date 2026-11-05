@@ -1,0 +1,6 @@
+outs:
+- md5: 3c8afd6d2c25326d189389101ecb9e90.dir
+  size: 813732803
+  nfiles: 218
+  hash: md5
+  path: mh-x6-full-s42

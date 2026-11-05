@@ -1,0 +1,6 @@
+outs:
+- md5: 34f71f8c7d3c7cc52219d5ee14cb2cb2.dir
+  size: 2007896943
+  nfiles: 282
+  hash: md5
+  path: mh-f2-core-s42-r50

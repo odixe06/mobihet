@@ -1,0 +1,6 @@
+outs:
+- md5: 822cbc8d263b8c406b888ec584e28a66.dir
+  size: 310190
+  nfiles: 57
+  hash: md5
+  path: mh-v0-val-real-s42

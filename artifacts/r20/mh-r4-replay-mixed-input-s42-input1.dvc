@@ -1,0 +1,6 @@
+outs:
+- md5: ab129c1ead93c65c76cf8171850829fc.dir
+  size: 815175508
+  nfiles: 122
+  hash: md5
+  path: mh-r4-replay-mixed-input-s42-input1

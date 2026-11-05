@@ -1,0 +1,6 @@
+outs:
+- md5: 0d982e656437ef95c471512bf1d469f1.dir
+  size: 816432492
+  nfiles: 160
+  hash: md5
+  path: mh-v0-val-real-s42-guard1
