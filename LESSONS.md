@@ -202,3 +202,26 @@ Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không b�
 - Tầng tùy chọn qua gate r20 vẫn có thể chỉ là tăng tốc: đọc quỹ đạo r10/r15/r20 của hiệu, không chỉ endpoint.
 - Gate trượt sát ngưỡng vẫn là trượt; không nới gate sau khi xem số.
 
+
+## C10 — codec feasibility local, chưa utility
+
+- Core compact bootstrap chiếm97,9% tổng20round; Q-only không thể giảm quá2,13% tổng dù bỏ hết Q.
+  Probe40snapshot X0/X1: zlib bodyQ trung bình522,6B >fp16body512B; Q8 không đổiargmax nhưng maxprobdelta.0144.
+  Không dùng argmaxunchanged thay utility; không ngoại suy tỷ lệ losslessCDF fixture2xe ra toàn5343xe.
+  [Thiết kế/phạm vi C10](docs/research/screening-c10.md).
+
+## C10 — fullnetwork10round seed42
+
+- [C10](docs/research/results-c10.md): Qdown8 giữ pooled gần Core nhưng low256−.0074/absent−.0418; combo còn hạiabsent−.0315.
+  Không dùng pooled hoặc argmaxQunchanged để nhận codec; Q8 tiết kiệm chỉ2560B/10round nên tradeoff không đáng trong setting này.
+- Bootstrap64 PASS các gate r10 với byte bảo thủ−22,9%, chưa proof r50 hoặc mọi client. Histogram64 cần dựng lại score/covariance.
+- CDF256 toàn5343xe lossless zlib6:630784→267379B, khác xa fixture2xe14894B. Tổng Core r10 dự kiến−35,9%; chưa chạy fullnetwork
+  qua compressedCDFdecode nên phân biệt measuredcodec/projectedpayload với đã train transportpath. Chưa cộng sparse64 chưa đo hoặc gọi SecAgg đã triển khai.
+
+## L50 — full 50 round lossless CDF đã audit PASS
+
+- Giải nén uint16CDF phải dựng mass bằng diff trên lưới float64 rồi castfloat32 như Corecompact, không diffCDFfloat32 đã làm tròn.
+  Assert CDF/mass torch.equal ngay bootstrap; local 4 round / fullstate / snapshot so Core và resume trùng bit.
+- [L50](docs/research/results-l50.md) hoàn tất 50 round trên 2x T4 qua 2 session cross-account (`emtrangtri` r1–25, `chuchimnon` r26–50):
+  Lossless CDF zlib-6 giải nén bit-exact (`bitexact_cdf: true`, `bitexact_mass: true`). F1 macro r50 đạt 0.899129 so với F2 Core 0.899160 (chênh lệch chỉ -0.000031); Accuracy 0.909285 (so với 0.909355); Client P10 0.752754 (so với 0.756214); Train loss 0.141436 (so với 0.141414).
+- Tiết kiệm băng thông: CDF 256 bin giảm 57,6% (630.784 B → 267.411 B); bootstrap 2 chiều giảm 36,3% (1.000.439 B → 637.066 B); tổng communication budget 50 round giảm 34,45% (1.054.839 B → 691.466 B/xe), toàn mạng giảm từ 5,63 GB xuống 3,69 GB. Xác nhận codec lossless khả thi và bảo toàn toàn bộ năng lực mô hình trong 50 round.

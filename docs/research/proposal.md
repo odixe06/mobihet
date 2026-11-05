@@ -3,6 +3,13 @@
 Trạng thái 03/11/2026 sau X20: **phương pháp 20 round đã chốt: lõi + tầng input-bank, không realKD.** 50 round đang chạy ([F50](screening-f50.md)).
 Bằng chứng: [X20](results-x20.md), [W20](results-w20.md), [R20/V20](results-r20-v20.md), [Q20](results-q20.md), [P20](results-p20.md), [LESSONS](../../LESSONS.md).
 
+## Cập nhật mục tiêu owner và compression (04/11)
+
+Owner03/11 lấy **Core** làm mục tiêu phương án đề xuất; phần core+bank bên dưới giữ bằng chứng/quyết định X20 lịch sử.
+[C10](results-c10.md) đã audit4/4×10round/seed42: bootstrap64 qua gate, Qdown8/combo trượt low256/absent.
+Ưu tiên losslessCDF256 để giữ tensor: codec toàn mạng giảm363405B, tổng Core r10 dự kiến−35,9%.
+Đây chưa là fullnetworktraining qua đường compresseddecode hoặc xác nhận50round. Không đưa Q8 vào mặc định.
+
 ## Ràng buộc thiết kế
 
 1. **Không chia sẻ dữ liệu local** (chuẩn FL): không gửi dòng dữ liệu, nhãn từng dòng, đặc trưng từng mẫu, trọng số, BN,

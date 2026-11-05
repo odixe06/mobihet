@@ -80,3 +80,7 @@ Hồ sơ vận hành cũ đã archive, không đọc mặc định.
   sau resume đã lệch (F50 preflight 03/11). State đầy đủ W1 ≈8,5 GB: mỗi lần lưu xóa bản cũ của rank trước khi ghi để output
   Kaggle (~20 GB) không giữ hai bản.
 
+
+- Crossaccount continuation có kernel slug mới nhưng out/runIDW&B giữ cũ; startupcheck phải nhận wandb_run_id riêng, nếu không sẽ
+  query nhầm W&B run dù training đang sống. L50 giữ cache publicodixe0502 cả2session; privatecheckpoint uploadowner2, rawSHAverify
+  và cảstate2rank cùnground trước resume. Local generatedimportcell/tampergatePASS không thay verificationdataset thật.

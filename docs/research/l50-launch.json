@@ -1,0 +1,59 @@
+{
+  "batch": [
+    {
+      "arm": "L0",
+      "cell": "core",
+      "mode": "stream",
+      "r_kind": "live",
+      "account": "emtrangtri",
+      "slug": "mh-l0-core-lossless-s42-r50",
+      "version": 1,
+      "hp": [
+        "arm=none",
+        "group_rows=4096",
+        "synth=copula",
+        "synth_rows=64",
+        "q_codec=mean_fp16",
+        "kd_weight=fixed",
+        "diagnostics=true",
+        "diagnostic_ids=[506,0,1571,929,3303,2048,4752,4269,504,1,1587,935,3304,2043,4754,4266,512,29,1566,904,3306,2052,4757,4267,1547,885,3318,2357,4748,4265,1548,886,4747,4279]",
+        "diagnostic_rounds=[1,2,5,10,15,20]",
+        "teacher_diagnostics=true",
+        "external_diagnostics=true",
+        "q_collect=online",
+        "q_agg=count",
+        "kd_support=off",
+        "seed=42",
+        "synth_target=soft",
+        "anchor=off",
+        "kd_bins=1",
+        "no_kd=false",
+        "study_mode=class",
+        "teacher_rows=1024",
+        "proxy_steps=200",
+        "real_kd=false",
+        "real_kd_gate=false",
+        "next_mode=stream",
+        "r_kind=live",
+        "synth_step_floor=16",
+        "w_boot=compact"
+      ],
+      "base_sha": "b5c7269a7c941cd908df970195e19ae40bc7e53b",
+      "source_sha256": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+      "overlay_sha256": {
+        "methods/mobihet.py": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+        "methods/mobihet_lossless.py": "7c859a3f53e239241f6f20aabd3c86c876f356b013136e25c237de8c18b05e69"
+      },
+      "notebook_sha256": "91697da40bfe9e8e90ec83da5ab3b249aab0c76fc28131b0644e56f66bfa103a",
+      "metadata_sha256": "da8a9939792aca350c820f55715e7701eccaf80e728562ccf098422f8e93a56b",
+      "cap_hours": 6.5,
+      "endpoint": 50,
+      "save_every": 1,
+      "session_until": 25,
+      "second_account": "chuchimnon"
+    }
+  ],
+  "authorization": "Owner04/11: losslessCDF, full50round, sameCore80/20, seed42",
+  "preflight_sha256": "55ed667e17b5221ff595c647eb1b8886f5cc8875727a5ee9b0aed1c3eafbd229",
+  "quota_sha256": "2fc0336543740645549e9ccf9fe7ae8de5e4bd276305003adb69e52d4e9f90b4"
+}

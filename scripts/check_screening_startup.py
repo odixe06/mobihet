@@ -23,7 +23,7 @@ def main():
     import wandb
     api=wandb.Api(timeout=30);rows=[]
     for spec,status in zip(batch,statuses):
-        record={'arm':spec['arm'],'ref':status['ref'],'kaggle_status':status['status'],'run_path':f'{a.entity}/mobihet-v4/{spec["slug"]}','ready':False}
+        record={'arm':spec['arm'],'ref':status['ref'],'kaggle_status':status['status'],'run_path':f'{a.entity}/mobihet-v4/{spec.get("wandb_run_id", spec["slug"])}','ready':False}
         try:
             run=api.run(record['run_path']);summary=dict(run.summary)
             metrics={k:summary.get('private/'+k) for k in TEN}
