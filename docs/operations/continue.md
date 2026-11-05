@@ -27,7 +27,7 @@ Bàn giao trước: [05/11](../../archive/handoffs/2026-11-05-before-archive-cle
 
 ## Job sống
 
-**F3 core s43** `outlookcheck/mh-f3-core-s43-r50/1`, push 05/11, owner = worker detached `scripts/run_f50_s43.py` (PID 86819, log `runs/f-study-s43/pipeline.log`, poll 1200 s, tự resume `-c2`, tự pull/audit). Recipe và base SHA đúng F2, chỉ đổi seed/owner; dự kiến ~11–13,5 h. Máy tắt thì worker mất, kernel vẫn chạy: chạy lại `python scripts/run_f50_s43.py --collect-only` trong env `nckh` (PATH phải có env đó).
+**F3 core s43** `outlookcheck/mh-f3-core-s43-r50/1`, push 05/11, owner = worker detached `scripts/run_f50_s43.py` (PID 86821, log `runs/f-study-s43/pipeline.log`, poll 1200 s, tự resume `-c2`, tự pull/audit). Recipe và base SHA đúng F2, chỉ đổi seed/owner; dự kiến ~11–13,5 h. Máy tắt thì worker mất, kernel vẫn chạy: chạy lại `python scripts/run_f50_s43.py --collect-only` trong env `nckh` (PATH phải có env đó).
 
 L50 controller đã `L50_CLOSED` lúc 16:28:10 ngày 04/11. `runs/l50-study/closure.json`: 2/2 session (r1–25 `emtrangtri`, r26–50 `chuchimnon`) đều pulled, audited, last_round 50, `full50_pass=1`. Kết quả chi tiết tại [results-l50](../research/results-l50.md).
 
