@@ -19,6 +19,21 @@ metadata. Report account and error class only; exception bodies may expose secre
 Budget the whole batch from `max(0, allowed - used - reserved)`, setup/compile/eval/I/O and margin.
 Quota reads are not reservations; respect live session slots and owner authorization to launch.
 
+## Scheduling short quotas
+
+Start work now instead of waiting for a reset. Before planning, count both GPU session slots of every account; a second slot on a
+high-quota account is free capacity, and a run does not need its whole budget in one account's current quota.
+
+- `gpu_left` falls live while a session runs, and concurrent sessions on one account draw from it together. Size a second slot so the
+  caps of both sessions stay under `gpu_left`.
+- A session that reaches its cap with state saved ends COMPLETE. Set its cap from the account's quota today, then let a worker push
+  `<slug>-c2` on the same owner once `gpu_left` covers the rounds left (rounds x measured round time + setup, x 1.15).
+  Same-owner resume mounts the previous output, so no intermediate dataset is needed.
+- Cross-account chains need a private dataset for the state (8.5 GB here) and are worth it only when the same owner cannot resume soon.
+- Each extra session repeats startup; see the federated-training-speed skill, "Session startup".
+- Keep full state on the Kaggle output rather than pulling it by default, and never delete those kernel versions: pull it on demand
+  with `pull_kernel_output.py <ref> --pattern 'state(_rank1)?\.pt$'`. Only the latest round's state exists in each session output.
+
 ## Concurrent owner-scoped commands
 
 ```bash

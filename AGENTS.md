@@ -81,7 +81,7 @@ Dữ kiện bất biến (máy, dataset, DAGSNet): [knowledge/](knowledge/README
 Khi rút ra bài học mới hoặc một bài học bị bác bỏ, sửa ngay trong phiên đó: phương pháp/dữ liệu/train/đánh giá/code → LESSONS.md;
 Kaggle/notebook/pipeline, máy local, Git → docs/operations/lessons.md.
 
-## 7. Skill bắt buộc theo loại việc (`.claude/skills/`)
+## 7. Skill bắt buộc theo loại việc (`.agents/skills/`)
 
 Trước khi làm, gọi skill khớp với việc; nhiều việc khớp nhiều skill thì gọi đủ.
 

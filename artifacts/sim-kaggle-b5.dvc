@@ -1,0 +1,6 @@
+outs:
+- md5: 2d67e08470f40e304f6d9eaabffc1f61.dir
+  size: 3203044
+  nfiles: 422
+  hash: md5
+  path: sim-kaggle-b5

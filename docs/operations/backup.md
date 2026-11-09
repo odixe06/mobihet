@@ -41,7 +41,8 @@ Mới 05/11, mỗi run một manifest; danh sách `runs/maintenance-20261105/man
 | `artifacts/x20` | 8 | 1.744 | 6.493.951.732 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
 
 **Không `dvc add` lại 50 run này** (workspace partial sẽ ghi đè manifest đầy đủ). Cần model: `dvc pull <manifest>`.
-Chưa DVC: `runs/` (gitignored, giữ local).
+Chưa DVC: `runs/` (gitignored, giữ local) và **mọi artifact từ 06/11**: `artifacts/{y50,km-pilot20,km-pilot50,km50,standard-t4,forest-t4,sim-kaggle*,km-lite-pilot20}`,
+`artifacts/f50/mh-f3-core-s43-r50` — chỉ có bản local, chưa backup (chờ owner yêu cầu).
 
 ## 3. Checks that passed (reusable while inputs are unchanged)
 

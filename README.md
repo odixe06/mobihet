@@ -11,9 +11,10 @@ Dùng env conda `nckh`; [protocol](docs/research/protocol.md), [dataset/model/ru
 |---|---|
 | `core/`, `methods/`, `tests/` | train/eval dùng chung, cơ chế hiện tại, kiểm chứng |
 | `scripts/` | công cụ đang dùng; xem [danh mục](scripts/README.md) |
-| `docs/` | kết quả, chẩn đoán và vận hành hiện tại |
+| `docs/` | [bản đồ tài liệu](docs/README.md), kết quả, chẩn đoán và vận hành hiện tại |
 | `knowledge/` | schema dữ liệu, kiến trúc, runtime |
-| `runs/` | bằng chứng làm việc và artifact; dữ liệu nặng theo DVC |
+| `runs/` | receipts/log/probe và evidence làm việc; phần mới chưa tự động backup |
+| `artifacts/` | output các run; DVC có thể chỉ còn workspace partial, xem backup record |
 | `archive/` | code/tài liệu đã nghỉ; loại khỏi đọc/tìm kiếm mặc định |
 
 Git chỉ chứa code, tài liệu, DVC metadata. [Backup/khôi phục](docs/operations/backup.md).

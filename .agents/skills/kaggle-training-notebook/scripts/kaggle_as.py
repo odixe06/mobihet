@@ -36,7 +36,15 @@ def main():
             if creds is None:
                 sys.exit(f"{snap.name}: no usable refresh token")
             creds._access_token = creds.generate_access_token().token
-            who = creds.introspect()
+            import time
+            for attempt in range(4):
+                try:
+                    who = creds.introspect()
+                    break
+                except Exception:
+                    if attempt == 3:
+                        raise
+                    time.sleep(1)
         if who != user:
             sys.exit(f"snapshot is labelled {user} but the server says {who}; refusing")
         env["KAGGLE_API_TOKEN"] = creds._access_token

@@ -1,36 +1,32 @@
-# Công cụ đang dùng
+# Công cụ — chọn đúng entrypoint
 
-Chạy từ repo root, env conda `nckh`. Script trong archive không thuộc workflow hiện tại.
+Chạy từ repo root, env `nckh`. Quyền/job/ownership ở [continue](../docs/operations/continue.md);
+không chạy lại launcher từ một notification muộn. Code/library cũ còn là dependency thì giữ nguyên.
 
-| nhiệm vụ | công cụ |
-|---|---|
-| FL theo protocol, artifact mỗi round | `run_fl.py` |
-| Notebook private, pinned source/overlay | `gen_notebook.py` |
-| Status/collect Kaggle nền, không model polling | `watch_kaggle_batch.py`, `watch_collect_screening.py` + skill codex-long-jobs |
-| CLI/network có timeout | `kaggle_cli_bounded.py`, `run_bounded_python.py` |
-| Audit M20, giữ exact version | `audit_m20.py`, `audit_screening.py` |
-| Phân tích M20 và thống kê dùng chung | `analyse_m20.py`, `research_metrics.py` |
-| Local probe có memory guard/cache | `run_local_guarded.py`, `cache_subset.py` |
-| Đo grouped/runtime và width gate | `bench_grouped.py`, `run_central.py` |
-| Bảng metric từ CM | `report.py` |
-| Kiểm link active | `check_docs.py` |
+| tác vụ | entrypoint | evidence / lưu ý |
+|---|---|---|
+| Shared FL driver | `run_q20.py` → `run_fl.py` | protocol, resume/state hai rank, provenance |
+| Sinh notebook | `gen_notebook.py` | private, image/accelerator pin, overlay, npy SHA |
+| Pull state4GB | `pull_checkpoint_parallel.py` | Range resumable, khoảng32 connection tổng |
+| Import parent trước decode | `resume_checkpoint_cells.py` | unique parent/round/config/RNG2rank/SHA |
+| Y50 (đã đóng) | `audit_y50.py`, `analyse_y50.py`, `y50_common.py`; transfer `pull_y50_checkpoints.py`, `stage_y50_checkpoint.py`, `run_y50_transfer.py` | verdict ở [results-y50](../docs/research/results-y50.md); không chạy lại launcher/watcher |
+| Generator đã đóng (chỉ tái lập) | standard: `preflight_standard_copula.py`, `run_standard_t4.py`, `resume_standard_t4.py`; forest: `preflight_forest_quantile.py`, `verify_forest_sampler.py`, `run_forest_t4.py`; pilot20: `run_generator_pilot20.py`, `analyse_generator_pilot20.py`; probe CPU: `probe_{pair,direct,marginal_direct,marginal_copula,standard_copula}*.py`, `recover_marginal_probe.py`; `analyse_generator_oracle.py`, `diagnose_copula_marginals.py` | generator đóng băng ([catalog](../docs/research/generators.md)); không restart/nối |
+| Sim fold-val KM (b1–b11) | `sim_fold_val.py`, `run_sim_kaggle.py` (`SIM_BATCH=bN`), `watch_sim_batch.sh`, `audit_sim_batch.py`, `analyse_sim.py`, `analyse_km_lite.py` (`KM_BATCH`), `analyse_km_lite_detail.py` (theo lớp/nhiễu b9–b10), `analyse_b11.py`, `analyse_b12.py` | [screening-sim-foldval](../docs/research/screening-sim-foldval.md), [screening-km-lite](../docs/research/screening-km-lite.md), [catalog đề xuất](../docs/research/improvement-proposals.md) |
+| Sidecar phiên sender (gộp quyết định) | `build_sessions.py full` (train/test, thứ tự loader) / `build_sessions.py sim` (panel 200 xe fold val) | `cache/sessions/`; khóa (xe, world, `sender_alias`) |
+| KM codec/EM probe + preflight | `probe_km_codec.py`, `probe_km_codec2.py`, `probe_km_em.py`, `check_km_lite.py` (cả knob codec `km_*`/`km_bytes`) | `runs/km-codec-probe/`; LL chỉ so trong cùng họ nhiễu |
+| KM full-scale | `run_km_pilot20.py`, `resume_km_pilot50.py`, `run_km50.py`, `analyse_km50.py`, `run_km_lite_pilot20.py` + `analyse_km_lite_pilot20.py` (lite6 vs KM50 Q42 r20), `run_codec_pilot20.py` + `analyse_codec_pilot20.py` (10 arm codec vs KM50; `analyse_codec_pilot20.py 20 g1-pilot20` cho G1), `run_g1_pilot20.py` (synthetic 48/32 dòng/bước) | luật [screening-km50](../docs/research/screening-km50.md), [screening-codec](../docs/research/screening-codec.md) |
+| Common audits | `audit_screening.py`, `audit_r20.py` | CM/source/teacher/finite; khôngfullpredictionreplay |
+| F50/L50 | `analyse_f50.py`, `audit_f50.py`, `audit_l50.py` | nghiên cứu đãđóng; cần restore DVC snapshot nếu thiếu |
+| GPU/runtime/width/local guard | `bench_grouped.py`, `run_central.py`, `run_local_guarded.py`, `cache_subset.py` | [knowledge](../knowledge/README.md), skilltraining-speed |
+| CLI/read timeout | `kaggle_cli_bounded.py`, `run_bounded_python.py` | credentialquaaccount-scopedwrapper |
+| Metrics/links | `report.py`, `research_metrics.py`, `check_docs.py` | 10metric từCM; linkchecker loạiarchive |
 
-Mọi run cũ dùng source/config đã đóng băng trong provenance/DVC, không lấy code HEAD mới thay ngầm.
-Sau cleanup, auditor snapshot cần restore DVC trước; phân tích thường dùng evidence nhẹ. Xem backup record.
+Watcher nền: Codex qua codex-long-jobs; Claude Code qua `runs/<batch>/watch.sh` (bash nền, poll 1200 s). Không bật hai watcher cùng batch.
 
-M20: `python scripts/analyse_m20.py` đọc evidence nhẹ.
-`python scripts/audit_m20.py` cần restore đủ `artifacts/m20/*.dvc`; không đọc archive.
+W/X/F/L/C và các helper Q/R cũ vẫn cung cấp runtime/test/import hoặc evidence; không dời code vì dời tài liệu.
+Thiết kế/kết quả W/X/C và CPUgenerator đã archive: [chỉ mục](../archive/docs-20261107/README.md).
+`analyse_c10.py` thuộc study đóng, có đường xuất báo cáo cũ; không chạy nó như tác vụ mặc định sau migration.
 
-Code riêng batch N→V đã đóng ở `archive/` (05/11): README cũ [ở đây](../archive/scripts/README-before-20261105.md), danh sách `archive/move-manifest.json`.
-Còn active vì F50/L50 hoặc test dùng: `run_q20.py`, `q20_common.py`, `p20_common.py`, `run_p21_recovery.py`, `preflight_q20.py`, `preflight_r20.py`, `audit_r20.py`, `stage_r20_input.py`, `launch_repeat20.py` (đọc `docs/research/r20-repeat-launch.json`), `analyse_r20_v20.py`.
-
-W20 (`methods/mobihet_wstudy.py`, ô ở `w20_common.py`): `preflight_w20.py` (local, knob mặc định bit-exact Live/Replay) →
-`run_w20.py` một worker: builder cache npy public → quota → notebook → gates/push → watch 1200 s/pull/`audit_w20.py`.
-Mỗi stage có receipt trong `runs/w-study`; chạy lại tiếp từ stage thiếu, `--collect-only` sau khi đã push.
-Cache npy dùng chung cho batch mới: `gen_notebook.py --npy-kernel odixe0502/mobihet-v4npy-cache --npy-manifest-sha256 <sha>`
-(sha của `runs/w-study/builder/v4npy/manifest.json`); `--build-npy` sinh kernel builder CPU public, không credential.
-
-X20: `x20_common.py`, dùng chung `run_w20.py --study x20`.
-F50: `f50_common.py`, `preflight_f50.py`, `run_f50.py`, `audit_f50.py`. C10: `probe_core_compression.py`, `run_c10.py`, `audit_c10.py`, `analyse_c10.py`.
-L50: `preflight_l50.py`, `preflight_l50_transfer.py`, `stage_l50.py`, `run_l50.py`, `audit_l50.py`.
-F50 kết quả: `analyse_f50.py`. Core s43: `run_f50_s43.py` (receipt `runs/f-study-s43`).
+Npy cache canonical: `runs/w-study/builder.json`, public `odixe0502/mobihet-v4npy-cache`.
+Không chạy lại builder nếu cache đãverify; Inductor cache đểtemp vàđóngtar trong run đểnốiphiên.
+Các study DVC đãcleanup làworkspacepartial: không dvc add lại; restore đúngmanifest theo [backup](../docs/operations/backup.md).

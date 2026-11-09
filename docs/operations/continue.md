@@ -1,51 +1,47 @@
-# Continue — bàn giao sống, 05/11/2026 — F3 core s43 đang chạy
+# Bàn giao sống — kiểm 10/11/2026 ~00:20 UTC+7
 
-Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [vận hành](lessons.md).
-Bàn giao trước: [05/11](../../archive/handoffs/2026-11-05-before-archive-cleanup.md), P/Q/R/V chi tiết [02/11](../../archive/handoffs/2026-11-02-1700-before-w20-launch.md).
+Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [operations lessons](lessons.md) trước. Đây là **bàn giao hiện hành duy nhất**;
+state/log/receipt thật ưu tiên hơn tài liệu. Lịch sử 07–09/11 sáng: [snapshot 09/11](../../archive/handoffs/2026-11-09-km-lite-b9-b10.md).
 
-## Quyền owner đang có (02/11)
+## Đang làm
 
-- Sau W20: chạy các kiểm nghiệm cần thiết cho phương pháp cuối → X20 (đã xong).
-- 03/11: chạy phương pháp đề xuất 50 round (bank, ablation core), checkpoint mỗi round; chưa cần trộn kiến trúc.
-- Step floor hợp lệ khi bước thêm chỉ synthetic; 1 epoch trên dữ liệu local giữ như repo benchmark.
-- Chuẩn FL: không chia sẻ dữ liệu local; server chỉ dùng tổng toàn mạng ([proposal §Quyền riêng tư](../research/proposal.md#quyền-riêng-tư)).
-- Không đổi protocol/HP; không chọn round/HP bằng official test; không thêm run ngoài batch đã khóa.
-- Credential Kaggle process-scoped, không đổi global login. W&B online, key chỉ trong notebook private. Commit không có trailer `Co-Authored-By`.
+Owner 09/11: **giảm băng thông (mỗi round + bootstrap) trước, rồi owner chốt phương pháp chính** (Core hay Core + KM16).
+Codec study + G1 (12 pilot) đã audit xong: 9 codec PASS, QQ4/SR48/SR32 FAIL ([screening-codec](../research/screening-codec.md), [catalog](../research/improvement-proposals.md) §G1).
+Owner 10/11 duyệt **combo r20**: CBA (lite6+QQ8+LY0) và CBB (lite6+QQ8) × seed 42/43, thêm C0 (Core sim) + CQ8 (Core+QQ8).
+Luật khóa trước push: [screening-codec §Combo r20](../research/screening-codec.md#combo-r20--luật-khóa-10112026-trước-push).
+Smoke local 200 xe 2 round `--compile` PASS cả CBA và CQ8 (`runs/sim/smoke-{cba,cq8}`; Q ≈200+207 B/round, bootstrap CBA ≈1,08 MB unicast sim).
 
-## Quyết định mới owner (03/11, phiên compression)
+## Worker sống
 
-- Mục tiêu đề xuất hiện tại: **MobiHET Core**, giữ performance với băng thông tiết kiệm hơn.
-- Cho phép codec local và Kaggle **10–15 round, seed42 duy nhất**; khóa C10=10round/cosine50,4ô Core/boot64/Qdown8/combo.
-- Báo riêng byte thường/SecAgg; chưa SecAgg/DP thực thi. [Thiết kế C10](../research/screening-c10.md).
+| job | kernel (`owner/slug/1`) | push | trạng thái lúc push |
+|---|---|---|---|
+| CBA42 | `annhtnt/mh-k-cba-s42-p20` | 10/11 00:15 | QUEUED |
+| CBA43 | `annhtnt/mh-k-cba-s43-p20` | 10/11 00:15 | QUEUED |
+| CBB42 | `annhannh331/mh-k-cbb-s42-p20` | 10/11 00:15 | QUEUED |
+| CBB43 | `annhannh331/mh-k-cbb-s43-p20` | 10/11 00:15 | RUNNING |
+| C0 | `trietbackup/mh-k-core-s42-p20` | 10/11 00:15 | RUNNING |
+| CQ8 | `trietbackup/mh-k-cq8-s42-p20` | 10/11 00:15 | RUNNING |
 
-## L50 — quyền mới owner04/11
+Cap 7,5 h/kernel, r20 ≈ 4 h. Watcher nền (Claude Code, owner phiên này): `runs/codec-combo20/watch.sh`, PID 9572 (setsid),
+log `runs/codec-combo20/watch.log`, poll 1200 s, tự `collect` + `scripts/analyse_codec_combo20.py 20`, ghi `runs/codec-combo20/DONE`.
+Theo dõi: `tail -f runs/codec-combo20/watch.log`. Máy tắt → phiên sau chạy `python scripts/run_codec_combo20.py collect` rồi analyser.
 
-- Chạy mới Core losslessCDF đủ50round,seed42,80train/20test như Core; không bootstrap64/Q8/bank.
-- Ownerchọn2account/chuyểncheckpoint. Round1–25 emtrangtri;26–50 chuchimnon, mỗiaccountcap6,5h+15% quota.
-- Cả2session dùng cache `odixe0502/mobihet-v4npy-cache` (SHA manifest như builder đãaudit), không dựngparquetcachelại.
-- [Thiết kế L50](../research/screening-l50.md); local4round/resume/Corebitexact và generatedimportcell/tamperPASS.
+## Việc tiếp (theo thứ tự)
 
-## Job sống
+1. Khi `DONE`: đọc `runs/codec-combo20/{audit,verdict-r20}.json`, ghi kết quả vào screening-codec.
+2. Theo luật khóa (tự động): CBA PASS cả 2 seed → nối CBA42/43 lên r50 từ state r20 (CBB dừng); CBA FAIL + CBB PASS → nối CBB;
+   CQ8 PASS → nối CQ8 s42 r50 + push CQ8 s43 r50 (đối chứng F2/F3 nếu C0 ≈ F2, ngược lại nối cả C0).
+3. Sau r50: báo owner số liệu Core vs KM combo để **owner chốt phương pháp chính**.
+4. G1 đóng: giữ 64 dòng synthetic.
 
-**F3 core s43** `outlookcheck/mh-f3-core-s43-r50/1`, push 05/11, owner = worker detached `scripts/run_f50_s43.py` (PID 86821, log `runs/f-study-s43/pipeline.log`, poll 1200 s, tự resume `-c2`, tự pull/audit). Recipe và base SHA đúng F2, chỉ đổi seed/owner; dự kiến ~11–13,5 h. Máy tắt thì worker mất, kernel vẫn chạy: chạy lại `python scripts/run_f50_s43.py --collect-only` trong env `nckh` (PATH phải có env đó).
+## Quyền và ràng buộc hiện hành
 
-L50 controller đã `L50_CLOSED` lúc 16:28:10 ngày 04/11. `runs/l50-study/closure.json`: 2/2 session (r1–25 `emtrangtri`, r26–50 `chuchimnon`) đều pulled, audited, last_round 50, `full50_pass=1`. Kết quả chi tiết tại [results-l50](../research/results-l50.md).
+- Owner 09/11: thử hết codec, lên thẳng full-scale; luật xét F1 toàn hệ thống, guard lớp nhỏ nới; quota dư dùng ngay.
+- Owner 09/11: **PASS → tự chạy bậc scale kế, không hỏi lại** (thang ở CONTEXT). Hướng a (gộp phiên) và b (tăng compute) **đã đóng**.
+- Credential theo process (`kaggle_as.py`), global login giữ nguyên; không nhúng W&B.
+- Không Git/DVC push, không xóa artifact. Workspace dirty, chưa commit (mọi thay đổi 07–09/11).
+- Owner loại: trao model/proxy DAGSNet. Compute tại xe: không tụt hạng (Core 4,00×F; ngưỡng V2X-HtFL 4,11×F).
 
-C10 đã đóng 4/4 audit 10 round, không còn watcher; [kết quả](../research/results-c10.md).
+## Việc tay
 
-F50 controller đã succeeded 14:21 ngày 03/11. `runs/f-study/closure.json`: F0/F1/F2 đều pulled, audited, last_round 50, `full50_pass=3`.
-
-## Bước tiếp
-
-1. L50 đã đóng: đối chiếu 10 metric, cohort và byte giữa L0 Lossless và F2 Core tại [results-l50](../research/results-l50.md). Notion đã xong (owner 05/11).
-2. [results-f50](../research/results-f50.md) đã viết; bank không qua luật ở seed 42. Khi F3 audit PASS: thêm cột F3 vào results, chốt core ở proposal, `dvc add`/push `artifacts/f50/mh-f3-core-s43-r50`.
-
-## Kết quả mới nhất
-
-[L50](../research/results-l50.md): Core lossless CDF full 50 round PASS toàn diện. F1 macro 0.899129 (so với F2 0.899160, Δ = -0.000031); Acc 0.909285 (so với F2 0.909355, Δ = -0.000071); Client P10 0.752754 (so với F2 0.756214); Train loss 0.141436 (so với F2 0.141414). Tổng communication budget 50 round giảm từ 1,05 MB xuống 691 KB/xe (−34,45%, giảm 363.373 B/xe).
-
-[C10](../research/results-c10.md): boot64 PASS (−22,9% byte r10). Q8/combo FAIL low256/absent. Lossless CDF256 đo codec khả thi, nay L50 đã chứng minh bit-exact và bảo toàn 100% chất lượng trên full 50 round.
-
-## Việc tay cho owner
-
-- L50 hiện chưa cần thao tác tay; quota/account/dataset lỗi phải báo evidence cụ thể. Không yêu cầu login từ suyđoán.
+Không có. Máy có thể tắt: watcher dừng theo, kernel vẫn chạy trên Kaggle; phiên sau chạy lại collect.

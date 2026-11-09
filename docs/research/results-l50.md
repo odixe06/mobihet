@@ -2,11 +2,11 @@
 
 04/11/2026: Đủ 50 round qua 2 session cross-account (`emtrangtri` r1–25, `chuchimnon` r26–50); audit toàn diện source/CM/checkpoint/codec PASS.
 Cấu hình chuẩn: Cosine50, 5.343 xe, DAGSNet W1, floor16, copula 256 bin, lossless zlib-6 uint16 CDF.
-Thiết kế: [screening-l50](screening-l50.md). Artifact: `runs/l50-study/{closure,collection/L0/audit,collection/L0/diagnostic-audit}.json`.
+Thiết kế: [screening-l50](../../archive/docs-20261107/research/screening-l50.md). Artifact: `runs/l50-study/{closure,collection/L0/audit,collection/L0/diagnostic-audit}.json`.
 
 ## Kết luận
 
-1. **Bảo toàn 100% chất lượng biểu diễn (bit-exact decode & trajectory match)**:
+1. **Decode lossless khớp bit; kết quả r50 gần Core trong một seed**:
    - Lossless CDF lượng tử hóa `uint16` little-endian rồi nén `zlib` mức 6 kèm header 32B CRC32; client giải mã bit-exact (`bitexact_cdf: true`, `bitexact_mass: true`).
    - Điểm cuối r50: macro F1 đạt **0.899129** (so với F2 Core gốc 0.899160, chênh lệch $\|Δ\| = 0,000031$, tức 0,003%); Accuracy đạt **0.909285** (so với 0.909355, $\|Δ\| = 0,000071$); Train loss **0.141436** (so với 0.141414, $\|Δ\| = 0,000022$).
    - Phân phối nhóm xe yếu: Client P10 đạt **0.752754** (so với 0.756214); Client mean đạt **0.863278** (so với 0.863357).
@@ -77,6 +77,8 @@ Thiết kế: [screening-l50](screening-l50.md). Artifact: `runs/l50-study/{clos
 | **Tổng toàn mạng (5.343 xe)** | **5,63 GB** | **3,69 GB** | **−1,94 GB** |
 
 ## Giới hạn bằng chứng
+
+- Bit-exact CDF/mass và local trajectory checks không là proof T4 trajectory/weights trùng Core: các metric r50 bên trên có chênh lệch thực.
 
 - Đã audit 50 CM riêng từng round của cả hai rank, 50 snapshot nhỏ, log sessions, full resume checkpoint verification SHA, teacher chain và CRC32 codec.
 - Một seed duy nhất (seed 42); split v4 chuẩn hóa 80% train+val / 20% test timeline.

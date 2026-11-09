@@ -113,20 +113,20 @@ def extra(root, spec, counts, method="mobihet_rstudy", bootstrap_total=3311744, 
         snapshots.append({"round": r, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
     assert len(snapshots) == endpoint
     if bank_hashes: assert len(set(bank_hashes)) == endpoint
-    for r in PROBE_ROUNDS:
+    for r in (r for r in PROBE_ROUNDS if r <= endpoint):
         with np.load(d / f"train_cms_r{r:03}.npz") as z:
             assert np.array_equal(z["ids"], np.arange(5343)) and np.array_equal(z["private"].sum(2), counts)
             check_summary(z["private"], rows[r - 1], "train_private")
         ids = []
         for rank in (0, 1):
             records = [json.loads(line) for line in (d / f"diagnostics_rank{rank}.jsonl").read_text().splitlines()]
-            assert [v["round"] for v in records] == list(PROBE_ROUNDS)
+            assert [v["round"] for v in records] == [r for r in PROBE_ROUNDS if r <= endpoint]
             rec = next(v for v in records if v["round"] == r)
             assert rec["probe_teacher_round"] == r and rec["probe_mode"] == "shadow_next_teacher_fp32_dropout0"
             ids.extend(c["client_id"] for c in rec["clients"])
             assert json.loads((d / f"teacher_probe_rank{rank}_r{r:03}.json").read_text()) == []
         assert sorted(ids) == sorted(hp["diagnostic_ids"])
-    for r in (1, 10, 20):
+    for r in (r for r in (1, 10, 20) if r <= endpoint):
         ids = []
         for rank in (0, 1):
             with np.load(d / f"external_cms_rank{rank}_r{r:03}.npz") as z:

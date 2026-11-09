@@ -1,0 +1,183 @@
+{
+  "snapshots": [
+    {
+      "original": "CONTEXT.md",
+      "snapshot": "archive/docs-20261107/before/CONTEXT.md",
+      "original_sha256": "049873de7dca2ac59ec171bbd8c8c49ee6ba97ef0321baa7e1cec3d32f88ded8"
+    },
+    {
+      "original": "LESSONS.md",
+      "snapshot": "archive/docs-20261107/before/LESSONS.md",
+      "original_sha256": "c5405733a2e000314ed2878aa93ef90e975372190b4a6e36de844167445a27dd"
+    },
+    {
+      "original": "docs/operations/continue.md",
+      "snapshot": "archive/docs-20261107/before/docs/operations/continue.md",
+      "original_sha256": "3db555fdbb21a977dc1d98f3e87ffdeead983b505e987611e03f4df2f424d330"
+    },
+    {
+      "original": "docs/operations/lessons.md",
+      "snapshot": "archive/docs-20261107/before/docs/operations/lessons.md",
+      "original_sha256": "49f6f4bff1d351342a373e090fd910de6a6482e07d9b6ad576f62d900f666dc3"
+    },
+    {
+      "original": "docs/operations/kaggle.md",
+      "snapshot": "archive/docs-20261107/before/docs/operations/kaggle.md",
+      "original_sha256": "ab8637a397e0ea750b51da067bca46a3ec101507e95076067877e4010eff7b8e"
+    },
+    {
+      "original": "docs/operations/notebook-errors.md",
+      "snapshot": "archive/docs-20261107/before/docs/operations/notebook-errors.md",
+      "original_sha256": "5e0d9863b3111667cd2dae0de5474168f26bcfb848be4a689f260aca0de3201f"
+    },
+    {
+      "original": "docs/research/proposal.md",
+      "snapshot": "archive/docs-20261107/before/docs/research/proposal.md",
+      "original_sha256": "900cf27f128068c2bc75a1d707bb14b87418b26fdc4d5f1f3b0ba103bcbdb224"
+    },
+    {
+      "original": "docs/research/method.md",
+      "snapshot": "archive/docs-20261107/before/docs/research/method.md",
+      "original_sha256": "0642e801132a1fcf2f2f9ff249064fc292baacecf027335a8cdc7b890d721267"
+    },
+    {
+      "original": "docs/research/diagnosis.md",
+      "snapshot": "archive/docs-20261107/before/docs/research/diagnosis.md",
+      "original_sha256": "55c685d1be9854b8b3bc54f931a6b4aaf94d2b4881b02152fba95e7f71da104d"
+    },
+    {
+      "original": "scripts/README.md",
+      "snapshot": "archive/docs-20261107/before/scripts/README.md",
+      "original_sha256": "d12635845870dba82b3b6f4250214f3c97e6794116f542ae5afa9f250cec3a8e"
+    }
+  ],
+  "moves": [
+    {
+      "source": "docs/research/screening-w20.md",
+      "destination": "archive/docs-20261107/research/screening-w20.md",
+      "sha256_before": "35b4203b6fb7f3c766128eed96fa3d251a3b4f3c97a4a9e26a11abd57c045775",
+      "sha256_after_link_rewrite": "87f40d4637a4e739845b736c6180b405c68781d17ade52092080cc7f13d1ea48"
+    },
+    {
+      "source": "docs/research/results-w20.md",
+      "destination": "archive/docs-20261107/research/results-w20.md",
+      "sha256_before": "6fd1ea2a347cda1be6471770f04cfbf9fa38510342f6ad776eb973db182ca219",
+      "sha256_after_link_rewrite": "9f2ca2285158988b78196ac1e0383de3f474c1d5d980dcd88e737c9259dcd830"
+    },
+    {
+      "source": "docs/research/screening-x20.md",
+      "destination": "archive/docs-20261107/research/screening-x20.md",
+      "sha256_before": "a4d04796661b366b277b43135ef932b58cf352a740ed21d3d8f97e945bf8fa1f",
+      "sha256_after_link_rewrite": "a4d04796661b366b277b43135ef932b58cf352a740ed21d3d8f97e945bf8fa1f"
+    },
+    {
+      "source": "docs/research/results-x20.md",
+      "destination": "archive/docs-20261107/research/results-x20.md",
+      "sha256_before": "c81658cc820e54c613a55bdc57b246e626539f2918fd11a980c862358b75bb41",
+      "sha256_after_link_rewrite": "e2cfc3f002400afba70d9c7d5c165d08990a7811f84495787509d2130837ff44"
+    },
+    {
+      "source": "docs/research/screening-c10.md",
+      "destination": "archive/docs-20261107/research/screening-c10.md",
+      "sha256_before": "afe9598df262eec29b4e1d8b12f2665eefab756f0f146af7d733bfd9e0aaa582",
+      "sha256_after_link_rewrite": "f9aeeadec094f80252a1b02bb937ac9ec0585733c86ebbe12da79f80a26cf328"
+    },
+    {
+      "source": "docs/research/results-c10.md",
+      "destination": "archive/docs-20261107/research/results-c10.md",
+      "sha256_before": "2467d3ebbf2d577d45de2013da18480ef5fc571da2b21f3b6c876cccaafce8c3",
+      "sha256_after_link_rewrite": "2467d3ebbf2d577d45de2013da18480ef5fc571da2b21f3b6c876cccaafce8c3"
+    },
+    {
+      "source": "docs/research/screening-f50.md",
+      "destination": "archive/docs-20261107/research/screening-f50.md",
+      "sha256_before": "ae78c72052961636c9bedb1c6e30fa6c2ac753c0c64aeb067b61b71266efb883",
+      "sha256_after_link_rewrite": "76d73d132a1de6bc8dd819390680702053df77352031aff580d56f841e8da15f"
+    },
+    {
+      "source": "docs/research/screening-l50.md",
+      "destination": "archive/docs-20261107/research/screening-l50.md",
+      "sha256_before": "67a9f51580878d9987dd9045fc4b2287f0668e9217815b152011b607341b59a4",
+      "sha256_after_link_rewrite": "4ddbf5938fd45d165b5c998c3c0f794858a2c9d728ec2088ec605b56071f4e55"
+    },
+    {
+      "source": "docs/research/screening-pair-generator.md",
+      "destination": "archive/docs-20261107/research/screening-pair-generator.md",
+      "sha256_before": "43f46292bcde15698a2c7017989a7d8ab5ad5fb93bbf20e8cd69b53109de87df",
+      "sha256_after_link_rewrite": "43f46292bcde15698a2c7017989a7d8ab5ad5fb93bbf20e8cd69b53109de87df"
+    },
+    {
+      "source": "docs/research/results-pair-generator.md",
+      "destination": "archive/docs-20261107/research/results-pair-generator.md",
+      "sha256_before": "2f25e2d08a163763a9e6db5ca9c1b91bfcde675b9c9dfd3b26729a62f8c20c4f",
+      "sha256_after_link_rewrite": "2f25e2d08a163763a9e6db5ca9c1b91bfcde675b9c9dfd3b26729a62f8c20c4f"
+    },
+    {
+      "source": "docs/research/screening-direct-generator.md",
+      "destination": "archive/docs-20261107/research/screening-direct-generator.md",
+      "sha256_before": "0f119734cf6c78e39d6b3cd387c7602756b4354e8448ae3ea6597d4ff458e8e3",
+      "sha256_after_link_rewrite": "0f119734cf6c78e39d6b3cd387c7602756b4354e8448ae3ea6597d4ff458e8e3"
+    },
+    {
+      "source": "docs/research/results-direct-generator.md",
+      "destination": "archive/docs-20261107/research/results-direct-generator.md",
+      "sha256_before": "a71ebe46150fa97599881b12ffd10b630167bcfaa7a25b2f11b3d74221934f49",
+      "sha256_after_link_rewrite": "a71ebe46150fa97599881b12ffd10b630167bcfaa7a25b2f11b3d74221934f49"
+    },
+    {
+      "source": "docs/research/screening-marginal-direct-generator.md",
+      "destination": "archive/docs-20261107/research/screening-marginal-direct-generator.md",
+      "sha256_before": "96435d581b8fd1e4ad89c6a081fcb1c34b3473650d54d544a085457a7a9547fb",
+      "sha256_after_link_rewrite": "96435d581b8fd1e4ad89c6a081fcb1c34b3473650d54d544a085457a7a9547fb"
+    },
+    {
+      "source": "docs/research/results-marginal-direct-generator.md",
+      "destination": "archive/docs-20261107/research/results-marginal-direct-generator.md",
+      "sha256_before": "256bc2c38a65c5f31f96ff3cac21f532809e713e4faa81c04e03838dcd7e5277",
+      "sha256_after_link_rewrite": "7aecf1655b9b8337e07a01a0df456d8f026083168455268d20778c33ee376f13"
+    },
+    {
+      "source": "docs/research/screening-marginal-copula.md",
+      "destination": "archive/docs-20261107/research/screening-marginal-copula.md",
+      "sha256_before": "a8f7304cf37514470c877f944feab1b63ef634ebfc1997a83e578d127f1cc117",
+      "sha256_after_link_rewrite": "a8f7304cf37514470c877f944feab1b63ef634ebfc1997a83e578d127f1cc117"
+    },
+    {
+      "source": "docs/research/results-marginal-copula.md",
+      "destination": "archive/docs-20261107/research/results-marginal-copula.md",
+      "sha256_before": "3a581445f44e216428732c88221fb334af1561b460c45a2b309040ec9c34f87d",
+      "sha256_after_link_rewrite": "3a581445f44e216428732c88221fb334af1561b460c45a2b309040ec9c34f87d"
+    },
+    {
+      "source": "docs/research/screening-standard-copula.md",
+      "destination": "archive/docs-20261107/research/screening-standard-copula.md",
+      "sha256_before": "e6968403f35325f92ed089aa52520d2262e7447fe0711e01b888d7fe0f276f8a",
+      "sha256_after_link_rewrite": "e6968403f35325f92ed089aa52520d2262e7447fe0711e01b888d7fe0f276f8a"
+    },
+    {
+      "source": "docs/research/results-standard-copula.md",
+      "destination": "archive/docs-20261107/research/results-standard-copula.md",
+      "sha256_before": "36b43d8f6698a5db9181cf75612ec1b56f5613cffa8353d4b544cbcc33eb10e7",
+      "sha256_after_link_rewrite": "8ab39d30e8f4eae9c4317f3cb8b8cb34976a2b47bc1c0feb41333a8121ab06d2"
+    },
+    {
+      "source": "docs/research/generator-after-oracle.md",
+      "destination": "archive/docs-20261107/research/generator-after-oracle.md",
+      "sha256_before": "8e04da8779a57df1c29ce43d934d6e787b2dd42bd3c6550703df4362fb9747df",
+      "sha256_after_link_rewrite": "51e15846aa3ba565dd428d8ef991f0bd2171a0ef226da45e6bbeff4dafc39ec0"
+    },
+    {
+      "source": "docs/research/generator-direct-conditional.md",
+      "destination": "archive/docs-20261107/research/generator-direct-conditional.md",
+      "sha256_before": "80009bb1eaaf1bcb18f9bf3eaac64b6871c3fe89a77f010c6592f662136f8a59",
+      "sha256_after_link_rewrite": "14a1316ca3a47c89138319d8e4105692bf92fafddd6d9be0602b94bae2f0491a"
+    },
+    {
+      "source": "docs/research/pipeline-review.md",
+      "destination": "archive/docs-20261107/research/pipeline-review.md",
+      "sha256_before": "4dc289b2f992713f4396793c37e326fc837542f77ced232df08da4145919fcc7",
+      "sha256_after_link_rewrite": "907486f83d95af31566a2ee978517b2724e7a0bf4b46c38cd00986aa5f9849f2"
+    }
+  ],
+  "scope": "Markdown only; existing archive, source, artifacts, credentials and DVC metadata untouched"
+}

@@ -73,6 +73,42 @@ Every number here is evidence from earlier projects (DAGSNet, 395k parameters, t
 One process per GPU added +15 % total throughput over one process for both GPUs; 2-3 processes per GPU
 only +3-5 % more on 4 vCPU. More processes do not fix a CPU-bound step; fewer launches do.
 
+## Session startup (Kaggle, 2x T4)
+
+Read the timeline from the kernel log before changing anything: its JSON rows carry `time` in seconds from session start.
+Measured on one DAGSNet FL session (5,343 clients, 395k parameters), about 10.5 minutes of a 10 h run:
+
+| phase | seconds | handling |
+|---|---:|---|
+| clone, imports, credentials | ~22 | nothing to gain |
+| SHA256 of the mounted npy cache (7.3 GB) | 80 | keep: audits rely on it, and it warms the page cache for the data load |
+| data load and bootstrap statistics | ~60 | method-dependent |
+| compile gate | 110 | cached below |
+| first-round train excess, 779 s vs 669 s | 110 | cached below |
+| first-round eval excess, 275 s vs 19 s (dynamic shapes) | 256 | cached below |
+
+Compile is about 80 % of startup, so it is the first target; a prebuilt npy cache already removes the far larger parquet build.
+Startup is paid per session, which matters most when a run is chained across short quotas.
+
+**Carry the Inductor cache to resume sessions.** A warm start reuses the same generated kernels: a local two-round check gave identical
+CMs and history, 36 s against 140 s cold (sm86, 2 clients; not yet measured on T4).
+The cache is thousands of small files (6,589 files, 190 MB), so never leave it loose in `/kaggle/working`: output listing and pulls
+slow down. Keep it in temp and put one tar in the run directory, which the resume step already copies:
+
+```python
+tar = f"/kaggle/working/{run}/inductor-cache.tar"
+if os.path.exists(tar): subprocess.run(["tar", "-xf", tar, "-C", "/kaggle/temp"])   # resume session only
+os.environ["TORCHINDUCTOR_CACHE_DIR"] = "/kaggle/temp/inductor"
+rc = subprocess.run(cmd, shell=True).returncode
+subprocess.run(["tar", "-cf", tar, "-C", "/kaggle/temp", "inductor"])               # before asserting rc
+```
+
+A cache miss only recompiles, so the tar step must never fail the session. The tar must be set up in session 1: a kernel already
+pushed cannot start writing it. Re-check the bit-exact comparison after a torch, driver or image change.
+
+Time inside the run usually outweighs startup: on the same run a full state save every round cost about 46 s (about 38 min per
+50 rounds) and each diagnostic round about 4 min. Both can be owner decisions or audit inputs, so report them rather than cut them.
+
 ## Pitfalls already paid for
 
 - `multiprocessing.Connection.send(tensor)` uses torch's ForkingPickler, which shares storage back via

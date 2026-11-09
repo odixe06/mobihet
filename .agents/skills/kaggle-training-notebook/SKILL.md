@@ -112,6 +112,9 @@ projects). A long job started locally competes for RAM with everything else and 
    reserved time, including all planned simultaneous runs. After an authorized global switch, verify the new CLI identity with SDK introspection. An account with quota
    is not an account with GPUs -- zero-GPU allocation has been account-scoped here before, and
    only a run proves it. Script creation does not itself authorize launching runs.
+   Plan every free slot before waiting for a quota reset, and chain short sessions on the same owner:
+   [multi-account.md](references/multi-account.md), "Scheduling short quotas". Carry the compile cache into resume sessions:
+   `federated-training-speed` skill, "Session startup".
 7. Pull bulk output with `scripts/pull_kernel_output.py` through `scripts/kaggle_as.py <owner>`
    (parallel, resumable, all-page listing, non-zero exit on gaps; one process per kernel, ~32 connections
    in total); account credentials stay process-scoped. Require exit 0 before artifact verification.

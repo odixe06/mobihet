@@ -1,227 +1,117 @@
-# Bài học kỹ thuật còn áp dụng
+# Bài học kỹ thuật còn hiệu lực
 
-Đọc sau CONTEXT. Bằng chứng hiện tại: [M20](archive/docs/research/results-m20.md), [chẩn đoán tiếp](docs/research/diagnosis.md).
-Archive giữ hồ sơ cũ; không nạp lại trong phiên thường. Không bỏ bài học dưới đây vì đã archive run.
+Đọc sau [CONTEXT](CONTEXT.md); job sống ở [continue](docs/operations/continue.md), vận hành ở
+[operations lessons](docs/operations/lessons.md). Bản đầy đủ theo batch đã lưu [snapshot](archive/docs-20261107/before/LESSONS.md);
+không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [proposal](docs/research/proposal.md).
 
-## Hợp đồng dữ liệu và đánh giá
+## Dữ liệu và đánh giá
 
-- 77 input=11×7, đã scaled; không chuẩn hóa lại. Đọc từng file bằng `pq.ParquetFile` để tránh schema hive
-  `large_string`/`string`. Thứ tự feature và label mapping phải đóng băng.
-- Train FL gồm train+val,37.361.273dòng; own-test9.347.679dòng. F1train chỉ mô tả fit, không phải independentvalidation.
-- MacroF1/xe chỉ tính lớp có trong y_true; pooled đủ16lớp. Mean/p10/std giữa xe cần đọc cùng support từng xe/lớp.
-- Sybil8,80%train+val→17,67%test; timeDelay5,151→5,162% gần giữ nguyên. Không quy lỗi timeDelay cho classprior alone.
-- Absent-local chỉ0,289%test toàn mạng, nhưng848xe<256mẫu có median8/16lớp,1555/34827testrows=4,465% absent,
-  9776testrows thuộc lớp có1–16mẫu local. Pooled không phản ánh đủ khó khăn của xe nhỏ.
-- Giữ headline endpoint đã khóa; không chọn best test round hoặc HP theo test. Nhiều batch đã đọc officialtest,
-  không gọi đây là freshconfirmatorytest. Hai seed chưa đủ significance.
+- 77 đầu vào đã scaled, thứ tự/label mapping cố định; không normalize lại. Đọc parquet qua `ParquetFile` để tránh hive schema mismatch.
+  Cờ NaN/quan hệ vật lý trên scaled values không được tự hiểu như raw values; projection đúng flag chưa chứng minh utility.
+- Train FL là train+val local; own-test theo thời gian. Train score là in-sample, không independent validation.
+- Personalized evaluation: mỗi xe chấm test của nó, gộp CM đủ support. Macro/xe chỉ tính lớp có trong y_true;
+  pooled đủ16lớp. Luôn đọc p10/low256/rare/absent và từng lớp cùng pooled.
+- Một epoch không cùng số bước giữa xe; floor chỉ synthetic vẫn giữ một epoch thật. Không bỏ tail batch/client để tăng tốc.
+- Headline endpoint đã khóa; không tune/best-round bằng official test. Test/panelval đã đọc lặp, không gọi fresh confirmation;
+  hai seed hoặc spread giữa session không là significance/CI.
+- Thang scale: sim 2 seed → pilot full-scale r20 (cosine50, nối được) → r50 hai seed; PASS tự lên bậc kế ([CONTEXT](CONTEXT.md)),
+  luật bậc kế khóa trước push; FAIL thì dừng nhánh, không kéo dài/tune. So control **cùng round** và audit trước quyết định.
+- v1 khác feature/client/protocol; không chuyển gain/ngưỡng hoặc causal claim sang v4/5.343xe.
 
-## Train/compile và artifact
+## Compile, số học và resume
 
-- `torch.compile`+AMPfp16 từng tạo NaN gradient ở AlexNet maxpool dùng `amax` dù forward khớp; dùng `torch.maximum`
-  theo cặp. Compilegate phải kiểm backward trên realdata; theo dõi applied/skippedsteps, không chỉ finiteweights/loss.
-- Slice batch phải `.contiguous()`: stride theo group gây recompile và fallback eager im lặng. Static train/dynamic eval;
-  shape/stride mới có thể tốn compile. Local sm86 không chứng minh T4sm75.
-- Hai rank giữ privatebank khác nhau: fullresume phải lưu từngrank, cùng round; budgetstop cần đồng thuận tránh deadlock.
-  Snapshot nhỏ loại privateweights, không phải checkpoint đầy đủ. Exactresume RNG chưa được chứng minh.
-- CEreal dùng LA, KD dùng rawlogit có chủ đích; khác hệ xác suất chưa tự chứng minh bug.
-- V20 V0/V1 dừng r1 tại guard`skipped_frac==0` sau2T4compilePASS. P0/P1 đãaudit có skip rất nhỏ mọiround,
-  còn P2/P3augmentation có skip ởroundmuộn: localfixture skip0 không chứng minh fullnetwork skip0.
-  `core/local.py` dùng fixedloss_scale4096, không dynamicGradScaler; chưa được gọi skip là warm-up.
-  OriginalVfailed mất skipfraction vì guard ném lỗi trướclog. ProbeT4full5343 mới đo3/513368 và5/513368,
-  mọi xe có appliedstep, weights/BN/loss finite; đây không giá trịkhôi phục của hai failuregốc.
-  Một xe193trainrow vẫn mất1/4step: globalfraction nhỏ không bảo đảm mọi xe ítảnhhưởng.
-  RecoveryCE chỉ sửa guard về common≤1% +positiveapplied từngxe +finite, lưucounters mỗiround;
-  không đổi optimizer/AMP/fixedscale hoặc gọi rootcauseoverflow đãsửa. Giữ oldfail và dùng slug/source riêng.
-- Shadowprobe34xe là postepochfp32/trainBN/dropout0 trên clone, không actualAMPgradient hoặc clippingfraction toàn mạng.
-- Audit phải dùng artifact thật: sourceoverlay/config/LR/IDs/support, CM→10metric, finite tensors/teacherlag.
-  Dataset hiện chưa có fullcontentfingerprint và chưa prediction→CM replay; phải nói rõ phạm vi.
-- Q20: chuẩn hóa cùng fp16body trên CPU/CUDA có thể lệch2.384e-7, vượt atol2e-7 dù target lưu đúng.
-  Probe100snapshot T4 khớp decodeCUDA local; auditor dùng khoảng theo từng entry từ gamma16 của sumfp32 và u của division,
-  giữ exactbody/aggregate/source/signature checks, không nới atol chung. Test storedboundary và targetcorruption phải cùng qua.
-  Đây là roundingconsistency, không proof exactCUDAreplay mọi runtime hoặc lý do trainlại.
+- Compile gate phải kiểm backward trên real data, finite BN/weights/probabilities và applied/skipped steps, không chỉ forward/loss.
+  `amax` maxpool từng tạo NaN backward AMP; dùng implementation đã kiểm. Fixture padded slots cũng phải finite.
+  Smoke sim local dùng **200 xe**: 60 xe làm compile gate NaN ngay cả khi tắt mọi knob (fixture, không phải lỗi code).
+- Slice batch `.contiguous()` để giữ stride/static train shape, tránh recompile/fallback eager. Local sm86 không chứng minh T4sm75/2rank.
+- Mỗi client phải có applied step; skip global nhỏ vẫn có thể làm xe ít mẫu mất phần lớn bước. Guard≤1%/finite không phải sửa root cause overflow.
+  Không gọi tất cả skip là warm-up hoặc bỏ client/update để qua gate.
+- CPU/CUDA sum/normalization có rounding khác; packet fp16 có thể khuếch đại chênh. Kiểm stored body/aggregate và bound theo phép toán;
+  không nới atol chung hoặc train lại vì auditor false FAIL.
+- Resume cần cả private state/teacher, method/driver generator và torch CPU/CUDA RNG của **hai rank cùng round**.
+  Snapshot nhỏ không phải checkpoint. Local optimizers reset mỗi round theo protocol.
+- Crash sau ghi rows nhưng trước state: rollback rows về checkpoint, không nhân đôi history. Budget stop phải đồng thuận rank;
+  `COMPLETE` thiếu round là partial, không training/utility FAIL.
+- Bit-exact decode/local replay không suy ra whole T4 trajectory bit-exact. Giữ nguồn frozen và ghi rõ phạm vi từng proof.
+- Lossless CDF: diff trên grid float64 rồi castfloat32 như control; diff float32 đã làm tròn từng gây lệch mass.
 
-## Những hướng đã thử và điều cần giữ
+## Teacher, loss và thí nghiệm
 
-- Copula hơn Gaussian trên nền cũ cảhai seed khoảng+.0053F1; không suy rằng generator đã tối ưu khi loss thay đổi.
-  Cluster8/mix và các adaptation GMM/MADE/BNsplit từ v1 không có utility đã chứng minh; không mở lại thiếu giả thuyết mới.
-- J: anchor/input-aware teacher chỉ hơn cùng-bankcontrol nhưng không hơn streamingcontrol; teacher agreement đẹp không đủ.
-  Bỏ realKD giúp timeDelay nhưng làm15lớp khác giảm. Không cộng gain từ các ablation để dự đoán combo thắng.
-- K: bucket8 không hơn combo, tăng byte vô ích trong cấu hình đã thử. Augmentation mạnh, vẫn dùng bootstrap toàn mạng;
-  không gọi augmentation là local-only hoặc zeroFL.
-- L factorial: fixedlossweight1 hơn adaptive ở hard/soft/realgate cảhai seed; softtarget vẫn hơn hard khi giữ scale.
-  Vì vậy augmentation thắng combo cũ không chứng minh learnedQ vô ích. Adaptive có shadowauxgradient quá lớn,
-  nhưng cosine/norm riêng không chứng minh nguyên nhân duy nhất.
-- Lrealgate chỉ thêm~.0006–.0007pooled trên softfixed/noReal; chênh sessionr1 cùng công thức~.0005–.0006,
-  chưa isolate nguyên nhân, không CI/noisebound. Không suy CPUbitexact thành T4bitexact.
-- Q[y] cùng cho mọi mẫu cùng lớp, không biết input. ArgmaxQ đúng vẫn có gradient ngược CE ở nhiều mẫu;
-  correctargmax không phải chứng minh teacher hữu ích. Gate chỉ xét lớp, không sampleconfidence.
-- Qr dùng từ r+1; realgate cũ chỉ chặn lớp13 trong r2–10, Q sai vẫn vào synthetic/adaptiveweight.
-  Đổi target, scale, generator, codec cùng lúc sẽ mất khả năng quy nguyên nhân.
-- Legacy K tạo bodyfp16 để đếm byte nhưng gộp float chưa decode; không gọi đó là wireprecisionproof.
-  L/Mmeanfp16 đã encode/decode và cần control cùng codec.
-- Chi phí Q=544B/chiều=1088B/xe/r; bootstrapGaussian394368B, copula3311744B hai chiều.
-  Không kết luận giao tiếp rẻ chỉ từ packet mỗi round; bootstrap/transport chưa end-to-endproof.
-- Không coi pooledF1 tăng là mọi xe/lớp được lợi, hoặc gap giảm vì xe mạnh suy giảm là fairness tốt.
+- `Q[y_true]` là target theo lớp, không classifier theo input. Argmax đúng, entropy thấp, fit KL/synthetic agreement không chứng minh generalization.
+  Q thu r chỉ tác động từ r+1; không gán tác động lệch round.
+- CEreal dùng LA, KD dùng raw logit có chủ đích. Gradient logit âm/norm/cosine riêng không chứng minh parameter gradient tổng hoặc nhân quả utility.
+- Giữ loss/outer weight/target/codec khi isolate một cơ chế. Không cộng gain các ablation để dự báo combo.
+- Soft class Q có utility; nội dung off-diagonal có ý nghĩa trong replay. Không kết luận teacher vô ích vì gần nhãn cứng ở cuối run.
+- realKD có tradeoff khác nhau theo lớp/cohort; lớp vắng và benign/timeDelay không được bảo vệ chỉ bằng gate lớp đúng/margin.
+  Live contrast gồm feedback; muốn tách nội dung/tiếp nhận cần replay cùng teacher.
+- Bank tốt ở r20 có thể chỉ tăng tốc; [F50](docs/research/results-f50.md) đã bỏ bank. Prior tăng pooled nhưng
+  [Y50](docs/research/results-y50.md) vẫn FAIL do timeDelay/absent. Giữ verdict/gate, không tune sau test.
+- Không gọi timeDelay giới hạn tuyệt đối bởi77feature: centralized vẫn tốt hơn. In-sample gap không tách được overfit và temporal shift.
 
-## M20 đã audit đầy đủ
+## Generator (đã đóng băng KM16 w0 .5, codec gốc) — bài học còn dùng
 
-- Control vẫn tăng r15→20; không bão hòa đồng loạt. Fallback dao động/plateau khi Q đổi argmax.
-  Q thu ở r13 tác động r14, không r13. Hai kênh realgate và syntheticfallback cùng đổi: tương quan chưa chứng minh nhân quả.
-- Argmax đúng nhưng margin nhỏ vẫn mở KD; cần tách hai kênh trước khi thử gate liên tục/hysteresis.
-- Ranking/cohort đổi r10→20; không suy kết luận endpoint10 sang20 hoặc chọn best round.
-- Server sqrt(n) tăng pooled cảhai seed, xe<256 chưa hưởng nhất quán. Localρ theo count chưa hơn uniform ổn định.
-- Own-test seen-class có thể tăng trong khi absent-class xe nhỏ giảm; nâng pooled/tail không tự giải quyết thiếu lớp.
-- Artifact M20 đã kiểm320snapshot/320testCM/96trainCM/3264shadowprobe; giới hạn bằng chứng vẫn như mục audit ở trên.
+- Oracle dùng pool dòng thật, chỉ là trần ngoài hợp đồng FL. Fidelity (pairTV, singletonTV, valTV, TSTR, ESS, probe LL) **không thay utility FL**:
+  pilot20 standard/forest có TSTR/pairTV tốt vẫn own-test kém; chi tiết pair/forest/quantile ở archive.
+- Probe LL chỉ là **bộ lọc loại**, so trong cùng họ nhiễu: LL tụt mạnh báo hại (K8 −4 nat → −.002), LL tăng không báo lợi
+  (EM1 +6,7 / EM2 +9,6 / whitening +2,3 nat → −.0005/−.0011/−.0028). Codec lite6 kiểm lại ở full-scale r20 seed43 (LT6S43) dưới luật TB r16–r20
+  **PASS vững** (Δmacro −.00005, p10 −.0008, absent −.0080); LT8 cũng PASS (−.0001) → xác nhận lite6 từng trượt ở r20 một round là do dao động nhiễu.
+- Lợi KM nằm ở **tương quan riêng từng cụm** (tâm cụm + covariance chung ≈ +.000); phổ covariance cụm phẳng → low-rank không giảm byte.
+- Sim 200 xe dự báo đúng chiều full-scale (+.0057 sim → +.0075/+.0069 pilot, +.0085/+.0086 r50). Sim b9/b10 (nhiễu seed ±.0006):
+  K32, pop, part, EM, whitening, temp, benign share, gap-fill, Q synthetic đều ≤ 0 → **KM16 là trần cục bộ**; thêm dòng cho thống kê (pop) không giúp.
 
-- M20: gain sqrt(n) pooled tập trung84–87% vào timeDelay; realKD giảm timeDelay nhưng nâng15lớp còn lại. Không gọi gain tổng là cải thiện đồng đều.
-- Gap train/test timeDelay vẫn rất lớn sau cân theo support test cùng xe/lớp, cả xe nhiều mẫu. In-sampletrain không tách overfit/temporalshift.
-- Uniform hóa offdiagonal giữ Qyy nhưng đổi entropy và có thể đổi argmaxgate; hoán vị offdiagonal giữ entropy nhưng phá quan hệ lớp.
-  Muốn kiểm nội dung Q phải tách các confound này, giữ rawgate/lịch teacher phù hợp.
-- Negative logitgradient không đồng nghĩa parametergradient tổng âm hoặc KD có hại. KL/hardCE khác entropyconstant; trainloss thấp không đủ chứng minh học tốt hơn.
-- 1epoch không là cùng số bước: xe nhỏ2–4step/r. Tăng KD dựa count chưa thay được phân tích lượng tối ưu và generalization.
+## Synthetic và teacher
 
-## N20 factorial đã audit
+- Synthetic là tri thức toàn mạng có ích cả ở xe lớn: bỏ synthetic (A256–A4096) hại đơn điệu; tăng trọng số synthetic (λ2/λ4) cũng hại.
+  Twin phản thực trên họ trường chung (acl 1↔6, spd, pos) làm lẫn cặp lớp.
+- Tỷ lệ/nhiệt synthetic chỉ **dời ngưỡng** benign↔timeDelay (benign 19%: timeDelay P +.138 R −.070 F1 −.045), không thêm tách biệt.
+- Q phải đo trên **dòng thật**: Q từ synthetic làm suddenConstantSpeed R −.278 (→ zeroSpeedReport). Q và floor `needed` ở r50 (Y50).
+- Ưu tiên synthetic cho lớp/cụm xe thiếu: absent +.084 nhưng macro −.0045 (FP lớp hiếm). Absent tăng không thành macro.
+- Sim b11 (09/11, 2 seed, đều FAIL): Q mềm hơn (Q^½) −.004 macro, timeDelay −.009/−.014 → độ sắc Q đo trên dòng thật là đúng mức;
+  Q theo (lớp, cụm KM) ≈ 0 → cùng K10 bucket8, **đóng họ "Q theo vùng input"**. EMA trọng số β .8: precision lớp tấn công/timeDelay tăng
+  nhưng low256 −.004/−.037 (xe ít bước chậm theo) → EMA không miễn phí cho xe nhỏ.
+- Giảm synthetic dòng/bước (G1 full-scale r20, 09/11, 48/32 dòng) **FAIL cả hai arm** (SR48 macro −.0016, low256 −.0118; SR32 macro −.0041,
+  trượt 6/7 gate) → tín hiệu synthetic 64 dòng không bão hòa ở xe nhỏ; giữ nguyên 64 dòng, không cắt giảm dòng để tiết kiệm compute.
 
-- [N20](archive/docs/research/results-n20.md): realKD giảm timeDelay ở cả soft/fallback nhưng nâng other15/mean/p10.
-  Không tắt/tăng KD đồng loạt từ pooled alone; fallback gain nhỏ chưa nâng đồng đều client/cohort.
-- Fallback khi realKDoff vẫn đổi target đột ngột và dao động sớm. Bác bỏ “chỉrealKD gâydaođộng”;
-  bỏreal không tự xóa chatter, nhưng C vẫn học r15→20. Không gọi tất cả client/model plateau sau20round.
-- Realgate13đóng vẫn giảm timeDelay ngayr2 khi bật realKD các lớp khác. Cần tách crossclasseffect/feedback;
-  sửa confidence/gate13 riêng chưa chứng minh đủ. Teacherargmax đúng hoặc gate lớp yếu bị chặn không bảo vệ mọi decisionboundary.
-- N matchedsameclient/class train/testgap vẫn lớn ở xe nhiều mẫu; không quy toàn bộ cho thiếu lớp hoặc ít step.
-- Factorial liveFL đo total effect vì Qtrajectory khác; replay cùngteacher cần thiết để tách nội dung/tiếp nhận khỏi feedback.
-  Hai seed/sessionr1spread không là significance/noisebound; không chọn C vì pooled hơn vài phầnvạn.
-- Replay: reencode Q đãnormalized có thể lệch~1e−4; giữ Q nguồn, phục hồi packet tương đương và kiểm decode GPU
-  trước train. CPU/CUDA reduction có thể lệch1ULP; không sửa teacher để ép CPUbitexact. Permutation phải khóa SHA theo runtime.
-- Replay preload toàn lịch teacher là chi phí setup riêng. Không vừa tính cachehistory vừa tính lại từng downlink,
-  hoặc coi packet-equivalent là đo liveFL/contactcost.
+## Đọc guard và nút thắt
 
-## O20 replay đã audit đầy đủ
+- Lấy mẫu 10% xe: macro −.0014 qua non-inferiority nhưng p10 −.028 → luôn đọc guard p10 cạnh macro.
+- p10 ở sim 200 xe dao động ±.01–.03 giữa seed (b12) → gate p10 "tăng ≥ +.006 mỗi seed" gần như không qua được với 2 seed;
+  liều compute cần ≥ 3–4 seed hoặc gate trên trung bình seed, khóa **trước** run.
+- Liều compute (b12): floor synthetic-only có điểm gãy ≈48 bước (+8,2%: macro +.0013, absent +.065); thêm synthetic/bước kém hiệu quả gấp ~6×.
+- suddenConstantSpeed (lớp ít nhất) là **canary** của mọi nhiễu loạn generator; đọc cùng timeDelay.
+- Guard absent ít dòng: full-scale 1.555 dòng dao động ±.05 giữa hai round liền; sim ±.03 giữa arm không hiệu ứng → báo thêm trung bình nhiều round.
+- Gap KM50 r50 → APFed (.9077 vs .9119): benign recall .850/.956, FP benign→tấn công ngoài timeDelay 101 k/45 k, precision lớp 7/11/6/1 thấp hơn;
+  KM **hơn** APFed ở timeDelay. Nút thắt = tổng quát hóa benign tương lai của model riêng.
+- FP benign→tấn công **không phải lệch prior/ngưỡng**: hiệu chỉnh prior local lúc suy luận (PH, b11) đổi precision benign ≤ .0006
+  trong khi absent −.31/−.34 ở α 1. Mọi knob ngưỡng/prior/tỷ lệ (Y50 prior, SB, PH) chỉ đổi lớp vắng/timeDelay lấy pooled.
 
-- [O20](archive/docs/research/results-o20.md): fullQ/realgate hơn noReal pooled cảhai seed khi cùng teacher nguồn,
-  nhưng vẫn giảm timeDelay và tail/xe nhỏ chưa lợi nhất quán. Không biến kết luận Nlive thành “realKD luôn hại pooled”.
-- ReplayrealKD vẫn hại13 từr2 dù gate13đóng và Q chung; không cần feedback để có hại cục bộ. Đổi lịchteacher
-  từ livegate sang nguồn noReal phục hồi một phần timeDelay; không phân rã causal hoặc gán mọi lỗi cho feedback/gate13.
-- FullQ hơn diagonal-preservinguniform và entropy-preservingpermutation pooled cảhai seed. Có utility của offdiagonalidentity
-  trong cấu hình này; không bỏ offdiagonal trước proofmới. Uniform lại lợi meanxe<256/timeDelay: pooledutility không đồng đều.
-  UniformO là chia đều offdiagonal/giữdiagonal; khác uniformM12 trộn hard/softρ=.5, không cộng gain hoặc coi cùng can thiệp.
-- R0replaycontrol đạt tripwire so N0/N1 ở cảhai seed, không bitexact hoặc significance. R1 vẫn học r15→20;
-  gap train/test vẫn lớn cả xe nhiều mẫu. Chưa chọn phương pháp tổng, liveFL/mixedarchitecture/r>20 chưa kiểm.
+## Phiên sender (hướng gộp quyết định)
 
-## Đối chiếu nguồn trước P20
+- Dataset trộn 15 world/xe nhận: benign mỗi lần nhận được rải ngẫu nhiên vào các world, tấn công nằm ở world của nó → phiên theo (xe, pseudonym)
+  chỉ 16,8% dòng thuần nhãn (twin benign trộn tấn công); **phiên phải khóa (xe, world, pseudonym)** → 99,1% thuần, nhãn trùng message trước 99,7%.
+  Không dùng `sender_id` thật (nối pseudonym Sybil = lộ nhãn). `ses_*`/`win_*` hiện tính theo (run, xe, alias) không có world.
+- Gộp phiên (b12) chỉ +.0018 macro dù trần lớn: lỗi model tương quan trong phiên; cộng log-prob pha loãng tấn công gián đoạn
+  (feignedBraking −.028) và lớp vắng (absent −.028). Gộp kiểu trung bình không đủ; cần quy tắc giữ bằng chứng tấn công cục bộ.
+- v3-raw ↔ v4-scaled khớp vị trí 1:1 (cùng 410 file/split, cùng thứ tự dòng) → định danh lấy theo vị trí, không cần join.
 
-- Owner xác nhận v1 chỉ tham khảo66feature/20–100client, không chuyển gain/ngưỡng/causalclaim sang v4/5343xe.
-  V1 teacher tốt hơn nhưng transfer/online không giữ gain; BNsplit/head-only đã FAIL. Không coi teacher là bottleneck duy nhất.
-- V4 scaler định nghĩa6NaNflags0/1 và mapping featurethiếu→0. Audit bounded419840trainrow không vi phạm;
-  fixture copula hiện sinh100%cờ khác0/1, projection đưa về0%. Đây là fidelityconstraint, **chưa utilitygain**.
-- Teacher classQ phụ thuộc trueclass, không phải classifier inputdependent. Không chấm Q[y_true] rồi so accuracy với neuralproxy
-  như cùng nhiệm vụ. P dùng evaluator-only proxy/studentCM trên cùng diagnosticrows, không dùng để chọn luật/HP.
-- DAGSNet/grouped/protocol hiện khớp byte repo benchmark. LwFedNIDS đãprune39494parameter và V2X-HtFL461456parameter
-  có headriêng trong kết quả cũ; tách khỏi bảng tham chiếu đồng nhất395408parameter. [Đối chiếu](docs/research/benchmark-r20-reference.md).
+## Communication và privacy
 
-## P20 — teacher, support và clientobjective
+- Chỉ thống kê gộp/xác suất, không dòng/model/BN/gradient. Báo đủ bootstrap + hai chiều + Q; sparse uplink không là vector dày SecAgg.
+- Moment theo ô của **một xe** không riêng tư khi ô nhỏ (510 ô xe×lớp 1 dòng; ô cụm KM nhỏ hơn): chỉ SecAgg che; chưa triển khai SecAgg/DP
+  (owner 09/11 hoãn xử lý). Knob mới theo ô phải có ngưỡng count tối thiểu.
+- Schema cho phép model khác nhau chưa là bằng chứng model trộn full-scale đã chạy.
+- Byte KM50 (đọc lại code 09/11): uplink dense 256 ô + class moments fp32 16 lớp dù xe trung vị có 8 lớp; downlink gửi mean/Cholesky
+  lớp không dùng khi bật KM; **đếm thiếu một lượt tâm** (iters lượt đếm, iters+1 lượt dùng); tâm mô phỏng fp64 nhưng tính fp16
+  (đổi cụm 0,006 % dòng). Codec lossless (sparse + zlib, bỏ gói không dùng, CDF lossless) cắt ≈38 % bootstrap không cần train.
+- Không tính bootstrap, Core/KM chỉ 1.088 B/round (54 KB/50r) < mọi phương pháp prototype; Q ở Core/KM stream nằm trong
+  `Base._round_private` (`.half()` trong methods/mobihet.py), **không** qua `mobihet_study_wire.roundtrip` (chỉ biến thể bank/mixed):
+  patch roundtrip không đổi gì — smoke phải đọc `bytes_up/down` để thấy knob có tác dụng.
+- Codec study full-scale r20 (09/11): CH6 (Cholesky 6-bit), CM8 (moments int8), CT8 (tâm int8), LY0/LY2, LT8 và LT6S43 đều **PASS**.
+  Q stream: `q_bits=8` (QQ8) **PASS** (giảm −71% byte mỗi round từ 1.088 B → 319 B), nhưng `q_bits=4` (QQ4) **FAIL** (macro −.0019, low256 −.0104)
+  → giới hạn nén Q là 8-bit, 4-bit bị quantization noise làm hỏng xe nhỏ. Bootstrap nén xuống còn **1,15 MB** unicast (−68%) ở LT6.
 
-- [P20 gốc](archive/docs/research/results-p20.md) đã đóng gate32run:31×20round/P21r0. [Recovery P21](archive/docs/research/results-p21-recovery.md)
-  bổ sung seed43 đủ20round, không thay originalfailure bằng probe1round hoặc gọi freshretry là resume.
-  P21 lỗi số học trước serverfit không là utilityFAIL của hybrid; guardPASS/recovery không chứng minh rootcause đã sửa.
-- Augmentation là phần gain lớn nhất so localCE; local-only có accuracy0 trên absentrows xe nhỏ, synthetic giúp đáng kể.
-  SoftclassQ vẫn thêm utility pooled cảhai seed; không gọi learnedteacher vôích hoặc augmentation zeroFL.
-- Cùngbank, inputtarget hơn classmean cảpooled/low256/p10; nhưng bankhard vẫn thua streaminghard pooled,
-  inputteacher vẫn dưới streamingclassQ. Teacherresolution và sampling/support là hai vấn đề cần tách; livecontrast không cô lập feedback.
-- Serverproxy C8 chưa hơn inputensemble C7; trên34xe diagnostic, neuralteacherF1 thấp hơn private student ở cùng realrows.
-  FitKL/syntheticagreement không chứng minh realteacherquality. Paired teacher đúng/student sai là cơ hội, không count lỗiKD đã sửa.
-- Modelcarrier vs outputcarrier cùngbank qua tripwire cảhai seed, không bitexact. Model tốn nhiều byte hơn mà không utility ổn định;
-  streamingquery qua proxy còn giảmpooled cảhai seed. Không mặc định tăng kích thước teacher hoặc downweights sẽ tốt hơn.
-- BinaryrealKD tăng meanxe nhỏ nhưng giảm absentclassaccuracy và timeDelay cảhai seed. Margin hơn binary/strength pooled,
-  nhưng low256/p10 không lợi cảhai seed và absent vẫn dưới noReal. Confidence lớp hoặc ítdata chưa đủ để ép mọi xe theo teacher.
-- C2 và xe nhỏ vẫn tăngr15→20; C9pooled giảm trong khi meanxe nhỏ tăng. Không gọi một curve là plateau toàn hệ thống.
-  Gap seenclass train/test tồn tại cả xe>=4096; chưa tách overfit/temporalshift bằng in-sampletrain.
-- Projection đúngNaNflag không tăng pooled ổn định. Không coi syntacticconstraint là jointmanifold hoặc nguyên nhân utility chính.
-  Mixture/countρ, postepochQ, BNsplit/head-only và v1 khácdataset đã có bài học; không đổi tên để thử lại thiếu hypothesis mới.
-- Bootstrap vẫn chi phối compactQ20round. Báo đủ setup/two-waybytes; timer server/scoring nằm trong train,
-  không cộng lại hoặc gọi walltime2T4 là latency xe. Hai seed/repeatedofficialtest không là significance/confirmatoryproof.
-- [Pairedclientdiagnostic](archive/docs/research/p20-client-transfer.md): thêm softQ hơn augmentation pooled nhưng2207/2240xe giảmF1,
-  chỉ~38%xe<256 tăng. Margin so C2 vẫn có1059xe giảm cảhai seed. Mean/p10/cohortgain chưa là mọi xe tốt lên;
-  số xe giảm phải đọc cùng độ lớn delta/support, không chọn method từngxe bằng officialtest.
-- C10hybrid (.5ensemble+.5onehot khi fitproxy) hơn C8pooled+.010208/+.008540 hai seed; vẫn dưới C2streamclassQ
-  −.002447/−.004481. Xe<256 chưa hơn proxy/ensemble nhất quán; so C2 có1412xe giảm cảhai seed.
-  Cải thiện objective server có utility trong setting đã thử, không đủ chọn proxy làm teacher mặc định hoặc tăng KD cho mọi xe.
-  Teacher C10 trên34xe diagnostic vẫn dưới student, teacherđúng/studentsai không phải count lỗi KD đã sửa.
+## Giới hạn audit hiện tại
 
-## Q20 — ba khâu và độ tin cậy từng xe
-
-- [16run Q20](archive/docs/research/results-q20.md) đủ20round/hai seed, querycontrol−stream qua tripwire, nhưng fullremote CM/Q
-  không bitexact dù localfixture bitexact. Querycontrol cũng có1227xe delta âm cảhai seed; không biến negativecount
-  thành causalKDfailure hoặc dùng hai seed làm noisebound/significance. Báo thêm độ lớn/support và repeatedcontrol.
-- Mixedsupport dùng classQ riêng chưa nâng pooled/p10 ổn định. Cùng support, inputtarget nâng meanxe<256/p10 cảhai seed;
-  so querycontrol, pooled gần giữ nguyên, meanxe nhỏ tăng. Có utility resolution/weakcohort, chưa chứng minh utility/byte thắng compactQ.
-- Sqrtweight chỉ cho inputensemble giảm pooled cảhai seed, xe nhỏ trái dấu; gain sqrtclassQ ở M không chuyển sang mọi teacher.
-  Count/confidence không là expertquality; cần validation sạch trước qualityweightserver.
-- Margin trong mixedinput nâng pooled/mean/p10 so stream, nhưng absentaccuracy xe nhỏ và timeDelay giảm.
-  RealKDtradeoff tồn tại sau inputresolution; teacher tốt theo classargmax/agreement chưa đủ bảo vệ clientobjective.
-  Live contrasts gồm feedback; receptionreplay cùngQ/inputhistory mới tách được feedback khỏi cách học.
-- Margin có1005xe delta âm cảhai seed so stream, nhưng querycontrol cũng có biến động percar lớn.
-  Mô tả giảm>.05 cảhai seed là75xe margin/29xe control, không causalcount hoặc CI.
-  Mean/p10 tăng và std giảm không bảo đảm mọi xe/absentclass tốt hơn.
-- Xe nhỏ vẫn tăngr15→20; gap matchedtimeDelay còn cả xe>=4096 và control. Chưa plateau chung hoặc phân biệt overfit/shift
-  khi train+val đãfit. Q không proxyteacher, không có realclassifierteacherqualitydiagnostic để gọi agreement là accuracy.
-
-## R20/V20 — độ ồn, replay tiếp nhận, validation sạch
-
-- [R20/V20](archive/docs/research/results-r20-v20.md): ba phiên cùng công thức/seed lệch pooled ≤.0005, p10 ≤.006, low256 ≤.003,
-  timeDelay ≤.0035; ~250 xe dao động >.05 mỗi chiều. Đếm "số xe giảm" và chênh dưới các ngưỡng này không là bằng chứng.
-- Teacher cố định, realKD vẫn −.05 timeDelay/lớp vắng: tác hại không cần feedback. Live gấp đôi do vòng phản hồi
-  (Q[13,13] r20 .739 noReal → .581 binary). **Margin ≤ binary/strength khi teacher cố định**; lợi live của margin là
-  bảo vệ teacher, không phải tiếp nhận tốt hơn. Sửa kết luận Q20 "margin hơn binary" thành hiệu ứng trajectory.
-- Val sạch: augment−CE +.0226 pooled (nguồn lợi chính, không do test); mixed_input−augment +.0025 pooled/+.009–.014 p10;
-  margin−mixed pooled ≈ ồn nhưng timeDelay −.077, lớp vắng −.06/−.07. Loại realKD khỏi mặc định.
-- Gap timeDelay train→val có cả ở CE thuần (xe≥4096 .886→.267): giới hạn dữ liệu/đặc trưng, KD chỉ làm nặng thêm.
-- Cơ chế hại là phần target-class của KL theo lớp; phần non-target (quan hệ lớp) mới là utility O20. Tách hai phần trước
-  khi bỏ KD (W20 NCKD). NCKD có gradient 0 lên logit lớp thật — kiểm bằng test, không chỉ công thức.
-- Bootstrap copula: 76% byte là histogram dày, 12% là moment Gaussian không dùng trên đường copula. Histogram xe mã thưa
-  không mất mát ~74 KB thay 1,26 MB; tổng server không đổi nên không cần chạy lại để chứng minh.
-- Shadow diagnostics tự dựng ctx ngoài local_epoch: hook mới trên ctx phải có fallback, nếu không preflight chết ở diagnostics.
-
-## W20 — non-target KD, step floor, bootstrap nén
-
-- Ô "PASS gate" có thể chỉ dời ngưỡng giữa cặp lớp nhầm (synth hard+NCKD: timeDelay recall +.06, precision −.09,
-  benign→timeDelay ×1,85, Q[13,13] giảm). Với cặp nhầm khó, đọc precision/recall và nhầm chéo, không chỉ F1 lớp đó.
-- Bỏ phần target-class của KD cắt feedback (Q[13,13] live = noReal) nhưng KD trên dòng thật vẫn đè cả nhóm lớp vắng
-  (lỗi dồn sang lớp xe có). Hại timeDelay và hại lớp vắng là hai kênh khác nhau.
-- Đếm xe vượt độ ồn lặp chỉ hợp lệ khi ô giữ nguyên dòng RNG. Step floor đổi độ rộng permutation → xe không chạm floor
-  dao động bằng mức đổi seed dù trung bình ≈0; so với spread đổi seed hoặc trung bình theo cohort.
-- Thiếu tối ưu ở xe nhỏ là nguyên nhân lớn của p10/lớp vắng: bước chỉ synthetic (0 byte, +3,5% bước) nâng xe<256 +.02,
-  lớp vắng +.13 mà dữ liệu local vẫn đúng 1 epoch.
-- Nén bootstrap (CDF uint16, fp16 Cholesky, uplink thưa) giữ utility; nhưng uplink thưa không dùng được với secure aggregation.
-
-## X20 — combo, input-bank, NCKD giới hạn lớp xe có
-
-- Giới hạn KD vào lớp xe có sửa đúng hại lớp vắng (absent +.04, xe lớn +.12–.15), nhưng cặp nhầm có lớp mặt ở mọi xe
-  (benign/timeDelay) vẫn bị dạy lại sự nhầm của teacher: mọi KD dòng thật tốn timeDelay.
-- Gain pooled ở xe lớn (+.002) không chuyển thành gain xe yếu; đọc cohort trước khi nhận thành phần "tốt nhất pooled".
-- Tầng tùy chọn qua gate r20 vẫn có thể chỉ là tăng tốc: đọc quỹ đạo r10/r15/r20 của hiệu, không chỉ endpoint.
-- Gate trượt sát ngưỡng vẫn là trượt; không nới gate sau khi xem số.
-
-
-## C10 — codec feasibility local, chưa utility
-
-- Core compact bootstrap chiếm97,9% tổng20round; Q-only không thể giảm quá2,13% tổng dù bỏ hết Q.
-  Probe40snapshot X0/X1: zlib bodyQ trung bình522,6B >fp16body512B; Q8 không đổiargmax nhưng maxprobdelta.0144.
-  Không dùng argmaxunchanged thay utility; không ngoại suy tỷ lệ losslessCDF fixture2xe ra toàn5343xe.
-  [Thiết kế/phạm vi C10](docs/research/screening-c10.md).
-
-## C10 — fullnetwork10round seed42
-
-- [C10](docs/research/results-c10.md): Qdown8 giữ pooled gần Core nhưng low256−.0074/absent−.0418; combo còn hạiabsent−.0315.
-  Không dùng pooled hoặc argmaxQunchanged để nhận codec; Q8 tiết kiệm chỉ2560B/10round nên tradeoff không đáng trong setting này.
-- Bootstrap64 PASS các gate r10 với byte bảo thủ−22,9%, chưa proof r50 hoặc mọi client. Histogram64 cần dựng lại score/covariance.
-- CDF256 toàn5343xe lossless zlib6:630784→267379B, khác xa fixture2xe14894B. Tổng Core r10 dự kiến−35,9%; chưa chạy fullnetwork
-  qua compressedCDFdecode nên phân biệt measuredcodec/projectedpayload với đã train transportpath. Chưa cộng sparse64 chưa đo hoặc gọi SecAgg đã triển khai.
-
-## L50 — full 50 round lossless CDF đã audit PASS
-
-- Giải nén uint16CDF phải dựng mass bằng diff trên lưới float64 rồi castfloat32 như Corecompact, không diffCDFfloat32 đã làm tròn.
-  Assert CDF/mass torch.equal ngay bootstrap; local 4 round / fullstate / snapshot so Core và resume trùng bit.
-- [L50](docs/research/results-l50.md) hoàn tất 50 round trên 2x T4 qua 2 session cross-account (`emtrangtri` r1–25, `chuchimnon` r26–50):
-  Lossless CDF zlib-6 giải nén bit-exact (`bitexact_cdf: true`, `bitexact_mass: true`). F1 macro r50 đạt 0.899129 so với F2 Core 0.899160 (chênh lệch chỉ -0.000031); Accuracy 0.909285 (so với 0.909355); Client P10 0.752754 (so với 0.756214); Train loss 0.141436 (so với 0.141414).
-- Tiết kiệm băng thông: CDF 256 bin giảm 57,6% (630.784 B → 267.411 B); bootstrap 2 chiều giảm 36,3% (1.000.439 B → 637.066 B); tổng communication budget 50 round giảm 34,45% (1.054.839 B → 691.466 B/xe), toàn mạng giảm từ 5,63 GB xuống 3,69 GB. Xác nhận codec lossless khả thi và bảo toàn toàn bộ năng lực mô hình trong 50 round.
+Audit source/config/LR/IDs/support/CM→10metric/snapshot/teacher/finite từ artifact thật. Dataset chưa có full-content fingerprint;
+chưa prediction→CM replay/full private-bank reconstruction toàn mạng. Không dùng formula test trên random tensors thay kiểm stored values.
+Các thất bại/runtime đã biết và nguồn kết quả: [research index](docs/research/README.md), [generator catalog](docs/research/generators.md).

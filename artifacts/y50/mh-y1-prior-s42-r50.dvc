@@ -1,0 +1,6 @@
+outs:
+- md5: 8690c58bd63aba4457ac5aff7d634745.dir
+  size: 805573585
+  nfiles: 223
+  hash: md5
+  path: mh-y1-prior-s42-r50
