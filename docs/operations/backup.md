@@ -1,11 +1,11 @@
 # Git / DVC backup record
 
-Updated: 2026-11-05, Asia/Ho_Chi_Minh — C/F/L/R/V/W/X đã lên cloud; local đã xóa mọi `.pt` của 9 nhóm. Workspace partial.
+Updated: 2026-11-10 04:30, Asia/Ho_Chi_Minh — mọi artifact đến 09/11 đã DVC + OneDrive (in sync); Git `a9eff54` đã push; local đã xóa `.pt` của nhóm mới. Workspace partial.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
 
-- Git `https://github.com/odixe06/mobihet.git`, `main`: manifest mới ở commit `e2e8f2f`; đối chiếu đỉnh bằng `git ls-remote`.
+- Git `https://github.com/odixe06/mobihet.git`, `main`: `a9eff54` (10/11, manifest 10/11 + code/docs); đối chiếu đỉnh bằng `git ls-remote`. Bundle thay 10/11 04:18, verify PASS.
 - DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`). `dvc` ở env conda `nckh`.
 - Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, verify mỗi lần thay.
 - Cloud upload: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`, `TimeoutStartSec=3600` qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
@@ -41,8 +41,17 @@ Mới 05/11, mỗi run một manifest; danh sách `runs/maintenance-20261105/man
 | `artifacts/x20` | 8 | 1.744 | 6.493.951.732 | **partial**: xóa `.pt`, giữ CM/rounds/config/log/provenance |
 
 **Không `dvc add` lại 50 run này** (workspace partial sẽ ghi đè manifest đầy đủ). Cần model: `dvc pull <manifest>`.
-Chưa DVC: `runs/` (gitignored, giữ local) và **mọi artifact từ 06/11**: `artifacts/{y50,km-pilot20,km-pilot50,km50,standard-t4,forest-t4,sim-kaggle*,km-lite-pilot20}`,
-`artifacts/f50/mh-f3-core-s43-r50` — chỉ có bản local, chưa backup (chờ owner yêu cầu).
+Mới 10/11 (owner yêu cầu backup toàn bộ): 43 manifest, danh sách `runs/maintenance-20261110/targets.txt`, log `dvc-add.log`/`dvc-push.log`.
+
+| nhóm | manifest | local workspace |
+|---|---:|---|
+| `artifacts/y50` (7 run) | 7 | **partial**: xóa `.pt` (y0–y6), giữ CM/rounds/config/log/provenance/inductor-cache |
+| `artifacts/{forest-t4,standard-t4}` | 4 | **partial**: xóa `.pt` |
+| `artifacts/f50/mh-f3-core-s43-r50` | 1 | **partial**: xóa `.pt` |
+| `artifacts/{km50,km-pilot20,km-pilot50,km-lite-pilot20,codec-pilot20,g1-pilot20}` | 19 | đủ (không `.pt`) |
+| `artifacts/sim-kaggle`, `-b2`…`-b12` | 12 (mỗi batch 1 manifest) | đủ |
+
+**Không `dvc add` lại các run trên.** Chưa DVC: `runs/` (gitignored, giữ local) và artifact `artifacts/codec-combo20` (kernel còn chạy 10/11).
 
 ## 3. Checks that passed (reusable while inputs are unchanged)
 
@@ -55,6 +64,8 @@ Chưa DVC: `runs/` (gitignored, giữ local) và **mọi artifact từ 06/11**: 
 | `dvc push -j 4` 50 manifest | C/F/L/R/V/W/X | lần 1 lỗi Errno5 (Graph timeout khi list); chạy lại exit 0, 2.990 file, log `runs/maintenance-20261105/dvc-push-retry.log` |
 | `dvc status -c` 50 manifest | C/F/L/R/V/W/X | `Cache and remote 'onedrive' are in sync.` (mức mount) |
 | `rclone lsf` cloud 20:27 | 3.068 object, 49.004.158.345 B | đủ, 0 thiếu, 0 lệch size (size, không checksum) |
+| `dvc push -j 4` 43 manifest (10/11) | y50/forest/standard/km*/codec/g1/f3/sim-kaggle | 5 lô, exit 0; `dvc status -c` 04:14: `Cache and remote 'onedrive' are in sync.`; dirty VFS = 0 |
+| Remote object trước xóa (10/11) | 428 `.pt` (50,78 GB) | tồn tại + đúng size + cùng inode với cache object; 0 lệch (size, không checksum) |
 
 ## 4. Local cleanup
 
@@ -65,10 +76,16 @@ Chưa DVC: `runs/` (gitignored, giữ local) và **mọi artifact từ 06/11**: 
 
 - Owner 05/11: xóa 1.042 file `.pt` (48,4 GB) + object cache tương ứng, sau khi kiểm từng object trên cloud đúng size ngay trước xóa; xóa 2 bản `runs/l50-study/transfer/*/l50-resume.bin` (19 GB, trùng nhau, state cùng size với bản DVC). Free 105 → ~172 GB. Receipt `runs/maintenance-20261105/cleanup.json`.
 
+- Owner 10/11: xóa 428 `.pt` (50,78 GB) + object cache tương ứng của nhóm mới; xóa 4 `runs/y-transfer/Y{3..6}/upload/resume.bin` (41,7 GB; tar của chính các file
+  đã DVC, `rounds.jsonl`/`recovery` trong tar là tiền tố của bản DVC). Free 44,1 → 136,6 GB (**+92,5 GB**). Receipt `runs/maintenance-20261110/cleanup.json`,
+  script `runs/maintenance-20261110/cleanup.py`. Giữ rclone cache (8,5 GB), `runs/sim`, `runs/y-transfer` còn lại, cache npy.
+
 ## 5. Next session
 
 - Hết file dirty: `grep -rl '"Dirty": true' ~/.cache/rclone/vfsMeta/onedrive` rỗng (cache không về 0 vì giữ tới 10 GB file sạch).
 - Restore: `dvc pull artifacts/l50/mh-l0-core-lossless-s42-r50.dvc` (~10,5 GB). Kiểm disk trước.
+- Push lớn (>~40 GB) khi disk free thấp: rclone `--vfs-cache-mode=full` giữ file dirty trên local tới khi upload xong → đẩy theo lô ≤ ~11 GB, chờ dirty = 0 giữa các lô (`runs/maintenance-20261110/push.sh`; ≈1 giờ/lô 11 GB).
+- Restore model y50: `dvc pull artifacts/y50/<slug>.dvc` (~11 GB/run y3–y6).
 - Thêm run mới: `dvc add artifacts/<nhóm>/<slug>` từng run hoàn chỉnh → `dvc push` → `dvc status -c`.
   `.gitignore` ignore-all trong thư mục artifact làm `dvc add` lỗi "git-ignored" — xóa file đó trước.
 - `deleted` trong `dvc status -c` sau cleanup chỉ là thiếu local cache, không phải remote mất.

@@ -1,4 +1,4 @@
-# Bàn giao sống — kiểm 10/11/2026 ~00:20 UTC+7
+# Bàn giao sống — kiểm 10/11/2026 ~04:30 UTC+7
 
 Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [operations lessons](lessons.md) trước. Đây là **bàn giao hiện hành duy nhất**;
 state/log/receipt thật ưu tiên hơn tài liệu. Lịch sử 07–09/11 sáng: [snapshot 09/11](../../archive/handoffs/2026-11-09-km-lite-b9-b10.md).
@@ -41,6 +41,10 @@ Theo dõi: `tail -f runs/codec-combo20/watch.log`. Máy tắt → phiên sau ch�
 - Credential theo process (`kaggle_as.py`), global login giữ nguyên; không nhúng W&B.
 - Không Git/DVC push, không xóa artifact. Workspace dirty, chưa commit (mọi thay đổi 07–09/11).
 - Owner loại: trao model/proxy DAGSNet. Compute tại xe: không tụt hạng (Core 4,00×F; ngưỡng V2X-HtFL 4,11×F).
+
+## Backup 10/11
+
+Git `a9eff54` + DVC 43 manifest (y50, km*, codec/g1 pilot, f3, sim-kaggle*) in sync trên OneDrive; local dọn +92,5 GB. Chi tiết: [backup](backup.md). `artifacts/codec-combo20` chưa DVC (kernel còn chạy).
 
 ## Việc tay
 

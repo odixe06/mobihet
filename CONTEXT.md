@@ -10,22 +10,19 @@ Mục tiêu: own-test tương lai của từng xe, nhất là xe ít mẫu/non-I
 Chỉ trao đổi thống kê cộng được và xác suất đầu ra; server dùng tổng toàn mạng. Không chia sẻ dòng local,
 model, BN hoặc gradient. Schema không phụ thuộc kiến trúc; thí nghiệm full-scale cùng DAGSNet W1 (sim b4 trộn W1/W0.25 không sụp), **chưa chạy model trộn full-scale**.
 
-## Trạng thái hiện hành — kiểm 10/11/2026 00:20
+## Trạng thái hiện hành — kiểm 10/11/2026 04:30
 
 - **Mục tiêu owner (Proposal 2, 09/11):** hiệu năng **top 3** (F1 macro r50: APFed .9119, CANPerFL .9088, FedAvg .9042…);
   băng thông **không tính bootstrap** vẫn hơn nhóm prototype (pFedES 0,14 MB, TinyProto 0,17 MB, FedProto 1,64 MB / 50 round);
   compute tại xe không tụt hạng (Core 4,00×F, giữa TinyProto 3,99 và V2X-HtFL 4,11). Bảng so sánh: trang Notion Proposal 2 của owner.
 - **Phương pháp chính = Core** (F1 .8991). **KM16 w0 .5 (codec gốc)** r50 F1 .9077/.9085 (hạng 3), recall macro .910 (cao nhất),
   FAIL riêng guard benign −.0015 so Core. **Owner 09/11: chưa chốt phương pháp chính — giảm băng thông trước rồi mới chốt.**
-- **Codec study r20 xong (09/11):** 9/10 PASS, QQ4 FAIL; G1 (giảm dòng synthetic) FAIL cả hai arm → giữ 64 dòng.
-- **Đang chạy (push 10/11 00:15): combo codec r20** CBA (lite6+QQ8+LY0), CBB (lite6+QQ8) × seed 42/43 + C0 Core + CQ8 Core+QQ8 —
-  luật ở [screening-codec §Combo r20](docs/research/screening-codec.md), kernel/watcher ở [continue](docs/operations/continue.md).
-  Byte gốc KM16: bootstrap ≈3,61 MB + Q 1.088 B/round; LT6 bootstrap 1,15 MB, QQ8 319 B/round.
-- Đã đóng 09/11: generator đóng băng (owner) nhưng owner mở lại câu hỏi "generator còn cải thiện gì" → G1 FAIL (đóng), G2 bỏ
-  ([catalog](docs/research/improvement-proposals.md)); b11 (PH/EMA/QK/QT2) FAIL; b12 floor/rows/gộp phiên FAIL và **owner đóng hướng a + b**;
-  pilot lite6 r20 FAIL cũ do nhiễu — LT6S43 luật mới PASS.
-- Backlog owner (Proposal 2, **chưa chạy**, owner 09/11 "chưa chạy seed"): (1) 3 seed 41/42/43 ± sai số; (2) BERT thay DAGSNet;
-  (3) mô hình trộn 25 % mỗi loại (cần chọn model nhẹ IoV); báo băng thông bỏ phần trước train.
+- **Đang chạy (push 10/11 00:15): combo codec r20** CBA (lite6+QQ8+LY0), CBB (lite6+QQ8) × seed 42/43 + C0 (Core sim) + CQ8 (Core+QQ8):
+  luật ở [screening-codec](docs/research/screening-codec.md), kernel/watcher ở [continue](docs/operations/continue.md).
+  Codec r20 đã PASS: CH6/CH8, CM8, CT8, QQ8, LY0/LY2, LT8, LT6 (bootstrap 3,61 → 1,15 MB; Q 1.088 → 319 B/round); QQ4 FAIL.
+- Đóng: generator (KM16 w0 .5 đóng băng; G1 giảm dòng synthetic FAIL, G2 bỏ), b11, b12, hướng gộp phiên + tăng compute — chi tiết
+  [catalog](docs/research/improvement-proposals.md).
+- Backlog owner (**chưa chạy**): (1) 3 seed 41/42/43; (2) BERT thay DAGSNet; (3) mô hình trộn 25 % mỗi loại; báo băng thông bỏ phần trước train.
 - Quyền: ưu tiên nối phiên; dùng quota dư ngay, kiểm quota/slot thật trước push. **PASS → tự lên bậc scale kế** (thang dưới).
   Privacy bootstrap (ô 1 dòng) owner 09/11 **hoãn**.
 

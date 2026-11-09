@@ -41,6 +41,10 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 - Npy cache public dùng chung + manifest SHA; private weights vẫn private. Compile cache để temp, nén một tar trong run và restore qua session.
   Tar restore thành công chưa chứng minh cachehit/speedup; benchmark trên runtime thực.
 
+- DVC push lớn lên OneDrive mount (rclone `vfs-cache-mode=full`): file dirty nằm trên ổ local tới khi upload xong, vượt `--vfs-cache-max-size`.
+  Disk free < tổng cần push → đẩy theo lô, giữa lô chờ `grep -rl '"Dirty": true' ~/.cache/rclone/vfsMeta/onedrive` = 0 (≈1 giờ/lô 11 GB, 10/11).
+  Xóa `.pt` đã backup: hardlink workspace↔cache nên xóa cả hai; kiểm cloud object tồn tại + đúng size + cùng inode trước xóa.
+
 ## Background và bàn giao
 
 - Dùng codex-long-jobs (Codex) hoặc `runs/<batch>/watch.sh` nền (Claude Code); poll Kaggle 1200s bằng local worker. Xác nhận running một lần, rồi kết thúc turn khi chỉ còn chờ;
