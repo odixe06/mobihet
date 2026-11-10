@@ -1,10 +1,15 @@
-# Phương pháp được chọn — Core (kiểm 09/11/2026)
+# Phương pháp được chọn — CBB (owner chốt 10/11/2026)
 
-**Phương pháp chính = Core = copula augmentation + class Q + synthetic step floor + compact bootstrap.** Không input-bank, không realKD.
-Chi tiết thực thi ở [method](method.md), cấu hình chung ở [protocol](protocol.md).
-**Nền nghiên cứu hiện tại = Core + generator KM16 w0 .5 (codec gốc)** (KM50 r50 +.0085/+.0086 macro nhưng FAIL guard benign → chưa thay Core;
-codec lite6 FAIL pilot full-scale r20 09/11). Ứng viên PASS sẽ lên scale theo thang tự động ở [CONTEXT](../../CONTEXT.md).
-**Owner 09/11 chưa chốt** Core hay Core + KM16 (KM16 r50 F1 .9077/.9085 = hạng 3): giảm băng thông trước — [screening-codec](screening-codec.md).
+**Phương pháp chính = CBB = Core + generator KM16 w0 .5 + codec lite6 (Lloyd 4 lượt) + Q 8-bit (QQ8).**
+Core = copula augmentation + class Q + synthetic step floor + compact bootstrap. Không input-bank, không realKD.
+Cấu hình: hp KM50 + `cop_kmeans_q=int8 cop_kmeans_lite=6 q_bits=8 km_bytes=true` (`runs/codec-combo50/batch.json`, arm CBB42/CBB43).
+Chi tiết thực thi ở [method](method.md) (mô tả Core; KM16/codec ở [km-lite](screening-km-lite.md), [screening-codec](screening-codec.md)),
+cấu hình chung ở [protocol](protocol.md).
+
+Số r50 (TB seed 42/43, audit PASS): F1 macro **.9078** (hạng 3 sau APFed .9119, CANPerFL .9088), recall macro .9097, p10 .7761, low256 .8604;
+**265 B/round** (13,3 KB/50 round không tính bootstrap < pFedES 0,14 MB), bootstrap unicast **1,15 MB**/xe. So KM50 codec gốc cùng seed:
+Δmacro TB r46–50 −.0003 cả hai seed. Đánh đổi đã biết, owner chấp nhận: benign .8403 thấp hơn Core+QQ8 .8410
+(KM16 trượt riêng guard benign vs Core −.0015 ở KM50). Đối chứng cùng codec: CQ8 = Core+QQ8 F1 .8991, 259 B/round, bootstrap ≈1,00 MB.
 
 ## Giữ và bỏ theo bằng chứng
 
@@ -14,8 +19,10 @@ codec lite6 FAIL pilot full-scale r20 09/11). Ứng viên PASS sẽ lên scale t
 | Q theo true class, đo trên dòng thật | giữ | **ablation r50 `needed`** (bỏ Q: accuracy −.0038 cả hai seed, benign −.010) — [Y50](results-y50.md); Q từ synthetic FAIL (b10) |
 | Synthetic step floor | giữ | **ablation r50 `needed`** (bỏ floor: p10 −.016/−.018, low256 −.028, absent −.09/−.11) — [Y50](results-y50.md) |
 | Compact bootstrap + lossless CDF | giữ | [F50](results-f50.md), [L50](results-l50.md) |
-| Generator KM16 w0 .5 | nền nghiên cứu, chưa vào Core | [km50](screening-km50.md): r50 FAIL riêng guard benign |
-| Codec KM lite6 | bỏ | sim PASS nhưng pilot full-scale r20 FAIL low256/absent — [km-lite](screening-km-lite.md) |
+| Generator KM16 w0 .5 | **giữ** (owner 10/11) | [km50](screening-km50.md): r50 +.0085/+.0086 macro vs Core; FAIL riêng guard benign (owner chấp nhận) |
+| Codec KM lite6 (Lloyd 4 lượt) | **giữ** | LT6S43 PASS r20; combo CBB PASS r50 cả hai seed — [screening-codec](screening-codec.md) |
+| Q 8-bit (QQ8) | **giữ** | PASS r20 + r50 (CBB, CQ8 cả hai seed); Q 4-bit FAIL (low256 −.0104) |
+| Bỏ Lloyd (LY0) trong combo | bỏ | CBA r20 FAIL cả hai seed (benign) |
 | Input-bank | bỏ | lợi r20 mất ở r50, trượt luật cả hai seed — [F50](results-f50.md) |
 | realKD (cả NCKD/gate) | bỏ | đánh đổi timeDelay/lớp vắng |
 | Prior shift lúc train | bỏ | [Y50](results-y50.md) FAIL r20 cả hai seed |
@@ -32,7 +39,7 @@ Số canonical: [F50/Core](results-f50.md), [L50/lossless](results-l50.md), [km-
 
 ## Phần chưa được chứng minh
 
-- Codec rẻ hơn bản gốc: lite6 FAIL r20 (trong nhiễu); codec study 10 pilot full-scale đang chạy ([screening-codec](screening-codec.md)).
+- Chỉ 2 seed (42/43), không phải significance; backlog owner: seed 41.
 - Cải tiến ngoài generator: PH, EMA, QK, QT2 **FAIL sim b11**, floor/rows/gộp phiên **FAIL sim b12** (2 seed) — [catalog đề xuất](improvement-proposals.md); chưa có ứng viên mới.
 - Mô hình trộn full-scale, dropout/contact, SecAgg/DP, đầu độc: chưa kiểm.
 

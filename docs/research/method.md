@@ -1,6 +1,7 @@
-# Core — cơ chế đang thực thi
+# CBB — cơ chế đang thực thi
 
-Chọn phương pháp: [proposal](proposal.md). Mọi cấu hình chung theo [protocol](protocol.md).
+**CBB = Core + generator KM16 w0 .5 + codec lite6 + Q 8-bit** (owner chốt 10/11). Phần Core mô tả dưới;
+phần CBB thay đổi ở mục [CBB thay gì trên Core](#cbb-thay-gì-trên-core). Chọn phương pháp: [proposal](proposal.md). Mọi cấu hình chung theo [protocol](protocol.md).
 Implementation: [WLive](../../methods/mobihet_wstudy.py), [copula/bootstrap/Q](../../methods/mobihet.py),
 [live teacher](../../methods/mobihet_next.py), [cấu hình Core](../../scripts/f50_common.py).
 Các đối chứng M→X cũ không còn là mô tả mặc định.
@@ -28,9 +29,21 @@ nhưng dependence latent vẫn là một Gaussian mỗi lớp. Core hiện khôn
 `Q[y]` là target có điều kiện theo nhãn thật, không classifier phụ thuộc input. Q đúng argmax/ít entropy hoặc synthetic agreement
 không chứng minh teacher tổng quát hóa trên own-test.
 
+## CBB thay gì trên Core
+
+Code: `methods/mobihet_sim.py` (docstring mô tả từng knob; knob tắt = Core). Hp = Core + `cop_kmeans=16 cop_kmeans_w0=0.5
+cop_kmeans_q=int8 cop_kmeans_lite=6 q_bits=8 km_bytes=true` (bản khóa: `runs/codec-combo50/batch.json`, arm CBB42/CBB43).
+
+- **Generator KM16 w0 .5:** mỗi lớp là mixture 16 Gaussian trong không gian normal score của copula. Tâm cụm bằng k-means liên kết
+  (khởi tạo từ covariance lớp gộp, 4 lượt Lloyd chỉ gửi count/tổng theo cụm); covariance cụm co về covariance lớp (trọng số 0,5D dòng),
+  bỏ cụm < 20 dòng. Marginal/CDF và cách sinh giữ như Core; xe sinh synthetic từ mixture. Không thêm bước/dòng train.
+- **Codec lite6 (bootstrap):** moment lớp và moment cụm upload int8 theo xe, sparse + zlib; tâm broadcast int8; Cholesky cụm xuống
+  đường chéo fp16 + phần dưới 6 bit (một scale fp16/hàng); không gửi mean/Cholesky lớp; CDF lossless zlib.
+- **Q 8-bit (QQ8):** gói Q hai chiều lượng tử `p·255`, uplink chỉ lớp có mặt (Q 4-bit FAIL).
+
 ## Byte, resume và đánh giá
 
-Class Q: 544B mỗi chiều/xe/round. Tổng chi phí và codec theo [proposal](proposal.md); số đo ở kết quả từng batch.
+Class Q Core: 544 B mỗi chiều/xe/round; CBB (QQ8) ≈265 B cả hai chiều. Tổng chi phí và codec theo [proposal](proposal.md); số đo ở kết quả từng batch.
 Chỉ gọi SecAgg-compatible ở mức công thức tổng, không gọi sparse codec hoặc hệ thống hiện tại đã có SecAgg/DP.
 
 Hai process/GPU giữ client riêng, không đồng bộ gradient. Checkpoint resume đầy đủ khác snapshot nhỏ dùng audit:

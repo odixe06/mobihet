@@ -1,6 +1,6 @@
 # Nghiên cứu hiện hành
 
-Đọc [proposal](proposal.md) để biết quyết định; [method](method.md) để biết code Core làm gì;
+Đọc [proposal](proposal.md) để biết quyết định; [method](method.md) để biết code CBB (Core + KM16 + lite6 + QQ8) làm gì;
 [protocol](protocol.md) là cấu hình chung, không sửa riêng cho ứng viên.
 
 | câu hỏi | tài liệu chính |
@@ -14,7 +14,7 @@
 | KM full-scale r50 đạt gì? | [screening-km50](screening-km50.md) |
 | Codec lite6, sim b9/b10, pilot full-scale lite6? | [screening-km-lite](screening-km-lite.md) |
 | Đề xuất cải tiến ngoài generator, sim b11, privacy? | [catalog đề xuất](improvement-proposals.md) |
-| Băng thông từng gói của KM16, codec study 10 pilot? | [screening-codec](screening-codec.md) |
+| Băng thông từng gói, codec study, combo r20/r50 (CBB vs CQ8)? | [screening-codec](screening-codec.md) |
 | Nút thắt hiện tại và bằng chứng còn hiệu lực? | [bottleneck 08/11](bottleneck-review-20261108.md), [diagnosis](diagnosis.md) |
 | So benchmark và đối chiếu bài gốc? | [benchmark r20](benchmark-r20-reference.md), [nguồn generator](generator-primary-sources.md), [papers](../../papers/README.md) |
 

@@ -25,6 +25,6 @@ byte, thời gian bootstrap. Hai seed và test đã dùng nhiều lần → khô
 | 42 | +.0085 | +.020 | +.019 | +.007 | **−.0015** | +.038 | FAIL (benign) |
 | 43 | +.0086 | +.023 | +.015 | +.012 | **−.0014** | +.033 | FAIL (benign) |
 
-**Verdict theo luật: FAIL** (chỉ guard benign); Core vẫn là phương pháp chính. KM16 w0 .5 vẫn là nền nghiên cứu (mọi guard khác tăng
+**Verdict theo luật: FAIL** (chỉ guard benign); lúc đó Core vẫn là phương pháp chính (10/11 owner chấp nhận benign, chốt CBB = KM16 + lite6 + QQ8: [proposal](proposal.md)). KM16 w0 .5 vẫn là nền nghiên cứu (mọi guard khác tăng
 ở cả hai seed; xếp sau APFed .9119, ≈ CAN-PerFL .9088). Byte bootstrap gốc ≈3,67 MB/xe/50r → codec lite6 ở [screening-km-lite](screening-km-lite.md).
 Bản KM16 fp32 w0 2D (pilot cũ) r50 cũng FAIL benign −.0018/−.0016: [archive](../../archive/docs-20261109/README.md).

@@ -1,11 +1,11 @@
 # Git / DVC backup record
 
-Updated: 2026-11-10 04:30, Asia/Ho_Chi_Minh — mọi artifact đến 09/11 đã DVC + OneDrive (in sync); Git `a9eff54` đã push; local đã xóa `.pt` của nhóm mới. Workspace partial.
+Updated: 2026-11-10 21:45, Asia/Ho_Chi_Minh — mọi artifact đến 10/11 (gồm codec-combo20/50) đã DVC + OneDrive (in sync); Git `main` push 10/11 tối (đỉnh: `git ls-remote`). Workspace partial.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
 
-- Git `https://github.com/odixe06/mobihet.git`, `main`: `a9eff54` (10/11, manifest 10/11 + code/docs); đối chiếu đỉnh bằng `git ls-remote`. Bundle thay 10/11 04:18, verify PASS.
+- Git `https://github.com/odixe06/mobihet.git`, `main`: commit 10/11 tối (combo r50 + chốt CBB + manifest codec-combo); đối chiếu đỉnh bằng `git ls-remote`. Bundle thay 10/11 tối, verify PASS.
 - DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`). `dvc` ở env conda `nckh`.
 - Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, verify mỗi lần thay.
 - Cloud upload: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`, `TimeoutStartSec=3600` qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
@@ -51,7 +51,10 @@ Mới 10/11 (owner yêu cầu backup toàn bộ): 43 manifest, danh sách `runs/
 | `artifacts/{km50,km-pilot20,km-pilot50,km-lite-pilot20,codec-pilot20,g1-pilot20}` | 19 | đủ (không `.pt`) |
 | `artifacts/sim-kaggle`, `-b2`…`-b12` | 12 (mỗi batch 1 manifest) | đủ |
 
-**Không `dvc add` lại các run trên.** Chưa DVC: `runs/` (gitignored, giữ local) và artifact `artifacts/codec-combo20` (kernel còn chạy 10/11).
+Mới 10/11 tối: `artifacts/codec-combo20` (6 run) + `artifacts/codec-combo50` (4 run) = 10 manifest, đủ (không `.pt`, 134 MB);
+danh sách `runs/maintenance-20261110b/targets.txt`, log `dvc-add.log`/`dvc-push.log`.
+
+**Không `dvc add` lại các run trên.** Chưa DVC: `runs/` (gitignored, giữ local).
 
 ## 3. Checks that passed (reusable while inputs are unchanged)
 
@@ -65,6 +68,7 @@ Mới 10/11 (owner yêu cầu backup toàn bộ): 43 manifest, danh sách `runs/
 | `dvc status -c` 50 manifest | C/F/L/R/V/W/X | `Cache and remote 'onedrive' are in sync.` (mức mount) |
 | `rclone lsf` cloud 20:27 | 3.068 object, 49.004.158.345 B | đủ, 0 thiếu, 0 lệch size (size, không checksum) |
 | `dvc push -j 4` 43 manifest (10/11) | y50/forest/standard/km*/codec/g1/f3/sim-kaggle | 5 lô, exit 0; `dvc status -c` 04:14: `Cache and remote 'onedrive' are in sync.`; dirty VFS = 0 |
+| `dvc push -j 4` 10 manifest (10/11 tối) | codec-combo20/50 | exit 0, 374 file; `dvc status -c`: `Cache and remote 'onedrive' are in sync.` |
 | Remote object trước xóa (10/11) | 428 `.pt` (50,78 GB) | tồn tại + đúng size + cùng inode với cache object; 0 lệch (size, không checksum) |
 
 ## 4. Local cleanup

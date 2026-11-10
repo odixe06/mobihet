@@ -37,6 +37,8 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
   giữ failure và recovery record, không train lại. NumPy bool gate phải cast `bool`; có CM/source/sampleSHA thì recover JSON không refit.
 - Smoke local `sim_fold_val.py run` phải có `--compile` (Live round assert compile gate mọi rank); 200 xe 2 round ≈5,5 phút,
   peak RSS ≈9,8 GB — kiểm `free -h` trước, chạy qua `run_local_guarded.py`.
+- Kaggle **không trả output/log khi kernel RUNNING** (listing 0 file, log rỗng): tiến độ kernel không W&B chỉ ước tính được từ thời gian;
+  watcher chỉ pull → auto-audit bằng waiter local chờ marker `DONE` (không gọi Kaggle, không thành watcher thứ hai).
 - Owner tắt máy khi kernel đang chạy: không cần watcher; ghi lệnh `collect` + analyser vào continue, phiên sau chạy lặp collect.
 - Npy cache public dùng chung + manifest SHA; private weights vẫn private. Compile cache để temp, nén một tar trong run và restore qua session.
   Tar restore thành công chưa chứng minh cachehit/speedup; benchmark trên runtime thực.

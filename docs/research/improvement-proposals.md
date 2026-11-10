@@ -1,6 +1,6 @@
 # Đề xuất cải tiến ngoài generator — catalog 09/11/2026
 
-Nguồn trạng thái duy nhất cho đề xuất **không thuộc generator** (generator: [catalog](generators.md), đã đóng băng KM16 w0 .5, codec gốc).
+Nguồn trạng thái duy nhất cho đề xuất **không thuộc generator** (generator: [catalog](generators.md), đóng băng KM16 w0 .5; phương pháp chính 10/11 = CBB, [proposal](proposal.md)).
 Mỗi dòng: bằng chứng → cơ chế → lợi kỳ vọng → dấu hiệu bác bỏ. Ràng buộc owner: compute tại xe ≤ Core, không trao model/proxy,
 chỉ thống kê cộng được + xác suất; không chọn HP/round qua official test. Status job: [continue](../operations/continue.md). **09/11: sim b11 xong — PH, EM5, EM8, QK, QT2 đều FAIL (mục cuối).**
 
@@ -27,7 +27,8 @@ chỉ thống kê cộng được + xác suất; không chọn HP/round qua offi
 | **QT2** | teacher | làm mềm Q: `Q_T ∝ Q^{1/2}` trước khi dùng làm target | Q đo in-sample quá tự tin (Q[13,13] .94 vs recall .29); soft Q có utility (LESSONS) → target gần nhầm lẫn ngoài mẫu hơn | macro ≥ +.002. Bác bỏ: macro/absent giảm (Q mềm có thể làm yếu bảo vệ lớp vắng) | 0 · 0 | FAIL b11 |
 | RS | lịch train | xe ≥1024 dòng chỉ dùng 50% dòng thật/round (đổi mỗi round), giữ synthetic + floor | giảm compute; nhưng **b2 phản bằng chứng**: tăng tỷ trọng synthetic ở xe lớn (L2big/L4big) −.0028/−.0036, timeDelay giảm | không khuyến nghị; chỉ chạy nếu owner ưu tiên giảm compute | −≈30% compute · 0 | — |
 | — | generator / synthetic | K/EM/whitening/share/temp/gap-fill/Q synth/pop/part | sim b9/b10 FAIL hết; owner 09/11 đóng băng | không mở lại bằng tên mới | — | đóng |
-| — | giao tiếp | lite6 (1,20 MB/xe/50r) | sim PASS 2 seed; **pilot full-scale r20 FAIL** low256 −.0063, absent −.0186 | int4/PPCA đã loại (probe LL) | — | FAIL |
+| — | giao tiếp | lite6 (1,20 MB/xe/50r) | sim PASS 2 seed; pilot r20 s42 FAIL (nhiễu); LT6S43 r20 PASS | int4/PPCA đã loại (probe LL) | — | PASS (trong CBB) |
+| CBB | giao tiếp | KM16 + lite6 + QQ8 | combo r20 + r50 PASS cả hai seed ([codec](screening-codec.md)) | F1 .9078, 265 B/round, bootstrap 1,15 MB | — | **phương pháp chính 10/11** |
 
 Ngoài hợp đồng (cần owner quyết riêng, không đưa vào Core): hợp nhất lịch sử theo sender cho timeDelay (đổi protocol);
 EM prior trên test chưa nhãn (test-driven adaptation, trái hợp đồng đánh giá).

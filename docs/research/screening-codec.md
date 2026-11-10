@@ -1,5 +1,7 @@
 # Codec study — giảm băng thông KM16 (luật khóa 09/11/2026, trước push)
 
+**Kết thúc 10/11: owner chốt CBB (KM16 + lite6 + QQ8) — xem mục "Kết quả combo r50" cuối file.**
+
 Owner 09/11: giảm băng thông (mỗi round và bootstrap) trước khi chốt phương pháp chính; thử hết các mức; codec mất mát lên thẳng
 full-scale (sim 200 xe không thấy đuôi xe nhỏ/lớp vắng); luật xét **F1 toàn hệ thống**, guard lớp nhỏ được nới.
 Mục tiêu owner (Proposal 2): hiệu năng top 3; băng thông **không tính bootstrap** vẫn hơn nhóm prototype; compute không tụt hạng.
@@ -146,3 +148,72 @@ absent ≥ −.03, timeDelay ≥ −.005, benign ≥ −.001). **Combo PASS = c�
 **Bước kế (tự động):** CBA PASS → nối CBA42/43 lên r50 từ state r20 (luật như trên tại r46–r50 vs KM50 r50); CBB dừng (CBA rẻ hơn).
 CBA FAIL, CBB PASS → nối CBB. Cả hai FAIL → dừng, báo owner (giữ codec từng khe đã PASS, không tune).
 CQ8 PASS → nối CQ8 s42 lên r50 + push CQ8 s43 r50, so F2/F3 r50 nếu C0 ≈ F2 (|Δmacro TB| ≤ .0015); nếu không, nối cả C0 lên r50 làm đối chứng.
+
+### Kết quả Combo r20 (10/11/2026 04:41 — 6/6 audit PASS, `runs/codec-combo20/{audit,verdict-r20}.json`)
+
+- **CBA (lite6+QQ8+LY0) FAIL cả 2 seed:** s42 trượt guard benign (−0.001004 < −0.001), s43 trượt macro_mean (−0.0016 < −0.0015) và benign (−0.0013). Bỏ Lloyd (0 lượt) cộng dồn với QQ8 làm suy yếu biểu diễn tâm cụm ở vùng biên benign.
+- **CBB (lite6+QQ8, Lloyd 4 lượt) PASS cả 2 seed:** s42 và s43 đều vượt mọi gate an toàn (Δmacro TB −0.0006/−0.0007; benign −0.0004/−0.0005). Bootstrap unicast **1,15 MB** (−68%), Q stream **319 B/round** (−71%).
+- **C0 (Core control) PASS:** Khớp F2 s42 r20 hoàn hảo (Δmacro TB −0.0000) → pipeline sim tương thích hoàn toàn.
+- **CQ8 (Core + QQ8) PASS:** Δmacro TB −0.0005, mọi guard PASS vs C0 → Q 8-bit an toàn cả trên Core thuần (round stream 317 B/round).
+
+| arm | kết quả | Δmacro TB | Δmacro r20 | Δp10 | Δlow256 | ΔtimeDelay | Δbenign | Δabsent | lỗi gate |
+|---|:---:|---:|---:|---:|---:|---:|---:|---:|---|
+| **CBA42** | **FAIL** | −0.0014 | −0.0017 | −0.0032 | −0.0062 | −0.0006 | **−0.0010** | +0.0004 | benign |
+| **CBA43** | **FAIL** | **−0.0016** | −0.0015 | −0.0020 | −0.0044 | −0.0016 | **−0.0013** | −0.0021 | macro_mean, benign |
+| **CBB42** | **PASS** | −0.0006 | −0.0007 | −0.0020 | −0.0032 | −0.0011 | −0.0004 | −0.0122 | qua |
+| **CBB43** | **PASS** | −0.0007 | −0.0006 | −0.0034 | −0.0051 | −0.0023 | −0.0005 | −0.0262 | qua |
+| **C0** | **PASS** | −0.0000 | −0.0001 | −0.0005 | +0.0002 | +0.0001 | −0.0002 | +0.0104 | qua (chỉ báo F2) |
+| **CQ8** | **PASS** | −0.0005 | −0.0004 | −0.0035 | −0.0046 | −0.0001 | −0.0005 | −0.0198 | qua |
+
+### 10 metric tại r20 (5.343 xe, own-test, official macro)
+
+| arm | accuracy | precision_macro | precision_micro | precision_weighted | recall_macro | recall_micro | recall_weighted | f1_macro | f1_micro | f1_weighted |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| CBA42 | 0.9142 | 0.9046 | 0.9142 | 0.9059 | 0.8988 | 0.9142 | 0.9142 | 0.8990 | 0.9142 | 0.9076 |
+| CBA43 | 0.9144 | 0.9054 | 0.9144 | 0.9061 | 0.8989 | 0.9144 | 0.9144 | 0.8995 | 0.9144 | 0.9077 |
+| CBB42 | 0.9150 | 0.9049 | 0.9150 | 0.9067 | 0.9006 | 0.9150 | 0.9150 | 0.9000 | 0.9150 | 0.9084 |
+| CBB43 | 0.9151 | 0.9055 | 0.9151 | 0.9068 | 0.9007 | 0.9151 | 0.9151 | 0.9004 | 0.9151 | 0.9085 |
+| C0 | 0.9115 | 0.8981 | 0.9115 | 0.9026 | 0.8945 | 0.9115 | 0.9115 | 0.8933 | 0.9115 | 0.9046 |
+| CQ8 | 0.9112 | 0.8977 | 0.9112 | 0.9023 | 0.8940 | 0.9112 | 0.9112 | 0.8929 | 0.9112 | 0.9044 |
+
+## Combo r50 — luật khóa 10/11/2026 trước push
+
+Theo thang tự động (CBB PASS cả 2 seed; CQ8 PASS; C0 ≈ F2 nên không cần nối C0): nối **CBB42, CBB43, CQ8 s42** từ state r20 → r50
+(cùng owner, cosine50 giữ nguyên, `--until 50`) và push **CQ8 s43 r50** từ r1 (owner khác, cap 11,5 h).
+`scripts/run_codec_combo50.py` → `runs/codec-combo50/batch.json`; analyser `scripts/analyse_codec_combo50.py`.
+Quota thật 10/11: annhannh331 16,2 h → CBB cap **7,0 h/phiên** (owner chọn; 2×7,0×1,15 = 16,1); trietbackup 16,3 h → CQ8 s42 cap 8,0 h;
+CQ8 s43 cap 11,5 h trên account riêng. Hết budget → dừng sạch ở round đã commit, nối tiếp (không restart r1).
+
+| arm | knob | đối chứng r50 |
+|---|---|---|
+| CBB42 / CBB43 | như r20 (`cop_kmeans_lite=6` + `q_bits=8` + `km_bytes`) | KM50 Q42 / Q43 r50 |
+| CQ8 s42 / s43 | Core + `q_bits=8` | F2 core s42 / F3 core s43 r50 |
+
+**Luật mỗi arm-seed (official own-test, ghép cặp):** Δ trung bình **r46–r50**: f1_macro ≥ −.0015 **và** Δf1_macro tại r50 ≥ −.003;
+guard TB r46–r50: Δp10 ≥ −.010, Δlow256 ≥ −.010, Δabsent ≥ −.03, ΔtimeDelay ≥ −.005, Δbenign ≥ −.001.
+**Arm PASS = cả hai seed PASS.** Audit như combo r20 (đủ round, hữu hạn, skip ≤ 1 %, CM support == đối chứng, hp == đối chứng + knob, overlay sha).
+Không chọn round; không tune; FAIL → dừng nhánh. Sau khi cả hai arm xong: bảng so Core+QQ8 vs KM+lite6+QQ8 (10 metric, byte) cho owner chốt phương pháp chính.
+
+### Kết quả combo r50 (10/11/2026 21:02, 4/4 arm-seed, audit PASS cả 4) — `runs/codec-combo50/verdict-r50.json`
+
+`scripts/analyse_codec_combo50.py`: audit PASS cả 3 arm đã pull (đủ 50 round, LR/round == đối chứng, resume hai rank tại r21,
+rows + CM r1–r20 trùng pilot r20, CM support == đối chứng, hp/overlay sha khớp).
+
+| arm-seed | đối chứng | ΔTB r46–50 macro | Δr50 macro | p10 | low256 | absent | timeDelay | benign | B/round (TB 50r) | verdict |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| CBB42 | KM50 Q42 | −.0003 | −.0003 | −.0003 | −.0012 | −.0113 | +.0016 | +.0006 | 130+136 | PASS |
+| CBB43 | KM50 Q43 | −.0003 | −.0003 | −.0035 | +.0004 | −.0018 | −.0006 | +.0005 | 130+135 | PASS |
+| CQ8 s42 | F2 | −.0005 | −.0004 | −.0008 | −.0004 | −.0044 | −.0017 | −.0001 | 127+132 | PASS |
+| CQ8 s43 | F3 | −.0003 | −.0003 | −.0020 | −.0026 | −.0057 | +.0010 | −.0001 | 126+132 | PASS |
+
+**CBB (KM16 + lite6 + QQ8) PASS cả hai seed ở r50**: F1 macro TB .9078 (KM50 gốc .9077/.9085), recall macro .9097;
+bootstrap unicast 1,15 MB, 265 B/round (13,3 KB/50 round không tính bootstrap). **CQ8 (Core + QQ8) PASS cả hai seed**: F1 macro TB .8991
+(= Core), 259 B/round (12,9 KB/50 round), bootstrap Core ≈1,00 MB (screening-km-lite). Bảng 10 metric cho owner chốt:
+
+| arm (TB 2 seed, r50) | acc | P macro | R macro | F1 macro | F1 weighted | p10 | low256 | absent | timeDelay | benign | B/round | 50r không boot | bootstrap |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| CBB = KM16+lite6+QQ8 | .9116 | .9070 | .9097 | **.9078** | .9093 | .7761 | .8604 | .7395 | .3513 | .8403 | 265 | 13,3 KB | 1,15 MB |
+| CQ8 = Core+QQ8 | .9095 | .8986 | .9019 | .8991 | .9054 | .7546 | .8427 | .7061 | .3408 | .8410 | 259 | 12,9 KB | ≈1,00 MB |
+
+CBB hơn CQ8 +.0087 F1 macro (hạng 3 sau APFed .9119, CANPerFL .9088 — sát hạng 2), đổi +0,15 MB bootstrap, +6 B/round; benign ≈ nhau.
+Cả hai không tính bootstrap đều ≪ pFedES 0,14 MB / TinyProto 0,17 MB. **Owner 10/11 chốt CBB làm phương pháp chính** ([proposal](proposal.md)).

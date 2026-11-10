@@ -48,7 +48,7 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
   [Y50](docs/research/results-y50.md) vẫn FAIL do timeDelay/absent. Giữ verdict/gate, không tune sau test.
 - Không gọi timeDelay giới hạn tuyệt đối bởi77feature: centralized vẫn tốt hơn. In-sample gap không tách được overfit và temporal shift.
 
-## Generator (đã đóng băng KM16 w0 .5, codec gốc) — bài học còn dùng
+## Generator (đóng băng KM16 w0 .5; trong CBB cùng lite6 + QQ8) — bài học còn dùng
 
 - Oracle dùng pool dòng thật, chỉ là trần ngoài hợp đồng FL. Fidelity (pairTV, singletonTV, valTV, TSTR, ESS, probe LL) **không thay utility FL**:
   pilot20 standard/forest có TSTR/pairTV tốt vẫn own-test kém; chi tiết pair/forest/quantile ở archive.
@@ -109,6 +109,9 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
 - Codec study full-scale r20 (09/11): CH6 (Cholesky 6-bit), CM8 (moments int8), CT8 (tâm int8), LY0/LY2, LT8 và LT6S43 đều **PASS**.
   Q stream: `q_bits=8` (QQ8) **PASS** (giảm −71% byte mỗi round từ 1.088 B → 319 B), nhưng `q_bits=4` (QQ4) **FAIL** (macro −.0019, low256 −.0104)
   → giới hạn nén Q là 8-bit, 4-bit bị quantization noise làm hỏng xe nhỏ. Bootstrap nén xuống còn **1,15 MB** unicast (−68%) ở LT6.
+- Combo codec (10/11): ghép lite6 + QQ8 **giữ được** đến r50 (CBB Δmacro −.0003 cả hai seed vs KM50; CQ8 −.0005/−.0003 vs Core);
+  bỏ cả Lloyd (LY0) khi ghép QQ8 thì FAIL benign (CBA) dù từng knob riêng PASS → không cộng PASS từng knob thành PASS combo, phải chạy combo.
+  Byte TB 50 round thấp hơn byte đo ở r20 (265 vs 319 B) vì QQ8 chỉ gửi lớp có mặt và round đầu lớn hơn: báo byte theo đúng số round.
 
 ## Giới hạn audit hiện tại
 

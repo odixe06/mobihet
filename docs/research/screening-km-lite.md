@@ -74,7 +74,8 @@ So Core F2 r20: macro +.0073, p10 +.0151, low256 +.0087, absent −.0302. Byte b
 Đọc: macro lệch ≤ .0004 ở mọi round r10–r20 (ghép cặp cùng seed). low256/absent dao động quanh 0 (r16–r20 trung bình −.0029/−.0082);
 chênh **giữa seed** KM50 (Q43−Q42) cùng round đã ±.005–.01 low256, ±.02–.037 absent → FAIL r20 nằm trong vùng nhiễu, **chưa chứng minh lite6 hại**.
 Verdict giữ (luật khóa); không chấm lại lite6 bằng luật mới — muốn kiểm lại cần run mới với luật khóa trước.
-Hệ quả: generator đóng băng = **KM16 w0 .5 int8, codec gốc (≈3,67 MB/xe/50r)**; lite6 không vào nền. Không thử lite8/biến thể codec khi chưa có owner duyệt.
+Hệ quả lúc đó: giữ codec gốc. **Sau đó (09–10/11):** owner duyệt codec study; LT6S43 r20 PASS và combo CBB (lite6+QQ8) r50 PASS cả hai seed
+→ lite6 nằm trong phương pháp chính CBB ([screening-codec](screening-codec.md), [proposal](proposal.md)).
 
 | r20 | accuracy | P macro | P micro | P weighted | R macro | R micro | R weighted | F1 macro | F1 micro | F1 weighted |
 |---|---|---|---|---|---|---|---|---|---|---|
