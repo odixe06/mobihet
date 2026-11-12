@@ -1,6 +1,7 @@
 # Git / DVC backup record
 
-Updated: 2026-11-10 21:45, Asia/Ho_Chi_Minh — mọi artifact đến 10/11 (gồm codec-combo20/50) đã DVC + OneDrive (in sync); Git `main` push 10/11 tối (đỉnh: `git ls-remote`). Workspace partial.
+Updated: 2026-11-13 03:20, Asia/Ho_Chi_Minh — Git `main` push 13/11 (`a6b450c`, code/docs B13–B20). Artifact đến 10/11 đã DVC + OneDrive (in sync).
+**Chưa DVC (untracked, chỉ local):** `artifacts/{b20-full,cbb-s41,sim-kaggle-b13..b18,sim-kaggle-b18r1,sim-kaggle-b20}`; bundle chưa thay. Workspace partial.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
