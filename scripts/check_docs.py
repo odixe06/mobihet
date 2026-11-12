@@ -10,7 +10,7 @@ def main():
     bad = []
     for path in ROOT.rglob("*.md"):
         rel = path.relative_to(ROOT)
-        if any(p.startswith(".") for p in rel.parts) or rel.parts[0] in {"archive", "runs", "notebooks"}:
+        if any(p.startswith(".") for p in rel.parts) or rel.parts[0] in {"archive", "runs", "notebooks", "artifacts"}:
             continue
         for target in LINK.findall(path.read_text()):
             if target.startswith(("http:", "https:", "mailto:")):

@@ -1,7 +1,7 @@
 # Git / DVC backup record
 
-Updated: 2026-11-13 03:20, Asia/Ho_Chi_Minh — Git `main` push 13/11 (`a6b450c`, code/docs B13–B20). Artifact đến 10/11 đã DVC + OneDrive (in sync).
-**Chưa DVC (untracked, chỉ local):** `artifacts/{b20-full,cbb-s41,sim-kaggle-b13..b18,sim-kaggle-b18r1,sim-kaggle-b20}`; bundle chưa thay. Workspace partial.
+Updated: 2026-11-13 03:45, Asia/Ho_Chi_Minh — artifact đến 13/11 (B13–B20 sim, CBB s41, SM42P) đã DVC + OneDrive; Git `main` push 13/11.
+Đang chạy, **chưa DVC**: `artifacts/b20-full/{SD42,SD43}`, `artifacts/b20-sm50/*` — add sau khi batch đóng (kèm `_receipts/`). Bundle chưa thay. Workspace partial.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
@@ -54,6 +54,11 @@ Mới 10/11 (owner yêu cầu backup toàn bộ): 43 manifest, danh sách `runs/
 
 Mới 10/11 tối: `artifacts/codec-combo20` (6 run) + `artifacts/codec-combo50` (4 run) = 10 manifest, đủ (không `.pt`, 134 MB);
 danh sách `runs/maintenance-20261110b/targets.txt`, log `dvc-add.log`/`dvc-push.log`.
+
+Mới 13/11: `artifacts/sim-kaggle-b13`…`-b18`, `-b18r1`, `-b20` (mỗi batch 1 manifest), `artifacts/cbb-s41/mh-k-cbb-s41-r50`,
+`artifacts/b20-full/mh-k-b20-sm42p-r20` = 10 manifest, đủ (không `.pt`); danh sách `runs/maintenance-20261113/targets.txt`, log `dvc-add.log`/`dvc-push.log`.
+Từ 13/11 mỗi thư mục run/batch có `_receipts/` = bản sao `runs/<batch>/` (pipeline/push/collect/audit log, batch/verdict/report,
+frozen-source, smoke log; bỏ `.pt`) để log + file liên quan đi cùng artifact. Batch sim B18 gốc (ERROR packaging) giữ 0 round + log lỗi.
 
 **Không `dvc add` lại các run trên.** Chưa DVC: `runs/` (gitignored, giữ local).
 

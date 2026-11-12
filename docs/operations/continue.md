@@ -30,7 +30,8 @@ Luật r50 mỗi arm: macro F1 r50 **mỗi seed > .9048**; báo Δ so CBB cùng 
 - Watcher mất (đóng phiên/reboot): kiểm PID; không bật watcher trùng. Chạy tay
   `python scripts/run_b20_full.py collect && python scripts/run_b20_full.py audit` và tương tự `run_b20_sm50.py`.
 - Sau audit: verdict từng arm vào [design](../research/screening-compute-b20.md), gộp phụ lục vào design, cập nhật
-  bảng compute Notion Proposal 2 nếu arm PASS. Nhiều arm PASS → owner chọn arm rẻ nhất; combo SM+SD chỉ sau verdict từng arm.
+  bảng compute Notion Proposal 2 nếu arm PASS. Backup: rsync `runs/b20-full/`, `runs/b20-sm50/` (bỏ `.pt`) vào `_receipts/` từng run,
+  `dvc add` per-run SD42/SD43/SM42/SM43 + `dvc push` ([backup](backup.md)); SM42P đã DVC 13/11. Nhiều arm PASS → owner chọn arm rẻ nhất; combo SM+SD chỉ sau verdict từng arm.
 
 ## Đã xong gần đây
 

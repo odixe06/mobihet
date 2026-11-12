@@ -80,6 +80,9 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 
 ## Backup và workspace
 
+- Owner 13/11: mỗi thư mục run phải đủ log và file liên quan. Trước `dvc add`, rsync `runs/<batch>/` (bỏ `.pt`) vào
+  `artifacts/<batch>/_receipts/` (per-run manifest: vào thư mục run). Log rời ở root repo dời về đúng thư mục run của nó.
+
 - Backup/restore/cleanup chỉ trong quyền owner. Kiểm mount thật, object manifest và cloud trước xóa;
   không xóa rclone/VFS dirty cache hoặc cloud objects. Mount copy không chứng minh cloud synced.
 - Workspace DVC partial: giữ manifest, không `dvc add` ghi snapshot nhỏ đè bản đầy đủ. Restore đúng run cần dùng.
