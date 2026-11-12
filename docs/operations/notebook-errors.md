@@ -14,6 +14,7 @@ Run sống tại [continue](continue.md); xử lý theo [lessons](lessons.md). K
 | COMPLETE nhưng thiếu đích | rounds/CM/state thực, worst-round budget | audit partial rồi nối; không nới đích hoặc gọi methodFAIL |
 | Compile forward tốt, backward NaN | gradients/BN/padded slots, seed/rank/shape, applied từngxe | giữ failure; sửa nguyênnhân rồi gate; không bỏclient/hạguard |
 | Float probability auditor falseFAIL | stored aggregate/body, CPU/CUDA bound quaquantizer | sửa checker vàverify artifactcũ; không train lại |
+| Hybrid LG auditor falseFAIL trước push | ô nhỏ dùng Q8→fp32 log/center, không phải fp16 logscore; replay packet cũ GPU vs CPU | bound theo tỷ trọng count từng nhánh; regression corruption; reuse smoke khi training SHA/HP giữ nguyên, không retrain |
 | W&B stale/crashed | exact Kaggle session + timestamp/heartbeat + quota | đọc đa nguồn; không dừng chỉ từ W&Bstate |
 | Source thay giữa preflight | hash đầu/cuối, module import, frozenoverlay | giữ evidence cũ; preflight trênsourcecốđịnhtrướclaunch |
 | JSON numpy.bool_ | CM/log/source/sampleSHA đã lưu chưa | recover JSONtừartifact, castbool ởwriter; khôngrefit |

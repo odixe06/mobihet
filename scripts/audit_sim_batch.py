@@ -42,14 +42,17 @@ def audit(spec):
     man = json.loads((d / "provenance/source_manifest.json").read_text())
     out["base_sha"] = man["base_sha"] == spec["base_sha"]
     out["overlay_sha"] = man["overlay"] == spec["overlay_sha256"]
-    src = d / "provenance/source/methods/mobihet_sim.py"
-    out["executed_overlay_bytes"] = src.exists() and sha(src) == spec["overlay_sha256"]["methods/mobihet_sim.py"]
+    out["executed_overlay_bytes"] = all((d / "provenance/source" / name).exists() and
+                                        sha(d / "provenance/source" / name) == digest
+                                        for name, digest in spec["overlay_sha256"].items())
     run = next(iter(glob.glob(str(d / "**" / "config.json"), recursive=True)), None)
     if not run:
         out["config"] = False
         return out
     run = Path(run).parent
-    hp = json.loads((run / "config.json").read_text())["hp"]
+    config = json.loads((run / "config.json").read_text())
+    hp = config["hp"]
+    out["method"] = config["method"] == spec["method"]
     bad = [h for h in spec["hp"] if norm(hp.get(h.split("=", 1)[0])) != norm(h.split("=", 1)[1])]
     out["config"] = not bad
     if bad:

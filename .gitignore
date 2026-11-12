@@ -24,6 +24,7 @@ wandb/
 *.pt
 *.npy
 *.npz
+!tests/fixtures/uplink-fallback-r1.npz
 *.parquet
 
 # Paper PDFs: copyrighted, kept local only (papers/README.md lists sources)

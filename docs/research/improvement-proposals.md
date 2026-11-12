@@ -1,8 +1,61 @@
-# Đề xuất cải tiến ngoài generator — catalog 09/11/2026
+# Đề xuất cải tiến ngoài generator — catalog 09/11/2026 (trạng thái cập nhật 13/11)
+
+**Trạng thái 13/11:** B13–B19, A1, N1, N2 đều **FAIL** — bảng theo họ cơ chế ở [sổ tay](method-building-brief.md) §4–5 (nguồn chính).
+**B20 giảm compute** (SH FAIL; SD r50 hai seed, SM r50 hai seed đang chạy) ở [B20](screening-compute-b20.md).
+Phần dưới là lịch sử thiết kế/kết quả theo đợt, giữ nguyên verdict.
+
+**Scope mới owner 10/11:** được đổi module/tăng compute, bắt buộc hỗ trợ nhiều kiến trúc; experiment chỉ DAGSNet W1.
+Performance ưu tiên, communication hạn chế tối đa nhưng chưa cap byte cứng. Quyết định này thay cap compute/byte cũ cho
+nghiên cứu mới, **không sửa verdict cũ**. [Rà bằng chứng](../../archive/docs-20261113/research/pipeline-module-review-20261110.md), [b13 đã khóa](screening-module-b13.md):
+CBB control + sqrt-count Q (SQ), reverse/symmetric KL/4JS (RK/SK/JS), CEreal smoothing .05 (LS), mỗi arm hai seed.
+**B13 đóng 11/11 00:08:** 12/12 audit PASS đủr20, **cả5ứng viên FAIL utility**; không lên pilot hoặc tune tiếp.
+Chi tiết5arm/2seed và đủ10metric/byte ở [b13](screening-module-b13.md). Nhánh thông tin uplink/cross-fit còn mở;
+LOO ưu tiên thấp sau count diagnostic full-scale maxselfshare chỉ0,46%.
+**B14 đóng 11/11:** 8/8 đủr20, source/CM/wire audit PASS; MX/GP/LG **FAIL utility cả2seed**, không pilot/tune.
+MX Δmacro−.01581/−.01588; GP−.00031/+.00088; LG+.00083/−.00020 dù teacher rất sắc.
+[Thiết kế/kết quả](screening-uplink-b14.md), [phân tích lại](../../archive/docs-20261113/research/b14-analysis-20261111.md).
+**B15 đóng11/11:** SAM rho.05 đủ20r/audit4run PASS nhưng utility FAIL cả2seed: macro+.000531/+.001196,
+p10−.007145/−.010200, thêmTD seed42−.006887; trainelapsed≈1,58×. Không pilot/tune; fairness báo riêngCBB+SAM.
+[Results](screening-sam-b15.md).
+**Audit cũ theo owner:** [v4](../../archive/docs-20261113/research/history-audit-20261111.md), [legacy](../../archive/docs-20261113/research/history-audit-legacy-20261111.md).
+V20 temporalvalidation đã chạy; P20/P29 mean-target vẫn per-rowKL; P30 output×input khác outputcovariance.
+**B16 đóng09:25:** [classmeanKD](screening-mean-b16.md) C/MK/HK×42/43, audit6/6r20PASS; MK/HK FAIL cả2seed.
+MK Δmacro−.001855/−.000390, HK+.000008/+.000365; không pilot/tune/extend.
+[Temporalpartition thật](../../archive/docs-20261113/research/crossfit-feasibility-20261111.md) đãđếm: class11support thấp và prior lệch; chưa auxiliaryteachertrain.
+Trạng thái thực ở continue.
+Moment2uplink/personalizedexpert/out-of-fitquality còn cần diagnostic; không dùng entropytrain làm reliability.
+Qregion/divergence/interpolation/logpool đãFAIL không mở lại bằng tên khác.
+
+**Owner steering11/11 tiếp:** macro-first, guardphụreport-only; chấp nhận thống kê/xác suất, không realrow.
+[Review pilot](../../archive/docs-20261113/research/macro-first-review-20261111.md): ưu tiên Y50prior-coordinate và W20real-NCKD, chưa đảm bảo chuyển gain sangCBB.
+[B17](screening-macro-b17.md) đủ6/6r20/auditPASS, **P/NR FAILmacro cả2seed**, khôngpilot/tune/extend.
+P−.000658/+.000192; NR−.000164/+.001630. Guardphụ không veto, macrovẫnkhôngđủ.
+[QualitydiagnosticV20](../../archive/docs-20261113/research/crossfit-feasibility-20261111.md) cóhardCMtrain/val support/10metric được tính lại;
+trainqualityrank yếu/nhạysupport, chưaoutfitteacherutility hoặcB18.
+Không chỉnh verdict lịch sử; hai nhánhmacro đãthửvàđóng, qualityngoàifit còn cần thiếtkế/control/budget.
+
+**Khảo sát tiếp11/11:** [nguồn sơ cấp + diagnostic recipient](../../archive/docs-20261113/research/teacher-source-survey-20261111.md).
+V20full5343/hashsplitdonorrecipient:8domain từtrainconfusion không cải thiện đều forecastfuture,
+futurepeerdiagnostic cóassociation cả16class; không macroF1 hoặc teacherutility.
+Sim200 có1domain3xe/0rowclass11: chưa launch8teachergrid. Ưutiên sourceQmatchedshadow E/H,
+qualityweight chờnguồn đo; moment2/LOO dựphòng.
+**Owner cho chạy B18:** [design/gate/cost](screening-source-b18.md), 2seed/S→C/E/H;
+**Đóng12/11:** recoveryb18r1 8phase×20round/auditPASS, HFAILmacro cả2seed:
+H−C−.001066/−.001132,H−E−.001504/−.000636. Khôngpilot/tune/extend;
+ngoàifitsource thật nhưngQTD nhầmbenign, benign↑TD↓. Qualityweight/recipient vẫnestimandkhác,chưatrialmới.
+Job thực ởcontinue.
+
+**12/11 rà bão hòa + A1:** [sổ tay xây dựng phương pháp](method-building-brief.md). A1 nhãn mềm theo posterior generator
+**FAIL diagnostic local** (0,86% dòng synthetic không one-hot; recall TD Bayes-generator .36 < .42), không lên sim.
+B19 (A2') cụm biên theo nhầm lẫn generator, không lượng tử: **FAIL gate local** (Δmacro Bayes +.0030 < +.010, TD↓);
+kênh generator coi như hết dư địa. [B19](screening-boundary-b19.md).
+N1 proxy server-side trùng P20 C8/C9/C14 (đã FAIL), không code; N2 GBDT trần centralized macro .8065 < .924 FAIL.
+[Sổ tay §5](method-building-brief.md).
 
 Nguồn trạng thái duy nhất cho đề xuất **không thuộc generator** (generator: [catalog](generators.md), đóng băng KM16 w0 .5; phương pháp chính 10/11 = CBB, [proposal](proposal.md)).
-Mỗi dòng: bằng chứng → cơ chế → lợi kỳ vọng → dấu hiệu bác bỏ. Ràng buộc owner: compute tại xe ≤ Core, không trao model/proxy,
-chỉ thống kê cộng được + xác suất; không chọn HP/round qua official test. Status job: [continue](../operations/continue.md). **09/11: sim b11 xong — PH, EM5, EM8, QK, QT2 đều FAIL (mục cuối).**
+Mỗi dòng: bằng chứng → cơ chế → lợi kỳ vọng → dấu hiệu bác bỏ. Bảng cũ bên dưới giữ scope/luật09/11;
+quyền10/11 ở đầu trang thay capcompute cũ: đa kiến trúc bắt buộc, experiment chỉDAGSNet, chưa bytecap cứng.
+Không chọn HP/round qua official test. Status job: [continue](../operations/continue.md). **09/11: sim b11 xong — PH, EM5, EM8, QK, QT2 đều FAIL (mục cuối).**
 
 ## Nút thắt cần nhắm (đọc lại CM r50 seed42 đã audit; `scripts/analyse_core_bottleneck.py`, LESSONS 09/11)
 

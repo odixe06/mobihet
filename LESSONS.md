@@ -28,6 +28,9 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
   Không gọi tất cả skip là warm-up hoặc bỏ client/update để qua gate.
 - CPU/CUDA sum/normalization có rounding khác; packet fp16 có thể khuếch đại chênh. Kiểm stored body/aggregate và bound theo phép toán;
   không nới atol chung hoặc train lại vì auditor false FAIL.
+- B14 hybrid LG (11/11): ô lớn là fp16 log-score, ô<8dòng là Q8→fp32 log/center. Không áp bound LG thuần cho cả hybrid:
+  dùng tổng bound từng phép toán theo tỷ trọng count/lớp. Replay GPU fallback trên artifact thật khớp aggregate đúng0/r1+r2;
+  CPU lệch≈1e-9 không là training FAIL. Giữ strict bound tại lớp không fallback; regression phải còn bắt aggregate corrupt.
 - Resume cần cả private state/teacher, method/driver generator và torch CPU/CUDA RNG của **hai rank cùng round**.
   Snapshot nhỏ không phải checkpoint. Local optimizers reset mỗi round theo protocol.
 - Crash sau ghi rows nhưng trước state: rollback rows về checkpoint, không nhân đôi history. Budget stop phải đồng thuận rank;
@@ -37,6 +40,31 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
 
 ## Teacher, loss và thí nghiệm
 
+- Owner11/11: SAM hiện tiếp tục thử, nhưng phải báo **CBB+SAM** riêng/compute; gain không tự chứng minh cơ chế FL tốt hơn.
+  So cải tiến truyềntri thức dùng controlCBB khôngSAM. Sampler/optimizer/pretraining generic cũng cần phân biệt tương tự.
+- [B15SAM](docs/research/screening-sam-b15.md) đãđóng: audit4/4r20PASS, utilityFAIL cả2seed.
+  Macro+.00053/+.00120 dưới+.002; p10−.0071/−.0102, low256−.0071/−.0198, TD−.0069/−.0014,
+  dùbenignF1+.00545/+.00505 vàtrainelapsed+58%. TDprecision tăng nhưng recall giảm; accuracy/weightedF1 tăng không đủ.
+  Không pilot/tune/extend; đây là verdict adaptationrho.05, không proof mọiSAM vôích.
+- ClassQ là moment1 theo realtrueclass; meanKL từngsyntheticrow là ràng buộc mạnh hơn KL vào meanprediction nhóm.
+  Jensen/toycounterexample chỉ phân biệt objective, không chứng minh utility. Betweenclientvariance có thể tính từ Qclient sẵn;
+  withinclient/per-rowvariance cần thêm moment2, không khôi phục được từ Qmean hoặc meanlog.
+- Cross-fit rowdisjoint không tự là time/eventindependent: attack–benign twin quaworld chia sẻ ngữ cảnh.
+  Coverage99,8% theo countsplit cân bằng không chuyển sang groupedmessage/blocktime split nếu chưa đếm lại.
+  [Ràtri thức11/11](archive/docs-20261113/research/knowledge-transfer-review-20261111.md) giữ nguồn/code/math và trạng thái chưautility.
+- Rà 10/11: sqrt-count Q **đã chạy** trên recipe M20 cũ (+.00148/+.00116 macro, benign giảm), postepoch Q không tăng;
+  synthetic hard+NCKD đã có tradeoff W20. Không gọi chúng là ý tưởng chưa thử hoặc suy gain sang CBB.
+  [Rà module](archive/docs-20261113/research/pipeline-module-review-20261110.md) chỉ rõ evidence và đường assert/codec; b13 là adaptation có control mới.
+- [B13](docs/research/screening-module-b13.md) trên CBB (11/11, 2seed): SQ, reverse/symmetric KL, 4JS, CEreal smoothing .05 đều FAIL.
+  Reverse KL giảm FP benign nhưng td −.025/−.020, p10 −.057/−.026; symmetric KL cũng đổi td lấy benign.
+  4JS benign+td tăng cả2seed nhưng macro chỉ+.0006/+.0008, không qua gate; không tune/kéo dài nhánh FAIL.
+  Gain sqrt-count recipe cũ không chuyển sang CBB. Absent sim chỉ191dòng, không dùng như guard chắc.
+- [B14](docs/research/screening-uplink-b14.md), 8/8run audit đủr20: same-class interpolation .5 (MX), geometric pool meanprob (GP),
+  mean centered logprob (LG) **FAIL cả2seed**. MX macro−.01581/−.01588, lớp11 precision−.232/−.244, hại cả xe lớn;
+  cùng nhãn không bảo đảm nội suy77feature giữ ranh giới. Không quy riêng nguyên nhân cho flag/BN từ CM.
+  GP/LG thêm byte nhưng macro chỉ−.00031/+.00088 và+.00083/−.00020; LG teacher r19 diagonal≈.994,
+  239/256ô Q8zero mà không đủ gain. Confidence/meanlog không là reliability ngoài fit; không tune/kéo dài nhánhFAIL.
+  [Phân tích](archive/docs-20261113/research/b14-analysis-20261111.md) giữ nguồn CM/cohort/teacher và ưu tiên kế tiếp.
 - `Q[y_true]` là target theo lớp, không classifier theo input. Argmax đúng, entropy thấp, fit KL/synthetic agreement không chứng minh generalization.
   Q thu r chỉ tác động từ r+1; không gán tác động lệch round.
 - CEreal dùng LA, KD dùng raw logit có chủ đích. Gradient logit âm/norm/cosine riêng không chứng minh parameter gradient tổng hoặc nhân quả utility.
@@ -77,6 +105,17 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
 - Lấy mẫu 10% xe: macro −.0014 qua non-inferiority nhưng p10 −.028 → luôn đọc guard p10 cạnh macro.
 - p10 ở sim 200 xe dao động ±.01–.03 giữa seed (b12) → gate p10 "tăng ≥ +.006 mỗi seed" gần như không qua được với 2 seed;
   liều compute cần ≥ 3–4 seed hoặc gate trên trung bình seed, khóa **trước** run.
+- Sim b14 chỉ9xe low256; control cùng seed b13→b14 low256 thay+.0176/−.0054 dù macro chỉ−.00035/+.00028.
+  Seed ghép cặp không bảo đảm wholetrajectory bit-exact; spread mô tả giữa session không là CI.
+  R1 GP/LG đã khác C khi chưa tiêu thụ teacher: không gán toàn bộ chênh trajectory sớm cho aggregation.
+- FLOPs CBB (đo 12/11, FlopCounterMode, quy ước `fl_dagsnet_veremi_v2/scripts/cost.py`: FLOPs client / dòng thật / round): mỗi bước
+  fwd+bwd 64 thật + 64 synthetic = 5,97×F/dòng thật; floor16 thêm 3,5% bước (607.110 vs 586.405) ⇒ toàn mạng **≈6,09×F ≈ 27 MFLOP**, không phải 4,00×F.
+  Q tái dùng logit train (0 FLOP); bootstrap KM/Lloyd + sinh synthetic < 0,01×F. Synthetic chỉ train head (backbone no_grad) ≈4,16×F.
+- B20 (12/11, sim 2 seed): synthetic chỉ train head (backbone no_grad) **FAIL** macro −.016, absent −.21/−.25 ⇒ tri thức lớp vắng
+  phải vào backbone. 16/64 dòng full + 48 head-only (SM) −.002/−.004; 32 dòng từ nửa lịch (SD) PASS −.0006/−.0011.
+  FLOPs giảm ≠ wall time ở sim 200 xe (t_train SD = C): báo FLOPs đo, không suy từ t_train.
+  Full-scale 5.343 xe cũng vậy: SM42P −24% FLOPs nhưng t_train 3,57 h vs CBB 3,61 h (−1%) — T4 launch-bound; lợi FLOPs chỉ thành
+  thời gian trên thiết bị compute-bound (CPU/edge), chưa đo. Knob đếm dòng (SD) không phụ thuộc kiến trúc; head-only (SM/SH) cần tách head riêng từng model.
 - Liều compute (b12): floor synthetic-only có điểm gãy ≈48 bước (+8,2%: macro +.0013, absent +.065); thêm synthetic/bước kém hiệu quả gấp ~6×.
 - suddenConstantSpeed (lớp ít nhất) là **canary** của mọi nhiễu loạn generator; đọc cùng timeDelay.
 - Guard absent ít dòng: full-scale 1.555 dòng dao động ±.05 giữa hai round liền; sim ±.03 giữa arm không hiệu ứng → báo thêm trung bình nhiều round.
@@ -118,3 +157,117 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
 Audit source/config/LR/IDs/support/CM→10metric/snapshot/teacher/finite từ artifact thật. Dataset chưa có full-content fingerprint;
 chưa prediction→CM replay/full private-bank reconstruction toàn mạng. Không dùng formula test trên random tensors thay kiểm stored values.
 Các thất bại/runtime đã biết và nguồn kết quả: [research index](docs/research/README.md), [generator catalog](docs/research/generators.md).
+
+## Audit lịch sử trước B16 — 11/11/2026
+
+- **V20 đã thử validation thời gian** full5343/hai seed; không gọi temporal validation là chưa thử. V20 chưa dùng OOF/val quality để weight teacher. Gap train→val không tách overfit/temporalshift/featureoverlap.
+- **P20/P29 classmean TARGET ≠ KL-of-mean STUDENT**: code cũ vẫn mean per-rowKL. `F.kl_div(reduction="batchmean")` cũng không là KL trên mean prediction. P30 inputfit teachermean+output×input moment khác output×output moment.
+- KL-of-mean≤meanKL bởi Jensen; giảm constraint/dose không tự là tăng tri thức. Cần dose comparator, guards và utility; không lấy giảm loss/Jensen gap làm PASS.
+- Nguồn legacy thiếu rawcode/JSON: ghi reported historical audit, không gọi tái audit artifact. “Chưa tìm thấy” chỉ trong retained local scope, không chứng minh novelty.
+  [Audit v4](archive/docs-20261113/research/history-audit-20261111.md), [legacy](archive/docs-20261113/research/history-audit-legacy-20261111.md).
+
+## B16 reception — 11/11/2026
+
+- **KL-of-mean student (MK) và .5rowKL (HK) FAIL cả2seed**, actual6/6r20 audit PASS.
+  MK Δmacro−.001855/−.000390,p10−.026956/−.017892,benign−.004288/−.004354;
+  HKmacro+.000008/+.000365 không đủ+.002. Không pilot/tune/group-size sweep/extend.
+- MK r20 meanKL chỉ≈30%rowKL trên cùngforward/Q nhưng utility giảm. ClassQ là mean không suy ra chỉ ép mean student sẽ tốt hơn;
+  pointwise constraint có thể là regularization hữu ích. Đây là giới hạn adaptation, không bác mọi distributionalKD.
+- GiảmFPbenign→attack ngoàiTD180/123row vẫn không tăngbenignF1: benign→TD thêm694/636row.
+  TDrecall tăng đổi precision/benign và xeítmẫu. Luôn đọc toànconfusion, không chọn riêng cell thuận.
+- R1T4 CM MK/HK kháccontrol trướcsoftQ dù CPUr1exact PASS; Δmacro r1 có thể tới−.0026.
+  Pairedseed không là commoninitialtrajectory. Không gán toàn bộ laterdelta cho loss hoặc rerunFAIL để tìmwin.
+  [B16 result](docs/research/screening-mean-b16.md), [r1/Jensen](runs/sim-kaggle-b16/reception-diagnostics.md).
+- Nested temporalprobe80/20 trên simfoldtrain: eligiblepopulation≥8row/cảphía chỉ98,37%, class11 81,82%,
+  thấp hơn countbalancedhalf99,86%/96,65%. PriorTV median .159, p90 .381; không dùng precision thô làmqualityweight
+  mà không xử lý prior/missingclass. [Nguồn thật](archive/docs-20261113/research/crossfit-feasibility-20261111.md).
+- Nestedholdout trong originalfoldtrain đã góp vào fixedv4scaler. Giữ preprocessing chung, chỉ gọi model-out-of-fit
+  **conditional on fixed preprocessing**, không claim toànpipeline độc lập. Shadowgenerator/Q/BN/weights vẫn phải loạiheldout.
+
+## Macro-first / kéo dài pilot — owner11/11
+
+- Owner tạm bỏ utilityguard phụ (p10/low256/TD/benign/absent), ưu tiênmacro; vẫn báo tradeoff và audit source/round/finite/CM.
+  Giữmốcgain+.002/hai seed, không đổi verdict cũ. Scope mới có thể đánhgiá lại nhánh bịguardveto.
+- Y50prior **lúc train** khác PHprior **lúc inference** b11: phải dịch syntheticlogit và cách đoQ đồngbộ; dịch một phía đếmprior sai.
+  Y50macro+.003345/+.002890, cuốipilotgain còn giữ. W20realNCKD+.002461/+.002229 nhưng relativegain co nhẹ r15→20.
+  Đều Core/bank cũ, không phải CBB; chỉ là evidence adaptation, không dự báo APFed/r50.
+- Arm macro còn tăng chưa đủ để kéo dài: cần relativegain vớicontrol và lịchLR. Cos50r20LR≈6.76e-4; cos20r20LR1e-5.
+  Bank F50 là phảnchứng: gainr20 mất/r50âm. Không nối cos20 thành protocolcos50 hoặc ngoại suy tuyến tính.
+- Owner chốt chỉ cần không trao realrow, thống kê/xác suất được phép; không tự diễn giải thành yêu cầu SecAgg/DP hoặc pause.
+  Privacybootstrap vẫn có rủiroônhỏ, không gọi “không uploadraw” làguaranteekhôngsuyrafeature.
+  [Review](archive/docs-20261113/research/macro-first-review-20261111.md), [B17](docs/research/screening-macro-b17.md).
+
+## B17 — macro-only vẫn không đủ, 11/11/2026
+
+- Pprior-coordinate vàNRreal-NCKD trênCBB:6/6r20/auditPASS, **FAILmacro cả2seed**.
+  Δmacro P−.000658/+.000192, NR−.000164/+.001630; TB16–20 Pâm2seed, NR−.000318/+.001401.
+  Không guardphụveto: bỏguard không tự làm các adaptation này thànhwin. Khôngpilot/tune/extend/combo.
+- Pbenign+.00834/+.00998 nhưngTD−.03485/−.02563,class11−.00998/−.00637; TD→benign thêm645/590row.
+  TD vẫn là1/16 macro, bỏguardTD không bỏ lớpTD khỏimacro. Accuracy/weightedF1 tăng không thay pooledmacro.
+- Gain Y50Core/W20bank không chuyển trực tiếp sang CBBsim: recipe/population/schedule khác;
+  không kết luận riêngKM đãbãohòa hayQ8lànguyênnhân từ comparisonkhôngmatched.
+- NRr1T4 chưaQ vẫn lệchcontrol dùCPUexact; counterNRgateđúng/shiftPđúng không làwholetrajectoryproof.
+  Pđổi hardCE từr1 nên r1khác làexpected, không gán nó numericalbug.
+  [Kết quả](docs/research/screening-macro-b17.md), [10metric](runs/sim-kaggle-b17/report-r20.md).
+- Diagnostic V20hardCM thật: tại cùngtrainbinaryprior, trainP* không xếp hạng futureP* tốtđồngđều
+  (V4/V5 accMultρ .055/.027, feignedBraking .045/.002 ởmin32); supportthreshold đổi population,
+  TDρ từ−.113/−.127(min32) thành+.042/+.050(min8). Không chọnmincount đểtạo narrative.
+  Count cũng cótínhiệu cho vài lớp; countweightedQ làpopulationmean, qualityweight làđổiestimand,
+  không “sửa bug” và chưautilityproof. HardCMkhôngkhôiphụcsoftQ hoặc cross-recipientquality.
+  [Nguồn/scope](archive/docs-20261113/research/crossfit-feasibility-20261111.md).
+
+- Diagnosticexpertquality: không loại xe khôngpredictclassc khỏi nhómeligible chỉvì precisionundefined;
+  khóa zero convention và eligibilitytheotruesupport, báo sốxe. Bỏabstainingexpert sẽ bias qualityranking.
+- Cache v4 giữ **fileorder trongclient, khôngtimeorder** (`core/data.py`): nestedtemporalpartition cầnactualrcvtime/sidecaridentity;
+  không lấy80%đầucache rồi gọilàearlytime.
+
+## Khảo sát nguồn teacher / recipient — 11/11/2026
+
+- [Diagnosticrecipient](archive/docs-20261113/research/teacher-source-survey-20261111.md) dự báo hardoutputfrequency cóđiềukiện trueclass,
+  donor/recipientclient táchbằnghash, V20train/internalval. Futurepeerforecast theo8domain tăngBrierquality cả16class;
+  infitforecast gần0/âm ở2armmixedinput. TrainCM làpostepochhardCM, không onlineQ CBB.
+  Không gọi forecastgain làmacroF1 hoặc cross-modeltransfer.
+  Futurepeer dùng validationlabels tươnglai nên **diagnostic only**, không làm trainteacher.
+- Full5343support không chuyển thẳng sangsim200:8domain có1nhóm3xe/0rowclass11 ởsim.
+  Groupfallback/concentration phải tính lại. `run=test` làmetadatasimulation, không phép dùng officialtestrow.
+- CRAD “precision” = inversevariance của classaccuracy (recall), **không PPV**.
+  Cùngn,accuracy .05/.95 cócùngweight; consensus cóthể loại specialist. Đã sửa ambiguity ởtransferreview.
+  CrossfitKDpaper giảđịnhiid/same-input, không đảm bảo classmeanQ trên KMsyntheticinput khácx.
+  [Nguồn và giới hạn](archive/docs-20261113/research/teacher-source-survey-20261111.md).
+- Đổi nguồnQ vàweightquality là2estimand khác. Muốn kiểm ngoài fit cần cùngshadowweights/evalmode,
+  matchedclient×classprobecount/countweight/codec, mainfulltrain và ineligiblefallback nhưnhau.
+  So trực tiếp shadowheldout với onlineCBB không tách được nguồn/evalmode/producer ítdata.
+
+## B18 matchedsource — đóng12/11/2026
+
+- [B18](docs/research/screening-source-b18.md) 2seed×shadow/C/E/H, đủ8phase20round/source/CM/wireauditPASS.
+  Hngoàifit **FAILmacro cả2seed**: H−C−.001066/−.001132, H−E−.001504/−.000636;
+  guardphụreport-only, khôngpilot/tune/extend/combo. E−C+.000438/−.000496 không ổnđịnh.
+- Outsidefit đo được lỗi thật nhưng không tựlà targettốt đểtransfer qua syntheticclassmean.
+  ActualteacherH r19 có Q[TD,benign] .657/.647 >Q[TD,TD] .311/.322, packet/aggregateauditkhớp.
+  MainbenignF1+.00814/.00817 nhưngTD−.04715/−.03805; TD→benign+783/+686.
+  Không đổlỗi rounding hoặc bỏTD khỏimacro; sourcequalitystat và contentKDtarget làestimandkhác.
+- Mainr1CMC/E/Hkhớpđúng2seed, matchedprobe291220row mỗi phía/cùngshadow/evalmode/countweight;
+  utilityFAIL khôngdo thiếu matchedcontrol. Vẫn không wholetrajectory/privategradientproof hoặc eventindependence.
+- RawmeanQ/hardCM không khôi phụcper-row softBrier/NLL/variance. Chỉ báo quantities đãđo;
+  probe subsets cózero-rowclient thì pooled10metric tính trênpooledCM, không summaryclientrỗng.
+- Bootstrap2.37845MB/xe và~723B/round gồmshadow/internal/probe/main; measuredtrain~1.92×C cócả2probe.
+  Không gọi ngoài fit miễnphícommunication/compute hoặc ngoại suyFLOPs từ elapsed.
+
+## Rà bão hòa CBB — 12/11/2026
+
+- Phẳng r40–50 của CBB/CQ8 là do **cosine LR anneal**, không phải model hết học: ΔF1/ΣLR r10–20 ≈1,1, r40–50 ≈1,7–2,0; train loss còn giảm.
+  Không đọc “curve phẳng ở r50” thành bão hòa; cũng không ngoại suy gain khi thêm ngân sách mà chưa chạy (baseline cũng tăng).
+- Thiếu hụt macro CBB theo lớp: **TD 44%**, benign 11%, lớp11 10%, lớp7 9%. Gain macro lớn phải chạm TD; knob prior/ngưỡng chỉ dời benign↔TD.
+- Gộp phiên b12 (suy luận) là hướng duy nhất trong lịch sử đạt ≥+.002 macro cả hai control; bị loại vì guard p10 và owner đóng 09/11.
+  Mất ở feignedBraking −.029 (tấn công gián đoạn bị pha loãng). [Sổ tay](docs/research/method-building-brief.md).
+- A1 (12/11): posterior của generator KM16 trên chính dòng synthetic gần one-hot (99,1% dòng `p_gen(y|x)≥.9`); mixture 16 lớp
+  gần như tách rời trong 77 chiều → nhãn mềm theo dòng từ generator gần như không đổi target. Bayes-classifier generator trên dòng thật
+  (mid-rank) macro .873–.880, thua CBB gần mọi lớp; lớp generator phân biệt kém nhất trùng lớp yếu CBB (TD, benign, 7, 11, 2).
+  Chấm dòng thật dưới copula phải dùng mid-rank như lúc fit; PIT chính xác tại atom cho kết quả sai hoàn toàn (acc .02).
+- B19 (12/11): thêm thành phần mixture ở vùng dòng thật bị generator nhầm (56 cặp, không lượng tử) chỉ +.0030 macro Bayes-generator
+  trên fold val, benign/lớp11↑ nhưng TD/lớp7↓ — cùng kiểu đổi benign↔TD. Sửa generator theo nhầm lẫn không thêm phân tách TD.
+  Lượng tử lite6/int8 giảm macro Bayes-generator .8926→.8802 (độ khớp, chưa phải utility). [B19](docs/research/screening-boundary-b19.md).
+- N1/N2 (12/11): proxy DAGSNet train ở server trên synthetic **đã thử ở P20** (C8/C9/C14, proxy .79 < student .856) — tra lịch sử trước
+  khi khuyến nghị. HGB toàn cục trên dòng thật 200 xe sim (trần GBDT liên kết) chỉ macro .8065 vs CBB sim .914: model toàn cục kém
+  ở lớp phụ thuộc ngữ cảnh xe nhận (suddenStop .40, lớp11 .50); personalization là nguồn lợi chính trên dataset này.

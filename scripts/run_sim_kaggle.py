@@ -24,6 +24,7 @@ BATCH = os.environ.get("SIM_BATCH", "b1")
 OUT, ART = ROOT / ("runs/sim-kaggle" + ("" if BATCH == "b1" else "-" + BATCH)), ROOT / ("artifacts/sim-kaggle" + ("" if BATCH == "b1" else "-" + BATCH))
 CAP = 1.25 if BATCH == "b1" else 2.25
 OVERLAYS = ["methods/mobihet_sim.py", "scripts/sim_fold_val.py"]
+METHOD = "mobihet_sim"
 HP = (ROOT / "runs/sim/core_hp.txt").read_text().split()
 ARMS = [("S0", "core", 42, []), ("S1", "core", 43, []),
         ("A256", "need256", 42, ["synth_need_T=256"]), ("A1024", "need1024", 42, ["synth_need_T=1024"]),
@@ -92,8 +93,61 @@ if BATCH == "b12":  # 09/11: direction a (session decision fusion, eval views on
         ARMS += [(f"F{f}" + sfx, f"km16-lite6-floor{f}", s, LT + [f"synth_step_floor={f}"]) for f in (24, 32, 48, 64)]
         ARMS += [(f"R{a}" + sfx, f"km16-lite6-syn{a}", s, LT + [f"synth_rows_sim={a}"]) for a in (80, 96, 112, 128)]
     CAP = 2.75
+if BATCH == "b13":  # CBB: aggregation, divergence, real CE regularization; one change per arm, two seeds
+    METHOD = "mobihet_refine"
+    OVERLAYS += ["methods/mobihet_refine.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    cells = [("C", []), ("SQ", ["refine_agg=sqrt_count"]), ("RK", ["refine_loss=reverse"]),
+             ("SK", ["refine_loss=symmetric"]), ("JS", ["refine_loss=js4"]), ("LS", ["real_smoothing=0.05"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b13-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 2.75
+if BATCH == "b14":  # new uplink statistic vs matched-fp16 aggregation; independent same-class interpolation
+    METHOD = "mobihet_uplink"
+    OVERLAYS += ["methods/mobihet_refine.py", "methods/mobihet_uplink.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    cells = [("C", []), ("MX", ["same_class_mix=0.5"]),
+             ("GP", ["uplink_mode=gp16", "uplink_audit=true"]), ("LG", ["uplink_mode=lg16", "uplink_audit=true"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b14-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 2.75
+if BATCH == "b15":  # client-local SAM on unchanged CBB; one fixed rho, two seeds
+    METHOD = "mobihet_sam"
+    OVERLAYS += ["methods/mobihet_refine.py", "methods/mobihet_sam.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    cells = [("C", ["sam_rho=0"]), ("SAM", ["sam_rho=0.05"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b15-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 3.75
+if BATCH == "b16":  # class-mean student KL; half row-KL isolates one reduced-dose comparator
+    METHOD = "mobihet_mean"
+    OVERLAYS += ["methods/mobihet_refine.py", "methods/mobihet_mean.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    cells = [("C", ["mean_kd=row"]), ("MK", ["mean_kd=mean"]), ("HK", ["mean_kd=half"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b16-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 2.75
+if BATCH == "b17":  # owner macro-first: prior coordinate and real NCKD, independently on CBB
+    METHOD = "mobihet_macro"
+    OVERLAYS += ["methods/mobihet_refine.py", "methods/mobihet_macro.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    cells = [("C", ["macro_mode=cbb"]), ("P", ["macro_mode=prior"]), ("NR", ["macro_mode=real_nckd"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b17-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 2.75
+if BATCH == "b20":  # client compute on CBB: head-only / mixed synthetic gradient, fewer late synthetic rows
+    METHOD = "mobihet_compute"
+    OVERLAYS += ["methods/mobihet_refine.py", "methods/mobihet_compute.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    cells = [("C", ["synth_grad=full"]), ("SH", ["synth_grad=head"]), ("SM", ["synth_grad=mix16"]),
+             ("SD", ["synth_rows_late=32", "synth_late_from=10"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b20-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 2.75
 W.OUT, W.ART, W.TAG = OUT, ART, "SIM"
 W.COLLECT = r'(^provenance/|/(config\.json|rounds\.jsonl|cms_r\d{3}\.npz|arch_rank\d\.json)$)'
+if BATCH == "b14":
+    W.COLLECT += r'|/wire/rank[01]_r\d{3}\.npz$'
 
 
 def hp(seed, extra):
@@ -120,7 +174,7 @@ def prepare(quota):
         cli_extra = list(spec_arm[4]) if len(spec_arm) > 4 else []
         slug = f"mh-sim-{tag}-s{seed}-r20"
         h = hp(seed, extra)
-        args = shlex.join(["scripts/sim_fold_val.py", "run", "--n", "200", *cli_extra, "--method", "mobihet_sim", "--out",
+        args = shlex.join(["scripts/sim_fold_val.py", "run", "--n", "200", *cli_extra, "--method", METHOD, "--out",
                            f"/kaggle/working/{slug}", "--rounds", "20", "--compile", "--max-hours", "BUDGET", "--cache", "",
                            "--set", *h])
         subprocess.run([sys.executable, "scripts/gen_notebook.py", "--owner", owner, "--slug", slug, "--sha", head, "--run", slug,
@@ -141,7 +195,7 @@ def prepare(quota):
         runtime = json.loads((ROOT / "knowledge/runtime.json").read_text())
         assert metadata["is_private"] and metadata["id"] == f"{owner}/{slug}" and metadata["kernel_sources"] == [builder["ref"]]
         assert all(metadata[k] == runtime[k] for k in ("machine_shape", "docker_image"))
-        batch.append(dict(arm=arm, seed=seed, method="mobihet_sim", account=owner, slug=slug, version=1, hp=h, base_sha=head,
+        batch.append(dict(arm=arm, seed=seed, method=METHOD, account=owner, slug=slug, version=1, hp=h, base_sha=head,
                           overlay_sha256={p: W.sha(ROOT / p) for p in OVERLAYS}, notebook_sha256=W.sha(notebook),
                           metadata_sha256=W.sha(meta), cap_hours=CAP, endpoint=20, lr_schedule_rounds=20,
                           npy_kernel=builder["ref"], npy_manifest_sha256=builder["manifest_sha256"]))

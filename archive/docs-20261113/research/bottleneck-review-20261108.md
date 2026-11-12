@@ -1,6 +1,6 @@
 # Nút thắt Core so oracle/APFed/centralized — 08/11/2026
 
-> Snapshot phân tích 08/11 (trước KM50 r50). §4 "bước tiếp" đã thực hiện qua sim b1–b11; số gap sau KM ở [catalog đề xuất](improvement-proposals.md).
+> Snapshot phân tích 08/11 (trước KM50 r50). §4 "bước tiếp" đã thực hiện qua sim b1–b11; số gap sau KM ở [catalog đề xuất](../../../docs/research/improvement-proposals.md).
 > §1–§3, §5, §7 (cấu trúc dataset, ràng buộc compute/không trao model) vẫn là căn cứ hiện hành.
 
 Chẩn đoán hậu kiểm, chưa launch. Nguồn: CM own-test r50 đã audit (Core F2/F3, oracle Y0, nofloor Y6, FedAvg/APFed/centralized

@@ -1,0 +1,148 @@
+Snapshot 11/11/2026; live state: docs/operations/continue.md.
+
+# Bàn giao sống — kiểm 11/11/2026 15:37 UTC+7
+
+Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [operations lessons](lessons.md) trước.
+Đây là **bàn giao hiện hành duy nhất**. Artifact/state/process thật ưu tiên tóm tắt.
+
+## Đã đóng — CBB vẫn phương pháp chính
+
+- B13 audit12run/20round PASS; SQ/RK/SK/JS/LS FAIL cả2seed. [Results](../research/screening-module-b13.md).
+- B14 audit8run/20round + actualwire PASS; MX/GP/LG FAIL cả2seed. [Results](../research/screening-uplink-b14.md).
+  Recovery watcher đã collect/audit xong04:21; controllerstate cũ `running` stale sau reboot, không restart.
+  Metadata chi tiết ở [snapshot B14](../../archive/handoffs/2026-11-11-b14-closed.md).
+- **B15 SAM đóng07:28:38**, 4/4kernel version1 đủ20round, source/config/compile2T4/CM→10metric/SAMcounter PASS.
+  Đã tái chạy auditor/analyzer artifact trong phiên completion, không train lại.
+  Macro+.000531/+.001196, p10−.007145/−.010200, TD−.006887/−.001443; **FAIL cả2seed**, không pilot/tune/extend.
+  BenignF1+.005452/+.005052 nhưng xeítmẫu giảm; trainelapsed≈1,58×. Báo riêngCBB+SAM vì fairness.
+  [Results](../research/screening-sam-b15.md), [10metric/byte](../../runs/sim-kaggle-b15/report-r20.md),
+  [diagnostics](../../runs/sim-kaggle-b15/diagnostics.md), [counteraudit](../../runs/sim-kaggle-b15/sam-audit.json).
+- B15 job `mobihet-b15-20261111` **succeeded/exit0**, markerB15_AUDITED; không training/collector sống.
+  State `/home/odixe/.codex/long-jobs/jobs/mobihet-b15-20261111/state.json`, log `runs/sim-kaggle-b15/pipeline.log`.
+  Ownerthread `01a1c60e-5f5e-7311-999f-7338ab28bb59`, deliveryqueue đã nhận notification.
+  Exactrefs/version ở `runs/sim-kaggle-b15/batch.json`.
+  14file source-lock banđầu đã kiểmSHA và copy `runs/sim-kaggle-b15/frozen-source/`;
+  `closure-source.json` giữ proof trước sửa docs và code launcher cho batchsau. Không ghi đè lock gốc.
+
+## Audit lịch sử theo yêu cầu owner
+
+[Audit v4](../research/history-audit-20261111.md), [audit legacy](../research/history-audit-legacy-20261111.md),
+[index SHA nguồn còn local](../../runs/history-audit-20261111/evidence-index.json).
+P20/P29 targetmean vẫn KL từngrow; chưa tìm thấy exact KL-of-mean **student** trong retainedsource.
+P30 teachermean+output×input để fitINPUT khác output×output moment. Legacy thiếu rawcode/JSON, không gọi là tái audit.
+**V20 temporalvalidation đã chạy** full5343/hai seed; chưa dùng quality ngoài fit để weight teacher.
+R replay/margin/BNsplit/bank/Qregion/divergence/logpool đã có phản chứng; không mở lại bằng tên mới.
+Secondmoment/recipient/OOF vẫn cần diagnostic trước launch, không đủ chỉ vì “chưa từng thử”.
+
+## B16 đã đóng — không còn job/collector sống
+
+[Thiết kế/kết quả](../research/screening-mean-b16.md): C/MK/HK×42/43,6kernel version1 đủ20round.
+Source/config/panel/LR/all20CM→10metric/counter/compile2T4/cả2rank PASS; skip0,mọi clientapplied.
+**MK/HK FAIL cả2seed**, không pilot/tune/group-size sweep/extend; CBB giữnguyên.
+MKmacro−.001855/−.000390,p10−.026956/−.017892,benign−.004288/−.004354;
+HKmacro+.000008/+.000365 không đủ+.002. [Report10metric/byte](../../runs/sim-kaggle-b16/report-r20.md).
+MK benign→TD thêm694/636dòng dùFPngoàiTD giảm180/123; lớp11/xeítmẫu giảm.
+[Jensen/r1](../../runs/sim-kaggle-b16/reception-diagnostics.md): meanKL≈30%rowKL ởMK r20 nhưng utilityFAIL;
+actualr1CM kháccontrol trướcsoftQ, không causalclaim toàntrajectory. [CM/cohort](../../runs/sim-kaggle-b16/diagnostics.md).
+
+Job `mobihet-b16-20261111` **succeeded09:25:04/exit0/B16_AUDITED**, notification đãđược xử lý.
+State `/home/odixe/.codex/long-jobs/jobs/mobihet-b16-20261111/state.json`;
+[log](../../runs/sim-kaggle-b16/pipeline.log). Ownerthread `01a1c60e-5f5e-7311-999f-7338ab28bb59`,deliveryqueue/queued.
+Supervisor307339/worker307341/child307342 đãterminal, không restart từ notification muộn.
+Exactrefs `runs/sim-kaggle-b16/batch.json`: C/MKseed42 `novahihi`, HK42/C43 `emtrangtri`, MK/HK43 `keocaosu`, tất cảversion1.
+13source banđầu kiểmSHA/copy `runs/sim-kaggle-b16/frozen-source/` trước sửa docs;
+`closure-source.json` và `closure.json` giữ proof. Source-lock gốc giữnguyên, nguồn đãhết ownershipworker.
+Đã tái chạy auditor/analyzer artifact thực, khôngtrain lại.
+
+## Temporal diagnostic đã có — xếp sau macro-first
+
+[Feasibility cập nhật](../research/crossfit-feasibility-20261111.md) có **partitionthời gian thật**:
+410parquettrain scan, chỉ200xe/foldtrain; early80%receive-time1.181.080row, heldout294.984row,
+alltimestamp ties cùngphía; counts cộngkhớp cache từngxe/class. Source/sidecar/hash ở
+`runs/temporal-feasibility-20261111/`. Không dùng row simval/officialtest, khôngtrainclassifier.
+Ô≥8row/cảphía bao phủ98,3685%population, class11 chỉ81,8160%; balancedhalf99,8602% không chuyển sangtemporal.
+PriorTVmedian .15931,p90 .38093; Sybil6,65→13,13%. Không dùngprecisionthô hoặc ôthiếusupport làmquality.
+Fixedv4scaler chứa nestedheldout: chỉclaim model-out-of-fit **conditional on fixedpreprocessing**;
+shadowgenerator/Q/BN/weights vẫn phải táchholdout. Chưaembargo/independenceproof qua client/featurehistory.
+
+Hướngqualityngoàifit vẫn cần estimand/shadowcontrol/precisionreference/fallback/bytecost; chưatrain.
+Hai nhánhmacroB17 bên dưới đãthửvàđóng; qualityngoàifit cònopen, không tựghépnhánhFAIL.
+
+## B17 đã đóng — không còn training/collector sống
+
+Owner **macro-first:** p10/low256/TD/benign/absent report-only; audit source/config/round/finite/CM giữnguyên.
+Chỉcần không gửi realrow, thống kê/xác suất được phép; không tựyêu cầuSecAgg/DP hoặcpause.
+Giữ practicalgain macro≥+.002/hai seed vàthangsim→pilot20cos50→r50two.
+
+[B17 kết quả](../research/screening-macro-b17.md):C/P/NR×42/43,6/6kernel version1 đủ20round.
+**P/NR FAILmacro cả2seed**, khôngpilot/tune/extend/combo; CBBvẫnphươngphápchính.
+Pmacro−.000658/+.000192, NR−.000164/+.001630; mọiarm dưới+.002,
+không dùng bất kỳguardphụ đểveto. TB16–20 P−.000858/−.000176, NR−.000318/+.001401.
+Pbenign+.00834/+.00998 nhưngTD−.03485/−.02563,class11−.00998/−.00637.
+BỏguardTD không bỏ lớpTD khỏi pooledmacro16class. Không lấyaccuracy/weightedF1 tăng làprimarywin.
+[10metric/byte](../../runs/sim-kaggle-b17/report-r20.md), [CM/cohort](../../runs/sim-kaggle-b17/diagnostics.md),
+[mechanism/r1/counter](../../runs/sim-kaggle-b17/mechanism-summary.json).
+
+Đã tái chạy source/config/panel/CM/LR/all20CM→10metric + `audit_macro.py`;
+2T4/2rankcompile PASS,skip0,mọi clientapplied,23.692activesteps/1.476.064realrows mỗi round.
+Pshift khớp globalcounts; NRgate loạiTD r2–7, r8trởđi16class giữ; lossr20≈.00373/.00374.
+NRr1T4 kháccontroltrướcQ dùCPUexact; không gán mọi laterdelta cho receptionloss.
+Không replayprivategradient hoặc prediction→CM toànmạng.
+
+Job **`mobihet-b17-20261111` succeeded14:57:31/exit0/B17_AUDITED**, notification đã xử lý.
+Supervisor340614/worker340619/child340620 khôngcòn PID, khôngrestart từnotificationmuộn.
+State `/home/odixe/.codex/long-jobs/jobs/mobihet-b17-20261111/state.json`;
+[log](../../runs/sim-kaggle-b17/pipeline.log). Ownerthread `01a1c60e-5f5e-7311-999f-7338ab28bb59`,deliveryqueue/queued.
+Exactrefs `runs/sim-kaggle-b17/batch.json`:C/P42 `thuyanh316`,NR42/C43 `minhtran0601`,P/NR43 `odixe0502`, tấtcảversion1.
+13source banđầu kiểmSHA/copy `runs/sim-kaggle-b17/frozen-source/` trước sửa docs;
+`closure-source.json` và `closure.json` giữproof, source-lock gốc giữnguyên. Sourceownership worker đãhết.
+
+## Khảo sát nguồn teacher / domain vừa hoàn tất — chưa B18/train mới
+
+[Report nguồn sơ cấp + đềxuất matchedsource](../research/teacher-source-survey-20261111.md),
+[diagnostic](../../runs/recipient-domain-review-20261111/report.md),
+[số/SHA](../../runs/recipient-domain-review-20261111/analysis.json).
+`scripts/analyse_recipient_domains.py` kiểmactualV20train/internalvalCM, 10metric/ID/support/SHA,
+hashsplitclient2647/2696 disjoint. Forecasthardoutput conditionaltrueclass, khôngteacher hoặc classifierutility.
+V4/V5scenario/run8 từtrain ΔmacroBrier−.000132/−.000133; futurepeerdiagnostic+.002632/+.002612,
+16/16class cùngchiều cả4arm. Futurepeer dùngfuturevalidationlabel của donor, **không đưa làm teacher train**.
+Threshold8/32giốngnhau, full5343khôngfallback; maincountsupport riêng: sim cógroup3xe/0class11,
+fullgroup ấy có53expert≥8row. Không sourceinputworld/sender/officialtest.
+AlgebraBruteforce/single-groupidentity/missingdonorfallback PASS; forecastgainkhônglàmacroF1gain.
+
+Primarysource đã sửa ambiguity CRAD: precision=inversevariance, khôngPPV;
+semiparametricKD crossfitguarantee không chuyểnthẳng classQ→KM. Không copyqualityweightgrid.
+Report do researchagent viết rồirootkiểmnguồn/cậpnhậtdiagnostic; không agent/jobtraining/collector sống.
+Không sửa trainingmethod/launcher, không push mới. CBB/B13–B17verdictgiữnguyên.
+
+## Việc nghiên cứu tiếp — estimand rõ hơn, chưa launchgate
+
+1. [Temporalqualitydiagnostic](../research/crossfit-feasibility-20261111.md) đã tính lại actualV20train/internal-valCM:
+   V2/V3augment,V4/V5mixedinput,full5343W1/hai seed,32.685.166/4.676.107row.
+   `scripts/analyse_temporal_quality.py` kiểmr20support/10metric/SHA, khôngofficialtest hoặcfitweights;
+   [report](../../runs/temporal-quality-review-20261111/report.md).
+   Precisionone-vs-rest tại cùngglobaltrainprior chỉtáchbinaryprior, negativeclassmixture vẫn cóthểshift.
+   Correlationinfit↔future yếu/nhạysupport, countcũng cótínhiệu vài lớp; chưa chứng minh qualityweight tăngutility.
+2. Ưutiênmatchedsource: đềxuất C=CBB, E=shadowinfitprobe, H=cùngshadowoutsidefitprobe,
+   rawlogit/evalmode/probecount/cellcountweight/codec nhưnhau; mainfulltrain/per-rowKD.
+   Có≥8rowA/H thì m=min(nA,nH)hashprobe, ineligibleonlineCBBfallback từngarm;
+   hybridkhôngpureOOF. H cầnmacro+.002soC vàhơnE từngseed. Đây đềxuất chưa source/budget khóa.
+   Chưaqualityweight hoặc personalizedgraph; countweightedpopulationmean khôngbug.
+3. Rawv4metadata/timepartition cósidecar/counts đãđo; cachetrain **fileorder khôngtimeorder** (`core/data.py`),
+   không lấy80%đầucache rồi gọitemporal. Kiểmrowidentity/label/SHA vàkhôngheldout vào shadowgenerator/Q/BN/weights.
+   Fixedpreprocessing chứa nestedheldout nênclaim model-out-of-fit conditional onfixedpreprocessing.
+4. Chưa có source/design/budget khóa hoặcclassifierutility choB18. Không pushgridblind,
+   không tựkéo dài các nhánhFAILmacro. Khi đủdesign/localgates, quota sống→sim2seed→pilotcos50→r50two theo quyền hiệnhành.
+5. SourceE/H cần rowmask thật khớpcachelabels/count/temporalpartition, shadowbootstrap khôngH,
+   split-state/teacherlag/codec/actualpayload vàfallbackaudit. Main+shadowstepslowerbound1.811×,
+   matchedprobeinference≤589.968row/round; 2bootstrap+shadowQinternal+Qmeasurement+mainQfallback tínhđủ.
+   Nếu thửrecipient sauđó, dùngcùng nguồnQ đểisolate aggregation; globalfallback cho groupthiếuclass,
+   không chọn8group từ futurepeerforecast hoặc gọiownerrorforecast là cross-recipienttransfer.
+
+## Quyền / việc tay
+
+Owner: đổi mọi module/compute, hỗ trợ khác kiến trúc; experiment chỉDAGSNetW1. Localtrước,
+Kagglequotasẵn; byte giảm tối đa chưa capcứng; thang2seed→pilot20→r50two đãủyquyền.
+Owner mới macro-first, guardphụ report-only, cho thửP/NR, thống kê/xác suấtđượcphép, không realrow.
+Credential processscope; không globalcredential/Git/DVCpush/xóaartifact/hủyjobkhỏe.
+Chưa cần thao tác tay. Không modelpolling khi chỉcòn chờ, completion đánhthức ownerthread.

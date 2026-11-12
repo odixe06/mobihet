@@ -25,6 +25,15 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 
 - Notebook truyền child exit code; provenance = base SHA + overlay + executed files. Chụp hash trước/sau preflight;
   source thay khi module đã import làm proof cũ không đủ launchgate.
+- B18 11/11: local4phase smokePASS nhưngremote2seed chếttrướcround1 vìruntime đọc
+  `runs/sim/core_hp.txt` không tracked/khôngoverlay. Đónggói cả resourcecodeđọc,
+  regression cloneGitHEAD+**chỉ declaredoverlay** rồiimport actualentrypoint; localfullcheckout không chứng minh deploymentđủfile.
+  Fixpackaging giữsource/HP, re-audit smoke cũ rồislugmới;0checkpoint thìfreshstart, không gọi resume hoặcutilityFAIL.
+- B18r1 12/11: cả2kernelCOMPLETE/4phase20round, localanalysisfail vìauditor đòiHP `.txt`
+  trongprovenancePython-only. Phânbiệt embeddedresourceproof với executedfileproof:
+  sealedpushednotebookSHA+payloadSHA+overlaymanifest+effectiveconfigs cóthểphục hồi HPproof đúngscope;
+  khôngcopylocalHPgiả vàoexecutedsource vàkhôngskip `.py` hash. Futuregenerator copymọioverlayresource.
+  CorruptionPython/HPconfig/notebookSHA phảibịtừchối; không trainlạivì thiếuprovenancecopy/auditor/writerJSONlỗi.
 - Local fixture phải là data/shape driver đọc thật. Compile gate kiểm cả padded slot; fixture hai xe group_rows128 đã dùng,
   không hạ gate để che padded NaN. Seed/rank/group T4 thật vẫn cần gate riêng.
 - State W1 hai rank khoảng8,5GB. Giữ một state/rank để không nhân đôi vượt working cap; snapshot nhỏ không đủ resume.
@@ -35,6 +44,9 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
   kiểm206/Content-Range/size trước assemble, giữ partial/retry; không in signed URL. Audit nặng nối tiếp theo RAM.
 - Stored packet/source/CM/tensor mới chứng minh run. Auditor rounding lỗi thì sửa/check artifact cũ;
   giữ failure và recovery record, không train lại. NumPy bool gate phải cast `bool`; có CM/source/sampleSHA thì recover JSON không refit.
+- B14 local preflight chết tại wire auditor sau smoke đủ2round: `run_b13_pipeline.py --reuse-local-smoke` chỉ phục hồi khi
+  training overlay hash + HP còn khớp và chưa có quota/batch/push intent. Re-audit CM/state/compile/wire cũ, ghi source-lock recovery
+  và SHA smoke; không chạy lại train để sửa checker. Không dùng flag này cho job đã push hoặc source train đã đổi.
 - Smoke local `sim_fold_val.py run` phải có `--compile` (Live round assert compile gate mọi rank); 200 xe 2 round ≈5,5 phút,
   peak RSS ≈9,8 GB — kiểm `free -h` trước, chạy qua `run_local_guarded.py`.
 - Kaggle **không trả output/log khi kernel RUNNING** (listing 0 file, log rỗng): tiến độ kernel không W&B chỉ ước tính được từ thời gian;
@@ -49,12 +61,18 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 
 ## Background và bàn giao
 
-- Dùng codex-long-jobs (Codex) hoặc `runs/<batch>/watch.sh` nền (Claude Code); poll Kaggle 1200s bằng local worker. Xác nhận running một lần, rồi kết thúc turn khi chỉ còn chờ;
+- Link checker chung của `project-context` duyệt cả archive và báo hàng nghìn link snapshot cũ; checker active của dự án
+  là `python scripts/check_docs.py` (loại archive). Dùng active gate này; không đọc/sửa lịch sử để giải lỗi ngoài scope.
+- Dùng codex-long-jobs (Codex) hoặc script watcher chạy Bash background (Claude Code, vd `scripts/watch_b20.py`); poll Kaggle 1200s bằng local worker. Xác nhận running một lần, rồi kết thúc turn khi chỉ còn chờ;
   completion về đúng thread. Không model polling hoặc hai watcher cùng ledger.
 - Claude Code job nền chặn Edit/Write ở checkout chính trừ khi `.claude/settings.json` có `"worktree": {"bgIsolation": "none"}`
   (owner bật 09/11). Không dùng worktree từ `origin/main` cho docs: docs/kết quả chưa commit chỉ có ở working copy chính.
+- 13/11: vòng collect nền Claude Code **chết cùng phiên** (12/11 đóng phiên → SM42P COMPLETE nằm chưa pull ~4 h, thang chưa lên bậc).
+  Đầu phiên luôn kiểm PID watcher + status Kaggle thật của mọi kernel trong bàn giao; ghi PID/task vào continue khi bật watcher.
 - Controller wrapper thiếu executable bit: `bash <wrapper> ...`. Exit126 trước controller chưa tạo job/kernel.
 - Sau reboot, `running` trong state có thể stale: kiểm PID/start identity; giữ log/state cũ, phục hồi collector, không restart training.
+  B14 11/11: reboot01:53 làm controller690627 mất; `watch-recovery.sh` collect/audit8run xong04:21,
+  statecontroller vẫn`running`. Kiểm DONE + logwatch + CM/wire thật; không bật lại pipeline từ state/notification cũ.
 - Chỉ hủy job khỏe khi owner yêu cầu hoặc handover cần thiết trong workflow đã được phép. Dùng controller hủy process group;
   notification muộn không là yêu cầu bật lại job cũ. Queue accepted không chứng minh đã xử lý completion.
 - W&B heartbeat/state chỉ bổ sung evidence, không thay exact Kaggle session/artifacts. Inline key private lưu vĩnh viễn trong history,
@@ -67,3 +85,6 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 - Workspace DVC partial: giữ manifest, không `dvc add` ghi snapshot nhỏ đè bản đầy đủ. Restore đúng run cần dùng.
 - Git HEAD/index/staged tree giữ nguyên khi chỉ tổ chức docs; không force push/trailer `Co-Authored-By:`.
 - Account có thể dùng cho dự án khác: inventory thật trước cấp quota, không gán mọi quota giảm cho MobiHet.
+- 12/11: notebook resume chép output kernel trước bằng `shutil.copy` vỡ khi output có thư mục (`models/`) ⇒ dùng `copytree` cho thư mục.
+  Giá trị chuỗi trong `--set` của `fl_dagsnet_veremi_v2` vẫn phải escape `\"` (lesson 30/10 bên repo baseline); plan sinh tự động
+  phải qua cùng kiểm `ast.parse`/`shlex`/`json.loads` trước push. Python dự án: `conda activate nckh` (system python thiếu nbformat/kaggle).

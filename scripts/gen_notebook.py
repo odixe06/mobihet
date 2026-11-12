@@ -58,6 +58,7 @@ for name, spec in overlay.items():
     dest.write_bytes(data)
 files = [p for folder in ("core", "methods", "scripts") for p in (Path("/kaggle/temp/src") / folder).glob("*.py")]
 files += [Path("/kaggle/temp/src/knowledge") / n for n in ("input_order.json", "label_mapping.json", "runtime.json")]
+files = list(dict.fromkeys(files + [Path("/kaggle/temp/src") / name for name in overlay]))
 manifest = {{"base_sha": "{sha}", "overlay": {{n: s["sha256"] for n, s in overlay.items()}},
             "files": {{str(p.relative_to("/kaggle/temp/src")): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}}}
 provenance = Path("/kaggle/working/provenance")

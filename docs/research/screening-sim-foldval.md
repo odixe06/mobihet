@@ -1,7 +1,7 @@
 # Simulator fold-train → fold-val — luật khóa 08/11/2026 (trước khi xem kết quả)
 
 Mục đích: chọn ngưỡng T cho A và sàng ứng viên CF bằng FL thật (không judge offline), không đọc official test.
-Nguồn chẩn đoán: [bottleneck review](bottleneck-review-20261108.md). Ràng buộc owner: compute ≤ Core, không trao model, giữ R1/R2.
+Nguồn chẩn đoán: [bottleneck review](../../archive/docs-20261113/research/bottleneck-review-20261108.md). Ràng buộc owner: compute ≤ Core, không trao model, giữ R1/R2.
 
 ## Thiết lập
 

@@ -6,7 +6,8 @@ Cấu hình: hp KM50 + `cop_kmeans_q=int8 cop_kmeans_lite=6 q_bits=8 km_bytes=tr
 Chi tiết thực thi ở [method](method.md) (mô tả Core; KM16/codec ở [km-lite](screening-km-lite.md), [screening-codec](screening-codec.md)),
 cấu hình chung ở [protocol](protocol.md).
 
-Số r50 (TB seed 42/43, audit PASS): F1 macro **.9078** (hạng 3 sau APFed .9119, CANPerFL .9088), recall macro .9097, p10 .7761, low256 .8604;
+Số r50 (TB seed 42/43, audit PASS): F1 macro **.9078** (hạng 3 sau APFed .9119, CANPerFL .9088 seed 42; TB 3 seed 13/11: CBB .9078 ± .0004 với seed 41 .9077,
+APFed .9130, CANPerFL .9097 — [report](../../runs/cbb-s41/report.md)), recall macro .9097, p10 .7761, low256 .8604;
 **265 B/round** (13,3 KB/50 round không tính bootstrap < pFedES 0,14 MB), bootstrap unicast **1,15 MB**/xe. So KM50 codec gốc cùng seed:
 Δmacro TB r46–50 −.0003 cả hai seed. Đánh đổi đã biết, owner chấp nhận: benign .8403 thấp hơn Core+QQ8 .8410
 (KM16 trượt riêng guard benign vs Core −.0015 ở KM50). Đối chứng cùng codec: CQ8 = Core+QQ8 F1 .8991, 259 B/round, bootstrap ≈1,00 MB.
@@ -40,7 +41,18 @@ Số canonical: [F50/Core](results-f50.md), [L50/lossless](results-l50.md), [km-
 ## Phần chưa được chứng minh
 
 - Chỉ 2 seed (42/43), không phải significance; backlog owner: seed 41.
-- Cải tiến ngoài generator: PH, EMA, QK, QT2 **FAIL sim b11**, floor/rows/gộp phiên **FAIL sim b12** (2 seed) — [catalog đề xuất](improvement-proposals.md); chưa có ứng viên mới.
+- Cải tiến cũ: PH, EMA, QK, QT2 **FAIL sim b11**, floor/rows/gộp phiên **FAIL sim b12** (2 seed) — [catalog đề xuất](improvement-proposals.md).
+  Owner phiên mới 10/11 mở nghiên cứu module/compute, performance trước, đa kiến trúc, chỉ DAGSNet trong experiment;
+  [b13](screening-module-b13.md) đã đủr20/audit12run, **SQ/RK/SK/JS/LS FAIL cả2seed theo gate**, không lên pilot. Chưa đổi phương pháp chính.
+  [B14](screening-uplink-b14.md) đủr20/audit8run + actual wire PASS, **MX/GP/LG FAIL cả2seed**; không pilot/tune.
+  [B15](screening-sam-b15.md): SAM FAIL cả2seed, không pilot/tune; CBB giữnguyên.
+  [Audit lịch sử](../../archive/docs-20261113/research/history-audit-20261111.md) phân biệt P20mean-target/V20temporal với hướng mới.
+  [B16](screening-mean-b16.md) đủ20r/audit6runPASS nhưng MK/HK FAIL cả2seed; không pilot/tune.
+  [Temporalprobe](../../archive/docs-20261113/research/crossfit-feasibility-20261111.md) đã có count/support/prior, chưa scorequality hoặc utility.
 - Mô hình trộn full-scale, dropout/contact, SecAgg/DP, đầu độc: chưa kiểm.
+
+Owner11/11 ưu tiênmacro, guardphụreport-only; chỉtrao thống kê/xác suất, không realrow.
+[Review](../../archive/docs-20261113/research/macro-first-review-20261111.md), [B17](screening-macro-b17.md):6/6r20auditPASS nhưng P/NR FAILmacro cả2seed;
+khôngpilot/tune/extend, chưapromote. [Qualitydiagnostic](../../archive/docs-20261113/research/crossfit-feasibility-20261111.md) mới làhardCMtrain/val, chưautilityproof.
 
 Trạng thái công việc chỉ ở [continue](../operations/continue.md).

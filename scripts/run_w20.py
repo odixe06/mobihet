@@ -264,6 +264,7 @@ def launch(batch):
 
 def collect(spec):
     dest = ART / spec["slug"]; dest.mkdir(parents=True, exist_ok=True)
+    (OUT / "collection").mkdir(parents=True, exist_ok=True)
     with (OUT / "collection" / (spec["slug"] + ".collect.log")).open("w") as log:
         p = subprocess.run([*cli(spec["account"])[:4], sys.executable, str(ROOT / "scripts/run_bounded_python.py"),
                             str(SKILL / "pull_kernel_output.py"), f'{spec["account"]}/{spec["slug"]}/{spec["version"]}',

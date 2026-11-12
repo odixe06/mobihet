@@ -6,5 +6,5 @@
 - [Notebook errors](notebook-errors.md): lỗi runtime còn liên quan và cách kiểm.
 - [Backup](backup.md): Git/DVC/OneDrive, cleanup đã xác minh và cách restore.
 
-Đọc skill khớp trước thao tác. Job nền qua codex-long-jobs (Codex) hoặc `watch.sh` bash nền (Claude Code), poll Kaggle 1200s, completion về phiên gốc;
+Đọc skill khớp trước thao tác. Job nền qua codex-long-jobs (Codex) hoặc script watcher Bash background (Claude Code), poll Kaggle 1200s, completion về phiên gốc;
 không model polling trong khi chỉ chờ. Archive nằm ngoài workflow đọc mặc định.
