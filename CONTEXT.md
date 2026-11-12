@@ -10,7 +10,7 @@ Mục tiêu: own-test tương lai của từng xe, nhất là xe ít mẫu/non-I
 Chỉ trao đổi thống kê cộng được và xác suất đầu ra; server dùng tổng toàn mạng. Không chia sẻ dòng local,
 model, BN hoặc gradient. Schema không phụ thuộc kiến trúc; thí nghiệm full-scale cùng DAGSNet W1.
 
-## Trạng thái hiện hành — kiểm 13/11/2026 02:50 UTC+7
+## Trạng thái hiện hành — kiểm 13/11/2026 02:45 UTC+7
 
 - **Phương pháp chính = CBB** (owner chốt 10/11) = Core + generator KM16 w0 .5 + codec lite6 + Q 8-bit (QQ8) —
   [proposal](docs/research/proposal.md), cơ chế ở [method](docs/research/method.md). r50 **3 seed 41/42/43**: F1 macro **.9078 ± .0004**

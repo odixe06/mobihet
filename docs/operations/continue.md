@@ -1,4 +1,4 @@
-# Bàn giao sống — kiểm 13/11/2026 02:50 UTC+7
+# Bàn giao sống — kiểm 13/11/2026 02:45 UTC+7
 
 Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [operations lessons](lessons.md) trước.
 Đây là **bàn giao hiện hành duy nhất**. Artifact/state/process thật ưu tiên tóm tắt.

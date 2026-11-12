@@ -1,7 +1,7 @@
 # Git / DVC backup record
 
-Updated: 2026-11-13 03:45, Asia/Ho_Chi_Minh — artifact đến 13/11 (B13–B20 sim, CBB s41, SM42P) đã DVC + OneDrive; Git `main` push 13/11.
-Đang chạy, **chưa DVC**: `artifacts/b20-full/{SD42,SD43}`, `artifacts/b20-sm50/*` — add sau khi batch đóng (kèm `_receipts/`). Bundle chưa thay. Workspace partial.
+Updated: 2026-11-13 02:45, Asia/Ho_Chi_Minh — artifact đến 13/11 (B13–B20 sim, CBB s41, SM42P) đã DVC + OneDrive; Git `main` push 13/11.
+Đang chạy, **chưa DVC**: `artifacts/b20-full/{SD42,SD43}`, `artifacts/b20-sm50/*` — add sau khi batch đóng (kèm `_receipts/`). Bundle thay 13/11 02:45 (verify PASS). Workspace partial.
 Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
 
 ## 1. Destinations
