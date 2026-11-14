@@ -74,7 +74,7 @@ def main():
                  "absent": delta["absent"] >= -.01 or min(a["absent_rows"], c["absent_rows"]) < 2000}
         if BATCH == "b17":
             gates = {"macro": gates["macro"]}  # Owner11/11: secondary utility metrics are report-only.
-        if BATCH == "b20":  # compute screen: macro non-inferiority (G1/codec rule), secondary metrics report-only
+        if BATCH in {"b20", "b21"}:  # compute screen: macro non-inferiority (G1/codec rule), secondary metrics report-only
             m, mc = results[arm]["mean16_20"], results["C" if spec["seed"] == 42 else "CS43"]["mean16_20"]
             delta["f1_macro_mean16_20"] = m["f1_macro"] - mc["f1_macro"]
             gates = {"macro_mean16_20": delta["f1_macro_mean16_20"] >= -.0015, "macro_r20": delta["f1_macro"] >= -.003}

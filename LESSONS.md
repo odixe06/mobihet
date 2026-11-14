@@ -116,6 +116,17 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
   FLOPs giảm ≠ wall time ở sim 200 xe (t_train SD = C): báo FLOPs đo, không suy từ t_train.
   Full-scale 5.343 xe cũng vậy: SM42P −24% FLOPs nhưng t_train 3,57 h vs CBB 3,61 h (−1%) — T4 launch-bound; lợi FLOPs chỉ thành
   thời gian trên thiết bị compute-bound (CPU/edge), chưa đo. Knob đếm dòng (SD) không phụ thuộc kiến trúc; head-only (SM/SH) cần tách head riêng từng model.
+- SD full-scale r50 (13/11, audit PASS hai seed): macro .9072/.9081 vs CBB .9074/.9081 (Δ −.0002/−.0001) ở 5,32×F; p10 −.0068/−.0041
+  (report-only); `t_train` −4%/−10%. Nửa sau lịch cosine thừa một nửa dòng synthetic; nửa đầu thì không (G1).
+- Cohort theo kích thước xe (13/11, `scripts/analyse_b20_cohort.py` → [cohort.txt](runs/b20-cohort/cohort.txt), CM full-scale; SM42 r50 đọc
+  trước audit batch): 600 xe ≥ 16.384 dòng giữ 65% dòng thật / 63% bước synthetic; 3.820 xe < 4.096 dòng chỉ 14,6% bước.
+  Mất macro của mọi knob giảm synthetic **dốc theo kích thước**: macro riêng cohort < 256 dòng vs ≥ 16k — SD r50 −.005/−.009 vs
+  **+.0004/+.0005**; SM42 r50 −.012 vs −.0007; SR32 r20 −.026 vs −.0023. Ghép phản thực “chỉ xe ≥ 4.096 dòng dùng arm”:
+  SD +.0001/+.0003, SM42 −.0009 (cả mạng −.0017). ⇒ FLOPs nằm ở xe lớn, thiệt hại nằm ở xe nhỏ: knob giảm liều phải gate theo
+  số bước local, không áp đều. Ghép phản thực bỏ qua ghép nối qua Q, **không phải run**.
+- SM (16 full + 48 head-only) ≈ SR32 ở r20 seed42 cả chi phí synthetic (1,56 vs 1,55×F) lẫn Δmacro (−.0037 vs −.0041, control khác codec)
+  ⇒ 48 dòng head-only chỉ đáng ≈ 16 dòng full; knob đếm dòng (không phụ thuộc kiến trúc) đạt cùng điểm chi phí/utility.
+  Giảm gradient synthetic làm benign tăng (SD +.0017/+.0016, SM42 +.0154) đổi TD (SM42 −.024): vẫn trục benign↔TD.
 - Liều compute (b12): floor synthetic-only có điểm gãy ≈48 bước (+8,2%: macro +.0013, absent +.065); thêm synthetic/bước kém hiệu quả gấp ~6×.
 - suddenConstantSpeed (lớp ít nhất) là **canary** của mọi nhiễu loạn generator; đọc cùng timeDelay.
 - Guard absent ít dòng: full-scale 1.555 dòng dao động ±.05 giữa hai round liền; sim ±.03 giữa arm không hiệu ứng → báo thêm trung bình nhiều round.
@@ -271,3 +282,5 @@ Các thất bại/runtime đã biết và nguồn kết quả: [research index](
 - N1/N2 (12/11): proxy DAGSNet train ở server trên synthetic **đã thử ở P20** (C8/C9/C14, proxy .79 < student .856) — tra lịch sử trước
   khi khuyến nghị. HGB toàn cục trên dòng thật 200 xe sim (trần GBDT liên kết) chỉ macro .8065 vs CBB sim .914: model toàn cục kém
   ở lớp phụ thuộc ngữ cảnh xe nhận (suddenStop .40, lớp11 .50); personalization là nguồn lợi chính trên dataset này.
+
+- B21 full-scale pilot13/11: T4 artifact PASS nhưng utility FAIL (Δmacro TB r16–20 −.0016 < −.0015), dù endpoint−.0013. Không dùng verdict B20 PASS_TRAJECTORY thay luật B21; T3/T4F PASS đúng luật B21.

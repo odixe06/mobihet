@@ -19,6 +19,7 @@
 | Đề xuất cải tiến ngoài generator, sim b11, privacy? | [catalog đề xuất](improvement-proposals.md) |
 | Batch theo thứ tự: B13 module, B14 uplink, B15 SAM, B16 mean-KD, B17 macro, B18 nguồn ngoài fit — FAIL gì? | [B13](screening-module-b13.md), [B14](screening-uplink-b14.md), [B15](screening-sam-b15.md), [B16](screening-mean-b16.md), [B17](screening-macro-b17.md), [B18](screening-source-b18.md) |
 | B20 giảm compute tại xe (SH/SM/SD): luật, sim, full-scale? | [B20](screening-compute-b20.md), [phụ lục luật](screening-compute-b20-addendum.md) |
+| B21 liều synthetic theo cỡ xe × pha lịch (T1–T5, T4F floor 48): bằng chứng cohort, arm, luật? | [B21](screening-dose-b21.md) |
 | Băng thông từng gói, codec study, combo r20/r50 (CBB vs CQ8)? | [screening-codec](screening-codec.md) |
 | Nút thắt hiện tại (TD 44% thiếu hụt macro) và bằng chứng còn hiệu lực? | [sổ tay §3](method-building-brief.md), [diagnosis](diagnosis.md) |
 | So benchmark và đối chiếu bài gốc? | [benchmark r20](benchmark-r20-reference.md), [nguồn generator](generator-primary-sources.md), [papers](../../papers/README.md) |

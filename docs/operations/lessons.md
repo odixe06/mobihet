@@ -91,3 +91,5 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 - 12/11: notebook resume chép output kernel trước bằng `shutil.copy` vỡ khi output có thư mục (`models/`) ⇒ dùng `copytree` cho thư mục.
   Giá trị chuỗi trong `--set` của `fl_dagsnet_veremi_v2` vẫn phải escape `\"` (lesson 30/10 bên repo baseline); plan sinh tự động
   phải qua cùng kiểm `ast.parse`/`shlex`/`json.loads` trước push. Python dự án: `conda activate nckh` (system python thiếu nbformat/kaggle).
+
+- 13/11: state controller `running` sau reboot không chứng minh process sống; kiểm PID/identity trước phục hồi. B21 budget stop r22/r18 lưu checkpoint ở round stop, không chỉ bội5; resume preflight phải dùng round thực, kiểm cả2rank/RNG trước decode.

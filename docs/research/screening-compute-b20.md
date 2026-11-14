@@ -63,3 +63,14 @@ cùng seed, 10 metric từ CM, LR = CBB. Luật r50 (phụ lục §4): macro r50
 | SM42 / SM43 | r50 | chạy | | | | | | |
 
 [audit.json](../../runs/b20-full/audit.json). Full-scale cũng không giảm wall time (−1% với −24% FLOPs): T4 launch-bound như sim.
+
+
+## Audit bổ sung 13/11 19:15 VN
+
+- SD42: artifact audit PASS, utility PASS; macro 0.90715670, Δ CBB -0.00024206; Δ TB cuối5 -0.00025365; train 8.842 h.
+- SD43: artifact audit PASS, utility PASS; macro 0.90807031, Δ CBB -0.00007558; Δ TB cuối5 -0.00012187; train 8.414 h.
+- SM42P: artifact audit PASS, utility PASS_TRAJECTORY; macro 0.89624239, Δ CBB -0.00374192; Δ TB cuối5 -0.00387803; train 3.567 h.
+- SM42: artifact audit PASS, utility PASS; macro 0.90570180, Δ CBB -0.00169696; Δ TB cuối5 -0.00171599; train 8.714 h.
+- SM43: artifact audit PASS, utility PASS; macro 0.90584628, Δ CBB -0.00229960; Δ TB cuối5 -0.00234216; train 8.490 h.
+
+10 metric và checks: `runs/b20-full/audit.json`, `runs/b20-sm50/audit.json`. Audit CM/config/source metadata; chưa replay prediction từ full weights.

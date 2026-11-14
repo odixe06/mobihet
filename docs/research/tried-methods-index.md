@@ -8,7 +8,8 @@ Verdict giữ nguyên như lúc đóng; số ở doc gốc. Trạng thái: **nh�
 
 | study | cơ chế / arm | kết quả | doc |
 |---|---|---|---|
-| B20 | giảm compute synthetic: SH head-only, SM 16 full + 48 head-only, SD 64→32 dòng từ nửa lịch | SH đóng (absent −.21); SD r50, SM r50 **chạy** | [B20](screening-compute-b20.md) |
+| B21 | liều synthetic theo cỡ xe (< 4.096 / 4.096–16.383 / ≥ 16.384 dòng) × pha lịch: T1, T3, T4, T5; T4F = T4 + floor 48 | sim hai seed **chạy** (13/11) | [B21](screening-dose-b21.md) |
+| B20 | giảm compute synthetic: SH head-only, SM 16 full + 48 head-only, SD 64→32 dòng từ nửa lịch | SH đóng (absent −.21); SD r50 **PASS hai seed** (−.0002/−.0001, 5,32×F); SM r50 **chạy** | [B20](screening-compute-b20.md) |
 | N1 / N2 | proxy server DAGSNet; GBDT liên kết data-space | N1 trùng P20 (không code); N2 trần .8065 < .924 — đóng | [sổ tay §5](method-building-brief.md) |
 | A1 / B19 (A2') | nhãn mềm posterior generator theo dòng; cụm biên theo nhầm lẫn generator | FAIL gate local — đóng | [B19](screening-boundary-b19.md), [sổ tay §5](method-building-brief.md) |
 | B18 | nguồn teacher ngoài fit: S shadow → C/E/H matched source | H FAIL macro hai seed — đóng | [B18](screening-source-b18.md) |

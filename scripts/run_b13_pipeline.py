@@ -14,7 +14,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 BATCH = os.environ.setdefault("SIM_BATCH", "b13")
-assert BATCH in {"b13", "b14", "b15", "b16", "b17", "b20"}
+assert BATCH in {"b13", "b14", "b15", "b16", "b17", "b20", "b21"}
 os.environ.setdefault("OMP_NUM_THREADS", "4")
 os.environ.setdefault("MKL_NUM_THREADS", "4")
 os.environ.setdefault("TORCHINDUCTOR_COMPILE_THREADS", "1")
@@ -55,6 +55,9 @@ def main():
     if BATCH == "b20":
         source += ["tests/test_mobihet_compute.py", "tests/test_mobihet_macro.py", "docs/research/screening-compute-b20.md"]
         tests += ["tests/test_mobihet_compute.py"]
+    if BATCH == "b21":
+        source += ["tests/test_mobihet_compute.py", "tests/test_mobihet_macro.py", "docs/research/screening-dose-b21.md"]
+        tests += ["tests/test_mobihet_compute.py"]
     digest = lambda: {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source}
     frozen = digest()
     if reuse:
@@ -72,10 +75,13 @@ def main():
     knobs = {"b13": ["refine_agg=sqrt_count", "refine_loss=js4", "real_smoothing=0.05"],
              "b14": ["same_class_mix=0.5", "uplink_mode=lg16", "uplink_audit=true"],
              "b15": ["sam_rho=0.05"], "b16": ["mean_kd=mean"], "b17": ["macro_mode=prior"],
-             "b20": ["synth_grad=head"]}[BATCH]
+             "b20": ["synth_grad=head"], "b21": []}[BATCH]
     hp = S.hp(42, S.ARMS[0][3] + knobs)
     if BATCH == "b20":
         hp = S.hp(42, S.ARMS[1][3])                                    # SH: the new loss path (SM shares it)
+    if BATCH == "b21":
+        hp = S.hp(42, S.ARMS[5][3])                                    # T4F: tier mask + floor 48
+        assert S.ARMS[5][0] == "T4F"
     if BATCH in {"b16", "b17"}:
         assert not reuse, "This batch has two independent smoke gates; inspect failed stage before recovery"
         hp = S.hp(42, S.ARMS[1][3])

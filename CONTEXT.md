@@ -22,9 +22,12 @@ model, BN hoặc gradient. Schema không phụ thuộc kiến trúc; thí nghi�
   giữ đóng gộp phiên; **tạm không lượng tử hóa** thêm; experiment DAGSNet W1.
 - **Cải thiện F1 trong hợp đồng hiện tại gần hết dư địa:** B13–B19, A1, N1, N2 đều FAIL (>40 biến thể trong ±.002) —
   bảng theo họ cơ chế ở [sổ tay xây dựng phương pháp](docs/research/method-building-brief.md) §4–5. Không mở lại họ đã đóng bằng tên mới.
-- **Đang chạy — B20 giảm compute full-scale** ([design + kết quả](docs/research/screening-compute-b20.md)): SD r50 s42/s43 (5,32×F),
-  SM r50 s42 (resume từ pilot r20 PASS_TRAJECTORY) + s43 (4,65×F). Luật r50: macro mỗi seed > .9048. Watcher nền tự collect/audit —
-  job, log, lệnh theo dõi ở [continue](docs/operations/continue.md).
+- **B20 giảm compute full-scale** ([design](docs/research/screening-compute-b20.md)), kiểm 13/11 09:40: **SD r50 PASS hai seed**
+  (.9072/.9081, Δ −.0002/−.0001 vs CBB, 5,32×F) — chưa ghi vào design, owner chưa quyết nhận. SM42 r50 audit PASS (.9057, 4,65×F),
+  SM43 audit PASS r50 (.9058); SM PASS cả hai seed. Luật r50: macro mỗi seed > .9048. Waiter nền, lệnh tay ở [continue](docs/operations/continue.md).
+- **B21 liều synthetic theo cỡ xe × pha lịch** ([design](docs/research/screening-dose-b21.md)), audit13/11 19:15:
+  pilot T3/T4F PASS, T4 FAIL; T1 partial r22/r18. Đã nối T3/T4F/T142 (3 kernel RUNNING), thiếu quota cho T143;
+  seed43 mới T3/T4F còn chờ. Watcher + exact phiên ở [continue](docs/operations/continue.md).
 - Baseline 3 seed (`../fl_dagsnet_veremi_v2`) đã xong và audit; SCAFFOLD bị loại (phân kỳ). Privacy bootstrap **hoãn** (09/11).
   Mô hình trộn kiến trúc full-scale chưa chạy.
 
@@ -34,7 +37,7 @@ model, BN hoặc gradient. Schema không phụ thuộc kiến trúc; thí nghi�
 |---|---|
 | **Muốn cải thiện F1 / xây phương pháp mới: trần, đường học, họ nào đã đóng, hướng nào mở?** | [sổ tay xây dựng phương pháp](docs/research/method-building-brief.md) |
 | Phương pháp chính (CBB) là gì, thành phần nào giữ/bỏ? | [proposal](docs/research/proposal.md), [cơ chế/code](docs/research/method.md) |
-| Giảm compute tại xe: arm nào, luật, kết quả? | [B20](docs/research/screening-compute-b20.md), [phụ lục luật](docs/research/screening-compute-b20-addendum.md) |
+| Giảm compute tại xe: arm nào, luật, kết quả? | [B20](docs/research/screening-compute-b20.md), [phụ lục luật](docs/research/screening-compute-b20-addendum.md), [B21 liều theo cỡ xe](docs/research/screening-dose-b21.md) |
 | **Cơ chế X đã từng thử chưa, kết quả, doc nào?** (mọi study từ v1 → B20) | [index phương pháp đã thử](docs/research/tried-methods-index.md) |
 | Generator / đề xuất ngoài generator đã thử gì, trạng thái? | [catalog generator](docs/research/generators.md), [catalog đề xuất](docs/research/improvement-proposals.md) |
 | Băng thông từng gói, codec nào PASS/FAIL? | [screening-codec](docs/research/screening-codec.md) |

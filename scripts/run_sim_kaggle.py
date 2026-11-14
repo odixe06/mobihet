@@ -144,6 +144,17 @@ if BATCH == "b20":  # client compute on CBB: head-only / mixed synthetic gradien
     ARMS = [(arm + ("S43" if seed == 43 else ""), "b20-" + arm.lower(), seed, cbb + extra)
             for seed in (42, 43) for arm, extra in cells]
     CAP = 2.75
+if BATCH == "b21":  # synthetic rows by vehicle size tier x schedule phase on CBB (+ one floor-48 reallocation arm)
+    METHOD = "mobihet_compute"
+    OVERLAYS += ["methods/mobihet_refine.py", "methods/mobihet_compute.py"]
+    cbb = ["cop_kmeans=16", "cop_kmeans_w0=0.5", "cop_kmeans_q=int8", "cop_kmeans_lite=6", "q_bits=8", "km_bytes=true"]
+    tier = lambda rows: ["synth_tier_min=[4096,16384]", "synth_tier_rows=" + rows, "synth_late_from=10"]
+    t4 = tier("[[64,64],[48,32],[32,16]]")
+    cells = [("C", ["synth_grad=full"]), ("T1", tier("[[64,64],[64,32],[64,32]]")), ("T3", tier("[[64,64],[64,32],[48,16]]")),
+             ("T4", t4), ("T5", tier("[[64,64],[32,16],[16,16]]")), ("T4F", t4 + ["synth_step_floor=48"])]
+    ARMS = [(arm + ("S43" if seed == 43 else ""), "b21-" + arm.lower(), seed, cbb + extra)
+            for seed in (42, 43) for arm, extra in cells]
+    CAP = 2.75
 W.OUT, W.ART, W.TAG = OUT, ART, "SIM"
 W.COLLECT = r'(^provenance/|/(config\.json|rounds\.jsonl|cms_r\d{3}\.npz|arch_rank\d\.json)$)'
 if BATCH == "b14":

@@ -1,0 +1,6 @@
+outs:
+- md5: 5cb3abb3cec0a26e185a4b13446a684b.dir
+  size: 50874
+  nfiles: 18
+  hash: md5
+  path: _receipts

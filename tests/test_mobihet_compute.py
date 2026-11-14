@@ -114,3 +114,76 @@ def test_rounds_finite_with_floor(mode):
         info = m._round_private(r, .001)
         assert info["clients_without_applied"] == 0 and torch.isfinite(torch.tensor(info["train_loss"]))
     assert all(torch.isfinite(v).all() for v in m.state().values() if torch.is_tensor(v))
+
+
+def test_tier_rows_schedule_and_cbb_at_full_dose():
+    torch.set_num_threads(1)
+    sizes = environment().train.sizes
+    cut = int(sorted(sizes)[len(sizes) // 2])
+    m = mobihet_compute.Method(environment(synth_tier_min=[cut], synth_tier_rows=[[64, 48], [32, 16]], synth_late_from=1))
+    big = torch.as_tensor(sizes) >= cut
+    assert big.any() and not big.all()
+    assert m._rows_for(1) == 64 and m._rows_k.tolist() == torch.where(big, 32, 64).tolist()
+    assert m._rows_for(2) == 48 and m._rows_k.tolist() == torch.where(big, 16, 48).tolist()
+    # every tier at 64 rows = CBB up to the rounding of sum / 64 against mean
+    old = mobihet_refine.Method(environment())
+    new = mobihet_compute.Method(environment(synth_tier_min=[cut], synth_tier_rows=[[64, 64], [64, 64]], synth_late_from=1))
+    rng = torch.get_rng_state()
+    want = [(old._round_private(r, .001), copy.deepcopy(old.state())) for r in (1, 2)]
+    torch.set_rng_state(rng)
+    for r, (info, state) in zip((1, 2), want):
+        got = new._round_private(r, .001)
+        assert got["synth_rows"] == 64 and abs(got["train_loss"] - info["train_loss"]) < 1e-5
+        for k, v in state.items():
+            if torch.is_tensor(v) and v.is_floating_point():
+                torch.testing.assert_close(new.state()[k], v, rtol=1e-4, atol=1e-5, msg=k)
+
+
+@pytest.mark.parametrize("soft", [False, True])
+def test_tier_loss_is_per_vehicle_truncation(soft):
+    """A vehicle on a_k rows gets the loss and gradient of the CBB stream loss run with a_k synthetic rows for everyone."""
+    env = environment(synth_tier_min=[10 ** 9], synth_tier_rows=[[64, 64], [64, 64]], synth_late_from=1)
+    env.cfg = dict(env.cfg, dropout=0.0)
+    m = mobihet_compute.Method(env)
+    m.Q = torch.eye(16) * .9 + .1 / 16 if soft else None
+    ctx = _ctx(m)
+    rows = torch.tensor([64, 32, 16])
+    m._rows_k = rows                                                    # ctx.clients = [0, 1, 2]
+    loss, _ = m._loss_tier(ctx)
+    loss.sum().backward()
+    got = {k: v.grad.clone() for k, v in ctx.P.items()}
+    csum = m._csum.clone()
+    for i, a in enumerate(rows.tolist()):
+        for v in ctx.P.values():
+            v.grad = None
+        g = torch.Generator().manual_seed(1)
+        xg = torch.randn(3, 64, 77, generator=g)[:, :a]
+        lab = (torch.arange(a) % 16)[None].expand(3, -1)
+        mask = torch.cat([ctx.mask, torch.ones(3, a, dtype=torch.bool)], 1)
+        z, _ = grouped.forward(ctx.P, ctx.B, torch.cat([ctx.x, xg], 1), env.cfg, mask=mask, train=True)
+        ce = local.masked_mean(F.cross_entropy(z[:, :8].reshape(-1, 16), ctx.y.reshape(-1), reduction="none").view(3, 8),
+                               ctx.mask)
+        if soft:
+            lt = m.Q.clamp_min(1e-6).log()[lab]
+            syn = (lt.exp() * (lt - F.log_softmax(z[:, 8:], -1))).sum(-1).mean(1)
+        else:
+            syn = F.cross_entropy(z[:, 8:].reshape(-1, 16), lab.reshape(-1), reduction="none").view(3, a).mean(1)
+        ref = ce + syn
+        torch.testing.assert_close(loss[i], ref[i])
+        ref.sum().backward()
+        for k, v in ctx.P.items():
+            torch.testing.assert_close(got[k][i], v.grad[i], rtol=1e-4, atol=1e-6, msg=f"{k} vehicle {i}")
+    assert csum[2].sum() == 0 and torch.isclose(csum[0].sum(), torch.tensor(8.))   # Q from real rows only
+
+
+def test_tier_rounds_finite_with_floor():
+    torch.set_num_threads(1)
+    sizes = environment().train.sizes
+    env = environment(synth_tier_min=[int(sorted(sizes)[len(sizes) // 2])], synth_tier_rows=[[64, 64], [32, 16]],
+                      synth_late_from=1)
+    env.hp["synth_step_floor"] = 4
+    m = mobihet_compute.Method(env)
+    for r in (1, 2):
+        info = m._round_private(r, .001)
+        assert info["clients_without_applied"] == 0 and torch.isfinite(torch.tensor(info["train_loss"]))
+    assert all(torch.isfinite(v).all() for v in m.state().values() if torch.is_tensor(v))

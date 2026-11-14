@@ -12,6 +12,11 @@ pass are unchanged; only how the vehicle spends FLOPs on its own synthetic rows 
              CBB (shared BN batch); the other 48 take the head-only path. ~4,6 x F.
   synth_rows_late int (0 = off), synth_late_from int: synthetic rows per step = synth_rows_late once round > late_from
       (balanced labels, same loss weight: mean over rows). SD in the design; ~5,3 x F at r50 with 32 from r26.
+  synth_tier_min list[int] ([] = off), synth_tier_rows list[[early, late]] (B21, docs/research/screening-dose-b21.md):
+      vehicles split into len(synth_tier_min) + 1 tiers by their own train-row count (ascending thresholds, n >= threshold
+      -> next tier); tier t trains on synth_tier_rows[t][0] synthetic rows per step, [1] once round > synth_late_from.
+      The step generates the largest row count of the round; a vehicle with fewer rows masks the rest out of its BN batch
+      and of its synthetic mean (its first rows stay class-balanced), so the masked rows cost nothing on a real vehicle.
 
 A vehicle with no real row in a step (step floor, padding) normalises its masked real pass with all row slots, so the
 masked CE stays finite; its BN buffers are not updated on that step (core.local.local_epoch: has_real only).
@@ -60,8 +65,19 @@ class Method(Refine):
         assert self.refine_loss == "forward" and self.real_smoothing == 0 and self.w_synth != "nckd"
         assert self.aux == 64 and torch.equal(self.labels, torch.arange(64, device=env.dev) % 16)
         self._rows0 = self.aux
+        self.tier_min, rows = list(hp.get("synth_tier_min", [])), hp.get("synth_tier_rows", [])
+        if self.tier_min:
+            assert self.synth_grad == "full" and self.rows_late == 0 and self.late_from >= 1
+            assert self.tier_min == sorted(set(self.tier_min)) and len(rows) == len(self.tier_min) + 1
+            assert all(len(x) == 2 and all(v % 16 == 0 and 0 < v <= 64 for v in x) for x in rows)
+            tier = torch.bucketize(torch.as_tensor(env.train.sizes, device=env.dev),
+                                   torch.tensor(self.tier_min, device=env.dev), right=True)
+            self._tier_rows = torch.tensor(rows, device=env.dev)[tier]   # (K, 2) rows per step early / late
 
     def _rows_for(self, r):
+        if self.tier_min:
+            self._rows_k = self._tier_rows[:, int(r > self.late_from)]
+            return int(self._rows_k.max())
         return self.rows_late if self.rows_late and r > self.late_from else self._rows0
 
     def _round_private(self, r, lr):
@@ -73,7 +89,30 @@ class Method(Refine):
         info["synth_rows"] = self.aux
         return info
 
+    def _loss_tier(self, ctx):
+        """CBB stream loss with a per-vehicle synthetic row count (rows beyond it: no BN statistics, no loss)."""
+        G, b, a = ctx.Gfix, ctx.x.shape[1], self.aux
+        xg, lab = self._synth(ctx)
+        keep = active(ctx)[:, None] & (torch.arange(a, device=lab.device)[None] < self._rows_k[ctx.clients][:, None])
+        z, new_b = grouped.TRAIN(ctx.P, ctx.B, torch.cat([ctx.x, xg], 1), self.env.cfg,
+                                 mask=torch.cat([ctx.mask, keep], 1), train=True)
+        ce = local.masked_mean(F.cross_entropy((z[:, :b] + self._shift[:, None, :]).reshape(-1, 16), ctx.y.reshape(-1),
+                                               reduction="none").view(G, b), ctx.mask)
+        logp = F.log_softmax(z, -1)
+        with torch.no_grad():
+            pr = torch.where(ctx.mask[..., None], logp[:, :b].detach().exp(), 0.0)
+            self._csum.index_put_((torch.arange(G, device=pr.device)[:, None].expand_as(ctx.y), ctx.y), pr,
+                                  accumulate=True)
+        if self.Q is None:
+            synth = F.cross_entropy(z[:, b:].reshape(-1, 16), lab.reshape(-1), reduction="none").view(G, a)
+        else:
+            lt = self.Q.clamp_min(1e-6).log()[lab]
+            synth = (lt.exp() * (lt - logp[:, b:])).sum(-1)
+        return ce + local.masked_mean(synth, keep), new_b
+
     def _loss_stream(self, ctx):
+        if self.tier_min:
+            return self._loss_tier(ctx)
         if self.synth_grad == "full":
             return super()._loss_stream(ctx)
         cfg = self.env.cfg

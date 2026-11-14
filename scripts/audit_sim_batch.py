@@ -30,7 +30,7 @@ sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
 def norm(v):
-    return str(v).lower()
+    return str(v).lower().replace(" ", "")  # list-valued hp: executed "[4096, 16384]" == locked "[4096,16384]"
 
 
 def audit(spec):
