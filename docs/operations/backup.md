@@ -4,14 +4,14 @@ Updated:16/11/2026 — DVC mới10manifest/438objects đã push `-j16`, exit0; `
 Target mới:6head `artifacts/b21-chain/*`,2run chuyển `b21-transfer/{mh-k-b21-t143-r50-x18,mh-k-b21-t4fp-r20-x24}`, T3DAGSNet41 `artifacts/t3-s41/mh-k-b21-t341-r50`, inventory `artifacts/maintenance-20261116`.
 Các run mới kèm receipts đã lọc notebook/credential. Không dvcadd lại manifest lịch sử/partial.
 Receipt: `runs/maintenance-20261116/new-targets.json`, `dvc-push.log`, `dvc-status.log`; controller `mobihet-dvc-backup-20261116` succeeded.
-Git commit/push/bundle cho thay đổi16/11 đang chờ hoàn thiện tài liệu/Notion; owner đã ủy quyền. Workspace lịch sử vẫn partial, giữ các hạn chế ở mục2.
+Gitmainhai repo đãpush thayđổi16/11/Notion, đỉnh xem `git ls-remote`; bundle sẽrefresh saucommitcuối. Owner đãủyquyền. Workspace lịch sử vẫn partial, giữ các hạn chế ở mục2.
 
 ## 1. Destinations
 
 - Git `https://github.com/odixe06/mobihet.git`, `main`: commit 10/11 tối (combo r50 + chốt CBB + manifest codec-combo); đối chiếu đỉnh bằng `git ls-remote`. Bundle thay 10/11 tối, verify PASS.
 - DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`). `dvc` ở env conda `nckh`.
 - Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, verify mỗi lần thay.
-- Cloud upload lịch sử: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`, `TimeoutStartSec=3600` qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
+- Cloud upload lịch sử: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`; timeout3600s là cấu hình cũ (hiện6h, xem recoverycuốifile) qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
 - OneDrive quota lịch sử: free43,2GiB sau upload (20:27 05/11). Google Drive không dùng.
 
 ## 2. Tracked artifacts
@@ -101,3 +101,9 @@ frozen-source, smoke log; bỏ `.pt`) để log + file liên quan đi cùng arti
 - Thêm run mới: `dvc add artifacts/<nhóm>/<slug>` từng run hoàn chỉnh → `dvc push` → `dvc status -c`.
   `.gitignore` ignore-all trong thư mục artifact làm `dvc add` lỗi "git-ignored" — xóa file đó trước.
 - `deleted` trong `dvc status -c` sau cleanup chỉ là thiếu local cache, không phải remote mất.
+
+## Recovery mount16/11 sau reboot
+
+OneDrive đãmount lại tại `/home/odixe/Cloud/OneDrive`, source `onedrive:`,type `fuse.rclone`; servicePID8985active/running, cả2projectpathPASS. Startup trước timeout1h bịsystemdngắt khi reload/uploadVFS. Drop-in `~/.config/systemd/user/rclone-onedrive.service.d/zz-recovery-timeout.conf` đặtTimeoutStartSec6h;daemon-reloadgiữprocess/cache. [Hành vi timeout systemd](https://www.freedesktop.org/software/systemd/man/255/systemd.service.html).
+Job `dvc-reboot-push-20261116` fail ởwaitmount60phút, chưa gọiDVC. Jobthaythế `onedrive-remount-dvc-20261116`,PID12313,deliveryqueue, đangpush-j16/status-c hai repo theo target đãkhóa; logrepoBERT `runs/maintenance-20261116/onedrive-remount-dvc.log`. Chưagọi repushVERIFIED trướcreceipt. Lầnđo16:55:225dirtyfile/15.37GB; đó làsnapshotVFSchung, không phải cloudsync hoặc corruption. Không xóa local/cache.
+Receiptmount/repair ởrepoBERT `runs/maintenance-20261116/reboot-backup/{mount-restored,mount-timeout-repair,dirty-after-timeout}.json`; jobhiện hành ở [continue](continue.md).
