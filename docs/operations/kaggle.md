@@ -1,45 +1,32 @@
 # Kaggle — quy trình hiện hành
 
-Job/account/round/quota sống chỉ tại [continue](continue.md). Đọc [error register](notebook-errors.md) trước tạo notebook;
-áp dụng skill `kaggle-training-notebook`, `federated-training-speed`, `wandb-training-monitor` và `codex-long-jobs` theo tác vụ.
-Lịch sử account/API trước07/11 ở [snapshot](../../archive/docs-20261107/before/docs/operations/kaggle.md), không dùng làm quota hiện tại.
+Job/owner/quyền/round sống chỉ tại [continue](continue.md). Đọc skill `kaggle-training-notebook`;
+tối ưu train dùng `federated-training-speed`, health dùng `wandb-training-monitor`, nền dùng `codex-long-jobs`.
+[Sổ lỗi](notebook-errors.md) · [Lessons](lessons.md). Roster/quota/account lịch sử đã ra khỏi tuyến đọc.
 
-## Identity và cấp quota
+## Credential và preflight
 
-Env `nckh`, CLI/runtime pin trong `environment.yml` và [knowledge](../../knowledge/README.md).
-Saved credentials nằm ngoài repo trong `~/.kaggle/accounts/`; không đưa token/email vào docs/log.
-Dùng process-scoped wrapper, giữ global login hiện có; không yêu cầu MCP/reconnect cho CLI.
+- Env `nckh`; runtime pin trong `environment.yml`/knowledge. Credential ngoài repo `~/.kaggle/accounts/`, process-scoped.
+  Không đổi global login hoặc in token/email/signed URL. Introspect đúng owner khi cần.
+- Query quota/slots live trước push, cộng budget đã reserved và margin; dự án khác có thể cùng dùng account.
+- Private notebook + source/checkpoint private; giữ dữ liệu public canonical theo protocol. Notebook inlinekey không vào Git/DVC.
+- Pin base SHA/overlay/HP/notebook SHA; notebook và metadata cùng khai2×T4sm75/image đãpin. Không bỏ hardware/finite guard.
+- Source script active xem [scripts](../../scripts/README.md); launcher study đã đóng trong archive không dùng cho batch mới.
 
 ```bash
-conda run -n nckh python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py quota
-conda run -n nckh python .agents/skills/kaggle-training-notebook/scripts/kaggle_as.py OWNER -- kaggle kernels status OWNER/SLUG/VERSION
+/home/odixe/Tools/miniconda3/envs/nckh/bin/python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py quota
+/home/odixe/Tools/miniconda3/envs/nckh/bin/python .agents/skills/kaggle-training-notebook/scripts/kaggle_as.py OWNER -- kaggle kernels status OWNER/SLUG/VERSION
 ```
 
-- Kiểm saved-owner introspection, quota còn lại/reserved và session slots trước push; tài khoản có quota chưa chắc được cấp GPU.
-- Inventory authorized owners của workflow ở `scripts/run_w20.py::inventory`; quota snapshot không là reservation.
-  Hai slot GPU/account và margin1,15 là planner hiện tại; push vẫn phải qua phản hồi service.
-- Ưu tiên resume theo quyền mới nhất trong continue, có thể dùng quota ngắn. Reset dự kiến07:00UTC+7 không thay fresh quota check.
-- Được cross-account continuation; receiver checkpoint dataset private + verify thật trước GPU. Không mount private kernel chéo account.
+## Resume / collect / audit
 
-## Notebook và resume
-
-- Notebook lẫn metadata đều khai báo2T4sm75, pinned image digest; fail trước train nếu sai hardware.
-- Nguồn base SHA + overlay, metadata/notebook hash, frozen scientific config và input access phải khớp gate.
-- Npy cache public: `odixe0502/mobihet-v4npy-cache`, manifest trong `runs/w-study/builder.json`; verify byte SHA trước đọc.
-- Model training compile, threads1; cache Inductor ởtemp và một tar trong run. Không cắt client/batch/epoch/diagnostics để tăng tốc.
-- Resume import duy nhất, config/source/seed/rounds và state/RNG cả hai rank cùng round; gate **trước decode**.
-  Giữ out/W&B ID gốc sau verified continuation; slug session khác. W&B resume không thay state.
-- Sim và KM full-scale hiện **tắt W&B** (không nhúng credential). Khi bật: online, notebook private; inline key vĩnh viễn trong version history.
-  Notebook sinh trong ignored `notebooks/`, không Git/DVC; không in key/signed URL.
-
-## Worker, collection và kết luận
-
-Worker: phiên Codex dùng global codex-long-jobs controller (state `~/.codex/long-jobs/jobs/<id>/state.json`); phiên Claude Code dùng
-`runs/<batch>/watch.sh` chạy bash nền (completion đánh thức phiên). Cả hai poll 1200 s, ghi PID/log vào continue. Không model polling khi chỉ chờ. Trước retry kiểm intent/receipt/lock/job đang sở hữu ledger.
-
-Pull exact owner/slug/version, all-page listing, resumable/parallel, cả ERROR; khoảng32 connection tổng.
-File4GB dùng Range chunks có Content-Range/size gate. Private dataset upload giữ tabular, verify download SHA/round thật.
-
-`COMPLETE` chỉ vận hành: audit source/config/LR/IDs/support/CM→10metric/snapshot/teacher/finite và đủ endpoint mới kết luận.
-Partial an toàn → audit partial → nối compatible state; lỗi watcher/download/audit → sửa stage hỏng, không restart training.
-Nếu kernel cần dừng mà service không có cancel phù hợp, báo owner exact session và thao tác UI; không dùng push --no-run như stop.
+- Resume đúng compatible parent/source/config/seed/schedule; import cả2rank trước decode. Giữ checkpoint/RNG mà driver yêu cầu;
+  báo thiếu RNG ở baseline lịch sử. W&B resume không thay model state.
+- Giữ1epoch thật, đủclient/tailbatch, endpoint khóa; tính setup/compile/eval/save vào worst-round budget.
+- Poll exact `owner/slug/version`1200s bằng một worker/ledger qua controller; ghi job/PID/state/log/thread trong continue.
+  Xác nhận running một lần, chỉ còn chờ thì kết thúc turn; không modelpoll, không duplicate collector.
+- Pull cả COMPLETE/ERROR, exact version, hếtpage, resumable/parallel khoảng32connection tổng; kiểmsize/Range, giữpart khi lỗi.
+- COMPLETE/exit0 chỉ là vận hành. Require source/HP/LR/support/CM→10metric/finite/đủround;
+  state nhỏ không chứng minh fullprivatebank hoặc prediction replay. Query lỗi=UNKNOWN.
+- Retry phải kiểm intent/reply/version trước; lỗi watcher/pull/checker chỉ sửa đúngstage, không training lại.
+  Dừng/cancel job khỏe chỉ theo yêu cầu owner; không dùng `push --no-run` như stop.

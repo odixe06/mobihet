@@ -3,38 +3,33 @@
 Đọc CONTEXT → [LESSONS](LESSONS.md) → [bài học vận hành](docs/operations/lessons.md) → [bàn giao sống](docs/operations/continue.md).
 Không nạp `archive/` mặc định.
 
-Federated IDS V2X16lớp trên VeReMi NextGen v4:5343xe nhận,77đầu vào, mỗi xe giữ model riêng.
-Chỉ trao thống kê cộng được/xác suất; server gộp toàn mạng; không trao dòng thật/model/gradient/BN.
+Federated IDS V2X trên VeReMi NextGen v4:5.343xe nhận,77input,16lớp; mỗi xe giữ model riêng.
+Cơ chế trao thống kê/xác suất, hỗ trợ khác kiến trúc; không realrows/model/gradient/BN.
 
-## Trạng thái kiểm16/11/2026
+## Trạng thái — 16/11/2026
 
-**Phương pháp chính=T3, gọi MobiHet**: copula KM16+lite6+Q8, liều synthetic theo cỡ xe/pha lịch,
-S64→64/M64→32/L48→16 từr26,floor16. [Cơ chế](docs/research/method.md), [quyết định](docs/research/proposal.md).
-DAGSNet đủr50 cả3seed41/42/43;BERT đủr50 cả3seed, CM+state2rankPASS.
-B20/B21 đã đóng; không nối lại từ trạng thái waiter cũ. Job hiện hành chỉ ở [continue](docs/operations/continue.md).
+MobiHet hiện tại=T3 (KM16+lite6+Q8, liều synthetic theo cỡ xe/pha lịch).
+DAGSNet và FeatureBERT đủr50 cả3seed41/42/43; mixed-model full-scale chưa chạy.
+Kết quả/giới hạn audit: [comparison](docs/research/comparison.md). Job/Notion/push hiện tại chỉ tại [continue](docs/operations/continue.md).
 
-Sau reboot16/11: owner yêu cầu hoàn tất, không cần dừng/reboot; OneDriveđãmountlại/DVCpush-j16 hai repo đãxácminh; pFedES41p4V2đãpush/watch1200s do repoBERT sở hữu.
-Phiên16/11: owner ưu tiên pull/audit đa luồng, đồng bộ tài liệu hai repo và Notion Proposal2, rồi push Git+DVC.
-Không xóa artifact, không đổi protocol/source/HP đã khóa. Chưa có việc tay bắt buộc.
+Owner đang xây lại phương pháp: seed42, đơnmodel DAGSNet/BERT, sim→pilot→full;
+performance/communication xếp riêng top5, Macro-F1 cách bestbaseline≤.015, compute giảm tối đa.
+[Task brief](task_brief.md) giữ yêu cầu mới; chưa launch training mới. Gate study cũ không tự áp cho nhiệm vụ mới.
 
-## Quyết định đang áp dụng
+## Quy tắc đang dùng
 
-- Macro-F1 là primary;guard p10/low256/TD/benign/absent report-only, vẫn audit đủ. Headline50round;không chọn best round/HP qua test.
-- CBB là control cũ, không dùng kết quả CBB làm số liệu T3. Baseline DAGSNet3seed đã audit;SCAFFOLD loại.
-- Mixed-model full-scale chưa chạy;privacy bootstrap hoãn;chưa triển khai SecAgg/DP.
-- Không mở lại họ cơ chế đã FAIL bằng tên mới. Luật/thang sim→pilot→r50 trong design đã khóa; việc collect hiện tại không tự launch training.
-- COMPLETE/exit0 không thay artifact audit;resume cần checkpoint/RNG cả2rank cùng round. Không sửa file worker đang sở hữu.
+- [Protocol](docs/research/protocol.md) đồng nhất; headline round50, không best-round/HP qua test; audit đủ10metric và guard phụ.
+- Core/CBB/KM50 là đối chứng lịch sử, không thay số T3. Baseline SCAFFOLD loại.
+- Giữ verdict cũ; không đổi tên nhánh FAIL để chạy lại. Mixed-model/SecAgg/DP chưa được chứng minh.
+- COMPLETE/exit0 không thay artifact audit; không sửa source/ledger worker đang sở hữu; không xóa artifact/cache.
 
-## Cần biết → mở
-
-| Câu hỏi | Nguồn |
+| Cần biết | Mở |
 |---|---|
-| Job nào sống, ai sở hữu, bước kế/việc tay? | [continue duy nhất](docs/operations/continue.md) |
-| T3 là gì, vì sao chọn? | [method](docs/research/method.md), [proposal](docs/research/proposal.md), [B21](docs/research/screening-dose-b21.md) |
-| Muốn cải thiện phương pháp, họ nào đóng/mở? | [sổ tay](docs/research/method-building-brief.md), [index đã thử](docs/research/tried-methods-index.md) |
-| Generator/codec/đề xuất nào đã thử? | [generators](docs/research/generators.md), [codec](docs/research/screening-codec.md), [catalog](docs/research/improvement-proposals.md) |
-| Dataset/model/máy và protocol chung? | [knowledge](knowledge/README.md), [protocol](docs/research/protocol.md) |
-| Chạy/collect/backup thế nào? | [operations](docs/operations/README.md), [scripts](scripts/README.md), [backup](docs/operations/backup.md) |
+| Job/owner/bước tiếp/việc tay | [Continue duy nhất](docs/operations/continue.md) |
+| Xây lại phương pháp và những gì đã thử | [Task brief](task_brief.md), [tried index](docs/research/tried-methods-index.md) |
+| T3/cấu hình/kết quả | [Method](docs/research/method.md), [comparison](docs/research/comparison.md) |
+| Dataset/model/máy | [Knowledge](knowledge/README.md) |
+| Chạy/audit/backup | [Operations](docs/operations/README.md), [scripts](scripts/README.md) |
 
-Kết quả/phương pháp→docs/research;job sống→continue;dữ kiện bất biến→knowledge;bài học→hai lessons.
-[Bản đồ tài liệu](docs/README.md) · [README](README.md).
+Kết quả→docs/research; job→continue; dữ kiện bất biến→knowledge; bài học→hai lessons.
+[Bản đồ docs](docs/README.md). Lịch sử vận hành ra khỏi tuyến đọc; chỉ mở archive khi cần evidence cụ thể.

@@ -33,6 +33,7 @@ Endpoint50; CANPerFL=FedAvg50 +10epoch fine-tune. Mean ± sample SD,3seed41/42/4
 | 12 | NILM-FL | client | 0.9142 ± 0.0012 | 0.8761 ± 0.0008 | 0.8821 ± 0.0010 | 0.5687 ± 0.0124 | 0.1142 ± 0.0157 |
 | 13 | FD-IDS | global | 0.9130 ± 0.0023 | 0.8804 ± 0.0015 | 0.8814 ± 0.0003 | 0.7221 ± 0.0193 | 0.1963 ± 0.0137 |
 | 14 | V2X-HtFL | client | 0.9073 ± 0.0006 | 0.8721 ± 0.0006 | 0.8770 ± 0.0007 | 0.5492 ± 0.0031 | 0.0588 ± 0.0303 |
+| 15 | pFedES | client | 0.9027 ± 0.0005 | 0.8684 ± 0.0005 | 0.8740 ± 0.0012 | 0.5375 ± 0.0026 | 0.0754 ± 0.0248 |
 
 ### DAGSNet
 
@@ -52,6 +53,7 @@ Endpoint50; CANPerFL=FedAvg50 +10epoch fine-tune. Mean ± sample SD,3seed41/42/4
 | 12 | FedProto | client_proto | 0.8972 ± 0.0005 | 0.8660 ± 0.0008 | 0.8693 ± 0.0009 | 0.5924 ± 0.0013 | 0.0131 ± 0.0226 |
 | 13 | V2X-HtFL | client | 0.8973 ± 0.0003 | 0.8564 ± 0.0009 | 0.8666 ± 0.0004 | 0.5544 ± 0.0032 | 0.0198 ± 0.0186 |
 | 14 | TinyProto | client_proto | 0.8873 ± 0.0009 | 0.8462 ± 0.0009 | 0.8541 ± 0.0006 | 0.5497 ± 0.0024 | 0.0131 ± 0.0226 |
+| 15 | pFedES | client | 0.8870 ± 0.0005 | 0.8417 ± 0.0011 | 0.8523 ± 0.0011 | 0.5262 ± 0.0024 | 0.0000 ± 0.0000 |
 
 ## 2. Communication budget
 
@@ -62,38 +64,40 @@ Endpoint50; CANPerFL=FedAvg50 +10epoch fine-tune. Mean ± sample SD,3seed41/42/4
 | Hạng | Phương pháp | Up B/xe/round | Down B/xe/round | Tỷ lệ chọn | Bootstrap MB/xe | 50round không bootstrap MB/xe | Tổng MB/xe | Mạng GB |
 |---|---|---|---|---|---|---|---|---|
 | 1 | TinyProto | 448.0 | 448.0 | 1.0000 | 0.000128 | 0.044800 | 0.044928 | 0.2401 |
-| 2 | FedTGP | 4096.0 | 4096.0 | 1.0000 | 0.000000 | 0.409600 | 0.409600 | 2.1885 |
-| 3 | FedProto | 4160.0 | 4096.0 | 1.0000 | 0.000000 | 0.412800 | 0.412800 | 2.2056 |
-| 4 | V2X-HtFL | 4160.0 | 4096.0 | 1.0000 | 0.000000 | 0.412800 | 0.412800 | 2.2056 |
-| **5** | **MobiHet** | **171.1** | **177.3** | **1.0000** | **1.151278** | **0.017421** | **1.168699** | **6.2444** |
-| 6 | LwFedNIDS | 40776.0 | 40776.0 | 1.0000 | 0.000000 | 4.077600 | 4.077600 | 21.7866 |
-| 7 | PerFed-SKD | 311616.0 | 311616.0 | 0.3811 | 0.000000 | 11.876868 | 11.876868 | 63.4581 |
-| 8 | AFPHA | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
-| 9 | APFed | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
-| 10 | CANPerFL | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
-| 11 | FD-IDS | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
-| 12 | FedAvg | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
-| 13 | FedProx | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
-| 14 | NILM-FL | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 2 | pFedES | 1404.0 | 1404.0 | 1.0000 | 0.000000 | 0.140400 | 0.140400 | 0.7502 |
+| 3 | FedTGP | 4096.0 | 4096.0 | 1.0000 | 0.000000 | 0.409600 | 0.409600 | 2.1885 |
+| 4 | FedProto | 4160.0 | 4096.0 | 1.0000 | 0.000000 | 0.412800 | 0.412800 | 2.2056 |
+| 5 | V2X-HtFL | 4160.0 | 4096.0 | 1.0000 | 0.000000 | 0.412800 | 0.412800 | 2.2056 |
+| **6** | **MobiHet** | **171.1** | **177.3** | **1.0000** | **1.151278** | **0.017421** | **1.168699** | **6.2444** |
+| 7 | LwFedNIDS | 40776.0 | 40776.0 | 1.0000 | 0.000000 | 4.077600 | 4.077600 | 21.7866 |
+| 8 | PerFed-SKD | 311616.0 | 311616.0 | 0.3811 | 0.000000 | 11.876868 | 11.876868 | 63.4581 |
+| 9 | AFPHA | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 10 | APFed | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 11 | CANPerFL | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 12 | FD-IDS | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 13 | FedAvg | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 14 | FedProx | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
+| 15 | NILM-FL | 311616.0 | 311616.0 | 1.0000 | 0.000000 | 31.161600 | 31.161600 | 166.4964 |
 
 ### DAGSNet
 
 | Hạng | Phương pháp | Up B/xe/round | Down B/xe/round | Tỷ lệ chọn | Bootstrap MB/xe | 50round không bootstrap MB/xe | Tổng MB/xe | Mạng GB |
 |---|---|---|---|---|---|---|---|---|
-| 1 | TinyProto | 1664.0 | 1664.0 | 1.0000 | 0.000512 | 0.166400 | 0.166912 | 0.8918 |
-| **2** | **MobiHet** | **130.6** | **137.8** | **1.0000** | **1.151278** | **0.013420** | **1.164697** | **6.2230** |
-| 3 | FedTGP | 16384.0 | 16384.0 | 1.0000 | 0.000000 | 1.638400 | 1.638400 | 8.7540 |
-| 4 | FedProto | 16448.0 | 16384.0 | 1.0000 | 0.000000 | 1.641600 | 1.641600 | 8.7711 |
-| 5 | V2X-HtFL | 16448.0 | 16384.0 | 1.0000 | 0.000000 | 1.641600 | 1.641600 | 8.7711 |
-| 6 | LwFedNIDS | 162000.0 | 162000.0 | 1.0000 | 0.000000 | 16.200000 | 16.200000 | 86.5566 |
-| 7 | PerFed-SKD | 1594688.0 | 1594688.0 | 0.2861 | 0.000000 | 45.617687 | 45.617687 | 243.7353 |
-| 8 | AFPHA | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
-| 9 | APFed | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
-| 10 | CANPerFL | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
-| 11 | FD-IDS | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
-| 12 | FedAvg | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
-| 13 | FedProx | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
-| 14 | NILM-FL | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 1 | pFedES | 1404.0 | 1404.0 | 1.0000 | 0.000000 | 0.140400 | 0.140400 | 0.7502 |
+| 2 | TinyProto | 1664.0 | 1664.0 | 1.0000 | 0.000512 | 0.166400 | 0.166912 | 0.8918 |
+| **3** | **MobiHet** | **130.6** | **137.8** | **1.0000** | **1.151278** | **0.013420** | **1.164697** | **6.2230** |
+| 4 | FedTGP | 16384.0 | 16384.0 | 1.0000 | 0.000000 | 1.638400 | 1.638400 | 8.7540 |
+| 5 | FedProto | 16448.0 | 16384.0 | 1.0000 | 0.000000 | 1.641600 | 1.641600 | 8.7711 |
+| 6 | V2X-HtFL | 16448.0 | 16384.0 | 1.0000 | 0.000000 | 1.641600 | 1.641600 | 8.7711 |
+| 7 | LwFedNIDS | 162000.0 | 162000.0 | 1.0000 | 0.000000 | 16.200000 | 16.200000 | 86.5566 |
+| 8 | PerFed-SKD | 1594688.0 | 1594688.0 | 0.2861 | 0.000000 | 45.617687 | 45.617687 | 243.7353 |
+| 9 | AFPHA | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 10 | APFed | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 11 | CANPerFL | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 12 | FD-IDS | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 13 | FedAvg | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 14 | FedProx | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
+| 15 | NILM-FL | 1594688.0 | 1594688.0 | 1.0000 | 0.000000 | 159.468800 | 159.468800 | 852.0418 |
 
 ## 3. Computational cost
 
@@ -119,6 +123,7 @@ MobiHet ước lượng công việc hữu ích theo B21: c_train×(1+ρ), ρ=Σ
 | **12** | **MobiHet** | **66.108** | **6.465** | **ước lượng T3** |
 | 13 | APFed | 80.044 | 7.828 | toy measured |
 | 14 | NILM-FL | 80.044 | 7.828 | toy measured |
+| 15 | pFedES | 100.521 | 9.830 | toy measured |
 
 ### Client — DAGSNet
 
@@ -138,6 +143,7 @@ MobiHet ước lượng công việc hữu ích theo B21: c_train×(1+ρ), ρ=Σ
 | 12 | PerFed-SKD | 22.201 | 4.987 | toy measured |
 | 13 | APFed | 26.594 | 5.973 | toy measured |
 | 14 | NILM-FL | 26.594 | 5.973 | toy measured |
+| 15 | pFedES | 35.524 | 7.979 | toy measured |
 
 Server: steady-state một round; loại client training/eval và bootstrap. K=5343,C=16,d=64(BERT)/256(DAGSNet), Np=count ô train+val có lớp. Aggregation ước lượng số phép nhân/cộng/chia từ code; server neural step đo matmul bằng FlopCounterMode,100epoch,20batch/epoch như implementation. Ranking theo con số trong phạm vi nêu; không là ranking latency thực. AFPHA là cận dưới do chưa tính clustering; không suy thứ hạng tuyệt đối khi cost bỏ sót có thể đổi thứ tự. Bootstrap copula/KM16 cần gộp histogram/moment, Lloyd4lượt và factorization cụm; chưa đo, không tính là0 hoặc<5ms.
 
@@ -147,18 +153,19 @@ Server: steady-state một round; loại client training/eval và bootstrap. K=5
 |---|---|---|---|
 | 1 | TinyProto | 0.490 | Np d_eff + C d_eff; aggregation only |
 | **2** | **MobiHet** | **2.822** | **2 K C² + K C + 3 C²; weighted Q aggregation/normalization, excludes codec** |
-| 3 | FedProto | 4.481 | Np d_eff + C d_eff; aggregation only |
-| 4 | LwFedNIDS | 108.943 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 5 | PerFed-SKD | 317.368 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 6 | AFPHA | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation; lower bound, excludes adaptive clustering/distances |
-| 7 | APFed | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 8 | CANPerFL | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 9 | FD-IDS | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 10 | FedAvg | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 11 | FedProx | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 12 | NILM-FL | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 13 | FedTGP | 30242.259 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
-| 14 | V2X-HtFL | 33388.544 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
+| 3 | pFedES | 3.751 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 4 | FedProto | 4.481 | Np d_eff + C d_eff; aggregation only |
+| 5 | LwFedNIDS | 108.943 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 6 | PerFed-SKD | 317.368 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 7 | AFPHA | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation; lower bound, excludes adaptive clustering/distances |
+| 8 | APFed | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 9 | CANPerFL | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 10 | FD-IDS | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 11 | FedAvg | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 12 | FedProx | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 13 | NILM-FL | 832.560 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 14 | FedTGP | 30242.259 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
+| 15 | V2X-HtFL | 33388.544 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
 
 ### Server — DAGSNet
 
@@ -166,18 +173,19 @@ Server: steady-state một round; loại client training/eval và bootstrap. K=5
 |---|---|---|---|
 | 1 | TinyProto | 1.820 | Np d_eff + C d_eff; aggregation only |
 | **2** | **MobiHet** | **2.822** | **2 K C² + K C + 3 C²; weighted Q aggregation/normalization, excludes codec** |
-| 3 | FedProto | 17.922 | Np d_eff + C d_eff; aggregation only |
-| 4 | LwFedNIDS | 432.824 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 5 | PerFed-SKD | 1219.075 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 6 | AFPHA | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation; lower bound, excludes adaptive clustering/distances |
-| 7 | APFed | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 8 | CANPerFL | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 9 | FD-IDS | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 10 | FedAvg | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 11 | FedProx | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 12 | NILM-FL | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
-| 13 | FedTGP | 139846.550 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
-| 14 | V2X-HtFL | 190186.717 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
+| 3 | pFedES | 3.751 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 4 | FedProto | 17.922 | Np d_eff + C d_eff; aggregation only |
+| 5 | LwFedNIDS | 432.824 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 6 | PerFed-SKD | 1219.075 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 7 | AFPHA | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation; lower bound, excludes adaptive clustering/distances |
+| 8 | APFed | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 9 | CANPerFL | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 10 | FD-IDS | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 11 | FedAvg | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 12 | FedProx | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 13 | NILM-FL | 4260.608 | 2 K_selected (P+B)+(P+B); weighted aggregation |
+| 14 | FedTGP | 139846.550 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
+| 15 | V2X-HtFL | 190186.717 | FlopCounter: setup/final +100×epoch; excludes elementwise/optimizer |
 
 ## Nguồn và giới hạn
 

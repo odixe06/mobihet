@@ -1,0 +1,1045 @@
+{
+  "date": "2026-11-16",
+  "repo": "mobihet",
+  "git_head": "234afd2f227e631a4a50c77d03f896bb694a7579",
+  "staged_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "moved": [
+    {
+      "old": "scripts/analyse_b11.py",
+      "new": "archive/operations-20261116/scripts/analyse_b11.py",
+      "sha256": "0f720a0a67b96fa78855b463c5928b7313a970c7482e2c8054dc0c06cf32da36",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_b12.py",
+      "new": "archive/operations-20261116/scripts/analyse_b12.py",
+      "sha256": "c17f1c99bf5ef037d6cf474cfe6e143f12f6826496511aaf54454a6ec2714228",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_b13.py",
+      "new": "archive/operations-20261116/scripts/analyse_b13.py",
+      "sha256": "9fde99df1a81f042f623c9133f99eaa3cd42a2899b2a300156894eb3d8061f62",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_b14_diagnostics.py",
+      "new": "archive/operations-20261116/scripts/analyse_b14_diagnostics.py",
+      "sha256": "244446535cb2a1cd9bae41a95923460a42ebaf8ed999bcb525b2d3ac31882d20",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_b18_diagnostics.py",
+      "new": "archive/operations-20261116/scripts/analyse_b18_diagnostics.py",
+      "sha256": "4acf67b2c673c696335570b39bd29ce7bb9edeb90261012bed81c25ca106a636",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_b20_trajectory.py",
+      "new": "archive/operations-20261116/scripts/analyse_b20_trajectory.py",
+      "sha256": "4e53b312eb3377cb7e7b37117e462571a1c499ee47948b2e98a610d0a012de06",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_c10.py",
+      "new": "archive/operations-20261116/scripts/analyse_c10.py",
+      "sha256": "e520c5f033a1256f266ca25e15a24a65f529e35dcff97d4a63a799bfea31e46f",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_codec_combo20.py",
+      "new": "archive/operations-20261116/scripts/analyse_codec_combo20.py",
+      "sha256": "0aa8cb22e044cb1ea617e90dd11f1e4a147d8a37c33f546550130647b0271ad3",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_codec_combo50.py",
+      "new": "archive/operations-20261116/scripts/analyse_codec_combo50.py",
+      "sha256": "40377191fb20486deadbec76c41d5a7b4f802e255a4f7ba0c2b0259bc2cdc495",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_codec_pilot20.py",
+      "new": "archive/operations-20261116/scripts/analyse_codec_pilot20.py",
+      "sha256": "e6601d35265837731f0de2d6e7c6e73bcbe3b14e1666521949bf0ad3fe4a1845",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_core_bias.py",
+      "new": "archive/operations-20261116/scripts/analyse_core_bias.py",
+      "sha256": "09a5cd531a3895637c3101114815ffba2deaf47758a10ee6135fe32a3e12fd10",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_core_gaps.py",
+      "new": "archive/operations-20261116/scripts/analyse_core_gaps.py",
+      "sha256": "4a980574eec11eff8ee26360644b5dc7998a939d2ac634b2310aab6bbfd1d9a6",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_generator_oracle.py",
+      "new": "archive/operations-20261116/scripts/analyse_generator_oracle.py",
+      "sha256": "5d76e9895fcf5e2d901669ab78d4cabbf2493baafd736ea007640a550f767a80",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_generator_pilot20.py",
+      "new": "archive/operations-20261116/scripts/analyse_generator_pilot20.py",
+      "sha256": "58a31cbf167eb2008a0f88bfdde07a62d67459ac7d714690466148eb8cb7f2c8",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_km50.py",
+      "new": "archive/operations-20261116/scripts/analyse_km50.py",
+      "sha256": "3feb92c814fcf207bc281f93962902aa1deab3975ec8db3f2a83b83f86ba388f",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_km_lite.py",
+      "new": "archive/operations-20261116/scripts/analyse_km_lite.py",
+      "sha256": "f8b4452953e2d68ae9fcbdd53261d5a6860d6c51cdf40ace3cd4f38624ba6d9e",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_km_lite_detail.py",
+      "new": "archive/operations-20261116/scripts/analyse_km_lite_detail.py",
+      "sha256": "ce00835fee6fad1ab4831b7d9f0be1cdd7f18a22090949165449e7c9eca3ebcf",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_km_lite_pilot20.py",
+      "new": "archive/operations-20261116/scripts/analyse_km_lite_pilot20.py",
+      "sha256": "0d8cec58c805f4fb8a635a1532b1919ca96488ca3b35cce87838c5311cb4984d",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_km_pilot20.py",
+      "new": "archive/operations-20261116/scripts/analyse_km_pilot20.py",
+      "sha256": "404113e8355e12e3fa0d42f35e1711c3141b3eff6300f1921df25a54ee76e135",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_km_pilot50.py",
+      "new": "archive/operations-20261116/scripts/analyse_km_pilot50.py",
+      "sha256": "900c1dd775eac3b8e444775c1f386f355372e6a14a1069a417bd046bdf8e325c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_macro_first.py",
+      "new": "archive/operations-20261116/scripts/analyse_macro_first.py",
+      "sha256": "ddccd3dde351933151e716ca024c557393cb12bae5f4177bbc4f9366271aeade",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_mean_diagnostics.py",
+      "new": "archive/operations-20261116/scripts/analyse_mean_diagnostics.py",
+      "sha256": "53ee2a95e3e416ed2b2d65ebc248f65332bfca602821f5ef2541f1eb2ed468b4",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_r1.py",
+      "new": "archive/operations-20261116/scripts/analyse_r1.py",
+      "sha256": "55f7dc882d0202f0b0a3637a2772fe2679d4443d7aa4fa5e27d47e850f32374e",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_r1_km.py",
+      "new": "archive/operations-20261116/scripts/analyse_r1_km.py",
+      "sha256": "48a123c8dfe48252f318cb5809a2002c5277efa0c3fba776299c66f799356467",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_r20_v20.py",
+      "new": "archive/operations-20261116/scripts/analyse_r20_v20.py",
+      "sha256": "bfa3937b87f642d49d94c6683fb10122a379dc3288bd00462ef69f8bbd89e09b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_recipient_domains.py",
+      "new": "archive/operations-20261116/scripts/analyse_recipient_domains.py",
+      "sha256": "7391bc4067234274e6477ed83c4b0c6fb72cf1d2bf4af148495eb203a3201d42",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_sim.py",
+      "new": "archive/operations-20261116/scripts/analyse_sim.py",
+      "sha256": "f81e8da9cfac5aafeaff525f1e4e58a2a51e80b9b0089bfd51ef4718732c5bc2",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_temporal_quality.py",
+      "new": "archive/operations-20261116/scripts/analyse_temporal_quality.py",
+      "sha256": "7c03ab71310a9e00dfa4f2e903691458f7310b1bec756c124d6c75b61d479331",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_w20.py",
+      "new": "archive/operations-20261116/scripts/analyse_w20.py",
+      "sha256": "3eba0de6e2acc102cf8cf309f67ac66931aa55a159aef973f55dd8a0d8574115",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/analyse_y50.py",
+      "new": "archive/operations-20261116/scripts/analyse_y50.py",
+      "sha256": "bbc3a3e7de702862cb5ae4a3808fbe716822beee5c59a3d506569214cd92a61c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/audit_b18_resources.py",
+      "new": "archive/operations-20261116/scripts/audit_b18_resources.py",
+      "sha256": "85d4f9b740d21bc6dad654a85c239ff9f5c1cde80e55e808962fbfcc5f3b71ca",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/audit_c10.py",
+      "new": "archive/operations-20261116/scripts/audit_c10.py",
+      "sha256": "5c2cdee78e283c34799f14233fc6e2cfb45f1f1b356fa285088bf355ea0fed58",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/audit_l50.py",
+      "new": "archive/operations-20261116/scripts/audit_l50.py",
+      "sha256": "9ae966b7a4b9d7b5d124d9fea578b27fe8ffdbcc05b3da488e09285bd68dd9df",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/audit_macro.py",
+      "new": "archive/operations-20261116/scripts/audit_macro.py",
+      "sha256": "e22bac3a754438923f455fa5793eb978cb3b1e9e85f95489abb7a7064a3b9a89",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/audit_mean.py",
+      "new": "archive/operations-20261116/scripts/audit_mean.py",
+      "sha256": "51f813b8335f231bdcd4792858a6d395da993b078213ff0e0da8b55d028499a8",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/audit_sam.py",
+      "new": "archive/operations-20261116/scripts/audit_sam.py",
+      "sha256": "cd1694dc76ec2769a19828f138fce39d0be4a0b2fd1a355d3f4643acaecf4682",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/b18_phase.py",
+      "new": "archive/operations-20261116/scripts/b18_phase.py",
+      "sha256": "4aeb13d37ed0a38e0f46a8698c1013d07acc3d0b37b29ddfff67f872f16f03ef",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/check_b18_bundle.py",
+      "new": "archive/operations-20261116/scripts/check_b18_bundle.py",
+      "sha256": "ab80bfda72e32c8e416b164e19aefa1d76a04380072e41f1526221d621486b8b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/check_km_lite.py",
+      "new": "archive/operations-20261116/scripts/check_km_lite.py",
+      "sha256": "907c15f9f81d81bff7a4323b030fdcca45ae5f1d0eb9b7e665afe66d7aff24ba",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/check_sam_cuda.py",
+      "new": "archive/operations-20261116/scripts/check_sam_cuda.py",
+      "sha256": "cd7f70255a88ac65bb7f5093827872347b58949d0ab209f5337a10676c80d4da",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/compare_benchmark_r20.py",
+      "new": "archive/operations-20261116/scripts/compare_benchmark_r20.py",
+      "sha256": "6f188a4615003e60714bfe5654064105a6f2656b6c427cfe3c18264615bfc5a9",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/diag_boundary.py",
+      "new": "archive/operations-20261116/scripts/diag_boundary.py",
+      "sha256": "085965265e0a17e2d1822126b4fc27d0cac8708b13c4447b89edbcc0220bbc67",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/diag_gbdt_ceiling.py",
+      "new": "archive/operations-20261116/scripts/diag_gbdt_ceiling.py",
+      "sha256": "97604a5ab8c8a0253b6f2d413f4cda8a2ccd2e7477ed33e954cd7f33170427b8",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/diag_gen_posterior.py",
+      "new": "archive/operations-20261116/scripts/diag_gen_posterior.py",
+      "sha256": "40d35d036972d68cf257dfb291408c027640adb30261e630d07365ffc6aa7bba",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/diagnose_copula_marginals.py",
+      "new": "archive/operations-20261116/scripts/diagnose_copula_marginals.py",
+      "sha256": "0aa3e2c5dcb82876e43e27a52118c23a18af9eec16dbf6d0118ac5c815011f83",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/keep_y50.py",
+      "new": "archive/operations-20261116/scripts/keep_y50.py",
+      "sha256": "3e1e11ac089e6d9043b1e1a874e77c029b966e2e00d46f474b24c83c273fa56b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/preflight_forest_quantile.py",
+      "new": "archive/operations-20261116/scripts/preflight_forest_quantile.py",
+      "sha256": "cb8f70faf5a25d4451acf61754332c06623b76d8f489ae763f6086afa4c86ed9",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/preflight_l50.py",
+      "new": "archive/operations-20261116/scripts/preflight_l50.py",
+      "sha256": "67799331dd90a8319cb1c1ec982f7b70f13b7848c324dce73e4d3e12e2132a2f",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/preflight_l50_transfer.py",
+      "new": "archive/operations-20261116/scripts/preflight_l50_transfer.py",
+      "sha256": "77c5dce18d3140bee6154fd7031ec91a5969f76aeacdb359460575a9f1d7dce6",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/preflight_standard_copula.py",
+      "new": "archive/operations-20261116/scripts/preflight_standard_copula.py",
+      "sha256": "cc87c9181466e7113eec73cc151ec75a500ebcb7e53f2e65e6d876351babae86",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/preflight_y50.py",
+      "new": "archive/operations-20261116/scripts/preflight_y50.py",
+      "sha256": "0db3dccb7ecbb2677531af0553bc7bd9d1f5e6ae208390c4c4ea97ab8f6cac54",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_core_compression.py",
+      "new": "archive/operations-20261116/scripts/probe_core_compression.py",
+      "sha256": "4c4f223a12145e7ce9b5be8eb4257ae88a874bf081fee342dab8fd9bedd728dc",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_direct_generator.py",
+      "new": "archive/operations-20261116/scripts/probe_direct_generator.py",
+      "sha256": "0ab83812899759ea5a281c3d992c1ab14d1ee12fe125c1bebe817b135aadd8e1",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_information_gap.py",
+      "new": "archive/operations-20261116/scripts/probe_information_gap.py",
+      "sha256": "b6c61834e5028bc059add04b8c3ccd62265e86b5c0cff70323d2e9fbd87dc4fb",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_km_codec.py",
+      "new": "archive/operations-20261116/scripts/probe_km_codec.py",
+      "sha256": "141dc18072c643281165782600dff1b6c31525414031d4c90a3b1e730270fd4f",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_km_codec2.py",
+      "new": "archive/operations-20261116/scripts/probe_km_codec2.py",
+      "sha256": "b912149163905fcb031fbe0747ab1d84c61c1c323f9b679fa157697934866979",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_km_em.py",
+      "new": "archive/operations-20261116/scripts/probe_km_em.py",
+      "sha256": "a8d176ddf9ca6549eae77be9657977707e4e9152c07431bfc8d0d76357b1f9d1",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_lattice_generator.py",
+      "new": "archive/operations-20261116/scripts/probe_lattice_generator.py",
+      "sha256": "9cab3a04e2533e4e04cf1f9f8251ec3081b1fbd8af3b523b5b5fa0a5ca77a6be",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_marginal_copula.py",
+      "new": "archive/operations-20261116/scripts/probe_marginal_copula.py",
+      "sha256": "8085843fa909068aa58f3eeb598fde08dd4cc6aff97e93fb063c3392fb1b1e5b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_marginal_direct_generator.py",
+      "new": "archive/operations-20261116/scripts/probe_marginal_direct_generator.py",
+      "sha256": "f9585f38576ff33725021de91f051658a8c6956dd6ee865e13f9071bac12732e",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_standard_copula.py",
+      "new": "archive/operations-20261116/scripts/probe_standard_copula.py",
+      "sha256": "b6afc2c1d94dc52722e0911315971ab8f88e1b27aa95c947857a369f11433867",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/probe_transport_generator.py",
+      "new": "archive/operations-20261116/scripts/probe_transport_generator.py",
+      "sha256": "f5c3723dd571c3c5487ede88acdcb6fddcd39e6aff4bd5a431956fcff2b05c6d",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/pull_y50_checkpoints.py",
+      "new": "archive/operations-20261116/scripts/pull_y50_checkpoints.py",
+      "sha256": "fb657e49c86cdc41a764bec0e9b6d5462aec8dc5133962b57632013458d7b597",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/recover_marginal_probe.py",
+      "new": "archive/operations-20261116/scripts/recover_marginal_probe.py",
+      "sha256": "6e1467cfc7f7f00f7335da1581dd3580e3655763a7f3d8a6b560b403b65f351b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/report_module_screen.py",
+      "new": "archive/operations-20261116/scripts/report_module_screen.py",
+      "sha256": "31d9930250329b681cfb72804ac10f11998035906fb4f91a77a1be9fd9e6ae7b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/resume_km_pilot50.py",
+      "new": "archive/operations-20261116/scripts/resume_km_pilot50.py",
+      "sha256": "8409e6f4183151763493aac0381d7bf99b57976e46144a69d31e6fb5dcfb86b8",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/resume_standard_t4.py",
+      "new": "archive/operations-20261116/scripts/resume_standard_t4.py",
+      "sha256": "e535e5dce2926002d0d3561827299e4a73c061134c2276d08e94bb02c3654e87",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b13_pipeline.py",
+      "new": "archive/operations-20261116/scripts/run_b13_pipeline.py",
+      "sha256": "f787af12cc06df0b87aa063da4418580a80c8f50bf1927bb602149466c570ce9",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b18_pipeline.py",
+      "new": "archive/operations-20261116/scripts/run_b18_pipeline.py",
+      "sha256": "a6afd8da7b90ac71d7862a22bc5ce2f0822796c1c91084e793e6a086f569196c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b18_seed.py",
+      "new": "archive/operations-20261116/scripts/run_b18_seed.py",
+      "sha256": "83b3d105f1b804012a905d8a3a78b3f90f4f9e152694b8c0a825bb5bbf6867fc",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b20_full.py",
+      "new": "archive/operations-20261116/scripts/run_b20_full.py",
+      "sha256": "c792484b4425b0709be3b75f7ded6fc65be09a08858c107f8c9ab35bdec69987",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b20_sm50.py",
+      "new": "archive/operations-20261116/scripts/run_b20_sm50.py",
+      "sha256": "e56d1ab298cba2e67a133ac8a14715f0a8a13e078b17a9b092d80dcb2e0ebd16",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b21_chain.py",
+      "new": "archive/operations-20261116/scripts/run_b21_chain.py",
+      "sha256": "1ec5f5ab21c1f59af46bd21bc8a3c418e026b6428e4cd2bfaacf8f40a9b1a2c5",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b21_full.py",
+      "new": "archive/operations-20261116/scripts/run_b21_full.py",
+      "sha256": "85f23e2d46746ef3419db75ccbc5d8b6319d9a39e225a068bba343985e8c2aec",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b21_resume.py",
+      "new": "archive/operations-20261116/scripts/run_b21_resume.py",
+      "sha256": "a7f9d063daeb9a9f5e894f96721f1e4a0961974af3edfff9aa790471ae553a29",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_b21_transfer.py",
+      "new": "archive/operations-20261116/scripts/run_b21_transfer.py",
+      "sha256": "f9569798a60b261282ac396fa88ec0d11e352e21e5a67672249dacf2d6239f9c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_c10.py",
+      "new": "archive/operations-20261116/scripts/run_c10.py",
+      "sha256": "314ac3701e3169a7c76983256b8e2c01532bb4af9c60c70e138b80e312c05bd6",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_cbb_s41.py",
+      "new": "archive/operations-20261116/scripts/run_cbb_s41.py",
+      "sha256": "2e42a4c44a90f2dd50d00c8f0c2c439a35fe0654054c7b483735fd8953a7aff1",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_codec_combo20.py",
+      "new": "archive/operations-20261116/scripts/run_codec_combo20.py",
+      "sha256": "d8d82436da25ddbb73a94212ec0968c6623baefcef55a98bd6af71738789c3a2",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_codec_combo50.py",
+      "new": "archive/operations-20261116/scripts/run_codec_combo50.py",
+      "sha256": "748cbaf3845f3c417148abd6496a5091724f7cadb36f8aa4d3dd0d813ff225b0",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_codec_pilot20.py",
+      "new": "archive/operations-20261116/scripts/run_codec_pilot20.py",
+      "sha256": "53301c6e80061ba8fbac6c8667084827a9dd47981146fba8a734da124f84d3a8",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_f50_s43.py",
+      "new": "archive/operations-20261116/scripts/run_f50_s43.py",
+      "sha256": "834318437c25e8e278dfb3ef92bde6699a02d22bd92c9ac88d69293c51d6f724",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_forest_t4.py",
+      "new": "archive/operations-20261116/scripts/run_forest_t4.py",
+      "sha256": "5d9d58e462f1413e8337e47fa1815b2c40e45265b027074267997b8103d95006",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_g1_pilot20.py",
+      "new": "archive/operations-20261116/scripts/run_g1_pilot20.py",
+      "sha256": "1e7a0513fcc15e8b89397cb7e05720ad5a181ba116f7c8ed7037e81d71f6f8ca",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_generator_pilot20.py",
+      "new": "archive/operations-20261116/scripts/run_generator_pilot20.py",
+      "sha256": "cd00af4eb27db8d60a3ec18559ee5877f14c4e4c3f8b51b076d2f03687a7ee4b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_generator_utility50.py",
+      "new": "archive/operations-20261116/scripts/run_generator_utility50.py",
+      "sha256": "99b5a6254192bdf9e2aeb8545b3b733275890ed2e7bc17c084164a148c64e84b",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_km50.py",
+      "new": "archive/operations-20261116/scripts/run_km50.py",
+      "sha256": "6ddda62a22c9bcf267ec5d5a0f1a3e85e7c63a8d091f19cc0b84a7262827977c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_km_lite_pilot20.py",
+      "new": "archive/operations-20261116/scripts/run_km_lite_pilot20.py",
+      "sha256": "799bdce0e2f589b77c41ba40a85cab7e990e1fc551cb3aee9b52bcfd7db9f3cb",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_km_pilot20.py",
+      "new": "archive/operations-20261116/scripts/run_km_pilot20.py",
+      "sha256": "a362e258396502ea79ded74b3ca2fe71634ffc1119db7596960b102a5584715c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_l50.py",
+      "new": "archive/operations-20261116/scripts/run_l50.py",
+      "sha256": "5e285f98293c5f31cb40ecde4ed4eed0e4e3dae5fe28a1d9ebdbaf50386ef595",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_sim_kaggle.py",
+      "new": "archive/operations-20261116/scripts/run_sim_kaggle.py",
+      "sha256": "dcde28133730dabcaf66e5a7a28b280995e614575293caf7b93dbf249b44496c",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_standard_t4.py",
+      "new": "archive/operations-20261116/scripts/run_standard_t4.py",
+      "sha256": "38d575a8762714775427c11aea7289af1681d4eff7c541df02042b4a78856dd6",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_t3_s41.py",
+      "new": "archive/operations-20261116/scripts/run_t3_s41.py",
+      "sha256": "30f767cebdd547a8e0b63bb05c3b2b5e5a4579dd5fd9b1f970bdb0b619c19bd7",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/run_y50_transfer.py",
+      "new": "archive/operations-20261116/scripts/run_y50_transfer.py",
+      "sha256": "065add4864dbddf7fcda92d50c8ed431748da6a1e1cabcf10f8f9a138bc1baba",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/stage_l50.py",
+      "new": "archive/operations-20261116/scripts/stage_l50.py",
+      "sha256": "df7831e4ddf74b1301ba758f31fb8e1e7976546b89e4f345528d4ba3353f1612",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/stage_y50_checkpoint.py",
+      "new": "archive/operations-20261116/scripts/stage_y50_checkpoint.py",
+      "sha256": "8b7ddfef9cd10951bebe91e7edb19c446a731060078cc045cfef2e97f8185805",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/verify_forest_sampler.py",
+      "new": "archive/operations-20261116/scripts/verify_forest_sampler.py",
+      "sha256": "7e672ab95509e64ea7242a4858a10f511ef78af405a1f852f22ed63882eb86dc",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/watch_b20.py",
+      "new": "archive/operations-20261116/scripts/watch_b20.py",
+      "sha256": "f5c61c2e7d96294c1099239afce036f8e38f68f8966e37c145b18d1bddad8ac1",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/watch_chains.sh",
+      "new": "archive/operations-20261116/scripts/watch_chains.sh",
+      "sha256": "94e1588a6899bf164038be826d336cb62c261e909cf972adc2bdc869d395b30e",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/watch_codec_g1_pilot20.sh",
+      "new": "archive/operations-20261116/scripts/watch_codec_g1_pilot20.sh",
+      "sha256": "967fe2a82d1585ad86299d457e82985b4e8912258cb3d3ef174edf1242ab4bcd",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/watch_collect_screening.py",
+      "new": "archive/operations-20261116/scripts/watch_collect_screening.py",
+      "sha256": "7cfefbc98ddba2b50b14c1d7a1a770acf687c566145d4684c74117e3f0da7166",
+      "kind": "retired-script"
+    },
+    {
+      "old": "scripts/watch_sim_batch.sh",
+      "new": "archive/operations-20261116/scripts/watch_sim_batch.sh",
+      "sha256": "de97c1103c98b279a5e50f48e0509ee1d69de9c2b4556cc5339619acc9ad60eb",
+      "kind": "retired-script"
+    },
+    {
+      "old": "docs/operations/backup-inventory.json",
+      "new": "archive/operations-20261116/receipts/backup-inventory.json",
+      "sha256": "6165e3ac2ab4001c3e5a8bfa1caf856081fbbcba9587f7cf63815ca8d0f20623",
+      "kind": "historical-receipt"
+    },
+    {
+      "old": "docs/operations/backup-reboot-20261116.json",
+      "new": "archive/operations-20261116/receipts/backup-reboot-20261116.json",
+      "sha256": "47a97a24ffcf082ebcb0d348448bba94bd9461e61fafad974531ed411f60d916",
+      "kind": "historical-receipt"
+    },
+    {
+      "old": "docs/operations/pfedes41-launch-20261116.json",
+      "new": "archive/operations-20261116/receipts/pfedes41-launch-20261116.json",
+      "sha256": "de1abd5390f1434bbe8f166af63a00a738ebda623a007068302831e25aabb2b7",
+      "kind": "historical-receipt"
+    }
+  ],
+  "retained": [
+    "scripts/analyse_b20_cohort.py",
+    "scripts/analyse_core_bottleneck.py",
+    "scripts/analyse_f50.py",
+    "scripts/analyse_m20.py",
+    "scripts/analyse_saturation.py",
+    "scripts/audit_b18.py",
+    "scripts/audit_f50.py",
+    "scripts/audit_m20.py",
+    "scripts/audit_r20.py",
+    "scripts/audit_screening.py",
+    "scripts/audit_sim_batch.py",
+    "scripts/audit_uplink.py",
+    "scripts/audit_w20.py",
+    "scripts/audit_y50.py",
+    "scripts/b18_partition.py",
+    "scripts/bench_grouped.py",
+    "scripts/build_sessions.py",
+    "scripts/cache_subset.py",
+    "scripts/check_docs.py",
+    "scripts/check_screening_startup.py",
+    "scripts/direct_generator.py",
+    "scripts/f50_common.py",
+    "scripts/gen_notebook.py",
+    "scripts/kaggle_cli_bounded.py",
+    "scripts/launch_repeat20.py",
+    "scripts/marginal_copula_generator.py",
+    "scripts/marginal_direct_generator.py",
+    "scripts/measure_bootstrap_codec.py",
+    "scripts/p20_common.py",
+    "scripts/preflight_f50.py",
+    "scripts/preflight_q20.py",
+    "scripts/preflight_r20.py",
+    "scripts/preflight_w20.py",
+    "scripts/probe_attack_twins.py",
+    "scripts/probe_pair_generator.py",
+    "scripts/pull_checkpoint_parallel.py",
+    "scripts/q20_common.py",
+    "scripts/report.py",
+    "scripts/research_metrics.py",
+    "scripts/resume_checkpoint_cells.py",
+    "scripts/run_bounded_python.py",
+    "scripts/run_central.py",
+    "scripts/run_f50.py",
+    "scripts/run_fl.py",
+    "scripts/run_local_guarded.py",
+    "scripts/run_p21_recovery.py",
+    "scripts/run_q20.py",
+    "scripts/run_w20.py",
+    "scripts/run_y50.py",
+    "scripts/sim_fold_val.py",
+    "scripts/stage_r20_input.py",
+    "scripts/standard_copula_generator.py",
+    "scripts/w20_common.py",
+    "scripts/watch_kaggle_batch.py",
+    "scripts/x20_common.py",
+    "scripts/y50_common.py"
+  ],
+  "protected_sha256": {
+    "core/optim.py": "059988e800248771f83ae76cdb22bd0dee30e460c2e0b5893bed7a6557dfecdb",
+    "core/local.py": "6d32a931fa5d10c59215d95e0ce6f469be63fa4ce4e23347f384572bcdb02c75",
+    "core/flat.py": "04a73ffcc8885acd28b850c6ea49a25ebaa223e48faceae6d2e9ed4a91d893b2",
+    "core/fl.py": "ba58af2c6ea137f95b89bb6ccc8c9745fdc8f59eb708f1229eae0d40de5fa10a",
+    "core/evaluate.py": "2023aa189b4c615742342ff70d2cd68b87624754f0b38dba08c871f00c440a1f",
+    "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "core/data.py": "f4a9dc14f3002d0a1dcff774d9df8c9b41c3084396611276cd357e2e94540215",
+    "core/dagsnet.py": "a2df978113fb5d6634559a28e08776573ac6c73a84561f74cc83c529ad131919",
+    "core/grouped.py": "6dcaee78b95dc710c1163a7df0aa3811469fabd646f3c7591bfa037f3a3fabb4",
+    "core/metrics.py": "2e13613738cdb89570f5cdda25813b506e632cfd50fd1f2d50f2aa040da47917",
+    "methods/mobihet_prior.py": "76d610afc9cf6a1fb24485b4cf3c73be96ca037e92fdf13ddff8b79d07356d25",
+    "methods/mobihet_sam.py": "545356e348dce0c025345c4347428162f5634bb4a080c2298b175fb579dd44c5",
+    "methods/fedavg.py": "bfe0f10ec2c3ec5b7cc90f3c1d44fe2eacb41142d287ba64133c01deb0f7d52b",
+    "methods/mobihet_rstudy.py": "a2baa29aeda108b5435cfa2b701b931586f2cc3d85f15c484820e6881714379c",
+    "methods/mobihet_mean.py": "d107c15891159ecda88ace2cc0cf9b0bc603b22f839c49ab20ed0b4e30e5ade7",
+    "methods/mobihet_diagnostics.py": "8d32a58bb09baf6820352158453ea77aa958ce92ff75b747def7e9c1ed393f24",
+    "methods/mobihet_study_wire.py": "4ae51a06bf0b0d39691dd2d46b8df8f8ee8f935121f09ad8cd61dd4aa13ce448",
+    "methods/mobihet_study_diagnostics.py": "9db42b123bb99b66fc7cd8c20a23310d3ee555cee682bc3398166ca9a1d7adf8",
+    "methods/mobihet_wstudy.py": "28c28aef2999f36899653332b81bd4a93ef11ccaedee2b98739a55ac81b67e9b",
+    "methods/mobihet_compute.py": "8ff630415f7f7588f6084f558b7aeb73c098cd171964086afc0b9e793fdd396a",
+    "methods/mobihet_sim.py": "e5f3f45bf29e7203c2b9e2b2a9966b049013f58d145f5c775f77f1a3fba2fb27",
+    "methods/mobihet_rstudy_data.py": "3a86e857b74dddbed50da87d102c7831618212cf3624b92c2bbf1850c22268de",
+    "methods/mobihet_copula_standard.py": "e8a7939f52d0ec8d487a4125219be21dd0d49e59711584968623f270840dd112",
+    "methods/mobihet_boundary.py": "2f534da10e2e6641a47c66aab85022757f6372ea72f25050f1cc724d9002f9ca",
+    "methods/mobihet_study.py": "cdb7527c25a6d8b959691e1272fa454980bc795507891d4b9d0a89f7a69bf975",
+    "methods/mobihet_external_diagnostic.py": "38ca087bb05d64b545fc012e4ca82737b5f7bb24aa4cb080558cb75ed7358583",
+    "methods/mobihet_uplink.py": "1ba61e6102d01daaa9032d96ddf974492f6d8ea8c073fdd318d88b12657d5913",
+    "methods/mobihet_refine.py": "1e97b83c4722e9b7e78dc53bc6cf1ca2c161bcefda24de4f651d6c5e325c4860",
+    "methods/mobihet.py": "246b32790a85a1fe18017ad03375c7070cc88129ca8764993e2499d0862dc4a1",
+    "methods/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "methods/mobihet_source.py": "9858f5070948ba583788d1f81a431cccf950fdbb5d3681b1ac973cfabc436e20",
+    "methods/mobihet_next.py": "5a14c4fb0815b87f20dca36ca02ca898ea08ad7d5c5a207bd45eb4910afb7610",
+    "methods/mobihet_teacher.py": "f8c4df77c20b1d6fac9120fd0438448c4f993eb9e6ad582d987cac46cb9aa465",
+    "methods/mobihet_compression.py": "c109ae8378a9b4406ea3c078f8d86c4af3b0a9e249dbdd00f3c47d9801024645",
+    "methods/mobihet_lossless.py": "7c859a3f53e239241f6f20aabd3c86c876f356b013136e25c237de8c18b05e69",
+    "methods/mobihet_forest_quantile.py": "c9a0142f45aaaa927ac35b136afe994056066533b149dadd42bb6afde274e23a",
+    "methods/mobihet_macro.py": "d9b6605723ee702a961da0ec5096053e26312dc38a838ea60536f888759334f4",
+    "tests/test_marginal_direct_generator.py": "afb9c96dada2fcaaaf80bf87c8a25474e44d5efc2680ccdd7d8742610329815a",
+    "tests/test_checkpoint_transfer.py": "587f012f21eba241ba7d7423974410f1c3da7f355ac21cd680248473c8cb7e5d",
+    "tests/test_mobihet_macro.py": "f40e65822885ff9b3f8e2d834237467b3b5ad9952373af744aecc918e1ef8998",
+    "tests/test_units.py": "cfb30498a798de9c96782ded78120b4d9f3696114a6daf7edba947ab619a9e8e",
+    "tests/test_mobihet_next.py": "688d01ce3c08ab49e54212b725341daa532b1dcc211b9ec29c69bcdc95999421",
+    "tests/test_mobihet_source.py": "c5d95e40e8989df01951f1f52a22623cce6158d3b29b094b3776e7a21bea17ef",
+    "tests/test_marginal_copula_generator.py": "ce793002a0c7cc0b345cf14d3468820a3c7cebd06b38c583170c6fb62ce10cd3",
+    "tests/test_standard_latent_torch.py": "5086606305343206510ac03e31f85088c0b822c1ddf4f7dc3ab35e8198ecd050",
+    "tests/test_grouped.py": "d7745f9361549b9cd2d75d4b6e9529a185d136d5264ad9082a3425eb43e5e110",
+    "tests/test_r20.py": "97e9cd60dff5312babad59db18e84ec270a3792535cd327973d874ba1b369aa8",
+    "tests/test_mobihet_teacher.py": "00e32a56bcc4928c48b230d29c1a83714763ec8da5935a8e8d46eb4bb729356c",
+    "tests/test_mobihet_uplink.py": "88b05b6556ac4add4f649fbd0ba893178cad1e013f8e3ef256ed8530cd115d9a",
+    "tests/test_mobihet_compute.py": "6da1dff49667533dc99e1b53e9d4b00aeb4fdcef2fd11d01f3db3b266ac464f4",
+    "tests/test_pair_generator.py": "0163bd02be958a2acdd203d503415672e923520542ef049e3f0115b9031047b3",
+    "tests/test_mobihet_mean.py": "27bb350ac7fbb6206d33203fe360d3d936cc9bafe2062a71d8258ec0931ef93e",
+    "tests/test_wstudy.py": "97288471494c845085d18592b555adcfb9f1351e2cee7a34af7d27a4b14c43ff",
+    "tests/test_direct_generator.py": "b73ebdc1be3d2905ff964872cb4240e3dec9172e2e4aff7d7dff65ae3536f0c8",
+    "tests/test_data_npy.py": "83959f34b5137327e9f9c787f4ae4cdea8fe14ba7670ab4fae9469391858377f",
+    "tests/test_r20_input.py": "a755e56b83dea3a1ad9098e2414ae6bb4581e42bf461aebd0ea21286da05a4c1",
+    "tests/test_mobihet_diagnosis.py": "0057597eaa87bfc5a854321d2924797c75e9516d86e8dbe833a4ac879d2c1584",
+    "tests/test_lossless_cdf.py": "cc99acf5035225ea60d2ea134484649d4efdc358f0e2f8202831e398dff353ed",
+    "tests/test_mobihet_sam.py": "9819467a1bbd4fc2d82d4fe288f4b2a759dd7cc502b85fe4f8ae0a9871dbe632",
+    "tests/test_standard_copula.py": "2ce745e42da6da27c55d12e1c2edb7acd83720cd025b3dc68355aba659d3b484",
+    "tests/test_mobihet_refine.py": "ecf530b05abdcdb57a84959a1dd3f8fc16f5fee3e21d7c712429f170937fbbd3",
+    "tests/test_y50.py": "100c4bef642b8053d7093f102d9d59837cad6a69ff7cf6cb0e5cf1b6a306c049",
+    "tests/test_r20_audit.py": "ced7baa818ab06d6403dc524ccf12c9a4854988df77444bcd3e3011247e0a1eb",
+    "tests/test_forest_quantile_torch.py": "9ee55fc22b28931d16cef5f7d5bd5cf7c5274395851d0ee1ed8616c5599db7b1",
+    "tests/test_uplink_audit.py": "2401c0245e07ca10743c11bd76f924e31d01ca8fdf5d86ec1a29bde38fa79c60",
+    "tests/test_q20_targets.py": "46892f7b5d272af1304604469ac2978c6a8ccda0d5031699be118d9fb895942b",
+    "tests/test_methods.py": "5349416c9fbbfdfcc3fb980ea572174e002fc39b031e49bac91e9b08921d2428",
+    "tests/test_mobihet_study.py": "37b08fdf8a1e3d5069356b40de36a64c589700829c579231e561d71acf74b0ba",
+    "evidence/research-data.dvc": "9319c1395e7807ffdfb9289b2a8262d66151e8e058e8c74a663be3f25e535bff",
+    "evidence/m20.dvc": "09485274a5b44da461439d4f32b12ad4eec4347a441645b807f6ca19a129af6e",
+    "evidence/m20-summary.dvc": "7a4f3645328688145d00a55cf8305059f2c7112be9b7ca8ece8bacfb8ee8fab7",
+    "artifacts/sim-kaggle-b12.dvc": "8a0791864270c2ba3d27cda3ac46b5fb2fc903e45ff985134f02720ab8444c44",
+    "artifacts/sim-kaggle-b7.dvc": "769a7f826839004d64b62fbb083c486114ec19c8079e676b7ab7bfc0a0ec751e",
+    "artifacts/sim-kaggle-b2.dvc": "66555becff16c269d94a3a217b578c378040f5b5841178343b0fdfe372d487b8",
+    "artifacts/sim-kaggle-b17.dvc": "675aa41e64e91beeea09fc262951bd28e9f8257c341c836226a2c32d005b94d9",
+    "artifacts/sim-kaggle-b6.dvc": "5d735f2e006190ba3c0cb3f047a5e5dc2ff0f8ee875c772e609341bed0ae08fd",
+    "artifacts/maintenance-20261116.dvc": "451339ea0ba18cbca13db718505db416c12fc6cdbe94655b2d8a46f81c94ff43",
+    "artifacts/sim-kaggle-b9.dvc": "fe1d2d56f01dedb04762c737ac1743ec8cd1bccdf136550e0dcc48590e6e1304",
+    "artifacts/sim-kaggle-b10.dvc": "0533bf5bc14c2a04cf6b830067fcb153349d7d24177f3db06256ca9e29f3b82e",
+    "artifacts/sim-kaggle-b15.dvc": "7347de4552db7133449b31aa848e61bed39fae7987019baea4dfda0ef2c00d6c",
+    "artifacts/sim-kaggle-b14.dvc": "8638b1277c6aad48d32755e7819fb2ece637d36f24e37ab04c209bf9c53aa4da",
+    "artifacts/sim-kaggle-b3.dvc": "c287e83520f4c140c801c8afb02b2e17974338ce37c274c0e4b60ece1d1650e1",
+    "artifacts/sim-kaggle-b8.dvc": "5a2b68ef9c308f25ba52971c50031110f2a3bcbb019deb4e3317bea4d9baefa5",
+    "artifacts/sim-kaggle-b18r1.dvc": "144ea3c071614f68772d987e781717155a62b8e9d80d3a1fdb29cacaaf0cee51",
+    "artifacts/sim-kaggle-b16.dvc": "b1ef3fb7414b65339a1d007b7befb82383341fdfdaf136970df242a5e1531e89",
+    "artifacts/sim-kaggle-b13.dvc": "570adc1206b92e04b284d3b758044e2cf2bc3e36af0fd4a8c19e44ca8953bacb",
+    "artifacts/sim-kaggle.dvc": "54985042e5e259c87426d6cb62362eb6d02c4666068d1e24755bfb30813f2222",
+    "artifacts/sim-kaggle-b5.dvc": "8f177f576314752106af0535ded346619bc8ec115bd4cebbebecb23377ccd29b",
+    "artifacts/sim-kaggle-b11.dvc": "3699033151d76f8db7a22fa852d5496f9597bd988df79b06bf8b5e4b4af38804",
+    "artifacts/sim-kaggle-b18.dvc": "95e8c4ed2128df0169b77b894233fb0aa2fb5722e5086bce68aed867e752c104",
+    "artifacts/sim-kaggle-b21.dvc": "efbc3d68afb5dcbddeab19c30c25c581f6d86fab878b57a2a49a53a625992c5f",
+    "artifacts/sim-kaggle-b20.dvc": "c0242328d5a3ff769284106efa47c78dd28bcd893de656d6d26aa9d41a8492e7",
+    "artifacts/sim-kaggle-b4.dvc": "260afb452d8909f5f90b9fe88d4026f70c497629893e407d8670a9a1e1823dbe",
+    "artifacts/b21-t1/mh-k-b21-t143-r50.dvc": "a878452363e4aca1992a82a12a5347defefd830092027cd3034d86cf8d700f1d",
+    "artifacts/b21-t1/_receipts.dvc": "71246a424b91a844a8d525b68ef658a22b3387e99d6c4820b9d42ec8cada77e4",
+    "artifacts/b21-t1/mh-k-b21-t142-r50.dvc": "a44def1f874caffa0f1cb2e0976549144b59741c54fb9ed95a7be994c38767ca",
+    "artifacts/b20-full/mh-k-b20-sd43-r50.dvc": "b1af12c50299830099ab182c17cf999f788b3c2ef26d225c5eee43b95b318eda",
+    "artifacts/b20-full/mh-k-b20-sd42-r50.dvc": "4e88aac238f73aacfe198f4c2d894ba985eba900d5c7a2a11ede6c89057fba30",
+    "artifacts/b20-full/mh-k-b20-sm42p-r20.dvc": "25478c2acb399999b39b82ca332f6fdf80dc4bcab96b96c0c5e0d27980ac54f3",
+    "artifacts/b20-full/_receipts.dvc": "a5074fd4e8f9fe67968a6470f8fd89d1716a680f2c3226a15f9f6ca6fc9c1ead",
+    "artifacts/b21-transfer/mh-k-b21-t142-r50-x25.dvc": "cc781cd65d2c7452fb8576f681ff4f10e0660157f2d420d8c11371ed55ef50f8",
+    "artifacts/b21-transfer/mh-k-b21-t143-r50-x18.dvc": "cbb0d191648830c227f93eaae6e57c5263d0bab092ae8d70c95dd92397c9fea3",
+    "artifacts/b21-transfer/mh-k-b21-t3p-r20-x27.dvc": "a3c1b0cb52e66866a8871ba11bd202795fcd8acd094556d74cd5de343c65b96c",
+    "artifacts/b21-transfer/mh-k-b21-t4fp-r20-x24.dvc": "a5f14ef29e2101312f53100a6fca044671b0b766ce007e39a598047c94cb6992",
+    "artifacts/t3-s41/mh-k-b21-t341-r50.dvc": "e41637422956725ad40f0895217c1e09727768c15845dfdd19ade0c9e89cec5c",
+    "artifacts/q20/mh-q6-mixed-input-s42.dvc": "9f50780222ef2886c692849f9a0881b3f0a97e72040f73b24b3ed550f4e74a89",
+    "artifacts/q20/mh-q5-mixed-class-s43.dvc": "479ea515d9e7789ba763a1833843dd3b989a1a0ae700f328f91389bd4237738d",
+    "artifacts/q20/mh-q3-query-s43.dvc": "a60515a3bb41e4e74ff0ceb1a2fa08a7adb9a71b43e2bd3339e676915112c130",
+    "artifacts/q20/mh-q0-stream-s42.dvc": "05e896f0f26bd427765d818fdd68e2394dd20060b4f2300301b3bed998f191ab",
+    "artifacts/q20/mh-q15-strength-s43.dvc": "f710679dc59a0035a8849dc5a4953dbaf83e34ab848fb261769c2fddde4e917d",
+    "artifacts/q20/mh-q9-input-sqrt-s43.dvc": "51e4c4383e5099e9d800f7ff7e1f02eac0cbaea9bdd9d66a8e1cf616a2e425d7",
+    "artifacts/q20/mh-q1-stream-s43.dvc": "eae6a255cce79e95e4a1d3c4ac73671a3b07f44e2f223c9a72a5e30864648a7d",
+    "artifacts/q20/mh-q7-mixed-input-s43.dvc": "e888660247995d2a72acb090cdf2155ffd47fac7151b9fb3acd8ac245da66418",
+    "artifacts/q20/mh-q2-query-s42.dvc": "70992e1ad959223206d00344d056b59ad5d47a72f864a93857616cbb31fdacd2",
+    "artifacts/q20/mh-q13-margin-s43.dvc": "99453339f4896d761e2ed5ce46bd502f6105ef64927866000a520a285853a252",
+    "artifacts/q20/mh-q4-mixed-class-s42.dvc": "1f30d6d9edd14006b2e44e97f2bc009a39f6f7650bb26a53b8af30c5e41c96d8",
+    "artifacts/q20/mh-q12-margin-s42.dvc": "c88e608d7989c2827218cdc03c8f6428f6642078973c431c403000a2309a7120",
+    "artifacts/q20/mh-q14-strength-s42.dvc": "4291fdb746a338b1a91a95d97aa3873b8ffb6508189dd6b3d54a71ed3b161b2a",
+    "artifacts/q20/mh-q10-real-s42.dvc": "3706eb4ea4698eb57f5df8424e5b9d381e6bd6a49add4c4b4e6930969596ef41",
+    "artifacts/q20/mh-q8-input-sqrt-s42.dvc": "05089f087ba4f510d2f49a9c2105c641dbf23dc69912cf909fab109f24354dc8",
+    "artifacts/q20/mh-q11-real-s43.dvc": "ba30ba64e683f1ebab7bea452e8480741cf0e78ecdbc8a29da6541519674bfb2",
+    "artifacts/b21-full/mh-k-b21-t4p-r20.dvc": "77cfac1562d1bef41c82bbc10388c28eef052973c141e14feac127049c0ba821",
+    "artifacts/b21-full/mh-k-b21-t4fp-r20.dvc": "9dff7c4f800c2db41695834b49616e4db7ebeb81d9cd0b0fa0901428c3dff9c4",
+    "artifacts/b21-full/mh-k-b21-t3p-r20.dvc": "1a93997203d6441d88dd04662b54ce52c50fd2dee362624bf575a6eceef896b9",
+    "artifacts/b21-full/_receipts.dvc": "17618a60ae23976bd77b2887765adc52750e278750c199ee0934d42d9ca17d34",
+    "artifacts/v20-recovery/mh-v1-val-real-s43-guard1.dvc": "8814c9b86e1afe38adcf80cfaf8bcca1c7146082fb985a43d16b0b63c543a8d7",
+    "artifacts/v20-recovery/mh-v0-val-real-s42-guard1.dvc": "1243c2e6215177496bc34a44c0747445e4788139e05dcf7076932c741a6c8e0b",
+    "artifacts/n20/mh-n2-gate-soft-s42.dvc": "159e016ba265c50ad7643e90cced15c6a1d1dd5500bf92ce5c5728dbaee2cd0e",
+    "artifacts/n20/mh-n6-gate-fallback-s42.dvc": "a00e956a73494ee314a1eaed859fc3bb525ee4269c007d5fa1eaf9179a4bd4c0",
+    "artifacts/n20/mh-n1-noreal-soft-s43.dvc": "28f6d3f6ee435154acb322b954d5ac24bfed863f29d5bbf60202da9710ced56c",
+    "artifacts/n20/mh-n3-gate-soft-s43.dvc": "cc8483562291ba3e8bb0cb2411c6e8c6c429a11075ca850323e1bb7c39c9856e",
+    "artifacts/n20/mh-n0-noreal-soft-s42.dvc": "56d3e9118965970f9db3c2814e3a85fd05af8b9f10f2bd54188bc2284e897b61",
+    "artifacts/n20/mh-n4-noreal-fallback-s42.dvc": "542f326d60fe8947cb22fd9c7ab9169c497e7994928d1caea343f274ccb9c2c1",
+    "artifacts/n20/mh-n7-gate-fallback-s43.dvc": "03275f26d2cbcb3e2162171e5dcca8ed0cd39062ff52fce57ec174a13398f69a",
+    "artifacts/n20/mh-n5-noreal-fallback-s43.dvc": "597c502f3dc39034e1402ae264f8fcbc2f1814ef52ae676bc64f113dd28fd476",
+    "artifacts/v20/mh-v5-val-mixed-input-s43.dvc": "4f7f7db18bdf695d0f3052ba9cdd9371e947d4a3407d40fbc8405ad4e9a84816",
+    "artifacts/v20/mh-v0-val-real-s42.dvc": "0f24785df0ba0ee5e95ea851bd881e09c8bd365bda5d7c6f4105646f96fcd96d",
+    "artifacts/v20/mh-v2-val-augment-s42.dvc": "e9a6fac4ee6b3476a65cec0a041087e8f7917ad5cc9ab2282ef730af76d5cd4f",
+    "artifacts/v20/mh-v3-val-augment-s43.dvc": "73f4cebcbab0585458c63085eda3cfe7e52e8df25239e674ca4b81ba67af55b3",
+    "artifacts/v20/mh-v6-val-margin-s42.dvc": "48fe5832533be8f6891d8b3898a2b957cc1b517527205b155a6c1f52644a3ff3",
+    "artifacts/v20/mh-v4-val-mixed-input-s42.dvc": "9662e554ee269ea74520c46b832a463188eaa0cc6220d658a4861ba35c771189",
+    "artifacts/v20/mh-v7-val-margin-s43.dvc": "67435209cf8ff347ae62dd942c29a431be5f49280e31dcfa51a3d1a7b74b5069",
+    "artifacts/v20/mh-v1-val-real-s43.dvc": "877d5906db5da339ba5d7216053708ff8ccc90b1d8c89241dc9fde2f84888ac6",
+    "artifacts/km-pilot20/mh-k-km16-s43-p20.dvc": "acd609034b653dcc6649c7dc0ba6dd6130ccdaf647b03fe28e520bea100af800",
+    "artifacts/km-pilot20/mh-k-km16-s42-p20.dvc": "b1d313cbde55112996d9a1d8c6b11204b60abd355efab8dcf4cd638ea72b4a21",
+    "artifacts/y50/mh-y0-oracle-s42-r50.dvc": "ba58aeb88d98442fe762b0bc3c358db9e7bbd55b8a8dffce886a3887316d948b",
+    "artifacts/y50/mh-y3-noq-s42-r50.dvc": "a6705b81fa4eb644c04d178c242b840568af04d8f1718486df537d822c8392ec",
+    "artifacts/y50/mh-y4-noq-s43-r50.dvc": "fb05b937a690e203fe0f0779a083d100d4073e459af5e8de7bcd285d54e01724",
+    "artifacts/y50/mh-y6-nofloor-s43-r50.dvc": "65c5e8df0d09ae55d3d5f8af04df02364af49d7e5f31a98c901761f68d2daf13",
+    "artifacts/y50/mh-y1-prior-s42-r50.dvc": "e0ab4c309c206a83e3f5d34d0d85d1d9791bef4c65e4200ac5b5b28bda988420",
+    "artifacts/y50/mh-y5-nofloor-s42-r50.dvc": "1f504b608e89c745131197d924660673e9305b3f849a82dde470df01f108c88e",
+    "artifacts/y50/mh-y2-prior-s43-r50.dvc": "f984f2fe982decfdafb71554eb38056960ca3e06e5b2b6ca95cbfd2018a1da98",
+    "artifacts/b21-s43/mh-k-b21-t4f43-r50.dvc": "80d0f5e1bc8281860e01d219c02cc52b1254bc97cf7930ee82ac4941c8dcbc41",
+    "artifacts/b21-s43/mh-k-b21-t343-r50.dvc": "4f4fc6f379ae8fadeb278fb174c45ba9101d3b3b6b12b8bc71ba49ba7eb82b8d",
+    "artifacts/g1-pilot20/mh-k-g1sr48-s42-p20.dvc": "fcb03354c6582b17b73d73c29e37d29e19e3d285bf951b0a61489e3f459af386",
+    "artifacts/g1-pilot20/mh-k-g1sr32-s42-p20.dvc": "6a7b68cacdfd69156eb78f391c687a4b4b6b022d4816fdfc23ef48f74388aa24",
+    "artifacts/km-lite-pilot20/mh-k-km16lite6-s42-p20.dvc": "7e655e412ba38acde6ba374a36e83f3e4ef5f571e86514164425a2a1829414db",
+    "artifacts/o20/mh-o5-noreal-uniform-s43.dvc": "1c86c05b86cc75f25b570c39ef46f7b777409f5973c44493f5d7191371dac2d5",
+    "artifacts/o20/mh-o6-noreal-permuted-s42.dvc": "883f9ac5abdc430b1194f10f8f18a7b68269490767390475ab35dad904738b32",
+    "artifacts/o20/mh-o7-noreal-permuted-s43.dvc": "b49a3da1315bb057e60e4b79b8c9e31eb59bfdd0b66425cdd4c35fe56e800165",
+    "artifacts/o20/mh-o0-noreal-full-s42.dvc": "986d8eab25015d692b6113d6d0ca642f2b5b795c2eb2f06709dd9643e1624aad",
+    "artifacts/o20/mh-o1-noreal-full-s43.dvc": "6c5422a5509a0164f3c1868baa4dffd2e06cd05906f2532b27a8dea15ee270ea",
+    "artifacts/o20/mh-o4-noreal-uniform-s42.dvc": "56915de2513ad16319cd043c8d566f1449fbeb46f71746363cdf2502921c2163",
+    "artifacts/o20/mh-o2-gate-full-s42.dvc": "0ba8a96fb02930178be243f49620019d527cb58716f4f0012544a065f44afb46",
+    "artifacts/o20/mh-o3-gate-full-s43.dvc": "6adece126d09d99f7fed9f66aaeebf0ac4cd6d6365bc8dace49e5ad919d27a53",
+    "artifacts/c10/mh-c1-boot64-s42-r10.dvc": "d842757149d47556a00775c6dfff9fa588c4e2db1de52afa32a402c6c11fbacf",
+    "artifacts/c10/mh-c0-core-s42-r10.dvc": "6e37f174fe7c8fc2dc3be94677a8888424770e505ef880d6282a1170d4b74d06",
+    "artifacts/c10/mh-c2-q8-s42-r10.dvc": "dca34547d624a9e32e20bb8afb05d1ad36ed72e26cd8863483696f3f265646bc",
+    "artifacts/c10/mh-c3-combo-s42-r10.dvc": "6788bd3785aa0ee0aa51f9b85444ad55816df9ee354b4b3b1e70acb89e5da536",
+    "artifacts/b21-resume/mh-k-b21-t3p-r20-c2.dvc": "158f2b8bc01cb19f0a8e4a71d9cec7802e8afec8741e3f10094ca2bf89740714",
+    "artifacts/b21-resume/mh-k-b21-t142-r50-c2.dvc": "7edcf2f1ba8128907e8eb4c358ec554321d106be2cd43d686aa884ea7248ed0a",
+    "artifacts/b21-resume/_receipts.dvc": "3669a91ad4fa378311a381f49c95b1f11af81d5722cebe5089cca8f2c1a49258",
+    "artifacts/b21-resume/mh-k-b21-t4fp-r20-c2.dvc": "defde3c6d159a7095d39fbd7f40673914310edb905ff941863113daac6a3187b",
+    "artifacts/r20/mh-r1-repeat-a-s43.dvc": "ee62bbe4b28fe25306b8af10a027fb157e23d4a6490396e33a2ff57cc3175dbf",
+    "artifacts/r20/mh-r10-replay-strength-s42-input1.dvc": "1ecf2381355291c9c0a10901b1c590045de1b1ddf1c920659d2247f5cadd7949",
+    "artifacts/r20/mh-r0-repeat-a-s42.dvc": "96d5a1f32f257fa15594853bc753c58a67ed71412970006a85e0421c81beb994",
+    "artifacts/r20/mh-r8-replay-margin-s42-input1.dvc": "256b054c8acbcbb279df05fe3292c70d1bada5761a0f85e6938f7999957b12a7",
+    "artifacts/r20/mh-r9-replay-margin-s43-input1.dvc": "da7bd77c7d5450a4d2ba6433b08bd486e9d4b1dc202c15de1a9fc43d4025ebfc",
+    "artifacts/r20/mh-r5-replay-mixed-input-s43-input1.dvc": "2c2e9e400c958be65273223e776b24d839391ce7b17729d515fda81289a0e1f9",
+    "artifacts/r20/mh-r11-replay-strength-s43-input1.dvc": "4b51f34f513ddfb8b8fdf7b56fbe9ebb8853542adb9e4114bb772e936ad9efb6",
+    "artifacts/r20/mh-r4-replay-mixed-input-s42-input1.dvc": "3e334b725bf7ed456c8a7cbb7f8cf62ddb425cd644d616b4d85e225684b72ec2",
+    "artifacts/r20/mh-r6-replay-real-s42-input1.dvc": "e9f8ea59856ddbd212c07ebd0705882f69bb0cb29d5706acd66dd8928900db37",
+    "artifacts/r20/mh-r2-repeat-b-s42.dvc": "3e89010c95f08b908a0c792fc87724e060405172c62b6b0778d94aca39d62d04",
+    "artifacts/r20/mh-r7-replay-real-s43-input1.dvc": "eb55c9aebd589af849fa6f2c7b5ab09691e984eb12b4bc8564595c507561f86d",
+    "artifacts/r20/mh-r3-repeat-b-s43.dvc": "284c47390c387153fbff4b77893513af2592f3b550849a5d75d6805d72d70fbf",
+    "artifacts/l50/mh-l0-core-lossless-s42-r50.dvc": "dfcdaa8967173e98a8729363d48a97ce746db9f3627069f8f4e2713c10dd935a",
+    "artifacts/codec-combo50/mh-k-cq8-s42-r50-c2.dvc": "2c20b895c083f912711f644a30fc296b86745fd76aa73c01bff98843f5390987",
+    "artifacts/codec-combo50/mh-k-cbb-s42-r50-c2.dvc": "1608ae612de8664aabc91e3426fa37741c6bad105431bb8f2fc07a07a3aa464b",
+    "artifacts/codec-combo50/mh-k-cbb-s43-r50-c2.dvc": "23069aa066f3ec398452123663edfc3b08782e4f8d484fb1e775752fb5ef93e7",
+    "artifacts/codec-combo50/mh-k-cq8-s43-r50.dvc": "cb6bb8d4f748c60f87e21e0dd017276229a381434927ec7e861ad298912cb5d1",
+    "artifacts/v20-numerics/mh-vnum-ce-s42.dvc": "75acb5ee8b3f66192d04c03d3322a2103266403bc7430b0397151e2f1c8ca156",
+    "artifacts/v20-numerics/mh-vnum-ce-s43.dvc": "ea1a908b72fa6f2ef5dc1458d45141e78eab8135a386290c61252f7dc1bda974",
+    "artifacts/standard-t4/mh-z0-stdcop-s42-t4r2.dvc": "c55ab5cf8ac3422dc730cd158dfbb9385ad8a6c65bea76dbb71f8f363abadfa2",
+    "artifacts/standard-t4/mh-z1-stdcop-s43-t4r2.dvc": "7d0cb0b14b7fcbd432ea5a9e608e4fd1ff8083dd828768581c637b299867d076",
+    "artifacts/b21-chain/mh-k-b21-t3p-r20-s36.dvc": "cc88c837125433120c2c941b4c6afd166cf2f57f33f040afa0fa5c058f73a179",
+    "artifacts/b21-chain/mh-k-b21-t143-r50-s47.dvc": "b8c8a77d36f1d980113bedc3c5d554ae650cfa257453fb88f91a06de0a4dc187",
+    "artifacts/b21-chain/mh-k-b21-t4fp-r20-s49.dvc": "3b11c75d8f94d5019a4d3cd6d0fcfa4e10a2f484c9af4c43a64f125bd3179b37",
+    "artifacts/b21-chain/mh-k-b21-t4f43-r50-s4.dvc": "0c758f427405031128dcf459f458edc8328773711a386dae93ab94616428216f",
+    "artifacts/b21-chain/mh-k-b21-t343-r50-s7.dvc": "12ecccbbbc1165a403e5af07c35094a50f61a2d27010d6234e548974b909c511",
+    "artifacts/b21-chain/mh-k-b21-t142-r50-s34.dvc": "ff331199b49b0b5e6f3d6ca956e6f5d59c35a801f59dd40379f5f72ef76c7ccb",
+    "artifacts/p20/mh-p2-augment-s42.dvc": "fdaae4fed0aeabb654c7dc74e340f8793b5a59a9e0e06065318947f09c04e19a",
+    "artifacts/p20/mh-p12-bank-class-s42.dvc": "1b1b597e89136eb3fe390e7b445e2257806ce34e75e9699653747715df00676c",
+    "artifacts/p20/mh-p30-real-no-la-s42.dvc": "620c60c12b54214b82a3c3aeaafac476d235cd603eaa3274d4dd72cac8c9f50d",
+    "artifacts/p20/mh-p7-gate-s43.dvc": "c59e3b13245e5ccb33aef24c23f48ec9b390812a9c9cd8e0a487b87873dbfa75",
+    "artifacts/p20/mh-p31-real-no-la-s43.dvc": "7e5f56b12df5343bf3b4d243c1fe552adb4ec66336d041cc6877aa45999e5897",
+    "artifacts/p20/mh-p17-proxy-bank-s43.dvc": "5f2e77da888a4985b7c0e116ba77c0c13a2f085f5d34cecc82bef480e64ef4e1",
+    "artifacts/p20/mh-p23-bank-hard-s43.dvc": "21e3db7d79d73a7562769e081190066987c22cba3b8afd9850a953fb7789dcd9",
+    "artifacts/p20/mh-p21-proxy-hybrid-s43.dvc": "e377cbe250bf35c37dac092a772b358956e689c0bd1333bf010a3a81fdba0b10",
+    "artifacts/p20/mh-p15-bank-input-s43.dvc": "1ba0967a048f49115bbbd2b416dbc85eed1665e0a0b0982f87e9f38e3df8d695",
+    "artifacts/p20/mh-p28-proxy-weights-bank-s42.dvc": "e9fb680eaedd140d2a3e0555acb7ef39e11bd826d337a687f48a020ff04e751a",
+    "artifacts/p20/mh-p1-real-s43.dvc": "0fa532b26ce3ca9c5a68381240ff4544540e3ce5bfc7dd8df6f6b00c9f4e4d29",
+    "artifacts/p20/mh-p24-project-augment-s42.dvc": "696f9cccb504f73c69ce815c6e10f8546073301704b463dd7d777d6a1e656a8b",
+    "artifacts/p20/mh-p6-gate-s42.dvc": "839735e8461e18c0f4c7f8c10341a9fe59be5bf49540f2c97387b24177ac6b73",
+    "artifacts/p20/mh-p4-class-s42.dvc": "e49346d366a69b72f2bb9581a8c7eb3db308e30bfbf27f9d96dacaa9feae7c97",
+    "artifacts/p20/mh-p21-hybrid-s43-recovery1.dvc": "d7395e6f0f85aac4452ab73b2bd58e98925200c87879becef461613f1e428e2f",
+    "artifacts/p20/mh-p8-margin-s42.dvc": "88c286542f8457738b54313b023ab7b00d0389e739fa2dd6f16dbd52a4c025dc",
+    "artifacts/p20/mh-p13-bank-class-s43.dvc": "55b76b2b436c0e2b0284393452903ebc0e8a86871c9167ce8822f4feababa0ba",
+    "artifacts/p20/mh-p16-proxy-bank-s42.dvc": "4773995081b7f13ea8f86b002acf556cadb9875739a3a041d70fd2e92cebef08",
+    "artifacts/p20/mh-p25-project-augment-s43.dvc": "e8c414619510b0f3cec39fc7fbae4bd9daa7ba29a26d6f86944742fa858a9791",
+    "artifacts/p20/mh-p26-project-class-s42.dvc": "4adaa5b6e8728fdad2324ea2f30cff794c1db5ab6a8ebff2430ac3faf390366c",
+    "artifacts/p20/mh-p10-strength-s42.dvc": "6518c5cc7ea5260506f08aafcabb1feca2ce8762136464f1db28564a682d6841",
+    "artifacts/p20/mh-p27-project-class-s43.dvc": "8e36e5206014440ba7f73033c75c2c48fb22e12bd310ef65373e69716b65be01",
+    "artifacts/p20/mh-p22-bank-hard-s42.dvc": "6770593b6b2fda084a4ab225e1929f859d60d03579c231fb7ce8261f26797c5e",
+    "artifacts/p20/mh-p19-proxy-stream-s43.dvc": "a849f6d8212053b75897aa47e6177800658115fff3170e6f74768d3bf3375701",
+    "artifacts/p20/mh-p18-proxy-stream-s42.dvc": "86031b2d378ddfb4e286ea92085807d456221e4b12e354425c72c84bd05d884e",
+    "artifacts/p20/mh-p5-class-s43.dvc": "5f322316b9bc2e8100c5d7128cc53b353521707d75c36d23e5ead98ebe0ea3b6",
+    "artifacts/p20/mh-p29-proxy-weights-bank-s43.dvc": "f79b7e5d84f402387a61b7fdc9c82c853ab5d3573fd648485422c465bbee38ca",
+    "artifacts/p20/mh-p20-proxy-hybrid-s42.dvc": "47bcee73494a7bc2192e878f1c4fb654d188b2cfcee5c8c2b6115ad929aa056b",
+    "artifacts/p20/mh-p3-augment-s43.dvc": "94ab1c673f21fbe15f261ba141107283f91ee8757a8b94f1878d04b01bd0daac",
+    "artifacts/p20/mh-p0-real-s42.dvc": "34a3ebdf951313d700c6cef3ca3e5694efc9eb3bff64bd075c8f64481f5aff05",
+    "artifacts/p20/mh-p9-margin-s43.dvc": "69f48c2b9d642b8ca0cf7507cdfad07f496384fdfd9ec265a84cb1a114e796f3",
+    "artifacts/p20/mh-p11-strength-s43.dvc": "ed8010216c1af87c17b0e7f74859a3beb2d1624bb16c9b4b04af81accf01179c",
+    "artifacts/p20/mh-p14-bank-input-s42.dvc": "5c402344a1b0b57d7091abf4f7b6afcb95dafc145d3307c3054c2501667457ee",
+    "artifacts/m20/mh-m13-uniform-s43.dvc": "74d421d6b5236774096b71969fa450a8d977371c0a654a4316a210dca28dacb4",
+    "artifacts/m20/mh-m3-soft-s43.dvc": "bb9eba9606e5bee388ab1701bec7bd56411e0ad3cb53361b69ea70df6558127f",
+    "artifacts/m20/mh-m15-local-s43.dvc": "eaf2d971c467f28e75b16a9ad19fc928cccbcf90e0a54360e1467647b9cf6e74",
+    "artifacts/m20/mh-m12-uniform-s42.dvc": "bce7141fc6b3857166b4e8c98e6b615fa27a6fe373462d88bed62cabee17214d",
+    "artifacts/m20/mh-m2-soft-s42.dvc": "583971aaca73cf37786c026d9a9e95a1069b1f2459d0059c495c74226378f060",
+    "artifacts/m20/mh-m14-local-s42.dvc": "06dab841a4a4757c94e271b0bd9d39bef9e957137bf9716ed181a4a1f6b899b1",
+    "artifacts/m20/mh-m4-gate-s42.dvc": "886d5d6a10ca1be890471cad4ab1b71b5f79f6e1e711c4a3c91d47ed2da4c570",
+    "artifacts/m20/mh-m10-sqrt-s42.dvc": "965be28a929dda6bc568bd203569edff812d00415bba79e23a36da293db94a17",
+    "artifacts/m20/mh-m7-fallback-s43.dvc": "a336743b03e9c675d0dbf022963133f03cf29f8237a2fc89405a39188f27f2bf",
+    "artifacts/m20/mh-m8-post-s42.dvc": "88305391951ad597145c03ff0641b8f101841d955e4e69fb530b10a804995fd8",
+    "artifacts/m20/mh-m6-fallback-s42.dvc": "7899b1011d30657cd7a33b4454cabc75c03577da304606f842dfea90b3b2a35e",
+    "artifacts/m20/mh-m5-gate-s43.dvc": "ea2892f4860484bb2c6dc93d3b017c11320b5541c08069c0b54d47813fbf560d",
+    "artifacts/m20/mh-m1-aug-s43.dvc": "1bd496970e84f43b192cb857c050d69b7c314c21bdee92f0c14125aca4e313e5",
+    "artifacts/m20/mh-m0-aug-s42.dvc": "05f42fb77b36a467ddb9819cc0df4beb6ac1dc836c67b629f483e112491ebd15",
+    "artifacts/m20/mh-m11-sqrt-s43.dvc": "5f93ba5f109cadff6452ad3f0abd7c8deceb594f81607f786e1745a9056b64f4",
+    "artifacts/m20/mh-m9-post-s43.dvc": "0773281725680d611c34e676234608f8508b3fbb9fdfce5176907d2e64e25601",
+    "artifacts/w20/mh-w1-replay-real-nckd-s43.dvc": "1c09cbf4465a58196ec9b171592cf7faca9e778002493aa1d5307668de524a72",
+    "artifacts/w20/mh-w4-synth-nckd-s42.dvc": "3f8d8b0a597ca9bd6c253f63461ae1d8c764b3d7ed65803ffb0c54372f975d6d",
+    "artifacts/w20/mh-w6-step-floor-s42.dvc": "6fc625b69c12c432b09aa7f7d0fb07594d25553547da6258b966c4834cc7cc5c",
+    "artifacts/w20/mh-w5-synth-nckd-s43.dvc": "d8682e29652055f35c7ec8905472663212f9cafeddbb475dac20cb771cfd0823",
+    "artifacts/w20/mh-w0-replay-real-nckd-s42.dvc": "e61723e1d12e5bd1f5a70f93dec4706d22ee2bf0b5e33413aa619d3a93436f54",
+    "artifacts/w20/mh-w8-boot-compact-s42.dvc": "b5004f366a68873e43551704008f740c28302bd4546736eeccabd0cbe8776015",
+    "artifacts/w20/mh-w2-live-real-nckd-s42.dvc": "a58380e314aa40cb2cfe540149ca9635ae2d7553604983ddcfa9cd5d74496b44",
+    "artifacts/w20/mh-w9-boot-compact-s43.dvc": "f93c6866b6883fa917570042b0e87046019124efea2c248809e04192d2539bc6",
+    "artifacts/w20/mh-w7-step-floor-s43.dvc": "fafaefc2ef3a349372e0d92de5988c1773bc5205fbe3d6602c1f2e404a50a54f",
+    "artifacts/w20/mh-w3-live-real-nckd-s43.dvc": "d1bd4856ce0c7b2c95370b770ccc85642d00ebbedccc39ad4268a70de99abb96",
+    "artifacts/forest-t4/mh-z2-forestq-s42-t4r2.dvc": "a614aeb5fe4162d70b76d4a1118202276e3a89baf29d6fda79b14da8c16df795",
+    "artifacts/forest-t4/mh-z3-forestq-s43-t4r2.dvc": "2286494595a787f595a910443bf1f730897281cbe844065d7d86f041599d0bb0",
+    "artifacts/km-pilot50/mh-k-km16-s43-p20-c2.dvc": "7f3658baf858ec848ce8a15f15a3afae32fc608cd61c9200708a701c67b9ab61",
+    "artifacts/km-pilot50/mh-k-km16-s42-p20-c2.dvc": "1b575c7a9a39c64b3ebb04897105961980d7b9b10d64caa90d0bf1240c1e25d9",
+    "artifacts/x20/mh-x6-full-s42.dvc": "8535d654d0136c15e44c5b8a4b8729b0375c9e95236c715bb9add294b2d1563b",
+    "artifacts/x20/mh-x7-full-s43.dvc": "a6d94ff16ea36bd41adae68790ee868e072fdbf6868aae641bd84bb095b8c9dd",
+    "artifacts/x20/mh-x5-live-real-nckd-local-s43.dvc": "a7ed953d7cdf4a34f68d60bca2503c383a642721f6bdfe6c8445ae9178b5e7f6",
+    "artifacts/x20/mh-x4-live-real-nckd-local-s42.dvc": "d50fef63e53bc5bdac27466fd3e619d6ae9998e977d7b61955d8368b501f7e93",
+    "artifacts/x20/mh-x0-core-s42.dvc": "a20ba4c3305eb01f0e2f4d37548096b28380b1ad8820076a1991fe50ed1ece99",
+    "artifacts/x20/mh-x3-bank-s43.dvc": "115b75c68ee00bd964923b7388edd0e32ea758a2b752e003c741565484262808",
+    "artifacts/x20/mh-x1-core-s43.dvc": "e0d34c758e16cdf030fff949c15f3ec4455e595043a11c5e6e2b1de06f797120",
+    "artifacts/x20/mh-x2-bank-s42.dvc": "ab55b8b605efe5a7cbbc2033f7a6dbb6664af9011a6d04af6a4e9628569ac66c",
+    "artifacts/km50/mh-k-km16q8-s43-r50.dvc": "29b18b6553af50de7cee58337c8def7d001346386125c84ad8879f66bade5b2d",
+    "artifacts/km50/mh-k-km16q8-s42-r50.dvc": "39d4f2bc1dad2a5ac8c3765e3d06b112a476df550e2656986617e60556decc82",
+    "artifacts/b20-sm50/mh-k-b20-sm42-r50-c2.dvc": "a3e8cd04ce08f314c44d29e3d1557254cf9db5fa1b63226cad1e5da21d3bbe7c",
+    "artifacts/b20-sm50/_receipts.dvc": "aa8d17ced3befb1c7c55a9248ffd707ee17d8dcd0191d247d7eefc1f7630db57",
+    "artifacts/b20-sm50/mh-k-b20-sm43-r50.dvc": "e06cee2ec94f1464309a0d383e14bdf192d881901ce4fb1ad66c1c8585659596",
+    "artifacts/f50/mh-f0-bank-s42-r50.dvc": "d3be40f60f853c3219bd6455241992739d3f534e73937519a6c7f03cc049884c",
+    "artifacts/f50/mh-f1-bank-s43-r50.dvc": "b53fab6605e33b6ee76b49fb9b794382c6c7c6ada2543a9620a6f64b700c84fa",
+    "artifacts/f50/mh-f2-core-s42-r50.dvc": "dc22d27feec88957b98f69d8e4fed7eff2cebea4f4bcbcd59d6a262043190d41",
+    "artifacts/f50/mh-f3-core-s43-r50.dvc": "4f09ef5a9ff2585f2e9077b1f5adf8c780193dc858452f0d682ecac8353a92fd",
+    "artifacts/o20-early-20261101/mh-o5-noreal-uniform-s43.dvc": "1c86c05b86cc75f25b570c39ef46f7b777409f5973c44493f5d7191371dac2d5",
+    "artifacts/o20-early-20261101/mh-o7-noreal-permuted-s43.dvc": "b49a3da1315bb057e60e4b79b8c9e31eb59bfdd0b66425cdd4c35fe56e800165",
+    "artifacts/o20-early-20261101/mh-o0-noreal-full-s42.dvc": "986d8eab25015d692b6113d6d0ca642f2b5b795c2eb2f06709dd9643e1624aad",
+    "artifacts/o20-early-20261101/mh-o1-noreal-full-s43.dvc": "6c5422a5509a0164f3c1868baa4dffd2e06cd05906f2532b27a8dea15ee270ea",
+    "artifacts/o20-early-20261101/mh-o4-noreal-uniform-s42.dvc": "56915de2513ad16319cd043c8d566f1449fbeb46f71746363cdf2502921c2163",
+    "artifacts/o20-early-20261101/mh-o3-gate-full-s43.dvc": "6adece126d09d99f7fed9f66aaeebf0ac4cd6d6365bc8dace49e5ad919d27a53",
+    "artifacts/codec-combo20/mh-k-core-s42-p20.dvc": "6c1fd5f65e785b3ed09c2791bf4459e54e05e86a0e69df2f682f227d46be7c3d",
+    "artifacts/codec-combo20/mh-k-cbb-s42-p20.dvc": "9811f6c1dbc9c2bdacb5f87c8d0018ce50fae1a31ee44640c5d780c12bcfa7d0",
+    "artifacts/codec-combo20/mh-k-cq8-s42-p20.dvc": "d4fe9ead678b4848f23b4d812ee07d557060b194bc042e0513379f1776050f14",
+    "artifacts/codec-combo20/mh-k-cbb-s43-p20.dvc": "3d2e4f861fc19efd2c3e934252cb1d056c26aeb488524866952c87c900412b19",
+    "artifacts/codec-combo20/mh-k-cba-s43-p20.dvc": "5eec9804eb368ee533f95010dc4d85524b33b7020ae13e0eb25cf013d40e4c2f",
+    "artifacts/codec-combo20/mh-k-cba-s42-p20.dvc": "12510f45a0bebae80b5f1e8b420c8d21d9f3fa0c04922c9984b714efb084798d",
+    "artifacts/cbb-s41/mh-k-cbb-s41-r50.dvc": "87a517ddfa11af576d62a3fe2ad54cbfd08fbd6276db742a92bd207ac09e0c95",
+    "artifacts/codec-pilot20/mh-k-cdqq8-s42-p20.dvc": "6865d3c1918eb5968912ed04d3799894a5a304e700032f47c4563016c0b7a458",
+    "artifacts/codec-pilot20/mh-k-cdqq4-s42-p20.dvc": "d9f3ad0d1c65cab04ca097c4511e017775b03d0c1dd8e6797d283c4476de928f",
+    "artifacts/codec-pilot20/mh-k-cdly2-s42-p20.dvc": "17c55a0cf30537342c449e7cf91ca809921947da23ede40b1a7a0787c484c4ca",
+    "artifacts/codec-pilot20/mh-k-cdly0-s42-p20.dvc": "2ccd9f1db6c324dbb70fa904747203cf7cef25cb2a6f438bb7f680c027ed482d",
+    "artifacts/codec-pilot20/mh-k-cdch6-s42-p20.dvc": "93dcb671d1f88afedfcaae8e6c1804f53f5229f45897e22324bece0b2e1fc36c",
+    "artifacts/codec-pilot20/mh-k-cdlt8-s42-p20.dvc": "3d29a1c4d361f2ef6ec631eae39d1d005b8b516922c4eac745d1a7a9e47dac82",
+    "artifacts/codec-pilot20/mh-k-cdcm8-s42-p20.dvc": "be98f022d5a6cb59f8bc5bd1f55062c3847eaf85df1b63dcfb2ec029b90e852c",
+    "artifacts/codec-pilot20/mh-k-cdct8-s42-p20.dvc": "14539df71598f4bc61a4c47b9fdd5c53418211bf3f3511f6252b8ac2305cccc2",
+    "artifacts/codec-pilot20/mh-k-cdch8-s42-p20.dvc": "8091dca58f1edf170326c2d500776befb66d0aa99741c5af8067149449c30252",
+    "artifacts/codec-pilot20/mh-k-cdlt6-s43-p20.dvc": "f21b7bbeb446dda86e1cca583efbee7298382eb5d2b32281e1cd90641f3686ff"
+  },
+  "snapshots": [
+    {
+      "source": "CONTEXT.md",
+      "path": "archive/operations-20261116/before/CONTEXT.md",
+      "sha256": "3ca4270e972ebf5d394966e14548b0028df053f7c44e51dc4eaca50128c51dd5"
+    },
+    {
+      "source": "docs/operations/continue.md",
+      "path": "archive/operations-20261116/before/docs/operations/continue.md",
+      "sha256": "4750ee3b47b115c954b22fb14f8db92bf88c668ca9754a2ed63f43e94db62b69"
+    },
+    {
+      "source": "docs/operations/backup.md",
+      "path": "archive/operations-20261116/before/docs/operations/backup.md",
+      "sha256": "d864edd7aed00607bed394be66c90970431abce03aa71260c4b5c582c71f68a0"
+    },
+    {
+      "source": "docs/operations/kaggle.md",
+      "path": "archive/operations-20261116/before/docs/operations/kaggle.md",
+      "sha256": "a87a8cd4ed40108d5d02f0c48b7ec927ecf671f1e01e8967fca7399999cd7334"
+    },
+    {
+      "source": "docs/operations/lessons.md",
+      "path": "archive/operations-20261116/before/docs/operations/lessons.md",
+      "sha256": "38125821eb1a284ef3b1bf5146855bf858a3b6f956502193c775caf58fd676dd"
+    },
+    {
+      "source": "docs/operations/notebook-errors.md",
+      "path": "archive/operations-20261116/before/docs/operations/notebook-errors.md",
+      "sha256": "496248241aa51bef440a22f6b39ca22cdbcfe8a5f5682f02b7076cacd1e13b6c"
+    }
+  ],
+  "validation": {
+    "script_byte_identity": true,
+    "protected_source_dvc_identity": true,
+    "active_python_ast": true,
+    "no_active_static_import_of_retired_script": true,
+    "active_links": true,
+    "diff_check": true,
+    "git_head_unchanged": true,
+    "staged_diff_unchanged": true,
+    "active_tests_collected": 208,
+    "phase": "before authorized Git commit"
+  }
+}

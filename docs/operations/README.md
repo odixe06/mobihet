@@ -1,10 +1,12 @@
 # Vận hành hiện tại
 
-- [Continue](continue.md): trạng thái job, ownership, bước tiếp; chỉ một bàn giao sống.
-- [Kaggle](kaggle.md): tài khoản, quota, notebook private và collection.
-- [Lessons](lessons.md): các lỗi phải tránh khi vận hành.
-- [Notebook errors](notebook-errors.md): lỗi runtime còn liên quan và cách kiểm.
-- [Backup](backup.md): Git/DVC/OneDrive, cleanup đã xác minh và cách restore.
+| Cần biết | Mở |
+|---|---|
+| Job/owner/quyền/bước tiếp/việc tay | [Continue duy nhất](continue.md) |
+| Kaggle: credential, quota, notebook, pull/resume | [Kaggle](kaggle.md) |
+| Lỗi cần tránh | [Lessons](lessons.md), [sổ lỗi](notebook-errors.md) |
+| Remote/manifest/restore và giới hạn backup | [Backup](backup.md) |
+| Công cụ còn dùng | [Scripts](../../scripts/README.md) |
 
-Đọc skill khớp trước thao tác. Job nền qua codex-long-jobs (Codex) hoặc script watcher Bash background (Claude Code), poll Kaggle 1200s, completion về phiên gốc;
-không model polling trong khi chỉ chờ. Archive nằm ngoài workflow đọc mặc định.
+Đọc skill khớp trước thao tác. Codex dùng `codex-long-jobs`; worker poll1200s, không model polling khi chỉ chờ.
+Hồ sơ/launchers đã nghỉ: [archive16/11](../../archive/operations-20261116/README.md), ngoài tuyến đọc mặc định.
