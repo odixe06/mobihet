@@ -1,6 +1,6 @@
 # Git / DVC backup record
 
-Updated:16/11/2026 — DVC mới10manifest/438objects đã push `-j16`, exit0; `dvc status -c` báo **Cache and remote 'onedrive' are in sync.** Đây là xác minh mức mount; cloud upload trực tiếp chưa kiểm trong phiên này. Không xóa local.
+Updated:16/11/2026 — DVC mới10manifest/438objects đã push `-j16`, exit0; `dvc status -c` báo **Cache and remote 'onedrive' are in sync.** Đây là xác minh mức mount; cloud upload chung còn7762VFSdirtyfiles khi kiểm16/11; đây là hàng đợi chung hai repo, không gọi cloud đãsync. Không xóa local.
 Target mới:6head `artifacts/b21-chain/*`,2run chuyển `b21-transfer/{mh-k-b21-t143-r50-x18,mh-k-b21-t4fp-r20-x24}`, T3DAGSNet41 `artifacts/t3-s41/mh-k-b21-t341-r50`, inventory `artifacts/maintenance-20261116`.
 Các run mới kèm receipts đã lọc notebook/credential. Không dvcadd lại manifest lịch sử/partial.
 Receipt: `runs/maintenance-20261116/new-targets.json`, `dvc-push.log`, `dvc-status.log`; controller `mobihet-dvc-backup-20261116` succeeded.
