@@ -1,0 +1,74 @@
+{
+  "job": "onedrive-remount-dvc-20261116",
+  "completed_at": "2026-11-16T16:57:46+07:00",
+  "exit_code": 0,
+  "verified": [
+    {
+      "repo": "fl_veremi_bert",
+      "targets": [
+        {
+          "path": "artifacts/baseline-pulls.dvc",
+          "manifest_sha256": "78b0395dff71fe6f3d54739a1ed89f45abe1588d98884fb342709bcfd0af4e01"
+        },
+        {
+          "path": "artifacts/t3-pulls.dvc",
+          "manifest_sha256": "965d00bfebbf5cb312e31aeb76d201d808fa29afca0e060e2f806d28531c0fae"
+        },
+        {
+          "path": "artifacts/research-evidence-20261116.dvc",
+          "manifest_sha256": "80524cecbd74d78eaf227362bbebddcbc3100595e8fb04f771e6452a1f4fbdf0"
+        }
+      ],
+      "push_log": "Everything is up to date.",
+      "status": "Cache and remote 'onedrive' are in sync."
+    },
+    {
+      "repo": "mobihet",
+      "targets": [
+        {
+          "path": "artifacts/b21-chain/mh-k-b21-t142-r50-s34.dvc",
+          "manifest_sha256": "ff331199b49b0b5e6f3d6ca956e6f5d59c35a801f59dd40379f5f72ef76c7ccb"
+        },
+        {
+          "path": "artifacts/b21-chain/mh-k-b21-t143-r50-s47.dvc",
+          "manifest_sha256": "b8c8a77d36f1d980113bedc3c5d554ae650cfa257453fb88f91a06de0a4dc187"
+        },
+        {
+          "path": "artifacts/b21-chain/mh-k-b21-t343-r50-s7.dvc",
+          "manifest_sha256": "12ecccbbbc1165a403e5af07c35094a50f61a2d27010d6234e548974b909c511"
+        },
+        {
+          "path": "artifacts/b21-chain/mh-k-b21-t3p-r20-s36.dvc",
+          "manifest_sha256": "cc88c837125433120c2c941b4c6afd166cf2f57f33f040afa0fa5c058f73a179"
+        },
+        {
+          "path": "artifacts/b21-chain/mh-k-b21-t4f43-r50-s4.dvc",
+          "manifest_sha256": "0c758f427405031128dcf459f458edc8328773711a386dae93ab94616428216f"
+        },
+        {
+          "path": "artifacts/b21-chain/mh-k-b21-t4fp-r20-s49.dvc",
+          "manifest_sha256": "3b11c75d8f94d5019a4d3cd6d0fcfa4e10a2f484c9af4c43a64f125bd3179b37"
+        },
+        {
+          "path": "artifacts/b21-transfer/mh-k-b21-t143-r50-x18.dvc",
+          "manifest_sha256": "cbb0d191648830c227f93eaae6e57c5263d0bab092ae8d70c95dd92397c9fea3"
+        },
+        {
+          "path": "artifacts/b21-transfer/mh-k-b21-t4fp-r20-x24.dvc",
+          "manifest_sha256": "a5f14ef29e2101312f53100a6fca044671b0b766ce007e39a598047c94cb6992"
+        },
+        {
+          "path": "artifacts/t3-s41/mh-k-b21-t341-r50.dvc",
+          "manifest_sha256": "e41637422956725ad40f0895217c1e09727768c15845dfdd19ade0c9e89cec5c"
+        },
+        {
+          "path": "artifacts/maintenance-20261116.dvc",
+          "manifest_sha256": "451339ea0ba18cbca13db718505db416c12fc6cdbe94655b2d8a46f81c94ff43"
+        }
+      ],
+      "push_log": "Everything is up to date.",
+      "status": "Cache and remote 'onedrive' are in sync."
+    }
+  ],
+  "scope": "DVC filesystem remote via restored OneDrive mount; cloud upload completion not independently certified"
+}

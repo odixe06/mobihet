@@ -102,8 +102,12 @@ frozen-source, smoke log; bỏ `.pt`) để log + file liên quan đi cùng arti
   `.gitignore` ignore-all trong thư mục artifact làm `dvc add` lỗi "git-ignored" — xóa file đó trước.
 - `deleted` trong `dvc status -c` sau cleanup chỉ là thiếu local cache, không phải remote mất.
 
-## Recovery mount16/11 sau reboot
+## Recovery mount16/11 sau reboot — đã xác minh DVC
 
-OneDrive đãmount lại tại `/home/odixe/Cloud/OneDrive`, source `onedrive:`,type `fuse.rclone`; servicePID8985active/running, cả2projectpathPASS. Startup trước timeout1h bịsystemdngắt khi reload/uploadVFS. Drop-in `~/.config/systemd/user/rclone-onedrive.service.d/zz-recovery-timeout.conf` đặtTimeoutStartSec6h;daemon-reloadgiữprocess/cache. [Hành vi timeout systemd](https://www.freedesktop.org/software/systemd/man/255/systemd.service.html).
-Job `dvc-reboot-push-20261116` fail ởwaitmount60phút, chưa gọiDVC. Jobthaythế `onedrive-remount-dvc-20261116`,PID12313,deliveryqueue, đangpush-j16/status-c hai repo theo target đãkhóa; logrepoBERT `runs/maintenance-20261116/onedrive-remount-dvc.log`. Chưagọi repushVERIFIED trướcreceipt. Lầnđo16:55:225dirtyfile/15.37GB; đó làsnapshotVFSchung, không phải cloudsync hoặc corruption. Không xóa local/cache.
-Receiptmount/repair ởrepoBERT `runs/maintenance-20261116/reboot-backup/{mount-restored,mount-timeout-repair,dirty-after-timeout}.json`; jobhiện hành ở [continue](continue.md).
+OneDrive tại `/home/odixe/Cloud/OneDrive`, source `onedrive:`,type `fuse.rclone`; servicePID8985active/running, cả2projectpathPASS. Startup trước timeout1h bịsystemdngắt khi reload/uploadVFS. Drop-in `~/.config/systemd/user/rclone-onedrive.service.d/zz-recovery-timeout.conf` đặtTimeoutStartSec6h;daemon-reloadgiữprocess/cache. [Timeout systemd](https://www.freedesktop.org/software/systemd/man/255/systemd.service.html).
+
+Job `onedrive-remount-dvc-20261116` **succeeded16:57:46VN**,exit0+markerPASS. BERT3manifest vàMobiHet10manifest đềupush-j16: `Everything is up to date.`; từng `dvc status -c` báo **Cache and remote 'onedrive' are in sync.** [Receipt/target/manifestSHA](backup-reboot-20261116.json). Khôngadd lại manifest lịch sử từworkspacepartial.
+
+Đây là xác minhfilesystemremote; cloudupload chưaxácminh riêng. Snapshot16:55 còn225VFSdirtyfile/15.37GB; giữlocal/cache. Gitmainhai repo đãpush; bundleallrefsverify/copylênmount sauphụchồiPASS, nguồnreceipt repoBERT `runs/maintenance-20261116/reboot-backup/git-bundles-after-remount.json`. Cậpnhậtbundle saucommitcuối.
+
+Jobwaitmountcũfail trướcgọiDVC; đãthay bằngjobthànhcôngởtrên. Receiptmount/repair repoBERT `runs/maintenance-20261116/reboot-backup/{mount-restored,mount-timeout-repair,dirty-after-timeout}.json`. TrạngtháipFedEShiện hành ở [continue](continue.md). Khôngxóa dữliệu.

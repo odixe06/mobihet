@@ -1,5 +1,5 @@
 {
-  "kernel": "outlookcheck/flb-pfedes-s41-p4/1",
+  "kernel": "outlookcheck/flb-pfedes-s41-p4/2",
   "status_observed": "QUEUED",
   "source": "e8246054d476f0d3fe96a3171a4609b8dafd9db4",
   "parent_source_same": true,
@@ -10,5 +10,12 @@
   "baseline_source_counts": {
     "cb193e6fd56fc2f0c6810745cc57d8242c77c366": 44,
     "e8246054d476f0d3fe96a3171a4609b8dafd9db4": 61
-  }
+  },
+  "previous_version": {
+    "kernel": "outlookcheck/flb-pfedes-s41-p4/1",
+    "status": "CANCEL_ACKNOWLEDGED",
+    "pulled_files": 0,
+    "owner_requested_repush": true
+  },
+  "source_notebook_unchanged": true
 }

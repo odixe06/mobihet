@@ -17,8 +17,8 @@ Owner đã reboot, yêu cầu hoàn tất và push Git+DVC; **không còn yêu c
 
 Nguồn job/receipt/recovery duy nhất: `../fl_veremi_bert/docs/operations/continue.md` tính từrootrepo. Không khởiđộng launcher/collector thứhai từrepo này.
 
-- `pfedes41-final-watch-20261116`,PID8022,deliveryqueue: exact `outlookcheck/flb-pfedes-s41-p4/1` đãpush lúc16:27VN; queryđầuQUEUED. Sourcee8246054 đúngparent,code41file khớpcb193e6. Dataset94/94SHA256+importhai rankr45+AST/notebookSHA/private2T4PASS. Watch1200s, terminalđánhthứcphiên→pull/audit. Log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes-final-watch.log`.
-- `onedrive-remount-dvc-20261116`,PID12313,deliveryqueue: mountOneDrive đãphục hồi; push-j16 BERT3manifest/MobiHet10manifest nối tiếp→status-c. Log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/onedrive-remount-dvc.log`.
+- `pfedes41-v2-watch-20261116`,PID13587,deliveryqueue: **outlookcheck/flb-pfedes-s41-p4/2đãpush** saulivequota/slotgate; notebook/source/HP/parentr45 giữnguyên. Watch1200s,terminal→pull/audit. Log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes-v2-watch.log`.
+- DVCrepush **VERIFIED16:57:46VN**,jobonedrive-remount-dvc exit0; BERT3/MobiHet10targetinsync. [Receipt](backup-reboot-20261116.json).
 - Ownerthread `01a1e31b-3489-76b3-a36f-f8ce699825eb`;state mỗi job `/home/odixe/.codex/long-jobs/jobs/<job>/state.json`. Sau reboot kiểmPID/startidentity, không tinstatecũ. r1–r4 đãfaillocalchecker, không kerneltrainingfail; đã sửa/test trênartifactthật.
 - OneDrive đãmountlạifuse.rclone,servicePID8985active/running. TimeoutStartSec6h qua zz-recovery-timeout.conf; giữPID/cache. Jobcũwaitmount60phút đãfail; jobmớiởtrên tiếp tụcpush. Snapshotdirty16:55 còn225file/15.37GB, không coicloudsync.
 
@@ -26,3 +26,5 @@ Nguồn job/receipt/recovery duy nhất: `../fl_veremi_bert/docs/operations/cont
 
 RepoBERT nhậnwatchercompletion→terminalpull-j16/auditround50+parentprefix. ChỉsauPASS mới thêm lạipFedES vàohai repo/Notion; backupoutput/receiptmới, pushGit/DVC/bundle, cậpnhậtbàngiao.
 Không modelpoll trong lúcchờ. Không cần thao tác tay hiện tại; không xóa dữliệu.
+
+Ownercancelp4v1 đãqueryexact **CANCEL_ACKNOWLEDGED**, fullpull-j16 trả0file; khôngcócheckpointmới hơnr45. Đãhủywatcherv1 bằngcontroller (khônghủytrainingkhác), giữreceiptcũ; notificationcancelcũ khôngrerun. RepushV2receipt đãkiểm ởrepoBERT `runs/maintenance-20261116/pfedes-repush-v2/`; batch/watchdir riêng. Joblaunch13421đãsucceeded,đãxửlý; notificationlặp khôngrepush. Watcherv1cancel làchủý, không phục hồi.
