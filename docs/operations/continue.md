@@ -1,69 +1,37 @@
-# Bàn giao sống — 16/11/2026
+# Bàn giao sống —16/11/2026, sau reboot; tiếp tục hoàn tất công việc
 
 Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [bài học vận hành](lessons.md).
-Lịch sử job/verdict: [snapshot](../../archive/handoffs/2026-11-16-before-refresh.md); đây là bàn giao hiện hành duy nhất.
+Snapshot chi tiết phiên: [milestone16/11](../../archive/handoffs/2026-11-16-before-shutdown-handoff.md).
 
-## Phương pháp và trạng thái
+## Đã hoàn tất
 
-Owner chọn **T3**, gọi **MobiHet** trên Proposal 2. DAGSNet cả3seed41/42/43 đủr50:
-seed41 `runs/t3-s41/audit.json` + `state-audit.json`; seed42/43 `runs/b21-r50/audit.json` (T3P/T343).
-B20, B21/T1/T4F đã đóng/audit; không waiter cũ nào sống khi kiểm đầu phiên16/11. Không nối T341 hoặc chạy lại batch cũ.
-BERT41 r50;42/43 cần pull/audit head mới từ repo BERT. Không gọi partial là headline50.
+- Owner chọn **MobiHet=T3**: copulaKM16+lite6+Q8, liềuS64→64/M64→32/L48→16 từr26,floor16. [Method](../research/method.md), [proposal](../research/proposal.md).
+- DAGSNetT3 đủr50 seed41/42/43; macro .907956319±.000331909. BERTT3 cũng đủ3seedr50, .914770238±.000211920. [T3DAGSNet12metric](../research/results-t3.md), [8bảng hai model](../research/comparison.md), [JSON](../research/comparison.json).
+- Inventory24/24exactkernel B20/B21/T341COMPLETE, đều cóartifact/configlocal. ArtifactauditPASS; T4P utilityFAIL vẫngiữ, khônglấypilotFAIL thànhPASS.
+- NotionProposal2 `40d730cee68d80f0a49ad050377772d2` đãreplace/readback đúngT3/8bảng/ranking/bold, giữchildMininote; [receipt](notion-20261116.json).
+- DVC10manifest mới/438objects push-j16/status-c in sync; Gitmainđãpush,bundleverifyPASS. [Backup record](backup.md) giữtarget/hash/remote vàcảnhbáoworkspacepartial.
+- Linkactive2repoPASS,T3compute12PASS; bộtestBERT sửafixtureoffline/namespace,9PASS/1SKIP,35testkhácPASStrướcđó. Không sửa scientificsourceđãkhóa.
+- OneDrivecloudcòn7762VFSdirtyfileskhi kiểm; filesystemmountsyncPASS không thaycloudsync. GiữVFS/localartifact đểuploadtiếp khi máy/mountchạy lại. Khôngcleanup.
 
-## Công việc owner yêu cầu16/11
+## Đang thực hiện ở repoBERT: pFedES41 phiên cuối
 
-Ưu tiên collect/audit kernel hoàn thành đa luồng; cập nhật toàn bộ tài liệu còn hiệu lực hai repo, gọn hub;
-Notion Proposal2 thay mô tả và bảng MobiHet cũ bằng T3, giữ14baseline. Performance giảm dần macroF1;
-communication tăng dần tổng50round gồmbootstrap (cột riêng khôngbootstrap); compute tăng dần. Có8bảng,2model cho mỗi loại performance/communication/clientcompute/servercompute.
-Cho phép commit/push Git+DVC cảhai repo. Không xóa artifact, không sửa protocol/HP/source đã khóa.
+Owner16/11 yêu cầu nối r45→r50 và **tạm ẩn pFedES khỏi mọi bảng**. Parent `emtrangtri/flb-pfedes-s41-p3/1`,r45. Account mớioutlookcheck,budget3.8h; target `outlookcheck/flb-pfedes-s41-p4/1`, đangstaging/chờreceipt xácnhậnpush.
+Mainjob `pfedes41-final-20261116`,supervisorPID281246,deliveryqueue/ownerthread `01a1e31b-3489-76b3-a36f-f8ce699825eb`.
+State `/home/odixe/.codex/long-jobs/jobs/pfedes41-final-20261116/state.json`;log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes41-final.log`.
+Notifierlocalreceipt `pfedes41-launch-receipt-20261116`,PID287248; không phải watcher/launcher thứhai.
 
-## Job collect/audit hiện hành — repo BERT sở hữu
+**Nguồn recovery duy nhất cho phần này:** `../fl_veremi_bert/docs/operations/continue.md` tính từrootrepo; cóexactreceipt, workerbền, lệnh/luậtquery→pull→audit→thêmlạibảng/Notion→backup. Không chạy lại launch cóintent.
+Saureboot controllerstate running cóthểstale; kiểmPID/Kagglethật, không rerun từsnapshotcũ. RemoteKaggle chạy độc lập máy local.
 
-`repo-collect-audit-20261116`, supervisor PID269238, owner thread `01a1e31b-3489-76b3-a36f-f8ce699825eb`, delivery queue.
-State `/home/odixe/.codex/long-jobs/jobs/repo-collect-audit-20261116/state.json`.
-Log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/collect.log`.
-Đã kiểm running14:05VN; không tạo collector trùng. Chi tiết việc kế ở `../fl_veremi_bert/docs/operations/continue.md` (đường tính từ root repo này).
+## Quyền sau reboot
 
-## Việc kế sau audit
+Owner đã reboot, yêu cầu hoàn tất và push DVC; không cần reboot/dừng nữa. Giữ quyền Git+DVC/Notion/nối pFedES tới50, không xóa/cache hoặc thay protocol/source/HP. Trạng thái mới theo mục dưới.
 
-- Đồng bộ method/proposal/results/index với T3 và3seed thực tế; giữ lịch sử control CBB rõ nhãn.
-- Notion `40d730cee68d80f0a49ad050377772d2`: T3/MobiHet duy nhất, số đo/ước lượng có nguồn, không claim server<5ms khi chưa đo.
-- Backup artifact mới B20/B21/T341 và receipts; tránh dvc add lại workspace partial (xem [backup](backup.md)).
-- Kiểm link/test phù hợp, push DVC+Git+bundle trong quyền owner16/11. Không xóa local hoặc dirty VFS cache.
+## Recovery sau reboot — kiểm16/11 15:54 VN
 
-Chưa có việc tay bắt buộc.
-
-Job độc lập: `mobihet-inventory-20261116`,PID272971,queue,cùng owner thread; log `runs/maintenance-20261116/inventory.log`,state `/home/odixe/.codex/long-jobs/jobs/mobihet-inventory-20261116/state.json`. Hai job server-cost/DAGSNet42 evidence nằm bàn giao repo BERT. Method đã viết lại đúng T3/source; Notion/bảng/backup chờ audit ưu tiên owner.
-
-Server-costr2 đã succeeded và kiểm artifact Np69993. Job verify hai repo `repo-verify-20261116` (repo BERT sở hữu) chạy test/link/T3compute. Collector baseline/T3 vẫn đang audit, chưa publish bảng/backup.
-
-## Completion mobihet-inventory xử lý16/11
-
-Inventory24/24exact kernel COMPLETE. Đã kiểm từng slug có artifact/config local và đối chiếu audit B20/B21/T341; mọi artifact check PASS, riêng T4P utility FAIL vẫn giữ verdict. Không pull trùng24phiên đã lưu. T3DAGSNet3seed r50 macro .907956319 ± .000331909(sampleSD), bảng12metric tại `docs/research/results-t3.md` trong repo mobihet. Collector BERT vẫn sở hữu phần baseline/T3BERT; không khởi trùng.
-
-## Backup MobiHet đang chạy16/11
-
-`mobihet-dvc-backup-20261116`, supervisorPID277319, deliveryqueue về ownerthread `01a1e31b-3489-76b3-a36f-f8ce699825eb`; đã kiểm running. State `/home/odixe/.codex/long-jobs/jobs/mobihet-dvc-backup-20261116/state.json`; log `/home/odixe/project/mobihet/runs/maintenance-20261116/backup.log`. Worker `/tmp/backup_mobihet_20261116.py`: chỉ dvcadd run mới chưa có manifest trong b21-chain/b21-transfer/t3-s41 + sanitized receipts/inventory; push-j16 rồi status-c. Không đè manifest partial cũ, không xóa. Target/log chi tiết trong mobihet/runs/maintenance-20261116/. Sau completion kiểm manifest/status thực, cập nhật backup record; Git/bundle và BERT DVC vẫn chờ.
-Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/maintenance-20261116/backup.log`.
-
-## Owner16/11 bổ sung pFedES41 phiên cuối
-
-pFedES41p3 COMPLETE nhưng audit chỉr45, không đủ50. Owner yêu cầu push bổ sungr45→50 và **tạm bỏ pFedES khỏi mọi bảng**. Script comparison đã loại method này (không dùng partial/2seed thay3seed).
-Job `pfedes41-final-20261116`,supervisorPID281246,deliveryqueue cùng ownerthread,đã kiểm running; state `/home/odixe/.codex/long-jobs/jobs/pfedes41-final-20261116/state.json`;log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes41-final.log`. Worker `/tmp/resume_pfedes41_20261116.py` audit2rankr45/finite/gen → chọn owner quota≥4.2h+slot → private checkpointdataset → pushp4cap3.8h (5round×~1682s +startup/save) → watch1200s → fullpull/audit. Emtrangtri quota0, phải chuyểnaccount; chưa claim launched trước receipt.
-Historical baseline state không lưu riêng torchCPU/CUDARNG; giữ saved methodgen và resume semantics gốc, không gọi exactfullRNGresume. Source/HP/50roundschedule/privatebanks giữ nguyên; không chạy r1. Không sửa source tốc độ trong phiên cuối. Saucompletion kiểm artifact+round50, rồi mới thêm lại pFedES vào bảng.
-Theo dõi: `tail -n 200 -F -- /home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes41-final.log`.
-
-## Owner yêu cầu chuẩn bị tắt máy
-
-Hoàn tất các task đang dở rồi **dừng phiên**, cập nhật toàn bộ bàn giao để bật máy tiếp tục. pFedES có thể tiếp tục trên Kaggle khi local tắt; không cancel remote. Không tạo nghiên cứu/training mới ngoài phiên cuối đã ủy quyền. Trước dừng: hoàn tất pull/audit/T3/Notion, Git+DVC/bundle; ghi trạng thái cloudVFS riêng và exact run còn sống. Copy worker `/tmp/*.py` dùng trong phiên vào `runs/maintenance-20261116/workers/` (repoBERT) để không mất sau reboot.
-
-MobiHet DVC10manifest/438objects VERIFIED mứcmount (push-j16 exit0/status-c in sync); cloud upload chưa xác minh riêng. RepoBERT baselinebackup đang chạy: `bert-baseline-backup-20261116`,supervisorPID282599,queue;state `/home/odixe/.codex/long-jobs/jobs/bert-baseline-backup-20261116/state.json`;log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/bert-baseline-backup.log`. Khởi tạo DVCOneDrive sibling `fl_veremi_bert/dvc-storage`,hardlink snapshot phiên baseline đãdone, không ghi vào pull collector. T3/receipts backup saucollect.
-
-BERT baselinebackup r1failed trước DVCadd vì phát hiện `v4npy/train_X.npy.part`5.49GB còn từ pull full trước. Đây là cache dataset tạm, không phải model/CM đã audit; không xóa hoặc backup file dở. Worker r2 loại toàn v4npy (dataset cache tái tạo được), tái dùng hardlink đã staging đúnginode; chỉ phần cache này được phép .part, runartifact .part khác vẫn chặnbackup. Job `bert-baseline-backup-20261116-r2`,PID283142,queue;log `runs/maintenance-20261116/bert-baseline-backup-r2.log`,state theo tênjob. DVCinit/remote đã xong; chưa xác nhậnpush trước completion.
-
-Verifyr2: T3compute12PASS, linkactive hai repoPASS; notebook/AFPHAfixture đãsửa ởrepoBERT,9PASS/1SKIP integrationparquetoffline. Credential-patternscan/diffcheck hai repoPASS.
-
-Git source/docsđãpush16/11: BERT `72a5b024ae78f6f3b5b3d999f5c81612911c7518`, MobiHet `5dfae538428b287b649b40fee36b309e8ce39dc8`, main; còncommitbàn giao/manifestcuối/bundle saubackup. Notion8bảng đãreplace/readbackPASS,childpagegiữnguyên; source kếtquảhiện hành `docs/research/comparison.md`/`.json`.
-Notifier `pfedes41-launch-receipt-20261116`,PID287248,queue;logBERT `runs/maintenance-20261116/pfedes-launch-receipt.log`; chỉchờreceiptlocal,cấmqueryKaggle hoặclaunchthêm. MainpFedESworker vẫnowns staging/push/watch; notifierbáo sớm khiđãpush đểchốtbàn giao/tắtmáy, khôngchờtraining3.8h. State theo tênjob ởlong-jobs/jobs;workerđãcopydurable trongruns/maintenance/workers.
-
-BERTT3/evidencebackup-r2 completion VERIFIED:811objects pushed/status-c in sync;T3logical10.990GB/896files,evidence20.06MB/720files. BackupBERT3manifest đãxongmứcmount. OneDrivecloud còn7762VFSdirtyfiles lúc kiểm; không xóaVFS/cache hoặc gọicloudsyncxong. Localartifact cònnguyên; rcloneupload tiếp khi máy/mount chạy lại. pFedES đangstagingdatasetoutlookcheck (quota19.63hđãgate), chưaclaimpush trướcreceipt.
+Process launcher/watcher cũ không sống; state running cũ là stale. Exact p4 chưa tồn tại trong owned inventory outlookcheck. Dataset cũ `outlookcheck/flb-pfedes-s41` nhận create-reply nhưng không có trong owned listing, status403; không coi đãready hoặc checkpoint đãmount.
+- Job **pfedes41-reboot-launch-20261116**, supervisorPID5355, queue/cùng ownerthread. Worker repoBERT `scripts/recover_pfedes41_final.py`; logBERT `runs/maintenance-20261116/pfedes-reboot-launch.log`; state `/home/odixe/.codex/long-jobs/jobs/pfedes41-reboot-launch-20261116/state.json`. Đã kiểm running. Đóng archive parentr45 (2rank/CM/history, bỏ Inductorcache), private dataset mới `outlookcheck/flb-pfedes-s41-r45-final`; verify archiveSHA sau download, rồi generate/testsyntax/private2T4/sourcecb193e6/seed41/50round và pushp4. Không launchtrùng.
+- Job **dvc-reboot-push-20261116**, supervisorPID5438, queue/cùng ownerthread. WorkerBERT `scripts/push_after_reboot.py`; logBERT `runs/maintenance-20261116/reboot-dvc.log`; state `/home/odixe/.codex/long-jobs/jobs/dvc-reboot-push-20261116/state.json`. Đã kiểm running. Chờ mountOneDrive thật (serviceđangactivating); sau đó push-j16 BERT3manifest/MobiHet10manifest nối tiếp và status-c. Không ghi vào thưmục bên dưới mount khi chưa mount.
+- Script recovery/backup source mới trackedGit; notebook chứa credential vẫn PRIVATE/gitignored. Parent source/model/loss/HP/schedule không đổi; cachemiss chỉ compile lại.
+- Completion launch: đọc launched.json/intent/pushed/exactversion, querymộtlần; sau đó watch1200s bằng worker→terminal pull/audit. Đủr50 mới thêm pFedES trở lại comparison/Notion và backup outputp4. Không modelpoll trong lúc chờ.
+- Completion DVC: kiểm exit0+status-c in sync hai repo; cập nhật backuprecord. Cloudupload tách riêng mứcmount; giữVFSdirtycache.

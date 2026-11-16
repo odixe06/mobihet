@@ -102,3 +102,10 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
   Python dự án khi shell không `conda activate` được: `/home/odixe/Tools/miniconda3/envs/nckh/bin/python`.
 
 - 15/11: worker gọi Python bằng absolute path vẫn cần `PATH` chứa env `nckh/bin` nếu subprocess gọi `kaggle` bằng tên. Thiếu PATH gây status UNKNOWN rỗng; không suy kernel lỗi. Worker collect mới export PATH trước chạy.
+
+## Backup và kiểm tra16/11
+
+- DVCadd/status/push cùngrepo giữlock; chạy nối tiếp, đa luồng bằngpush-j16 trongmộtprocess. Lockcontention không phải artifactcorruption; không xóalock của jobkhỏe.
+- Cachev4npy .part còn từpullfull không làmCM/state đãaudit thànhpartial; backup bỏcacheset táitạođược, giữmodel/source/CM vàgiữfile.part local, khôngtựxóa.
+- Test dùngrootdataset phải kiểm actualparquet train/test, không chỉ thưmục tồn tại. ToyAFPHA cầnmetadatafixture riêng, không dựa dữliệulocal đangonline.
+- Shutdown sauDVCsyncmứcmount cóthểcòncloudVFSdirty; ghi riênghai trạngthái, giữcachevàlocalartifact đểrclonetiếpupload saubậtmáy.
