@@ -2,6 +2,7 @@
 
     python scripts/run_b21_chain.py launch   # every terminal COMPLETE head below r50 -> next session on the same owner
     python scripts/run_b21_chain.py collect  # status + pull light outputs of chain sessions
+    python scripts/run_b21_chain.py audit    # heads at r50: run_b20_full checks + locked B21 r50 verdict -> runs/b21-r50/audit.json
 
 Head = latest session of an arm across runs/b21-transfer/*/batch.json, runs/b21-s43/batch.json, runs/b21-chain/*/batch.json.
 Next notebook = head notebook minus its import cell + kernel_import(run, last committed round), kernel_sources = [head, npy],
@@ -23,7 +24,7 @@ OUT, ART = ROOT / "runs/b21-chain", ROOT / "artifacts/b21-chain"
 W.ART, W.TAG = ART, "B21CHAIN"
 W.COLLECT = r'(^provenance/|/(config\.json|rounds\.jsonl|cms_r\d{3}\.npz)$)'
 SOURCES = [("runs/b21-transfer/*/batch.json", "artifacts/b21-transfer"), ("runs/b21-s43/batch.json", "artifacts/b21-s43"),
-           ("runs/b21-chain/*/batch.json", "artifacts/b21-chain")]
+           ("runs/b21-chain/*/*/batch.json", "artifacts/b21-chain")]
 IMPORT_MARK = ("resumed from verified two-rank checkpoint", "resumed from verified private dataset")
 
 
@@ -94,5 +95,25 @@ def collect():
     print("ALL_TERMINAL" if states and all(s.get("terminal") for s in states) else "WAITING", flush=True)
 
 
+def audit():
+    """Heads at r50 (the head output carries rounds 1..50 and every CM): artifact checks and B21 r50 rule of run_b21_full,
+    plus chain check: each earlier session's rounds.jsonl is an exact prefix of the head's."""
+    from scripts import run_b21_full as F
+    hs = heads(); assert all(h["pulled"] and h["last"] == 50 for h in hs.values()), {a: h["last"] for a, h in hs.items()}
+    F.OUT = F.B.OUT = ROOT / "runs/b21-r50"; F.B.ART = ART; F.OUT.mkdir(exist_ok=True)
+    atomic_json(F.OUT / "batch.json", [dict(h, endpoint=50) for _, h in sorted(hs.items())])
+    F.audit()
+    out = json.loads((F.OUT / "audit.json").read_text())
+    for arm, h in sorted(hs.items()):
+        head = (ART / h["slug"] / h["run_slug"] / "rounds.jsonl").read_text().splitlines()
+        parts = [f for f in ROOT.glob(f'artifacts/b21-*/*/{h["run_slug"]}/rounds.jsonl') if h["slug"] not in f.parts]
+        lens = sorted(len(f.read_text().splitlines()) for f in parts)
+        ok = bool(parts) and all(f.read_text().splitlines() == head[:len(f.read_text().splitlines())] for f in parts)
+        out[arm]["chain"] = {"sessions_before_head": lens, "rows_prefix_of_head": ok}
+        if not ok: out[arm]["verdict"] = "FAIL"
+        print(arm, "chain", lens, "prefix", ok, out[arm]["verdict"], flush=True)
+    atomic_json(F.OUT / "audit.json", out)
+
+
 if __name__ == "__main__":
-    {"launch": launch, "collect": collect}[sys.argv[1]]()
+    {"launch": launch, "collect": collect, "audit": audit}[sys.argv[1]]()

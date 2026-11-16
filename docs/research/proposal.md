@@ -1,12 +1,18 @@
-# Phương pháp được chọn — CBB (owner chốt 10/11/2026)
+# Phương pháp được chọn — T3 (owner chốt 15/11/2026)
 
-**Phương pháp chính = CBB = Core + generator KM16 w0 .5 + codec lite6 (Lloyd 4 lượt) + Q 8-bit (QQ8).**
+**Phương pháp chính = T3 = CBB + lịch liều synthetic theo cỡ xe** ([B21](screening-dose-b21.md)).
+Tầng theo số dòng train: S <4096, M 4096–16383, L ≥16384; số dòng/bước r1–25 / r26–50: S 64/64, M 64/32, L 48/16; floor16.
+Hp thêm `synth_tier_min=[4096,16384] synth_tier_rows=[[64,64],[64,32],[48,16]] synth_late_from=25`, method `mobihet_compute`.
+DAGSNet r50 đủ3seed41/42/43, macro **.90796 ± .00033** (sampleSD; [kết quả](results-t3.md)); FLOPs **4,94×F** (−19% so CBB 6,09×F); audit + luật B21 PASS cả hai seed. Chưa chốt hạng compute mới; không suy FLOPs thành wall time.
+DAGSNet T3 đã đủ r50 cả3seed41/42/43: seed41 macro .907866023, seed42/43 theo `runs/b21-r50/audit.json`. BERT đủr50 cả3seed41/42/43, macro **.914770238 ± .000211920**, hạng1; DAGSNet hạng3. [8bảng/nguồn](comparison.md). Trạng thái sống tại [continue](../operations/continue.md).
+
+**CBB nền/đối chứng = Core + generator KM16 w0 .5 + codec lite6 (Lloyd 4 lượt) + Q 8-bit (QQ8).**
 Core = copula augmentation + class Q + synthetic step floor + compact bootstrap. Không input-bank, không realKD.
 Cấu hình: hp KM50 + `cop_kmeans_q=int8 cop_kmeans_lite=6 q_bits=8 km_bytes=true` (`runs/codec-combo50/batch.json`, arm CBB42/CBB43).
 Chi tiết thực thi ở [method](method.md) (mô tả Core; KM16/codec ở [km-lite](screening-km-lite.md), [screening-codec](screening-codec.md)),
 cấu hình chung ở [protocol](protocol.md).
 
-Số r50 (TB seed 42/43, audit PASS): F1 macro **.9078** (hạng 3 sau APFed .9119, CANPerFL .9088 seed 42; TB 3 seed 13/11: CBB .9078 ± .0004 với seed 41 .9077,
+Số **CBB đối chứng**, không phải T3 (TB seed42/43, audit PASS): F1 macro **.9078** (hạng 3 sau APFed .9119, CANPerFL .9088 seed 42; TB 3 seed 13/11: CBB .9078 ± .0004 với seed 41 .9077,
 APFed .9130, CANPerFL .9097 — [report](../../runs/cbb-s41/report.md)), recall macro .9097, p10 .7761, low256 .8604;
 **265 B/round** (13,3 KB/50 round không tính bootstrap < pFedES 0,14 MB), bootstrap unicast **1,15 MB**/xe. So KM50 codec gốc cùng seed:
 Δmacro TB r46–50 −.0003 cả hai seed. Đánh đổi đã biết, owner chấp nhận: benign .8403 thấp hơn Core+QQ8 .8410
@@ -40,7 +46,7 @@ Số canonical: [F50/Core](results-f50.md), [L50/lossless](results-l50.md), [km-
 
 ## Phần chưa được chứng minh
 
-- Chỉ 2 seed (42/43), không phải significance; backlog owner: seed 41.
+- T3 DAGSNet và CBB đối chứng đều có3seed; không suy significance chỉ từ số seed. BERT đã đủr50/3seed và audit CM+statehai rank; vẫn chưa có fullpredictionreplay.
 - Cải tiến cũ: PH, EMA, QK, QT2 **FAIL sim b11**, floor/rows/gộp phiên **FAIL sim b12** (2 seed) — [catalog đề xuất](improvement-proposals.md).
   Owner phiên mới 10/11 mở nghiên cứu module/compute, performance trước, đa kiến trúc, chỉ DAGSNet trong experiment;
   [b13](screening-module-b13.md) đã đủr20/audit12run, **SQ/RK/SK/JS/LS FAIL cả2seed theo gate**, không lên pilot. Chưa đổi phương pháp chính.

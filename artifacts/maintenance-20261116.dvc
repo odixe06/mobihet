@@ -1,0 +1,6 @@
+outs:
+- md5: b73b8265afdb272e910f2d49d0a679f9.dir
+  size: 57490
+  nfiles: 2
+  hash: md5
+  path: maintenance-20261116

@@ -87,3 +87,28 @@ T1 r50 hai seed (`runs/b21-t1/`): 13/11 không account nào còn ≥ 13,2 h → 
 10 metric và checks: `runs/b21-full/audit.json`. Audit CM/config/source metadata; chưa replay prediction từ full weights.
 
 T1 partial audit: `runs/b21-t1/partial-audit/audit.json`; T142 r22/T143 r18 checks PASS, complete=False, verdict PENDING_R50. Không áp gate r50 lên partial.
+
+## Full-scale r50 — audit chuỗi 15/11 00:30 VN
+
+`python scripts/run_b21_chain.py audit` → [audit.json](../../runs/b21-r50/audit.json): 6/6 head đủ r1–r50, 10 check artifact PASS
+(round, n_params, finite, skip ≤ 1%, clients_applied, LR = CBB, hp = launch, overlay SHA, CM support = CBB, 10 metric từ CM) và
+`rounds.jsonl` mọi phiên trước là prefix đúng của head (T142 r22→25→34→50, T143 r18→47→50, T3 s42 r20→27→36→50, T4F s42 r20→24→49→50,
+T343 r7→50, T4F43 r4→50). Guard/cohort: `runs/b21-r50/analyse_r50.py` → [report.txt](../../runs/b21-r50/report.txt). Δ so CBB cùng seed, r50.
+
+| arm | FLOPs | macro s42 / s43 | Δmacro r50 | Δ TB r46–50 | Δp10 | Δ cohort < 256 dòng | Δ tầng S / M / L (s42; s43) | Δ benign / TD F1 | `t_train` vs CBB | verdict |
+|---|---:|---|---|---|---|---|---|---|---|---|
+| T1 | 5,42×F | .9076 / .9085 | +.0002 / +.0003 | +.0002 / +.0003 | −.0007 / +.0023 | +.0006 / −.0006 | −.0000/−.0004/+.0006; +.0000/−.0002/+.0006 | +.002 / +.000 | +3% / +1% | **PASS** |
+| T3 | **4,94×F** | .9077 / .9083 | +.0003 / +.0002 | +.0003 / +.0002 | +.0011 / +.0028 | +.0016 / +.0009 | +.0007/−.0004/+.0005; +.0008/−.0003/+.0003 | +.003 / −.001 | +1% / −4% | **PASS** |
+| T4F | 5,10×F | .9080 / .9087 | +.0006 / +.0005 | +.0006 / +.0005 | **+.0118 / +.0134** | **+.0120 / +.0094** | +.0054/−.0008/+.0001; +.0048/−.0006/+.0001 | +.003 / −.002 | +16% / +11% | **PASS** |
+| SD (B20) | 5,32×F | .9072 / .9081 | −.0002 / −.0001 | −.0003 / −.0001 | −.0068 / −.0041 | −.0048 / −.0086 | −.0027/−.0004/+.0004; −.0026/−.0002/+.0005 | +.002 / −.001 | −4% / −10% | PASS (B20) |
+
+- **T1, T3, T4F PASS luật r50 cả hai seed** (Δ TB r46–50 ≥ −.0015, Δ r50 ≥ −.003, macro > .9048). Theo luật khóa (nhiều arm PASS → FLOPs thấp nhất): **T3, 4,94×F (−19% so CBB 6,09)**.
+  T4F đắt hơn T3 0,16×F nhưng là arm duy nhất tăng xe nhỏ lặp lại ở hai seed (p10, cohort < 256 dòng, tầng S). **Owner 15/11 chọn T3 làm phương pháp chính**; bổ sung DAGSNet seed41, BERT chờ chốt phạm vi.
+- Δmacro +.0002…+.0006 nằm trong nhiễu seed của CBB (±.0004, 3 seed): kết luận là **không kém CBB**, không phải tăng macro.
+- Giữ 64 dòng cho tầng S xóa phần mất xe nhỏ của SD (tầng S −.0027/−.0026 → ±.0008; p10 −.007/−.004 → ≥ −.0007) — khớp cơ chế giả thuyết.
+- Arm cắt đầu lịch chậm ở pha đầu rồi co lại: T4F Δmacro r10 −.0031/−.0024, r20 −.0010/−.0008, r40 +.0003, r50 +.0006/+.0005;
+  T3 r10–r30 −.0005…−.0010 → r50 +.0003/+.0002. Pilot r20 đo pha bất lợi nhất của các arm này.
+- Mọi arm đẩy cùng trục benign↔TD: benign F1 +.002…+.003 (recall +.004…+.009), TD precision +.005…+.012 / recall −.002…−.010, TD F1 −.002…+.001.
+- Byte/round 266–272 (CBB 265–266; T4F +6 B do Q ở xe floor), bootstrap = CBB. `t_train` trên T4 không giảm (engine che dòng thừa trong nhóm,
+  launch-bound); T4F +11–16% vì thêm bước floor. FLOPs là chi phí theo số dòng mỗi xe tự sinh (công thức ở mục Arm), không đo từ `t_train`.
+- Giới hạn: 2 seed (CBB có 3 seed), official test đã đọc lặp; audit CM/config/source, chưa replay prediction từ weights; T4 dừng ở pilot theo luật, không mở lại.

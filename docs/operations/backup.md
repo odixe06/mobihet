@@ -1,16 +1,18 @@
 # Git / DVC backup record
 
-Updated: 2026-11-13 02:45, Asia/Ho_Chi_Minh — artifact đến 13/11 (B13–B20 sim, CBB s41, SM42P) đã DVC + OneDrive; Git `main` push 13/11.
-Đang chạy, **chưa DVC**: `artifacts/b20-full/{SD42,SD43}`, `artifacts/b20-sm50/*` — add sau khi batch đóng (kèm `_receipts/`). Bundle thay 13/11 02:45 (verify PASS). Workspace partial.
-Procedure: [repo-backup](../../.claude/skills/repo-backup/SKILL.md).
+Updated:16/11/2026 — DVC mới10manifest/438objects đã push `-j16`, exit0; `dvc status -c` báo **Cache and remote 'onedrive' are in sync.** Đây là xác minh mức mount; cloud upload trực tiếp chưa kiểm trong phiên này. Không xóa local.
+Target mới:6head `artifacts/b21-chain/*`,2run chuyển `b21-transfer/{mh-k-b21-t143-r50-x18,mh-k-b21-t4fp-r20-x24}`, T3DAGSNet41 `artifacts/t3-s41/mh-k-b21-t341-r50`, inventory `artifacts/maintenance-20261116`.
+Các run mới kèm receipts đã lọc notebook/credential. Không dvcadd lại manifest lịch sử/partial.
+Receipt: `runs/maintenance-20261116/new-targets.json`, `dvc-push.log`, `dvc-status.log`; controller `mobihet-dvc-backup-20261116` succeeded.
+Git commit/push/bundle cho thay đổi16/11 đang chờ hoàn thiện tài liệu/Notion; owner đã ủy quyền. Workspace lịch sử vẫn partial, giữ các hạn chế ở mục2.
 
 ## 1. Destinations
 
 - Git `https://github.com/odixe06/mobihet.git`, `main`: commit 10/11 tối (combo r50 + chốt CBB + manifest codec-combo); đối chiếu đỉnh bằng `git ls-remote`. Bundle thay 10/11 tối, verify PASS.
 - DVC `onedrive` (default): `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/dvc-storage` (rclone mount `onedrive:`). `dvc` ở env conda `nckh`.
 - Bundle `/home/odixe/Cloud/OneDrive/NCKH/veremi_build/mobihet-v2/mobihet.bundle`: all refs, verify mỗi lần thay.
-- Cloud upload: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`, `TimeoutStartSec=3600` qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
-- OneDrive quota: free 43,2 GiB sau upload (20:27 05/11). Google Drive không dùng.
+- Cloud upload lịch sử: **xong** 20:26 05/11, 0 file dirty trong VFS cache. Mount chạy `--transfers=16`, `TimeoutStartSec=3600` qua drop-in `~/.config/systemd/user/rclone-onedrive.service.d/upload-parallel.conf`. Không thêm flag `--onedrive-*` (đổi fs thành `onedrive{hash}`, mất hàng đợi cache).
+- OneDrive quota lịch sử: free43,2GiB sau upload (20:27 05/11). Google Drive không dùng.
 
 ## 2. Tracked artifacts
 

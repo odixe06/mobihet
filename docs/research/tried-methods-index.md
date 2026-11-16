@@ -2,14 +2,14 @@
 
 Mỗi dòng là một study: thử cơ chế gì, kết quả, mở đâu. Bảng theo **họ cơ chế** và lý do đóng ở [sổ tay](method-building-brief.md) §4;
 bài học dùng lại ở [LESSONS](../../LESSONS.md). Trước khi đề xuất mới: tìm cơ chế ở đây, không mở lại họ đã đóng bằng tên mới.
-Verdict giữ nguyên như lúc đóng; số ở doc gốc. Trạng thái: **nhận** = trong CBB · **đóng** = FAIL/dừng · **chạy** = đang chạy.
+Verdict giữ nguyên như lúc đóng; số ở doc gốc. Trạng thái: **nhận** = trong T3 (nền CBB) · **đóng** = FAIL/dừng · **chạy** = đang chạy.
 
-## Hiện hành — CBB và sau CBB (v4, DAGSNet W1, 5.343 xe; sim = fold val 200 xe r20)
+## Hiện hành — T3 trên nền CBB (v4, DAGSNet W1, 5.343 xe; sim = fold val 200 xe r20)
 
 | study | cơ chế / arm | kết quả | doc |
 |---|---|---|---|
-| B21 | liều synthetic theo cỡ xe (< 4.096 / 4.096–16.383 / ≥ 16.384 dòng) × pha lịch: T1, T3, T4, T5; T4F = T4 + floor 48 | sim hai seed **chạy** (13/11) | [B21](screening-dose-b21.md) |
-| B20 | giảm compute synthetic: SH head-only, SM 16 full + 48 head-only, SD 64→32 dòng từ nửa lịch | SH đóng (absent −.21); SD r50 **PASS hai seed** (−.0002/−.0001, 5,32×F); SM r50 **chạy** | [B20](screening-compute-b20.md) |
+| B21 | liều synthetic theo cỡ xe (< 4.096 / 4.096–16.383 / ≥ 16.384 dòng) × pha lịch: T1, T3, T4, T5; T4F = T4 + floor 48 | sim: T5 FAIL; pilot r20: T4 FAIL; **T3 nhận vào phương pháp chính (owner 15/11)**; r50 hai seed PASS: T1 5,42×F, T3 4,94×F, T4F 5,10×F** (Δmacro +.0002…+.0006; T4F p10 +.012/+.013) | [B21](screening-dose-b21.md) |
+| B20 | giảm compute synthetic: SH head-only, SM 16 full + 48 head-only, SD 64→32 dòng từ nửa lịch | SH đóng (absent −.21); SD r50 **PASS hai seed** (−.0002/−.0001, 5,32×F); SM r50 PASS (.9057/.9058, 4,65×F, Δ −.0017/−.0023) | [B20](screening-compute-b20.md) |
 | N1 / N2 | proxy server DAGSNet; GBDT liên kết data-space | N1 trùng P20 (không code); N2 trần .8065 < .924 — đóng | [sổ tay §5](method-building-brief.md) |
 | A1 / B19 (A2') | nhãn mềm posterior generator theo dòng; cụm biên theo nhầm lẫn generator | FAIL gate local — đóng | [B19](screening-boundary-b19.md), [sổ tay §5](method-building-brief.md) |
 | B18 | nguồn teacher ngoài fit: S shadow → C/E/H matched source | H FAIL macro hai seed — đóng | [B18](screening-source-b18.md) |

@@ -4,6 +4,8 @@ Nghiên cứu federated IDS V2X trên VeReMi NextGen v4: 5.343 xe, 16 lớp. M�
 nhánh hiện tại trao đổi thống kê gộp và bảng xác suất theo lớp, không dùng proxy neural hoặc chia sẻ mẫu local.
 Mục tiêu: cải thiện từng xe, đặc biệt xe ít mẫu/non-IID, trong giới hạn giao tiếp và hỗ trợ khác kiến trúc.
 
+Phương pháp hiện chọn **MobiHet=T3**: [cơ chế](docs/research/method.md), [kết quả DAGSNet3seed](docs/research/results-t3.md). BERT đối chiếu ở repo `../fl_veremi_bert`.
+
 Bắt đầu tại [CONTEXT.md](CONTEXT.md). Mọi trạng thái job và bước tiếp chỉ ghi tại [bàn giao sống](docs/operations/continue.md).
 Dùng env conda `nckh`; [protocol](docs/research/protocol.md), [dataset/model/runtime](knowledge/README.md).
 

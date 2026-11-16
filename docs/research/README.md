@@ -29,3 +29,5 @@ Job/round/account đang chạy chỉ ở [continue](../operations/continue.md). 
 [archive 09/11](../../archive/docs-20261109/README.md) (standard/forest, KM fp32, Y50 design, launch receipts cũ),
 [archive 13/11](../../archive/docs-20261113/README.md) (bài rà/khảo sát 08–11/11 dẫn tới B13–B18, đã gộp vào sổ tay).
 Chuyển chỗ tài liệu không là chạy lại, sửa gate hoặc promote phương pháp.
+
+Kết quả phương pháp chính T3/MobiHet,3seed DAGSNet: [results-t3](results-t3.md). Bảng CBB/Core cũ là đối chứng lịch sử.

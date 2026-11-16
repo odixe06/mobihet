@@ -284,3 +284,15 @@ Các thất bại/runtime đã biết và nguồn kết quả: [research index](
   ở lớp phụ thuộc ngữ cảnh xe nhận (suddenStop .40, lớp11 .50); personalization là nguồn lợi chính trên dataset này.
 
 - B21 full-scale pilot13/11: T4 artifact PASS nhưng utility FAIL (Δmacro TB r16–20 −.0016 < −.0015), dù endpoint−.0013. Không dùng verdict B20 PASS_TRAJECTORY thay luật B21; T3/T4F PASS đúng luật B21.
+- B21 r50 (15/11, audit chuỗi 6/6 PASS): T1/T3/T4F hai seed Δmacro +.0002…+.0006 vs CBB — trong nhiễu seed ±.0004, gọi là
+  **không kém**, không gọi gain. Giữ 64 dòng cho xe < 4.096 dòng xóa phần mất xe nhỏ của SD (tầng S −.0027 → ±.0008) ⇒ liều synthetic
+  cắt được ở xe lớn/nửa sau lịch, không cắt được ở xe nhỏ: T3 4,94×F (−19%). Floor 48 (T4F) tăng p10 +.012/+.013 và cohort < 256 dòng
+  +.012/+.009 lặp lại hai seed với giá +0,49×F và +11–16% `t_train`. Arm cắt đầu lịch chậm tới ~r30 rồi co lại/đổi dấu sau r40
+  (T4F r10 −.003 → r50 +.0006): pilot r20 đo pha bất lợi nhất, T4 trượt pilot .0001 trong khi T4F cùng mức cắt M/L kết thúc r50 dương.
+  Mọi arm giảm liều vẫn dời trục benign↔TD (benign recall ↑, TD recall ↓). Engine che dòng thừa nên `t_train` T4 không phản ánh FLOPs.
+
+## Chuẩn hóa báo cáo16/11
+
+- T3 LA thực thi CE(z+logπ_local−logπ_global,y), cả hai prior Laplace+1; không chỉ logπ_local.
+  Synthetic r1hardCE, từr2 KL với Q roundtrước; liều tầng giảm dòng, không giảm hệ số lossmean1.
+- Byte/số đo CBB không thay số đo T3. FLOPs hữu ích theo liều không chứng minh engine grouped tránh mọi dòng mask/đệm hoặc giảm wall time tương ứng.

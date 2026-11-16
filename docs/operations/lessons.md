@@ -93,3 +93,12 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
   phải qua cùng kiểm `ast.parse`/`shlex`/`json.loads` trước push. Python dự án: `conda activate nckh` (system python thiếu nbformat/kaggle).
 
 - 13/11: state controller `running` sau reboot không chứng minh process sống; kiểm PID/identity trước phục hồi. B21 budget stop r22/r18 lưu checkpoint ở round stop, không chỉ bội5; resume preflight phải dùng round thực, kiểm cả2rank/RNG trước decode.
+
+- **Push lỗi vẫn để lại push-intent (14/11):** `W.launch` ghi intent trước `kaggle kernels push`; push bị từ chối (hết 2 slot)
+  không tạo kernel nhưng intent chặn mọi lần thử sau. Đọc `.push.log`: không có "successfully pushed" + status "not found" → dời intent rồi push lại.
+- **Glob batch phải khớp độ sâu thư mục (14/11):** `run_b21_chain` ghi `<arm>/pN/batch.json` nhưng đọc `*/batch.json` → không thấy phiên mới, nối sai head.
+- **Audit chuỗi nối phiên (15/11):** output của head mang đủ `rounds.jsonl` r1–r50 và mọi `cms_r*.npz` (phiên sau chép output phiên trước),
+  nên audit chạy trên head như run một phiên, cộng kiểm `rounds.jsonl` từng phiên trước là prefix đúng của head (`run_b21_chain.py audit`).
+  Python dự án khi shell không `conda activate` được: `/home/odixe/Tools/miniconda3/envs/nckh/bin/python`.
+
+- 15/11: worker gọi Python bằng absolute path vẫn cần `PATH` chứa env `nckh/bin` nếu subprocess gọi `kaggle` bằng tên. Thiếu PATH gây status UNKNOWN rỗng; không suy kernel lỗi. Worker collect mới export PATH trước chạy.

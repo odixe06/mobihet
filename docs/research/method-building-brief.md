@@ -141,7 +141,7 @@ cấu hình này đã ≈ 16 cây × 30 split × 77 feature × 255 bin × (g,h) 
 
 Không mở lại họ ở §4 bằng tên mới; không cộng gain các arm để dự báo combo. Việc còn thiếu không thuộc F1 nhưng là yêu cầu bắt buộc:
 **model trộn kiến trúc full-scale chưa từng chạy** (sim b4 W1/W0.25 không sụp). Seed 41 đã xong 13/11 (CBB .9077).
-Giảm compute tại xe đang chạy ở [B20](screening-compute-b20.md).
+Giảm compute tại xe: [B20](screening-compute-b20.md) và [B21](screening-dose-b21.md) đã đóng; owner chọn T3. Trạng thái hiện hành tại [continue](../operations/continue.md).
 
 ## 6. Checklist trước khi khóa một thí nghiệm mới
 

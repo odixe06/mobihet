@@ -1,63 +1,65 @@
-# CBB — cơ chế đang thực thi
+# MobiHet — phương pháp T3 được chọn
 
-**CBB = Core + generator KM16 w0 .5 + codec lite6 + Q 8-bit** (owner chốt 10/11). Phần Core mô tả dưới;
-phần CBB thay đổi ở mục [CBB thay gì trên Core](#cbb-thay-gì-trên-core). Chọn phương pháp: [proposal](proposal.md). Mọi cấu hình chung theo [protocol](protocol.md).
-Implementation: [WLive](../../methods/mobihet_wstudy.py), [copula/bootstrap/Q](../../methods/mobihet.py),
-[live teacher](../../methods/mobihet_next.py), [cấu hình Core](../../scripts/f50_common.py).
-Các đối chứng M→X cũ không còn là mô tả mặc định.
+Owner chọn T3 ngày15/11/2026; trên bảng so sánh gọi **MobiHet**. T3 giữ nền CBB
+(copula KM16 + codec lite6 + Q8), đổi liều synthetic theo cỡ xe và pha lịch.
+[Protocol](protocol.md) giữ nguyên; [thiết kế và gate B21](screening-dose-b21.md) là hồ sơ lựa chọn,
+[proposal](proposal.md) ghi quyết định, kết quả hiện hành theo [bàn giao](../operations/continue.md).
 
 ## Bootstrap một lần
 
-1. Mỗi xe đếm lớp và histogram 256 bin cho 77 feature trên miền scaled chung. Server chỉ dùng tổng để có prior/CDF toàn mạng theo lớp.
-2. Xe dùng CDF chung biến đổi train local thành normal score theo mid-rank, gửi tổng `Σz`, `Σzzᵀ` theo lớp.
-3. Server dựng mean/covariance có ridge; downlink CDF uint16 và mean/Cholesky fp16. Mỗi xe decode rồi tự sinh synthetic.
+Mỗi xe dùng fold train+val của chính nó; server chỉ nhận thống kê và phát thống kê gộp.
 
-Đây là **Gaussian copula theo lớp**, không Gaussian trực tiếp trên mọi feature: marginal có histogram phi Gaussian,
-nhưng dependence latent vẫn là một Gaussian mỗi lớp. Core hiện không tự chuẩn hóa mean0/variance1 sau decode;
-đó là can thiệp riêng của ứng viên [standard latent](generators.md).
+1. Histogram256bin theo lớp/feature cho77đầu vào → CDF chung. Biến đổi normal-score dùng mid-rank tại atom.
+2. Moment lớp, sau đó k-means liên kết16cụm/lớp với4lượt Lloyd; xe gửi count/tổng/moment cụm.
+   Covariance cụm co về covariance lớp với `cop_kmeans_w0=0.5`, loại cụm<20dòng.
+3. Codec lite6: moment/tâm int8, sparse+zlib; Cholesky cụm phần dưới6bit, đường chéo/scale fp16;
+   CDF lossless. Mỗi xe decode và tự sinh mẫu từ mixture trong latent copula, ánh xạ qua CDF ngược.
 
-## Một round tại xe
+Không gửi dòng thật, model, gradient hoặc BN. Thống kê ô nhỏ vẫn có thể tiết lộ thông tin;
+implementation chưa có SecAgg/DP. Schema cho phép kiến trúc khác nhau, chưa chứng minh full-scale mixed-model.
 
-- Dữ liệu thật: đúng một epoch, CE với logit adjustment từ prior local/global.
-- Mỗi bước: thêm 64 dòng synthetic cân bằng 16 lớp. Round1 dùng nhãn cứng; các round sau dùng KL từ `Q[y]`, trọng số cố định1.
-  Synthetic dùng logit thô; CEreal dùng logit đã adjustment theo thiết kế.
-- Xe có ít hơn16 bước thật: thêm bước **chỉ synthetic** đến floor16; không thêm epoch thật.
-- Online uplink: tổng xác suất model trên dòng thật theo true class và count. Server gộp theo số mẫu/lớp,
-  encode/decode meanfp16 để có bảng `Q` chung. Q thu ở round r chỉ dùng từ r+1.
-- Không realKD, input-bank, proxy server hoặc trao model trong Core. Mỗi xe giữ model riêng.
+## Liều T3 — không dùng cố định64dòng mọi xe
 
-`Q[y]` là target có điều kiện theo nhãn thật, không classifier phụ thuộc input. Q đúng argmax/ít entropy hoặc synthetic agreement
-không chứng minh teacher tổng quát hóa trên own-test.
+$n_k$ là số dòng train+val của xe, $s_k=\lceil n_k/64\rceil$.
 
-## CBB thay gì trên Core
+| Tầng | Điều kiện | Synthetic/bước r1–25 | Synthetic/bước r26–50 |
+|---|---|---:|---:|
+| S | n_k<4096 |64|64|
+| M |4096≤n_k<16384|64|32|
+| L |n_k≥16384|48|16|
 
-Code: `methods/mobihet_sim.py` (docstring mô tả từng knob; knob tắt = Core). Hp = Core + `cop_kmeans=16 cop_kmeans_w0=0.5
-cop_kmeans_q=int8 cop_kmeans_lite=6 q_bits=8 km_bytes=true` (bản khóa: `runs/codec-combo50/batch.json`, arm CBB42/CBB43).
+Mỗi round đúng1epoch dòng thật, batch64. Nếu $s_k<16$, thêm bước chỉ synthetic tới floor16;
+không lặp thêm epoch thật. Synthetic labels cân bằng16lớp. Các dòng vượt liều của xe bị mask khỏi loss/BN.
+Đây là giảm công việc hữu ích; engine grouped vẫn có thể thực thi dòng đệm nên FLOPs lý tưởng không suy ra wall time.
 
-- **Generator KM16 w0 .5:** mỗi lớp là mixture 16 Gaussian trong không gian normal score của copula. Tâm cụm bằng k-means liên kết
-  (khởi tạo từ covariance lớp gộp, 4 lượt Lloyd chỉ gửi count/tổng theo cụm); covariance cụm co về covariance lớp (trọng số 0,5D dòng),
-  bỏ cụm < 20 dòng. Marginal/CDF và cách sinh giữ như Core; xe sinh synthetic từ mixture. Không thêm bước/dòng train.
-- **Codec lite6 (bootstrap):** moment lớp và moment cụm upload int8 theo xe, sparse + zlib; tâm broadcast int8; Cholesky cụm xuống
-  đường chéo fp16 + phần dưới 6 bit (một scale fp16/hàng); không gửi mean/Cholesky lớp; CDF lossless zlib.
-- **Q 8-bit (QQ8):** gói Q hai chiều lượng tử `p·255`, uplink chỉ lớp có mặt (Q 4-bit FAIL).
+Cấu hình khóa: `synth_tier_min=[4096,16384]`, `synth_tier_rows=[[64,64],[64,32],[48,16]]`,
+`synth_late_from=25`, `synth_step_floor=16`; method `mobihet_compute`.
 
-## Byte, resume và đánh giá
+## Loss và bảng teacher Q
 
-Class Q Core: 544 B mỗi chiều/xe/round; CBB (QQ8) ≈265 B cả hai chiều. Tổng chi phí và codec theo [proposal](proposal.md); số đo ở kết quả từng batch.
-Chỉ gọi SecAgg-compatible ở mức công thức tổng, không gọi sparse codec hoặc hệ thống hiện tại đã có SecAgg/DP.
+Prior được làm trơn Laplace: $\pi_{k,c}=(n_{k,c}+1)/(n_k+16)$;
+$\pi_{g,c}=(\sum_k n_{k,c}+1)/(\sum_k n_k+16)$.
+Loss thật là CE trên logits $z+\log\pi_k-\log\pi_g$; synthetic dùng logits thô.
 
-Hai process/GPU giữ client riêng, không đồng bộ gradient. Checkpoint resume đầy đủ khác snapshot nhỏ dùng audit:
-phải có private state, teacher, RNG của method/driver và torch CPU/CUDA của cả hai rank cùng round.
-Optimizer local được khởi tạo lại mỗi round theo protocol. Không dùng W&B resume thay checkpoint resume.
+Round1 chưa có Q: synthetic hard-label CE. Từ round2: KL$(Q_{r-1}[y]\parallel\mathrm{softmax}(f_k(\tilde x)))$,
+trọng số1. Loss thật và synthetic đều lấy mean riêng trên dòng hợp lệ rồi cộng;
+không nhân loss synthetic với tỉ lệ số dòng.
 
-Mỗi xe chấm own-test của nó; gộp đủ 5.343 CM và hỗ trợ từng xe/lớp để báo10metric, cohort và class results.
-Headline r50, không chọn round/HP qua test. Audit hiện gồm source/config/CM/support/snapshot/teacher/finite;
-chưa prediction→CM replay toàn mạng hoặc full-content fingerprint của dataset.
+Trong lượt train dòng thật, tích lũy xác suất dự đoán theo true class (online, không thêm forward thu Q).
+Server gộp tổng xác suất/count theo lớp; Q của round r chỉ dùng từ r+1.
+QQ8 lượng tử hóa xác suất8bit, uplink chỉ lớp có mặt; downlink bảng Q chung.
+Q là teacher có điều kiện theo lớp, không phải classifier theo input.
+Byte từng round phải đọc `bytes_up`/`bytes_down`; không chép số CBB thành số đo T3.
 
-## Nguồn và phạm vi adaptation
+## Thực thi, resume và audit
 
-- Class output exchange có quan hệ với [FD, Jeong et al.](https://arxiv.org/abs/1811.11479),
-  soft target với [KD, Hinton et al.](https://arxiv.org/abs/1503.02531).
-  Core dùng teacher chung gồm self, weighted counts, synthetic và LA; không phải reproduce đầy đủ bài gốc.
-- Prior art synthesis và hạn chế marginal/covariance: [nguồn primary](generator-primary-sources.md).
-  Không gán copula/floor/codec của dự án cho công thức paper khi không có đối chiếu.
+Nguồn: [T3/loss tầng](../../methods/mobihet_compute.py), [copula/LA](../../methods/mobihet.py),
+[KM16/codec](../../methods/mobihet_sim.py), [floor/compact bootstrap](../../methods/mobihet_wstudy.py).
+BERT port ở repo `../fl_veremi_bert`, dùng cùng HP/T3 với engine FeatureBERT; model không buffer.
+Baseline dùng group_rows8192; T3 production4096 như frozen build. Không đổi protocol để tối ưu riêng method.
+
+Checkpoint đủ resume phải có private bank, teacher, method/driver RNG và CPU/CUDA RNG cả2rank cùng round;
+optimizer local khởi tạo lại mỗi round. Snapshot nhỏ và W&B resume không thay checkpoint.
+Headline r50; model riêng chấm own-test, gộp đủ5343xe/support để báo10metric. Không chọn best round qua test.
+Audit CM/source/config/finite/state có phạm vi riêng; chưa per-row prediction→CM replay toàn mạng,
+chưa dataset full-content fingerprint. Ba seed không tự chứng minh significance.

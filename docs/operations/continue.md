@@ -1,141 +1,64 @@
-# Bàn giao sống — kiểm 13/11/2026 11:05 UTC+7
+# Bàn giao sống — 16/11/2026
 
-Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [operations lessons](lessons.md) trước.
-Đây là **bàn giao hiện hành duy nhất**. Artifact/state/process thật ưu tiên tóm tắt.
-Lịch sử B13–B19, A1, N1/N2, baseline seed 41/43 đến 13/11: [snapshot](../../archive/handoffs/2026-11-13-before-consolidation.md).
+Đọc [CONTEXT](../../CONTEXT.md), [LESSONS](../../LESSONS.md), [bài học vận hành](lessons.md).
+Lịch sử job/verdict: [snapshot](../../archive/handoffs/2026-11-16-before-refresh.md); đây là bàn giao hiện hành duy nhất.
 
-## Đang chạy — B21 full-scale: pilot r20 + T1 r50 phiên 1 (Claude Code)
+## Phương pháp và trạng thái
 
-[Design + luật + kết quả sim](../research/screening-dose-b21.md). Sim 13/11 audit PASS 12/12: ứng viên **T1, T3, T4, T4F**; **T5 FAIL** (dừng).
-Push 13/11 ~10:55–11:03, version 1, base `be3b7d5`, hp = CBB42 + knob tầng, `synth_late_from=25`, W&B off.
+Owner chọn **T3**, gọi **MobiHet** trên Proposal 2. DAGSNet cả3seed41/42/43 đủr50:
+seed41 `runs/t3-s41/audit.json` + `state-audit.json`; seed42/43 `runs/b21-r50/audit.json` (T3P/T343).
+B20, B21/T1/T4F đã đóng/audit; không waiter cũ nào sống khi kiểm đầu phiên16/11. Không nối T341 hoặc chạy lại batch cũ.
+BERT41 r50;42/43 cần pull/audit head mới từ repo BERT. Không gọi partial là headline50.
 
-| arm | kernel | cap | ghi chú |
-|---|---|---:|---|
-| T4P | `dinhan25/mh-k-b21-t4p-r20` | 5,5 h | pilot r20 cos50 seed 42 |
-| T3P | `emtrangtri/mh-k-b21-t3p-r20` | 5,5 h | pilot r20 cos50 seed 42 |
-| T4FP | `keocaosu/mh-k-b21-t4fp-r20` | 6,0 h | pilot r20, floor 48 |
-| T142 | `novahihi/mh-k-b21-t142-r50` | 5,5 h | T1 r50 **phiên 1**, dừng theo budget (state mỗi 5 round) |
-| T143 | `odixe0502/mh-k-b21-t143-r50` | 4,4 h | T1 r50 seed 43 **phiên 1**, dừng theo budget |
+## Công việc owner yêu cầu16/11
 
-- Launcher `scripts/run_b21_full.py <quota|launch|collect|audit> [t1]` → `runs/b21-full/` (pilot), `runs/b21-t1/` (T1); cả hai có
-  `launch-complete.json` — **không rerun launch**.
-- Waiter: Bash background phiên Claude Code, task `b0cy07077`, collect cả hai batch 1200 s (tối đa 27 lượt) → `audit` pilot khi tất cả terminal.
-  Log: `tail -n 20 -F -- /home/odixe/project/mobihet/runs/b21-watch/watch.log`. Chết theo phiên → chạy tay
-  `python scripts/run_b21_full.py collect`, `... collect t1`, rồi `python scripts/run_b21_full.py audit`. Không bật waiter trùng.
-- Luật pilot (khóa): Δmacro TB r16–20 ≥ −.0015 và Δ r20 ≥ −.003 so CBB42 cùng round, không điều khoản quỹ đạo. `audit` in dòng `B21 PASS/FAIL`.
-- Việc kế sau pilot/phiên 1 (cần quota mới, reset tuần thứ Bảy 14/11 ~07:00): pilot PASS → nối r20→r50 cùng owner + seed 43 r50;
-  T142/T143 → nối từ round state cuối (bội 5) tới r50 cùng owner. Mẫu resume: `scripts/run_b20_sm50.py` (`resume_row`, ô import kiểm 2 rank/round).
-  **Chưa viết launcher nối phiên B21.** Audit T1 chỉ chạy khi đủ r50 (`audit t1` trên phiên 1 sẽ báo rounds_exact FAIL — đúng).
-- Sim b21: pipeline `b2r2kfzle` đã thoát (audit FAIL giả ở check `config`, đã sửa `audit_sim_batch.norm`, chạy tay audit/analyse/report);
-  bản FAIL giữ ở `runs/sim-kaggle-b21/audit-config-false-fail.{json,log}`.
-- Chưa ghi: bài học sim B21 vào LESSONS / operations lessons, hàng B21 ở tried-methods-index và bullet B21 trong CONTEXT (còn ghi “chạy sim”).
+Ưu tiên collect/audit kernel hoàn thành đa luồng; cập nhật toàn bộ tài liệu còn hiệu lực hai repo, gọn hub;
+Notion Proposal2 thay mô tả và bảng MobiHet cũ bằng T3, giữ14baseline. Performance giảm dần macroF1;
+communication tăng dần tổng50round gồmbootstrap (cột riêng khôngbootstrap); compute tăng dần. Có8bảng,2model cho mỗi loại performance/communication/clientcompute/servercompute.
+Cho phép commit/push Git+DVC cảhai repo. Không xóa artifact, không sửa protocol/HP/source đã khóa.
 
-## B20 đã hoàn tất — audit 13/11 19:15 VN
+## Job collect/audit hiện hành — repo BERT sở hữu
 
-[Design/luật/kết quả](../research/screening-compute-b20.md), [phụ lục luật](../research/screening-compute-b20-addendum.md).
-Luật r50 mỗi arm: macro F1 r50 **mỗi seed > .9048**; báo Δ so CBB cùng seed, 10 metric, guard + trend, FLOPs, `t_train`.
+`repo-collect-audit-20261116`, supervisor PID269238, owner thread `01a1e31b-3489-76b3-a36f-f8ce699825eb`, delivery queue.
+State `/home/odixe/.codex/long-jobs/jobs/repo-collect-audit-20261116/state.json`.
+Log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/collect.log`.
+Đã kiểm running14:05VN; không tạo collector trùng. Chi tiết việc kế ở `../fl_veremi_bert/docs/operations/continue.md` (đường tính từ root repo này).
 
-| arm | kernel (version 1) | push | cap | trạng thái 13/11 09:10 |
-|---|---|---|---:|---|
-| SD42 | `novahihi/mh-k-b20-sd42-r50` | 12/11 ~21:50 | 11,5 h | COMPLETE, audit PASS, **PASS** .9072 vs CBB .9074 |
-| SD43 | `keocaosu/mh-k-b20-sd43-r50` | 12/11 ~21:50 | 11,5 h | COMPLETE, audit PASS, **PASS** .9081 vs CBB .9081 |
-| SM42P | `emtrangtri/mh-k-b20-sm42p-r20` | 12/11 | 5,5 h | COMPLETE, pulled, audit PASS, **PASS_TRAJECTORY** |
-| SM42 | `emtrangtri/mh-k-b20-sm42-r50-c2` (resume SM42P r20→r50) | 13/11 02:30 | 7,0 h | COMPLETE, pulled 09:10; **chưa audit** (r50 macro .9057 đọc từ `rounds.jsonl`) |
-| SM43 | `minhtran0601/mh-k-b20-sm43-r50` (fresh r1→r50) | 13/11 02:30 | 11,5 h | RUNNING (cap hết ≈ 14:00) |
+## Việc kế sau audit
 
-- **SD r50 PASS hai seed** (audit 07:40, [audit.json](../../runs/b20-full/audit.json)): Δ −.0002/−.0001, p10 −.0068/−.0041, 5,32×F.
-  Chưa ghi vào design (source-lock tới khi SM43 xong), chưa DVC (`artifacts/b20-full/mh-k-b20-sd4{2,3}-r50` untracked).
-- **Watcher gốc PID 36880 đã chết 08:21** (đóng phiên). Thay bằng waiter chỉ batch SM: Bash background phiên Claude Code 13/11 09:10,
-  task `bypmmrltr`, lặp `run_b20_sm50.py collect` 1200 s (tối đa 30 lượt) → `audit` khi ALL_TERMINAL, ghi cùng `runs/b20-watch/watch.log`.
-  Waiter này cũng chết theo phiên: khi mất, chạy tay lệnh collect/audit bên dưới. Không chạy lại `watch_b20.py` (state mới sẽ audit lại b20-full).
-- Diagnostic cohort 13/11: `scripts/analyse_b20_cohort.py` → [cohort.txt](../../runs/b20-cohort/cohort.txt); bài học ở [LESSONS](../../LESSONS.md).
+- Đồng bộ method/proposal/results/index với T3 và3seed thực tế; giữ lịch sử control CBB rõ nhãn.
+- Notion `40d730cee68d80f0a49ad050377772d2`: T3/MobiHet duy nhất, số đo/ước lượng có nguồn, không claim server<5ms khi chưa đo.
+- Backup artifact mới B20/B21/T341 và receipts; tránh dvc add lại workspace partial (xem [backup](backup.md)).
+- Kiểm link/test phù hợp, push DVC+Git+bundle trong quyền owner16/11. Không xóa local hoặc dirty VFS cache.
 
-- SM42P (pilot r20 cos50): macro .8962 vs CBB42 .9000, Δr20 −.0037, Δ TB r16–20 −.0039, slope Δ nửa sau +.00022 (closing);
-  `t_train` 3,57 h vs CBB 3,61 h. [audit.json](../../runs/b20-full/audit.json).
-- Batch SM r50: `scripts/run_b20_sm50.py` → `runs/b20-sm50/batch.json` (khóa, `launch-complete.json` có — **không rerun launch**).
-  Resume = notebook SM42P + ô import kiểm 2 rank/round 20/method/seed + `--until 50` + budget 7 h (mẫu `run_codec_combo50.py`).
-  SM43 = notebook giống SD43 trừ knob `synth_grad=mix16`. Base `be3b7d5`, overlay SHA = SM42P.
-- **Watcher gốc (đã chết):** `scripts/watch_b20.py` (Bash background trong phiên Claude Code, PID 36880, task `b1jofw7yg`),
-  poll 1200 s, tối đa 40 tick (~13 h). Mỗi tick `collect` cả hai batch; batch ALL_TERMINAL → `audit` một lần
-  (`runs/b20-full/audit.json`, `runs/b20-sm50/audit.json`). Thoát sớm nếu kernel nào terminal khác COMPLETE.
-  Log `runs/b20-watch/watch.log`, state `runs/b20-watch/state.json`.
-  Theo dõi: `tail -n 100 -F -- /home/odixe/project/mobihet/runs/b20-watch/watch.log`.
-- Watcher mất (đóng phiên/reboot): kiểm PID; không bật watcher trùng. Chạy tay
-  `python scripts/run_b20_full.py collect && python scripts/run_b20_full.py audit` và tương tự `run_b20_sm50.py`.
-- Sau audit: verdict từng arm vào [design](../research/screening-compute-b20.md), gộp phụ lục vào design, cập nhật
-  bảng compute Notion Proposal 2 nếu arm PASS. Backup: rsync `runs/b20-full/`, `runs/b20-sm50/` (bỏ `.pt`) vào `_receipts/` từng run,
-  `dvc add` per-run SD42/SD43/SM42/SM43 + `dvc push` ([backup](backup.md)); SM42P đã DVC 13/11. Nhiều arm PASS → owner chọn arm rẻ nhất; combo SM+SD chỉ sau verdict từng arm.
+Chưa có việc tay bắt buộc.
 
-## Đã xong gần đây
+Job độc lập: `mobihet-inventory-20261116`,PID272971,queue,cùng owner thread; log `runs/maintenance-20261116/inventory.log`,state `/home/odixe/.codex/long-jobs/jobs/mobihet-inventory-20261116/state.json`. Hai job server-cost/DAGSNet42 evidence nằm bàn giao repo BERT. Method đã viết lại đúng T3/source; Notion/bảng/backup chờ audit ưu tiên owner.
 
-- **Baseline 3 seed** (`../fl_dagsnet_veremi_v2/runs/seeds/`): 15 baseline × seed 41/43 audit PASS/PASS_BOUNDED,
-  NILM s41/s43 p2 đủ 50 round (audit 21:51 12/11). SCAFFOLD loại khỏi Notion (phân kỳ r2–5, NaN r15).
-  Chưa xác minh hàng NILM-FL 3 seed trên Notion đã cập nhật.
-- **CBB s41** `thuyanh316/mh-k-cbb-s41-r50/1`: audit 10/10, macro .9077; 3 seed .9078 ± .0004 — [report](../../runs/cbb-s41/report.md).
-- B13–B19, A1, N1, N2: đóng, FAIL — [sổ tay](../research/method-building-brief.md) §4–5. Không job/collector nào của các batch này còn sống;
-  state controller cũ `running` (B14, B18) là stale sau reboot, không restart.
+Server-costr2 đã succeeded và kiểm artifact Np69993. Job verify hai repo `repo-verify-20261116` (repo BERT sở hữu) chạy test/link/T3compute. Collector baseline/T3 vẫn đang audit, chưa publish bảng/backup.
 
-## Việc kế
+## Completion mobihet-inventory xử lý16/11
 
-1. Chờ waiter B21 full-scale và waiter SM43 (completion đánh thức phiên). Không model polling.
-2. B21: xem mục trên. SM43 xong: verdict SD + SM vào design B20, gộp phụ lục, DVC per-run.
-3. Mục tiêu compute (owner 13/11): nhỏ nhất khả thi mà không ảnh hưởng performance → chọn arm FLOPs thấp nhất PASS r50.
-4. Backlog: mô hình trộn kiến trúc full-scale (owner 13/11: để sau); privacy bootstrap (hoãn 09/11).
+Inventory24/24exact kernel COMPLETE. Đã kiểm từng slug có artifact/config local và đối chiếu audit B20/B21/T341; mọi artifact check PASS, riêng T4P utility FAIL vẫn giữ verdict. Không pull trùng24phiên đã lưu. T3DAGSNet3seed r50 macro .907956319 ± .000331909(sampleSD), bảng12metric tại `docs/research/results-t3.md` trong repo mobihet. Collector BERT vẫn sở hữu phần baseline/T3BERT; không khởi trùng.
 
-## Quyền / việc tay
+## Backup MobiHet đang chạy16/11
 
-Owner: đổi mọi module/compute, hỗ trợ khác kiến trúc; experiment chỉ DAGSNet W1; thang sim → pilot r20 → r50 hai seed đã ủy quyền
-tự lên khi PASS. Credential process-scope; không đổi global credential, không xóa artifact, không hủy job khỏe.
-Git push chỉ khi owner yêu cầu (13/11: đã yêu cầu push GitHub). Chưa cần thao tác tay.
+`mobihet-dvc-backup-20261116`, supervisorPID277319, deliveryqueue về ownerthread `01a1e31b-3489-76b3-a36f-f8ce699825eb`; đã kiểm running. State `/home/odixe/.codex/long-jobs/jobs/mobihet-dvc-backup-20261116/state.json`; log `/home/odixe/project/mobihet/runs/maintenance-20261116/backup.log`. Worker `/tmp/backup_mobihet_20261116.py`: chỉ dvcadd run mới chưa có manifest trong b21-chain/b21-transfer/t3-s41 + sanitized receipts/inventory; push-j16 rồi status-c. Không đè manifest partial cũ, không xóa. Target/log chi tiết trong mobihet/runs/maintenance-20261116/. Sau completion kiểm manifest/status thực, cập nhật backup record; Git/bundle và BERT DVC vẫn chờ.
+Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/maintenance-20261116/backup.log`.
 
+## Owner16/11 bổ sung pFedES41 phiên cuối
 
-## Cập nhật kiểm trực tiếp 13/11 19:15 VN (Codex)
+pFedES41p3 COMPLETE nhưng audit chỉr45, không đủ50. Owner yêu cầu push bổ sungr45→50 và **tạm bỏ pFedES khỏi mọi bảng**. Script comparison đã loại method này (không dùng partial/2seed thay3seed).
+Job `pfedes41-final-20261116`,supervisorPID281246,deliveryqueue cùng ownerthread,đã kiểm running; state `/home/odixe/.codex/long-jobs/jobs/pfedes41-final-20261116/state.json`;log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes41-final.log`. Worker `/tmp/resume_pfedes41_20261116.py` audit2rankr45/finite/gen → chọn owner quota≥4.2h+slot → private checkpointdataset → pushp4cap3.8h (5round×~1682s +startup/save) → watch1200s → fullpull/audit. Emtrangtri quota0, phải chuyểnaccount; chưa claim launched trước receipt.
+Historical baseline state không lưu riêng torchCPU/CUDARNG; giữ saved methodgen và resume semantics gốc, không gọi exactfullRNGresume. Source/HP/50roundschedule/privatebanks giữ nguyên; không chạy r1. Không sửa source tốc độ trong phiên cuối. Saucompletion kiểm artifact+round50, rồi mới thêm lại pFedES vào bảng.
+Theo dõi: `tail -n 200 -F -- /home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/pfedes41-final.log`.
 
-- B20 SM42/SM43 COMPLETE, pulled, audit PASS; macro .9057/.9058, utility PASS cả2seed. Evidence `runs/b20-sm50/audit.json`; design đã ghi kết quả. SD vẫn PASS hai seed.
-- B21 pilot: T3P/T4FP audit + utility PASS; T4P artifact PASS nhưng utility FAIL (Δ TB cuối5 −.0016 < −.0015), dừng T4. Evidence `runs/b21-full/audit.json`.
-- T142/T143 COMPLETE partial r22/r18, chưa là r50 FAIL. Đang nối T142, T3P, T4FP qua batch `runs/b21-resume/batch.json`; preflight hai rank/RNG/round trước decode. T143 quota1.35h chưa đủ ngân sách setup + checkpoint an toàn, hoãn reset14/11 07:00 VN.
-- Watcher Claude cũ không còn process; không dựa completion của chúng. Phiên này không Git/DVC push.
+## Owner yêu cầu chuẩn bị tắt máy
 
-- Controller phục hồi: `mh-b21-resume-20261113`, supervisor PID10729, trạng thái `running`; owner thread `01a1d4cf-a312-7411-a6dc-df58a2c8d9f5`, delivery queue; state `/home/odixe/.codex/long-jobs/jobs/mh-b21-resume-20261113/state.json`; log `runs/b21-resume/watch.log`. Poll1200s. Theo dõi: `tail -n 200 -F -- /home/odixe/project/mobihet/runs/b21-resume/watch.log`.
-- Ba phiên nối đã PUSHED v1; source/config giữ nguyên. Watcher chỉ chờ terminal; completion phải collect + audit partial trước nối tiếp. Launcher phục hồi lưu `runs/b21-resume-script.py`; KHÔNG rerun: intent/launch-complete đã tồn tại. Seed43 mới cho T3/T4F chưa launch; cần cấp quota sau reset.
+Hoàn tất các task đang dở rồi **dừng phiên**, cập nhật toàn bộ bàn giao để bật máy tiếp tục. pFedES có thể tiếp tục trên Kaggle khi local tắt; không cancel remote. Không tạo nghiên cứu/training mới ngoài phiên cuối đã ủy quyền. Trước dừng: hoàn tất pull/audit/T3/Notion, Git+DVC/bundle; ghi trạng thái cloudVFS riêng và exact run còn sống. Copy worker `/tmp/*.py` dùng trong phiên vào `runs/maintenance-20261116/workers/` (repoBERT) để không mất sau reboot.
 
-- T1 partial checks PASS r22/r18: `runs/b21-t1/partial-audit/audit.json`; utility r50 PENDING.
+MobiHet DVC10manifest/438objects VERIFIED mứcmount (push-j16 exit0/status-c in sync); cloud upload chưa xác minh riêng. RepoBERT baselinebackup đang chạy: `bert-baseline-backup-20261116`,supervisorPID282599,queue;state `/home/odixe/.codex/long-jobs/jobs/bert-baseline-backup-20261116/state.json`;log `/home/odixe/project/fl_veremi_bert/runs/maintenance-20261116/bert-baseline-backup.log`. Khởi tạo DVCOneDrive sibling `fl_veremi_bert/dvc-storage`,hardlink snapshot phiên baseline đãdone, không ghi vào pull collector. T3/receipts backup saucollect.
 
+BERT baselinebackup r1failed trước DVCadd vì phát hiện `v4npy/train_X.npy.part`5.49GB còn từ pull full trước. Đây là cache dataset tạm, không phải model/CM đã audit; không xóa hoặc backup file dở. Worker r2 loại toàn v4npy (dataset cache tái tạo được), tái dùng hardlink đã staging đúnginode; chỉ phần cache này được phép .part, runartifact .part khác vẫn chặnbackup. Job `bert-baseline-backup-20261116-r2`,PID283142,queue;log `runs/maintenance-20261116/bert-baseline-backup-r2.log`,state theo tênjob. DVCinit/remote đã xong; chưa xác nhậnpush trước completion.
 
-## Cập nhật pull & audit 13/11 23:45 VN
-
-- Cả 3 kernel nối `b21-resume` COMPLETE trên Kaggle, đã pull đủ về `artifacts/b21-resume/` qua `scripts/run_b21_resume.py`.
-- Audit 10/10 kiểm tra tính toàn vẹn artifact: PASS 100% cả 3 run (`rounds_exact`, `n_params`=395408, `finite_loss`, `skip_le_1pct`, `clients_applied`, `lr_eq_cbb`, `hp_eq_launched`, `overlay_sha`, `cm_support_eq_cbb`, `ten_metrics_from_cm`).
-- Số round hoàn thành thực tế (dừng theo budget session 2):
-  * **T3P** (`emtrangtri/mh-k-b21-t3p-r20-c2`): dừng round 27 (cap 2,41 h). Macro .9026 vs CBB42 .9034 (Δend −.00087, Δ TB 5 round cuối −.00046). `t_train` tích lũy 5,05 h vs CBB 4,94 h.
-  * **T4FP** (`keocaosu/mh-k-b21-t4fp-r20-c2`): dừng round 24 (cap 1,9 h). Macro .9019 vs CBB42 .9019 (Δend +.000006, Δ TB 5 round cuối −.00043). `t_train` tích lũy 5,04 h vs CBB 4,39 h.
-  * **T142** (`novahihi/mh-k-b21-t142-r50-c2`): dừng round 25 (cap 1,64 h). Macro .9025 vs CBB42 .9024 (Δend +.000078, Δ TB 5 round cuối +.00020). `t_train` tích lũy 4,82 h vs CBB 4,57 h.
-- Verdict: Partial checks PASS, quỹ đạo non-inferiority vững; verdict chung r50 giữ `PENDING_R50` (chờ quota tuần mới reset 14/11 ~07:00 VN để nối tiếp tới round 50).
-- Evidence: `runs/b21-resume/audit.json`, `runs/b21-resume/status.json`.
-
-## Đang chạy 14/11 03:20 VN — B21 nối chéo account (Claude Code)
-
-Owner chọn chuyển chéo account thay vì chờ reset 07:00 (owner cũ chỉ còn 1,0–1,35 h). Pipeline `scripts/run_b21_transfer.py`
-(plan khóa `runs/b21-transfer/plan.json`): mỗi arm tuần tự pull output parent (state 2 rank + models, ~9,6 GB) → kiểm round/RNG/hp
-→ tar `resume.bin` → dataset private owner mới `mh-b21-<arm>-ckpt-r<N>` → tải lại kiểm SHA (stream) → xóa scratch → notebook
-`<run>-x<N>` (ô `dataset_import`, bỏ ô kernel_import cũ, budget theo quota sống) → push v1.
-
-| arm | parent | round | owner mới | kernel |
-|---|---|---:|---|---|
-| T143 | `odixe0502/mh-k-b21-t143-r50/1` | 18 | outlookcheck | `mh-k-b21-t143-r50-x18` |
-| T4FP | `keocaosu/mh-k-b21-t4fp-r20-c2/1` | 24 | minhtran0601 | `mh-k-b21-t4fp-r20-x24` |
-| T142 | `novahihi/mh-k-b21-t142-r50-c2/1` | 25 | dinhan25 | `mh-k-b21-t142-r50-x25` |
-| T3P | `emtrangtri/mh-k-b21-t3p-r20-c2/1` | 27 | annhtnt | `mh-k-b21-t3p-r20-x27` |
-
-06:40 VN: cả 4 đã push (caps T143 6,93 h, T4FP 6,68 h, T142 2,76 h, T3P 2,69 h), dataset kiểm SHA; pipeline thoát `B21XFER_RUN_DONE`. Collect: `python scripts/run_b21_transfer.py collect`.
-
-- Bash background task `b344kvvxy` (chết theo phiên). Log `tail -F runs/b21-transfer/run.log`; từng arm `runs/b21-transfer/<arm>/`
-  (`ready.json`, `batch.json`, `launch-complete.json`). Idempotent: chạy lại `python scripts/run_b21_transfer.py run` bỏ qua arm đã push;
-  có `create-intent.json` mà thiếu `ready.json` → kiểm dataset trên Kaggle trước, không tạo lại.
-- Collect: `python scripts/run_b21_transfer.py collect` → `artifacts/b21-transfer/`. Audit partial/r50 chưa viết cho batch này.
-- Phiên kế sau đó: nối tiếp cùng owner mới qua kernel_sources (quota reset 07:00). Seed43 mới T3/T4F vẫn chưa launch.
-- 14/11 03:40: pull state đổi sang Range 16 đoạn/file (`fetchstate`, chạy dưới credential owner parent); tốc độ vẫn ~5,7 MB/s ⇒ nghẽn
-  đường truyền local, không phải số luồng. Task `bctu2nigb` lỗi ChunkedEncodingError 03:30 → thêm retry 10 lần giữ range piece; task hiện hành `bpva3yfam` (task `b344kvvxy` đã dừng, xóa `.part` scratch của nó).
-- **Seed43 r50 phiên 1 đã push** (`python scripts/run_b21_full.py <cmd> s43` → `runs/b21-s43/`, `launch-complete.json` có — không rerun launch):
-  T343 `trietbackup/mh-k-b21-t343-r50` cap 2,34 h; T4F43 `annhannh331/mh-k-b21-t4f43-r50` cap 2,0 h; cả hai RUNNING 03:45.
-  Dừng theo budget (~vài round) → nối cùng owner sau reset 07:00. Collect: `python scripts/run_b21_full.py collect s43`. Chưa có watcher.
+Verifyr2: T3compute12PASS, linkactive hai repoPASS; notebook/AFPHAfixture đãsửa ởrepoBERT,9PASS/1SKIP integrationparquetoffline. Credential-patternscan/diffcheck hai repoPASS.
