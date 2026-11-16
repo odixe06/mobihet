@@ -111,3 +111,5 @@ Chi tiết case cũ giữ trong [snapshot](../../archive/docs-20261107/before/do
 - Shutdown sauDVCsyncmứcmount cóthểcòncloudVFSdirty; ghi riênghai trạngthái, giữcachevàlocalartifact đểrclonetiếpupload saubậtmáy.
 
 - Kaggle importzip dataset tựgiải nén: readylisting trả memberpaths, archive-name download404 không chứngminh datafail. Verify memberSHA vớisource, khôngreupload. SDK dataset_download_file giữrelativepath; truyền path=downloadroot, không path=parentlầnnữa. Kiểm mộtfilethật trướcfanout/fullstate.
+
+- Recoverylauncher phải preflight bằng đúng cách chạy scripttrực tiếp; import package cóthể khác moduleimport trong REPL. Verify emittedimport trên checkpointthật vàAST toànnotebook trước retry/push; localcheckerfail không làtrainingfail.
