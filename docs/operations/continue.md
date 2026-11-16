@@ -35,3 +35,8 @@ Process launcher/watcher cũ không sống; state running cũ là stale. Exact p
 - Script recovery/backup source mới trackedGit; notebook chứa credential vẫn PRIVATE/gitignored. Parent source/model/loss/HP/schedule không đổi; cachemiss chỉ compile lại.
 - Completion launch: đọc launched.json/intent/pushed/exactversion, querymộtlần; sau đó watch1200s bằng worker→terminal pull/audit. Đủr50 mới thêm pFedES trở lại comparison/Notion và backup outputp4. Không modelpoll trong lúc chờ.
 - Completion DVC: kiểm exit0+status-c in sync hai repo; cập nhật backuprecord. Cloudupload tách riêng mứcmount; giữVFSdirtycache.
+
+## Recovery dataset —16/11 16:20 VN
+
+Dataset mới `outlookcheck/flb-pfedes-s41-r45-final` đãready vàlisting94file (gồmstate2rank832642276/832329888B). Kaggle tựgiải nénzip khiimport: downloadtênarchive trả404, không phải mấtcheckpoint. Checker cũ truyềnpathparent hai lần gâythưmụclồng; đãtách helper `scripts/verify_checkpoint_dataset.py`, sửa rootdownload, giữvàchuẩnhóa file đãtải. Repro fileCMr1thật SHA256PASS saufix. Không uploadlại dataset hoặc đổi method.
+Launchr1/r2/r3 lỗiđúngbướcchecker, chưa cókernelpush. Job hiện hành **pfedes41-reboot-launch-20261116-r4**,supervisorPID6828,deliveryqueue;logBERT `runs/maintenance-20261116/pfedes-reboot-launch-r4.log`,state `/home/odixe/.codex/long-jobs/jobs/pfedes41-reboot-launch-20261116-r4/state.json`; đãkiểm running. VerifySHA94file→importguardrealcheckpoint→pushp4. JobDVC PID5438 vẫnsống/chờmount; OneDriveVFSdirty giảm7762→3294 sau reboot, cótiếnđộupload, khôngrestart/xóacache.
