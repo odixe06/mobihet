@@ -13,7 +13,7 @@ S64→64/M64→32/L48→16 từr26,floor16. [Cơ chế](docs/research/method.md)
 DAGSNet đủr50 cả3seed41/42/43;BERT đủr50 cả3seed, CM+state2rankPASS.
 B20/B21 đã đóng; không nối lại từ trạng thái waiter cũ. Job hiện hành chỉ ở [continue](docs/operations/continue.md).
 
-Sau reboot16/11: owner yêu cầu hoàn tất, không cần dừng/reboot; DVCpush lại và recovery pFedES41 do repoBERT sở hữu.
+Sau reboot16/11: owner yêu cầu hoàn tất, không cần dừng/reboot; DVCpush lại chờmount và pFedES41p4 đãpush/watch1200s do repoBERT sở hữu.
 Phiên16/11: owner ưu tiên pull/audit đa luồng, đồng bộ tài liệu hai repo và Notion Proposal2, rồi push Git+DVC.
 Không xóa artifact, không đổi protocol/source/HP đã khóa. Chưa có việc tay bắt buộc.
 
