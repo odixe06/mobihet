@@ -11,6 +11,9 @@ Prior Laplace π_k,c=(n_k,c+1)/(n_k+16), π_g,c=(Σn_k,c+1)/(Σn_k+16). Loss th�
 
 Online Q_r,c=ΣkΣi:y=c softmax(f_k(x_i))/Σkn_k,c, thu trên dòng thật ngay lúc train, dùng từr+1; không thêm lượt forward riêng. QQ8 gửi xác suất8bit, uplink chỉ lớp hiện diện. Mỗi xe giữ model riêng; schema độc lập kiến trúc. BERT/DAGSNet là hai thí nghiệm riêng, chưa full-scale trộn model.
 
+Ứng viên Lite2 B+U1 DAGSNet seed42 r50: Macro-F1 .905876977 (T3 cùng seed .907678902), tổng .354116 MB/xe, compute estimator1,364×.
+**PASS gate Lite2 cũ**, chưa đạt đích FB≤1,01×; một seed, chưa thay T3 trong bảng3seed dưới. [Audit + giới hạn](screening-lite2.md).
+
 ## 1. Performance
 
 Endpoint50; CANPerFL=FedAvg50 +10epoch fine-tune. Mean ± sample SD,3seed41/42/43. Ranking Macro-F1 giảm dần. Global/own-test/prototype khác luật suy luận; không gọi các view đồng nhất.

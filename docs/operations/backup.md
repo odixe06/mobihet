@@ -38,3 +38,8 @@ không `Co-Authored-By:`. Gitbundle tạo `--all`, verify rồi mới thay bản
 Owner yêu cầu push toàn bộ thay đổi hiện tại cả MobiHet/BERT lên `origin/main`, gồm brief/context/archive và kết quả pFedES.
 Xác minh HEAD/remote và Gitbundle allrefs theo receipt cuối tại `../fl_veremi_bert/runs/maintenance-20261116/final-publish.json` tính từrootrepo.
 Yêu cầu này không khởi động DVCpush mới hoặc cleanupartifact/cache.
+
+## Git khôi phục17/11
+
+Owner yêu cầu commit/push thay đổi trên `main` cảhai repo. Phạm vi: source Lite2/FB, tests có sẵn từ Claude, brief/results/handoff, lỗi mạng Kaggle.
+Receipt HEAD/remote/bundle sẽ ghi tại `runs/maintenance-20261117/publish.json` của từngrepo. Không DVCpush hoặc cleanup; artifact Lite2 mới giữ local, chưa backup vào DVCremote.

@@ -1,8 +1,16 @@
 # Task brief — xây dựng lại MobiHet cho Fable 5.2
 
-Ngày tổng hợp: 16/11/2026. Ngôn ngữ làm việc: tiếng Việt. Đây là bản tổng hợp phục vụ reasoning,
+Ngày tổng hợp: 16/11/2026; rà soát bổ sung 17/11/2026, sau pilot BERT hoàn tất 09:18 +07. Ngôn ngữ làm việc: tiếng Việt. Đây là bản tổng hợp phục vụ reasoning,
 không thay protocol, kết quả gốc hoặc bàn giao sống. Số lịch sử phải đọc đúng method/model/seed/endpoint.
 Thông tin mới owner chốt trong phiên này ưu tiên hơn yêu cầu nghiên cứu cũ.
+**Đọc độc lập:** nội dung cốt lõi nằm trong file này; link dùng truy nguồn, không phải điều kiện để hiểu nhiệm vụ.
+Đây là snapshot reasoning, không phải ledger job. Không cần đọc archive để bắt đầu.
+
+**Chốt mới 17/11, thay yêu cầu compute cũ:** đích **1× FedAvg và top 5 nhẹ nhất computational cost**;
+Owner làm rõ sau cùng: **compute bằng FedAvg là đạt, không cần thấp hơn**; đồng hạng không được biến thành yêu cầu compute<1×. Performance: **top 5 + gap tới best baseline ≤ .015** là cổng chính;
+thắng nhóm trao thông tin khác là mục tiêu, không cổng bắt buộc thắng từng phương pháp.
+Lite2 1,364× chỉ là mốc đang thử, **chưa đạt đích compute mới**, kể cả PASS gate cũ 1,37×.
+T3 vẫn là phương pháp hiện hành; chưa có Lite2 r50 đã audit trong snapshot này.
 
 ## 1. Nhiệm vụ và yêu cầu owner đã xác nhận
 
@@ -12,20 +20,33 @@ communication và compute, với **khả năng client dùng kiến trúc model k
 | Trục | Yêu cầu hiện tại |
 |---|---|
 | Performance | Primary = pooled Macro-F1 16 lớp. Giữ khoảng top 5; chấp nhận thấp hơn baseline tốt nhất tối đa khoảng **0.015 điểm tuyệt đối**, không phải 0.015% |
-| Communication | Xếp hạng **riêng**, tổng byte càng thấp càng tốt, cần top 5. Owner xác nhận **không bắt buộc xấp xỉ phương pháp ít byte nhất** |
-| Compute | Tối ưu thấp nhất có thể trong miền performance đạt yêu cầu. Owner chưa đặt trần 1.2×/1.5×/2×; không tự tạo trần hoặc yêu cầu top 5 compute |
+| Communication | Xếp hạng **riêng**, tổng byte càng thấp càng tốt, cần top 5. Owner xác nhận **không bắt buộc xấp xỉ phương pháp ít byte nhất**. Đích 16/11: tổng **≤ 0,40 MB/xe/50r** |
+| Compute | **Chấp nhận ≤1,01× FedAvg** (quyết định sau cùng 17/11, thay đích chặt ≤1×); trung bình toàn mạng theo useful-work estimator của FB. Giữ mục tiêu top5; không dùng thứ tự đồng hạng để loại candidate bằng FedAvg. T3 1,652×; Lite2 1,364× chưa đạt |
 | So FL trao weights | Macro-F1 ngang hoặc gần; communication tiết kiệm rõ; compute có thể xấp xỉ |
-| So FL trao thông tin khác | Mong muốn Macro-F1 tốt hơn; communication cạnh tranh/top 5; compute không phình quá lớn, giảm được càng tốt |
+| So FL trao thông tin khác | Mong muốn Macro-F1 tốt hơn, communication xấp xỉ hoặc tốt hơn, compute cạnh tranh; cổng chính vẫn top5 + gap≤.015, không bắt buộc thắng từng baseline |
 | Heterogeneity | Cơ chế trao đổi phải dùng được khi client dùng model hoàn toàn khác nhau; cùng số lớp/ý nghĩa nhãn và input schema |
 | Thử nghiệm mới | **Seed 42**, chạy riêng DAGSNet và riêng FeatureBERT, **sim → pilot → full**. Owner xác nhận **chưa chạy mixed-model** |
-| Công bằng | Đồng nhất dữ liệu, split, local epoch, round, batch, optimizer, LR, evaluation và phạm vi đo cost |
+| Công bằng | Đồng nhất dữ liệu, split, round, batch, optimizer, LR, evaluation và phạm vi đo cost; owner cho phép FB bớt dòng thật mỗi round ở xe ≥4.096 dòng, phải công khai `real_frac` |
 
-Không dùng Pareto rank thay hai hạng performance/communication độc lập. Báo cả chênh lệch so baseline tốt nhất
+Không dùng Pareto rank thay ba hạng performance/communication/compute độc lập. Báo cả chênh lệch so baseline tốt nhất
 và thứ hạng: đạt khoảng cách 0.015 chưa tự bảo đảm top 5. T3 cũ là control riêng khi thử phương pháp mới;
 không đếm hai biến thể MobiHet như hai baseline độc lập để làm lệch hạng.
 
-Phạm vi phiên này: tổng hợp brief; owner bổ sung pull/audit pFedES cuối ở `fl_veremi_bert`, cập nhật Notion,
-tài liệu và push GitHub; owner sau đó yêu cầu push mọi thay đổi hiện tại **cả hai repo**. **Chưa có lệnh launch training phương pháp mới**.
+Phạm vi yêu cầu này: tổng hợp toàn bộ context cần cho thiết kế phương pháp, cập nhật bằng chứng và chỉ ra thiếu sót.
+Không suy quyền launch, sửa protocol, push hoặc dừng run đang thuộc phiên khác từ yêu cầu viết brief.
+
+**Thí nghiệm đã khóa trước yêu cầu mới (16/11, chạy từ 17/11) — Lite2:** giữ cơ chế T3, cắt chi phí để đạt đồng thời, seed 42, r50, từng model:
+tổng byte ≤ 0,40 MB/xe/50r; compute ≤ 1,37× FedAvg; Macro-F1 **DAGSNet > .8998**, **BERT ≥ .8951**.
+Knob chi phí cũ được mở lại như adaptation mới với control ghép cặp và gate mới khóa trước push; verdict cũ giữ nguyên.
+Lịch sử: owner đã duyệt arm + gate Lite2 theo thang sim → pilot → full. Giữ nguyên verdict theo gate đã khóa; không đổi ngưỡng giữa run. PASS Lite2 không đồng nghĩa đạt mục tiêu compute mới.
+Thiết kế, arm, luật khóa và kết quả: [screening-lite2](docs/research/screening-lite2.md); tóm tắt ở §10; job sống ở [continue](docs/operations/continue.md).
+
+**Chốt sau cùng trong Claude session `810671d5-dff9-4284-b80d-28eb447cf9b9` (17/11, khôi phục sau interrupt 11:21):**
+owner duyệt [FB — Fixed-row-budget](docs/research/screening-budget.md), 8 sim DAGSNet seed42 sau preflight PASS,
+PASS tự lên pilot DAGSNet + BERT; compute ≤1,01×, cho phép thay một phần dòng thật xe lớn bằng synthetic.
+FB không viết tắt FeatureBERT. Owner xác nhận lại batch khi tiếp tục phiên Codex.
+Hoãn push lại Lite2 BERT r50; ưu tiên FB, không giữ quota riêng cho Lite2.
+Các đoạn đích chặt 1×/đủ epoch thật trong §14–15 giữ lý do thiết kế trước quyết định này; áp dụng ngoại lệ FB đã khóa, không sửa protocol chung.
 
 ## 2. Bản đồ repo và nguồn ưu tiên
 
@@ -47,10 +68,10 @@ Nguồn so sánh: [comparison.md](docs/research/comparison.md), [comparison.json
 [builder BERT](../fl_veremi_bert/scripts/build_project_comparison.py).
 JSON chứa `evidence` theo seed/view/source, `performance`, `communication`, `client_compute`, `server_compute`.
 
-Các HEAD khi bắt đầu đọc: MobiHet `234afd2f227e631a4a50c77d03f896bb694a7579`,
-BERT `d41b05610f9d0af7828804cf493c010bb5e6f228`,
-features `f6d7d9ef9fb243c419ba8ddb8a6c54dfbd3305cc`.
-Đây là mốc tra cứu; không phải source SHA chung của mọi run.
+HEAD workspace khi rà soát 17/11: MobiHet `1cc91d9673ba18ceacef35d5aedbf54da080cf1a`,
+BERT `b93198aff3da13fbe454b8a573b5967c38166f8e`. Working tree có thay đổi Lite2/docs chưa commit.
+Không dùng HEAD này làm source SHA cho mọi run: Lite2 pin base + SHA256 overlay từng file trong batch/provenance;
+T3/baseline dùng source riêng của run. File worker/phiên khác đang ghi giữ read-only.
 
 ## 3. Dataset: thông tin cần cho thiết kế cơ chế
 
@@ -102,7 +123,7 @@ Các caveat ảnh hưởng reasoning:
 Code dataset: [build.py](../mobihet-features/src/v2/build.py), [features.py](../mobihet-features/src/v2/features.py),
 [ego.py](../mobihet-features/src/v2/ego.py), [map.py](../mobihet-features/src/v2/map.py),
 [p4.py](../mobihet-features/src/v2/p4.py), [scale.py](../mobihet-features/src/v2/scale.py).
-Phiên này đọc code/docs; `data/v4-scaled/clients.parquet` local chưa có, chưa đếm lại toàn dataset.
+Số dataset lấy từ hồ sơ canonical/audit support; phiên này không scan lại toàn bộ parquet hoặc xác minh full-content hash.
 
 ## 4. Model và protocol công bằng
 
@@ -234,7 +255,7 @@ Payload pFedES đã có trong cost.json: 1.404B lên + 1.404B xuống/xe/round �
 Với đầy đủ14baseline, T3 hiện **hạng3 DAGSNet/hạng6 BERT**: BERT chưa đạt mục tiêu communication top5 mới.
 Với BERT, nhóm rẻ gồm TinyProto(.044928), pFedES(.1404), FedTGP(.4096), FedProto/V2X(.4128).
 Để vào top5 vững khi xếp ordinal, nên tổng byte **<.4128MB/xe/50r**, tức giảm khoảng **65%** so T3 hiện tại.
-Đây là mốc suy ra từ bảng cost, **không phải cap owner tự chốt**; xử lý đồng hạng phải thống nhất trước đo.
+Mốc này suy ra từ bảng cost; owner chốt đích **≤ 0,40 MB** ngày 16/11 (§1). Owner 17/11 yêu cầu top5 theo vị trí kể cả đồng hạng; không dùng dense rank để đưa cả nhóm vào top5.
 Không loại pFedES khỏi roster chỉ để giữ top5.
 
 ## 7. Chi phí: cách đo, điểm phình và giới hạn bằng chứng
@@ -353,15 +374,15 @@ federated distillation theo lớp gần Q. Chưa đánh giá novelty khoa học 
 
 ## 10. Thang thử mới và điều kiện chốt trước launch
 
-Owner đã chọn **sim → pilot → full, seed42, đơn model**. Thang lịch sử để tái dùng cấu trúc,
-**chưa phải bộ gate mới được owner duyệt**:
+Owner đã chọn **sim → pilot → full, seed42, đơn model**. Thang lịch sử để tái dùng cấu trúc
+(gate đang áp dụng cho task hiện tại ở mục «Task hiện tại — Lite2» cuối §10):
 
 | Bậc | Cấu hình lịch sử | Kiểm trước lên bậc |
 |---|---|---|
 | Local preflight | Fixture200xe, compile forward+backward,2round; chặnNaN/skip/rebuild/packet lỗi | Knoboff=control; source/config đúng; cost accounting hoạt động |
 | Sim | Panel200xe seedpanel7, foldtrain1.476.064 → foldval211.118;20round cosine20 | So control/baseline cùngmodel/seed/panel/endpoint. Panel đã dùng nhiều lần, khôngfreshconfirmation |
 | Pilot | Full5.343xe, train+val, r1–20 của **cosine50**, checkpoint nối được | So cùnground/cùngschedule, audit rồi mớiutility. Không so simcos20 với pilotcos50 như cùngđiểm |
-| Full | Nối đúngcheckpoint tới50round, vẫncosine50 | Finalgate: khoảngcáchbestbaseline≤.015, performance/communicationtop5, báocompute vàguard |
+| Full | Nối đúngcheckpoint tới50round, vẫncosine50 | Finalgate mới: khoảngcáchbestbaseline≤.015, performance/communication/computetop5, compute đích1×; gate Lite2 cũ giữ riêng |
 
 Thiết kế BERTsim/control phải xác minh: đã có BERTfull không có nghĩa đã có đầy đủ baselineBERTsim/pilot
 trên cùngpanel/cosine. Khi thiếu, ghi thiếu evidence và dự toán matchedcontrol; không lấy r50full làm gatesim.
@@ -369,8 +390,33 @@ Mốc late phải theo nửa lịch (sim>10, full>25). Knob có tác dụng saur
 
 Gate cũ: B13–B18 thường yêu cầu gain≥+.002 **cả2seed**; B21 noninferiority TB5round≥−.0015,
 endpoint≥−.003. Gate mới owner chấp nhận performance−.015 với mục tiêu giảmcost nên **không tự bê gatecũ**.
-Phải chốt cách tính ranking/tie, comparator từng bậc và budget trước launch.
+Ranking: báo rõ đồng hạng. Riêng compute, owner chốt bằng FedAvg là đạt; không dùng vị trí trong nhóm đồng hạng để buộc candidate thấp hơn FedAvg. Comparator từng bậc và budget phải khóa trước launch mới.
 Seed42 chỉ là screening theo yêu cầu, không kết luận robust/statisticalsignificance.
+
+### Task hiện tại — Lite2 (17/11/2026)
+
+Nguồn duy nhất cho arm/luật/kết quả: [screening-lite2](docs/research/screening-lite2.md). Code: `methods/mobihet_lite.py`
+(bootstrap v2 `km2`; tắt = T3 bit-exact), tier 8 dòng trong `methods/mobihet_compute.py`; cùng hai file byte-identical ở `fl_veremi_bert`.
+
+- **Cơ chế:** không đổi sampling/Q/loss/lịch/protocol T3. Byte: ít thành phần mixture hơn (K6/K8), bảng biên 64 bin,
+  Lloyd + moment lớp trên 25 % xe, ô xe×lớp×cụm < τ dòng chỉ gửi count + mean, Cholesky 5/6 bit.
+  Compute: giảm liều synthetic tầng M/L (D8) hoặc cả tầng S nửa sau lịch (U1).
+- **Ngân sách:** online 13 420 B (DAGSNet) / 17 421 B (BERT) mỗi 50r ⇒ bootstrap ≤ 382 000 B/xe (T3: 1 151 278 B).
+- **Luật khóa (macro-first, guard report-only, control T3 seed 42 cùng round):**
+
+| Bậc | Cấu hình | PASS khi |
+|---|---|---|
+| Sim | 200 xe, fold train → fold val, r20 cos20, DAGSNet | Δmacro TB r16–20 ≥ −.005 **và** Δ r20 ≥ −.006 vs S0; chọn bootstrap byte thấp nhất, rồi liều compute thấp nhất tự PASS |
+| Pilot | 5 343 xe, r1–20 cos50, DAGSNet + BERT | Δmacro TB r16–20 **và** r20: DAGSNet ≥ −.006, BERT ≥ −.010; bootstrap thật ≤ 382 000 B; artifact audit PASS trước |
+| Full | nối checkpoint tới r50, cos50 | DAGSNet > .8998, BERT ≥ .8951; tổng ≤ 0,40 MB; compute ≤ 1,37×; báo hạng performance/communication |
+
+- **Sim xong 17/11** (12 arm, audit 12/12 PASS): mọi bootstrap v2 trong ngân sách PASS (B −.0021, 362 KB); B + D8 FAIL (TB −.0051);
+  luật chọn **B + U1** (K6, 64 bin, frac .25, τ16, 6-bit + liều `[[64,32],[32,16],[16,16]]`, 1,364×), Δ TB −.0047 — biên mỏng, một seed.
+  Mất mát tập trung ở xe < 4 096 dòng và lớp 11/13/1.
+- **Pilot DAGSNet PASS 17/11:** Δmacro r20 và TB r16–20 đều −.0028 vs T3 cùng round (.8968 vs .8995), bootstrap thật 340 663 B/xe
+  (T3 −70 %), `t_train` −3,5 %; đang nối r21–50. **Pilot BERT PASS**: macro .898173, Δ r20 −.004746, Δ TB −.005173; chi tiết §13. Pilot r1–20 chỉ chạy cột đầu của U1 (`synth_late_from=25`);
+  phần cắt tầng S từ r26 chỉ được thử ở full r50. PASS → nối r21–50; FAIL → dừng arm, báo owner, không tune/kéo dài.
+- **Chưa làm / ngoài phạm vi task:** mixed DAGSNet + BERT (sau khi đơn model PASS full), privacy (hoãn), seed 41/43.
 
 ## 11. Hạ tầng, artifact và thao tác cần giữ đúng
 
@@ -398,15 +444,155 @@ Seed42 chỉ là screening theo yêu cầu, không kết luận robust/statistic
    cách giữ arbitrarymodelheterogeneity, compute/memory/client/server và tổngbyte50round.
 4. Phân biệt giảm thuậttoán/FLOPs với tốiưu engine/walltime; chỉ rõ khoảnchi phí chưađo.
 5. Đề xuất ablation tối thiểu và matchedcontrol cho seed42 từngmodel, sim→pilot→full,
-   gate trước run theo mục tiêu0.015/top5; không đổi protocol riêngMobiHet.
+   gate trước run theo mục tiêu0.015/top5 cả ba trục/compute1×; không đổi protocol riêngMobiHet.
 6. Nêu giới hạn: data/contextshortcut, lớpTD/benign, testđãđọclặp, mixedmodelchưađo,
    privacychưatriểnkhai; chỉ yêu cầu owner chốt điểm thực sự thiếu.
 
-**Việc tay hiện tại:** không cần để đọc/tổnghợp repo. Nếu Fable không truy cập filesystem,
-đính kèm file này; khi cần bằng chứngchi tiết, đính kèm tài liệu mà từnglinktrỏtới
-(ưu tiên comparison.json, method, protocol, tried-methods-index, LESSONS).
-Link relative không tự mang nội dung repo sang chatkhác.
+**Việc tay:** đính kèm chính `task_brief.md` vào Fable 5.2 nếu Fable không có filesystem. Dùng nguyên nội dung, gồm §13–15. Các link relative chỉ truy nguồn; không tự gửi nội dung repo. Chưa cần thao tác Kaggle/token/dataset để tổng hợp brief.
 
 Đã chốt pFedES cuối: seed41 BERT Macro-F1 .873799410; mean3seed .873955730±.001220923.
 [Audit receipt](../fl_veremi_bert/docs/research/pfedes-final-audit.json) giữ full10metric/source/parent/state và giới hạn.
 Vận hành cũ đã [archive](archive/operations-20261116/README.md); scripts còn dùng theo [index](scripts/README.md).
+
+
+## 13. Bằng chứng mới — Lite2 hai model (snapshot 17/11)
+
+Đây là **pilot r20 cosine50**, không headline r50. Cùng seed42, 5.343 xe, cùng dữ liệu/evaluation như T3.
+BERT watcher hoàn tất pull 108 file và audit rc0 sau status COMPLETE 09:18 +07;
+receipt thật thay câu “pilot BERT đang chạy” trong bàn giao cũ.
+
+| Đại lượng | DAGSNet B+U1 | FeatureBERT B+U1 |
+|---|---:|---:|
+| Macro-F1 r20 | .896761456 | .898173076 |
+| T3 control r20 | .899518888 | .902919201 |
+| Δ r20 | −.002757432 | −.004746125 |
+| Δ TB r16–20 | −.002790657 | −.005172594 |
+| Gate pilot Δ (cả hai đại lượng) | ≥−.006 | ≥−.010 |
+| Bootstrap B/xe (up + down) | 98.942,875 + 241.720,362 | 98.942,875 + 241.720,362 |
+| Online r1–20 B/xe | 6.469,906 | 7.575,610 |
+| `t_train` / T3 giờ | 3,6376 / 3,7686 | 5,8427 / 5,9499 |
+| P10 F1 / Δ T3 | .723124 / −.002844 | .734552 / −.002985 |
+| Artifact audit / utility pilot | PASS / PASS | PASS_BOUNDED / PASS |
+
+Đủ10metric r20 từ CM (micro P/R/F1 = accuracy trong bài single-label):
+
+| Metric | DAGSNet | BERT |
+|---|---:|---:|
+| accuracy | .913480341 | .919983025 |
+| precision_macro | .907248351 | .921658199 |
+| precision_micro | .913480341 | .919983025 |
+| precision_weighted | .905128617 | .911000767 |
+| recall_macro | .892959940 | .892620556 |
+| recall_micro | .913480341 | .919983025 |
+| recall_weighted | .913480341 | .919983025 |
+| f1_macro | .896761456 | .898173076 |
+| f1_micro | .913480341 | .919983025 |
+| f1_weighted | .906307012 | .907384285 |
+
+Nguồn DAGSNet: [audit](runs/lite2-full/audit.json). BERT: [audit receipt](../fl_veremi_bert/runs/lite2-pilot/audit.json),
+[rounds thật](../fl_veremi_bert/artifacts/lite2-pulls/flb-lite2-bu1-s42-r20/flb-lite2-bu1-s42-r20/rounds.jsonl).
+BERT bounded auditor kiểm CM 5.343×16×16/support/10metric, source/HP, LR, finite snapshot và đủr1–20;
+không có state2rank local trong pull này, chưa chứng minh strict private-bank resume toàn mạng.
+BERT skip r20 ≈4,94e-6, mọi client có applied step; không viết “skip0” cho BERT.
+
+**Cập nhật sau khôi phục 17/11:** Lite2 DAGSNet r50 đã audit PASS gate cũ: macro .905876977, tổng354116,304B/xe, estimator1,364×.
+[Receipt + đủ10metric](docs/research/lite2-dagsnet-r50-audit.json), [phân tích](docs/research/screening-lite2.md).
+Chưa biết: Lite2 BERT r50 (owner hoãn), compute thực của grouped engine; DAGSNet một seed không là xác nhận robust.
+Pilot BERT watcher đã thoát, DONE/audit có thật; chưa tìm thấy receipt launch r50 BERT trong inventory Lite2 đã đọc.
+Job/owner/bước vận hành tiếp xem bàn giao sống; brief không tạo watcher/launcher và không tự nối run.
+
+## 14. Suy ra cổng thiết kế mới từ đủ baseline
+
+### Seed42 r50 — bảng trực tiếp cho candidate mới
+
+Bảng §6 là mean3seed; bảng này mới dùng để xét candidate seed42. Giữ đúng headline view từng method.
+Roster = **14 baseline + một candidate MobiHet**; T3/Lite2 dùng làm control, không thêm thành baseline để đẩy hạng.
+
+| Alias baseline | Macro-F1 DAGSNet seed42 | Macro-F1 BERT seed42 |
+|---|---:|---:|
+| apfed | 0.911900144 | 0.906499333 |
+| canperfl | 0.908772749 | 0.910056154 |
+| fedavg | 0.904239802 | 0.898893446 |
+| fedprox | 0.899792314 | 0.886620222 |
+| fd_ids | 0.899241158 | 0.881668266 |
+| afpha | 0.899022944 | 0.884091604 |
+| lwfednids | 0.890401905 | 0.880339252 |
+| nilm | 0.884596010 | 0.881350474 |
+| fedtgp | 0.871860225 | 0.880186536 |
+| perfedskd | 0.870975726 | 0.889138642 |
+| fedproto | 0.869797434 | 0.885471059 |
+| v2x_htfl | 0.866139824 | 0.876434671 |
+| tinyproto | 0.853375350 | 0.883464259 |
+| pfedes | 0.851079015 | 0.872820494 |
+
+Nguồn: [comparison.json](docs/research/comparison.json), trường `evidence[model][alias]`, lọc seed42.
+Dùng full precision khi tính hạng; không xếp từ số đã làm tròn4chữ.
+
+- Best baseline seed42: APFed DAGSNet .911900144; CANPerFL BERT .910056154.
+  Gap≤.015 ⇒ sàn .896900144 / .895056154. Còn phải xét top5 độc lập.
+- Để chắc top5 performance theo vị trí (candidate thay T3), cần vượt baseline thứ5:
+  DAGSNet FD-IDS .899241158; BERT FedProx .886620222. Vì vậy sàn gap đơn thuần **chưa đủ cho DAGSNet**.
+  Lite2 gate cũ DAGSNet >.8998 bảo thủ hơn; BERT ≥.8951 đáp ứng cả hai cổng trên roster hiện tại.
+- Communication≤.400000 MB/xe/50r đưa candidate hạng3 cả hai model trên roster hiện tại (sau pFedES/TinyProto),
+  nếu số tổng thật đạt ngưỡng. Không suy từ bootstrap-only thành kết quả cuối.
+- Compute: LwFedNIDS nhẹ hơn FedAvg; AFPHA/FedAvg/FedProx/FedProto bằng FedAvg trong quy ước hiện có.
+  Candidate bằng FedAvg đồng hạng với nhóm này. **Owner xác nhận bằng1× là đạt, không cần<1×**.
+  Báo đồng hạng minh bạch; không dùng thứ tự alphabet hoặc vị trí cuối nhóm để loại candidate bằng FedAvg.
+  Nếu đo chung làm thay đổi cost/rank, tính lại và vẫn giữ điều kiện bằng FedAvg được chấp nhận.
+
+**Định nghĩa kiểm được:** performance rank↓ và byte rank↑ đều≤5; gap macro≤.015;
+compute **≤1× FedAvg**, bằng1× được chấp nhận. Giữ mục tiêu compute thuộc nhóm top5 nhẹ nhất;
+trường hợp đồng hạng FedAvg không yêu cầu giảm thêm để giành vị trí ordinal. Không tự thêm dung sai cho overhead>1×.
+Thắng từng phương pháp không-trao-full-weights là mục tiêu nghiên cứu; không thay thế cổng chính trên.
+Nhóm kênh cần phân biệt: prototype={FedProto,FedTGP,TinyProto,V2X-HtFL}; shared proxy weights={pFedES,NILM-FL};
+KD có trao weights={FD-IDS,PerFed-SKD}. Không gọi tất cả KD/proxy là “không gửi weights”.
+
+### Compute1×: điều Fable phải giải quyết thực sự
+
+Theo estimator hiện tại, train một epoch thật đã tốn xấp xỉ1×FedAvg. T3/Lite2 thêm synthetic forward+backward,
+floor, generator/codec. Chỉ giảm liều synthetic vẫn cho `1+rho>1` khi còn công việc bổ sung.
+Đây là giới hạn của **cách cộng compute hiện tại**, không định lý mọi heterogeneous FL bất khả thi.
+Đích mới cần giải thích cụ thể cách tái dùng/thay thế phép tính trong ngân sách chung, hoặc giảm phần công việc khác
+mà vẫn giữ protocol/model/epoch; không chỉ đổi tên codec, mask dòng hoặc báo server nhẹ để bỏ qua client compute.
+Không tự bỏ epoch thật, giảm W, đổi optimizer/batch/LR hoặc chuyển training sang server miễn phí.
+
+Lite21,364×→1× cần giảm khoảng26,7% **tổng useful training compute**, hoặc toàn bộ khoản overhead .364×
+nếu phần thật1× giữ nguyên. T3→1× giảm khoảng39,5%. Những tỷ lệ này chỉ là số học trên estimator,
+không là wall-time speedup đã đo. Lite2 hữu ích để định vị trade-off, chưa là lời giải compute1×.
+
+**Hợp đồng đo đề xuất trước thí nghiệm mới** (chưa có harness đo chung hoàn chỉnh):
+
+| Khoản | Cần đồng nhất / báo cáo |
+|---|---|
+| Client train | FLOPs theo model, cùng counter/convention, tổng50r và chia tổng dòng thật; tính synthetic, floor, teacher/shadow/probe bổ sung |
+| Participation | Báo tổng network actual và mẫu số; PerFed-SKD không so selected-row trực tiếp với all-row |
+| Bootstrap/server | Tách khỏi train nhưng cộng trong end-to-end; không tính0 khi chưa đo; không cộng CPU operation và GPU FLOPs thành latency |
+| Engine | Cùng group_rows/device/runtime/compile/warmup, công khai padding/masked work; hữu ích và thực thi báo riêng |
+| Wall time/memory | Cùng hardware, tách setup/train/eval/I-O, peak RAM/VRAM; `t_train` không mặc nhiên GPU-seconds2rank |
+| Byte | Bootstrap+mọi round hai chiều; cùng unicast, MB10^6; ghi actual và ước lượng riêng |
+| Ranking | Cùng phạm vi tính cho toàn roster; không trộn estimated useful work với measured total rồi nhận PASS |
+
+Compute top5 hiện chỉ là thứ hạng **trong phạm vi counter đã công bố**. Đích end-to-end công bằng chưa có đủ số để chứng nhận.
+
+## 15. Rà soát thiếu thông tin — ranh giới suy luận / việc tay
+
+| Nội dung | Đã có | Còn thiếu / hành động |
+|---|---|---|
+| Mục tiêu owner | Modelheterogeneity ưu tiên1; seed42 từngmodel; ba hạngtop5; gap≤.015; computeđích1× | Không suy dung sai compute; phương án vượt1× phải trình owner, không tự dùng1,37× |
+| Tie ranking | Owner làm rõ: compute bằng FedAvg là đạt | Báo đồng hạng; không dùng thứ tự/vị trí cuối nhóm để yêu cầu compute thấp hơn FedAvg |
+| Lite2 cuối | Sim12arm + pilot2model PASS | Thiếu r50 đã audit; cập nhật khi phiên sở hữu có artifact, không đoán từr20 |
+| Cost công bằng | Baseline toy-measured, T3/Lite2 useful-work estimator; byte thực | Thiếu phép đo cùng harness/total padded GPU work, bootstrap client/server, memory, edge latency/energy |
+| Heterogeneous thực | Schema chung; hai kiến trúc chạy riêng; mixed-width sim lịch sử | Chưa mixed DAGSNet/BERT full-scale, chưa khóa tỷ lệ/gán kiến trúc/controlmixed; đơnmodelPASS chưa chứng minh mục tiêu quan trọng nhất |
+| Dữ liệu/audit | Fixedschema/split, CM/support10metric, source/HP/finite có phạm vi | Chưa full-contenthash/per-rowprediction replay/privatebankrebuild toàn mạng; không gọi boundedPASS thành prooftoànpipeline |
+| Validation | Simfoldval và officialtest đã dùng nhiều | Chưa freshconfirmation; seed42screening không significance; không dùng test để quétHP/chọnround |
+| Novelty | Catalog cơ chế đã thử, nguồn paper trong repo | Chưa literature review mới; Fable phải phân biệt ý tưởng mới với adaptation rẻ hơn, không tuyên bố SOTA từ roster nội bộ |
+| Privacy | Không realrow/model/BN/gradient; thống kê/xác suất được phép | ChưaSecAgg/DP, đanghoãn; không tự biến thành blocker hoặc giả định costprivacy bằng0 |
+
+**Đầu ra Fable cần bổ sung ngoài §12:** một phương án ưu tiên có bảng ngân sách định lượng cho cả DAGSNet/BERT,
+chứng minh bằng accounting vì sao hướng đó có cơ hội xuống≈1× và top5; chỉ rõ phép đo nào bác bỏ.
+Nếu chưa thấy hướng đạt, nói rõ constraint xung đột và bằng chứng cần thu; không đổi ngưỡng để gọi Lite2 đạt.
+Mixed-model là kiểm chứng cuối bắt buộc cho claim kiến trúc khác nhau, nhưng chưa tự launch hoặc tự chọn tỷ lệ model.
+
+**Owner cần thao tác tay duy nhất khi chuyển sang Fable:** gửi file này vào phiên Fable5.2.
+Không cần cấp lại token, chạy train hoặc tải dataset để hoàn tất việc tổng hợp.
+Nếu Fable cần xem executed code/artifact chi tiết, cung cấp đúng file được dẫn; không gửi credential, notebook có inlinekey hoặc toàn checkpoint.

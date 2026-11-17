@@ -23,6 +23,7 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
 - Compile gate phải kiểm backward trên real data, finite BN/weights/probabilities và applied/skipped steps, không chỉ forward/loss.
   `amax` maxpool từng tạo NaN backward AMP; dùng implementation đã kiểm. Fixture padded slots cũng phải finite.
   Smoke sim local dùng **200 xe**: 60 xe làm compile gate NaN ngay cả khi tắt mọi knob (fixture, không phải lỗi code).
+  Smoke phải chạy `--compile`: họ `mobihet_next` assert compile gate ở r1, thiếu cờ là dừng sau bootstrap (không phải lỗi method).
 - Slice batch `.contiguous()` để giữ stride/static train shape, tránh recompile/fallback eager. Local sm86 không chứng minh T4sm75/2rank.
 - Mỗi client phải có applied step; skip global nhỏ vẫn có thể làm xe ít mẫu mất phần lớn bước. Guard≤1%/finite không phải sửa root cause overflow.
   Không gọi tất cả skip là warm-up hoặc bỏ client/update để qua gate.
@@ -162,6 +163,13 @@ không nạp lịch sử đó đầu phiên. Quyết định hiện hành ở [p
 - Combo codec (10/11): ghép lite6 + QQ8 **giữ được** đến r50 (CBB Δmacro −.0003 cả hai seed vs KM50; CQ8 −.0005/−.0003 vs Core);
   bỏ cả Lloyd (LY0) khi ghép QQ8 thì FAIL benign (CBA) dù từng knob riêng PASS → không cộng PASS từng knob thành PASS combo, phải chạy combo.
   Byte TB 50 round thấp hơn byte đo ở r20 (265 vs 319 B) vì QQ8 chỉ gửi lớp có mặt và round đầu lớn hơn: báo byte theo đúng số round.
+- Đo coder lossless trước khi cắt thông tin (probe local 16/11, panel sim 200 xe, không train; `runs/lite-byte-probe/`):
+  CDF hiện nén zlib trên bảng tích lũy uint16; mã hóa **mass** (hiệu liền kề) + bz2 cho cùng bảng 258,7→157,8 KB,
+  code Cholesky 6-bit zlib→lzma −10 %. Thưa uplink: 51 % ô (xe×lớp×cụm) có < 16 dòng nhưng chỉ giữ 5 % dòng (K16; K8 42 %/3 %);
+  bỏ moment bậc hai của ô < 16 dòng đổi LL val −0,05 nat (K8), −0,6 nat (K16). LL chỉ là lọc loại, chưa có utility train.
+- Byte bootstrap phụ thuộc panel: T3 trên panel sim 200 xe 1 196 036 B, full 5 343 xe 1 151 278 B (+3,9 %) → gate byte đọc ở
+  round 0 full-scale, sim chỉ xếp hạng. Arm sát ngân sách phải preflight bootstrap-only trước push
+  (K8/5-bit/τ16 392 KB vượt 382 KB; τ24 381 KB, τ32 372 KB): `runs/lite-byte-probe/boot_preflight.py`, ~10 s/arm, không train.
 
 ## Giới hạn audit hiện tại
 
@@ -296,3 +304,21 @@ Các thất bại/runtime đã biết và nguồn kết quả: [research index](
 - T3 LA thực thi CE(z+logπ_local−logπ_global,y), cả hai prior Laplace+1; không chỉ logπ_local.
   Synthetic r1hardCE, từr2 KL với Q roundtrước; liều tầng giảm dòng, không giảm hệ số lossmean1.
 - Byte/số đo CBB không thay số đo T3. FLOPs hữu ích theo liều không chứng minh engine grouped tránh mọi dòng mask/đệm hoặc giảm wall time tương ứng.
+
+## Lite2 sim — 17/11/2026 (một seed, screening)
+
+- Bootstrap km2 cắt byte 70 % (1 196 → 362 KB/xe sim) giá −.002 macro r20; ba knob cô lập đều nhỏ (64 bin −.001, τ16 + frac .25 −.001,
+  K6 −.002). Mất nằm ở tầng S (< 4.096 dòng) −.007…−.010, M/L ≈ 0; K6 là nguồn giảm p10 (−.016), K8 giữ p10 tốt hơn (−.007) với +10 KB.
+- Mất của bootstrap và liều gần cộng tính (B + U1 −.0047 ≈ −.0021 − .0028): combo không tự bù, cũng không phạt thêm. Nhiễu combo cỡ .001
+  ⇒ gate cách ngưỡng < .001 không phân biệt được D8 với U1 trên B.
+- Lớp nhạy: 11 mất −.02…−.03 với mọi knob (kể cả chỉ đổi liều), 13 mất −.02 khi bảng biên 64 bin, 1 mất −.015 với K6 hoặc cắt liều.
+- Byte bootstrap đo trong run 2 rank lệch preflight local ≤ 37 B: preflight không train đủ để lập ngân sách byte.
+- Pilot full-scale DAGSNet B + U1 r1–20 (seed 42): Δmacro −.0028 vs T3 cùng round, nhỏ hơn sim (−.0047); hai phép đo không cùng liều
+  (pilot `synth_late_from=25` chỉ chạy cột đầu U1, sim cos20 chạy cả cột sau) ⇒ không dùng pilot r20 để kết luận phần cắt tầng S.
+- Khoảng cách do bootstrap nhẹ lớn nhất ở round đầu (−.017 r1) rồi thu hẹp và phẳng từ ≈ r14: đọc Δ ở TB cuối, không ở round sớm.
+- Byte bootstrap/xe full-scale (340 663 B) thấp hơn panel sim 200 xe (362 351 B): preflight trên panel là cận trên an toàn cho ngân sách byte.
+
+- Rà cost Lite2 17/11: `scripts/run_lite2_full.py` dùng hằng `COMPUTE50=(1.364,1.37)` để xét gate, không đo FLOPs từ artifact.
+  `compute_ratio_analytic`/PASS gate này chỉ xác nhận estimator và ngưỡng khóa; không là đo total GPU compute hoặc end-to-end1×FedAvg.
+
+- Lite2 DAGSNet seed42 r50 (17/11): giảm bootstrap≈70%, tổng0,354116MB; macro−.001802 vs T3, p10−.010494, TD−.013952. Cắt tầng S từr26 không làm gap macro tăng so pilot (−.002757), nhưng p10 giảm hơn; một seed, không causal proof. PASS theo gate1,37× cũ không chứng nhận đíchFB1,01×; compute1,364× vẫn là estimator.

@@ -17,6 +17,8 @@ pass are unchanged; only how the vehicle spends FLOPs on its own synthetic rows 
       -> next tier); tier t trains on synth_tier_rows[t][0] synthetic rows per step, [1] once round > synth_late_from.
       The step generates the largest row count of the round; a vehicle with fewer rows masks the rest out of its BN batch
       and of its synthetic mean (its first rows stay class-balanced), so the masked rows cost nothing on a real vehicle.
+      A tier value of 8 (rebuild 16/11): the vehicle keeps rows 0-7 on even steps and 8-15 on odd steps (every class
+      once per two steps).
 
 A vehicle with no real row in a step (step floor, padding) normalises its masked real pass with all row slots, so the
 masked CE stays finite; its BN buffers are not updated on that step (core.local.local_epoch: has_real only).
@@ -69,7 +71,8 @@ class Method(Refine):
         if self.tier_min:
             assert self.synth_grad == "full" and self.rows_late == 0 and self.late_from >= 1
             assert self.tier_min == sorted(set(self.tier_min)) and len(rows) == len(self.tier_min) + 1
-            assert all(len(x) == 2 and all(v % 16 == 0 and 0 < v <= 64 for v in x) for x in rows)
+            assert all(len(x) == 2 and all(v == 8 or (v % 16 == 0 and 0 < v <= 64) for v in x) for x in rows)
+            assert all(max(x[i] for x in rows) >= 16 for i in (0, 1))    # an 8-row vehicle rotates inside the first 16 rows
             tier = torch.bucketize(torch.as_tensor(env.train.sizes, device=env.dev),
                                    torch.tensor(self.tier_min, device=env.dev), right=True)
             self._tier_rows = torch.tensor(rows, device=env.dev)[tier]   # (K, 2) rows per step early / late
@@ -93,7 +96,10 @@ class Method(Refine):
         """CBB stream loss with a per-vehicle synthetic row count (rows beyond it: no BN statistics, no loss)."""
         G, b, a = ctx.Gfix, ctx.x.shape[1], self.aux
         xg, lab = self._synth(ctx)
-        keep = active(ctx)[:, None] & (torch.arange(a, device=lab.device)[None] < self._rows_k[ctx.clients][:, None])
+        rows = self._rows_k[ctx.clients][:, None]
+        pos = torch.arange(a, device=lab.device)[None]
+        first = (rows == 8) * (8 * (ctx.step % 2)) if bool((self._rows_k == 8).any()) else 0   # 8 rows: classes 0-7 / 8-15 by step
+        keep = active(ctx)[:, None] & (pos >= first) & (pos < first + rows)
         z, new_b = grouped.TRAIN(ctx.P, ctx.B, torch.cat([ctx.x, xg], 1), self.env.cfg,
                                  mask=torch.cat([ctx.mask, keep], 1), train=True)
         ce = local.masked_mean(F.cross_entropy((z[:, :b] + self._shift[:, None, :]).reshape(-1, 16), ctx.y.reshape(-1),
