@@ -31,10 +31,15 @@ Không sửa notebook/HP/source đã khóa; mỗi ref dưới là version1:
 | Z0 | `accanniez/mh-sim-fb-z0-nosynth-s42-r20/1` |
 | ZK | `accanniez/mh-sim-fb-zk-nosynth-qreal-s42-r20/1` |
 
-Launch đang do job `mh-fb-launch-20261117` sở hữu, supervisor17367, deliveryqueue, ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`.
+Job `mh-fb-launch-20261117` (supervisor17367) **failed13:48:52**, deliveryqueue nhận; completion đã xử lý.
 Log `runs/sim-kaggle-fb/launch-recovery.log`; state `~/.codex/long-jobs/jobs/mh-fb-launch-20261117/state.json`.
-Lượt gate đầu timeout owned-list novahihi, chưa intent/push; worker chỉ retry đọc khi chưa có bất kỳ pushintent nào.
-Chưa xác nhận đủ8 ở thời điểm ghi mục này; đọc `launch-complete.json` và từng `.push.json` trước mọi retry.
+Ba lượt gate vướng mạng: owned listing/ConnectTimeout/input access; **0 pushintent/0 pushreceipt**, chưa kernel FB nào tạo bởi launcher này.
+Chưa watcherFB ở lúc bắt đầu recovery mới. Không rerun job cũ; giữ batch/notebook frozen. Tuyến HTTPSwww/api/v1 và connect-only retry đã kiểm;
+đọc owned kernels/dataset/quota đã PASS (quota novahihi12,618h, 1,22s). Không retry mutation có intent hoặc reply không rõ.
+Recovery mới: job `mh-fb-launch-www-20261117`, supervisor27251, **running**, deliveryqueue;
+log `runs/sim-kaggle-fb/launch-www.log`, state `~/.codex/long-jobs/jobs/mh-fb-launch-www-20261117/state.json`,
+ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`. Chạy qua `run_bounded_python.py` với
+`MOBIHET_KAGGLE_API_VIA_WWW=1`, truyền tiếp cho CLI/watcher. Worker hiện sở hữu launch ledger; không launcher/collector thứ hai.
 Quota/slot đã đọc mới: novahihi12,618h; annhannh33111,485h; annhtnt10,897h; accanniez10,443h;
 không active/unknown, reserved0 ở inventory; mỗi account2×2,75h +15% =6,325h. Launcher kiểm lại quota/input/slug trước mutation.
 Receipt `quota-recovery.json` giữ toàn inventory; `quota.json` chỉ4owner được chọn, `quota-claude.json` giữ lần đọc cũ.

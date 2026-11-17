@@ -3,6 +3,10 @@ import sys
 
 import requests
 
+from kaggle_api_route import configure
+
+configure()
+
 _request, _send = requests.Session.request, requests.Session.send
 
 

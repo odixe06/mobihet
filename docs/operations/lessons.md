@@ -22,6 +22,9 @@ Lịch sử nguyên bản trước rút gọn: [snapshot](../../archive/operatio
 - Inventory quota toàn roster (22 account) mất ≈ 4 phút: chạy nền/ghi file rồi đọc, đừng để foreground timeout cắt giữa chừng.
   **Sự cố Kaggle 17/11 là lỗi mạng chập chờn/timeout**, gây quota `ConnectTimeout` và status `QUERY_ERROR`;
   nhiều ref hỏi lại không đổi đã trả `COMPLETE`. Không ghi thành lỗi training/kernel hoặc hết quota.
+  Probe sau failure13:48: DNS local/Google cùng API IPv4, TCP443 tới API IP timeout xen kẽ trong khi www đáp nhanh; www cũng có connect timeout.
+  Khi cần, bật riêng tiến trình `MOBIHET_KAGGLE_API_VIA_WWW=1` với `kaggle_cli_bounded.py`/`run_bounded_python.py`: SDK dùng HTTPSwww/api/v1;
+  chỉ retry connect trước gửi request (3 lần), read/status/other retry0 để không nhân đôi push có reply bị mất. Không sửa DNS, SDK cài đặt hoặc credential toàn máy.
   Endpoint quota có thể `ConnectTimeout` ≈ 145 s trong khi `kernels list` vẫn chạy 4 s: đo một account trước,
   quota lỗi = chưa rõ, không suy quota từ lần đọc cũ; `W.inventory` hỏng cả lượt nếu một account timeout → chạy nền có lặp.
 - Push fail/timeout có thể để intent hoặc đã tạo kernel. Kiểm reply, exact version và marker trước retry; không push trùng từ exit code đơn lẻ.

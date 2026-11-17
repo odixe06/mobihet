@@ -15,6 +15,7 @@ Không chạy lại study từ notification cũ.
 | Audit CM/source/support / sim | `audit_screening.py`, `audit_sim_batch.py`, `research_metrics.py` |
 | Phân tích nút thắt/cohort/learning curve | `analyse_core_bottleneck.py`, `analyse_b20_cohort.py`, `analyse_saturation.py` |
 | Pull checkpoint / CLI bounded | `pull_checkpoint_parallel.py`, `kaggle_cli_bounded.py`, `run_bounded_python.py` |
+| Tuyến Kaggle API khi mạng tới api.kaggle.com lỗi | `kaggle_api_route.py`; opt-in `MOBIHET_KAGGLE_API_VIA_WWW=1` qua CLI/Python wrapper bounded, connect retry3/read retry0 |
 | Watch exact kernel | `watch_kaggle_batch.py` qua codex-long-jobs,1200s |
 | Local guard/fixture/benchmark/central ceiling | `run_local_guarded.py`, `cache_subset.py`, `bench_grouped.py`, `run_central.py` |
 | Báo cáo / link | `report.py`, `check_docs.py` |

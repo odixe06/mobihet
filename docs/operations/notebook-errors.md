@@ -5,7 +5,7 @@ giữ nguyên evidence; [continue](continue.md) giữ job sống. Không sửa s
 
 | Dấu hiệu | Kiểm / xử lý |
 |---|---|
-| Quota `ConnectTimeout`, status `QUERY_ERROR` (17/11) | Lỗi mạng chập chờn/timeout; đọc lại có giới hạn đúng account/ref. Giữ UNKNOWN tới khi đọc được; không coi kernel FAIL/hết quota/slot trống, không push lại training |
+| Quota `ConnectTimeout`, status `QUERY_ERROR` (17/11) | Lỗi mạng chập chờn/timeout; đọc lại có giới hạn đúng account/ref. Giữ UNKNOWN tới khi đọc được; không coi kernel FAIL/hết quota/slot trống, không push lại training. Nếu tuyến API lỗi, thử opt-in `MOBIHET_KAGGLE_API_VIA_WWW=1` qua hai wrapper bounded; retry connect-only, vẫn kiểm intent/version trước retry mutation |
 | Zero GPU/sai runtime | Notebook + metadata, pinned image,2T4sm75; giữ assert, không reinstall torch |
 | RUNNING chưa log/heartbeat | Exact version và bounded log; QUEUED/setup khác training lỗi; không push trùng |
 | Push lỗi nhưng còn intent | Đọc reply/version/receipt và remote status trước retry; không xóa intent mù |
