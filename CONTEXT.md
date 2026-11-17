@@ -6,7 +6,7 @@ Không nạp `archive/` mặc định.
 Federated IDS V2X trên VeReMi NextGen v4:5.343xe nhận,77input,16lớp; mỗi xe giữ model riêng.
 Cơ chế trao thống kê/xác suất, hỗ trợ khác kiến trúc; không realrows/model/gradient/BN.
 
-## Trạng thái — 17/11/2026
+## Trạng thái — 17/11/2026, 14:33 +07
 
 MobiHet hiện tại=T3 (KM16+lite6+Q8, liều synthetic theo cỡ xe/pha lịch).
 DAGSNet và FeatureBERT đủr50 cả3seed41/42/43; mixed-model full-scale chưa chạy.
@@ -15,7 +15,7 @@ Kết quả/giới hạn audit: [comparison](docs/research/comparison.md). Job/N
 Owner đang xây lại phương pháp: seed42, đơnmodel DAGSNet/BERT, sim→pilot→full;
 performance/communication/compute xếp riêng top5, Macro-F1 cách bestbaseline≤.015; compute chấp nhận≤1,01×FedAvg (chốt sau cùng17/11).
 [Task brief](task_brief.md) giữ yêu cầu mới. Task hiện tại = [FB — Fixed-row-budget](docs/research/screening-budget.md):
-8 sim **DAGSNet** seed42, rồi pilot DAGSNet + BERT nếu PASS; owner cho phép bớt dòng thật xe lớn để đổi lấy synthetic.
+8 sim **DAGSNet** seed42 đã push đủ version1, rồi pilot DAGSNet + BERT nếu PASS; owner cho phép bớt dòng thật xe lớn để đổi lấy synthetic.
 [Lite2](docs/research/screening-lite2.md) sim và pilot hai model PASS; DAGSNet r50 audit PASS theo gate cũ (.905877; 0,354116 MB; estimator1,364×).
 **Hoãn push lại Lite2 BERT r50**, ưu tiên FB; không giữ quota riêng cho Lite2.
 Gate Lite2≤1,37× là luật cũ, không chứng nhận đích compute mới; xem [brief](task_brief.md) §14–15.

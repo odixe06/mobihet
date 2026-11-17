@@ -414,7 +414,7 @@ Nguồn duy nhất cho arm/luật/kết quả: [screening-lite2](docs/research/s
   luật chọn **B + U1** (K6, 64 bin, frac .25, τ16, 6-bit + liều `[[64,32],[32,16],[16,16]]`, 1,364×), Δ TB −.0047 — biên mỏng, một seed.
   Mất mát tập trung ở xe < 4 096 dòng và lớp 11/13/1.
 - **Pilot DAGSNet PASS 17/11:** Δmacro r20 và TB r16–20 đều −.0028 vs T3 cùng round (.8968 vs .8995), bootstrap thật 340 663 B/xe
-  (T3 −70 %), `t_train` −3,5 %; đang nối r21–50. **Pilot BERT PASS**: macro .898173, Δ r20 −.004746, Δ TB −.005173; chi tiết §13. Pilot r1–20 chỉ chạy cột đầu của U1 (`synth_late_from=25`);
+  (T3 −70 %), `t_train` −3,5 %; r50 đã auditPASS gate cũ (macro.905877; .354116MB; estimator1,364×). **Pilot BERT PASS**: macro .898173, Δ r20 −.004746, Δ TB −.005173; chi tiết §13. Pilot r1–20 chỉ chạy cột đầu của U1 (`synth_late_from=25`);
   phần cắt tầng S từ r26 chỉ được thử ở full r50. PASS → nối r21–50; FAIL → dừng arm, báo owner, không tune/kéo dài.
 - **Chưa làm / ngoài phạm vi task:** mixed DAGSNet + BERT (sau khi đơn model PASS full), privacy (hoãn), seed 41/43.
 
@@ -580,7 +580,7 @@ Compute top5 hiện chỉ là thứ hạng **trong phạm vi counter đã công 
 |---|---|---|
 | Mục tiêu owner | Modelheterogeneity ưu tiên1; seed42 từngmodel; ba hạngtop5; gap≤.015; computeđích1× | Không suy dung sai compute; phương án vượt1× phải trình owner, không tự dùng1,37× |
 | Tie ranking | Owner làm rõ: compute bằng FedAvg là đạt | Báo đồng hạng; không dùng thứ tự/vị trí cuối nhóm để yêu cầu compute thấp hơn FedAvg |
-| Lite2 cuối | Sim12arm + pilot2model PASS | Thiếu r50 đã audit; cập nhật khi phiên sở hữu có artifact, không đoán từr20 |
+| Lite2 cuối | Sim12arm + pilot2model PASS; DAGSNet r50 auditPASS gate cũ (.905877; .354116MB; estimator1,364×) | BERT r50 owner hoãn; không suy DAGSNet PASS sang BERT hoặc đíchFB1,01× |
 | Cost công bằng | Baseline toy-measured, T3/Lite2 useful-work estimator; byte thực | Thiếu phép đo cùng harness/total padded GPU work, bootstrap client/server, memory, edge latency/energy |
 | Heterogeneous thực | Schema chung; hai kiến trúc chạy riêng; mixed-width sim lịch sử | Chưa mixed DAGSNet/BERT full-scale, chưa khóa tỷ lệ/gán kiến trúc/controlmixed; đơnmodelPASS chưa chứng minh mục tiêu quan trọng nhất |
 | Dữ liệu/audit | Fixedschema/split, CM/support10metric, source/HP/finite có phạm vi | Chưa full-contenthash/per-rowprediction replay/privatebankrebuild toàn mạng; không gọi boundedPASS thành prooftoànpipeline |

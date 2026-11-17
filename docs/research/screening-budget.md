@@ -71,4 +71,4 @@ ZK thuộc họ realKD đã đóng **khi có synthetic**; ở đây chỉ đo m�
 
 ## Kết quả
 
-Chưa có. Job/kernel: [continue](../operations/continue.md).
+Đã xác nhận đủ8kernel version1 ngày17/11; chưa kết quả artifact/verdict sim. [Receipt launch](../operations/fb-launch-20261117.json). Job/kernel: [continue](../operations/continue.md).
