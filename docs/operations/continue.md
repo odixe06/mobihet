@@ -36,10 +36,16 @@ Log `runs/sim-kaggle-fb/launch-recovery.log`; state `~/.codex/long-jobs/jobs/mh-
 Ba lượt gate vướng mạng: owned listing/ConnectTimeout/input access; **0 pushintent/0 pushreceipt**, chưa kernel FB nào tạo bởi launcher này.
 Chưa watcherFB ở lúc bắt đầu recovery mới. Không rerun job cũ; giữ batch/notebook frozen. Tuyến HTTPSwww/api/v1 và connect-only retry đã kiểm;
 đọc owned kernels/dataset/quota đã PASS (quota novahihi12,618h, 1,22s). Không retry mutation có intent hoặc reply không rõ.
-Recovery mới: job `mh-fb-launch-www-20261117`, supervisor27251, **running**, deliveryqueue;
-log `runs/sim-kaggle-fb/launch-www.log`, state `~/.codex/long-jobs/jobs/mh-fb-launch-www-20261117/state.json`,
-ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`. Chạy qua `run_bounded_python.py` với
-`MOBIHET_KAGGLE_API_VIA_WWW=1`, truyền tiếp cho CLI/watcher. Worker hiện sở hữu launch ledger; không launcher/collector thứ hai.
+Job `mh-fb-launch-www-20261117` (supervisor27251) **failed14:06:02**, completion đã xử lý;
+log `runs/sim-kaggle-fb/launch-www.log`, state `~/.codex/long-jobs/jobs/mh-fb-launch-www-20261117/state.json`.
+Gate cuối annhtnt→builder status lỗi; hỏi lại cùng ref qua www trả COMPLETE, API gốc ConnectTimeout. Vẫn 0intent/0push ở lúc job thoát.
+**Recovery hiện tại:** `mh-fb-launch-gates-20261117`, supervisor35192, deliveryqueue,
+log `runs/sim-kaggle-fb/launch-gates-recovery.log`; state `~/.codex/long-jobs/jobs/mh-fb-launch-gates-20261117/state.json`;
+ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`. Worker `runs/sim-kaggle-fb/launch-cached-gates.py`
+qua `run_bounded_python.py`, `MOBIHET_KAGGLE_API_VIA_WWW=1`. Cache từng read gate thành công tối đa600s dưới `read-gates/`,
+quota cache theo owner; mỗi read lỗi retry3, không cache lỗi. Vẫn giữ mọi quota/input/absent-slug gate và single-shot pushintent.
+Kiểm recovery riêng PASS: read lỗi→retry→PASS, read PASS dùng cache, push lỗi chỉ gọi1lần. Không thay method/HP/notebook.
+Worker hiện sở hữu ledger. Không start launcher/collector/watcher thứ hai hoặc sửa worker đang chạy.
 Quota/slot đã đọc mới: novahihi12,618h; annhannh33111,485h; annhtnt10,897h; accanniez10,443h;
 không active/unknown, reserved0 ở inventory; mỗi account2×2,75h +15% =6,325h. Launcher kiểm lại quota/input/slug trước mutation.
 Receipt `quota-recovery.json` giữ toàn inventory; `quota.json` chỉ4owner được chọn, `quota-claude.json` giữ lần đọc cũ.
