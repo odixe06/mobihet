@@ -47,6 +47,14 @@ W.OUT, W.ART, W.TAG = OUT, ART, "FB"
 W.COLLECT = r'(^provenance/|/(config\.json|rounds\.jsonl|cms_r\d{3}\.npz)$)'
 
 
+def scoped_cli(owner):
+    return [sys.executable, str(ROOT / "scripts/kaggle_as_bounded.py"), owner, "--",
+            sys.executable, str(ROOT / "scripts/kaggle_cli_bounded.py")]
+
+
+W.cli = scoped_cli
+
+
 def cost(sizes, synth, real, synth_off=False):
     """Client rows through the model per real row, one round, mean over a schedule with half the rounds late: every row a
     vehicle trains on (real kept + synthetic kept, floor steps included) / its real rows. FedAvg = 1. Returns total and

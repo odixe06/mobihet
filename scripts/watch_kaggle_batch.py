@@ -24,7 +24,7 @@ def status_from_cli(returncode, output):
 def query(spec):
     ref = f"{spec['account']}/{spec['slug']}/{spec.get('version', 1)}"
     command = ["timeout", "--foreground", "--kill-after=5s", "45s", sys.executable,
-               str(ROOT / ".agents/skills/kaggle-training-notebook/scripts/kaggle_as.py"), spec["account"],
+               str(ROOT / "scripts/kaggle_as_bounded.py"), spec["account"],
                "--", sys.executable, str(ROOT / "scripts/kaggle_cli_bounded.py"), "kernels", "status", ref]
     try:
         result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)

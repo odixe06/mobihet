@@ -28,6 +28,7 @@ Lịch sử nguyên bản trước rút gọn: [snapshot](../../archive/operatio
   Endpoint quota có thể `ConnectTimeout` ≈ 145 s trong khi `kernels list` vẫn chạy 4 s: đo một account trước,
   quota lỗi = chưa rõ, không suy quota từ lần đọc cũ; `W.inventory` hỏng cả lượt nếu một account timeout → chạy nền có lặp.
 - Mạng chập chờn: retry cả batch gate làm lặp quota/list/input đã PASS và dễ trượt ở query khác. Recovery FB lưu từng read thành công tối đa600s, retry đúng bước lỗi; không cache lỗi hoặc mutation. Trước retry push vẫn kiểm intent/exactversion; cache không thay source/config/round audit.
+- CLI wrapper bên trong `kaggle_as.py` chưa bảo vệ auth của chính helper: `GenerateAccessToken` xảy ra trước child CLI, từng timeout với timeout=None dù flag route đã bật. Dùng `kaggle_as_bounded.py` bọc **trước auth**, giữ shape argv `[python, wrapper, owner, --]` để collect prefix không hỏng. Regression phải chạm auth phase, không chỉ CLI con.
 - Push fail/timeout có thể để intent hoặc đã tạo kernel. Kiểm reply, exact version và marker trước retry; không push trùng từ exit code đơn lẻ.
 - Resume phải import đúng parent, source/config/round và cả2rank trước decode; dùng copyfile/copytree cho file/thư mục.
   W&B resume không nạp checkpoint; snapshot nhỏ không thay private bank. Baseline cũ thiếu torch RNG phải báo giới hạn.

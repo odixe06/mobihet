@@ -1,6 +1,9 @@
 """Keep routing opt-in, HTTPS-only and limited to Kaggle's production API."""
 import pytest
 import requests
+import runpy
+import sys
+from pathlib import Path
 from kagglesdk.kaggle_env import KaggleEnv
 from kagglesdk.kaggle_http_client import KaggleHttpClient
 
@@ -31,3 +34,33 @@ def test_api_route_preserves_scope_and_path(monkeypatch, enabled):
         else:
             assert retry.total == 0
         assert session.get_adapter("https://example.invalid").max_retries.total == 0
+
+
+def test_saved_account_bootstraps_before_auth(monkeypatch):
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
+    monkeypatch.setenv("MOBIHET_KAGGLE_API_VIA_WWW", "1")
+    monkeypatch.setattr(KaggleHttpClient, "_get_request_url", KaggleHttpClient._get_request_url)
+    monkeypatch.setattr(requests.Session, "__init__", requests.Session.__init__)
+    sent = []
+    monkeypatch.setattr(requests.Session, "send", lambda self, request, **kw: sent.append(kw))
+    monkeypatch.setattr(requests.Session, "request", requests.Session.request)
+    monkeypatch.setattr(sys, "argv", ["kaggle_as_bounded.py", "owner", "--", "python", "child.py"])
+    original = runpy.run_path
+    seen = []
+
+    def run(path, **kw):
+        if Path(path).name != "kaggle_as.py":
+            return original(path, **kw)
+        seen.append(sys.argv[1:])
+        client = KaggleHttpClient(env=KaggleEnv.PROD)
+        url = client._get_request_url("users.AccountService", "GenerateAccessToken")
+        assert url.startswith("https://www.kaggle.com/api/v1/")
+        with requests.Session() as session:
+            session.send(requests.Request("POST", url).prepare())
+        return {}
+
+    monkeypatch.setattr(runpy, "run_path", run)
+    original(str(Path(__file__).resolve().parents[1] / "scripts/kaggle_as_bounded.py"), run_name="__main__")
+    assert seen == [["owner", "--", "python", "child.py"]]
+    assert sent == [{"timeout": (10, 60)}]

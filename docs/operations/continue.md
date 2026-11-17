@@ -39,12 +39,18 @@ Chưa watcherFB ở lúc bắt đầu recovery mới. Không rerun job cũ; gi�
 Job `mh-fb-launch-www-20261117` (supervisor27251) **failed14:06:02**, completion đã xử lý;
 log `runs/sim-kaggle-fb/launch-www.log`, state `~/.codex/long-jobs/jobs/mh-fb-launch-www-20261117/state.json`.
 Gate cuối annhtnt→builder status lỗi; hỏi lại cùng ref qua www trả COMPLETE, API gốc ConnectTimeout. Vẫn 0intent/0push ở lúc job thoát.
-**Recovery hiện tại:** `mh-fb-launch-gates-20261117`, supervisor35192, deliveryqueue,
-log `runs/sim-kaggle-fb/launch-gates-recovery.log`; state `~/.codex/long-jobs/jobs/mh-fb-launch-gates-20261117/state.json`;
-ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`. Worker `runs/sim-kaggle-fb/launch-cached-gates.py`
-qua `run_bounded_python.py`, `MOBIHET_KAGGLE_API_VIA_WWW=1`. Cache từng read gate thành công tối đa600s dưới `read-gates/`,
-quota cache theo owner; mỗi read lỗi retry3, không cache lỗi. Vẫn giữ mọi quota/input/absent-slug gate và single-shot pushintent.
-Kiểm recovery riêng PASS: read lỗi→retry→PASS, read PASS dùng cache, push lỗi chỉ gọi1lần. Không thay method/HP/notebook.
+Job `mh-fb-launch-gates-20261117` (supervisor35192) **failed14:14:40**, completion đã xử lý;
+log `runs/sim-kaggle-fb/launch-gates-recovery.log`. Đã qua mọi gate và **push6/8 version1**: F0/R48/N1/N2/Z0/ZK,
+receipt từng `.push.json` có thật. Status kiểm: F0/N1/N2/Z0/ZK RUNNING; R48 QUERY_ERROR nên chưa kết luận, không push lại.
+N3 có `.push-intent.json` nhưng log dừng `GenerateAccessToken` trong `kaggle_as.py` trước khi gọi child CLI;
+owned list annhtnt47ref không có FB. N4 chưa intent. Không retry toàn batch hoặc xóa intent cũ.
+**Recovery hiện tại:** `mh-fb-finish-n3n4-20261117`, supervisor38695, **running**, deliveryqueue;
+log `runs/sim-kaggle-fb/finish-launch.log`, state `~/.codex/long-jobs/jobs/mh-fb-finish-n3n4-20261117/state.json`;
+ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`. Worker `runs/sim-kaggle-fb/finish-launch.py` chỉ N3/N4,
+kiểm quota/absent-slug/input/hash, giữ intentN3 cũ + tạo retryintent riêng, không retry push có kết quả mơ hồ.
+Bản sửa auth: `scripts/kaggle_as_bounded.py` cài route/timeout **trước** saved-account auth; FB launcher và exact-version watcher dùng wrapper này.
+Cài trong tiến trình; helper skill frozen/SDK/credential không sửa. Regression3/3PASS (kể cả argv và timeout khi auth).
+Đủ8receipt → ghi launch-complete → start watcher duy nhất `mh-sim-fb-watch-20261117`.
 Worker hiện sở hữu ledger. Không start launcher/collector/watcher thứ hai hoặc sửa worker đang chạy.
 Quota/slot đã đọc mới: novahihi12,618h; annhannh33111,485h; annhtnt10,897h; accanniez10,443h;
 không active/unknown, reserved0 ở inventory; mỗi account2×2,75h +15% =6,325h. Launcher kiểm lại quota/input/slug trước mutation.
