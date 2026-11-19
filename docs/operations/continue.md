@@ -1,4 +1,4 @@
-# Bàn giao sống — 20/11/2026 ≈ 03:00 +07 (máy tắt sau phiên này)
+# Bàn giao sống — 20/11/2026 ≈ 03:15 +07 (máy tắt sau phiên này)
 
 **Lượt sau chỉ cần đọc file này để tiếp tục.** Chi tiết khi cần: [FB-L](../research/screening-fbl.md) (luật/kết quả),
 [compute harness](../research/compute-harness.md), [LESSONS](../../LESSONS.md), [bài học vận hành](lessons.md), [backup](backup.md).
@@ -22,8 +22,8 @@ Baseline (14 PP × 6 kịch bản + mixed) ở repo khác: `~/project/experiment
 | DAGSNet s42 | `heykewtiie/mh-fbl-l4-top-s42-r50` r1–46 | `lelovo/mh-fbl-l4-top-s42-r50-h2` | RUNNING, cần ≈ 1,1 h |
 | DAGSNet s43 | `outlookcheck/mh-fbl-l4-top-s43-r50` | — | phiên 1 RUNNING (CAP 7,7 h, ước xong r50 trong phiên ≈ 04:30) |
 | DAGSNet s41 | `annhannh331/mh-fbl-l4-top-s41-r50` r1–25 | `hoangdang20t/mh-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 4 h |
-| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `chiencosieuhang/flb-fbl-l4-top-s42-r50-h2` | xem log |
-| BERT s43 | `outlookcheck/flb-fbl-l4-top-s43-r50` r1–26 | xem log | orchestrator hop sau BERT s42 (lần 02:17 BLOCKED do ổ đầy, đã restart) |
+| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `gaming3/flb-fbl-l4-top-s42-r50-h2` | 03:01 hop trên `chiencosieuhang` BLOCKED (dataset upload xong nhưng không được tạo, 403); chạy tay lại trên `gaming3` 03:10 — kết quả: `../fl_veremi_bert/runs/fbl-r50/S42h2-manual-retry.log` (có `S42h2/batch.json` = đã push) |
+| BERT s43 | `outlookcheck/flb-fbl-l4-top-s43-r50` r1–26 | `chiencosieuhang/flb-fbl-l4-top-s43-r50-h2` | HOP_PUSHED 03:06, cần ≈ 4,7 h |
 | BERT s41 | `catbaochau/flb-fbl-l4-top-s41-r50` r1–21 | `goilaaiudi/flb-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 5,6 h |
 
 Kết quả từng hop: `runs/fbl-r50/orchestrate.log` (dòng `HOP_PUSHED` / `BLOCKED` / `CHAIN_DONE`).
@@ -42,7 +42,12 @@ echo $! > runs/fbl-r50/orchestrate.pid
 
 Nó đọc lại batch/hop đã khóa (`S*h*/batch.json`, `artifacts/fbl-hop/*/ready.json`), không push lại slug cũ. Trước đó sửa
 `exclude.json` theo job đang giữ slot (20/11 03:00 thêm `bestyorn`: `exp-count-cnnbigru-a` của repo experiment; gỡ khi kernel đó xong).
-Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ verify lại dataset, không tạo mới.
+Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ verify lại dataset, không tạo mới. Nếu dataset không tồn tại
+(`kaggle datasets list --mine` của owner rỗng): đổi tên `create-intent.json`/`create-reply.txt` thành `*.failed-<owner>.*` rồi
+`python scripts/run_fbl_r50.py build S<seed>h<k> <owner khác> <CAP>` + `launch S<seed>h<k>` (cwd `../fl_veremi_bert`; DAGSNet: `hop` + `launch-hop` ở repo này).
+Nếu `S42h2-manual-retry.log` không kết thúc bằng push thành công (`RC=0`): làm lại đúng cách này cho BERT s42 trước tiên.
+Slot lúc tắt máy: `chiencosieuhang` 2/2 (central BERT s42 + BERT s43h2), `gaming3` 2/2 (central CNN-BiGRU s41 + BERT s42h2), `bestyorn` 2/2,
+`lelovo`/`goilaaiudi`/`hoangdang20t` 2/2; `abbafan` còn 1 slot.
 
 ## 3. Việc tiếp theo
 
@@ -66,7 +71,7 @@ Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ ve
   `../fl_veremi_bert` vẫn còn thay đổi FB-L chưa commit; **không commit repo đó khi còn chain BERT**: `run_fbl_r50.py build` assert
   `HEAD == base_sha == origin/main`.
 - Backup OneDrive 20/11: Git bundle `…/veremi_build/mobihet-v2/mobihet.bundle` (verify OK, `main` 38754dd); `dvc push -j 16` toàn repo
-  (log `runs/fbl-r50/dvc-push-all-20261120.log`; kiểm lại `dvc status -c` nếu log không có `PUSH_RC=0`).
+  xong 03:12, exit 0, 398 file. rclone upload cloud ~24 MB/s, có thể chưa xong lúc tắt máy ⇒ tự tiếp khi bật lại (không xoá `~/.cache/rclone`).
 - Kaggle: credential theo process (`kaggle_as.py`), quota `kaggle_quota.py`; `UNVERIFIED`/`QUERY_ERROR` = chưa rõ. Mutation không retry khi
   chưa kiểm intent/marker/version. COMPLETE ≠ kết quả: audit artifact trước. Luật gate khóa trước push, không sửa hồi tố.
 - Job nền: `setsid … & echo $! > pid`; dừng theo PGID (`kill -TERM -<pid>`). Giữ ≥ 30 GB trống trước hop (mỗi hop copy state 4–10 GB;
