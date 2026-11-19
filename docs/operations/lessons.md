@@ -89,3 +89,7 @@ Lịch sử nguyên bản trước rút gọn: [snapshot](../../archive/operatio
   layout thư mục; muốn biết chắc phải xem gate resume chạy thật. Kernel thay thế `-s2b` dùng lại dataset `-s2-state` đã kiểm size.
 - 19/11: khi queue đo **time** đang chạy, không chạy pytest/benchmark GPU song song (đã lỡ trùng `bert-nilm time` 19:57 ⇒ JSON đổi tên
   `*.perturbed-by-pytest-1957.json`, pass 2 đo lại). Pull/collect Kaggle chạy trước queue time nên không trùng; job count (FLOP) không bị ảnh hưởng.
+
+- 20/11: dataset Kaggle tạo từ thư mục có hàng nghìn file nhỏ (`inductor-cache/` 5.581 file trong output phiên) upload báo thành công
+  nhưng không bao giờ được tạo (status 403, `datasets list --mine` rỗng) — lặp lại trên 2 account. Chỉ đóng gói file cần resume
+  (state, rounds, config, cms); thấy 403 sau "being created" quá 10 phút ⇒ kiểm số file trước khi đổi account.
