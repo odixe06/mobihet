@@ -1,0 +1,6 @@
+outs:
+- md5: 952d85a2fb8e2d710fd97d30d8a401e8.dir
+  size: 10993966
+  nfiles: 133
+  hash: md5
+  path: mh-fbl-l4-top-s41-r50

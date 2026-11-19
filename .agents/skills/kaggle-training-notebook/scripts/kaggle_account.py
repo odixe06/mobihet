@@ -7,7 +7,6 @@ Quota reads do not switch accounts. `ensure` and `use` can change the active log
 use them only under the account policy authorized for the current project/session.
 
     kaggle_account.py list                 which accounts are saved, which is active
-    kaggle_account.py quota                remaining GPU/TPU per account, without switching
     kaggle_account.py health               is each saved refresh token still usable?
     kaggle_account.py plan --gpu-hours N   split a budget into sessions across accounts
     kaggle_account.py ensure --gpu-hours N propose (or, with --confirm, perform) a switch
@@ -317,15 +316,6 @@ def print_survey(quotas: dict[str, dict], failures: dict[str, str], active: str 
         print(f"{u:<16} {q['gpu_left']:>9.2f}h {q['tpu_left']:>9.2f}h  {q['refresh_at']}{mark}")
     for u, why in failures.items():
         print(f"{u:<16} {'?':>10} {'?':>10}  {why}")
-
-
-def cmd_quota(args: argparse.Namespace) -> int:
-    quotas, failures = survey()
-    if not quotas and not failures:
-        print(f"no accounts saved in {ACCOUNTS}")
-        return 1
-    print_survey(quotas, failures, active_user())
-    return 0 if quotas else 1
 
 
 def snapshot_identity(user: str) -> str:
@@ -665,7 +655,6 @@ def main() -> int:
                     help=f"project .mcp.json to rewrite (default: {DEFAULT_MCP})")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("list", help="show saved accounts and which is active")
-    sub.add_parser("quota", help="remaining GPU/TPU per account, without switching")
     sub.add_parser("refresh", help="mint a fresh access token now and re-snapshot")
     p = sub.add_parser("health", help="check every saved refresh token still works")
     p.add_argument("--quiet", action="store_true", help="print only accounts with a problem")
@@ -707,7 +696,7 @@ def main() -> int:
     for name in names:
         if not name or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789_-" for c in name):
             ap.error("invalid account name")
-    return {"list": cmd_list, "save": cmd_save, "use": cmd_use, "quota": cmd_quota,
+    return {"list": cmd_list, "save": cmd_save, "use": cmd_use,
             "ensure": cmd_ensure, "refresh": cmd_refresh, "health": cmd_health,
             "plan": cmd_plan, "add-account": cmd_add_account}[args.cmd](args)
 

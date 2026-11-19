@@ -1,0 +1,6 @@
+outs:
+- md5: d905cc7e7292f8347d3e165551f1395a.dir
+  size: 8984846
+  nfiles: 128
+  hash: md5
+  path: mh-fbl-l2-top-s42-r20

@@ -1,0 +1,6 @@
+outs:
+- md5: 2f207b571c197ca91564c2bf632fce6d.dir
+  size: 1004950
+  nfiles: 128
+  hash: md5
+  path: mh-sim-fb-n2c-40-16-s42-r20

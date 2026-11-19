@@ -12,6 +12,7 @@ Không chạy lại study từ notification cũ.
 | Batch sim Lite2 (quota/launch/collect/gate) | `run_sim_lite2.py`; luật ở [screening-lite2](../docs/research/screening-lite2.md) |
 | Batch sim FB (cost/quota/launch/collect/gate), estimator compute theo dòng | `run_sim_budget.py`; luật ở [screening-budget](../docs/research/screening-budget.md) |
 | Pilot full-scale Lite2 (quota/launch/collect/audit) + nối r21–50 (`… r50`) | `run_lite2_full.py`; control T3P seed 42 |
+| Compute executed vs useful (full-scale / `--panel 200`); đếm dòng engine thật, cùng bộ đếm FedAvg và method | `compute_executed.py`, `count_executed.py`; [compute-harness](../docs/research/compute-harness.md) |
 | Audit CM/source/support / sim | `audit_screening.py`, `audit_sim_batch.py`, `research_metrics.py` |
 | Phân tích nút thắt/cohort/learning curve | `analyse_core_bottleneck.py`, `analyse_b20_cohort.py`, `analyse_saturation.py` |
 | Pull checkpoint / CLI bounded | `pull_checkpoint_parallel.py`, `kaggle_cli_bounded.py`, `run_bounded_python.py` |

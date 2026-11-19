@@ -71,4 +71,38 @@ ZK thuộc họ realKD đã đóng **khi có synthetic**; ở đây chỉ đo m�
 
 ## Kết quả
 
-Đã xác nhận đủ8kernel version1 ngày17/11; chưa kết quả artifact/verdict sim. [Receipt launch](../operations/fb-launch-20261117.json). Job/kernel: [continue](../operations/continue.md).
+Đã pull đủ 8/8 kernel và audit PASS 100% ngày 17/11/2026 (`scripts/audit_sim_batch.py fb 20`).
+Luật khóa [verdict-r20.json](../../runs/sim-kaggle-fb/verdict-r20.json): chọn ứng viên PASS compute ≤ 1,01×, Δmacro TB r16–20 cao nhất vs S0 (T3 Lite2 sim).
+
+### Bảng kết quả sàng lọc sim (200 xe, r20 cosine20, DAGSNet seed 42)
+
+| Arm | Exact kernel / slug | r20 macro | ΔTB r16–20 | Δr20 | Δp10 | cost (×FedAvg) | real_frac | t_train (h) | Verdict |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| S0 | `mh-sim-lite2-t3-s42-r20` | 0,9138 | +0,0000 | +0,0000 | +0,0000 | 1,655× | 1,000 | 0,88 | CONTROL |
+| S7 | `mh-sim-lite2-b-u1-s42-r20` | 0,9090 | −0,0047 | −0,0048 | −0,0246 | 1,365× | 1,000 | 0,78 | CONTROL |
+| F0 | `novahihi/mh-sim-fb-b-u1-s42-r20/1` | 0,9089 | −0,0050 | −0,0049 | −0,0292 | 1,365× | 1,000 | 0,80 | RERUN |
+| R48 | `novahihi/mh-sim-fb-r48-s42-r20/1` | 0,9097 | −0,0038 | −0,0041 | −0,0285 | 1,144× | 0,776 | 0,82 | ISOLATE |
+| N1 | `annhannh331/mh-sim-fb-n1-48-8-s42-r20/1` | 0,9054 | −0,0084 | −0,0084 | −0,0210 | 1,003× | 0,776 | 0,83 | FAIL |
+| N2 | `annhannh331/mh-sim-fb-n2-40-16-s42-r20/1` | 0,9071 | −0,0066 | −0,0067 | −0,0245 | 1,003× | 0,664 | 0,80 | PASS |
+| N3 | `annhtnt/mh-sim-fb-n3-45-8-s42-r20/1` | 0,9047 | −0,0090 | −0,0092 | −0,0205 | 0,999× | 0,734 | 0,85 | FAIL |
+| **N4** | `annhtnt/mh-sim-fb-n4-37-16-s42-r20/1` | **0,9072** | **−0,0064** | **−0,0067** | **−0,0184** | **1,000×** (0,9996×) | 0,622 | 0,87 | **PASS (SELECTED)** |
+| Z0 | `accanniez/mh-sim-fb-z0-nosynth-s42-r20/1` | 0,8800 | −0,0334 | −0,0338 | −0,1623 | 1,000× | 1,000 | 0,79 | REFERENCE |
+| ZK | `accanniez/mh-sim-fb-zk-nosynth-qreal-s42-r20/1` | 0,8845 | −0,0284 | −0,0293 | −0,1493 | 1,000× | 1,000 | 0,81 | REFERENCE |
+
+### Nhận định cơ chế từ kết quả
+
+1. **Thay dòng thật xe lớn đổi lấy synthetic thành công giữ compute ≤ 1,01×:**
+   - Cả N2 (1,003×) và N4 (0,9996×) đều đạt ngưỡng compute ≤ 1,01× FedAvg và PASS gate utility (ΔTB ≥ −0,007 và Δr20 ≥ −0,008).
+   - N4 đạt macro TB 0,907047, macro r20 0,907154, p10 r20 0,7862 (giữ p10 tốt nhất trong các candidate). **N4 được chọn** lên bậc pilot full-scale.
+2. **Dòng thật ở xe lớn (tầng M/L) có phần dư thừa:**
+   - R48 chỉ bớt dòng thật xuống 48/bước ở M/L mà không giảm synthetic (compute 1,144×) đạt macro r20 0,9097 (F0 0,9089, S7 0,9090). Không thấy hại trong một seed
+     (nhiễu chạy lại F0−S7 ≈ .0003); chưa chứng minh dòng thật dư thừa và chưa thử dưới 37 dòng/bước.
+3. **Tại compute cố định, 8 synthetic M/L + nhiều dòng thật thua 16 synthetic + ít dòng thật (N1/N3 FAIL):**
+   - N1 (synthetic 8 M/L, real 48) và N3 (synthetic 8 M/L, real 45, tầng S giữ liều T3) FAIL gate (ΔTB −0,0084 và −0,0090); cặp cùng compute N2−N1 +.0018, N4−N3 +.0027.
+   - Mỗi cặp đổi cả synthetic lẫn dòng thật ⇒ kết luận về tỷ lệ đổi, không về ngưỡng "tối thiểu 16" (chưa đo). Mất ở suddenConstantSpeed (−.016/−.017 vs N4) và
+     accelerationMultiplication (−.008). Bài học/vùng đóng: [LESSONS](../../LESSONS.md) mục FB sim.
+4. **Không thể bỏ hoàn toàn synthetic:**
+   - Z0 (bỏ hoàn toàn synthetic, floor 0) sụp đổ: macro r20 tụt về 0,8800 (Δ −0,0338), p10 r20 tụt −0,1623 (xuống 0,6423).
+   - ZK (bỏ synthetic + chưng cất Q trên dòng thật) chỉ kéo lại nhẹ 0,8845 (vẫn thua control −0,0284, p10 0,6553). Chưng cất nhãn mềm trên dòng thật cục bộ không thể thay thế việc bơm mẫu synthetic đa dạng toàn mạng.
+5. **Bước tiếp:**
+   - Tiến hành pilot full-scale (5.343 xe, r1–20 cosine50, DAGSNet + FeatureBERT seed 42) cho cấu hình N4 theo đúng luật khóa.

@@ -1,0 +1,6 @@
+outs:
+- md5: 1348fadffb23b594c808ac2ac5869c24.dir
+  size: 8983036
+  nfiles: 128
+  hash: md5
+  path: mh-fbl-p2-prop-s42-r20

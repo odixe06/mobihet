@@ -1,0 +1,6 @@
+outs:
+- md5: 8d57444247ec27cd40bf6b0c6d63f170.dir
+  size: 9000964
+  nfiles: 128
+  hash: md5
+  path: mh-fbl-q4-top-q18-s42-r20

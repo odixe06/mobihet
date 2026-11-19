@@ -50,6 +50,18 @@ one-client smoke runs, feasibility probes of a few minutes. Anything longer than
 included, goes to Kaggle as its own notebook; so does any job when the local machine is already busy (backup transfers, other
 projects). A long job started locally competes for RAM with everything else and stalls both.
 
+## Kaggle network reads (default)
+
+- **Quota:** `python <skill>/scripts/kaggle_quota.py --out <run>/quota-report.json` (quota only, no kernel list).
+  Child process per account, timeouts on auth + API (10 s connect / 30 s read / 90 s wall), 3 attempts exp backoff +
+  jitter, `--jobs 4`. Exit 3 = some rows `UNVERIFIED` (`gpu_left: null`): rerun with `--retry-failed`, which keeps OK
+  rows and re-queries only `failed`. `OK 0.00h` = real zero; `UNVERIFIED` = unknown, never 0 h or a free slot.
+  Full roster ≈ 15 s. (`kaggle_account.py quota` removed 18/11.)
+- **Kernel status:** project `watch_kaggle_batch.query` retries `QUERY_ERROR` 3× (read-only). Still `QUERY_ERROR`
+  = UNKNOWN, not failed kernel, not empty slot. Check slots only for accounts you intend to push to.
+- **Mutations** (push, dataset create/version, cancel): no automatic retry. On timeout check reply/exact version first.
+- Never log tokens or child stderr; record exception class only. Waiting → local worker (`codex-long-jobs`), not model polling.
+
 ## Route
 
 1. Use the authenticated Kaggle CLI in `nckh`. Verify the active account with SDK credential introspection;
@@ -102,7 +114,7 @@ projects). A long job started locally competes for RAM with everything else and 
    (see [library-runtime.md](references/library-runtime.md) §1-§2): notebooks that carried only
    the JSON metadata came up with zero GPUs. Zero GPUs can be account-scoped -- re-run unchanged
    on another account before editing code, and never respond by removing the assert.
-   Read current quota/session limits. Inspect saved accounts with
+   Read current quota with `kaggle_quota.py` (above), session slots separately. Inspect saved accounts with
    [kaggle_account.py](scripts/kaggle_account.py) `list`, `quota`, `health` and `plan`, none of
    which switch accounts. Size the whole training plan with `plan --gpu-hours`, not one session
    at a time, and read [multi-account.md](references/multi-account.md) before `ensure` or `use`.

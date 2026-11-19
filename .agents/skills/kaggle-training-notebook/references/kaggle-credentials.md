@@ -11,7 +11,7 @@ Use env `nckh`. Run each account-scoped command through the repository's existin
 this preserves the active global login. `KAGGLE_API_TOKEN` may contain the saved token FILE PATH,
 which the installed SDK reads. Do not export it globally or put the raw value on a command line.
 
-A token-only account can run account-scoped CLI commands without browser login. `kaggle_account.py quota/health/plan` supports both token-only and OAuth accounts.
+A token-only account can run account-scoped CLI commands without browser login. `kaggle_quota.py` and `kaggle_account.py health/plan` support both token-only and OAuth accounts.
 Global `use/ensure` still requires OAuth snapshots; prefer `kaggle_as.py` for process-scoped commands. Use the existing authenticated CLI login. `list` inventories saved API tokens and OAuth snapshots; a missing snapshot
 is not a CLI failure when another supported credential is available.
 

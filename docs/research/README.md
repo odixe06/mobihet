@@ -22,6 +22,8 @@
 | B21 liều synthetic theo cỡ xe × pha lịch (T1–T5, T4F floor 48): bằng chứng cohort, arm, luật? | [B21](screening-dose-b21.md) |
 | Lite2 (xây lại 16/11): cắt byte bootstrap + liều 8 dòng, arm và gate sim→pilot→full? | [Lite2](screening-lite2.md) |
 | FB (17/11): ngân sách dòng cố định, synthetic thay dòng thật ở xe lớn để compute ≤ 1,01× FedAvg — arm, estimator, gate? | [FB](screening-budget.md) |
+| FB-L (18/11): chọn dòng thật theo loss cũ trong ngân sách FB, sim DAGSNet + BERT — arm, gate? | [FB-L](screening-fbl.md) |
+| Harness đo compute chung cho MobiHet và baseline? | [compute harness](compute-harness.md) |
 | Băng thông từng gói, codec study, combo r20/r50 (CBB vs CQ8)? | [screening-codec](screening-codec.md) |
 | Nút thắt hiện tại (TD 44% thiếu hụt macro) và bằng chứng còn hiệu lực? | [sổ tay §3](method-building-brief.md), [diagnosis](diagnosis.md) |
 | So benchmark và đối chiếu bài gốc? | [benchmark r20](benchmark-r20-reference.md), [nguồn generator](generator-primary-sources.md), [papers](../../papers/README.md) |

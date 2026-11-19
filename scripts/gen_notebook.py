@@ -89,7 +89,7 @@ raise SystemExit("W&B credential not embedded: run embed_wandb_key.py")
 # END INLINE WANDB CREDENTIAL
 print("W&B authenticated")"""
     resume = ""
-    if a.resume_kernel:
+    if a.resume_kernel or a.resume_dataset:
         resume = f"""prev = [p for p in glob.glob("/kaggle/input/**/state.pt", recursive=True)]
 assert len(prev) == 1, f"resume requested: expected 1 state.pt in inputs, found {{len(prev)}}: {{prev}}"
 prev_dir = os.path.dirname(prev[0])
@@ -150,6 +150,7 @@ def main():
     ap.add_argument("--sha", default="")
     ap.add_argument("--overlay", nargs="*", default=[], help="embed exact local source files over --sha; record hashes, no Git push")
     ap.add_argument("--resume-kernel", default="", help="<owner>/<slug> whose output holds <run>/state.pt")
+    ap.add_argument("--resume-dataset", default="", help="<owner>/<slug> private dataset holding state.pt at its root (cross-account hop)")
     ap.add_argument("--input-kernel", default="", help="<owner>/<slug> mounted read-only under /kaggle/input (e.g. CANPerFL's FedAvg)")
     ap.add_argument("--build-npy", action="store_true", help="cache-builder notebook: parquet -> v4npy + manifest, no training/credential")
     ap.add_argument("--npy-kernel", default="", help="<owner>/<slug> of a --build-npy kernel; skip the in-kernel build")
@@ -170,7 +171,7 @@ def main():
     meta = {"id": f"{a.owner}/{a.slug}", "title": a.slug, "code_file": f"{a.slug}.ipynb", "language": "python",
             "kernel_type": "notebook", "is_private": True, "enable_gpu": True, "enable_internet": True,
             "machine_shape": "NvidiaTeslaT4", "docker_image": RUNTIME["docker_image"],
-            "dataset_sources": [DATASET], "kernel_sources": [k for k in (a.resume_kernel, a.input_kernel, a.npy_kernel) if k],
+            "dataset_sources": [DATASET] + ([a.resume_dataset] if a.resume_dataset else []), "kernel_sources": [k for k in (a.resume_kernel, a.input_kernel, a.npy_kernel) if k],
             "competition_sources": [], "model_sources": []}
     if a.build_npy:   # CPU only, no credential; public (owner 02/11) so every training account can mount its output
         meta.update(is_private=False, enable_gpu=False)

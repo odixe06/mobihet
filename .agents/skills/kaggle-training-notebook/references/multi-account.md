@@ -8,7 +8,7 @@ MCP JSON, header synchronization and MCP reconnect are optional and are not part
 
 ```bash
 python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py list
-python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py quota
+python .agents/skills/kaggle-training-notebook/scripts/kaggle_quota.py --out QUOTA.json   # bounded; --retry-failed
 python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py health
 python .agents/skills/kaggle-training-notebook/scripts/kaggle_account.py plan --gpu-hours TOTAL --session-hours CAP
 ```

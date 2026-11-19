@@ -19,7 +19,8 @@ older documents. Resolve uncertain scientific choices before dependent training;
 
 ## Evidence and decision
 
-1. Inventory completed and active exact notebook versions. Check persisted markers/processes after crash; do not restart
+1. Inventory completed and active exact notebook versions (status/quota via the training skill's bounded reads;
+   `QUERY_ERROR`/`UNVERIFIED` = unknown, retry only failed owners, never relaunch or count as free). Check persisted markers/processes after crash; do not restart
    a collector whose outputs already passed audit. Restore only required missing DVC evidence.
 2. Audit executed redacted source, fingerprints, data identity, committed rounds, weights/BN/resume, payloads,
    predictions → per-client confusion → all ten metrics. Distinguish bounded inference from whole-dataset proof.

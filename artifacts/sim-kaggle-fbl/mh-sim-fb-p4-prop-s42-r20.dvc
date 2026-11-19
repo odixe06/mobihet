@@ -1,0 +1,6 @@
+outs:
+- md5: c34a38f06f4d8bc4101cd400fd751355.dir
+  size: 1005126
+  nfiles: 128
+  hash: md5
+  path: mh-sim-fb-p4-prop-s42-r20

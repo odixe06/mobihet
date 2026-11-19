@@ -6,6 +6,7 @@ import fcntl
 import hashlib
 import json
 import os
+import random
 from pathlib import Path
 import re
 import subprocess
@@ -21,7 +22,16 @@ def status_from_cli(returncode, output):
     return match.group(1) if returncode == 0 and match else "QUERY_ERROR"
 
 
-def query(spec):
+def query(spec, attempts=3, backoff=5.0, sleep=time.sleep):
+    """Read-only status with bounded retry (exp backoff + jitter) on QUERY_ERROR; still QUERY_ERROR = UNKNOWN."""
+    for attempt in range(1, attempts + 1):
+        state = _query_once(spec)
+        if state["status"] != "QUERY_ERROR" or attempt == attempts:
+            return dict(state, attempts=attempt)
+        sleep(min(backoff * 2 ** (attempt - 1), 60) * random.uniform(0.5, 1.5))
+
+
+def _query_once(spec):
     ref = f"{spec['account']}/{spec['slug']}/{spec.get('version', 1)}"
     command = ["timeout", "--foreground", "--kill-after=5s", "45s", sys.executable,
                str(ROOT / "scripts/kaggle_as_bounded.py"), spec["account"],

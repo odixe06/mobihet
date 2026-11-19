@@ -66,7 +66,7 @@ and test suite. Copy the one closer to the method and change only the method mod
   from the confusion matrices and rejects the tamper cases in `tests/test_ckpt_verify.py`.
 * **Budget.** `T0 = time.monotonic()` in the first cell; driver stops when
   `elapsed + 1.15 × worst_round + reserve > max_seconds`; `max_hours` sized to the
-  account's free quota, not to the 12 h cap. Read quota with `kaggle_account.py quota`
+  account's free quota, not to the 12 h cap. Read quota with `kaggle_quota.py --out Q.json`
   right before pushing; reservations are returned when a session is cancelled.
 
 ## 3. Numbers to budget with (2×T4, torch 2.10, image digest in `knowledge/runtime.json`)
@@ -90,7 +90,7 @@ The lwfednids probe of 2026-09-22 (pruned DAGSNet, 20c) adds its own row to that
 ```bash
 source /home/odixe/Tools/miniconda3/etc/profile.d/conda.sh && conda activate nckh
 H=.agents/skills/kaggle-training-notebook/scripts
-python $H/kaggle_account.py quota                      # who can pay; refresh time
+python $H/kaggle_quota.py --out Q.json                 # who can pay; refresh time; --retry-failed
 python scripts/gen_notebook.py --owner <acct> --clients 20 --probe --max-hours 2   # 2-round probe + T4 micro-benchmark
 python scripts/validate_notebooks.py
 python $H/embed_wandb_key.py <nb.ipynb> --metadata <kernel-metadata.json> && python scripts/validate_notebooks.py

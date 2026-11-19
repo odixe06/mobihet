@@ -11,7 +11,7 @@
 | Package | torch 2.13.0+cu130 (CUDA 13.0, cuDNN 9.20), numpy 2.5.2, pyarrow 25.0.0, scikit-learn 1.9.0, wandb 0.29.0, kaggle 2.2.5 — [local-runtime.json](local-runtime.json), [environment.yml](../environment.yml) |
 | Checkout | `/home/odixe/project/mobihet` |
 | Dataset v4 local | `/home/odixe/project/mobihet-features/data/v4-scaled` (4,3 GB parquet) — xem [dataset](dataset.md) |
-| Kaggle CLI | `~/.kaggle/` (roster 16 account, token theo account); helper `.claude/skills/kaggle-training-notebook/scripts/kaggle_as.py` |
+| Kaggle CLI | `~/.kaggle/` (roster 23 account, token theo account; quyền dùng cho MobiHet: `runs/r-repeat/authorized-owners.json` ∪ `runs/r-study/quota.json`; **`outlookcheck` được owner cho phép dùng thoải mái 19/11**); helper `.claude/skills/kaggle-training-notebook/scripts/kaggle_as.py` |
 | W&B | key trong `~/.netrc` |
 | GitHub | `gh` đăng nhập `odixe06` |
 

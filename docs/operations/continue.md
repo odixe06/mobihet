@@ -1,74 +1,75 @@
-# Bàn giao sống — 17/11/2026
+# Bàn giao sống — 20/11/2026 ≈ 03:00 +07 (máy tắt sau phiên này)
 
-Đọc [CONTEXT](../../CONTEXT.md) → [LESSONS](../../LESSONS.md) → [bài học vận hành](lessons.md).
-[Snapshot khôi phục Claude](../../archive/operations-20261117/continue-before-codex-recovery.md),
-[snapshot trước đủ8push](../../archive/operations-20261117/continue-before-fb-push-complete.md).
+**Lượt sau chỉ cần đọc file này để tiếp tục.** Chi tiết khi cần: [FB-L](../research/screening-fbl.md) (luật/kết quả),
+[compute harness](../research/compute-harness.md), [LESSONS](../../LESSONS.md), [bài học vận hành](lessons.md), [backup](backup.md).
+Baseline (14 PP × 6 kịch bản + mixed) ở repo khác: `~/project/experiment`, bàn giao `docs/operations/continue.md` của repo đó.
 
-## Đã push đủ 8 sim FB DAGSNet — đang chờ kết quả
+## 1. Dự án và đích
 
-Owner xác nhận FB = **Fixed-row-budget**, không phải FeatureBERT. Seed42, panel200xe, r20cos20, CAP2,75h/kernel.
-[Luật khóa](../research/screening-budget.md): compute≤1,01× trung bình toàn mạng; cho phép thay một phần dòng thật xe lớn bằng synthetic.
-[Receipt milestone đã lưu Git](fb-launch-20261117.json): đủ8reply version1, hash notebook/metadata, status remote đầu tiên.
-`runs/sim-kaggle-fb/launch-complete.json` và đủ8`.push.json` có thật; batch frozen `batch.json`,
-base `1cc91d96` + overlay ba file `methods/mobihet_{compute,lite,budget}.py`. Không đổi HP/notebook/source đã chạy.
+- MobiHet: FL IDS V2X trên VeReMi NextGen v4 (5.343 xe, 77 input, 16 lớp); mỗi xe giữ model riêng; chỉ trao thống kê/xác suất
+  (bootstrap copula/KM + Q), không trao tham số. Hai model: DAGSNet (repo này), FeatureBERT (`../fl_veremi_bert`).
+- Đích owner: byte ≤ 0,40 MB/xe/50r; compute ≤ 1,01× FedAvg (useful lẫn executed, cùng engine); r50 DAGSNet > .8998, BERT ≥ .8951;
+  Macro-F1 cách baseline tốt nhất ≤ .015. Protocol [protocol](../research/protocol.md); headline r50, không chọn round/HP theo test.
+- Phương pháp = **FB-L, cấu hình L4** (owner 19/11): FB N4 (dòng thật 64/37/37 theo tầng cỡ xe, synthetic 64,64/16,16/16,16)
+  + chọn dòng thật theo CE cũ (`real_select=top`) + engine `compact=true` (executed 0,997× FedAvg). Code `methods/mobihet_budget.py`,
+  byte-identical ở `../fl_veremi_bert/methods/`. Sim r20 6/6 PASS, pilot r20 12/12 audit PASS (bảng [FB-L](../research/screening-fbl.md)).
+- Compute tổng (20/11 00:45, [harness](../research/compute-harness.md)): L4 FLOP 0,920× (DAGSNet) / 0,917× (BERT) FedAvg.
 
-Status remote tại 2026-11-17T14:33:59.367681+07:00; đây là vận hành, chưa kết luận train/utility/hardware PASS:
+## 2. Đang chạy: full r50 L4, 3 seed × 2 model (Kaggle, không phụ thuộc máy)
 
-| Arm | Exact kernel | Status |
-|---|---|---|
-| F0 | `novahihi/mh-sim-fb-b-u1-s42-r20/1` | RUNNING |
-| R48 | `novahihi/mh-sim-fb-r48-s42-r20/1` | RUNNING |
-| N1 | `annhannh331/mh-sim-fb-n1-48-8-s42-r20/1` | RUNNING |
-| N2 | `annhannh331/mh-sim-fb-n2-40-16-s42-r20/1` | RUNNING |
-| N3 | `annhtnt/mh-sim-fb-n3-45-8-s42-r20/1` | RUNNING |
-| N4 | `annhtnt/mh-sim-fb-n4-37-16-s42-r20/1` | QUEUED |
-| Z0 | `accanniez/mh-sim-fb-z0-nosynth-s42-r20/1` | RUNNING |
-| ZK | `accanniez/mh-sim-fb-zk-nosynth-qreal-s42-r20/1` | RUNNING |
+| chain | phiên 1 (xong) | phiên 2 (h2) | trạng thái 20/11 03:00 |
+|---|---|---|---|
+| DAGSNet s42 | `heykewtiie/mh-fbl-l4-top-s42-r50` r1–46 | `lelovo/mh-fbl-l4-top-s42-r50-h2` | RUNNING, cần ≈ 1,1 h |
+| DAGSNet s43 | `outlookcheck/mh-fbl-l4-top-s43-r50` | — | phiên 1 RUNNING (CAP 7,7 h, ước xong r50 trong phiên ≈ 04:30) |
+| DAGSNet s41 | `annhannh331/mh-fbl-l4-top-s41-r50` r1–25 | `hoangdang20t/mh-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 4 h |
+| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `chiencosieuhang/flb-fbl-l4-top-s42-r50-h2` | xem log |
+| BERT s43 | `outlookcheck/flb-fbl-l4-top-s43-r50` r1–26 | xem log | orchestrator hop sau BERT s42 (lần 02:17 BLOCKED do ổ đầy, đã restart) |
+| BERT s41 | `catbaochau/flb-fbl-l4-top-s41-r50` r1–21 | `goilaaiudi/flb-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 5,6 h |
 
-## Watcher duy nhất đang chạy
+Kết quả từng hop: `runs/fbl-r50/orchestrate.log` (dòng `HOP_PUSHED` / `BLOCKED` / `CHAIN_DONE`).
 
-- Job **`mh-sim-fb-watch-20261117`**, supervisor **38803**, delivery **queue**;
-  ownerthread `01a1e828-c4a1-77c3-aa09-f97a0ec4a22b`.
-- Log `runs/sim-kaggle-fb/watch.log`; state `~/.codex/long-jobs/jobs/mh-sim-fb-watch-20261117/state.json`.
-  Theo dõi: `tail -n 200 -F runs/sim-kaggle-fb/watch.log`.
-- Worker `runs/sim-kaggle-fb/watch.sh`: `collector.lock` + `watch_kaggle_batch.py`, exact owner/slug/version,
-  **1200s/lần**, không model polling. Đủ8terminal → collect → audit_sim_batch fb20 → gate → DONE chỉ khi artifact đủ/kiểmPASS.
-  Ledger `watch-state/{latest,history,terminal}.json*`; output `artifacts/sim-kaggle-fb/`.
-- `MOBIHET_KAGGLE_API_VIA_WWW=1` được kế thừa; `kaggle_as_bounded.py` áp route/timeout **trước auth**.
-  Không start watcher/collector/launcher thứ hai, không sửa source hoặc ledger worker đang sở hữu.
+**Orchestrator** `runs/fbl-r50/orchestrate.py` (poll 1200 s): COMPLETE → collect → r < 50 ⇒ hop sang account rảnh quota lớn nhất
+(bỏ `dinhan25` + `runs/fbl-r50/exclude.json` = account mà job khác đang giữ slot), CAP = gpu_left − 1 phút;
+ERROR/mutation lỗi ⇒ `BLOCKED`, không retry. Đủ 6 chain ⇒ audit DAGSNet + BERT, ghi `ORCH_DONE`. Máy tắt ⇒ orchestrator dừng;
+kernel Kaggle vẫn chạy, chỉ hop/collect/audit chờ tới khi chạy lại.
 
-## Recovery đã đóng — không làm lại
+**Bật lại máy — bước đầu tiên:**
 
-- Khôi phục Claude `810671d5-dff9-4284-b80d-28eb447cf9b9`, interrupt11:21, từ lịch sử jsonl owner cung cấp.
-  Lúc tiếp quản chưa FB push; preflight/smoke cũ được tái dùng, không train/test lại phần hoàn thành.
-- **Lỗi Kaggle do mạng chập chờn/timeout.** Gate cache giữ từng readPASS600s; failure N3 cuối cùng xảy ra ở
-  `GenerateAccessToken` trước childCLI vì wrapper cũ đặt sau auth. Bản sửa bọc trước auth; regression3/3PASS.
-  Không sửa SDK/credential/helper skill frozen; chỉ retry connect trước gửi request, không retry lỗi read sau push.
-- 6kernel đầu giữ nguyên; N3 chỉ retry sau chứng cứ auth chưa gọiCLI + owned-list không có ref; giữ intent cũ và retryintent riêng.
-  N4 push lần đầu. Không version2, không kernel/watcher trùng. Bằng chứng local `n3-before-submit-failure.json`, các pushlog/receipt.
-- Job `mh-fb-finish-n3n4-20261117` supervisor38695 **succeeded**, log `finish-launch.log`, deliveryqueue đã nhận, completion đã xử lý.
-  Các launcher gate cũ đã terminal; không rerun từ notification cũ. Chi tiết lỗi trong snapshot trên.
+```bash
+cd ~/project/mobihet && setsid /home/odixe/Tools/miniconda3/envs/nckh/bin/python runs/fbl-r50/orchestrate.py >> runs/fbl-r50/orchestrate.log 2>&1 < /dev/null &
+echo $! > runs/fbl-r50/orchestrate.pid
+```
 
-## Lite2 — xong / hoãn
+Nó đọc lại batch/hop đã khóa (`S*h*/batch.json`, `artifacts/fbl-hop/*/ready.json`), không push lại slug cũ. Trước đó sửa
+`exclude.json` theo job đang giữ slot (20/11 03:00 thêm `bestyorn`: `exp-count-cnnbigru-a` của repo experiment; gỡ khi kernel đó xong).
+Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ verify lại dataset, không tạo mới.
 
-- Sim12/12auditPASS chọnB+U1; pilot DAGSNet/BERT r20PASS. Không collect/audit lại.
-- **DAGSNet r50 auditPASS gate Lite2 cũ:** `dinhan25/mh-lite2-bu1-s42-r50/1`, macro.905876977,
-  tổng354116,304B/xe, estimator1,364×≤1,37×; chưa đạt đíchFB1,01×.
-  [Kết quả](../research/screening-lite2.md), [10metric/giới hạn](../research/lite2-dagsnet-r50-audit.json).
-  Recovery watcher `mh-lite2-r50-recover-20261117` succeeded; DONE/audit có thật, completion đã xử lý.
-- **Owner hoãn push lại Lite2 BERT r50 trên mọi account; ưu tiên FB, không giữ quota riêng cho Lite2.**
-  Pilot `annhannh331/flb-lite2-bu1-s42-r20/1` đã PASS, không collect lại.
-- T3 DAGSNet/BERT đủr50/3seed, pFedES BERT đầy đủ; [comparison](../research/comparison.md).
+## 3. Việc tiếp theo
 
-## Khi watcher completion
+1. Khởi động lại orchestrator (trên). Quota reset **21/11 00:00 +07**.
+2. `ORCH_DONE`: đọc `runs/fbl-r50/audit.json` + `../fl_veremi_bert/runs/fbl-r50/S<seed>*/audit.json`; báo 10 metric, mean ± SD 3 seed,
+   Δ vs T3 cùng seed, byte, compute; cập nhật [FB-L](../research/screening-fbl.md), [comparison](../research/comparison.md) (chỉ khi PASS),
+   [tried index](../research/tried-methods-index.md). `BLOCKED` ⇒ đọc log kernel, xử lý tay, không push lại slug đã có.
+3. Dọn ổ (owner 20/11: DVC trước → xoá bớt local → phần còn lại sang ORICO `/run/media/odixe/ORICO`, exFAT: không symlink/hardlink/quyền bên trong):
+   - Đã làm: `artifacts/fbl-hop/mh-fbl-l4-top-s4{1,2}-r50/pull` `dvc add` + `dvc push -j 16` (OneDrive, `status -c` in sync 20/11 02:58;
+     manifest `pull.dvc` cạnh mỗi thư mục, chưa commit Git). `upload/` cạnh nó trùng byte `pull/` (`diff -rq` chỉ khác
+     `dataset-metadata.json`), dataset đã lên Kaggle ⇒ xoá được 19 GB (lệnh xoá bị bộ lọc quyền chặn ⇒ việc tay, mục 5).
+   - Còn làm: dời `.dvc/cache` (≈ 35 GB, hardlink với workspace) sang ORICO (`dvc cache dir --local <ORICO>/mobihet-dvc-cache` + copy),
+     rồi xoá workspace `pull/` (DVC-backed; chain không cần vì stage đọc `ready.json`). Giữ local: code, `.git`, `cache/` (data npy),
+     `artifacts/{fbl-r50,fbl-full,b21-chain,t3-s41}` (collect + REF audit), `runs/fbl-r50`. `../fl_veremi_bert/artifacts/fbl-hop` (~19 GB) chưa DVC.
 
-1. Đọc state/log + terminal.json + pulled.ok; kiểm đủ8arm/r20 trước verdict. ERROR vẫn thu log/output.
-   COMPLETE/exit0 không thay artifact audit. Query lỗi = UNKNOWN, không restart training.
-2. Gate N1–N4: ΔTB r16–20≥−.007 và Δr20≥−.008 vs S0, cost≤1,01×; chọn macroTB cao nhất.
-   F0/R48/Z0/ZK report-only, Z0/ZK không tự lênpilot. FAIL dừng arm, không tune/kéo dài.
-3. PASS candidate → pilot full-scale DAGSNet + FeatureBERT theo luật đã duyệt; kiểm quota live/compatible source,
-   port ba file method byte-identical sang BERT; không dùng Lite2 BERT r50 thay pilotFB. Mixed-model chưa được duyệt.
-4. Cập nhật screening-budget/triedindex/lessons từ artifact thật. Ghi bàn giao trước dừng phiên.
+## 4. Quy tắc cần nhớ
 
-Owner đã yêu cầu commit/push `main` cảhai repo. Receipt GitHub/HEAD/Gitbundle: `runs/maintenance-20261117/publish.json` mỗi repo.
-Artifact mới giữ local, chưa DVCbackup; không xóa cache/output. [Backup](backup.md). Không cần thao tác tay hiện tại.
+- Git repo này: không commit/push trừ khi owner yêu cầu. Notebook clone GitHub tại HEAD (`a6e77a1` / `49b2d88` = origin/main) + overlay
+  method ⇒ không sửa `scripts/w20_common.py::SOURCES` hoặc `core/` khi còn chain. Code FB-L (`methods/mobihet_budget.py`, `scripts/run_fbl_r50.py`,
+  …) **chưa commit**, chỉ có trên máy này.
+- Kaggle: credential theo process (`kaggle_as.py`), quota `kaggle_quota.py`; `UNVERIFIED`/`QUERY_ERROR` = chưa rõ. Mutation không retry khi
+  chưa kiểm intent/marker/version. COMPLETE ≠ kết quả: audit artifact trước. Luật gate khóa trước push, không sửa hồi tố.
+- Job nền: `setsid … & echo $! > pid`; dừng theo PGID (`kill -TERM -<pid>`). Giữ ≥ 30 GB trống trước hop (mỗi hop copy state 4–10 GB;
+  20/11 02:17 ổ đầy làm hop BERT s43 BLOCKED).
+- rclone OneDrive mount (`~/.cache/rclone`, full mode) còn giữ file DVC chưa lên cloud (≈ 17 GB lúc 03:00): không xoá thư mục này.
+
+## 5. Việc tay
+
+- (tuỳ) Giải phóng 19 GB bản trùng: `rm -rf ~/project/mobihet/artifacts/fbl-hop/mh-fbl-l4-top-s4{1,2}-r50/upload`
+- (quyết định) Có commit + push code FB-L chưa commit (repo này và `../fl_veremi_bert`) lên GitHub không.

@@ -6,19 +6,14 @@ Không nạp `archive/` mặc định.
 Federated IDS V2X trên VeReMi NextGen v4:5.343xe nhận,77input,16lớp; mỗi xe giữ model riêng.
 Cơ chế trao thống kê/xác suất, hỗ trợ khác kiến trúc; không realrows/model/gradient/BN.
 
-## Trạng thái — 17/11/2026, 14:33 +07
+## Trạng thái — 20/11/2026 ≈ 03:00 +07
 
-MobiHet hiện tại=T3 (KM16+lite6+Q8, liều synthetic theo cỡ xe/pha lịch).
-DAGSNet và FeatureBERT đủr50 cả3seed41/42/43; mixed-model full-scale chưa chạy.
-Kết quả/giới hạn audit: [comparison](docs/research/comparison.md). Job/Notion/push hiện tại chỉ tại [continue](docs/operations/continue.md).
-
-Owner đang xây lại phương pháp: seed42, đơnmodel DAGSNet/BERT, sim→pilot→full;
-performance/communication/compute xếp riêng top5, Macro-F1 cách bestbaseline≤.015; compute chấp nhận≤1,01×FedAvg (chốt sau cùng17/11).
-[Task brief](task_brief.md) giữ yêu cầu mới. Task hiện tại = [FB — Fixed-row-budget](docs/research/screening-budget.md):
-8 sim **DAGSNet** seed42 đã push đủ version1, rồi pilot DAGSNet + BERT nếu PASS; owner cho phép bớt dòng thật xe lớn để đổi lấy synthetic.
-[Lite2](docs/research/screening-lite2.md) sim và pilot hai model PASS; DAGSNet r50 audit PASS theo gate cũ (.905877; 0,354116 MB; estimator1,364×).
-**Hoãn push lại Lite2 BERT r50**, ưu tiên FB; không giữ quota riêng cho Lite2.
-Gate Lite2≤1,37× là luật cũ, không chứng nhận đích compute mới; xem [brief](task_brief.md) §14–15.
+**Bàn giao [continue](docs/operations/continue.md) đủ để tiếp tục mọi việc** (job, lệnh khởi động lại orchestrator, việc tay).
+Phương pháp = [FB-L](docs/research/screening-fbl.md) cấu hình **L4** (sim r20 6/6 PASS, pilot r20 12/12 audit PASS);
+**full r50 3 seed × 2 model đang chạy trên Kaggle**, orchestrator tự nối phiên (dừng khi tắt máy, chạy lại theo continue).
+Compute tổng xong: L4 0,920× / 0,917× FedAvg FLOP ([harness](docs/research/compute-harness.md)).
+Nền đã công bố = T3 (r50, 3 seed, [comparison](docs/research/comparison.md)); đích owner: [task brief](task_brief.md).
+Baseline 14 phương pháp × kịch bản: repo `~/project/experiment`.
 
 ## Quy tắc đang dùng
 
@@ -30,7 +25,8 @@ Gate Lite2≤1,37× là luật cũ, không chứng nhận đích compute mới; 
 | Cần biết | Mở |
 |---|---|
 | Job/owner/bước tiếp/việc tay | [Continue duy nhất](docs/operations/continue.md) |
-| Xây lại phương pháp và những gì đã thử | [Task brief](task_brief.md), [FB](docs/research/screening-budget.md), [Lite2](docs/research/screening-lite2.md), [tried index](docs/research/tried-methods-index.md) |
+| Xây lại phương pháp và những gì đã thử | [Task brief](task_brief.md), [FB-L](docs/research/screening-fbl.md), [FB](docs/research/screening-budget.md), [Lite2](docs/research/screening-lite2.md), [tried index](docs/research/tried-methods-index.md) |
+| Compute đo thế nào (useful/executed/tổng) | [Compute harness](docs/research/compute-harness.md) |
 | T3/cấu hình/kết quả | [Method](docs/research/method.md), [comparison](docs/research/comparison.md) |
 | Dataset/model/máy | [Knowledge](knowledge/README.md) |
 | Chạy/audit/backup | [Operations](docs/operations/README.md), [scripts](scripts/README.md) |

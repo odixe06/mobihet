@@ -322,3 +322,62 @@ Các thất bại/runtime đã biết và nguồn kết quả: [research index](
   `compute_ratio_analytic`/PASS gate này chỉ xác nhận estimator và ngưỡng khóa; không là đo total GPU compute hoặc end-to-end1×FedAvg.
 
 - Lite2 DAGSNet seed42 r50 (17/11): giảm bootstrap≈70%, tổng0,354116MB; macro−.001802 vs T3, p10−.010494, TD−.013952. Cắt tầng S từr26 không làm gap macro tăng so pilot (−.002757), nhưng p10 giảm hơn; một seed, không causal proof. PASS theo gate1,37× cũ không chứng nhận đíchFB1,01×; compute1,364× vẫn là estimator.
+
+## FB sim (Fixed-row-budget) — 17/11/2026 (một seed 42, screening)
+
+- Bớt dòng thật xe lớn (tầng M/L) đổi lấy synthetic: R48 (chỉ bớt dòng thật xuống 48/bước ở M/L, giữ synthetic U1) macro TB .9096 vs F0 .9084 (+.0012);
+  nhiễu chạy lại F0−S7 cùng cấu hình −.0003 ⇒ **không thấy hại** trong một seed; chưa chứng minh "dư thừa", chưa thử dưới 37 dòng thật/bước.
+- **FAIL N1/N3 — ngân sách cố định, đừng đổi synthetic M/L lấy dòng thật.** Ở ≤ 1,01× FedAvg, hai cặp cùng compute đều cho thấy
+  16 synthetic + ít dòng thật hơn thắng 8 synthetic + nhiều dòng thật hơn: N2(40/16) − N1(48/8) +.0018 TB, N4(37/16) − N3(45/8) +.0027 TB.
+  Mỗi cặp đổi đồng thời hai knob (synthetic M/L và dòng thật), nên kết luận là về **tỷ lệ đổi tại compute cố định**, không phải "8 synthetic tự nó không đủ";
+  ngưỡng "tối thiểu 16" chưa đo (chỉ có 8 và 16). Cái mất tập trung ở lớp động học: N1/N3 vs N4 r20 suddenConstantSpeed −.016/−.017,
+  accelerationMultiplication −.008; timeDelayAttack +.011/+.012 (lớp yếu nhất, F1 ≈ .375 nên dao động mạnh). Liều late tầng S 64 vs 32 không tách được
+  khỏi nhiễu (N4−N2 +.0002, N3−N1 −.0007). Không tune lại vùng 8 synthetic M/L hay nâng dòng thật bằng cách cắt synthetic.
+- **FAIL Z0/ZK — đừng bỏ synthetic, kể cả khi có distillation lớp-Q trên dòng thật.** Z0 macro r20 .8800 (Δ −.0338 vs S0, p10 −.1623);
+  ZK + KL(Q_prev[y] ‖ p) trên dòng thật chỉ kéo về .8845 (Δ −.0284, p10 −.1493). Sụp ở đúng các lớp synthetic đang chống đỡ:
+  Z0 suddenConstantSpeed −.183, accelerationMultiplication −.077, feignedBraking −.051. Q chỉ là phân phối mềm theo nhãn thật đã có ở xe,
+  không thêm mẫu của lớp xe không có ⇒ không thay được synthetic 16 lớp. Cùng họ với realKD đã đóng; không đề xuất lại "distillation thay synthetic"
+  nếu cơ chế không mang mẫu/đầu vào của lớp vắng mặt ở xe.
+- Chọn N4 (dòng thật 64/37/37, synthetic 64,64/16,16/16,16): macro TB 0,907047, macro r20 0,907154, cost 0,9996× FedAvg, p10 giữ tốt nhất (−.0184). N4 tự động lên pilot DAGSNet + FeatureBERT r20.
+
+## FB pilot full-scale r20 (18/11/2026, seed 42, phân tích Claude)
+
+- **Gap FB vs T3 là trễ hội tụ ∝ `real_frac`, chưa thấy trần.** Macro của arm ở round r ≈ T3 ở round c·r, c (TB r16–20) DAGSNet N2 .646 / N4 .634,
+  BERT N2 .636 / N4 .608 ≈ `real_frac` đo .668/.626. Gap TB r11–15 → r16–20: DAGSNet −.0074 → −.0055, BERT −.0116 → −.0104; slope gap ≈ +.0002/round, đang chậm lại.
+  Hệ quả: gate non-inferiority ở r20 (lr còn .00068 của cosine50) phạt nặng phương pháp ít dòng thật/round hơn so với đích r50; đừng ngoại suy pilot FAIL thành r50 FAIL.
+- **BERT trượt gate do một lớp học chậm:** timeDelayAttack (lớp 13) r20 Δ −.075 (N2) / −.089 (N4), T3 BERT lớp 13 chỉ .248 ở r20, .336 ở r50, tăng đều
+  (không phải dao động). Bỏ lớp 13, Δ TB r16–20 BERT −.0058/−.0063 ≈ DAGSNet −.0044/−.0046. Mất chủ yếu ở recall (recall macro −.010, precision DAGSNet +.002).
+  Khi gate BERT sát ngưỡng, xem per-class trước khi kết luận cơ chế hỏng chung.
+- Chiếu r50 (3 mô hình: giữ gap r16–20; tỉ lệ thu gap Lite2 r20→r50 = .652; trễ c·r trên T3 r50): DAGSNet .9019–.9043 (> .8998), BERT .9030–.9104 (≫ .8951).
+  Ước lượng một seed, không là kết quả; ngưỡng BERT r50 (.8951 vs T3 .9145) lỏng hơn nhiều so với gate pilot −.010 ⇒ hai bậc gate không nhất quán.
+- `t_train` BERT N2 6,17 h > T3 5,95 h dù estimator 1,003× vs 1,655×: engine đệm/che dòng ngoài ngân sách, nên lợi compute FB hiện chỉ trên giấy.
+  Đếm dòng engine thực thi (`scripts/compute_executed.py`): FB N4 **2,065×** FedAvg executed (= T3), vì mỗi bước chạy đủ slot 64 + synthetic
+  rộng max của round cho mọi xe rồi mask; engine nén theo nhóm mới đưa về ≈1,03×. Claim compute phải nói rõ thước useful hay executed
+  ([compute harness](docs/research/compute-harness.md)).
+- **Test tương đương engine nén dòng: so từng bước, không so state cuối round.** Bước floor có tham số gradient ≈ 0; Adam (g/√v) khuếch đại
+  sai số làm tròn 1e-8 thành lệch ~1e-2 sau ~80 bước ⇒ state cuối khác dù hàm bằng nhau. So loss/grad/BN từng bước trên cùng ctx, nhớ chụp
+  cả `torch` RNG lẫn `gen_g` (synthetic), và `_sgen` với `prop`, trước khi gọi lại. Không floor và không đổi thứ tự dòng (`random`) thì state
+  trùng chính xác — dùng làm test riêng; `top`/`prop` dời dòng chọn lên đầu ⇒ thứ tự cộng BN đổi ⇒ state cuối round lệch 1e-2 dù từng bước đúng.
+- **FB-L sim 19/11 (một seed): chọn dòng thật theo CE cũ trong cùng ngân sách FB thu lại gap ở lớp học chậm.** 6/6 arm PASS cả hai model;
+  vs nền cùng engine DAGSNet +.0011…+.0017, BERT +.006…+.008 TB; lớp 13 BERT +.07…+.11. Lợi lớn hơn ở model trễ hội tụ nặng hơn (BERT),
+  khớp chẩn đoán "trễ ∝ real_frac": cùng số dòng nhưng dòng khó đi trước. `top` ≈ `prop` (chênh trong nhiễu); tách q dòng ngẫu nhiên cho Q (Q4/Q2)
+  không giúp. Engine `compact` cho cùng kết quả nền (N4c = N4 .9070) ⇒ dùng `compact` mặc định cho mọi arm FB về sau.
+- **Giảm FLOP chưa chắc giảm wall-clock trên Kaggle T4.** Sim panel 200 xe 2×T4: round ổn định compact DAGSNet 148 s vs mask 151 s,
+  BERT compact 259 s vs T3 mask 246 s, dù executed 0,92× vs 2,02× FedAvg; local RTX 3050 thì −39/−52 %. Engine ở panel bị giới hạn launch/host
+  (số bước không đổi, chỉ hẹp lại). Claim compute = FLOP/dòng executed cùng engine; wall-clock báo riêng theo phần cứng, chờ pilot full-scale.
+- Đếm op eager FeatureBERT không vừa GPU 4 GB ở `group_rows=4096` (OOM cả ở eval `own_cm`): đếm ở `group_rows=2048` + `eval_rows=8192`,
+  quy đổi op train theo dòng executed của engine 4096 (op model/dòng không phụ thuộc shape) — `runs/total-compute-20261119/queue.py`.
+- **So gradient hai engine khác shape: so ở fp64, đừng so elementwise fp32.** 19/11: `compact` "lệch 3,5 % grad" ở bước floor hóa ra là
+  1 phần tử ReLU (trong 38 phép kink) có đầu vào nằm trong sai số làm tròn fp32 của 0, lật dấu khi bmm đổi shape ⇒ grad nhảy ~1e-3.
+  Ở fp64 hai đường trùng 1e-16; ở fp32 có bước đường *mask* mới là đường lệch so fp64; ép quyết định kink của fp64 ⇒ hết lệch.
+  BN không liên quan (var ≥ 8e-3 ≫ eps). Trước khi kết luận bug: cast P/B/x sang fp64 rồi so lại; kink (ReLU/max-pool) làm grad fp32 không liên tục.
+
+## Đo compute tổng (harness `scripts/total_compute.py`)
+
+- 19/11: forward phụ trong phase train (teacher fd_ids, pfedes `grouped.TRAIN(..., train=False)` không `mask`) làm bộ đếm dòng
+  `mask.sum()` chết. Op vẫn đếm đủ; dòng của forward không mask ghi riêng `aux_executed`, `executed/useful` giữ cho lời gọi train có mask
+  ⇒ tỉ lệ rescale group_rows (report) và useful/executed so được giữa method. afpha cần `clients.parquet` trong `V4_ROOT`
+  (khôi phục từ DVC remote mobihet-features, md5 `b5257009…`, gitignored).
+- 19/11: pass prototype `core.evaluate.class_sums` (fedtgp, tinyproto, v2x_htfl, T3 `mobihet_next`) có chunk mặc định 32 768 dòng, không theo
+  `eval_rows` ⇒ đếm eager BERT fedtgp OOM 4 GB ở cả group_rows 2048/1024. Count BERT chunk theo `eval_rows` (8192; ghi
+  `rows.class_sums_max_rows`): op/dòng như nhau, chỉ padding chunk khác. BERT T3 count (xong trước) vẫn chunk 32 768 — chênh padding, report-only.

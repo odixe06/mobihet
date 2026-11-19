@@ -177,20 +177,6 @@ def main():
     elif cmd == "quota":
         ka = W.ka
 
-        def tolerant():                    # the quota endpoint times out per account: mark that account, keep the others
-            k = ka()
-            read = k.account_quota
-
-            def quota(owner):
-                for _ in range(2):
-                    try:
-                        return read(owner)
-                    except Exception as e:
-                        err = type(e).__name__
-                return {"user": owner, "gpu_left": 0, "inventory_error": err}
-            k.account_quota = quota
-            return k
-        W.ka = tolerant
         for a in W.inventory()["accounts"]:
             print(a["user"], a.get("gpu_left"), a.get("active_recent"), a.get("inventory_error", ""))
     elif cmd == "launch":

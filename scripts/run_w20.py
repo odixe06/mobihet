@@ -117,8 +117,19 @@ def inventory():
                     | set(json.loads((ROOT / "runs/r-repeat/authorized-owners.json").read_text())["owners"]))
     assert set(owners) <= set(k.known_users())
 
+    kq_spec = importlib.util.spec_from_file_location("kaggle_quota", SKILL / "kaggle_quota.py")
+    kq = importlib.util.module_from_spec(kq_spec); kq_spec.loader.exec_module(kq)
+    qargs = argparse.Namespace(attempts=3, backoff=5.0, timeout=90.0, connect_timeout=10.0, read_timeout=30.0)
+    partial = OUT / "quota.partial.json"   # per-account OK rows; a timeout re-queries only that account
+    done = {r["user"]: r for r in json.loads(partial.read_text())["accounts"]
+            if time.time() - r.get("read_epoch", 0) < 600} if partial.exists() else {}   # live quota: reuse <= 10 min
+
     def one(owner):
-        q = k.account_quota(owner)
+        if owner in done: return done[owner]
+        r = kq.query(owner, qargs)
+        if r["status"] != "OK":   # unknown quota: never 0 h, never a free slot
+            return {"user": owner, "gpu_left": 0, "inventory_error": True, "quota_status": "UNVERIFIED", "errors": r["errors"]}
+        q = {"user": owner, **{f: r[f] for f in kq.FIELDS}, "read_epoch": time.time()}
         p = subprocess.run(["timeout", "90s", *cli(owner), "kernels", "list", "--mine", "--sort-by", "dateRun", "--page-size", "10",
                             "--csv"], capture_output=True, text=True)
         if p.returncode: return dict(q, user=owner, inventory_error=True)
@@ -132,6 +143,11 @@ def inventory():
                     unknown_recent=[r["ref"] for r in states if r["status"] == "QUERY_ERROR"])
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: rows = list(pool.map(one, owners))
+    good = [r for r in rows if not r.get("inventory_error") and not r.get("unknown_recent")]
+    atomic_json(partial, {"at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "accounts": good})
+    if len(good) < len(rows):   # do not freeze a failed read into the receipt; rerun retries only these owners
+        print(f"{TAG}_INVENTORY_PARTIAL failed:", " ".join(r["user"] for r in rows if r not in good), flush=True)
+        return {"at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "accounts": rows, "global_cli": k.active_user(), "partial": True}
     out = {"at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "accounts": rows, "global_cli": k.active_user(),
            "scope": "Owner-authorized saved accounts (R16 + repeat6); scoped identity/quota, latest10 owned sessions"}
     atomic_json(receipt, out)
@@ -149,7 +165,7 @@ def prepare(head, build, quota):
     slots = []
     for q in sorted(quota["accounts"], key=lambda q: (-q.get("gpu_left", 0), q["user"])):
         if q.get("inventory_error") or q["active_recent"] or q["unknown_recent"]: continue
-        slots += [q["user"]] * min(2, int(q["gpu_left"] // (CAP * 1.15)))
+        slots += [q["user"]] * min(2, int(q["gpu_left"] // (CAP + 1 / 60)))           # owner 19/11: 1-minute quota margin
     plan = [(cell, seed) for cell in CELLS for seed in (42, 43)]
     assert len(slots) >= len(plan), f"{len(plan)} full allocations required, {len(slots)} slots; do not cut rounds/seeds"
     # replay needs the frozen Q6/Q7 blob as an owner-private dataset (never Git/notebook); both replay seeds share one owner
@@ -230,7 +246,7 @@ def launch(batch):
     def gate(item):
         owner, runs = item
         q = k.account_quota(owner)
-        assert q["gpu_left"] >= sum(r["cap_hours"] for r in runs) * 1.15, (owner, "quota changed")
+        assert q["gpu_left"] >= sum(r["cap_hours"] for r in runs) + 1 / 60, (owner, "quota changed")   # owner 19/11: 1 min
         refs = owned_refs(cli(owner), owner)
         assert all(f'{owner}/{r["slug"]}' not in refs for r in runs), (owner, "slug exists")
         for source in ("datasets files -d odixe0502/veremi-nextgen-v4-scaled-per-vehicle", f"kernels status {BUILDER_OWNER}/{BUILDER_SLUG}"):

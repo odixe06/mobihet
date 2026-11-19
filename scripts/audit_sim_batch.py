@@ -1,6 +1,7 @@
 """Artifact audit of a pulled simulator batch (fold val only), before its locked analysis.
 
     python scripts/audit_sim_batch.py b9|b10 [round=20]   -> runs/sim-kaggle-<batch>/audit.json, exit 1 if any arm fails
+    python scripts/audit_sim_batch.py fbl-bert             -> ../fl_veremi_bert/runs/sim-fbl/audit.json (pushed rows of that batch)
 
 Per arm: pulled.ok; executed provenance base SHA + overlay SHAs == batch.json and executed mobihet_sim.py bytes hash to the
 overlay SHA; config hp == locked hp; rounds 1..R each once, finite loss/F1, skipped_frac <= 1 %; cms_r<R> ids == sim panel
@@ -24,6 +25,8 @@ from scripts.sim_fold_val import pick  # noqa: E402
 B = sys.argv[1]
 R = int(sys.argv[2]) if len(sys.argv) > 2 else 20
 RUNS, ART = ROOT / f"runs/sim-kaggle-{B}", ROOT / f"artifacts/sim-kaggle-{B}"
+if B == "fbl-bert":                                                  # FeatureBERT FB-L sim: same panel, same checks
+    RUNS, ART = ROOT.parent / "fl_veremi_bert/runs/sim-fbl", ROOT.parent / "fl_veremi_bert/artifacts/sim-fbl"
 cnt = np.load(ROOT / "cache/fold_counts.npy")
 panel = np.sort(pick(200, cnt=cnt))
 sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -82,7 +85,8 @@ def audit(spec):
     return out
 
 
-batch = json.loads((RUNS / "batch.json").read_text())
+batch = json.loads((RUNS / "batch.json").read_text()) if B != "fbl-bert" else \
+    [json.loads(p.read_text()) for p in sorted(RUNS.glob("*.pushed"))]
 res, ok_all = {}, True
 for spec in batch:
     a = audit(spec)
