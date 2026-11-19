@@ -22,7 +22,7 @@ Baseline (14 PP × 6 kịch bản + mixed) ở repo khác: `~/project/experiment
 | DAGSNet s42 | `heykewtiie/mh-fbl-l4-top-s42-r50` r1–46 | `lelovo/mh-fbl-l4-top-s42-r50-h2` | RUNNING, cần ≈ 1,1 h |
 | DAGSNet s43 | `outlookcheck/mh-fbl-l4-top-s43-r50` | — | phiên 1 RUNNING (CAP 7,7 h, ước xong r50 trong phiên ≈ 04:30) |
 | DAGSNet s41 | `annhannh331/mh-fbl-l4-top-s41-r50` r1–25 | `hoangdang20t/mh-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 4 h |
-| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `gaming3/flb-fbl-l4-top-s42-r50-h2` | Dataset hop **không được Kaggle tạo** 2 lần (chiencosieuhang 03:01, gaming3 03:28; upload OK, 403/`No datasets found`) vì output s42 chứa `inductor-cache/` 5.581 file (s43: 59 file). Đã sửa `../fl_veremi_bert/scripts/run_fbl_pilot.py::stage` bỏ `inductor-cache` (chưa commit), push lần 3 trên `gaming3` 03:32 — log `../fl_veremi_bert/runs/fbl-r50/S42h2-manual-retry2.log`: có `S42h2/batch.json` + `RC=0` = đã push; ngược lại làm lại theo hướng dẫn dưới (bước 1 khi bật máy) |
+| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `gaming3/flb-fbl-l4-top-s42-r50-h2` | **PUSHED 03:34** (lần 3; 2 lần trước dataset không được tạo do `inductor-cache/` 5.581 file — `../fl_veremi_bert/scripts/run_fbl_pilot.py::stage` nay bỏ thư mục đó, chưa commit). Cần ≈ 1,4 h |
 | BERT s43 | `outlookcheck/flb-fbl-l4-top-s43-r50` r1–26 | `chiencosieuhang/flb-fbl-l4-top-s43-r50-h2` | HOP_PUSHED 03:06, cần ≈ 4,7 h |
 | BERT s41 | `catbaochau/flb-fbl-l4-top-s41-r50` r1–21 | `goilaaiudi/flb-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 5,6 h |
 
@@ -45,7 +45,6 @@ Nó đọc lại batch/hop đã khóa (`S*h*/batch.json`, `artifacts/fbl-hop/*/r
 Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ verify lại dataset, không tạo mới. Nếu dataset không tồn tại
 (`kaggle datasets list --mine` của owner rỗng): đổi tên `create-intent.json`/`create-reply.txt` thành `*.failed-<owner>.*` rồi
 `python scripts/run_fbl_r50.py build S<seed>h<k> <owner khác> <CAP>` + `launch S<seed>h<k>` (cwd `../fl_veremi_bert`; DAGSNet: `hop` + `launch-hop` ở repo này).
-Nếu `S42h2-manual-retry.log` không kết thúc bằng push thành công (`RC=0`): làm lại đúng cách này cho BERT s42 trước tiên.
 Slot lúc tắt máy: `chiencosieuhang` 2/2 (central BERT s42 + BERT s43h2), `gaming3` 2/2 (central CNN-BiGRU s41 + BERT s42h2), `bestyorn` 2/2,
 `lelovo`/`goilaaiudi`/`hoangdang20t` 2/2; `abbafan` còn 1 slot.
 
