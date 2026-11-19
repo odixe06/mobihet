@@ -22,11 +22,11 @@ Baseline (14 PP × 6 kịch bản + mixed) ở repo khác: `~/project/experiment
 | DAGSNet s42 | `heykewtiie/mh-fbl-l4-top-s42-r50` r1–46 | `lelovo/mh-fbl-l4-top-s42-r50-h2` | RUNNING, cần ≈ 1,1 h |
 | DAGSNet s43 | `outlookcheck/mh-fbl-l4-top-s43-r50` | — | phiên 1 RUNNING (CAP 7,7 h, ước xong r50 trong phiên ≈ 04:30) |
 | DAGSNet s41 | `annhannh331/mh-fbl-l4-top-s41-r50` r1–25 | `hoangdang20t/mh-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 4 h |
-| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `gaming3/flb-fbl-l4-top-s42-r50-h2` | 03:01 hop trên `chiencosieuhang` BLOCKED (dataset upload xong nhưng không được tạo, 403); chạy tay lại trên `gaming3` 03:10 — kết quả: `../fl_veremi_bert/runs/fbl-r50/S42h2-manual-retry.log` (có `S42h2/batch.json` = đã push) |
+| BERT s42 | `novahihi/flb-fbl-l4-top-s42-r50` r1–45 | `gaming3/flb-fbl-l4-top-s42-r50-h2` | Dataset hop **không được Kaggle tạo** 2 lần (chiencosieuhang 03:01, gaming3 03:28; upload OK, 403/`No datasets found`) vì output s42 chứa `inductor-cache/` 5.581 file (s43: 59 file). Đã sửa `../fl_veremi_bert/scripts/run_fbl_pilot.py::stage` bỏ `inductor-cache` (chưa commit), push lần 3 trên `gaming3` 03:32 — log `../fl_veremi_bert/runs/fbl-r50/S42h2-manual-retry2.log`: có `S42h2/batch.json` + `RC=0` = đã push; ngược lại làm lại theo hướng dẫn dưới (bước 1 khi bật máy) |
 | BERT s43 | `outlookcheck/flb-fbl-l4-top-s43-r50` r1–26 | `chiencosieuhang/flb-fbl-l4-top-s43-r50-h2` | HOP_PUSHED 03:06, cần ≈ 4,7 h |
 | BERT s41 | `catbaochau/flb-fbl-l4-top-s41-r50` r1–21 | `goilaaiudi/flb-fbl-l4-top-s41-r50-h2` | RUNNING, cần ≈ 5,6 h |
 
-Kết quả từng hop: `runs/fbl-r50/orchestrate.log` (dòng `HOP_PUSHED` / `BLOCKED` / `CHAIN_DONE`).
+**DAGSNet s42 CHAIN_DONE 03:27 (2 phiên).** Kết quả từng hop: `runs/fbl-r50/orchestrate.log` (dòng `HOP_PUSHED` / `BLOCKED` / `CHAIN_DONE`).
 
 **Orchestrator** `runs/fbl-r50/orchestrate.py` (poll 1200 s): COMPLETE → collect → r < 50 ⇒ hop sang account rảnh quota lớn nhất
 (bỏ `dinhan25` + `runs/fbl-r50/exclude.json` = account mà job khác đang giữ slot), CAP = gpu_left − 1 phút;
