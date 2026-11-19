@@ -52,7 +52,7 @@ Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ ve
    [tried index](../research/tried-methods-index.md). `BLOCKED` ⇒ đọc log kernel, xử lý tay, không push lại slug đã có.
 3. Dọn ổ (owner 20/11: DVC trước → xoá bớt local → phần còn lại sang ORICO `/run/media/odixe/ORICO`, exFAT: không symlink/hardlink/quyền bên trong):
    - Đã làm: `artifacts/fbl-hop/mh-fbl-l4-top-s4{1,2}-r50/pull` `dvc add` + `dvc push -j 16` (OneDrive, `status -c` in sync 20/11 02:58;
-     manifest `pull.dvc` cạnh mỗi thư mục, chưa commit Git). `upload/` cạnh nó trùng byte `pull/` (`diff -rq` chỉ khác
+     manifest `pull.dvc` đã commit). `upload/` cạnh nó trùng byte `pull/` (`diff -rq` chỉ khác
      `dataset-metadata.json`), dataset đã lên Kaggle ⇒ xoá được 19 GB (lệnh xoá bị bộ lọc quyền chặn ⇒ việc tay, mục 5).
    - Còn làm: dời `.dvc/cache` (≈ 35 GB, hardlink với workspace) sang ORICO (`dvc cache dir --local <ORICO>/mobihet-dvc-cache` + copy),
      rồi xoá workspace `pull/` (DVC-backed; chain không cần vì stage đọc `ready.json`). Giữ local: code, `.git`, `cache/` (data npy),
@@ -60,9 +60,13 @@ Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ ve
 
 ## 4. Quy tắc cần nhớ
 
-- Git repo này: không commit/push trừ khi owner yêu cầu. Notebook clone GitHub tại HEAD (`a6e77a1` / `49b2d88` = origin/main) + overlay
-  method ⇒ không sửa `scripts/w20_common.py::SOURCES` hoặc `core/` khi còn chain. Code FB-L (`methods/mobihet_budget.py`, `scripts/run_fbl_r50.py`,
-  …) **chưa commit**, chỉ có trên máy này.
+- Git: owner 20/11 cho commit ⇒ `main` local = `38754dd` (FB-L code/docs/DVC manifest), **chưa push GitHub** (origin/main `a6e77a1`).
+  Notebook chain clone GitHub tại SHA đã khóa trong batch (`base_sha`) + overlay ⇒ hop DAGSNet không phụ thuộc HEAD; chỉ push GitHub
+  khi owner yêu cầu. Không sửa `scripts/w20_common.py::SOURCES`, `core/`, `methods/mobihet_budget.py` khi còn chain (overlay sha256).
+  `../fl_veremi_bert` vẫn còn thay đổi FB-L chưa commit; **không commit repo đó khi còn chain BERT**: `run_fbl_r50.py build` assert
+  `HEAD == base_sha == origin/main`.
+- Backup OneDrive 20/11: Git bundle `…/veremi_build/mobihet-v2/mobihet.bundle` (verify OK, `main` 38754dd); `dvc push -j 16` toàn repo
+  (log `runs/fbl-r50/dvc-push-all-20261120.log`; kiểm lại `dvc status -c` nếu log không có `PUSH_RC=0`).
 - Kaggle: credential theo process (`kaggle_as.py`), quota `kaggle_quota.py`; `UNVERIFIED`/`QUERY_ERROR` = chưa rõ. Mutation không retry khi
   chưa kiểm intent/marker/version. COMPLETE ≠ kết quả: audit artifact trước. Luật gate khóa trước push, không sửa hồi tố.
 - Job nền: `setsid … & echo $! > pid`; dừng theo PGID (`kill -TERM -<pid>`). Giữ ≥ 30 GB trống trước hop (mỗi hop copy state 4–10 GB;
@@ -72,4 +76,4 @@ Hop dở dang (có `create-intent.json`, chưa `ready.json`) ⇒ script chỉ ve
 ## 5. Việc tay
 
 - (tuỳ) Giải phóng 19 GB bản trùng: `rm -rf ~/project/mobihet/artifacts/fbl-hop/mh-fbl-l4-top-s4{1,2}-r50/upload`
-- (quyết định) Có commit + push code FB-L chưa commit (repo này và `../fl_veremi_bert`) lên GitHub không.
+- (quyết định) Có push `main` repo này lên GitHub không (an toàn với chain đang chạy); `../fl_veremi_bert` chờ `ORCH_DONE`.
