@@ -381,3 +381,22 @@ Các thất bại/runtime đã biết và nguồn kết quả: [research index](
 - 19/11: pass prototype `core.evaluate.class_sums` (fedtgp, tinyproto, v2x_htfl, T3 `mobihet_next`) có chunk mặc định 32 768 dòng, không theo
   `eval_rows` ⇒ đếm eager BERT fedtgp OOM 4 GB ở cả group_rows 2048/1024. Count BERT chunk theo `eval_rows` (8192; ghi
   `rows.class_sums_max_rows`): op/dòng như nhau, chỉ padding chunk khác. BERT T3 count (xong trước) vẫn chunk 32 768 — chênh padding, report-only.
+
+## Logit adjustment trong L4 — 24/11/2026
+
+- LA của L4 (`CE(z + log π_local − log π_global)`, suy luận `argmax z`) cho logit thô mang prior **toàn cục**. Test personalized
+  là tương lai của chính xe, tức prior local, nên LA làm model đoán thiếu lớp xe có mà hiếm toàn cục (lớp 11/1/6/15, shift +.22…+.36).
+  Ablation A3 (repo experiment, R50 test): bỏ LA dương 24/24 cặp seed. Gain lớn ở model yếu (SAE +.0087, TabM +.0046), DAGSNet/BERT +.0002.
+- Cùng LA đó che lớp **vắng** ở xe (shift âm): bỏ LA làm recall trên 27k dòng absent giảm .04–.16. Số dòng này quá ít để đổi macro.
+  Hai tác dụng ngược chiều nằm trong một shift; tách theo `n_kc > 0` (arm A3m/A3x, [screening-la](docs/research/screening-la.md)).
+- Laplace +1 làm shift của lớp vắng thành **dương** ở xe nhỏ với lớp hiếm toàn cục (1/(n+16) > π_global). Đọc dấu shift theo cỡ xe,
+  đừng mặc định "lớp vắng luôn được LA che".
+- [Sim LA](docs/research/screening-la.md) DAGSNet 200 xe, 8/8 audit PASS: A3m/A3x tăng recall absent TB +.065/+.073 trên 191 dòng/round
+  nhưng hụt pooled Macro-F1 cả hai seed (TB −.000858/−.001255 vs A3). Chọn A3 theo cổng khóa, dừng hai nhánh che lớp vắng.
+  Đổi LA cũng đổi CE lưu cho chọn dòng thật, nên contrast đo cả recipe đó.
+- Ablation A2 (`real_select=random`, repo experiment, R50 test, Δ vs `mobihet_l4` cùng seed): DAGSNet **+.0007 (3/3 seed)**, nhưng
+  BERT −.0023, CNN-BiGRU −.0010, MLP −.0067, TabM −.0118, SAE −.0283, mixed2/3 −.0055/−.0022. Lợi chọn dòng theo CE ở sim r20
+  (DAGSNet +.0017 vs nền) không giữ tới r50 cho DAGSNet: chủ yếu là tăng tốc hội tụ. Với model yếu/chậm thì vẫn cần.
+  Không chọn knob theo từng model nếu phương pháp phải chung cho mọi kiến trúc.
+- Trục LA đã cạn ở r50: A3 vs L4 DAGSNet/BERT/mixed1 chỉ +.0002…+.0003 (nhiễu seed ±.0006), mixed2/3 +.0042/+.0017.
+  τ-scale, prior lúc suy luận và LA trên synthetic/Q thuộc họ prior/ngưỡng (PH b11, Y50, B17) đã đóng. Đừng mở lại bằng tên mới.

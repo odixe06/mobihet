@@ -1,0 +1,13 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a2,42,98942.9,241720.4,9443.5,10105.0,360211.8,1924611408,audited,kaggle lelovo/mlp-abl-a2-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,43,98942.9,241720.4,9436.8,10201.0,360301.1,1925088524,audited,kaggle nguyenminhtran060113/mlp-abl-a2-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,41,98942.9,241720.4,9495.7,10560.0,360719.0,1927321544,audited,kaggle anhtruong1909/mlp-abl-a3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,43,98942.9,241720.4,9519.4,10516.0,360698.6,1927212615,audited,kaggle anhtruong1909/mlp-abl-a3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,42,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle lelovo/mlp-abl-a1-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,9531.0,10508.0,360702.3,1927232315,audited,kaggle nguyenminhtran060113/mlp-abl-a3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,9410.6,10171.0,360244.9,1924788366,audited,kaggle novahihi/mlp-abl-a2-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,41,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle odixeuit/mlp-abl-a1-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,43,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle takids1909/mlp-abl-a1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle gaming3/mlp-abl-a4-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,41,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle gaming3/mlp-abl-a4-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,43,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle thuyanh316/mlp-abl-a4-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

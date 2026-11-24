@@ -1,0 +1,2 @@
+method,status,bootstrap_tops,train_tops_per_round,other_tops_per_round,eval_tops_per_round,rounds,total_tops,x_fedavg,real_rows,executed_rows_r2,useful_rows_r2,source
+mobihet_l4,done,0.0639457,132.467,4.84839e-05,2.18309,50,6623.42,0.9175,1476064,5092288,1437976,runs/compute-20261120/kaggle/exp-count-l4-g4096/compute/cnn-bigru-mobihet_l4.count.json

@@ -1,0 +1,6 @@
+arm,client_tops,server_tops,bootstrap_tops,other_tops,unattributed_tops,total_tops,x_l4,rounds,panel,trace_sha256,source
+l4,19857.565,2.28e-07,0.060706966,6.3260254,0.0043385249,19863.956,1.0000,50,200,53c5669345827857c2d85cc1fff9dc2805ef10932a76a0c5f0625ea7600e84e0,runs/compute-detailed-v3/kaggle/exp-flops-v3-mixed13/compute/mixed-case1-mobihet_l4.count.json
+a1,10563.238,0,2.1427e-08,0,0.0043116642,10563.242,0.5318,50,200,4eaf10bc0d6cd4ee08c1975c24c712c1b83f661e32845bf33d19a59304fb7872,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/mixed-case1-abl-a1.count.json
+a2,19857.565,2.28e-07,0.060706966,6.3260254,0.0043385249,19863.956,1.0000,50,200,1325da1a2250454eb602b00fecebb1d3f7434b27c0b14634291f36ea98d89cdf,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/mixed-case1-abl-a2.count.json
+a3,19857.565,2.28e-07,0.060706966,6.3260254,0.0043385249,19863.956,1.0000,50,200,6dd7120d17756ac246cc96d8fb896678a74309373dc3620e951c5a60c94bc195,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/mixed-case1-abl-a3.count.json
+a4,19857.565,2.28e-07,0.060706966,6.3260253,0.0043175892,19863.956,1.0000,50,200,a25c0750f70c7cd9258bdab3c58f9aa2c56814532b5e5a4fe24e499ab1dac2f0,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/mixed-case1-abl-a4.count.json

@@ -1,0 +1,2 @@
+method,status,bootstrap_tops,train_tops_per_round,other_tops_per_round,eval_tops_per_round,rounds,total_tops,x_fedavg,real_rows,executed_rows_r2,useful_rows_r2,source
+mobihet_l4,done,0.0645204,4.24323,2.76087e-05,0.0151286,50,212.227,,1476064,27836416,1437976,runs/compute-20261120/mixed-case2-mobihet_l4.count.json

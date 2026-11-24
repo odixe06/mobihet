@@ -1,6 +1,42 @@
-# Bàn giao sống — 20/11/2026 ≈ 03:15 +07 (máy tắt sau phiên này)
+# Bàn giao sống — 24/11/2026 07:55 +07
 
-**Lượt sau chỉ cần đọc file này để tiếp tục.** Chi tiết khi cần: [FB-L](../research/screening-fbl.md) (luật/kết quả),
+**Owner 24/11: MobiHet = L4 bỏ logit adjustment (A3, `la_mode=off`)**, vẫn tên `mobihet`. Không còn job MobiHet nào chạy từ repo này.
+- Batch chạy ở repo `~/project/experiment` (3 seed MobiHet thiếu + ablation A1/A2/A4 trên nền mới + đếm FLOP): job, PID, log ở
+  `../experiment/docs/operations/continue.md` mục "Batch MobiHet". Kết quả và chi phí: `../experiment/docs/research/mobihet.md`.
+- Số liệu L4 có LA chuyển từ experiment vào [archive/l4-la-20261124](../../archive/l4-la-20261124/README.md).
+- BERT notebook của batch nhúng `methods/mobihet_budget.py` repo này, pin SHA-256 `3c18cc34…` trong
+  `../experiment/scripts/build_bert_l4_ablation.py`. **Không sửa file này** khi batch còn chạy và cần build thêm notebook BERT.
+- Việc tay: 6 account lỗi token (`chiencosieuhang`, `abbafan`, `gaming3`, `goilaaiudi`, `hoangdang20t`, `trietbackup`).
+
+## Study LA — 24/11/2026 06:08 +07
+
+
+**Study LA đã xong.** [Kết quả, 8 ref chính xác và 10 metric](../research/screening-la.md). DAGSNet fold val, 200 xe, r20, seed 42/43.
+- Cả 8 kernel `/1` COMPLETE lúc kiểm 06:06 +07, pull đủ và audit PASS r1–r20. Watcher phiên Claude 0055567a đã dừng.
+  Batch LA hết kernel cần theo dõi. 7 row từng bị từ chối do giới hạn 2 session đã được chuyển account, xem `relaunch.jsonl`.
+- Cổng đã khóa chọn **A3 (`la_mode=off`)**. Macro TB r16–20 hai seed .909871, +.000720 vs L4.
+  A3m −.000858 và A3x −.001255 vs A3, cả hai FAIL. Pilot theo luật đóng tại sim. Kết quả L4 full r50 đã audit ở mục lịch sử bên dưới.
+- Bằng chứng: `runs/sim-kaggle-la/{batch,status,audit,audit-detail,verdict-r20}.json`, `collection/*.collect.log`,
+  output `artifacts/sim-kaggle-la/`. Base `a6e77a1` + overlay. `methods/mobihet_budget.py` mặc định `la_mode=full`.
+- Audit LA đã hoàn tất, không còn việc tay cho batch này.
+
+## Lịch sử L4 full r50 — 20/11/2026 ≈ 09:05 +07
+
+**09:05 — L4 r50 XONG: 6/6 chain audit PASS** (owner 20/11 bỏ orchestrator; phiên Claude repo experiment điều phối tay).
+- DAGSNet s41/s42/s43 macro .90551/.90546/.90554 = **.90550 ± .00004** (`runs/fbl-r50/audit.json`, đủ 3 seed; > .8998; cách APFed
+  .91297 0,0075 ≤ .015; Δ vs T3 −.0022…−.0028), byte 354,6 KB/xe/50r, compute 0,997× FedAvg.
+- BERT s41/s42/s43 macro .91301/.91215/.91264 = **.91260 ± .00043** (`../fl_veremi_bert/runs/fbl-r50/S4*h2/audit.json`; ≥ .8951;
+  **vượt mọi baseline BERT**, CANPerFL .91174), byte 358,8 KB, compute 0,997×.
+- Hàng `mobihet_l4` (10 metric từ CM r50) đã ghi `~/project/experiment-wt/experiments/{dagsnet,bert}/results.csv`.
+- DAGSNet s43: hop orchestrator timeout 3600 s khi upload 9,9 GB (07:17) ⇒ intent `create-intent.failed-abbafan.json`,
+  hop thủ công `runs/fbl-r50/manual-hop-s43h2.sh` ⇒ `abbafan/mh-fbl-l4-top-s43-r50-h2/1` COMPLETE 08:52.
+- Còn: cập nhật [FB-L](../research/screening-fbl.md), [comparison](../research/comparison.md), [tried index](../research/tried-methods-index.md);
+  dọn ổ mục 3 (bàn giao cũ); quyết định owner push GitHub. Không còn kernel MobiHet nào chạy. Không chạy `orchestrate.py`.
+
+(bên dưới: bàn giao 03:15, trước khi 6 chain hoàn tất)
+
+
+Chi tiết thời điểm đó: [FB-L](../research/screening-fbl.md) (luật/kết quả),
 [compute harness](../research/compute-harness.md), [LESSONS](../../LESSONS.md), [bài học vận hành](lessons.md), [backup](backup.md).
 Baseline (14 PP × 6 kịch bản + mixed) ở repo khác: `~/project/experiment`, bàn giao `docs/operations/continue.md` của repo đó.
 

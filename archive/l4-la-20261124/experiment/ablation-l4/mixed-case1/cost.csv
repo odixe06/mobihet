@@ -1,0 +1,10 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a1,41,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle odixe0502/mixl4-abl-a1-case1-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,43,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle odixe0502/mixl4-abl-a1-case1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,8269.5,9053.0,357985.8,1912717926,audited,kaggle outlookcheck/mixl4-abl-a2-case1-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,43,98942.9,241720.4,8275.5,9046.0,357984.7,1912712490,audited,kaggle outlookcheck/mixl4-abl-a2-case1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,8182.6,9069.0,357914.8,1912339039,audited,kaggle dinhan20t/mixl4-abl-a3-case1-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,43,98942.9,241720.4,8186.1,9061.0,357910.4,1912315176,audited,kaggle nguyenminhtran060113/mixl4-abl-a3-case1-s43-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle annhtnt/mixl4-abl-a4-case1-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,43,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle minhtran0601/mixl4-abl-a4-case1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,41,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle nguyenminhtran060113/mixl4-abl-a4-case1-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

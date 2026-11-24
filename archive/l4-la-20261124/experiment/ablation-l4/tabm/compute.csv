@@ -1,0 +1,6 @@
+arm,client_tops,server_tops,bootstrap_tops,other_tops,unattributed_tops,total_tops,x_l4,rounds,panel,trace_sha256,source
+l4,26.12537,1.736e-07,0.060271836,3.6511355,2.661745e-05,29.836805,1.0000,50,200,937b892b584ca1fed78f4cbc44cfcd57a16a31d9cc8411ad988bbc4d5da1c3d1,runs/compute-detailed-v3/tabm-mobihet_l4.count.json
+a1,28.400769,0,2.0681e-08,0,8.085e-08,28.400769,0.9519,50,200,d72d6f6988a259b66e9e3061f52117dfc91e646caa04213425859f33a5ec397b,runs/compute-detailed-v3/tabm-abl-a1.count.json
+a2,26.125366,1.736e-07,0.060271836,3.6511355,2.661745e-05,29.8368,1.0000,50,200,0bcb64ca09f6a9e559fb7194100da06a1d07f7ebc9eb3e1cd7f6dd01fd54a02e,runs/compute-detailed-v3/tabm-abl-a2.count.json
+a3,26.12537,1.736e-07,0.060271836,3.6511355,2.661745e-05,29.836805,1.0000,50,200,f9ff61b7e13270d9012fcdf9d5bf9b0525564fa4624971492e039d693488584c,runs/compute-detailed-v3/tabm-abl-a3.count.json
+a4,26.12537,1.736e-07,0.060271836,3.6511355,5.75895e-06,29.836784,1.0000,50,200,d682cb6073825fc79837259d70562c7f6152c66b547ebdcaab8b3388e48ebee7,runs/compute-detailed-v3/tabm-abl-a4.count.json

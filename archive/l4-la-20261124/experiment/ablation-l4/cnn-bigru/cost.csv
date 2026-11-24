@@ -1,0 +1,10 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a2,42,98942.9,241720.4,9515.9,10075.0,360254.1,1924837660,audited,kaggle annhtnt/cnnbigru-abl-a2-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,43,98942.9,241720.4,9510.9,10097.0,360271.1,1924928651,audited,kaggle khanhmay0304/cnnbigru-abl-a2-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,42,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle annhannh331/cnnbigru-abl-a1-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,9512.0,10102.0,360277.2,1924961289,audited,kaggle khanhmay0304/cnnbigru-abl-a2-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,9499.9,10159.0,360322.2,1925201345,audited,kaggle annhtnt/cnnbigru-abl-a3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,41,98942.9,241720.4,9499.6,10181.0,360343.9,1925317276,audited,kaggle accanniez/cnnbigru-abl-a3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle accanniez/cnnbigru-abl-a4-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,43,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle catbaochau/cnnbigru-abl-a4-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,41,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle catbaochau/cnnbigru-abl-a4-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

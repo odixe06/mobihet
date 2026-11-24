@@ -1,0 +1,6 @@
+arm,client_tops,server_tops,bootstrap_tops,other_tops,unattributed_tops,total_tops,x_l4,rounds,panel,trace_sha256,source
+l4,3534.2124,1.736e-07,0.060271835,3.6511355,2.661745e-05,3537.9239,1.0000,50,200,c65703fad0f4838d7d9aef5d0619f282af202b18c2098686d18ad85fea288b36,runs/compute-detailed-v3/kaggle/exp-flops-v3-dagsnet/compute/dags-base-mobihet_l4.count.json
+a1,3856.9223,0,2.0065e-08,0,8.085e-08,3856.9223,1.0902,50,200,7e77a92a2fa0cf5327682c395569954a37e98e63c69df13e9ed176613cfb561e,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/dags-base-abl-a1.count.json
+a2,3534.2124,1.736e-07,0.060271835,3.6511355,2.661745e-05,3537.9239,1.0000,50,200,a6da7864f4275b43b50aea907fe6506007af520cd7917f8460dc4d8e60808008,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/dags-base-abl-a2.count.json
+a3,3534.2124,1.736e-07,0.060271835,3.6511355,2.661745e-05,3537.9239,1.0000,50,200,7789efdf9fb272a1d82de70e5ea7b2e3c5ebfba5395d172f4fd0d1b6f1f1573c,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/dags-base-abl-a3.count.json
+a4,3534.2124,1.736e-07,0.060271835,3.6511355,5.75895e-06,3537.9238,1.0000,50,200,b7e24f0173d7efbf3c998fd9de1f573d16ac7d42631344bcd8f18131877a884d,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/dags-base-abl-a4.count.json

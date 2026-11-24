@@ -1,0 +1,10 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a1,43,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle minhtriethihi/dagsnet-abl-a1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,41,98942.9,241720.4,6462.5,7197.0,354322.7,1893146126,audited,kaggle heykewtiie/dagsnet-abl-a3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,6452.8,7161.0,354277.1,1892902321,audited,kaggle bestyorn/dagsnet-abl-a3-s42-h2/2 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,43,98942.9,241720.4,6438.1,7175.0,354276.3,1892898519,audited,kaggle heykewtiie/dagsnet-abl-a3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,42,98942.9,241720.4,6665.0,7329.0,354657.2,1894933540,audited,kaggle bestyorn/dagsnet-abl-a2-s42-h2/2 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,43,98942.9,241720.4,6659.5,7347.0,354669.8,1895000587,audited,kaggle chiencosieuhang/dagsnet-abl-a2-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,6676.2,7355.0,354694.4,1895132131,audited,kaggle chiencosieuhang/dagsnet-abl-a2-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,42,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle catbaochau/dagsnet-abl-a1-s42-h2/2 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle catbaochau/dagsnet-abl-a4-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

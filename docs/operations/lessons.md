@@ -20,6 +20,9 @@ Lịch sử nguyên bản trước rút gọn: [snapshot](../../archive/operatio
 - Dataset nhiều file phải hết pagination. Kaggle có thể tự giải nén zip; kiểm member path và SHA, không upload lại vì tên archive tải404.
 
 ## Push, resume và audit
+- 24/11: `kernels list --mine` (inventory `active_recent`) không thấy mọi session GPU đang chạy. 13 account báo 0 kernel chạy nhưng
+  chỉ nhận 1 push, cái thứ hai bị từ chối "Maximum batch GPU session count of 2 reached". Lời từ chối rõ ràng = không tạo kernel:
+  đổi tên intent/log thành `*.failed-<owner>` rồi push sang account khác (`run_sim_la.py relaunch`). Không coi slot từ listing là chắc chắn.
 
 - Credential process-scoped; quota/slot đọc live trước push. Account có quota chưa bảo đảm cấp GPU; dự án khác có thể cùng dùng account.
 - **Sự cố Kaggle 17/11 là lỗi mạng chập chờn/timeout**, gây quota `ConnectTimeout` và status `QUERY_ERROR`;

@@ -1,0 +1,4 @@
+method,seed,view,round,accuracy,precision_macro,precision_micro,precision_weighted,recall_macro,recall_micro,recall_weighted,f1_macro,f1_micro,f1_weighted,status,source
+mobihet_l4,42,client,50,0.900124,0.922963,0.900124,0.901435,0.821549,0.900124,0.900124,0.836912,0.900124,0.877702,audited,"kaggle lelovo/tabm-l4-s42 (scripts/audit_l4.py: CM r50 -> 10 metrics, hp/source/rounds checked)"
+mobihet_l4,41,client,50,0.897658,0.924677,0.897658,0.902114,0.814076,0.897658,0.897658,0.830078,0.897658,0.875070,audited,"kaggle anhtruong1909/tabm-l4-s41 (scripts/audit_l4.py: CM r50 -> 10 metrics, hp/source/rounds checked)"
+mobihet_l4,43,client,50,0.898135,0.921286,0.898135,0.899490,0.816430,0.898135,0.898135,0.831174,0.898135,0.875521,audited,"kaggle nguyenminhtran060113/tabm-l4-s43 (scripts/audit_l4.py: CM r50 -> 10 metrics, hp/source/rounds checked)"

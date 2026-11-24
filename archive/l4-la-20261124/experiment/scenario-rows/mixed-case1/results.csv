@@ -1,0 +1,4 @@
+method,seed,view,round,accuracy,precision_macro,precision_micro,precision_weighted,recall_macro,recall_micro,recall_weighted,f1_macro,f1_micro,f1_weighted,status,source
+mobihet_l4,42,client,50,0.913720,0.907422,0.913720,0.905693,0.889086,0.913720,0.913720,0.895019,0.913720,0.906728,audited,kaggle lelovo/mixl4-case1-s42-h3/1 (audit_mixed_l4.py)
+mobihet_l4,41,client,50,0.913920,0.906855,0.913920,0.905920,0.889281,0.913920,0.913920,0.894902,0.913920,0.906968,audited,kaggle dinhan20t/mixl4-case1-s41-h2/1 (audit_mixed_l4.py)
+mobihet_l4,43,client,50,0.913929,0.906559,0.913929,0.905803,0.889079,0.913929,0.913929,0.894603,0.913929,0.906845,audited,kaggle dinhan20t/mixl4-case1-s43-h2/1 (audit_mixed_l4.py)

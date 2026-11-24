@@ -1,0 +1,2 @@
+method,status,bootstrap_tops,train_tops_per_round,other_tops_per_round,eval_tops_per_round,rounds,total_tops,x_fedavg,real_rows,executed_rows_r2,useful_rows_r2,source
+mobihet_l4,done,0.0640037,72.5723,0.000160867,1.20249,50,3628.69,0.9199,1476064,5092288,1437976,runs/compute-legacy/20261119/dags-mh-l4.count.json

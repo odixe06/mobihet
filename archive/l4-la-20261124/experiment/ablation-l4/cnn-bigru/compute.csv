@@ -1,0 +1,6 @@
+arm,client_tops,server_tops,bootstrap_tops,other_tops,unattributed_tops,total_tops,x_l4,rounds,panel,trace_sha256,source
+l4,6434.7113,1.736e-07,0.060271835,3.6511355,2.661745e-05,6438.4227,1.0000,50,200,b0790ec027d8517d35fcc4b106b81df98adb45037ee2535f2943da1e2716568a,runs/compute-detailed-v3/kaggle/exp-flops-v3-cnnbigru/compute/cnn-bigru-mobihet_l4.count.json
+a1,7027.2703,0,2.0065e-08,0,8.085e-08,7027.2703,1.0915,50,200,3ba90345680cac096888668629c10b95d0f5cb4fc5bd4877d372e478e73b8bf1,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/cnn-bigru-abl-a1.count.json
+a2,6434.7113,1.736e-07,0.060271835,3.6511355,2.661745e-05,6438.4227,1.0000,50,200,34cfdfb49df616f4fefd73a973f3742e7c2c662e747bcb1fc3f05390fc92eb39,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/cnn-bigru-abl-a2.count.json
+a3,6434.7113,1.736e-07,0.060271835,3.6511355,2.661745e-05,6438.4227,1.0000,50,200,0f4a06ac37a8fd7c79833c54bc0d55426da3e71bb42946829bed7aaf3f73dbde,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/cnn-bigru-abl-a3.count.json
+a4,6434.7113,1.736e-07,0.060271835,3.6511355,5.75895e-06,6438.4227,1.0000,50,200,4166a594c6dae6046f7b43f904a9d65c43813fae2f185dedf9fb13201b77e7f0,runs/compute-detailed-v3/kaggle/exp-count-abl-bigru-case1/compute/cnn-bigru-abl-a4.count.json

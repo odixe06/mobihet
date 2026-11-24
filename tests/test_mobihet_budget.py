@@ -295,3 +295,45 @@ def test_compact_step_equals_the_masked_step_along_a_round_with_floor(select, q,
         compact = widths[2::3]                                           # masked fp64, compact fp64, compact fp32
         assert compact == want and max(compact) <= full and min(compact) < full   # floor steps: synthetic only
     assert any(seen) and not all(seen) and (select == "random" or any(moved))
+
+
+def _lacking(**knob):
+    """big() env where vehicle 0 lacks classes 11-15 and vehicle 1 lacks class 3 (relabelled benign)."""
+    env = big(**T3, **TIER, real_tier_rows=[8, 5], real_select="top", **knob)
+    off, y = env.train.off, env.train.Y
+    v0, v1 = y[off[0]:off[1]], y[off[1]:off[2]]
+    v0[v0 >= 11] = 0
+    v1[v1 == 3] = 0
+    return env
+
+
+def test_la_modes_change_only_the_shift():
+    full = mobihet_budget.Method(_lacking())
+    has = full.cnt > 0
+    assert (~has).sum() == 6
+    want = {"off": torch.zeros_like(full.la_shift),
+            "absent": torch.where(has, 0.0, full.la_shift),
+            "mask": torch.where(has, 0.0, -1e4)}
+    for mode, shift in want.items():
+        m = mobihet_budget.Method(_lacking(la_mode=mode))
+        assert torch.equal(m.la_shift, shift.float()) and torch.equal(m.cnt, full.cnt)
+        assert m.bootstrap_bytes == full.bootstrap_bytes
+    with pytest.raises(AssertionError):
+        mobihet_budget.Method(_lacking(la_mode="x"))
+
+
+@pytest.mark.parametrize("mode", ["full", "off", "absent", "mask"])
+def test_la_mode_round_equals_l4_with_the_shift_set_by_hand(mode):
+    """L4 (no la_mode) with la_shift overwritten = the la_mode arm, bit-exact over two rounds; full = L4 itself."""
+    torch.set_num_threads(1)
+    ref, new = mobihet_budget.Method(_lacking()), mobihet_budget.Method(_lacking(la_mode=mode))
+    ref.la_shift = new.la_shift.clone()
+    rng = torch.get_rng_state()
+    want = [(ref._round_private(r, .001), copy.deepcopy(ref.state())) for r in (1, 2)]
+    torch.set_rng_state(rng)
+    for r, (info, state) in zip((1, 2), want):
+        assert new._round_private(r, .001) == info and info["clients_without_applied"] == 0
+        tensor_state_equal(state, new.state())
+    trained = torch.isfinite(new._score[:-1])
+    assert trained.float().mean() > .9 and new._score[:-1][trained].max() < 1e3   # absent classes never enter a row's CE
+    torch.testing.assert_close(new.Q.sum(-1), torch.ones(16), rtol=0, atol=1e-6)

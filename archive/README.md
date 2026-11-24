@@ -8,6 +8,8 @@ Chỉ mở khi owner yêu cầu tra lịch sử/khôi phục cụ thể. Tri th�
 - `docs/notion/`: draft và script sinh trang Notion đã xong.
 - `docs-20261107/`, `docs-20261109/`, `docs-20261113/`: tài liệu dời theo đợt, mỗi thư mục có README chỉ mục.
 - `handoffs/`: snapshot bàn giao cũ, không phải trạng thái hiện tại.
+- `l4-la-20261124/`: MobiHet **L4 có logit adjustment** (24/11/2026, thay bằng MobiHet = L4 bỏ LA): hàng kết quả, compute,
+  byte, ablation A1–A4 và tài liệu chuyển từ repo `~/project/experiment`. README thư mục đó ghi nguồn và artifact.
 - `scripts/`, `methods/`, `tests/`: code riêng batch N→V đã đóng; không dùng trực tiếp từ archive, import giả định đường dẫn cũ.
 - `move-manifest.json`: đường dẫn cũ → mới và hash kiểm di chuyển. Khôi phục đúng đường dẫn cũ nếu cần chạy code lịch sử.
 

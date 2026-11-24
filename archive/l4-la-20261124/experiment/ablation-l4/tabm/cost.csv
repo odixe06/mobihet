@@ -1,0 +1,13 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a1,42,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle gaming3/tabm-abl-a1-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,43,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle nguyetquedo/tabm-abl-a1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,41,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle minhtran0601/tabm-abl-a1-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,9972.2,11161.0,361796.4,1933078165,audited,kaggle gaming3/tabm-abl-a2-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,42,98942.9,241720.4,9933.1,11118.0,361714.3,1932639488,audited,kaggle gaming3/tabm-abl-a2-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,9997.6,11309.0,361969.9,1934004926,audited,kaggle goilaaiudi/tabm-abl-a3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,43,98942.9,241720.4,9948.3,11068.0,361679.5,1932453553,audited,kaggle hoangdang20t/tabm-abl-a2-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,41,98942.9,241720.4,10026.2,11358.0,362047.5,1934419638,audited,kaggle lelovo/tabm-abl-a3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,43,98942.9,241720.4,10014.2,11302.0,361979.4,1934055914,audited,kaggle nguyetquedo/tabm-abl-a3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle goilaaiudi/tabm-abl-a4-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,41,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle goilaaiudi/tabm-abl-a4-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,43,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle thuyanh316/tabm-abl-a4-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

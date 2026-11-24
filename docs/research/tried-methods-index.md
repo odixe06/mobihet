@@ -1,4 +1,4 @@
-# Index phương pháp đã thử — cập nhật Lite2 17/11/2026
+# Index phương pháp đã thử — cập nhật 24/11/2026 (MobiHet = L4 bỏ LA)
 
 Mỗi dòng là một study: thử cơ chế gì, kết quả, mở đâu. Bảng theo **họ cơ chế** và lý do đóng ở [sổ tay](method-building-brief.md) §4;
 bài học dùng lại ở [LESSONS](../../LESSONS.md). Trước khi đề xuất mới: tìm cơ chế ở đây, không mở lại họ đã đóng bằng tên mới.
@@ -8,6 +8,7 @@ Verdict giữ nguyên như lúc đóng; số ở doc gốc. Trạng thái: **nh�
 
 | study | cơ chế / arm | kết quả | doc |
 |---|---|---|---|
+| LA (24/11) | bỏ LA (A3) hoặc chỉ che lớp vắng bằng shift L4 (A3m) / mask (A3x), DAGSNet sim 200 xe, seed 42/43 | 8/8 audit PASS r20. **Chọn A3**, Macro TB .909871 (+.000720 vs L4). A3m/A3x FAIL (−.000858/−.001255 vs A3), đóng nhánh pilot. **Owner 24/11: A3 = MobiHet chính**, L4 có LA vào archive | [LA](screening-la.md) |
 | FB-L (18–19/11) | chọn dòng thật theo CE cũ trong ngân sách FB (top/prop/Q tách), engine `compact` (executed 0,997×/1,001×), sim DAGSNet + BERT seed42 | sim 17/17 audit PASS; **6/6 ứng viên PASS cả hai model**; chọn **P4** (ΔTB vs S0 DAGSNet −.0047 / BERT −.0024; vs nền +.0017 / +.0081), L4 sát (−.0047/−.0026); lợi dồn lớp 13 (BERT +.10). **Pilot full-scale r20 (19/11): 12/12 audit PASS, 6/6 arm PASS cả hai model** (ΔTB vs T3 −.0036…−.0048), chọn **L2** (mean ΔTB −.0038; L4 −.0039, chênh trong nhiễu); r50 chờ owner | [FB-L](screening-fbl.md) |
 | FB (Fixed-row-budget) | thay dòng thật xe lớn bằng synthetic, compute ≤1,01×; F0/R48/N1–N4/Z0/ZK, DAGSNet sim seed42 | sim 8/8 audit PASS; N2/N4 PASS, N1/N3 FAIL; chọn N4 (ΔTB −.0064, cost 1,000×); Z0/ZK sụp đổ (−.033/−.028); **đóng:** 8 synthetic M/L đổi lấy dòng thật (N1/N3), bỏ synthetic kể cả + distillation Q trên dòng thật (Z0/ZK); pilot N4 + N2 DAGSNet/BERT r20 đã push 17/11 | [FB](screening-budget.md) |
 | Lite2 | bootstrap v2 km2 (K6/K8, 64 bin, 25 % xe cho Lloyd, ô < τ không gửi moment bậc hai, Cholesky 5/6 bit) × liều 8 dòng (D8/U1); gate mới theo đích 16/11 | sim seed 42 r20 (17/11): B/A32/A24, T3+D8, T3+U1, **B+U1**, A32+D8 PASS; B+D8 FAIL (TB −.0051); luật chọn **B+U1**; pilot DAGSNet r20 **PASS** (Δ −.0028, bootstrap 340 663 B) ; full DAGSNet r50 **PASS gate cũ** (.905877; .354116 MB; estimator1,364×), chưa đạt1,01×; pilot BERT r20 **PASS** (Δr20−.004746, ΔTB−.005173); chưa r50 BERT đã audit (17/11) | [Lite2](screening-lite2.md) |

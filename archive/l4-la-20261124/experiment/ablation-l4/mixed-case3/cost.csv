@@ -1,0 +1,12 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a1,41,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle thuyanh316/mixl4-abl-a1-case3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,42,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle dinhan20t/mixl4-abl-a1-case3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,43,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle thuyanh316/mixl4-abl-a1-case3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,42,98942.9,241720.4,8900.5,10159.0,359722.7,1921998614,audited,kaggle dinhan25/mixl4-abl-a2-case3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,8915.1,10212.0,359790.3,1922359693,audited,kaggle minhtran0601/mixl4-abl-a2-case3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,41,98942.9,241720.4,8897.5,10505.0,360065.7,1923831098,audited,kaggle bestyorn/mixl4-abl-a3-case3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,8885.8,10390.0,359939.0,1923154086,audited,kaggle dinhan25/mixl4-abl-a3-case3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,43,98942.9,241720.4,8885.5,10412.0,359960.7,1923270221,audited,kaggle chiencosieuhang/mixl4-abl-a3-case3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle khanhmay0304/mixl4-abl-a4-case3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,41,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle annhannh331/mixl4-abl-a4-case3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,43,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle dinhan20t/mixl4-abl-a4-case3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

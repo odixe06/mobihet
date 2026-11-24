@@ -1,0 +1,2 @@
+method,status,bootstrap_tops,train_tops_per_round,other_tops_per_round,eval_tops_per_round,rounds,total_tops,x_fedavg,real_rows,executed_rows_r2,useful_rows_r2,source
+mobihet_l4,done,0.0639227,0.433253,4.04671e-06,0.00400807,50,21.7268,1.9523,1476064,5092288,1437976,runs/compute-20261120/mlp-mobihet_l4.count.json

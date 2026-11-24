@@ -1,0 +1,6 @@
+arm,client_tops,server_tops,bootstrap_tops,other_tops,unattributed_tops,total_tops,x_l4,rounds,panel,trace_sha256,source
+l4,10693.963,0,0.060271835,3.6511355,2.681745e-05,10697.675,1.0000,50,200,66d6e8ea72f3d84694a55abbcb73ec3836e06dde4878becd48f6fb827033310c,runs/compute-detailed-v3/kaggle/exp-flops-v3-bert/compute/bert-mobihet_l4.count.json
+a1,11680.438,0,2.0065e-08,0,8.085e-08,11680.438,1.0919,50,200,7451aa0170e64ae963f12b06ff8a458de61c00a9735914666b2c9310ad2bceb1,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/bert-abl-a1.count.json
+a2,10693.963,0,0.060271835,3.6511355,2.681745e-05,10697.675,1.0000,50,200,6a04cc8e1fbe2054009fa430abe53fa64536fd785f28a9151eba50e1c385a5f9,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/bert-abl-a2.count.json
+a3,10693.963,0,0.060271835,3.6511355,2.681745e-05,10697.675,1.0000,50,200,46a131142b0c7fadc69191d698ee5539799361ba47ec2c0f5713d173d7823b7c,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/bert-abl-a3.count.json
+a4,10693.963,0,0.060271835,3.6511355,5.93255e-06,10697.675,1.0000,50,200,a5fbdcfcefd71d57b89cbad7fc6536b034975c3817f2cade18497375ce9c3646,runs/compute-detailed-v3/kaggle/exp-count-abl-dags-bert/compute/bert-abl-a4.count.json

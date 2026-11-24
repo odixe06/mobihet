@@ -1,0 +1,2 @@
+method,status,bootstrap_tops,train_tops_per_round,other_tops_per_round,eval_tops_per_round,rounds,total_tops,x_fedavg,real_rows,executed_rows_r2,useful_rows_r2,source
+mobihet_l4,done,0.0645649,407.073,0.000305338,2.52915,50,20353.7,,1476064,18760344,1437976,runs/compute-20261120/kaggle/exp-count-l4-g4096/compute/mixed-case1-mobihet_l4.count.json

@@ -1,0 +1,13 @@
+arm,seed,bootstrap_up_B,bootstrap_down_B,up_50r_B,down_50r_B,total_B_per_vehicle,total_B_network,status,source
+a2,42,98942.9,241720.4,10177.9,11790.0,362631.1,1937537974,audited,kaggle hoangdang20t/sae-abl-a2-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,43,98942.9,241720.4,10113.8,11700.0,362477.0,1936714546,audited,kaggle emtrangtri/sae-abl-a2-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a2,41,98942.9,241720.4,10121.0,11712.0,362496.3,1936817616,audited,kaggle accanniez/sae-abl-a2-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,42,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle goilaaiudi/sae-abl-a1-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,42,98942.9,241720.4,10243.3,11903.0,362809.5,1938491260,audited,kaggle hoangdang20t/sae-abl-a3-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,41,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle nguyetquedo/sae-abl-a1-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a1,43,64.0,64.0,0.0,0.0,128.0,683904,audited,kaggle minhtrit06/sae-abl-a1-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,41,98942.9,241720.4,10211.7,11851.0,362726.0,1938044772,audited,kaggle minhtrit06/sae-abl-a3-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a3,43,98942.9,241720.4,10210.0,11854.0,362727.2,1938051614,audited,kaggle odixeuit/sae-abl-a3-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,42,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle hoangdang20t/sae-abl-a4-s42-h2/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,41,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle hoangdang20t/sae-abl-a4-s41/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)
+a4,43,98942.9,241720.4,51200.0,51200.0,443063.2,2367286875,audited,kaggle minhtrit06/sae-abl-a4-s43/1 (scripts/audit_ablation.py: 50 CM -> 10 metrics)

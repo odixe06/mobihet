@@ -26,6 +26,12 @@ synthetic rows replace real-row work instead of adding to it (client FLOPs ~ row
       rows are moved to the front first). Synthetic rows are generated as before and then cut, so they are the same rows;
       only dropout draws change with the shape. Executed client compute ~1,00 x FedAvg instead of ~2,07 x (N4).
 
+  la_mode    "full" | "off" | "absent" | "mask"  (24/11/2026, docs/research/screening-la.md) logit adjustment on the real-row
+      CE (and the stored CE that ranks rows): full = L4's log pi_local - log pi_global; off = no shift (ablation A3);
+      absent = shift 0 on the classes the vehicle has (n_kc > 0), L4's shift on the ones it lacks; mask = shift 0 on the
+      classes it has, -1e4 on the ones it lacks (restricted softmax: real rows never push an absent class down).
+      Class counts, bootstrap, Q, synthetic rows and bytes are those of L4 in every mode.
+
 Round info gains real_frac = trained real rows / real rows (measured) when a knob is on.
 """
 import math
@@ -42,6 +48,11 @@ class Method(Lite):
     def __init__(self, env):
         super().__init__(env)
         hp = env.hp
+        self.la_mode = hp.get("la_mode", "full")
+        assert self.la_mode in {"full", "off", "absent", "mask"}, self.la_mode
+        if self.la_mode != "full":                                       # la_shift is rebuilt from counts on every start
+            lack = {"off": 0.0, "absent": self.la_shift, "mask": -1e4}[self.la_mode]
+            self.la_shift = torch.where(self.cnt > 0, 0.0, lack).to(self.la_shift.dtype)
         rows = list(hp.get("real_tier_rows", []))
         self.synth_off, self.q_real = bool(hp.get("synth_off", False)), bool(hp.get("q_real", False))
         self.budget = bool(rows) or self.synth_off or self.q_real

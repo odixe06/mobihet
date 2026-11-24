@@ -1,0 +1,4 @@
+method,seed,view,round,accuracy,precision_macro,precision_micro,precision_weighted,recall_macro,recall_micro,recall_weighted,f1_macro,f1_micro,f1_weighted,status,source
+mobihet_l4,41,client,50,0.913547,0.912103,0.913547,0.907116,0.901885,0.913547,0.913547,0.905511,0.913547,0.909196,audited,"kaggle hoangdang20t/mh-fbl-l4-top-s41-r50-h2 (../mobihet chain 2 sessions; runs/fbl-r50/audit.json PASS; CM r50 -> 10 metrics)"
+mobihet_l4,42,client,50,0.913673,0.912161,0.913673,0.907188,0.901733,0.913673,0.913673,0.905458,0.913673,0.909280,audited,"kaggle lelovo/mh-fbl-l4-top-s42-r50-h2 (../mobihet chain 2 sessions; runs/fbl-r50/audit.json PASS; CM r50 -> 10 metrics)"
+mobihet_l4,43,client,50,0.913142,0.911451,0.913142,0.907011,0.902323,0.913142,0.913142,0.905540,0.913142,0.909081,audited,"kaggle abbafan/mh-fbl-l4-top-s43-r50-h2 (../mobihet chain 2 sessions; runs/fbl-r50/audit.json PASS; CM r50 -> 10 metrics)"

@@ -1,0 +1,4 @@
+method,seed,view,round,accuracy,precision_macro,precision_micro,precision_weighted,recall_macro,recall_micro,recall_weighted,f1_macro,f1_micro,f1_weighted,status,source
+mobihet_l4,41,client,50,0.925783,0.927212,0.925783,0.918455,0.907203,0.925783,0.925783,0.913006,0.925783,0.918214,audited,"kaggle goilaaiudi/flb-fbl-l4-top-s41-r50-h2 (../fl_veremi_bert chain 2 sessions; runs/fbl-r50/S41h2/audit.json PASS; CM r50 -> 10 metrics)"
+mobihet_l4,42,client,50,0.925270,0.926847,0.925270,0.917907,0.906131,0.925270,0.925270,0.912151,0.925270,0.917559,audited,"kaggle gaming3/flb-fbl-l4-top-s42-r50-h2 (../fl_veremi_bert chain 2 sessions; runs/fbl-r50/S42h2/audit.json PASS; CM r50 -> 10 metrics)"
+mobihet_l4,43,client,50,0.925441,0.926866,0.925441,0.918083,0.906964,0.925441,0.925441,0.912639,0.925441,0.917757,audited,"kaggle chiencosieuhang/flb-fbl-l4-top-s43-r50-h2 (../fl_veremi_bert chain 2 sessions; runs/fbl-r50/S43h2/audit.json PASS; CM r50 -> 10 metrics)"
