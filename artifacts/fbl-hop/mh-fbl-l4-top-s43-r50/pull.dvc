@@ -1,0 +1,6 @@
+outs:
+- md5: 0e28e6b21b21f086c4840cb88277523c.dir
+  size: 10602627142
+  nfiles: 103
+  hash: md5
+  path: pull

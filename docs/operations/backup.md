@@ -17,6 +17,10 @@ Lịch sử các lô/cleanup/hash: [snapshot](../../archive/operations-20261116/
 - Nhiều nhóm lịch sử N/O/P/Q/C/F/L/R/V/W/X/Y đã cleanup/partial; bảng đầy đủ ở [snapshot backup](../../archive/operations-20261116/before/docs/operations/backup.md),
   inventory gốc ở [receipt](../../archive/operations-20261116/receipts/backup-inventory.json).
 
+24/11/2026 08:20: `dvc add` + `dvc push -j 16` sáu target: `artifacts/fbl-hop/mh-fbl-l4-top-s43-r50/pull.dvc` (9,9 GB),
+`artifacts/fbl-r50/mh-fbl-l4-top-s4{1,2,3}-r50-h2.dvc`, `artifacts/fbl-r50/mh-fbl-l4-top-s43-r50.dvc`, `artifacts/sim-kaggle-la.dvc`;
+343 file, exit 0, `status -c` in sync (log `runs/dvc-push-20261124.log`). Upload cloud của rclone có thể chưa xong: không xoá `~/.cache/rclone`.
+Không cleanup. Pull mới của batch MobiHet nằm ở repo experiment (ORICO), chưa backup.
 20/11/2026 02:58: `artifacts/fbl-hop/mh-fbl-l4-top-s4{1,2}-r50/pull.dvc` push-j16 + status-c in sync (commit `38754dd`); thêm manifest fb-full/fbl-full/sim-kaggle-fbl/fbl-r50 session 1; `dvc push -j 16` toàn repo + bundle `main` 38754dd.
 Lần xác minh filesystem remote gần nhất:16/11/2026,16:57:46VN, push-j16 + status-c in sync cho các target trong
 [receipt reboot](../../archive/operations-20261116/receipts/backup-reboot-20261116.json).

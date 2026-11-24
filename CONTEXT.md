@@ -6,7 +6,7 @@ Không nạp `archive/` mặc định.
 Federated IDS V2X trên VeReMi NextGen v4:5.343xe nhận,77input,16lớp; mỗi xe giữ model riêng.
 Cơ chế trao thống kê/xác suất, hỗ trợ khác kiến trúc; không realrows/model/gradient/BN.
 
-## Trạng thái — 24/11/2026 +07
+## Trạng thái — 24/11/2026 08:10 +07
 
 **[Bàn giao sống](docs/operations/continue.md)** ghi trạng thái job, bằng chứng audit và việc còn mở.
 **Phương pháp chính (owner 24/11) = MobiHet = FB-L cấu hình L4 bỏ logit adjustment** (`la_mode=off`, A3 của
