@@ -1,6 +1,0 @@
-outs:
-- md5: fdc5392e287ef130aa63fb523352cf17.dir
-  size: 1005118
-  nfiles: 128
-  hash: md5
-  path: mh-sim-fb-q4-top-q18-s42-r20
