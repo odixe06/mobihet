@@ -14,6 +14,13 @@ kết quả hiện hành. Kết quả MobiHet hiện hành ở `~/project/experi
 | `experiment/communication-budget/*.csv` | hàng `mobihet_l4` của `artifacts/communication-budget/` | byte L4 đo từ log (canonical + pilot) |
 | `experiment/ablation-l4/` | `experiments/ablation-l4/` | ablation A1–A4 **từ L4** (93/108 ô R50), byte, FLOP |
 | `experiment/docs/mobihet-l4.md`, `mobihet-l4-ablation.md` | `docs/research/` | thiết kế, kết quả và kiểm chứng L4 + ablation L4 |
+| `experiment/mixed-l4/` (Git bỏ qua) | `experiment/runs/mixed-l4/` + ORICO `local-artifacts/runs/mixed-l4/sessions/` | mixed L4 **có LA** (`la_mode` mặc định `full`): 13 session `mixl4-case{1,2,3}-s4*`, dbg, pilot, recovery. Gồm config, CM, metrics, history và log. Không có checkpoint |
+
+### Mixed L4 có LA — chuyển 27/11/2026
+
+- 1.608 file (278 MB) chép sang `experiment/mixed-l4/`, MD5 từng file khớp nguồn. Đã bỏ 29 checkpoint `*.pt` (khoảng 42 GB) và xóa bản gốc ở experiment và ORICO theo yêu cầu owner.
+- Thư mục này không vào Git. Bản backup: `NCKH/veremi_build/mobihet/mobihet-l4-la-mixed-l4-20261127.zip` trên OneDrive (287.773.524 byte,
+  SHA-256 `0a7d1cb12bb71b391bf675f1bcd2e54947cc4498cc1e5ffce1b90ad6bf7c2d02`, đã đối chiếu từ cloud). ZIP giữ đường dẫn từ gốc repo, giải nén tại gốc repo để khôi phục.
 
 Repo mobihet vẫn giữ lịch sử phát triển L4 của chính nó: [FB-L](../../docs/research/screening-fbl.md) (sim, pilot, r50 DAGSNet/BERT).
 
