@@ -7,7 +7,10 @@ Lịch sử các lô/cleanup/hash: [snapshot](../../archive/operations-20261116/
 
 - Repo không còn dùng DVC. Đã gỡ `.dvc/`, `.dvcignore` và 310 pointer `*.dvc` khỏi nhánh `main`. Pointer cũ còn trong lịch sử Git, xem commit `c325376`.
 - Đã xóa `NCKH/veremi_build/mobihet/dvc-storage` trên OneDrive (17.690 object, 196,2 GB) vào thùng rác OneDrive. Kho này dùng chung với `mobihet-archive-*`, các repo đó cũng đã gỡ DVC. Trước khi xóa đã copy 155 blob (29 MB) của hai pointer `experiment/runs/recovery-20261120/references/dagsnet-l4/mh-fbl-l4-top-s4{1,2}-r50.dvc` sang cache của `experiment`.
-- Đã xóa cache local `.dvc/cache` (15 GB). Output cũ trong working tree (bị gitignore) chưa xóa.
+- Đã xóa cache local `.dvc/cache` (15 GB).
+- 27/11: trong output cũ ở working tree (gitignore), đã xóa 52 checkpoint `*.pt` và 4 `inductor-cache.tar`, tổng 13,3 GB. Danh sách nằm ở [receipts/dvc-removal-20261127-deleted-files.tsv](receipts/dvc-removal-20261127-deleted-files.tsv). Kết quả còn lại gồm 44.649 file, 2,42 GB: CM `*.npz`, metrics/history `*.json(l)`, log, md, csv, source snapshot.
+- Kết quả còn lại đã đóng gói thành `NCKH/veremi_build/mobihet/mobihet-dvc-results-20261127.zip` trên OneDrive (2.256.165.058 byte, SHA-256 `670ae8d126335374de36b4a168d000d380f4df562b35610fc4f74ec40ba9bbfc`). `MANIFEST.json` trong ZIP ghi SHA-256 của từng file. Giữ đường dẫn tương đối gốc repo, giải nén tại gốc repo để khôi phục.
+- Kiểm kiến thức 27/11: 120 output không có bản local đều có slug được ghi trong tài liệu hoặc registry trong Git. Không có link Markdown nào trỏ tới pointer đã gỡ. 9 output được tài liệu nhắc tới vẫn còn local và đều nằm trong ZIP.
 - `dvc pull` không còn khôi phục được dữ liệu. Code, docs và metadata run vẫn trong Git. Git bundle `mobihet.bundle` và `backup-receipt.json` vẫn giữ ở `NCKH/veremi_build/mobihet/`, các bundle đời trước ở `mobihet-legacy/`.
 - Lý do: owner chỉ giữ DVC cho các dự án đang làm (`odixe06/experiment`, `experiment_10k_clients`). Các hướng dẫn DVC bên dưới chỉ còn giá trị lịch sử.
 
